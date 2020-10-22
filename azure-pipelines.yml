@@ -2,8 +2,6 @@ trigger:
   branches:
     include:
     - develop
-pr:
-  enabled: false
 stages:
 - stage: __default
   jobs:
