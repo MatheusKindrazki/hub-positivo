@@ -2,7 +2,7 @@ trigger:
   - develop
 
 variables:
-  uiSource: 'src'
+  uiSource: '.'
   uiBuild: '$(uiSource)/build'
 
 pool:
