@@ -2,8 +2,8 @@ trigger:
   - develop
 
 variables:
-  uiSource: '.'
-  uiBuild: '$(uiSource)/build'
+  uiSource: './'
+  uiBuild: '$(uiSource)build'
 
 pool:
   vmImage: ubuntu-latest
