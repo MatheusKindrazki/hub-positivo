@@ -15,10 +15,8 @@ steps:
     displayName: 'Instalando Node.js'
 
   - script: 
-      pushd $(hubSource)
       npm install
       npm run build
-      popd
     displayName: 'Instalando dependências e executando o Build'
 
   - task: ArchiveFiles@2
