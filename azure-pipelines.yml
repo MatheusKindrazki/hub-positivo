@@ -2,8 +2,7 @@ trigger:
   - develop
 
 variables:
-  uiSource: './'
-  uiBuild: '$(uiSource)/build'
+  uiBuild: './build'
 
 pool:
   vmImage: ubuntu-latest
@@ -15,10 +14,8 @@ steps:
   displayName: 'Instalando Node.js'
 
 - script: 
-    pushd '$(uiSource)'
     npm install
     npm run build
-    popd
   displayName: 'Instalando dependências e executando o Build'
 
 - task: ArchiveFiles@2
