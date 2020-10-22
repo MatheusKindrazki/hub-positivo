@@ -15,7 +15,7 @@ steps:
     displayName: 'Instalando Node.js'
 
   - script: 
-      pushd ${hubSource}/src
+      pushd $(hubSource)
       npm install
       npm run build
       popd
