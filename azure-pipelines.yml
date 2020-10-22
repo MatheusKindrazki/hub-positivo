@@ -1,9 +1,6 @@
 trigger:
   - develop
 
-variables:
-  uiBuild: './build'
-
 pool:
   vmImage: ubuntu-latest
 
@@ -21,7 +18,7 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'Preparando arquivos buildados'
   inputs:
-    rootFolderOrFile: '$(uiBuild)'
+    rootFolderOrFile: 'build'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
