@@ -1,0 +1,87 @@
+{
+  "env": {
+    "es2020": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb-base",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier", "eslint-plugin-import-helpers"],
+  "rules": {
+    "prettier/prettier": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-console": ["error", { "allow": ["tron"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/rule-name" : "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_|^Props$", "varsIgnorePattern": "Props" }],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-param-reassign": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-unused-expressions": "off",
+    "react/prop-types": "off",
+    "no-unused-vars": "off",
+    "import/no-duplicates": "off",
+    "no-use-before-define": [0],
+    "@typescript-eslint/no-use-before-define": [1],
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          "/^react$/",
+          "/^react-router-dom/",
+          "/^react-redux/",
+          "/^redux/",
+          "module",
+          "/^~/components/",
+          "/^~/assets/",
+          "/^~/",
+          ["parent", "sibling", "index"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {},
+      "babel-plugin-root-import": {
+        "rootPathPrefix": "~",
+        "rootPathSuffix": "src"
+      }
+    }
+  }
+}
