@@ -1,0 +1,24 @@
+trigger:
+  branches:
+    include:
+    - develop
+pr:
+  enabled: false
+stages:
+- stage: __default
+  jobs:
+  - job: Job
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: 10.x
+      displayName: Install Node.js
+    - task: CmdLine@2
+      displayName: npm install and build
+      inputs:
+        script: >
+          npm install
+
+          npm run build
