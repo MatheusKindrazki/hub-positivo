@@ -2,7 +2,7 @@ trigger:
   - develop
 
 variables:
-  hubSource: '/src'
+  hubSource: 'src'
   hubBuild: '$(hubSource)/build'
 
 pool:
