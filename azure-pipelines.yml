@@ -2,39 +2,36 @@ trigger:
   - develop
 
 variables:
-  hubSource: 'src'
-  hubBuild: '$(hubSource)/build'
+  uiBuild: './build'
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '10.x'
-    displayName: 'Instalando Node.js'
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Instalando Node.js'
 
-  - script: 
-      pushd ${hubSource}/src
-      npm install
-      npm run build
-      popd
-    displayName: 'Instalando dependências e executando o Build'
+- script: 
+    npm install
+    npm run build
+  displayName: 'Instalando dependências e executando o Build'
 
-  - task: ArchiveFiles@2
-    displayName: 'Preparando arquivos buildados'
-    inputs:
-      rootFolderOrFile: '$(hubBuild)'
-      includeRootFolder: false
-      archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-      replaceExistingArchive: true
-  
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publicando...'
-    inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'devhubdigital'
-      publishLocation: 'Container'
+- task: ArchiveFiles@2
+  displayName: 'Preparando arquivos buildados'
+  inputs:
+    rootFolderOrFile: '$(uiBuild)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publicando...'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'devhubdigital'
+    publishLocation: 'Container'
   
   
