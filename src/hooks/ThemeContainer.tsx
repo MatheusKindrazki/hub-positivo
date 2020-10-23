@@ -11,7 +11,7 @@ import { ThemeProvider as StyledProvider } from 'styled-components';
 import { theme as HubTheme } from '~/styles';
 
 const ThemeContainer: React.FC = ({ children }) => {
-  const [theme] = useState<'dark' | 'light' | undefined>('dark');
+  const [theme] = useState<'dark' | 'light' | undefined>('light');
 
   return (
     <ChakraThemeProvider theme={HubTheme}>
