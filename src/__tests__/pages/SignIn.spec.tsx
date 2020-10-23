@@ -14,6 +14,8 @@ describe('Página de Login', () => {
   it('Deve ser possível se logar na aplicação', () => {
     const { debug } = render(<SignIn />);
 
+    expect(1).toEqual(1);
+
     debug();
   });
 });
