@@ -1,6 +1,6 @@
 import { Store } from 'redux';
 import { persistStore } from 'redux-persist';
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware, { SagaMonitor } from 'redux-saga';
 
 import { routerMiddleware } from 'connected-react-router';
 
@@ -15,11 +15,11 @@ import { ApplicationState } from './store';
 import '~/config/reactotronConfig';
 
 const sagaMonitor =
-  process.env.NODE_ENV === 'development'
-    ? console.tron?.createSagaMonitor()
-    : null;
+  process.env.NODE_ENV === 'development' ? console.tron.createEnhancer() : null;
 
-const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
+const monitor = (sagaMonitor as unknown) as SagaMonitor;
+
+const sagaMiddleware = createSagaMiddleware({ sagaMonitor: monitor });
 
 const middlewares = [sagaMiddleware, routerMiddleware(history)];
 

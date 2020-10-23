@@ -1,16 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   createStore,
   compose,
   applyMiddleware,
   Reducer,
   StoreCreator,
+  Middleware,
+  Dispatch,
+  AnyAction,
+  Func0,
 } from 'redux';
 
-export default (reducers: Reducer, middlewares: any): StoreCreator => {
+type Mid = Middleware<Dispatch<AnyAction>>[];
+
+export default (reducers: Reducer, middlewares: Mid): StoreCreator => {
+  const enhancerCompose = console.tron.createEnhancer() as Func0<unknown>;
+
   const enhancer =
     process.env.NODE_ENV === 'development'
-      ? compose(console.tron.createEnhancer(), applyMiddleware(...middlewares))
+      ? compose(enhancerCompose, applyMiddleware(...middlewares))
       : applyMiddleware(...middlewares);
   return createStore(reducers, enhancer);
 };
