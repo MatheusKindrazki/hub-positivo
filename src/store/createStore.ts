@@ -13,7 +13,8 @@ import {
 type Mid = Middleware<Dispatch<AnyAction>>[];
 
 export default (reducers: Reducer, middlewares: Mid): StoreCreator => {
-  const enhancerCompose = console.tron.createEnhancer() as Func0<unknown>;
+  const enhancerCompose = (process.env.NODE_ENV === 'development' &&
+    console.tron.createEnhancer()) as Func0<unknown>;
 
   const enhancer =
     process.env.NODE_ENV === 'development'
