@@ -5,6 +5,7 @@ import reactotronSaga from 'reactotron-redux-saga';
 interface Tron {
   createEnhancer: () => unknown;
   clear: () => void;
+  log: (d: unknown) => void;
 }
 declare global {
   interface Console {

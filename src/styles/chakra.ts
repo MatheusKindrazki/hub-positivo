@@ -4,7 +4,6 @@ const customTheme: DefaultTheme = {
   ...theme,
   fontSizes: {
     ...theme.fontSizes,
-    xl: '2rem',
   },
   fonts: {
     body: 'Nunito, system-ui, sans-serif',
@@ -32,8 +31,10 @@ const customTheme: DefaultTheme = {
       ...theme.colors.blue,
       500: '#1E88E5',
     },
+    black: '#3C3C3C',
     gray: {
       ...theme.colors.gray,
+      100: '#D9D9D9;',
       200: '#ECEFF1',
       300: '#F4F6F8',
       400: '#E5E5E5',
