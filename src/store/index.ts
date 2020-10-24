@@ -21,7 +21,7 @@ const monitor = (sagaMonitor as unknown) as SagaMonitor;
 
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor: monitor });
 
-const middlewares = [sagaMiddleware, routerMiddleware(history)];
+const middlewares = [routerMiddleware(history), sagaMiddleware];
 
 const store: Store<ApplicationState> = (createStore(
   persistReducers(rootReducer),

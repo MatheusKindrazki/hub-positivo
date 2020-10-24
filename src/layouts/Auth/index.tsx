@@ -17,7 +17,6 @@ const Auth: React.FC = ({ children }) => {
         borderWidth="1px"
         rounded="md"
         shadow="md"
-        p="5"
       >
         {children}
       </Box>
