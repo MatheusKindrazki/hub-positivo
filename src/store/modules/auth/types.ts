@@ -6,4 +6,5 @@ export interface SignInRequest {
 export interface AuthReducer {
   signed: boolean;
   selectProfile: boolean;
+  loading: boolean;
 }

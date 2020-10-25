@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { useSelector } from 'react-redux';
 
 import { Box, Heading, Text } from '@chakra-ui/core';
 
+import history from '~/services/history';
 import documentTitle from '~/utils/documentTitle';
 
 const Profile: React.FC = () => {
   documentTitle('Selecione o Perfil');
+
+  const { selectProfile } = useSelector((state: Store.State) => state.auth);
+
+  useEffect(() => {
+    if (!selectProfile) {
+      history.push('/');
+    }
+  }, [selectProfile]);
 
   return (
     <Box p="6">

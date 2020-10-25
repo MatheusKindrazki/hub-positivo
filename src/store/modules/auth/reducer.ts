@@ -8,6 +8,7 @@ import { AuthReducer } from './types';
 const INITIAL_STATE: AuthReducer = {
   signed: false,
   selectProfile: false,
+  loading: false,
 };
 
 type ReturnReducer = Reducer<AuthReducer>;
@@ -17,11 +18,14 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
       case Actions.SIGN_IN_REQUEST: {
         draft.signed = true;
+        draft.loading = true;
         break;
       }
-      default:
-    }
-    switch (action.type) {
+      case Actions.SET_PROFILE_REQUEST: {
+        draft.selectProfile = true;
+        draft.loading = false;
+        break;
+      }
       case Actions.SIGN_OUT: {
         draft.signed = false;
         break;
