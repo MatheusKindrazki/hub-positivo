@@ -4,15 +4,14 @@ import { Provider } from 'react-redux';
 
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { ThemeProvider } from 'styled-components';
-
 import { store, persistor } from '~/store';
-import { theme } from '~/styles';
+
+import ThemeProvider from './ThemeContainer';
 
 const AppProvider: React.FC = ({ children }) => (
   <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    <PersistGate loading={null} persistor={persistor}>
+      <ThemeProvider>{children}</ThemeProvider>
     </PersistGate>
   </Provider>
 );
