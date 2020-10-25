@@ -36,7 +36,6 @@ const persistedReducer = persistReducer(
 
 const store = createStore(
   persistedReducer,
-  [],
   composeWithDevTools(applyMiddleware(...middlewares)),
 );
 
