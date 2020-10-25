@@ -16,9 +16,9 @@ const App: React.FC = () => {
       <ConnectedRouter history={history}>
         <BrowserRouter>
           <Routes />
-          <GlobalStyle />
         </BrowserRouter>
       </ConnectedRouter>
+      <GlobalStyle />
     </AppProvider>
   );
 };

@@ -1,11 +1,25 @@
 import React from 'react';
 
-import { Container, Content } from './styles';
+import { Box } from '@chakra-ui/core';
+
+import Logo from '~/components/Logo';
+
+import { Container } from './styles';
 
 const Auth: React.FC = ({ children }) => {
   return (
     <Container>
-      <Content>{children}</Content>
+      <Logo />
+      <Box
+        background="white"
+        width="100%"
+        maxWidth="415px"
+        borderWidth="1px"
+        rounded="md"
+        shadow="md"
+      >
+        {children}
+      </Box>
     </Container>
   );
 };
