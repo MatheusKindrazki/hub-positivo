@@ -10,7 +10,7 @@ import ThemeProvider from './ThemeContainer';
 
 const AppProvider: React.FC = ({ children }) => (
   <Provider store={store}>
-    <PersistGate persistor={persistor}>
+    <PersistGate loading={null} persistor={persistor}>
       <ThemeProvider>{children}</ThemeProvider>
     </PersistGate>
   </Provider>
