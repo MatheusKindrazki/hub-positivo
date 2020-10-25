@@ -21,8 +21,8 @@ const SignIn: React.FC = () => {
   documentTitle('Entrar');
 
   const dispatch = useDispatch();
-
   const [view, setView] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const formRef = useRef<FormHandles>(null);
 
@@ -35,7 +35,11 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
-        dispatch(signInRequest(data));
+        setLoading(true);
+
+        setTimeout(() => {
+          dispatch(signInRequest(data));
+        }, 2000);
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -75,7 +79,7 @@ const SignIn: React.FC = () => {
         />
         <Input
           name="password"
-          type={view ? 'password' : 'text'}
+          type={!view ? 'password' : 'text'}
           placeholder="Digite sua senha"
           iconRight={
             <Box
@@ -89,7 +93,7 @@ const SignIn: React.FC = () => {
         />
 
         <Button
-          isLoading={false}
+          isLoading={loading}
           mt="2rem"
           type="submit"
           color="white"
