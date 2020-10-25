@@ -1,11 +1,33 @@
-import { all, put, takeLatest } from 'redux-saga/effects';
+import { all, Payload, put, takeLatest } from 'redux-saga/effects';
 
-import { push } from 'connected-react-router';
+import { toast } from 'react-toastify';
 
-import { Actions } from './actions';
+import history from '~/services/history';
 
-export function* signIn(): Generator {
-  yield put(push('/profile'));
+import { Actions, setProfileRequest } from './actions';
+import { SignInRequest } from './types';
+
+const userEnabled = {
+  email: 'teste@teste.com.br',
+  password: '123456',
+};
+
+type SignInPayload = Payload<SignInRequest>;
+
+export function* signIn({ payload }: SignInPayload): Generator {
+  const { email, password } = payload;
+
+  if (email === userEnabled.email) {
+    if (password === userEnabled.password) {
+      yield put(setProfileRequest());
+
+      history.push('/profile');
+    } else {
+      toast.error('Algo deu errado, verifique seus dados e tente novamente!');
+    }
+  } else {
+    toast.error('Algo deu errado, verifique seus dados e tente novamente!');
+  }
 
   return yield true;
 }

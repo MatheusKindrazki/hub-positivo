@@ -2,11 +2,12 @@ import React, { useRef, useState, useCallback } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { Box, Heading, Text, Button, useToast } from '@chakra-ui/core';
+import { Box, Heading, Text, Button } from '@chakra-ui/core';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { FaUser, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { MdLock } from 'react-icons/md';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 import { Input } from '~/components/Form';
@@ -18,8 +19,6 @@ import signInValidator from '~/validators/signIn';
 
 const SignIn: React.FC = () => {
   documentTitle('Entrar');
-
-  const toast = useToast();
 
   const dispatch = useDispatch();
 
@@ -46,16 +45,15 @@ const SignIn: React.FC = () => {
           return;
         }
 
-        toast({
+        toast.error({
           title: 'Algo deu errado =(',
           description: 'Verifique seus dados e tente novamente!',
-          status: 'error',
           duration: 5000,
           isClosable: true,
         });
       }
     },
-    [dispatch, toast],
+    [dispatch],
   );
 
   return (
