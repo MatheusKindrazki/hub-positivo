@@ -1,34 +1,46 @@
-import { Store } from 'redux';
-import { persistStore } from 'redux-persist';
-import createSagaMiddleware, { SagaMonitor } from 'redux-saga';
+import { applyMiddleware, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistStore, persistReducer } from 'redux-persist';
+import { encryptTransform } from 'redux-persist-transform-encrypt';
+import storage from 'redux-persist/lib/storage';
+import createSagaMiddleware from 'redux-saga';
 
 import { routerMiddleware } from 'connected-react-router';
 
 import history from '~/services/history';
 
-import createStore from './createStore';
-import rootReducer from './modules/rootReducer';
+import createRootReducer from './modules/rootReducer';
 import rootSaga from './modules/rootSaga';
-import persistReducers from './persistReducers';
-import { ApplicationState } from './store';
 
-import '~/config/reactotronConfig';
+const encrypted = encryptTransform({
+  secretKey: process.env.REACT_APP_SECRET_ENCRYPTED_KEY || 'PSD-HUB',
+});
 
-const sagaMonitor =
-  process.env.NODE_ENV === 'development' ? console.tron.createEnhancer() : null;
+const persistName = process.env.REACT_APP_PERSIST_NAME || '@PSD:HUB';
 
-const monitor = (sagaMonitor as unknown) as SagaMonitor;
+const persistConfig = {
+  key: persistName,
+  storage,
+  whitelist: ['auth', 'user'],
+  transform: [encrypted],
+};
 
-const sagaMiddleware = createSagaMiddleware({ sagaMonitor: monitor });
+const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [routerMiddleware(history), sagaMiddleware];
+const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
-const store: Store<ApplicationState> = (createStore(
-  persistReducers(rootReducer),
-  middlewares,
-) as unknown) as Store<ApplicationState>;
+const persistedReducer = persistReducer(
+  persistConfig,
+  createRootReducer(history),
+);
 
-const persistor = persistStore((store as unknown) as Store);
+const store = createStore(
+  persistedReducer,
+  [],
+  composeWithDevTools(applyMiddleware(...middlewares)),
+);
+
+const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 
