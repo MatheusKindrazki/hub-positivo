@@ -7,7 +7,6 @@ import {
   Button,
   useDisclosure,
   Drawer,
-  DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
 } from '@chakra-ui/core';
@@ -78,8 +77,7 @@ const Header: React.FC = () => {
         onClose={onClose}
         finalFocusRef={agendaRef}
       >
-        <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent mt={['0', '72px']}>
           <DrawerCloseButton></DrawerCloseButton>
         </DrawerContent>
       </Drawer>
