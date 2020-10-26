@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist';
 import { encryptTransform } from 'redux-persist-transform-encrypt';
@@ -34,7 +34,7 @@ const persistedReducer = persistReducer(
   createRootReducer(history),
 );
 
-const store = createStore(
+const store: Store<Store.State> = createStore(
   persistedReducer,
   composeWithDevTools(applyMiddleware(...middlewares)),
 );
