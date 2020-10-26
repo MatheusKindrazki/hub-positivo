@@ -28,7 +28,7 @@ const SignIn: React.FC = () => {
 
   const handleSubmit = useCallback(
     async data => {
-      formRef.current?.setErrors({});
+      formRef?.current?.setErrors({});
 
       try {
         await signInValidator.validate(data, {
@@ -44,7 +44,7 @@ const SignIn: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
-          formRef.current?.setErrors(errors);
+          formRef?.current?.setErrors(errors);
 
           return;
         }
