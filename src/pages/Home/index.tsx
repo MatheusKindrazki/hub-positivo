@@ -5,9 +5,13 @@ import { Box, SimpleGrid, Heading } from '@chakra-ui/core';
 import CardProduct from '~/components/CardProduct';
 import Welcome from '~/components/Welcome';
 
+import documentTitle from '~/utils/documentTitle';
+
 import { Container } from './styles';
 
 const Home: React.FC = () => {
+  documentTitle('Home');
+
   return (
     <Box as={Container} p="4" maxW="1400px" margin="0 auto">
       <Box
