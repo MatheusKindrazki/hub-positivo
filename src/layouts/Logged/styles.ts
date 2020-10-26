@@ -1,5 +1,7 @@
-import { Fragment } from 'react';
-
 import styled from 'styled-components';
 
-export const Container = styled(Fragment)``;
+export const Container = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  background: ${({ theme }) => theme.colors.gray[300]};
+`;

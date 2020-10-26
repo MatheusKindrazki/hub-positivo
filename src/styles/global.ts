@@ -11,6 +11,7 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+    box-shadow: none!important;
   }
 
   .Toastify__toast{
