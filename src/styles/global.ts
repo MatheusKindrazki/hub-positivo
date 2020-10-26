@@ -28,10 +28,22 @@ export default createGlobalStyle`
       opacity: 0;
     }
 
+    &.height-md {
+      .hub__control {
+        min-height: 40px!important;
+
+        * {
+          font-size: 0.8125rem!important;
+        }
+
+      }
+    }
+
     .hub__control  {
       min-height: 48px;
       border-color: #D9D9D9;
       background: #ECEFF1;
+      border-radius: 8px;
         svg {
           fill: ${({ theme }) => theme.colors.blue[500]};
           transition: all .2s linear;
