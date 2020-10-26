@@ -37,6 +37,7 @@
     "no-param-reassign": "off",
     "react/jsx-props-no-spreading": "off",
     "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": ["error"],
     "react/prop-types": "off",
     "no-unused-vars": "off",
     "import/no-duplicates": "off",
