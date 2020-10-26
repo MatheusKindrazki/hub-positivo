@@ -12,16 +12,6 @@ const HubSelect: React.FC<Props> = ({ ...rest }) => {
         'hub-select': true,
       })}
       classNamePrefix="hub"
-      options={[
-        {
-          label: 'ola',
-          value: 'teste',
-        },
-        {
-          label: 'ola',
-          value: 'teste',
-        },
-      ]}
       {...rest}
     />
   );

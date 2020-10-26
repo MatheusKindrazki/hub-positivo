@@ -22,6 +22,12 @@ export function signInRequest(data: SignInRequest): Action {
   };
 }
 
+export function signInSuccess(): Action {
+  return {
+    type: Actions.SIGN_IN_SUCCESS,
+  };
+}
+
 export function setProfileRequest(): Action {
   return {
     type: Actions.SET_PROFILE_REQUEST,
