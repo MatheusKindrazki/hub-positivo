@@ -36,7 +36,7 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-param-reassign": "off",
     "react/jsx-props-no-spreading": "off",
-    "no-unused-expressions": "off",
+    "no-unused-expressions": "error",
     "@typescript-eslint/no-unused-expressions": ["error"],
     "react/prop-types": "off",
     "no-unused-vars": "off",
