@@ -8,6 +8,7 @@ import {
 
 import Auth from '~/layouts/Auth';
 import Logged from '~/layouts/Logged';
+import { store } from '~/store';
 
 interface RouteProps extends ReactRouteProps {
   isPrivate?: boolean;
@@ -19,7 +20,7 @@ const Route: React.FC<RouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const signed = false;
+  const { signed } = store.getState().auth;
 
   const RenderLayout = signed ? Logged : Auth;
 

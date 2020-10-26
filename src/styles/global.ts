@@ -38,7 +38,7 @@ export default createGlobalStyle`
 
     }
     .hub__control--is-focused {
-      svg {
+      .hub__dropdown-indicator svg {
         transform: rotate(180deg)!important;
       }
     }
