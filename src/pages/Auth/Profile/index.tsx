@@ -78,6 +78,7 @@ const Profile: React.FC = () => {
           <Box mt="3" pt="3">
             {profiles.map(item => (
               <CardBox
+                key={item.id}
                 icon={item.icon as any}
                 id={item.id}
                 title={item.title}
