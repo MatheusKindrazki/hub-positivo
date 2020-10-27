@@ -1,5 +1,7 @@
 import React, { useRef, useState, useCallback } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
 
 import { Box, Heading, Text, Button } from '@chakra-ui/core';
@@ -93,6 +95,7 @@ const SignIn: React.FC = () => {
         />
 
         <Button
+          data-testid="submit"
           isLoading={loading}
           mt="2rem"
           type="submit"
@@ -107,6 +110,7 @@ const SignIn: React.FC = () => {
         </Button>
 
         <Button
+          as={Link}
           mt="1rem"
           mb="0.5rem"
           fontWeight="bold"
