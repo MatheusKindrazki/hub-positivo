@@ -13,7 +13,6 @@
     "*.{ts,tsx}": [
       "prettier --config prettier.config.js --write",
       "eslint --fix --ignore-pattern '!.eslintrc.json'",
-      "react-app-rewired test --passWithNoTests --watchAll false",
       "git add -u"
     ]
   },
@@ -23,14 +22,21 @@
     }
   },
   "jest": {
+    "moduleNameMapper": {
+      "^~/(.*)": "<rootDir>/src/$1"
+    },
     "collectCoverageFrom": [
       "src/pages/**/*.tsx",
-      "src/utils/**/*.ts",
-      "src/hooks/**/*.tsx",
       "src/modules/**/sagas.ts",
-      "src/components/**/*.tsx",
-      "!src/hooks/index.tsx"
+      "src/components/**/*.tsx"
     ]
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "coverage": "yarn test --coverage --watchAll false",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
@@ -67,13 +73,6 @@
     "typescript": "^4.0.3",
     "uuidv4": "^6.2.3",
     "yup": "^0.29.3"
-  },
-  "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "coverage": "yarn test --coverage --watchAll false",
-    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
