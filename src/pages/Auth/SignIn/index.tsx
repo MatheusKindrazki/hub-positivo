@@ -7,8 +7,7 @@ import { useDispatch } from 'react-redux';
 import { Box, Heading, Text, Button } from '@chakra-ui/core';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { FaUser, FaEye, FaEyeSlash } from 'react-icons/fa';
-import { MdLock } from 'react-icons/md';
+import { Lock, User, Eye, EyeSlash } from 'phosphor-react';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
@@ -76,7 +75,7 @@ const SignIn: React.FC = () => {
           name="email"
           type="email"
           placeholder="Digite seu e-mail"
-          iconLeft={<Box as={FaUser} color="blue.500" size="18px" />}
+          iconLeft={<Box as={User} color="blue.500" size="18px" />}
           mb="5"
         />
         <Input
@@ -85,13 +84,13 @@ const SignIn: React.FC = () => {
           placeholder="Digite sua senha"
           iconRight={
             <Box
-              as={view ? FaEye : FaEyeSlash}
+              as={view ? Eye : EyeSlash}
               color="gray.500"
               size="19px"
               onClick={() => setView(!view)}
             />
           }
-          iconLeft={<Box as={MdLock} color="blue.500" size="21px" />}
+          iconLeft={<Box as={Lock} color="blue.500" size="21px" />}
         />
 
         <Button
