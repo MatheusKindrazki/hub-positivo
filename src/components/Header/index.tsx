@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 
 import { Box, Image, Heading, Button } from '@chakra-ui/core';
-import { FiMenu } from 'react-icons/fi';
+import { List } from 'phosphor-react';
 import { useMediaQuery } from 'react-responsive';
 import { useTheme } from 'styled-components';
 
@@ -25,7 +25,7 @@ const MenuMobile: React.FC<MenuProps> = ({ onClick }) => {
       ml="-0.625rem"
       width="auto"
     >
-      <FiMenu color={colors.blue[500]} size={24} />
+      <List color={colors.blue[500]} size={24} />
     </Button>
   );
 };
