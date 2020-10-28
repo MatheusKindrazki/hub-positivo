@@ -14,25 +14,25 @@ jest.mock('react-router-dom', () => ({
   Link: ({ children }: Link) => children,
 }));
 
-const dispatch = jest.fn();
-
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
-  useDispatch: () => dispatch,
+  useDispatch: () => jest.fn(),
 }));
 
 describe('Página de Login', () => {
   it('Deve preencher as informações de login e senha corretamente', () => {
-    const { getByPlaceholderText, debug } = render(<SignIn />, {});
+    const spy = jest.spyOn(SignIn.prototype, 'handleSubmit');
+
+    const { getByPlaceholderText, getByTestId } = render(<SignIn />);
 
     const emailField = getByPlaceholderText('Digite seu e-mail');
     const passwordField = getByPlaceholderText('Digite sua senha');
+    const submitButton = getByTestId('submit');
 
     fireEvent.change(emailField, { target: { value: 'johndoe@example.com' } });
     fireEvent.change(passwordField, { target: { value: '123456' } });
+    fireEvent.click(submitButton);
 
-    debug();
-
-    // expect(emailField).toBe;
+    expect(spy).toHaveBeenCalled();
   });
 });
