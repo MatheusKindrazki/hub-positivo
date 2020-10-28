@@ -32,7 +32,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "import/prefer-default-export": "off",
     "@typescript-eslint/rule-name" : "off",
-    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_|^Props$", "varsIgnorePattern": "Props" }],
+    "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-param-reassign": "off",
     "react/jsx-props-no-spreading": "off",
