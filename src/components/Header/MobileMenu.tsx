@@ -1,4 +1,6 @@
-import React, { useImperativeHandle } from 'react';
+import React, { useCallback, useImperativeHandle } from 'react';
+
+import { useDispatch } from 'react-redux';
 
 import {
   Box,
@@ -11,18 +13,18 @@ import {
 
 import Select from '~/components/Select';
 
-import Welcome from '../Welcome';
+import { history } from '~/services/history';
+import { signOut } from '~/store/modules/auth/actions';
 
-interface MenuMobileProps {
-  open: boolean;
-  closed: () => void;
-}
+import Welcome from '../Welcome';
 
 export interface RefMenuProps {
   openMenu: () => void;
 }
 
-const MobileMenu = React.forwardRef<RefMenuProps>((props, ref) => {
+const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
+  const dispatch = useDispatch();
+
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   const openMenu = (): void => {
@@ -38,6 +40,12 @@ const MobileMenu = React.forwardRef<RefMenuProps>((props, ref) => {
       openMenu,
     };
   });
+
+  const handleClosed = useCallback(() => {
+    dispatch(signOut());
+
+    history.push('/');
+  }, [dispatch]);
 
   return (
     <>
@@ -147,7 +155,12 @@ const MobileMenu = React.forwardRef<RefMenuProps>((props, ref) => {
             width="100%"
           >
             <MenuDivider />
-            <Button variant="link" color="gray.500" fontSize="0.875rem">
+            <Button
+              onClick={handleClosed}
+              variant="link"
+              color="gray.500"
+              fontSize="0.875rem"
+            >
               Sair
             </Button>
           </Box>

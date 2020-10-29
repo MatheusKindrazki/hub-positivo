@@ -33,3 +33,9 @@ export function setProfileRequest(): Action {
     type: Actions.SET_PROFILE_REQUEST,
   };
 }
+
+export function signOut(): Action {
+  return {
+    type: Actions.SIGN_OUT,
+  };
+}

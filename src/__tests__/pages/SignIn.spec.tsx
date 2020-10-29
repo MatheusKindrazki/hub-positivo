@@ -21,9 +21,9 @@ jest.mock('react-redux', () => ({
 
 describe('Página de Login', () => {
   it('Deve preencher as informações de login e senha corretamente', () => {
-    const spy = jest.spyOn(SignIn.prototype, 'handleSubmit');
-
     const { getByPlaceholderText, getByTestId } = render(<SignIn />);
+
+    const spy = jest.spyOn(<SignIn />, 'props');
 
     const emailField = getByPlaceholderText('Digite seu e-mail');
     const passwordField = getByPlaceholderText('Digite sua senha');
