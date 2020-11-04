@@ -1,23 +1,27 @@
 const accessData = [
   {
-    id: 'teste',
+    id: '1',
     title: 'Gestor',
     icon: 'gestor',
+    colorProfile: 'gestor',
   },
   {
-    id: 'teste2',
+    id: '2',
     title: 'Professor',
     icon: 'professor',
+    colorProfile: 'professor',
   },
   {
-    id: 'teste3',
+    id: '3',
     title: 'Aluno',
     icon: 'aluno',
+    colorProfile: 'aluno',
   },
   {
-    id: 'teste4',
+    id: '4',
     title: 'Família',
     icon: 'familia',
+    colorProfile: 'familia',
   },
 ];
 
