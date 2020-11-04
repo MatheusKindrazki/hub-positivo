@@ -9,6 +9,7 @@ import { ProfileReducer } from './types';
 
 export const INITIAL_STATE: ProfileReducer = {
   profile: 'default',
+  name: 'Default',
 };
 
 type ReturnReducer = Reducer<ProfileReducer>;
@@ -17,7 +18,8 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
       case Actions.SET_PROFILE: {
-        draft.profile = action.payload;
+        draft.profile = action.payload.profile;
+        draft.name = action.payload.name;
         break;
       }
 

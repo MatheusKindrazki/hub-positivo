@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import { VariantsProps } from '~/styles/profileColors';
+import { TempProfile } from './types';
 
 export const Actions = {
   SET_PROFILE: '@profiles/SET',
@@ -12,9 +12,9 @@ export const Actions = {
   dos perfis;
 */
 
-export function tempSetProfile(profile: VariantsProps): Action {
+export function tempSetProfile(data: TempProfile): Action {
   return {
     type: Actions.SET_PROFILE,
-    payload: profile,
+    payload: data,
   };
 }
