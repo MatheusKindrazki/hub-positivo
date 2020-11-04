@@ -8,6 +8,7 @@ import SignIn from '~/pages/Auth/SignIn';
 jest.mock('react-redux', () => {
   return {
     useDispatch: jest.fn(),
+    useSelector: jest.fn(),
   };
 });
 
