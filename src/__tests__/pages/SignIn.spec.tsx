@@ -1,38 +1,35 @@
 import React from 'react';
 
-// import * as ReactRedux from 'react-redux';
+import { render, fireEvent } from '@testing-library/react';
 
+import ThemeProvider from '~/hooks/ThemeContainer';
 import SignIn from '~/pages/Auth/SignIn';
 
-import { fireEvent, render } from '../testing-library';
+jest.mock('react-redux', () => {
+  return {
+    useDispatch: jest.fn(),
+  };
+});
 
-interface Link {
-  children: React.ReactNode;
-}
+jest.mock('react-router-dom', () => {
+  return {
+    Link: ({ children }: { children: React.ReactNode }) => children,
+  };
+});
+describe('Página de login', () => {
+  it('teste', () => {
+    const wrapper = render(
+      <ThemeProvider>
+        <SignIn />
+      </ThemeProvider>,
+    );
 
-jest.mock('react-router-dom', () => ({
-  Link: ({ children }: Link) => children,
-}));
+    const input = wrapper.getByPlaceholderText('Digite seu e-mail');
 
-jest.mock('react-redux', () => ({
-  useSelector: jest.fn(),
-  useDispatch: () => jest.fn(),
-}));
+    fireEvent.change(input, { target: { value: 'teste' } });
 
-describe('Página de Login', () => {
-  it('Deve preencher as informações de login e senha corretamente', () => {
-    const { getByPlaceholderText, getByTestId } = render(<SignIn />);
+    const teste = input as HTMLInputElement;
 
-    const spy = jest.spyOn(<SignIn />, 'props');
-
-    const emailField = getByPlaceholderText('Digite seu e-mail');
-    const passwordField = getByPlaceholderText('Digite sua senha');
-    const submitButton = getByTestId('submit');
-
-    fireEvent.change(emailField, { target: { value: 'johndoe@example.com' } });
-    fireEvent.change(passwordField, { target: { value: '123456' } });
-    fireEvent.click(submitButton);
-
-    expect(spy).toHaveBeenCalled();
+    expect(teste.value).toBe('teste');
   });
 });
