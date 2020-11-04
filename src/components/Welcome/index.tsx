@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Avatar, Box, Heading } from '@chakra-ui/core';
+import { useSelector } from 'react-redux';
+
+import { Avatar, Box, Heading, Text } from '@chakra-ui/core';
 
 interface WelcomeProps {
   size?: string;
@@ -15,6 +17,8 @@ const Welcome: React.FC<WelcomeProps> = ({
   option,
   size,
 }) => {
+  const { name } = useSelector((state: Store.State) => state.profile);
+
   return (
     <Box display="flex" alignItems="center">
       <Avatar
@@ -22,18 +26,26 @@ const Welcome: React.FC<WelcomeProps> = ({
         height={size || '3.5rem'}
         name="Matheus Kindrazki"
         src="https://avatars2.githubusercontent.com/u/36010251?v=4"
+        background="#CFD8DC"
+        borderColor="white"
+        borderWidth="2px"
       />
       <Heading
         as="h4"
         ml="4"
         fontSize={fontSize || ['1.4rem', '1.875rem']}
         fontWeight={fontWeight || 'normal'}
-        color="black"
+        color={option === 'name' ? 'black' : 'white'}
       >
         {option === 'name' ? (
           <>Matheus Kindrazki</>
         ) : (
-          <>Olá Matheus, seja bem-vindo!</>
+          <>
+            Olá Matheus, seja bem-vindo!
+            <Text fontSize="1rem" color="blue.100" mt="1">
+              {name} em Escola Positivo Soluções Didáticas
+            </Text>
+          </>
         )}
       </Heading>
     </Box>
