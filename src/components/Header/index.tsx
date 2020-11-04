@@ -62,7 +62,12 @@ const Header: React.FC = () => {
           {!isDesktop && <MenuMobile onClick={handleClick} />}
           <Image src={logo} maxW="40px" alt="hub digital" />
           <Box alignItems="center" justifyContent="center" ml="2">
-            <Heading as="h1" color="blue.500" size="md">
+            <Heading
+              as="h1"
+              color="blue.500"
+              size="md"
+              className="background-animate"
+            >
               Hub Positivo
             </Heading>
           </Box>

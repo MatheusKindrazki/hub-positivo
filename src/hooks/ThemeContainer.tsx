@@ -11,7 +11,10 @@ import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
 import { ThemeProvider as StyledProvider } from 'styled-components';
 
 import { theme as HubTheme } from '~/styles';
-import profileColors, { VariantsProps } from '~/styles/profileColors';
+import profileColors, {
+  VariantsProps,
+  profileBaseColor,
+} from '~/styles/profileColors';
 
 const ThemeContainer: React.FC = ({ children }) => {
   const [theme] = useState<'dark' | 'light' | undefined>('light');
@@ -30,6 +33,12 @@ const ThemeContainer: React.FC = ({ children }) => {
         blue: profileTheme,
       },
     };
+
+    // !Apenas para efeito de animação
+    document.documentElement.style.setProperty(
+      '--hub-base-color',
+      profileBaseColor[profile as VariantsProps],
+    );
 
     return hubThemeProfile;
   }, [profile]);
