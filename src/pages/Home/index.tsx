@@ -14,7 +14,12 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Box py="5" px="4" backgroundColor="blue.500">
+      <Box
+        py="5"
+        px="4"
+        backgroundColor="blue.500"
+        className="background-animate"
+      >
         <Box maxW="1400px" px="4" margin="0 auto">
           <Welcome />
         </Box>
@@ -32,6 +37,7 @@ const Home: React.FC = () => {
               color="blue.500"
               fontWeight="normal"
               fontSize="1.5rem"
+              className="background-animate"
             >
               Produtos
             </Heading>

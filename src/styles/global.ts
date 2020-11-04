@@ -4,9 +4,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default createGlobalStyle`
 
+  :root {
+    --hub-base-color: #1E88E5;
+  }
+
   body {
     -webkit-font-smoothing: antialiased;
     overflow: initial!important;
+  }
+
+  .background-animate, button {
+    transition: background-color 1s, color 1s, ease 0.3s!important;
   }
 
   button {
