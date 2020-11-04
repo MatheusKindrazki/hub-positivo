@@ -1,4 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useMemo, useState, useRef } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Box,
@@ -12,15 +14,64 @@ import {
   Drawer,
   DrawerContent,
   DrawerCloseButton,
+  MenuItem,
 } from '@chakra-ui/core';
 
 import Select from '~/components/Select';
 
+import history from '~/services/history';
+import { signOut } from '~/store/modules/auth/actions';
+import { loading } from '~/store/modules/global/actions';
+import { tempSetProfile } from '~/store/modules/profile/actions';
+
 import Welcome from '../Welcome';
+import mock from './mock';
 
 const DesktopMenu: React.FC = () => {
+  const dispatch = useDispatch();
+
   const agendaRef = useRef(null);
   const { isOpen, onClose, onOpen } = useDisclosure();
+
+  const [openProfile, setOpenProfile] = useState(false);
+
+  const { name } = useSelector((state: Store.State) => state.profile);
+
+  const handleSelectedProfile = useCallback(
+    data => {
+      dispatch(loading(true));
+
+      setOpenProfile(false);
+
+      // ?Simula busca na api
+      setTimeout(() => {
+        dispatch(
+          tempSetProfile({
+            name: data.label,
+            profile: data.colorProfile,
+          }),
+        );
+        dispatch(loading(false));
+      }, 2000);
+    },
+    [dispatch],
+  );
+
+  const defaultProfile = useMemo(() => {
+    const findProfile = mock.filter(i => i.label === name);
+
+    return findProfile[0];
+  }, [name]);
+
+  const handleSignOut = useCallback(() => {
+    dispatch(signOut());
+    history.push('/');
+  }, [dispatch]);
+
+  const handleOpenUserOption = useCallback(() => {
+    setOpenProfile(!openProfile);
+  }, [openProfile]);
+
   return (
     <>
       <Box
@@ -50,11 +101,12 @@ const DesktopMenu: React.FC = () => {
         >
           Agenda
         </Button>
-        <Menu>
+        <Menu isOpen={openProfile}>
           <MenuButton
             as={Button}
             w="2.8125rem"
             background="transparent!important"
+            onClick={handleOpenUserOption}
           >
             <Avatar
               width="2.5rem"
@@ -64,7 +116,21 @@ const DesktopMenu: React.FC = () => {
               src="https://avatars2.githubusercontent.com/u/36010251?v=4"
             />
           </MenuButton>
-          <MenuList minW="300px" borderRadius="4px" boxShadow="sm">
+          <MenuList
+            minW="300px"
+            borderRadius="4px"
+            boxShadow="sm"
+            mr="2rem!important"
+            top="8px!important"
+            onMouseLeave={() => setOpenProfile(false)}
+          >
+            <MenuItem
+              style={{
+                position: 'absolute',
+                pointerEvents: 'none',
+                opacity: 0,
+              }}
+            ></MenuItem>
             <Box px="4" py="2" w="100%" h="auto">
               <Welcome
                 option="name"
@@ -94,21 +160,19 @@ const DesktopMenu: React.FC = () => {
               <Select
                 placeholder="Selecione"
                 className="height-md"
-                defaultValue={{
-                  label: 'Professor',
-                  value: 'prof',
-                }}
-                options={[
-                  {
-                    label: 'Professor',
-                    value: 'prof',
-                  },
-                ]}
+                defaultValue={defaultProfile}
+                options={mock}
+                onChange={e => handleSelectedProfile(e)}
               />
             </Box>
             <MenuDivider />
             <Box px="4" py="3">
-              <Button variant="link" color="gray.500" fontSize="0.875rem">
+              <Button
+                variant="link"
+                color="gray.500"
+                fontSize="0.875rem"
+                onClick={handleSignOut}
+              >
                 Sair
               </Button>
             </Box>
