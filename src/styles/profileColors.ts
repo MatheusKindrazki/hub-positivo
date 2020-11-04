@@ -5,10 +5,10 @@ type Colors = typeof theme.colors;
 
 const profileBaseColor = {
   default: '#1E88E5',
-  gestor: '#7159c1',
-  professor: '#7159c1',
-  aluno: '#7159c1',
-  responsavel: '#7159c1',
+  gestor: '#AD1457',
+  professor: '#1565C0',
+  aluno: '#EF6C00',
+  familia: '#00838F',
 };
 
 type StringPropsKeys<T extends { [key: string]: string }> = {
