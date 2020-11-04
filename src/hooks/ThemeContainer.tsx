@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
+import { useSelector } from 'react-redux';
+
 import {
   ThemeProvider as ChakraThemeProvider,
   ColorModeProvider,
@@ -14,11 +16,11 @@ import profileColors, { VariantsProps } from '~/styles/profileColors';
 const ThemeContainer: React.FC = ({ children }) => {
   const [theme] = useState<'dark' | 'light' | undefined>('light');
 
-  const [profile] = useState<VariantsProps>('gestor');
+  const { profile } = useSelector((state: Store.State) => state.profile);
 
   const renderTheme = useMemo(() => {
     const profileTheme = profileColors({
-      profile,
+      profile: profile as VariantsProps,
     }).blue;
 
     const hubThemeProfile = {

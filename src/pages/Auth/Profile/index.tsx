@@ -2,17 +2,26 @@ import React, { useEffect, useCallback, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Box, Heading } from '@chakra-ui/core';
+import { Box, Heading, useTheme } from '@chakra-ui/core';
 import { BarLoader } from 'react-spinners';
 
 import Select from '~/components/Select';
 
 import history from '~/services/history';
 import { signInSuccess } from '~/store/modules/auth/actions';
+import { tempSetProfile } from '~/store/modules/profile/actions';
+import { VariantsProps } from '~/styles/profileColors';
 import documentTitle from '~/utils/documentTitle';
 
 import CardBox from './components/CardBox';
 import profiles from './items';
+
+interface ProfileItem {
+  id: string;
+  title: string;
+  icon: string;
+  colorProfile: string;
+}
 
 interface SelectItem {
   label: string;
@@ -21,6 +30,8 @@ interface SelectItem {
 
 const Profile: React.FC = () => {
   documentTitle('Selecione o Perfil');
+
+  const { colors } = useTheme();
 
   const dispatch = useDispatch();
 
@@ -38,9 +49,20 @@ const Profile: React.FC = () => {
     }, 1500);
   }, []);
 
-  const handleProfileSelect = useCallback(() => {
-    dispatch(signInSuccess());
-  }, [dispatch]);
+  const handleProfileSelect = useCallback(
+    (data: ProfileItem) => {
+      // !Ação temporária para efeito de visualização de seleção de perfil
+      dispatch(
+        tempSetProfile({
+          name: data.title,
+          profile: data.colorProfile as VariantsProps,
+        }),
+      );
+
+      dispatch(signInSuccess());
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     if (!selectProfile) {
@@ -51,7 +73,7 @@ const Profile: React.FC = () => {
   return (
     <>
       <BarLoader
-        color="#1E88E5"
+        color={colors.blue[500]}
         width="100%"
         height="5px"
         loading={loading}
@@ -82,7 +104,7 @@ const Profile: React.FC = () => {
                 icon={item.icon as any}
                 id={item.id}
                 title={item.title}
-                onClick={handleProfileSelect}
+                onClick={() => handleProfileSelect(item)}
               />
             ))}
           </Box>
