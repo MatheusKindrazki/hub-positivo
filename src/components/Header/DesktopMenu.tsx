@@ -1,4 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Box,
@@ -16,11 +18,44 @@ import {
 
 import Select from '~/components/Select';
 
+import { loading } from '~/store/modules/global/actions';
+import { tempSetProfile } from '~/store/modules/profile/actions';
+
 import Welcome from '../Welcome';
+import mock from './mock';
 
 const DesktopMenu: React.FC = () => {
+  const dispatch = useDispatch();
+
   const agendaRef = useRef(null);
   const { isOpen, onClose, onOpen } = useDisclosure();
+
+  const { name } = useSelector((state: Store.State) => state.profile);
+
+  const handleSelectedProfile = useCallback(
+    data => {
+      dispatch(loading(true));
+
+      // ?Simula busca na api
+      setTimeout(() => {
+        dispatch(
+          tempSetProfile({
+            name: data.label,
+            profile: data.colorProfile,
+          }),
+        );
+        dispatch(loading(false));
+      }, 2000);
+    },
+    [dispatch],
+  );
+
+  const defaultProfile = useMemo(() => {
+    const findProfile = mock.filter(i => i.label === name);
+
+    return findProfile[0];
+  }, [name]);
+
   return (
     <>
       <Box
@@ -94,16 +129,9 @@ const DesktopMenu: React.FC = () => {
               <Select
                 placeholder="Selecione"
                 className="height-md"
-                defaultValue={{
-                  label: 'Professor',
-                  value: 'prof',
-                }}
-                options={[
-                  {
-                    label: 'Professor',
-                    value: 'prof',
-                  },
-                ]}
+                defaultValue={defaultProfile}
+                options={mock}
+                onChange={e => handleSelectedProfile(e)}
               />
             </Box>
             <MenuDivider />
