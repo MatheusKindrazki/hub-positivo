@@ -5,7 +5,7 @@ import { produce } from 'immer';
 import { Actions } from './actions';
 import { AuthReducer } from './types';
 
-const INITIAL_STATE: AuthReducer = {
+export const INITIAL_STATE: AuthReducer = {
   signed: false,
   selectProfile: false,
   loading: false,
