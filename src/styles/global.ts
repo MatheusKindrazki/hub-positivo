@@ -10,11 +10,10 @@ export default createGlobalStyle`
 
   body {
     -webkit-font-smoothing: antialiased;
-    overflow: initial!important;
   }
 
   .background-animate, button {
-    transition: background-color 1s, color 1s, ease 0.3s!important;
+    transition: background-color 1s, color 1s, ease 0.5s!important;
   }
 
   button {
