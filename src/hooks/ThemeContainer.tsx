@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
+import { useSelector } from 'react-redux';
+
 import {
   ThemeProvider as ChakraThemeProvider,
   ColorModeProvider,
@@ -9,16 +11,19 @@ import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
 import { ThemeProvider as StyledProvider } from 'styled-components';
 
 import { theme as HubTheme } from '~/styles';
-import profileColors, { VariantsProps } from '~/styles/profileColors';
+import profileColors, {
+  VariantsProps,
+  profileBaseColor,
+} from '~/styles/profileColors';
 
 const ThemeContainer: React.FC = ({ children }) => {
   const [theme] = useState<'dark' | 'light' | undefined>('light');
 
-  const [profile] = useState<VariantsProps>('gestor');
+  const { profile } = useSelector((state: Store.State) => state.profile);
 
   const renderTheme = useMemo(() => {
     const profileTheme = profileColors({
-      profile,
+      profile: profile as VariantsProps,
     }).blue;
 
     const hubThemeProfile = {
@@ -28,6 +33,12 @@ const ThemeContainer: React.FC = ({ children }) => {
         blue: profileTheme,
       },
     };
+
+    // !Apenas para efeito de animação
+    document.documentElement.style.setProperty(
+      '--hub-base-color',
+      profileBaseColor[profile as VariantsProps],
+    );
 
     return hubThemeProfile;
   }, [profile]);

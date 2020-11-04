@@ -21,7 +21,7 @@ const persistName = process.env.REACT_APP_PERSIST_NAME || '@PSD:HUB';
 const persistConfig = {
   key: persistName,
   storage,
-  whitelist: ['auth', 'user'],
+  whitelist: ['auth', 'user', 'profile'],
   transform: [encrypted],
 };
 

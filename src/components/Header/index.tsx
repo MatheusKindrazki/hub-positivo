@@ -5,7 +5,7 @@ import { List } from 'phosphor-react';
 import { useMediaQuery } from 'react-responsive';
 import { useTheme } from 'styled-components';
 
-import logo from '~/assets/logo.png';
+import image from '~/assets/image.png';
 
 import DesktopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu';
@@ -50,7 +50,7 @@ const Header: React.FC = () => {
         alignItems="center"
         justifyContent="space-between"
         borderBottom="1px solid #D9D9D9"
-        position={!isDesktop ? 'fixed' : 'relative'}
+        position={!isDesktop ? 'fixed' : 'inherit'}
         zIndex={!isDesktop ? 1 : 'auto'}
       >
         <Box
@@ -60,9 +60,24 @@ const Header: React.FC = () => {
           justifyContent="space-between"
         >
           {!isDesktop && <MenuMobile onClick={handleClick} />}
-          <Image src={logo} maxW="40px" alt="hub digital" />
+          <Box
+            backgroundColor="blue.500"
+            className="background-animate"
+            w="40px"
+            h="40px"
+            d="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Image src={image} h="24px" alt="hub digital" />
+          </Box>
           <Box alignItems="center" justifyContent="center" ml="2">
-            <Heading as="h1" color="blue.500" size="md">
+            <Heading
+              as="h1"
+              color="blue.500"
+              size="md"
+              className="background-animate"
+            >
               Hub Positivo
             </Heading>
           </Box>
