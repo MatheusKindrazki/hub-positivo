@@ -1,47 +1,66 @@
 import React from 'react';
 
-import { Box, Image, Heading, Text, Button } from '@chakra-ui/core';
+import { Box, Image, Heading, Text } from '@chakra-ui/core';
 
-const CardProduct: React.FC = () => {
+interface CardProps {
+  solution: string;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+  url: string;
+}
+
+const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
+  const { color, description, icon, solution, title, url } = card;
+
   return (
     <Box
       background="white"
       rounded="md"
       overflow="hidden"
       d="flex"
-      height="8.5rem"
+      height="10rem"
       minW={['10.25rem', '10.25rem', '19.25rem']}
       boxShadow="sm"
     >
-      <Image
-        width={['4.75rem', '4.5rem', '5.75rem']}
-        src="https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
-      />
+      <Box
+        h="100%"
+        minWidth="5.9375rem"
+        d="flex"
+        justifyContent="center"
+        alignItems="center"
+        backgroundColor={color}
+        p="0.625rem"
+      >
+        <Image width={['4.375rem']} src={icon} />
+      </Box>
 
-      <Box as="button" p={['2', '2', '4']} outline="none" boxShadow="none">
+      <Box
+        as="button"
+        p={['2', '2', '4']}
+        outline="none"
+        boxShadow="none"
+        onClick={() => {
+          window.location.href = url;
+        }}
+      >
         <Box
           d="flex"
           textAlign="left"
           alignItems="baseline"
           flexDirection="column"
+          h="100%"
         >
+          <Text color="gray.500" fontSize="0.8125rem">
+            {solution}
+          </Text>
           <Heading as="b" fontWeight="normal" fontSize="1.125rem" color="black">
-            Avaliação Studos
+            {title}
           </Heading>
           <Text mt="2" color="gray.500" fontSize="0.875rem">
-            Crie tarefas e avaliações para seus alunos
+            {description}
           </Text>
-
-          <Button
-            mt="3"
-            pointerEvents="none"
-            variant="link"
-            color="blue.500"
-            alignSelf="flex-end"
-            fontWeight="bold"
-          >
-            Acessar
-          </Button>
         </Box>
       </Box>
     </Box>
