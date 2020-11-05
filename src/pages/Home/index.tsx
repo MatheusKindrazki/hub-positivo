@@ -21,7 +21,7 @@ const Home: React.FC = () => {
         backgroundColor="blue.500"
         className="background-animate"
       >
-        <Box maxW="1400px" px="4" margin="0 auto">
+        <Box maxW="1400px" px={['0', '4']} margin="0 auto">
           <Welcome />
         </Box>
       </Box>
