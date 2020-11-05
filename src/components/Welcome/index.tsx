@@ -6,7 +6,7 @@ import { Avatar, Box, Heading, Text } from '@chakra-ui/core';
 
 interface WelcomeProps {
   size?: string;
-  fontSize?: string;
+  fontSize?: any;
   option?: 'name' | 'welcome';
   fontWeight?: string;
 }
@@ -33,7 +33,7 @@ const Welcome: React.FC<WelcomeProps> = ({
       <Heading
         as="h4"
         ml="4"
-        fontSize={fontSize || ['1.4rem', '1.875rem']}
+        fontSize={fontSize || ['1.2rem', '1.875rem']}
         fontWeight={fontWeight || 'normal'}
         color={option === 'name' ? 'black' : 'white'}
       >
@@ -42,7 +42,7 @@ const Welcome: React.FC<WelcomeProps> = ({
         ) : (
           <>
             Olá Matheus, seja bem-vindo!
-            <Text fontSize="1rem" color="blue.100" mt="1">
+            <Text fontSize={['sm', '1rem']} color="blue.100" mt="1">
               {name} em Escola Positivo Soluções Didáticas
             </Text>
           </>
