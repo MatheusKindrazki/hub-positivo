@@ -26,7 +26,7 @@ const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
     >
       <Box
         h="100%"
-        minWidth="5.9375rem"
+        minWidth={['4.7rem', '5.9375rem']}
         d="flex"
         justifyContent="center"
         alignItems="center"
@@ -52,7 +52,7 @@ const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
           flexDirection="column"
           h="100%"
         >
-          <Text color="gray.500" fontSize="0.8125rem">
+          <Text color="gray.500" fontSize="0.8125rem" mt={['0.3125rem', '0']}>
             {solution}
           </Text>
           <Heading as="b" fontWeight="normal" fontSize="1.125rem" color="black">
