@@ -107,6 +107,7 @@ const DesktopMenu: React.FC = () => {
             w="2.8125rem"
             background="transparent!important"
             onClick={handleOpenUserOption}
+            style={{ zIndex: 9 }}
           >
             <Avatar
               width="2.5rem"
@@ -117,6 +118,7 @@ const DesktopMenu: React.FC = () => {
             />
           </MenuButton>
           <MenuList
+            style={{ zIndex: 9 }}
             minW="300px"
             borderRadius="4px"
             boxShadow="sm"
