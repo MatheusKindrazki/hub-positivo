@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Box, SimpleGrid, Heading } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/core';
 
-import CardProduct from '~/components/CardProduct';
 import Welcome from '~/components/Welcome';
 
 import documentTitle from '~/utils/documentTitle';
 
+import Collapse from './components/Collapse';
 import cardsMock from './mock';
 import { Container } from './styles';
 
@@ -26,25 +26,15 @@ const Home: React.FC = () => {
         </Box>
       </Box>
       <Box as={Container} p="4" maxW="1400px" margin="0 auto">
-        <Box display="flex" justifyContent="flex-start" alignItems="flex-start">
+        <Box
+          display="flex"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          flexDirection="column"
+        >
           {cardsMock &&
             cardsMock.map(card => (
-              <Box mt="8" key={card.id}>
-                <Heading
-                  as="h6"
-                  color="blue.500"
-                  fontWeight="normal"
-                  fontSize="1.5rem"
-                  className="background-animate"
-                >
-                  {card.title}
-                </Heading>
-                <SimpleGrid columns={[1, 1, 2, 3, 4]} spacing={4} mt="4">
-                  {card.cards?.map(item => (
-                    <CardProduct key={item.id} card={item} />
-                  ))}
-                </SimpleGrid>
-              </Box>
+              <Collapse cards={card.cards} id={card.id} title={card.title} />
             ))}
         </Box>
       </Box>
