@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
-import { Box } from '@chakra-ui/core';
+import { Box, Heading } from '@chakra-ui/core';
 import { debounce } from 'ts-debounce';
 
 import Welcome from '~/components/Welcome';
@@ -21,7 +21,9 @@ const Home: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const { data: cards } = useSelector((state: Store.State) => state.products);
+  const { data: cards, loading: load } = useSelector(
+    (state: Store.State) => state.products,
+  );
 
   const handleSearch = debounce(search => {
     dispatch(loading(true));
@@ -71,6 +73,14 @@ const Home: React.FC = () => {
               />
             ))}
         </Box>
+
+        {!cards?.length && !load ? (
+          <Box mt="5">
+            <Heading as="h5" fontSize="1.5rem" color="blue.500">
+              Nenhum produto encontrado!
+            </Heading>
+          </Box>
+        ) : null}
       </Box>
     </>
   );
