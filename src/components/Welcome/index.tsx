@@ -18,6 +18,7 @@ const Welcome: React.FC<WelcomeProps> = ({
   size,
 }) => {
   const { name } = useSelector((state: Store.State) => state.profile);
+  const { avatar } = useSelector((state: Store.State) => state.auth);
 
   return (
     <Box display="flex" alignItems="center">
@@ -25,7 +26,7 @@ const Welcome: React.FC<WelcomeProps> = ({
         width={size || '3.5rem'}
         height={size || '3.5rem'}
         name="Matheus Kindrazki"
-        src="https://avatars2.githubusercontent.com/u/36010251?v=4"
+        src={avatar}
         background="#CFD8DC"
         borderColor="white"
         borderWidth="2px"

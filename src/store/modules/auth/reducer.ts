@@ -8,6 +8,7 @@ import { AuthReducer } from './types';
 export const INITIAL_STATE: AuthReducer = {
   signed: false,
   selectProfile: false,
+  avatar: `https://avatars.dicebear.com/api/male/${Math.random()}.svg`,
   loading: false,
 };
 

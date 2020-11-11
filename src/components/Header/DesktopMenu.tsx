@@ -36,6 +36,7 @@ const DesktopMenu: React.FC = () => {
   const [openProfile, setOpenProfile] = useState(false);
 
   const { name } = useSelector((state: Store.State) => state.profile);
+  const { avatar } = useSelector((state: Store.State) => state.auth);
 
   const handleSelectedProfile = useCallback(
     data => {
@@ -114,7 +115,7 @@ const DesktopMenu: React.FC = () => {
               height="2.5rem"
               backgroundColor="gray.400"
               name="Matheus Kindrazki"
-              src="https://avatars2.githubusercontent.com/u/36010251?v=4"
+              src={avatar}
             />
           </MenuButton>
           <MenuList
