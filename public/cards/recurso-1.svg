@@ -1,0 +1,14 @@
+<svg width="62" height="66" viewBox="0 0 62 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="1" y="7" width="60" height="46" rx="7" fill="#E1BEE7" stroke="#4A148C" stroke-width="2"/>
+<line y1="17" x2="62" y2="17" stroke="#4A148C" stroke-width="2"/>
+<line y1="29" x2="62" y2="29" stroke="#4A148C" stroke-width="2"/>
+<line y1="41" x2="62" y2="41" stroke="#4A148C" stroke-width="2"/>
+<line x1="16" y1="16" x2="16" y2="54" stroke="#4A148C" stroke-width="2"/>
+<line x1="31" y1="16" x2="31" y2="54" stroke="#4A148C" stroke-width="2"/>
+<line x1="46" y1="16" x2="46" y2="54" stroke="#4A148C" stroke-width="2"/>
+<circle cx="44" cy="48" r="17" fill="#E1BEE7" stroke="#4A148C" stroke-width="2"/>
+<circle cx="44" cy="48" r="13" fill="#E1BEE7" stroke="#4A148C" stroke-width="2"/>
+<rect x="13" y="1" width="5" height="11" rx="2.5" fill="#E1BEE7" stroke="#4A148C" stroke-width="2"/>
+<rect x="44" y="1" width="5" height="11" rx="2.5" fill="#E1BEE7" stroke="#4A148C" stroke-width="2"/>
+<path d="M44 40.5V48L49 53" stroke="#4A148C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
