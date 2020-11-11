@@ -36,7 +36,7 @@ const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
         backgroundColor={color}
         p="0.625rem"
       >
-        <Image width={['4.375rem']} src={icon} />
+        <Image height="3.875rem" src={icon} />
       </Box>
 
       <Box

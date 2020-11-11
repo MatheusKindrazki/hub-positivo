@@ -7,4 +7,5 @@ export interface AuthReducer {
   signed: boolean;
   selectProfile: boolean;
   loading: boolean;
+  avatar: string;
 }
