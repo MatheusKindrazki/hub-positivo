@@ -16,9 +16,9 @@ const Routes: React.FC = () => {
     <ConnectedRouter history={history}>
       <div>
         <Switch>
-          <Route path="/" exact component={SignIn} />
+          <Route path="/login" exact component={SignIn} />
           <Route path="/profile" component={Profile} />
-          <Route path="/dashboard" component={Home} isPrivate />
+          <Route path="/" exact component={Home} isPrivate />
         </Switch>
       </div>
     </ConnectedRouter>
