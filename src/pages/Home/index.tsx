@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
 import { Box } from '@chakra-ui/core';
-import _ from 'lodash';
 
 import Welcome from '~/components/Welcome';
 
