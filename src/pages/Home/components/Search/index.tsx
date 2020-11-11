@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 
 import {
   Box,
@@ -43,4 +43,4 @@ const Search: React.FC<SearchProps> = ({ onChange }) => {
   );
 };
 
-export default Search;
+export default memo(Search);
