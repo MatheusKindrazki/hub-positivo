@@ -59,10 +59,15 @@ const Home: React.FC = () => {
           d="flex"
           justifyContent="space-between"
           alignItems="center"
+          flexDirection={['column', 'column', 'column', 'row']}
         >
           <Welcome />
 
-          <Box w="100%" maxW="308px">
+          <Box
+            w="100%"
+            maxW={['100%', '100%', '100%', '308px']}
+            mt={['5', '5', '5', '0']}
+          >
             <Select
               variant="blue-transparent"
               defaultValue={{

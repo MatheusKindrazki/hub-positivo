@@ -36,12 +36,16 @@ const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
         backgroundColor={color}
         p="0.625rem"
       >
-        <Image height="3.875rem" src={icon} />
+        <Image
+          height={['auto', 'auto', '3.875rem', '3.875rem']}
+          width={['3rem', '3rem', 'auto', 'auto']}
+          src={icon}
+        />
       </Box>
 
       <Box
         as="button"
-        p={['2', '2', '1.1rem']}
+        p={['4', '4', '1.1rem']}
         outline="none"
         boxShadow="none"
         onClick={() => {
