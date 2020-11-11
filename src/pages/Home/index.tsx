@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { Box, Heading } from '@chakra-ui/core';
 import { debounce } from 'ts-debounce';
 
+import Select from '~/components/Select';
 import Welcome from '~/components/Welcome';
 
 import { loading } from '~/store/modules/global/actions';
@@ -51,8 +52,35 @@ const Home: React.FC = () => {
         backgroundColor="blue.500"
         className="background-animate"
       >
-        <Box maxW="1400px" px={['0', '4']} margin="0 auto">
+        <Box
+          maxW="1400px"
+          px={['0', '4']}
+          margin="0 auto"
+          d="flex"
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <Welcome />
+
+          <Box w="100%" maxW="308px">
+            <Select
+              variant="blue-transparent"
+              defaultValue={{
+                label: '123',
+                value: 'asd',
+              }}
+              options={[
+                {
+                  label: '123',
+                  value: 'asd',
+                },
+                {
+                  label: 'aaa111',
+                  value: 'ola mundo',
+                },
+              ]}
+            />
+          </Box>
         </Box>
       </Box>
       <Box as={Container} p="4" maxW="1400px" margin="0 auto">

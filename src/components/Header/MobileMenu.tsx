@@ -68,6 +68,7 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
           <MenuDivider />
           <Box px="4" pt="3" pb="1">
             <Select
+              variant="normal"
               placeholder="Selecione"
               className="height-md"
               defaultValue={{
@@ -84,6 +85,7 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
           </Box>
           <Box px="4" pb="3">
             <Select
+              variant="normal"
               placeholder="Selecione"
               className="height-md"
               defaultValue={{
