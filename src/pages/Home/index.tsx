@@ -1,57 +1,45 @@
-import React, { useCallback, useState } from 'react';
+import React, { useEffect } from 'react';
+
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { Box } from '@chakra-ui/core';
+import { debounce } from 'ts-debounce';
 
 import Welcome from '~/components/Welcome';
 
+import { loading } from '~/store/modules/global/actions';
+import { productRequest } from '~/store/modules/products/actions';
 import documentTitle from '~/utils/documentTitle';
 
 import Collapse from './components/Collapse';
 import SearchInput from './components/Search';
-import cardsMock from './mock';
 import { Container } from './styles';
 
 const Home: React.FC = () => {
   documentTitle('Home');
 
-  const [cards, setCards] = useState(cardsMock);
+  const dispatch = useDispatch();
 
-  const handleSearch = useCallback(search => {
-    if (!search) {
-      setCards(cardsMock);
-      return;
-    }
+  const { data: cards } = useSelector((state: Store.State) => state.products);
 
-    type Brasil = typeof cardsMock;
+  const handleSearch = debounce(search => {
+    dispatch(loading(true));
 
-    const newcards = [] as Brasil;
+    setTimeout(() => {
+      dispatch(
+        productRequest({
+          search,
+        }),
+      );
 
-    cardsMock.forEach(i => {
-      i.cards.forEach(card => {
-        if (card.title.toLowerCase().includes(search.toLowerCase())) {
-          if (!newcards.length) {
-            newcards.push({
-              id: i.id,
-              title: i.title,
-              cards: [card],
-            });
-          } else {
-            const index = newcards.findIndex(newCard => newCard.id === i.id);
+      dispatch(loading(false));
+    }, 2000);
+  }, 550);
 
-            const cardsNew = newcards[index]?.cards || [];
-
-            newcards[index] = {
-              id: i.id,
-              title: i.title,
-              cards: [...cardsNew, card],
-            };
-          }
-        }
-      });
-    });
-
-    setCards((newcards as unknown) as Brasil);
-  }, []);
+  useEffect(() => {
+    dispatch(productRequest({}));
+  }, [dispatch]);
 
   return (
     <>
