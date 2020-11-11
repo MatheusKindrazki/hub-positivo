@@ -145,6 +145,7 @@ const DesktopMenu: React.FC = () => {
             <MenuDivider />
             <Box px="4" pt="3" pb="1">
               <Select
+                variant="normal"
                 placeholder="Selecione"
                 className="height-md"
                 defaultValue={{
@@ -161,6 +162,7 @@ const DesktopMenu: React.FC = () => {
             </Box>
             <Box px="4" pb="3">
               <Select
+                variant="normal"
                 placeholder="Selecione"
                 className="height-md"
                 defaultValue={defaultProfile}

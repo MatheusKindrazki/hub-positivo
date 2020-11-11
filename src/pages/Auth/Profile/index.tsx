@@ -86,6 +86,7 @@ const Profile: React.FC = () => {
           Selecione sua escola e acesso
         </Heading>
         <Select
+          variant="normal"
           placeholder="Selecione"
           onChange={handleSelected}
           options={[
