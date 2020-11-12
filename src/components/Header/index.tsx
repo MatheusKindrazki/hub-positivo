@@ -51,7 +51,7 @@ const Header: React.FC = () => {
         justifyContent="space-between"
         borderBottom="1px solid #D9D9D9"
         position={!isDesktop ? 'fixed' : 'inherit'}
-        zIndex={!isDesktop ? 1 : 'auto'}
+        zIndex={!isDesktop ? 999 : 'auto'}
       >
         <Box
           className="hub-logo"
