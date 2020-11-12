@@ -69,6 +69,7 @@ const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
         <Image
           height={['auto', 'auto', '3.875rem', '3.875rem']}
           width={['3rem', '3rem', 'auto', 'auto']}
+          objectFit="contain"
           src={icon}
         />
       </Box>
