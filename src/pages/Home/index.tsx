@@ -15,12 +15,17 @@ import documentTitle from '~/utils/documentTitle';
 
 import Collapse from './components/Collapse';
 import SearchInput from './components/Search';
+import { mockAlunos, mockProfessores } from './mock';
 import { Container } from './styles';
+
+const enableSelect = ['professor', 'familia'];
 
 const Home: React.FC = () => {
   documentTitle('Home');
 
   const dispatch = useDispatch();
+
+  const { profile } = useSelector((state: Store.State) => state.profile);
 
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products,
@@ -68,23 +73,18 @@ const Home: React.FC = () => {
             maxW={['100%', '100%', '100%', '308px']}
             mt={['5', '5', '5', '0']}
           >
-            <Select
-              variant="blue-transparent"
-              defaultValue={{
-                label: '123',
-                value: 'asd',
-              }}
-              options={[
-                {
-                  label: '123',
-                  value: 'asd',
-                },
-                {
-                  label: 'aaa111',
-                  value: 'ola mundo',
-                },
-              ]}
-            />
+            {enableSelect.includes(profile as string) && (
+              <Select
+                key={profile as string}
+                variant="blue-transparent"
+                placeholder={
+                  profile === 'professor'
+                    ? 'Nível de ensino'
+                    : 'Selecione o Familiar'
+                }
+                options={profile === 'professor' ? mockProfessores : mockAlunos}
+              />
+            )}
           </Box>
         </Box>
       </Box>
