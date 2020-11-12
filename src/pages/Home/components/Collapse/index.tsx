@@ -23,19 +23,14 @@ const Collapse: React.FC<CollapseProps> = ({ id, title, cards }) => {
 
   return (
     <>
-      <Box
-        mt="8"
-        key={id}
-        width="100%"
-        className="collapse-home"
-        onClick={() => setShow(!show)}
-        style={{ cursor: 'pointer' }}
-      >
+      <Box mt="8" key={id} width="100%" className="collapse-home">
         <Box
           width="100%"
+          style={{ cursor: 'pointer' }}
           d="flex"
           justifyContent="space-between"
           alignItems="center"
+          onClick={() => setShow(!show)}
         >
           <Heading
             as="h6"
