@@ -8,7 +8,18 @@ import SignIn from '~/pages/Auth/SignIn';
 jest.mock('react-redux', () => {
   return {
     useDispatch: jest.fn(),
-    useSelector: jest.fn(),
+    useSelector: jest.fn().mockReturnValue(() => {
+      return {
+        profile: 'aluno',
+      };
+    }),
+  };
+});
+
+jest.mock('polished', () => {
+  return {
+    lighten: jest.fn(),
+    darken: jest.fn(),
   };
 });
 
