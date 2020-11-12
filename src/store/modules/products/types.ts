@@ -4,6 +4,7 @@ export interface ProductRequest {
 
 export interface ProductReducer {
   loading: boolean;
+  frameUrl?: string;
   data?: CardProduct[];
 }
 

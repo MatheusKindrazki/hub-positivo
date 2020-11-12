@@ -29,6 +29,11 @@ const products: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.loading = false;
         break;
       }
+
+      case Actions.FRAME_URL: {
+        draft.frameUrl = action.payload;
+        break;
+      }
       default:
     }
   });

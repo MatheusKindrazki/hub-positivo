@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+
+import { useDispatch } from 'react-redux';
 
 import { Box, Image, Heading, Text, Badge } from '@chakra-ui/core';
+
+import history from '~/services/history';
+import { setFrameURL } from '~/store/modules/products/actions';
 
 export interface CardProps {
   id: number;
@@ -11,10 +16,35 @@ export interface CardProps {
   color: string;
   url: string;
   notification?: string | number;
+  iframe?: boolean;
 }
 
 const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
-  const { color, description, icon, solution, title, url, notification } = card;
+  const {
+    color,
+    description,
+    icon,
+    solution,
+    title,
+    url,
+    notification,
+    iframe,
+  } = card;
+
+  const dispatch = useDispatch();
+
+  const handleClick = useCallback(() => {
+    if (iframe) {
+      dispatch(
+        setFrameURL({
+          url,
+        }),
+      );
+      history.push('/hub-frame');
+    }
+
+    // window.location.href = url;
+  }, [dispatch, iframe, url]);
 
   return (
     <Box
@@ -48,9 +78,7 @@ const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
         p={['4', '4', '1.1rem']}
         outline="none"
         boxShadow="none"
-        onClick={() => {
-          window.location.href = url;
-        }}
+        onClick={handleClick}
       >
         {notification && (
           <Badge

@@ -8,9 +8,11 @@ const cardData = [
         title: 'Guia de Estudo',
         description: 'Lista de exercícios pronta do Guia de Estudos na Studos',
         notification: '2',
-        url: '#!',
+        url:
+          'https://plus-app.studos.com.br/auth?accessKey=4e1e0a26-b495-11ea-b3de-0242ac130004&accessToken=iweSkoEjepTnXPdFo5DIQLgKZbkIbhNQEiZnJuaOdeY%3D',
         color: '#3F51B5',
         icon: 'cards/avaliacao-1.svg',
+        iframe: true,
       },
       {
         id: 1,

@@ -34,7 +34,6 @@ const DesktopMenu: React.FC = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   const [openProfile, setOpenProfile] = useState(false);
-
   const { name } = useSelector((state: Store.State) => state.profile);
   const { avatar } = useSelector((state: Store.State) => state.auth);
 

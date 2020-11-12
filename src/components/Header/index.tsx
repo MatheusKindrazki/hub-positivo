@@ -1,11 +1,17 @@
 import React, { useCallback, useRef } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Box, Image, Heading, Button } from '@chakra-ui/core';
+import { ArrowLeft } from 'phosphor-react';
 import { List } from 'phosphor-react';
 import { useMediaQuery } from 'react-responsive';
 import { useTheme } from 'styled-components';
 
 import image from '~/assets/image.png';
+
+import history from '~/services/history';
+import { setFrameURL } from '~/store/modules/products/actions';
 
 import DesktopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu';
@@ -31,13 +37,26 @@ const MenuMobile: React.FC<MenuProps> = ({ onClick }) => {
 };
 
 const Header: React.FC = () => {
+  const dispatch = useDispatch();
   const menuRef = useRef<RefMenuProps>(null);
 
   const isDesktop = useMediaQuery({ query: '(min-width: 480px)' });
 
+  const { frameUrl } = useSelector((state: Store.State) => state.products);
+
   const handleClick = useCallback(() => {
     menuRef.current?.openMenu();
   }, []);
+
+  const handleBack = useCallback(() => {
+    dispatch(
+      setFrameURL({
+        url: '',
+      }),
+    );
+
+    history.push('/');
+  }, [dispatch]);
 
   return (
     <>
@@ -60,17 +79,28 @@ const Header: React.FC = () => {
           justifyContent="space-between"
         >
           {!isDesktop && <MenuMobile onClick={handleClick} />}
-          <Box
-            backgroundColor="blue.500"
-            className="background-animate"
-            w="40px"
-            h="40px"
-            d="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Image src={image} h="24px" alt="hub digital" />
-          </Box>
+          {!frameUrl && (
+            <Box
+              backgroundColor="blue.500"
+              className="background-animate"
+              w="40px"
+              h="40px"
+              d="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Image src={image} h="24px" alt="hub digital" />
+            </Box>
+          )}
+          {frameUrl && (
+            <Box
+              as={ArrowLeft}
+              size={8}
+              color="blue.500"
+              onClick={handleBack}
+              cursor="pointer"
+            />
+          )}
           <Box alignItems="center" justifyContent="center" ml="2">
             <Heading
               as="h1"
