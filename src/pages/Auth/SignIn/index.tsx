@@ -94,8 +94,8 @@ const SignIn: React.FC = () => {
         />
 
         <Button
-          data-testid="submit"
           isLoading={loading}
+          data-testid="submit-button"
           mt="2rem"
           type="submit"
           color="white"
