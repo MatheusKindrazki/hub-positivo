@@ -6,7 +6,10 @@ type Colors = typeof theme.colors;
 export const profileBaseColor = {
   default: '#1E88E5',
   gestor: '#AD1457',
-  professor: '#1565C0',
+  professorMedio: '#1565C0',
+  professorEF2: '#1565C0',
+  professorEF1: '#1565C0',
+  professorInfantil: '#1565C0',
   aluno: '#EF6C00',
   familia: '#00838F',
 };

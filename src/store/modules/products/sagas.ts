@@ -1,14 +1,29 @@
 import { all, Payload, put, takeLatest } from 'redux-saga/effects';
 
+import { store } from '~/store';
+
 import { loading } from '../global/actions';
+import { Actions as ProfileActions } from '../profile/actions';
 import { Actions, productSuccess } from './actions';
-import cardMock from './mock';
+import * as mock from './mock';
 import { CardProduct, ProductRequest } from './types';
 
 type ProductsPayload = Payload<ProductRequest>;
 
+type TypeProfile =
+  | 'professorMedio'
+  | 'professorEF2'
+  | 'professorEF1'
+  | 'professorInfantil'
+  | 'aluno'
+  | 'familia';
+
 export function* getProducts({ payload }: ProductsPayload): Generator {
   const { search } = payload;
+
+  const { profile } = store.getState().profile;
+
+  const cardMock = mock[profile as TypeProfile];
 
   if (!search) {
     yield put(
@@ -55,4 +70,7 @@ export function* getProducts({ payload }: ProductsPayload): Generator {
   );
 }
 
-export default all([takeLatest(Actions.PRODUCT_REQUEST, getProducts)]);
+export default all([
+  takeLatest(Actions.PRODUCT_REQUEST, getProducts),
+  takeLatest(ProfileActions.SET_PROFILE, getProducts),
+]);
