@@ -9,7 +9,7 @@ const accessData = [
     value: '2',
     label: 'Professor',
     icon: 'professor',
-    colorProfile: 'professor',
+    colorProfile: 'professorMedio',
   },
   {
     value: '3',

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -11,6 +11,7 @@ import Welcome from '~/components/Welcome';
 
 import { loading } from '~/store/modules/global/actions';
 import { productRequest } from '~/store/modules/products/actions';
+import { tempSetProfile } from '~/store/modules/profile/actions';
 import documentTitle from '~/utils/documentTitle';
 
 import Collapse from './components/Collapse';
@@ -18,10 +19,18 @@ import SearchInput from './components/Search';
 import { mockAlunos, mockProfessores } from './mock';
 import { Container } from './styles';
 
-const enableSelect = ['professor', 'familia'];
+const enableSelect = [
+  'professorInfantil',
+  'professorMedio',
+  'professorEF1',
+  'professorEF2',
+  'familia',
+];
 
 const Home: React.FC = () => {
   documentTitle('Home');
+
+  const [dataTemp, setDataTemp] = useState();
 
   const dispatch = useDispatch();
 
@@ -29,6 +38,26 @@ const Home: React.FC = () => {
 
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products,
+  );
+
+  const handleSelectProfile = useCallback(
+    data => {
+      setDataTemp(data);
+      if (!data.profile) return false;
+
+      dispatch(loading(true));
+
+      setTimeout(() => {
+        dispatch(loading(false));
+        dispatch(
+          tempSetProfile({
+            name: data.name,
+            profile: data.profile,
+          }),
+        );
+      }, 2000);
+    },
+    [dispatch],
   );
 
   const handleSearch = debounce(search => {
@@ -77,12 +106,25 @@ const Home: React.FC = () => {
               <Select
                 key={profile as string}
                 variant="blue-transparent"
+                value={dataTemp}
+                onChange={e => {
+                  handleSelectProfile(e);
+                }}
+                defaultValue={
+                  (profile as string).includes('professor')
+                    ? mockProfessores[0]
+                    : mockAlunos[0]
+                }
                 placeholder={
-                  profile === 'professor'
+                  (profile as string).includes('professor')
                     ? 'Nível de ensino'
                     : 'Selecione o Familiar'
                 }
-                options={profile === 'professor' ? mockProfessores : mockAlunos}
+                options={
+                  (profile as string).includes('professor')
+                    ? mockProfessores
+                    : mockAlunos
+                }
               />
             )}
           </Box>
