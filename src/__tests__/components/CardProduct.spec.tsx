@@ -14,7 +14,6 @@ const mock = {
   url: '#!',
   color: '#3F51B5',
   icon: 'cards/avaliacao-1.svg',
-  iframe: true,
 };
 
 describe('Componente CardProduct', () => {
@@ -29,11 +28,20 @@ describe('Componente CardProduct', () => {
   });
 
   it('O Card deve renderizar as informações corretamente', () => {
-    // const wrapper = render(
-    //   <ThemeProvider>
-    //     <CardProduct card={mock} />
-    //   </ThemeProvider>,
-    // );
-    // const title = wrapper.getByText('Guia de Estudo').innerHTML;
+    const wrapper = render(
+      <ThemeProvider>
+        <CardProduct card={mock} />
+      </ThemeProvider>,
+    );
+
+    const title = wrapper.getByText(mock.title).innerHTML;
+    const description = wrapper.getByText(mock.description).innerHTML;
+
+    expect(title).toEqual('Guia de Estudo');
+    expect(description).toEqual(
+      'Lista de exercícios pronta do Guia de Estudos na Studos',
+    );
   });
+
+  // it('Ao Clicar no Card, deve levar o usuário a URL respectiva', () => {});
 });
