@@ -37,7 +37,7 @@
     "build": "react-app-rewired build",
     "build:dev": "cross-env PUBLIC_URL=https://appsv-hubdigitalfront-dev-001.azurewebsites.net react-app-rewired build",
     "build:hml": "cross-env PUBLIC_URL=https://api2.positivoon.com.br/hubdigital-front-hml react-app-rewired build",
-    "test": "react-app-rewired test",
+    "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
     "coverage": "yarn test --coverage --watchAll false",
     "eject": "react-scripts eject"
   },
@@ -129,6 +129,7 @@
     "eslint-plugin-react": "^7.21.1",
     "eslint-plugin-react-hooks": "^4.1.2",
     "husky": "^4.3.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
     "react-app-rewired": "^2.1.6",

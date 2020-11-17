@@ -1,9 +1,15 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { useDispatch } from 'react-redux';
+
+import { render, fireEvent, waitFor } from '@testing-library/react';
+import { toast } from 'react-toastify';
 
 import ThemeProvider from '~/hooks/ThemeContainer';
 import SignIn from '~/pages/Auth/SignIn';
+import { Actions } from '~/store/modules/auth/actions';
+
+jest.mock('react-toastify');
 
 jest.mock('polished', () => {
   return {
@@ -14,10 +20,10 @@ jest.mock('polished', () => {
 
 jest.mock('react-redux', () => {
   return {
-    useDispatch: jest.fn(),
+    useDispatch: jest.fn().mockReturnValue(jest.fn()),
     useSelector: jest.fn().mockReturnValue(() => {
       return {
-        profile: 'aluno',
+        profile: 'professor',
       };
     }),
   };
@@ -30,31 +36,80 @@ jest.mock('react-router-dom', () => {
 });
 
 describe('Página de login', () => {
-  it('O input precisa retornar o valor preenchido pelo usuário', () => {
+  it('O usuário deve ser autenticado ao preencher as informações corretamente!', async () => {
+    const dispatch = jest.fn();
+
+    (useDispatch as jest.Mock).mockReturnValue(dispatch);
+
     const wrapper = render(
       <ThemeProvider>
         <SignIn />
       </ThemeProvider>,
     );
 
-    const input = wrapper.getByPlaceholderText(
-      'Digite seu e-mail',
-    ) as HTMLInputElement;
-
-    fireEvent.change(input, { target: { value: 'jonhdoe@gmail.com' } });
-
-    expect(input.value).toBe('jonhdoe@gmail.com');
-  });
-
-  it('O Botão submit precisa acionar a função handleSubmit', () => {
-    const wrapper = render(
-      <ThemeProvider>
-        <SignIn />
-      </ThemeProvider>,
-    );
-
+    const userMail = wrapper.getByTestId('email');
+    const userPassword = wrapper.getByTestId('password');
     const submit = wrapper.getByTestId('submit-button');
 
+    fireEvent.change(userMail, { target: { value: 'jonhdoe@example.com' } });
+
+    fireEvent.change(userPassword, { target: { value: '123456' } });
+
     fireEvent.click(submit);
+
+    await waitFor(() =>
+      expect(dispatch).toHaveBeenCalledWith({
+        type: Actions.SIGN_IN_REQUEST,
+        payload: { email: 'jonhdoe@example.com', password: '123456' },
+      }),
+    );
+  });
+
+  it('O usuário não deve ser autenticado ao preencher as informações incorretamente!', async () => {
+    const dispatch = jest.fn();
+
+    (useDispatch as jest.Mock).mockReturnValue(dispatch);
+
+    const wrapper = render(
+      <ThemeProvider>
+        <SignIn />
+      </ThemeProvider>,
+    );
+
+    const userMail = wrapper.getByTestId('email');
+    const userPassword = wrapper.getByTestId('password');
+    const submit = wrapper.getByTestId('submit-button');
+
+    fireEvent.change(userMail, { target: { value: 'not-valid-mail' } });
+
+    fireEvent.change(userPassword, { target: { value: '123456' } });
+
+    fireEvent.click(submit);
+
+    await waitFor(() => expect(dispatch).not.toHaveBeenCalled());
+  });
+
+  it('O usuário deve ver um toast de erro quando o login falhar', async () => {
+    (useDispatch as jest.Mock).mockReturnValue(() => {
+      throw new Error();
+    });
+
+    const wrapper = render(
+      <ThemeProvider>
+        <SignIn />
+      </ThemeProvider>,
+    );
+
+    const userMail = wrapper.getByTestId('email');
+    const userPassword = wrapper.getByTestId('password');
+    const submit = wrapper.getByTestId('submit-button');
+
+    fireEvent.change(userMail, { target: { value: 'jonhdoe@example.com' } });
+
+    fireEvent.change(userPassword, { target: { value: '123456' } });
+
+    fireEvent.click(submit);
+
+    await waitFor(() => expect(toast.error).toHaveBeenCalledTimes(1));
   });
 });
