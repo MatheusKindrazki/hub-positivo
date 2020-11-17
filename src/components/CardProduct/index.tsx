@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 import { Box, Image, Heading, Text, Badge } from '@chakra-ui/core';
 
@@ -16,10 +16,6 @@ export interface CardProps {
 
 const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
   const { color, description, icon, solution, title, url, notification } = card;
-
-  const handleClick = useCallback(() => {
-    window.location.href = url;
-  }, [url]);
 
   return (
     <Box
@@ -50,11 +46,14 @@ const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
       </Box>
 
       <Box
+        data-testid="button"
         as="button"
         p={['4', '4', '1.1rem']}
         outline="none"
         boxShadow="none"
-        onClick={handleClick}
+        onClick={() => {
+          window.location.assign(url);
+        }}
       >
         {notification && (
           <Badge

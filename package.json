@@ -2,7 +2,7 @@
   "name": "hub-positivo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://api2.positivoon.com.br/hubdigital-front-dev",
+  "homepage": "",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
