@@ -7,7 +7,7 @@
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-      "pre-push": "react-app-rewired test --watchAll false"
+      "pre-push": "react-app-rewired test --watchAll false --env=jest-environment-jsdom-sixteen"
     }
   },
   "lint-staged": {
