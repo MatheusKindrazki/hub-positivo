@@ -63,7 +63,7 @@ const cardData = [
     cards: [
       {
         id: 0,
-        title: 'Livro Digital EF1',
+        title: 'Livro Digital',
         description: 'Conteúdo digital interativo do Ensino Fundamental 1',
         url: '#!',
         color: '#673AB7',

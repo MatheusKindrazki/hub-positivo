@@ -9,32 +9,6 @@ import ThemeProvider from '~/hooks/ThemeContainer';
 import SignIn from '~/pages/Auth/SignIn';
 import { Actions } from '~/store/modules/auth/actions';
 
-jest.mock('react-toastify');
-
-jest.mock('polished', () => {
-  return {
-    lighten: jest.fn(),
-    darken: jest.fn(),
-  };
-});
-
-jest.mock('react-redux', () => {
-  return {
-    useDispatch: jest.fn().mockReturnValue(jest.fn()),
-    useSelector: jest.fn().mockReturnValue(() => {
-      return {
-        profile: 'professor',
-      };
-    }),
-  };
-});
-
-jest.mock('react-router-dom', () => {
-  return {
-    Link: ({ children }: { children: React.ReactNode }) => children,
-  };
-});
-
 describe('Página de login', () => {
   it('O usuário deve ser autenticado ao preencher as informações corretamente!', async () => {
     const dispatch = jest.fn();
