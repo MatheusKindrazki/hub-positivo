@@ -34,7 +34,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "cross-env PUBLIC_URL=https://api2.positivoon.com.br/hubdigital-front-hml  react-app-rewired build",
+    "build:prd": "react-app-rewired build",
     "build:dev": "cross-env PUBLIC_URL=https://api2.positivoon.com.br/hubdigital-front-dev react-app-rewired build",
     "build:hml": "cross-env PUBLIC_URL=https://api2.positivoon.com.br/hubdigital-front-hml react-app-rewired build",
     "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
