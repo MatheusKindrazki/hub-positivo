@@ -79,8 +79,8 @@ const cardData = [
       },
       {
         id: 2,
-        title: 'Vídeo Aulas SPE Com Você',
-        description: 'Vídeo aulas disponibilizadas na plataforma SPE com Você ',
+        title: 'Vídeo Aulas',
+        description: 'Vídeo aulas semanais para alunos e professores',
         url: '#!',
         color: '#673AB7',
         icon: 'cards/conteudo-3.svg',
