@@ -38,9 +38,7 @@ const SignIn: React.FC = () => {
 
         setLoading(true);
 
-        setTimeout(() => {
-          dispatch(signInRequest(data));
-        }, 2000);
+        dispatch(signInRequest(data));
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -50,12 +48,7 @@ const SignIn: React.FC = () => {
           return;
         }
 
-        toast.error({
-          title: 'Algo deu errado =(',
-          description: 'Verifique seus dados e tente novamente!',
-          duration: 5000,
-          isClosable: true,
-        });
+        toast.error('Algo deu errado, Verifique seus dados e tente novamente!');
       }
     },
     [dispatch],
@@ -70,10 +63,11 @@ const SignIn: React.FC = () => {
         Insira seus dados de acesso para começar
       </Text>
 
-      <Form ref={formRef} onSubmit={handleSubmit}>
+      <Form ref={formRef} onSubmit={handleSubmit} data-testid="submit-form">
         <Input
           name="email"
           type="email"
+          data-testid="email"
           placeholder="Digite seu e-mail"
           iconLeft={<Box as={User} color="blue.500" size="18px" />}
           mb="5"
@@ -82,6 +76,7 @@ const SignIn: React.FC = () => {
           name="password"
           type={!view ? 'password' : 'text'}
           placeholder="Digite sua senha"
+          data-testid="password"
           iconRight={
             <Box
               as={view ? Eye : EyeSlash}
