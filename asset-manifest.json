@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/hub-positivo/static/js/main.3f3c31ae.chunk.js",
+    "main.js.map": "/hub-positivo/static/js/main.3f3c31ae.chunk.js.map",
+    "runtime-main.js": "/hub-positivo/static/js/runtime-main.7b20cf20.js",
+    "runtime-main.js.map": "/hub-positivo/static/js/runtime-main.7b20cf20.js.map",
+    "static/css/2.d34346ea.chunk.css": "/hub-positivo/static/css/2.d34346ea.chunk.css",
+    "static/js/2.ccf64f57.chunk.js": "/hub-positivo/static/js/2.ccf64f57.chunk.js",
+    "static/js/2.ccf64f57.chunk.js.map": "/hub-positivo/static/js/2.ccf64f57.chunk.js.map",
+    "index.html": "/hub-positivo/index.html",
+    "precache-manifest.b6208d5cb806020e7b7089a76cb264aa.js": "/hub-positivo/precache-manifest.b6208d5cb806020e7b7089a76cb264aa.js",
+    "service-worker.js": "/hub-positivo/service-worker.js",
+    "static/css/2.d34346ea.chunk.css.map": "/hub-positivo/static/css/2.d34346ea.chunk.css.map",
+    "static/js/2.ccf64f57.chunk.js.LICENSE.txt": "/hub-positivo/static/js/2.ccf64f57.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7b20cf20.js",
+    "static/css/2.d34346ea.chunk.css",
+    "static/js/2.ccf64f57.chunk.js",
+    "static/js/main.3f3c31ae.chunk.js"
+  ]
+}
