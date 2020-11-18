@@ -2,7 +2,6 @@
   "name": "hub-positivo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
@@ -78,7 +77,6 @@
     "ts-debounce": "^2.0.1",
     "typescript": "^4.0.3",
     "uuidv4": "^6.2.3",
-    "wouter": "^2.5.3",
     "yup": "^0.29.3"
   },
   "browserslist": {
