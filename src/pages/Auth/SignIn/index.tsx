@@ -1,8 +1,8 @@
 import React, { useRef, useState, useCallback } from 'react';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Box, Heading, Text, Button } from '@chakra-ui/core';
 import { FormHandles } from '@unform/core';
@@ -23,7 +23,8 @@ const SignIn: React.FC = () => {
 
   const dispatch = useDispatch();
   const [view, setView] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const { loading } = useSelector((state: Store.State) => state.auth);
 
   const formRef = useRef<FormHandles>(null);
 
@@ -35,8 +36,6 @@ const SignIn: React.FC = () => {
         await signInValidator.validate(data, {
           abortEarly: false,
         });
-
-        setLoading(true);
 
         dispatch(signInRequest(data));
       } catch (err) {
@@ -65,10 +64,10 @@ const SignIn: React.FC = () => {
 
       <Form ref={formRef} onSubmit={handleSubmit} data-testid="submit-form">
         <Input
-          name="email"
-          type="email"
+          name="username"
+          type="text"
           data-testid="email"
-          placeholder="Digite seu e-mail"
+          placeholder="Digite seu usuário"
           iconLeft={<Box as={User} color="blue.500" size="18px" />}
           mb="5"
         />
@@ -103,7 +102,7 @@ const SignIn: React.FC = () => {
           Entrar
         </Button>
 
-        <Button
+        {/* <Button
           as={Link}
           mt="1rem"
           mb="0.5rem"
@@ -115,7 +114,7 @@ const SignIn: React.FC = () => {
           height="3rem"
         >
           Esqueci minha senha
-        </Button>
+        </Button> */}
       </Form>
     </Box>
   );
