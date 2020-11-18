@@ -15,15 +15,13 @@ import Route from './Route';
 const Routes: React.FC = () => {
   return (
     <ConnectedRouter history={history}>
-      <div>
-        <Switch>
-          <Route path="/login" component={SignIn} />
-          <Route path="/profile" component={Profile} />
+      <Switch>
+        <Route path="/login" component={SignIn} />
+        <Route path="/profile" component={Profile} />
 
-          <Route path="/" exact component={Home} isPrivate />
-          <Route path="/hub-frame" exact component={IFrame} isPrivate />
-        </Switch>
-      </div>
+        <Route path="/" exact component={Home} isPrivate />
+        <Route path="/hub-frame" exact component={IFrame} isPrivate />
+      </Switch>
     </ConnectedRouter>
   );
 };
