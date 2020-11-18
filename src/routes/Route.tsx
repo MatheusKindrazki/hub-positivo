@@ -1,10 +1,10 @@
 import React from 'react';
 
 import {
-  RouteProps as ReactRouteProps,
   Route as ReactRoute,
   Redirect,
-} from 'react-router-dom';
+  RouteProps as ReactRouteProps,
+} from 'wouter';
 
 import Auth from '~/layouts/Auth';
 import Logged from '~/layouts/Logged';
@@ -12,7 +12,6 @@ import { store } from '~/store';
 
 interface RouteProps extends ReactRouteProps {
   isPrivate?: boolean;
-  component: React.ComponentType;
 }
 
 const Route: React.FC<RouteProps> = ({
@@ -24,24 +23,18 @@ const Route: React.FC<RouteProps> = ({
 
   const RenderLayout = signed ? Logged : Auth;
 
+  if (!signed && isPrivate) {
+    return <Redirect to="/login" />;
+  }
+
+  if (signed && !isPrivate) {
+    return <Redirect to="/" />;
+  }
+
   return (
-    <ReactRoute
-      {...rest}
-      render={({ location }) => {
-        return isPrivate === !!signed ? (
-          <RenderLayout>
-            <Component />
-          </RenderLayout>
-        ) : (
-          <Redirect
-            to={{
-              pathname: isPrivate ? '/login' : '/',
-              state: { from: location },
-            }}
-          />
-        );
-      }}
-    />
+    <RenderLayout>
+      <ReactRoute {...rest} component={Component} />
+    </RenderLayout>
   );
 };
 
