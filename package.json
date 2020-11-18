@@ -2,7 +2,7 @@
   "name": "hub-positivo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "",
+  "homepage": "./",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
