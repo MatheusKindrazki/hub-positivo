@@ -34,7 +34,7 @@ describe('Página de login', () => {
     await waitFor(() =>
       expect(dispatch).toHaveBeenCalledWith({
         type: Actions.SIGN_IN_REQUEST,
-        payload: { email: 'jonhdoe@example.com', password: '123456' },
+        payload: { username: 'jonhdoe@example.com', password: '123456' },
       }),
     );
   });
