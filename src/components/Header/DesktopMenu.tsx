@@ -65,7 +65,7 @@ const DesktopMenu: React.FC = () => {
 
   const handleSignOut = useCallback(() => {
     dispatch(signOut());
-    history.push('/');
+    history.push('/login');
   }, [dispatch]);
 
   const handleOpenUserOption = useCallback(() => {
