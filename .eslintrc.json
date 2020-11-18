@@ -27,6 +27,7 @@
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
     "consistent-return": "off",
+    "camelcase": "off",
     "react-hooks/exhaustive-deps": "warn",
     "no-console": ["error", { "allow": ["tron"] }],
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],

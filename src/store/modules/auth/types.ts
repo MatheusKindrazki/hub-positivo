@@ -1,5 +1,5 @@
 export interface SignInRequest {
-  email: string;
+  username: string;
   password: string;
 }
 
@@ -8,4 +8,10 @@ export interface AuthReducer {
   selectProfile: boolean;
   loading: boolean;
   avatar: string;
+}
+
+export interface AuthApi {
+  access_token: string;
+  expires_in: string;
+  token_type: string;
 }

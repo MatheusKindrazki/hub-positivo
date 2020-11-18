@@ -8,7 +8,7 @@ import { AuthReducer } from './types';
 export const INITIAL_STATE: AuthReducer = {
   signed: false,
   selectProfile: false,
-  avatar: `https://avatars.dicebear.com/api/male/${Math.random()}.svg`,
+  avatar: '',
   loading: false,
 };
 
@@ -30,6 +30,13 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
       case Actions.SIGN_IN_SUCCESS: {
         draft.selectProfile = false;
         draft.signed = true;
+        draft.loading = false;
+        break;
+      }
+      case Actions.SIGN_IN_FAILURE: {
+        draft.selectProfile = false;
+        draft.signed = false;
+        draft.loading = false;
         break;
       }
       case Actions.SIGN_OUT: {

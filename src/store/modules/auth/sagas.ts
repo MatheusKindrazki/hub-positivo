@@ -1,19 +1,55 @@
-/* eslint-disable func-names */
-import { all, put, takeLatest } from 'redux-saga/effects';
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
+import { all, call, takeLatest, Payload, put } from 'redux-saga/effects';
 
-import history from '~/services/history';
+import { ApiResponse } from 'apisauce';
+import { toast } from 'react-toastify';
 
-import { Actions, setProfileRequest } from './actions';
-// import { SignInRequest } from './types';
+import { apiAuth } from '~/services/api';
 
-// type SignInPayload = Payload<SignInRequest>;
+import { Actions, signInFailure } from './actions';
+import { SignInRequest, AuthApi } from './types';
 
-export function* signIn(): Generator {
-  yield put(setProfileRequest());
+type SignInPayload = Payload<SignInRequest>;
 
-  history.push('/profile');
+interface SendFormData {
+  [key: string]: string | Blob;
+}
 
-  return yield true;
+export function* signIn({ payload }: SignInPayload): Generator {
+  const sendInfo = {
+    ...payload,
+    grant_type: process.env.REACT_APP_API_AUTH_TYPE,
+    client_id: process.env.REACT_APP_API_AUTH_CLIENT_ID,
+    client_secret: process.env.REACT_APP_API_AUTH_SECRET_ID,
+    scope: process.env.REACT_APP_API_AUTH_SCOPE,
+  };
+
+  const formData = new FormData();
+
+  const send = (sendInfo as unknown) as SendFormData;
+
+  for (const k in sendInfo) {
+    formData.append(k, send[k]);
+  }
+
+  const response = yield call(() => {
+    apiAuth.setHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    });
+    return apiAuth.post('connect/token', formData);
+  });
+
+  const { data, ok } = response as ApiResponse<AuthApi>;
+
+  if (!ok) {
+    toast.error('Algo deu errado, verifique seus dados e tente novamente!');
+
+    return yield put(signInFailure());
+  }
+
+  // eslint-disable-next-line no-console
+  console.log(data?.access_token); // eslint-disable-line;
 }
 
 export default all([takeLatest(Actions.SIGN_IN_REQUEST, signIn)]);

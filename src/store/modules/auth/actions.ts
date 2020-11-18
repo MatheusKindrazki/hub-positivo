@@ -28,6 +28,12 @@ export function signInSuccess(): Action {
   };
 }
 
+export function signInFailure(): Action {
+  return {
+    type: Actions.SIGN_IN_FAILURE,
+  };
+}
+
 export function setProfileRequest(): Action {
   return {
     type: Actions.SET_PROFILE_REQUEST,
