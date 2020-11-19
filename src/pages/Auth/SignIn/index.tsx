@@ -1,7 +1,5 @@
 import React, { useRef, useState, useCallback } from 'react';
 
-// import { Link } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Box, Heading, Text, Button } from '@chakra-ui/core';

@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import { SignInRequest } from './types';
+import { SignInRequest, SignInSuccess } from './types';
 
 export const Actions = {
   SIGN_IN_REQUEST: '@auth/SIGN_IN_REQUEST',
@@ -22,9 +22,10 @@ export function signInRequest(data: SignInRequest): Action {
   };
 }
 
-export function signInSuccess(): Action {
+export function signInSuccess(data: SignInSuccess): Action {
   return {
     type: Actions.SIGN_IN_SUCCESS,
+    payload: data,
   };
 }
 
