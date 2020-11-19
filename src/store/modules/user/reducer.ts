@@ -8,6 +8,7 @@ import { UserReducer } from './types';
 export const INITIAL_STATE: UserReducer = {
   loading: false,
   avatar: '',
+  school: undefined,
 };
 
 type ReturnReducer = Reducer<UserReducer>;
@@ -24,6 +25,12 @@ const user: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.loading = false;
         break;
       }
+
+      case Actions.SET_SCHOOL: {
+        draft.school = action.payload;
+        break;
+      }
+
       default:
     }
   });

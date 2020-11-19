@@ -1,11 +1,15 @@
 import { Action } from 'redux';
 
-export const Actions = {
-  USER_REQUEST: '@auth/USER_REQUEST',
-  USER_SUCCESS: '@auth/USER_SUCCESS',
-  USER_FAILURE: '@auth/USER_FAILURE',
+import { Schools } from './types';
 
-  SIGN_IN_SUCCESS: '@auth/SIGN_IN_SUCCESS',
+export const Actions = {
+  USER_REQUEST: '@user/USER_REQUEST',
+  USER_SUCCESS: '@user/USER_SUCCESS',
+  USER_FAILURE: '@user/USER_FAILURE',
+
+  SIGN_IN_SUCCESS: '@user/SIGN_IN_SUCCESS',
+
+  SET_SCHOOL: '@user/SET_SCHOOL',
 };
 
 export function userRequest(): Action {
@@ -23,5 +27,12 @@ export function userSuccess(): Action {
 export function userFailure(): Action {
   return {
     type: Actions.USER_FAILURE,
+  };
+}
+
+export function setSchool(data: Schools): Action {
+  return {
+    type: Actions.SET_SCHOOL,
+    payload: data,
   };
 }
