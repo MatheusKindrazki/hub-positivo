@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 
 import { Avatar, Box, Heading, Text } from '@chakra-ui/core';
 
+import capitalizeFirstLetter from '~/utils/capitalize';
+
 interface WelcomeProps {
   size?: string;
   fontSize?: any;
@@ -18,14 +20,17 @@ const Welcome: React.FC<WelcomeProps> = ({
   size,
 }) => {
   const { name } = useSelector((state: Store.State) => state.profile);
-  const { avatar } = useSelector((state: Store.State) => state.user);
+
+  const { user, avatar, school } = useSelector(
+    (state: Store.State) => state.user,
+  );
 
   return (
     <Box display="flex" alignItems="center">
       <Avatar
         width={size || '3.5rem'}
         height={size || '3.5rem'}
-        name="Matheus Kindrazki"
+        name={user?.name || ''}
         src={avatar}
         background="#CFD8DC"
         borderColor="white"
@@ -39,12 +44,15 @@ const Welcome: React.FC<WelcomeProps> = ({
         color={option === 'name' ? 'black' : 'white'}
       >
         {option === 'name' ? (
-          <>Matheus Kindrazki</>
+          <>{user?.name || 'Usuário'}</>
         ) : (
           <>
-            Olá Matheus, seja bem-vindo!
+            Olá {user?.name?.split(' ')[0] || 'Usuário'}, seja bem-vindo!
             <Text fontSize={['sm', '1rem']} color="blue.100" mt="1">
-              {name} em Escola Positivo Soluções Didáticas
+              {name} em{' '}
+              {capitalizeFirstLetter(
+                school?.label.toLocaleLowerCase() || 'Escola',
+              )}
             </Text>
           </>
         )}

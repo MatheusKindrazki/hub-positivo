@@ -2,6 +2,13 @@ export interface UserReducer {
   loading: boolean;
   user?: User;
   avatar: string;
+  school?: {
+    value: string;
+    label: string;
+    roles: {
+      name: string;
+    }[];
+  };
 }
 
 export interface User {
@@ -10,8 +17,10 @@ export interface User {
   email: string | null;
 }
 
-interface Schools {
+export interface Schools {
   id: string;
   name: string;
-  roles: string[];
+  roles: {
+    name: string;
+  }[];
 }

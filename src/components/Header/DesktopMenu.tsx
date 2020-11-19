@@ -22,10 +22,11 @@ import Select from '~/components/Select';
 import history from '~/services/history';
 import { signOut } from '~/store/modules/auth/actions';
 import { loading } from '~/store/modules/global/actions';
-// import { tempSetProfile } from '~/store/modules/profile/actions';
+import { profiles, setProfile } from '~/store/modules/profile/actions';
+import { Profiles } from '~/store/modules/profile/types';
+import { setSchool } from '~/store/modules/user/actions';
 
 import Welcome from '../Welcome';
-import mock from './mock';
 
 const DesktopMenu: React.FC = () => {
   const dispatch = useDispatch();
@@ -34,30 +35,10 @@ const DesktopMenu: React.FC = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   const [openProfile, setOpenProfile] = useState(false);
-  const { name } = useSelector((state: Store.State) => state.profile);
-
-  const handleSelectedProfile = useCallback(() => {
-    dispatch(loading(true));
-
-    setOpenProfile(false);
-
-    // ?Simula busca na api
-    // setTimeout(() => {
-    //   dispatch(
-    //     tempSetProfile({
-    //       name: data.label,
-    //       profile: data.colorProfile,
-    //     }),
-    //   );
-    //   dispatch(loading(false));
-    // }, 2000);
-  }, [dispatch]);
-
-  const defaultProfile = useMemo(() => {
-    const findProfile = mock.filter(i => i.label === name);
-
-    return findProfile[0];
-  }, [name]);
+  const { user, school, avatar } = useSelector(
+    (state: Store.State) => state.user,
+  );
+  const profile = useSelector((state: Store.State) => state.profile);
 
   const handleSignOut = useCallback(() => {
     dispatch(signOut());
@@ -67,6 +48,55 @@ const DesktopMenu: React.FC = () => {
   const handleOpenUserOption = useCallback(() => {
     setOpenProfile(!openProfile);
   }, [openProfile]);
+
+  const handleSelected = useCallback(
+    data => {
+      dispatch(setSchool(data));
+    },
+    [dispatch],
+  );
+
+  const renderSchools = useMemo(() => {
+    if (!user?.schools?.length) return [];
+
+    return user?.schools?.map(s => ({
+      value: s.id,
+      label: s.name,
+      roles: s.roles,
+    }));
+  }, [user]);
+
+  const renderProfiles = useMemo(() => {
+    if (!school?.roles.length) return [];
+
+    return school.roles.map(i => ({
+      title: i.name,
+      icon: i.name.toLowerCase(),
+      colorProfile: i.name.toLowerCase(),
+      id: String(i.name.toLowerCase()),
+    }));
+  }, [school]);
+
+  const handleProfileSelect = useCallback(
+    data => {
+      dispatch(loading(true));
+
+      setTimeout(() => {
+        dispatch(loading(false));
+        dispatch(
+          setProfile({
+            name: data.title,
+            profile: data.colorProfile,
+          }),
+        );
+
+        setOpenProfile(false);
+      }, 1500);
+
+      dispatch(profiles((renderProfiles as unknown) as Profiles));
+    },
+    [dispatch, renderProfiles],
+  );
 
   return (
     <>
@@ -109,8 +139,8 @@ const DesktopMenu: React.FC = () => {
               width="2.5rem"
               height="2.5rem"
               backgroundColor="gray.400"
-              name="Matheus Kindrazki"
-              src={''}
+              name={user?.name || ''}
+              src={avatar}
             />
           </MenuButton>
           <MenuList
@@ -143,16 +173,9 @@ const DesktopMenu: React.FC = () => {
                 variant="normal"
                 placeholder="Selecione"
                 className="height-md"
-                defaultValue={{
-                  value: 'teste',
-                  label: 'Escola Positivo Soluções didáticas',
-                }}
-                options={[
-                  {
-                    label: 'Escola Positivo Soluções didáticas',
-                    value: 'teste',
-                  },
-                ]}
+                value={school}
+                options={renderSchools}
+                onChange={handleSelected}
               />
             </Box>
             <Box px="4" pb="3">
@@ -160,9 +183,16 @@ const DesktopMenu: React.FC = () => {
                 variant="normal"
                 placeholder="Selecione"
                 className="height-md"
-                defaultValue={defaultProfile}
-                options={mock}
-                onChange={() => handleSelectedProfile()}
+                options={renderProfiles.map(item => ({
+                  label: item.title,
+                  value: (item.id as unknown) as string,
+                  ...item,
+                }))}
+                value={{
+                  label: profile.name as string,
+                  value: profile.profile as string,
+                }}
+                onChange={handleProfileSelect}
               />
             </Box>
             <MenuDivider />

@@ -11,6 +11,7 @@ import history from '~/services/history';
 import { setSigned } from '~/store/modules/auth/actions';
 import { setProfile, profiles } from '~/store/modules/profile/actions';
 import { Profiles } from '~/store/modules/profile/types';
+import { setSchool as setSchoolUser } from '~/store/modules/user/actions';
 import documentTitle from '~/utils/documentTitle';
 
 import CardBox from './components/CardBox';
@@ -43,14 +44,18 @@ const Profile: React.FC = () => {
     }
   }, [token]);
 
-  const handleSelected = useCallback(data => {
-    setLoading(true);
+  const handleSelected = useCallback(
+    data => {
+      setLoading(true);
+      dispatch(setSchoolUser(data));
 
-    setTimeout(() => {
-      setLoading(false);
-      setSchool(data);
-    }, 1000);
-  }, []);
+      setTimeout(() => {
+        setLoading(false);
+        setSchool(data);
+      }, 1000);
+    },
+    [dispatch],
+  );
 
   const renderSchools = useMemo(() => {
     if (!user?.schools?.length) return [];
@@ -69,7 +74,7 @@ const Profile: React.FC = () => {
       title: i.name,
       icon: i.name.toLowerCase(),
       colorProfile: i.name.toLowerCase(),
-      id: Math.random(),
+      id: String(i.name.toLowerCase()),
     }));
   }, [school]);
 
