@@ -1,25 +1,24 @@
 import React, { ButtonHTMLAttributes } from 'react';
 
-import iconTypes from './icons';
+// import iconTypes from './icons';
 import { Container } from './styles';
 
 type CardPropsButton = ButtonHTMLAttributes<HTMLButtonElement>;
 
 interface CardProps extends CardPropsButton {
-  id: string;
   title: string;
-  icon: 'professor' | 'gestor' | 'aluno' | 'familia';
+  icon?: 'professor' | 'gestor' | 'aluno' | 'familia';
 }
 
-const CardBox: React.FC<CardProps> = ({ icon, title, onClick }) => {
-  type Icon = typeof iconTypes.aluno;
+const CardBox: React.FC<CardProps> = ({ title, onClick }) => {
+  // type Icon = typeof iconTypes.aluno;
 
-  const IconType = iconTypes[icon || 'gestor'] as Icon;
+  // const IconType = iconTypes[icon || 'gestor'] as Icon;
 
   return (
     <Container onClick={onClick}>
       <div className="round">
-        <IconType color="white" size="24px" />
+        {/* <IconType color="white" size="24px" /> */}
       </div>
       <p>{title}</p>
     </Container>

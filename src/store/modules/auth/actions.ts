@@ -10,6 +10,8 @@ export const Actions = {
   SIGN_OUT: '@auth/SIGN_OUT',
 
   SET_PROFILE_REQUEST: '@auth/SET_PROFILE_REQUEST',
+
+  SET_SIGNED: '@auth/SET_SIGNED',
 };
 
 /*
@@ -35,9 +37,9 @@ export function signInFailure(): Action {
   };
 }
 
-export function setProfileRequest(): Action {
+export function setSigned(): Action {
   return {
-    type: Actions.SET_PROFILE_REQUEST,
+    type: Actions.SET_SIGNED,
   };
 }
 
