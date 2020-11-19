@@ -36,8 +36,8 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
       case AuthAction.SIGN_OUT: {
         draft.profile = 'default';
         draft.name = 'Default';
-        delete draft.colorProfile;
-        delete draft.icon;
+        draft.colorProfile = 'default';
+        draft.icon = 'default';
 
         break;
       }

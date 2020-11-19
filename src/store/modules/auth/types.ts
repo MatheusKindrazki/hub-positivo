@@ -9,6 +9,7 @@ export interface AuthReducer {
   token: string | null;
   auth_time: number;
   iat: number;
+  exp: number;
 }
 
 export interface AuthApi {
@@ -20,6 +21,7 @@ export interface AuthApi {
 export interface SignInSuccess {
   token: string | null;
   auth_time: number | null;
+  exp: number | null;
   iat: number | null;
   user?: {
     name: string | null;

@@ -12,6 +12,8 @@ export const Actions = {
   SET_PROFILE_REQUEST: '@auth/SET_PROFILE_REQUEST',
 
   SET_SIGNED: '@auth/SET_SIGNED',
+
+  REHYDRATE: 'persist/REHYDRATE',
 };
 
 /*

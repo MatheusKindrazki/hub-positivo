@@ -7,7 +7,7 @@ export const Actions = {
   USER_SUCCESS: '@user/USER_SUCCESS',
   USER_FAILURE: '@user/USER_FAILURE',
 
-  SIGN_IN_SUCCESS: '@user/SIGN_IN_SUCCESS',
+  SIGN_IN_SUCCESS: '@auth/SIGN_IN_SUCCESS',
 
   SET_SCHOOL: '@user/SET_SCHOOL',
 };
