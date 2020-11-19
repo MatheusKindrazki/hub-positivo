@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { apiAuth } from '~/services/api';
 import history from '~/services/history';
 
-import { Actions, signInFailure, signInSuccess } from './actions';
+import { Actions, signInFailure, signInSuccess, signOut } from './actions';
 import { SignInRequest, AuthApi } from './types';
 
 type SignInPayload = Payload<SignInRequest>;
@@ -28,10 +28,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
       accept: '*/*',
     });
 
-    return apiAuth.post(
-      'https://sso.specomunica.com.br/connect/token',
-      qs.stringify(sendInfo),
-    );
+    return apiAuth.post('connect/token', qs.stringify(sendInfo));
   });
 
   const { data, ok } = response as ApiResponse<AuthApi>;
@@ -48,6 +45,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
     signInSuccess({
       token: data?.access_token || '',
       auth_time: user?.auth_time,
+      exp: user?.exp,
       iat: user?.iat,
       user: {
         email: user?.email,
@@ -60,4 +58,33 @@ export function* signIn({ payload }: SignInPayload): Generator {
   return history.push('/profile');
 }
 
-export default all([takeLatest(Actions.SIGN_IN_REQUEST, signIn)]);
+type ExpiringRehydrate = Payload<{
+  auth: { exp: number; iat: number; token: string };
+}>;
+
+export function* checkingExpiringToken({
+  payload,
+}: ExpiringRehydrate): Generator {
+  if (!payload) return;
+
+  const { exp } = payload.auth;
+
+  const date = (new Date() as unknown) as number;
+
+  const now = Math.round(date / 1000);
+
+  if (now >= exp) {
+    toast.warn('Seu token expirou! Faça o login novamente para continuar!');
+
+    yield put(signOut());
+
+    history.push('/login');
+  }
+
+  return yield true;
+}
+
+export default all([
+  takeLatest(Actions.REHYDRATE, checkingExpiringToken),
+  takeLatest(Actions.SIGN_IN_REQUEST, signIn),
+]);
