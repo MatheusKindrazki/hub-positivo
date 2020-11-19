@@ -11,7 +11,6 @@ import Welcome from '~/components/Welcome';
 
 import { loading } from '~/store/modules/global/actions';
 import { productRequest } from '~/store/modules/products/actions';
-// import { tempSetProfile } from '~/store/modules/profile/actions';
 import documentTitle from '~/utils/documentTitle';
 
 import Collapse from './components/Collapse';
@@ -19,13 +18,7 @@ import SearchInput from './components/Search';
 import { mockAlunos, mockProfessores } from './mock';
 import { Container } from './styles';
 
-const enableSelect = [
-  'professorInfantil',
-  'professorMedio',
-  'professorEF1',
-  'professorEF2',
-  'familia',
-];
+const enableSelect = ['professor', 'familia'];
 
 const Home: React.FC = () => {
   documentTitle('Home');
@@ -142,9 +135,10 @@ const Home: React.FC = () => {
             cards.map(card => (
               <Collapse
                 key={card.id}
-                cards={card.cards}
+                cor={card.cor}
+                solucoes={card.solucoes}
                 id={card.id}
-                title={card.title}
+                nome={card.nome}
               />
             ))}
         </Box>
