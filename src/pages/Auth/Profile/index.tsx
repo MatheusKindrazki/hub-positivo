@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useEffect, useCallback, useState, useMemo } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Box, Heading, useTheme } from '@chakra-ui/core';
 import { BarLoader } from 'react-spinners';
@@ -9,19 +9,24 @@ import { BarLoader } from 'react-spinners';
 import Select from '~/components/Select';
 
 import history from '~/services/history';
+import { setSigned } from '~/store/modules/auth/actions';
 import documentTitle from '~/utils/documentTitle';
 
 import CardBox from './components/CardBox';
-import profiles from './items';
 
+interface Role {
+  name: string;
+}
 interface SelectItem {
   label: string;
   value: string;
-  roles: string[];
+  roles: Role[];
 }
 
 const Profile: React.FC = () => {
   documentTitle('Selecione o Perfil');
+
+  const dispatch = useDispatch();
 
   const { colors } = useTheme();
 
@@ -40,18 +45,11 @@ const Profile: React.FC = () => {
     }, 1000);
   }, []);
 
-  // const handleProfileSelect = useCallback(
-  //   (data: ProfileItem) => {
-  //     // !Ação temporária para efeito de visualização de seleção de perfil
-  //     dispatch(
-  //       tempSetProfile({
-  //         name: data.title,
-  //         profile: data.colorProfile as VariantsProps,
-  //       }),
-  //     );
-  //   },
-  //   [dispatch],
-  // );
+  const handleProfileSelect = useCallback(() => {
+    dispatch(setSigned());
+
+    history.push('/');
+  }, [dispatch]);
 
   useEffect(() => {
     if (!token) {
@@ -68,6 +66,16 @@ const Profile: React.FC = () => {
       roles: s.roles,
     }));
   }, [user]);
+
+  const profiles = useMemo(() => {
+    if (!school?.roles.length) return [];
+
+    return school.roles.map(i => ({
+      title: i.name,
+      icon: 'gestor',
+      colorProfile: 'gestor',
+    }));
+  }, [school]);
 
   return (
     <>
@@ -93,13 +101,12 @@ const Profile: React.FC = () => {
 
         {!loading && school ? (
           <Box mt="3" pt="3">
-            {profiles.map(item => (
+            {profiles.map((item, i) => (
               <CardBox
-                key={item.id}
-                icon={item.icon as any}
-                id={item.id}
+                key={i}
+                // icon={item.icon as any}
                 title={item.title}
-                onClick={() => console.log('ola mundo')}
+                onClick={() => handleProfileSelect()}
               />
             ))}
           </Box>

@@ -45,6 +45,10 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.signed = false;
         break;
       }
+      case Actions.SET_SIGNED: {
+        draft.signed = true;
+        break;
+      }
       default:
     }
   });
