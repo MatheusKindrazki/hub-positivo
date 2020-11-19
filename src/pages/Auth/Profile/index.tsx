@@ -1,6 +1,7 @@
-import React, { useEffect, useCallback, useState } from 'react';
+/* eslint-disable no-console */
+import React, { useEffect, useCallback, useState, useMemo } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Box, Heading, useTheme } from '@chakra-ui/core';
 import { BarLoader } from 'react-spinners';
@@ -8,24 +9,15 @@ import { BarLoader } from 'react-spinners';
 import Select from '~/components/Select';
 
 import history from '~/services/history';
-import { signInSuccess } from '~/store/modules/auth/actions';
-import { tempSetProfile } from '~/store/modules/profile/actions';
-import { VariantsProps } from '~/styles/profileColors';
 import documentTitle from '~/utils/documentTitle';
 
 import CardBox from './components/CardBox';
 import profiles from './items';
 
-interface ProfileItem {
-  id: string;
-  title: string;
-  icon: string;
-  colorProfile: string;
-}
-
 interface SelectItem {
   label: string;
   value: string;
+  roles: string[];
 }
 
 const Profile: React.FC = () => {
@@ -33,12 +25,11 @@ const Profile: React.FC = () => {
 
   const { colors } = useTheme();
 
-  const dispatch = useDispatch();
-
   const [school, setSchool] = useState<SelectItem>();
   const [loading, setLoading] = useState(false);
 
-  const { selectProfile } = useSelector((state: Store.State) => state.auth);
+  const { token } = useSelector((state: Store.State) => state.auth);
+  const { user } = useSelector((state: Store.State) => state.user);
 
   const handleSelected = useCallback(data => {
     setLoading(true);
@@ -46,29 +37,37 @@ const Profile: React.FC = () => {
     setTimeout(() => {
       setLoading(false);
       setSchool(data);
-    }, 1500);
+    }, 1000);
   }, []);
 
-  const handleProfileSelect = useCallback(
-    (data: ProfileItem) => {
-      // !Ação temporária para efeito de visualização de seleção de perfil
-      dispatch(
-        tempSetProfile({
-          name: data.title,
-          profile: data.colorProfile as VariantsProps,
-        }),
-      );
-
-      dispatch(signInSuccess());
-    },
-    [dispatch],
-  );
+  // const handleProfileSelect = useCallback(
+  //   (data: ProfileItem) => {
+  //     // !Ação temporária para efeito de visualização de seleção de perfil
+  //     dispatch(
+  //       tempSetProfile({
+  //         name: data.title,
+  //         profile: data.colorProfile as VariantsProps,
+  //       }),
+  //     );
+  //   },
+  //   [dispatch],
+  // );
 
   useEffect(() => {
-    if (!selectProfile) {
+    if (!token) {
       history.push('/');
     }
-  }, [selectProfile]);
+  }, [token]);
+
+  const renderSchools = useMemo(() => {
+    if (!user?.schools?.length) return [];
+
+    return user?.schools?.map(s => ({
+      value: s.id,
+      label: s.name,
+      roles: s.roles,
+    }));
+  }, [user]);
 
   return (
     <>
@@ -89,12 +88,7 @@ const Profile: React.FC = () => {
           variant="normal"
           placeholder="Selecione"
           onChange={handleSelected}
-          options={[
-            {
-              label: 'Escola Positivo Soluções didáticas',
-              value: 'teste',
-            },
-          ]}
+          options={renderSchools}
         />
 
         {!loading && school ? (
@@ -105,7 +99,7 @@ const Profile: React.FC = () => {
                 icon={item.icon as any}
                 id={item.id}
                 title={item.title}
-                onClick={() => handleProfileSelect(item)}
+                onClick={() => console.log('ola mundo')}
               />
             ))}
           </Box>

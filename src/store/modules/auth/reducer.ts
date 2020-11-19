@@ -7,9 +7,10 @@ import { AuthReducer } from './types';
 
 export const INITIAL_STATE: AuthReducer = {
   signed: false,
-  selectProfile: false,
-  avatar: '',
   loading: false,
+  token: null,
+  auth_time: 0,
+  iat: 0,
 };
 
 type ReturnReducer = Reducer<AuthReducer>;
@@ -22,20 +23,21 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.loading = true;
         break;
       }
-      case Actions.SET_PROFILE_REQUEST: {
-        draft.selectProfile = true;
-        draft.loading = false;
-        break;
-      }
+
       case Actions.SIGN_IN_SUCCESS: {
-        draft.selectProfile = false;
-        draft.signed = true;
+        draft.token = action.payload.token;
+        draft.auth_time = action.payload.auth_time;
+        draft.iat = action.payload.iat;
+
         draft.loading = false;
         break;
       }
+
       case Actions.SIGN_IN_FAILURE: {
-        draft.selectProfile = false;
         draft.signed = false;
+        draft.token = null;
+        draft.auth_time = 0;
+        draft.iat = 0;
         draft.loading = false;
         break;
       }

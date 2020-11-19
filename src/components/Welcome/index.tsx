@@ -18,7 +18,7 @@ const Welcome: React.FC<WelcomeProps> = ({
   size,
 }) => {
   const { name } = useSelector((state: Store.State) => state.profile);
-  const { avatar } = useSelector((state: Store.State) => state.auth);
+  const { avatar } = useSelector((state: Store.State) => state.user);
 
   return (
     <Box display="flex" alignItems="center">
