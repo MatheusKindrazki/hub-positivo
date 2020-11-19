@@ -11,7 +11,7 @@ import Welcome from '~/components/Welcome';
 
 import { loading } from '~/store/modules/global/actions';
 import { productRequest } from '~/store/modules/products/actions';
-import { tempSetProfile } from '~/store/modules/profile/actions';
+// import { tempSetProfile } from '~/store/modules/profile/actions';
 import documentTitle from '~/utils/documentTitle';
 
 import Collapse from './components/Collapse';
@@ -49,12 +49,12 @@ const Home: React.FC = () => {
 
       setTimeout(() => {
         dispatch(loading(false));
-        dispatch(
-          tempSetProfile({
-            name: data.name,
-            profile: data.profile,
-          }),
-        );
+        // dispatch(
+        //   tempSetProfile({
+        //     name: data.name,
+        //     profile: data.profile,
+        //   }),
+        // );
       }, 2000);
     },
     [dispatch],

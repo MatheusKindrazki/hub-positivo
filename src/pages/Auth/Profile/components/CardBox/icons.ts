@@ -1,8 +1,16 @@
-import { Briefcase, Clipboard, BookBookmark, Users } from 'phosphor-react';
+import {
+  Briefcase,
+  ClipboardText,
+  BookBookmark,
+  Users,
+  Pencil,
+} from 'phosphor-react';
 
 const types = {
   gestor: Briefcase,
-  professor: Clipboard,
+  administrador: Briefcase,
+  coordenador: ClipboardText,
+  professor: Pencil,
   aluno: BookBookmark,
   familia: Users,
 };

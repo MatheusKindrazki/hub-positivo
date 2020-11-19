@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useEffect, useCallback, useState, useMemo } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,6 +9,8 @@ import Select from '~/components/Select';
 
 import history from '~/services/history';
 import { setSigned } from '~/store/modules/auth/actions';
+import { setProfile, profiles } from '~/store/modules/profile/actions';
+import { Profiles } from '~/store/modules/profile/types';
 import documentTitle from '~/utils/documentTitle';
 
 import CardBox from './components/CardBox';
@@ -36,6 +37,12 @@ const Profile: React.FC = () => {
   const { token } = useSelector((state: Store.State) => state.auth);
   const { user } = useSelector((state: Store.State) => state.user);
 
+  useEffect(() => {
+    if (!token) {
+      history.push('/');
+    }
+  }, [token]);
+
   const handleSelected = useCallback(data => {
     setLoading(true);
 
@@ -44,18 +51,6 @@ const Profile: React.FC = () => {
       setSchool(data);
     }, 1000);
   }, []);
-
-  const handleProfileSelect = useCallback(() => {
-    dispatch(setSigned());
-
-    history.push('/');
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (!token) {
-      history.push('/');
-    }
-  }, [token]);
 
   const renderSchools = useMemo(() => {
     if (!user?.schools?.length) return [];
@@ -67,15 +62,34 @@ const Profile: React.FC = () => {
     }));
   }, [user]);
 
-  const profiles = useMemo(() => {
+  const renderProfiles = useMemo(() => {
     if (!school?.roles.length) return [];
 
     return school.roles.map(i => ({
       title: i.name,
-      icon: 'gestor',
-      colorProfile: 'gestor',
+      icon: i.name.toLowerCase(),
+      colorProfile: i.name.toLowerCase(),
+      id: Math.random(),
     }));
   }, [school]);
+
+  const handleProfileSelect = useCallback(
+    data => {
+      dispatch(setSigned());
+
+      dispatch(
+        setProfile({
+          name: data.title,
+          profile: data.colorProfile,
+        }),
+      );
+
+      dispatch(profiles((renderProfiles as unknown) as Profiles));
+
+      history.push('/');
+    },
+    [dispatch, renderProfiles],
+  );
 
   return (
     <>
@@ -101,12 +115,12 @@ const Profile: React.FC = () => {
 
         {!loading && school ? (
           <Box mt="3" pt="3">
-            {profiles.map((item, i) => (
+            {renderProfiles.map((item, i) => (
               <CardBox
                 key={i}
-                // icon={item.icon as any}
+                icon={item.icon as any}
                 title={item.title}
-                onClick={() => handleProfileSelect()}
+                onClick={() => handleProfileSelect(item)}
               />
             ))}
           </Box>

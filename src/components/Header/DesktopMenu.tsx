@@ -22,7 +22,7 @@ import Select from '~/components/Select';
 import history from '~/services/history';
 import { signOut } from '~/store/modules/auth/actions';
 import { loading } from '~/store/modules/global/actions';
-import { tempSetProfile } from '~/store/modules/profile/actions';
+// import { tempSetProfile } from '~/store/modules/profile/actions';
 
 import Welcome from '../Welcome';
 import mock from './mock';
@@ -36,25 +36,22 @@ const DesktopMenu: React.FC = () => {
   const [openProfile, setOpenProfile] = useState(false);
   const { name } = useSelector((state: Store.State) => state.profile);
 
-  const handleSelectedProfile = useCallback(
-    data => {
-      dispatch(loading(true));
+  const handleSelectedProfile = useCallback(() => {
+    dispatch(loading(true));
 
-      setOpenProfile(false);
+    setOpenProfile(false);
 
-      // ?Simula busca na api
-      setTimeout(() => {
-        dispatch(
-          tempSetProfile({
-            name: data.label,
-            profile: data.colorProfile,
-          }),
-        );
-        dispatch(loading(false));
-      }, 2000);
-    },
-    [dispatch],
-  );
+    // ?Simula busca na api
+    // setTimeout(() => {
+    //   dispatch(
+    //     tempSetProfile({
+    //       name: data.label,
+    //       profile: data.colorProfile,
+    //     }),
+    //   );
+    //   dispatch(loading(false));
+    // }, 2000);
+  }, [dispatch]);
 
   const defaultProfile = useMemo(() => {
     const findProfile = mock.filter(i => i.label === name);
@@ -165,7 +162,7 @@ const DesktopMenu: React.FC = () => {
                 className="height-md"
                 defaultValue={defaultProfile}
                 options={mock}
-                onChange={e => handleSelectedProfile(e)}
+                onChange={() => handleSelectedProfile()}
               />
             </Box>
             <MenuDivider />
