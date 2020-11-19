@@ -1,34 +1,35 @@
-import { all, Payload, put, takeLatest } from 'redux-saga/effects';
+import { all, call, Payload, put, takeLatest } from 'redux-saga/effects';
 
-import { store } from '~/store';
+import { ApiResponse } from 'apisauce';
+import { toast } from 'react-toastify';
+
+import api from '~/services/api';
 
 import { loading } from '../global/actions';
 import { Actions as ProfileActions } from '../profile/actions';
 import { Actions, productSuccess } from './actions';
-import * as mock from './mock';
 import { CardProduct, ProductRequest } from './types';
 
 type ProductsPayload = Payload<ProductRequest>;
 
-type TypeProfile =
-  | 'professorMedio'
-  | 'professorEF2'
-  | 'professorEF1'
-  | 'professorInfantil'
-  | 'aluno'
-  | 'familia';
-
 export function* getProducts({ payload }: ProductsPayload): Generator {
   const { search } = payload;
 
-  const { profile } = store.getState().profile;
+  const response = yield call(() => {
+    return api.get('Categoria/Solucoes');
+  });
 
-  const cardMock = mock[profile as TypeProfile];
+  const { ok, data } = response as ApiResponse<CardProduct[]>;
+
+  if (!ok) {
+    toast.error('Erro ao buscar soluções, tente novamente mais tarde!');
+    return;
+  }
 
   if (!search) {
     yield put(
       productSuccess({
-        data: cardMock,
+        data,
       }),
     );
 
@@ -39,24 +40,26 @@ export function* getProducts({ payload }: ProductsPayload): Generator {
 
   const newcards = [] as CardProduct[];
 
-  cardMock.forEach(i => {
-    i.cards.forEach(card => {
-      if (card.title.toLowerCase().includes(search.toLowerCase())) {
+  data?.forEach(i => {
+    i.solucoes?.forEach(card => {
+      if (card.nome.toLowerCase().includes(search.toLowerCase())) {
         if (!newcards.length) {
           newcards.push({
             id: i.id,
-            title: i.title,
-            cards: [card],
+            nome: i.nome,
+            cor: i.cor,
+            solucoes: i.solucoes,
           });
         } else {
           const index = newcards.findIndex(newCard => newCard.id === i.id);
 
-          const cardsNew = newcards[index]?.cards || [];
+          const cardsNew = newcards[index]?.solucoes || [];
 
           newcards[index] = {
             id: i.id,
-            title: i.title,
-            cards: [...cardsNew, card],
+            cor: i.cor,
+            nome: i.nome,
+            solucoes: [...cardsNew, card],
           };
         }
       }

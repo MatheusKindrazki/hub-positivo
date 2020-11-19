@@ -13,12 +13,13 @@ import CardProduct, { CardProps } from '~/components/CardProduct';
 import CollapseGlobal from './styles';
 
 interface CollapseProps {
-  id: number;
-  title: string;
-  cards: CardProps[];
+  id: string;
+  nome: string;
+  cor: string;
+  solucoes: CardProps[];
 }
 
-const Collapse: React.FC<CollapseProps> = ({ id, title, cards }) => {
+const Collapse: React.FC<CollapseProps> = ({ id, nome, cor, solucoes }) => {
   const [show, setShow] = useState(true);
 
   return (
@@ -39,7 +40,7 @@ const Collapse: React.FC<CollapseProps> = ({ id, title, cards }) => {
             fontSize="1.5rem"
             className="background-animate"
           >
-            {title}
+            {nome}
           </Heading>
 
           <Box
@@ -54,8 +55,8 @@ const Collapse: React.FC<CollapseProps> = ({ id, title, cards }) => {
         </Box>
         <CollapseUI isOpen={show}>
           <SimpleGrid columns={[1, 1, 2, 3, 4]} spacing={4} mt="4">
-            {cards?.map(item => (
-              <CardProduct key={item.id} card={item} />
+            {solucoes?.map(item => (
+              <CardProduct key={item.id} cor={cor} card={item} />
             ))}
           </SimpleGrid>
         </CollapseUI>

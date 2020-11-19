@@ -3,19 +3,19 @@ import React from 'react';
 import { Box, Image, Heading, Text, Badge } from '@chakra-ui/core';
 
 export interface CardProps {
-  id: number;
-  solution?: string;
-  title: string;
-  description: string;
-  icon: string;
-  color: string;
-  url: string;
-  notification?: string | number;
-  iframe?: boolean;
+  id: string;
+  nome: string;
+  descricao: string;
+  arquivo: string;
+  notificacao?: string | number;
+  ativo: boolean;
 }
 
-const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
-  const { color, description, icon, solution, title, url, notification } = card;
+const CardProduct: React.FC<{ cor: string; card: CardProps }> = ({
+  card,
+  cor,
+}) => {
+  const { nome, arquivo, descricao } = card;
 
   return (
     <Box
@@ -34,14 +34,14 @@ const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
         d="flex"
         justifyContent="center"
         alignItems="center"
-        backgroundColor={color}
+        backgroundColor={cor}
         p="0.625rem"
       >
         <Image
           height={['auto', 'auto', '3.875rem', '3.875rem']}
           width={['3rem', '3rem', 'auto', 'auto']}
           objectFit="contain"
-          src={icon}
+          src={arquivo}
         />
       </Box>
 
@@ -52,10 +52,10 @@ const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
         outline="none"
         boxShadow="none"
         onClick={() => {
-          window.location.assign(url);
+          window.location.assign('#!');
         }}
       >
-        {notification && (
+        {card?.notificacao && (
           <Badge
             position="absolute"
             right="1rem"
@@ -67,7 +67,7 @@ const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
             rounded="100%"
             fontSize="0.75rem"
           >
-            {notification}
+            {card?.notificacao}
           </Badge>
         )}
         <Box
@@ -78,16 +78,16 @@ const CardProduct: React.FC<{ card: CardProps }> = ({ card }) => {
           h="100%"
           pr="1.125rem"
         >
-          {solution && (
+          {/* {solution && (
             <Text color="gray.500" fontSize="0.8125rem" mt={['0.3125rem', '0']}>
               {solution}
             </Text>
-          )}
+          )} */}
           <Heading as="b" fontWeight="normal" fontSize="1.125rem" color="black">
-            {title}
+            {nome}
           </Heading>
           <Text mt="2" color="gray.500" fontSize="0.875rem">
-            {description}
+            {descricao}
           </Text>
         </Box>
       </Box>
