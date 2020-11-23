@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { Box, Image, Heading, Text, Badge } from '@chakra-ui/core';
+
+import { getEncryptToken } from '~/utils/encryptToken';
 
 export interface CardProps {
   id: string;
@@ -16,6 +18,14 @@ const CardProduct: React.FC<{ cor: string; card: CardProps }> = ({
   cor,
 }) => {
   const { nome, arquivo, descricao } = card;
+
+  const handlePush = useCallback(() => {
+    const token = getEncryptToken();
+
+    const url = `https://api2.positivoon.com.br/aulas-front-dev/#/${token}`;
+
+    window.location.assign(url);
+  }, []);
 
   return (
     <Box
@@ -51,9 +61,7 @@ const CardProduct: React.FC<{ cor: string; card: CardProps }> = ({
         p={['4', '4', '1.1rem']}
         outline="none"
         boxShadow="none"
-        onClick={() => {
-          window.location.assign('#!');
-        }}
+        onClick={handlePush}
       >
         {card?.notificacao && (
           <Badge
