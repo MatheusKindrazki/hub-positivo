@@ -42,12 +42,6 @@ const Home: React.FC = () => {
 
       setTimeout(() => {
         dispatch(loading(false));
-        // dispatch(
-        //   tempSetProfile({
-        //     name: data.name,
-        //     profile: data.profile,
-        //   }),
-        // );
       }, 2000);
     },
     [dispatch],
