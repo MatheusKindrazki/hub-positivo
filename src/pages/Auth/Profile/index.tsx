@@ -16,13 +16,10 @@ import documentTitle from '~/utils/documentTitle';
 
 import CardBox from './components/CardBox';
 
-interface Role {
-  name: string;
-}
 interface SelectItem {
   label: string;
   value: string;
-  roles: Role[];
+  roles: string[];
 }
 
 const Profile: React.FC = () => {
@@ -71,10 +68,10 @@ const Profile: React.FC = () => {
     if (!school?.roles.length) return [];
 
     return school.roles.map(i => ({
-      title: i.name,
-      icon: i.name.toLowerCase(),
-      colorProfile: i.name.toLowerCase(),
-      id: String(i.name.toLowerCase()),
+      title: i,
+      icon: i.toLowerCase(),
+      colorProfile: i.toLowerCase(),
+      id: String(i.toLowerCase()),
     }));
   }, [school]);
 

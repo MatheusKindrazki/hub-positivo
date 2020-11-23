@@ -5,9 +5,7 @@ export interface UserReducer {
   school?: {
     value: string;
     label: string;
-    roles: {
-      name: string;
-    }[];
+    roles: string[];
   };
 }
 

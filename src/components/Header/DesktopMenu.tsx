@@ -70,10 +70,10 @@ const DesktopMenu: React.FC = () => {
     if (!school?.roles.length) return [];
 
     return school.roles.map(i => ({
-      title: i.name,
-      icon: i.name.toLowerCase(),
-      colorProfile: i.name.toLowerCase(),
-      id: String(i.name.toLowerCase()),
+      title: i,
+      icon: i.toLowerCase(),
+      colorProfile: i.toLowerCase(),
+      id: String(i.toLowerCase()),
     }));
   }, [school]);
 
