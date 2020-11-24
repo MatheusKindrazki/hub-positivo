@@ -5,6 +5,8 @@ import { ChakraProvider, CSSReset } from '@chakra-ui/react'
 import { ThemeProvider as StyledProvider } from 'styled-components'
 
 import { theme as HubTheme } from '../styles'
+import GlobalStyles from '../styles/global'
+
 import profileColors, {
   VariantsProps,
   profileBaseColor
@@ -48,6 +50,7 @@ const ThemeContainer: React.FC = ({ children }) => {
     <ChakraProvider theme={renderTheme}>
       <StyledProvider theme={renderTheme}>
         <CSSReset />
+        <GlobalStyles />
         {children}
       </StyledProvider>
     </ChakraProvider>
