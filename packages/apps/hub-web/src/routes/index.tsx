@@ -1,9 +1,17 @@
 import React from 'react'
 
-// import { Container } from './styles';
+import SignIn from '~/pages/Auth/SignIn'
+import Home from '~/pages/Home'
+
+import Route from './Route'
 
 const Routes: React.FC = () => {
-  return <div />
+  return (
+    <>
+      <Route path="/" component={SignIn} />
+      <Route path="/home" component={Home} isPrivate />
+    </>
+  )
 }
 
 export default Routes

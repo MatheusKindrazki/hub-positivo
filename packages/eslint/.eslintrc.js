@@ -2,15 +2,16 @@ module.exports = {
   env: {
     browser: true,
     es2020: true,
+    node: true,
     jest: true
   },
   extends: [
-    'plugin:react/recommended',
     'standard',
-    'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
+    'prettier/react',
     'prettier/standard',
-    'prettier/react'
+    'plugin:react/recommended',
+    'prettier/@typescript-eslint',
+    'plugin:@typescript-eslint/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -22,46 +23,42 @@ module.exports = {
   },
   plugins: ['react','react-hooks', '@typescript-eslint', 'prettier', 'eslint-plugin-import-helpers'],
   rules: {
-    'prettier/prettier': 'error',
     'react/prop-types': 'off',
-    "no-use-before-define": 'off',
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    'prettier/prettier': 'error',
+    'no-use-before-define': 'off',
+    'import/no-duplicates': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     '@typescript-eslint/no-empty-interface': 'off',
-    "import/extensions": [
-      "error",
-      "ignorePackages",
+    'import/extensions': 'off',
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", {
+      "argsIgnorePattern": "_"
+    }],
+    'import-helpers/order-imports': [
+      'warn',
       {
-        "ts": "never",
-        "tsx": "never"
-      }
-    ],
-    "import-helpers/order-imports": [
-      "warn",
-      {
-        "newlinesBetween": "always",
-        "groups": [
-          "/^react$/",
-          "/^react-redux/",
-          "/^redux/",
-          "/^@hub/",
-          "/^@chackra/",
-          "module",
-          "/^~/components/",
-          "/^~/assets/",
-          "/^~/",
-          ["parent", "sibling", "index"]
+        'newlinesBetween': 'always',
+        'groups': [
+          '/^react$/',
+          '/^react-redux/',
+          '/^redux/',
+          '/^@hub/',
+          '/^@chackra/',
+          'module',
+          '/^~/components/',
+          '/^~/assets/',
+          '/^~/',
+          ['parent', 'sibling', 'index']
         ],
-        "alphabetize": { "order": "asc", "ignoreCase": true }
+        'alphabetize': { 'order': 'asc', 'ignoreCase': true }
       }
     ]
   },
   settings: {
     'import/resolver': {
-      typescript: {}
-    },
-    react: {
-      version: 'detect',
+      typescript: {},
+      'babel-plugin-root-import': {}
     },
   }
 }
