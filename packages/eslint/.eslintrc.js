@@ -20,17 +20,39 @@ module.exports = {
     ecmaVersion: 11,
     sourceType: 'module'
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react','react-hooks', '@typescript-eslint', 'prettier', 'eslint-plugin-import-helpers'],
   rules: {
     'prettier/prettier': 'error',
-    "no-use-before-define": 'off',
     'react/prop-types': 'off',
+    "no-use-before-define": 'off',
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    '@typescript-eslint/no-empty-interface': 'off',
     "import/extensions": [
       "error",
       "ignorePackages",
       {
         "ts": "never",
         "tsx": "never"
+      }
+    ],
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          "/^react$/",
+          "/^react-redux/",
+          "/^redux/",
+          "/^@hub/",
+          "/^@chackra/",
+          "module",
+          "/^~/components/",
+          "/^~/assets/",
+          "/^~/",
+          ["parent", "sibling", "index"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
       }
     ]
   },
