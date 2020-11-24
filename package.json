@@ -42,8 +42,10 @@
     "start:web": "react-app-rewired start",
     "start:shared": "npm run --prefix ./packages/shared webpack-dev",
     "build:prd": "react-app-rewired build",
-    "build:dev": "cross-env PUBLIC_URL=https://api2.positivoon.com.br/hubdigital-front-dev react-app-rewired build && npm run --prefix ./packages/shared webpack-prod",
+    "build:dev": "npm-run-all -p build:dev:*",
     "build:hml": "cross-env PUBLIC_URL=https://api2.positivoon.com.br/hubdigital-front-hml react-app-rewired build",
+    "build:dev:web": "cross-env PUBLIC_URL=https://api2.positivoon.com.br/hubdigital-front-dev react-app-rewired build",
+    "build:dev:shared": "npm run --prefix ./packages/shared webpack-prod",
     "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
     "coverage": "yarn test --coverage --watchAll false",
     "eject": "react-scripts eject"
