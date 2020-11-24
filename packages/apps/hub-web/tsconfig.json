@@ -1,6 +1,11 @@
 {
+  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
-    "target": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -12,6 +17,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
-    "jsx": "react"
-  }
+    "jsx": "react-jsx",
+    "module": "esnext"
+  },
+  "include": [
+    "./src/**/*"
+  ]
 }
