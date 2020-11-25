@@ -50,7 +50,8 @@ export function* signIn({ payload }: SignInPayload): Generator {
       iat: user?.iat,
       user: {
         email: user?.email,
-        name: user?.username,
+        name: user?.name,
+        username: user?.username,
         schools: user?.schools
       }
     })

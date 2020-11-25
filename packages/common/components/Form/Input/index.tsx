@@ -50,7 +50,9 @@ const Input: React.FC<InputAddIcons> = ({
   return (
     <FormControl mb={mb}>
       <InputGroup>
-        {iconLeft && <InputLeftElement children={iconLeft} height="3rem" />}
+        {iconLeft && (
+          <InputLeftElement children={iconLeft} width="3rem" height="3rem" />
+        )}
         <ChakraInput
           ref={inputRef}
           rounded="md"
@@ -59,17 +61,26 @@ const Input: React.FC<InputAddIcons> = ({
           borderWidth="1px"
           onBlur={handleInputBlur}
           onFocus={handleInputFocus}
-          borderColor="gray.100"
+          borderColor="gray.400"
           isInvalid={!!error && !isFocused}
           _placeholder={{
             color: '#7A7A7A',
             fontSize: '14px'
           }}
+          _hover={{
+            borderColor: 'blue.500'
+          }}
+          _focus={{
+            borderColor: 'blue.500',
+            boxShadow: '0 0 0 1px var(--hub-base-color)'
+          }}
           defaultValue={defaultValue}
           errorBorderColor="red.300"
           {...rest}
         />
-        {iconRight && <InputRightElement children={iconRight} height="3rem" />}
+        {iconRight && (
+          <InputRightElement children={iconRight} width="3rem" height="3rem" />
+        )}
       </InputGroup>
       {!!error && <FormHelperText color="red.300">{error}</FormHelperText>}
     </FormControl>
