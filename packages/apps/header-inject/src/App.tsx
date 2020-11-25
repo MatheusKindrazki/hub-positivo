@@ -1,14 +1,15 @@
 import React from 'react'
 
-import { Teste } from './styles'
+import { Heading } from '@hub/common/components'
+import { HubProvider } from '@hub/common/layout'
 
 const App: React.FC = () => {
   return (
-    <Teste>
+    <HubProvider>
       <div className="header-hub">
-        <h4>HUB HEADER</h4>
+        <Heading>Ola Mundo</Heading>
       </div>
-    </Teste>
+    </HubProvider>
   )
 }
 
