@@ -1,11 +1,11 @@
 import axios from 'apisauce'
 
 const api = axios.create({
-  baseURL: 'http://localhost:3333'
+  baseURL: process.env.REACT_APP_API_URL
 })
 
 const apiAuth = axios.create({
-  baseURL: 'http://localhost:3333'
+  baseURL: process.env.REACT_APP_API_AUTH_URL
 })
 
 export { apiAuth }

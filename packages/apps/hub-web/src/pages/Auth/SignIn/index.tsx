@@ -2,13 +2,11 @@ import React, { useRef, useState, useCallback } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Input } from '@hub/common/components/Form'
+import { Box, Heading, Text } from '@hub/common/components'
+import { Input, Button, Form, FormProps } from '@hub/common/components/Form'
+import { Lock, User, Eye, EyeSlash } from '@hub/common/components/Icons'
 import documentTitle from '@hub/common/utils/documentTitle'
 
-import { Box, Heading, Text, Button } from '@chakra-ui/react'
-import { FormHandles } from '@unform/core'
-import { Form } from '@unform/web'
-import { Lock, User, Eye, EyeSlash } from 'phosphor-react'
 import { toast } from 'react-toastify'
 
 import { signInRequest } from '~/store/modules/auth/actions'
@@ -23,7 +21,7 @@ const SignIn: React.FC = () => {
 
   const { loading } = useSelector((state: Store.State) => state.auth)
 
-  const formRef = useRef<FormHandles>(null)
+  const formRef = useRef<FormProps>(null)
 
   const handleSubmit = useCallback(
     async data => {
@@ -84,34 +82,9 @@ const SignIn: React.FC = () => {
           iconLeft={<Box as={Lock} color="blue.500" size="21px" />}
         />
 
-        <Button
-          isLoading={loading}
-          data-testid="submit-button"
-          mt="2rem"
-          type="submit"
-          color="white"
-          fontWeight="bold"
-          boxShadow="none!important"
-          variantColor="blue"
-          width="100%"
-          height="3rem"
-        >
+        <Button data-testid="submit-button" isLoading={loading}>
           Entrar
         </Button>
-
-        {/* <Button
-          as={Link}
-          mt="1rem"
-          mb="0.5rem"
-          fontWeight="bold"
-          boxShadow="none!important"
-          variantColor="blue"
-          variant="link"
-          width="100%"
-          height="3rem"
-        >
-          Esqueci minha senha
-        </Button> */}
       </Form>
     </Box>
   )

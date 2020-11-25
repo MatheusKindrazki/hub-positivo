@@ -1,27 +1,23 @@
 import React from 'react'
 
-import Logo from '@hub/common/components/Logo'
+import { useSelector } from 'react-redux'
 
-import { Box } from '@chakra-ui/react'
+import { BarLoader } from '@hub/common/components'
+
+import Header from '~/components/Header'
 
 import { Container } from './styles'
 
-const Auth: React.FC = ({ children }) => {
+const Dashboard: React.FC = ({ children }) => {
+  const { loading } = useSelector((state: Store.State) => state.global)
+
   return (
     <Container>
-      <Logo />
-      <Box
-        background="white"
-        width="100%"
-        maxWidth="415px"
-        borderWidth="1px"
-        rounded="md"
-        shadow="md"
-      >
-        {children}
-      </Box>
+      <BarLoader width="100vw" height="4px" loading={loading} />
+      <Header />
+      {children}
     </Container>
   )
 }
 
-export default Auth
+export default Dashboard

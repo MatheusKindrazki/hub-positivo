@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { logo } from '@hub/common/assets'
-
 import { Flex, Heading, Box, Image } from '@chakra-ui/react'
+
+import { logo } from '~/assets'
 
 const Logo: React.FC = () => {
   return (

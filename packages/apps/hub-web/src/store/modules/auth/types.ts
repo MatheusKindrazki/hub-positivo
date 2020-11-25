@@ -24,15 +24,18 @@ export interface SignInSuccess {
   exp: number | null
   iat: number | null
   user?: {
-    name: string | null
+    name: string
+    username: string
     schools?: Schools[]
-    email: string | null
+    email: string
   }
 }
 interface Schools {
   id: string
+  idUser: string
+  integration_id: string | null
   name: string
-  roles: Roles[]
+  roles: string[]
 }
 
 interface Roles {

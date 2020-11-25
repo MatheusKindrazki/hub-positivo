@@ -1,8 +1,8 @@
 import React from 'react'
 
-import Logo from '@hub/common/components/Logo'
+import { CardBox } from '@hub/common/components'
 
-import { Box } from '@chakra-ui/react'
+import Logo from '~/components/Logo'
 
 import { Container } from './styles'
 
@@ -10,16 +10,7 @@ const Auth: React.FC = ({ children }) => {
   return (
     <Container>
       <Logo />
-      <Box
-        background="white"
-        width="100%"
-        maxWidth="415px"
-        borderWidth="1px"
-        rounded="md"
-        shadow="md"
-      >
-        {children}
-      </Box>
+      <CardBox maxWidth="25.9375rem">{children}</CardBox>
     </Container>
   )
 }
