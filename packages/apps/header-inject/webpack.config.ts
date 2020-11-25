@@ -1,7 +1,6 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 import webpack from 'webpack'
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 interface Config extends webpack.Configuration {
   devServer: {
@@ -50,15 +49,9 @@ const config: Config = {
     extensions: ['.tsx', '.ts', '.js']
   },
   plugins: [
-    isDevelopment &&
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'public', 'index.html'),
-        title: 'Hub Digital - Header Inject'
-      }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'disabled',
-      generateStatsFile: true,
-      statsOptions: { source: false }
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public', 'index.html'),
+      title: 'Hub Digital - Header Inject'
     })
   ].filter(Boolean)
 }

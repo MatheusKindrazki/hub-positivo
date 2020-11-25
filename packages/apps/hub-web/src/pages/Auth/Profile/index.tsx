@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { BarLoader, Select, Box, Heading } from '@hub/common/components'
+import { Select, Box, Heading } from '@hub/common/components'
 import documentTitle from '@hub/common/utils/documentTitle'
 
 import history from '~/services/history'
@@ -24,7 +24,6 @@ const Profile: React.FC = () => {
 
   const dispatch = useDispatch()
   const [school, setSchool] = useState<SelectItem>()
-  const [loading, setLoading] = useState(false)
 
   const { token } = useSelector((state: Store.State) => state.auth)
   const { user } = useSelector((state: Store.State) => state.user)
@@ -37,13 +36,9 @@ const Profile: React.FC = () => {
 
   const handleSelected = useCallback(
     data => {
-      setLoading(true)
-      dispatch(setSchoolUser(data))
+      // dispatch(setSchoolUser(data))
 
-      setTimeout(() => {
-        setLoading(false)
-        setSchool(data)
-      }, 1000)
+      setSchool(data)
     },
     [dispatch]
   )
@@ -88,33 +83,30 @@ const Profile: React.FC = () => {
   )
 
   return (
-    <>
-      <BarLoader loading={loading} />
-      <Box p="6">
-        <Heading color="black" fontSize="xl" mb="2">
-          Selecione sua escola e acesso
-        </Heading>
-        <Select
-          variant="normal"
-          placeholder="Selecione"
-          onChange={handleSelected}
-          options={renderSchools}
-        />
+    <Box p="6">
+      <Heading color="black" fontSize="xl" mb="2">
+        Selecione sua escola e acesso
+      </Heading>
+      <Select
+        variant="normal"
+        placeholder="Selecione"
+        onChange={handleSelected}
+        options={renderSchools}
+      />
 
-        {!loading && school ? (
-          <Box mt="3" pt="3">
-            {renderProfiles.map((item, i) => (
-              <CardBox
-                key={i}
-                icon={item.icon as any}
-                title={item.title}
-                onClick={() => handleProfileSelect(item)}
-              />
-            ))}
-          </Box>
-        ) : null}
-      </Box>
-    </>
+      {school && (
+        <Box mt="3" pt="3">
+          {renderProfiles.map((item, i) => (
+            <CardBox
+              key={i}
+              icon={item.icon}
+              title={item.title}
+              onClick={() => handleProfileSelect(item)}
+            />
+          ))}
+        </Box>
+      )}
+    </Box>
   )
 }
 

@@ -7,6 +7,7 @@ import {
 } from 'phosphor-react'
 
 const types = {
+  default: Briefcase,
   gestor: Briefcase,
   administrador: Briefcase,
   coordenador: ClipboardText,
