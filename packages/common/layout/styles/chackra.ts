@@ -1,4 +1,6 @@
-import { theme, DefaultTheme } from '@chakra-ui/react'
+import { theme } from '@chakra-ui/react'
+
+type DefaultTheme = typeof theme
 
 const customTheme: DefaultTheme = {
   ...theme,
