@@ -13,8 +13,9 @@ import { setProfile, profiles } from '~/store/modules/profile/actions';
 import { Profiles } from '~/store/modules/profile/types';
 import { setSchool as setSchoolUser } from '~/store/modules/user/actions';
 import documentTitle from '~/utils/documentTitle';
+import transpileProfile, { Transpile } from '~/utils/transpileProfile';
 
-import CardBox from './components/CardBox';
+import CardBox, { Icons } from './components/CardBox';
 
 interface SelectItem {
   label: string;
@@ -68,10 +69,11 @@ const Profile: React.FC = () => {
     if (!school?.roles.length) return [];
 
     return school.roles.map(i => ({
-      title: i,
-      icon: i.toLowerCase(),
-      colorProfile: i.toLowerCase(),
-      id: String(i.toLowerCase()),
+      title: transpileProfile(i as Transpile)?.label || 'Desconhecido',
+      icon: transpileProfile(i as Transpile)?.label?.toLowerCase() || 'default',
+      colorProfile:
+        transpileProfile(i as Transpile)?.label?.toLowerCase() || 'default',
+      id: transpileProfile(i as Transpile)?.value || 'default',
     }));
   }, [school]);
 
@@ -81,6 +83,7 @@ const Profile: React.FC = () => {
 
       dispatch(
         setProfile({
+          guid: data.id,
           name: data.title,
           profile: data.colorProfile,
         }),
@@ -120,7 +123,7 @@ const Profile: React.FC = () => {
             {renderProfiles.map((item, i) => (
               <CardBox
                 key={i}
-                icon={item.icon as any}
+                icon={item.icon as Icons}
                 title={item.title}
                 onClick={() => handleProfileSelect(item)}
               />

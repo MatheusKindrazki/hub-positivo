@@ -4,6 +4,7 @@ import { ApiResponse } from 'apisauce';
 import { toast } from 'react-toastify';
 
 import api from '~/services/api';
+import { store } from '~/store';
 
 import { loading } from '../global/actions';
 import { Actions as ProfileActions } from '../profile/actions';
@@ -15,8 +16,19 @@ type ProductsPayload = Payload<ProductRequest>;
 export function* getProducts({ payload }: ProductsPayload): Generator {
   const { search } = payload;
 
+  const { guid } = store.getState().profile;
+  const { level } = store.getState().levelEducation;
+
+  let query: string;
+
+  if (level && guid === 'PROFESSOR') {
+    query = `${guid}?NivelEnsino=${level}`;
+  } else {
+    query = `${guid}`;
+  }
+
   const response = yield call(() => {
-    return api.get('Categoria/Solucoes');
+    return api.get(`Categoria/Solucoes/Perfil/${query}`);
   });
 
   const { ok, data } = response as ApiResponse<CardProduct[]>;

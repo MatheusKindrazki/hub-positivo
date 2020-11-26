@@ -10,6 +10,7 @@ import Select from '~/components/Select';
 import Welcome from '~/components/Welcome';
 
 import { loading } from '~/store/modules/global/actions';
+import { setLevel } from '~/store/modules/levelEducation/actions';
 import { productRequest } from '~/store/modules/products/actions';
 import documentTitle from '~/utils/documentTitle';
 
@@ -18,7 +19,7 @@ import SearchInput from './components/Search';
 import { mockAlunos, mockProfessores } from './mock';
 import { Container } from './styles';
 
-const enableSelect = ['professor', 'familia'];
+const enableSelect = ['professor', 'família'];
 
 const Home: React.FC = () => {
   documentTitle('Home');
@@ -28,23 +29,28 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
 
   const { profile } = useSelector((state: Store.State) => state.profile);
+  const { level } = useSelector((state: Store.State) => state.levelEducation);
 
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products,
   );
 
-  const handleSelectProfile = useCallback(
+  const handleSelect = useCallback(
     data => {
       setDataTemp(data);
       if (!data.profile) return false;
 
       dispatch(loading(true));
 
+      if ((profile as string).includes('professor')) {
+        dispatch(setLevel(data.label));
+      }
+
       setTimeout(() => {
         dispatch(loading(false));
       }, 2000);
     },
-    [dispatch],
+    [dispatch, profile],
   );
 
   const handleSearch = debounce(search => {
@@ -63,7 +69,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     dispatch(productRequest({}));
-  }, [dispatch]);
+  }, [dispatch, level]);
 
   return (
     <>
@@ -95,7 +101,7 @@ const Home: React.FC = () => {
                 variant="blue-transparent"
                 value={dataTemp}
                 onChange={e => {
-                  handleSelectProfile(e);
+                  handleSelect(e);
                 }}
                 defaultValue={
                   (profile as string).includes('professor')

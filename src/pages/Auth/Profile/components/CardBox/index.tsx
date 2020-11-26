@@ -5,15 +5,33 @@ import { Container } from './styles';
 
 type CardPropsButton = ButtonHTMLAttributes<HTMLButtonElement>;
 
+export type Icons =
+  | 'professor'
+  | 'gestor'
+  | 'aluno'
+  | 'família'
+  | 'administrador'
+  | 'editor'
+  | 'colaborador';
+const profiles = [
+  'professor',
+  'gestor',
+  'aluno',
+  'família',
+  'administrador',
+  'editor',
+  'colaborador',
+];
+
 interface CardProps extends CardPropsButton {
   title: string;
-  icon?: 'professor' | 'gestor' | 'aluno' | 'familia' | 'administrador';
+  icon: Icons;
 }
 
 const CardBox: React.FC<CardProps> = ({ icon, title, onClick }) => {
-  type Icon = typeof iconTypes.aluno;
+  const hasIconProfile = profiles.includes(icon as string) ? icon : 'default';
 
-  const IconType = iconTypes[icon || 'gestor'] as Icon;
+  const IconType = iconTypes[hasIconProfile as Icons];
 
   return (
     <Container onClick={onClick}>
