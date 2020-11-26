@@ -987,7 +987,7 @@ const aluno = [
   },
 ];
 
-const familia = [
+const família = [
   {
     id: 0,
     title: 'Avaliação',
@@ -1282,6 +1282,6 @@ export {
   professorEF1,
   professorInfantil,
   aluno,
-  familia,
+  família,
   gestor,
 };

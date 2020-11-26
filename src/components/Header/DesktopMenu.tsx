@@ -25,6 +25,7 @@ import { loading } from '~/store/modules/global/actions';
 import { profiles, setProfile } from '~/store/modules/profile/actions';
 import { Profiles } from '~/store/modules/profile/types';
 import { setSchool } from '~/store/modules/user/actions';
+import transpileProfile, { Transpile } from '~/utils/transpileProfile';
 
 import Welcome from '../Welcome';
 
@@ -70,10 +71,11 @@ const DesktopMenu: React.FC = () => {
     if (!school?.roles.length) return [];
 
     return school.roles.map(i => ({
-      title: i,
-      icon: i.toLowerCase(),
-      colorProfile: i.toLowerCase(),
-      id: String(i.toLowerCase()),
+      title: transpileProfile(i as Transpile)?.label || 'Desconhecido',
+      icon: transpileProfile(i as Transpile)?.label?.toLowerCase() || 'default',
+      colorProfile:
+        transpileProfile(i as Transpile)?.label?.toLowerCase() || 'default',
+      id: transpileProfile(i as Transpile)?.value || 'default',
     }));
   }, [school]);
 
@@ -85,6 +87,7 @@ const DesktopMenu: React.FC = () => {
         dispatch(loading(false));
         dispatch(
           setProfile({
+            guid: data.id,
             name: data.title,
             profile: data.colorProfile,
           }),
@@ -190,7 +193,7 @@ const DesktopMenu: React.FC = () => {
                 }))}
                 value={{
                   label: profile.name as string,
-                  value: profile.profile as string,
+                  value: profile.guid as string,
                 }}
                 onChange={handleProfileSelect}
               />
