@@ -13,7 +13,7 @@ const Dashboard: React.FC = ({ children }) => {
 
   return (
     <Container>
-      <BarLoader width="100vw" height="4px" loading={loading} />
+      <BarLoader width="100%" height="4px" loading={loading} />
       <Header />
       {children}
     </Container>

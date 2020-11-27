@@ -4,12 +4,14 @@ type Colors = typeof theme.colors
 
 export const profileBaseColor = {
   default: '#1E88E5',
+  editor: '#1E88E5',
+  colaborador: '#1E88E5',
   gestor: '#880E4F',
   administrador: '#AD1457',
   coordenador: '#C2185B',
   professor: '#1565C0',
   aluno: '#2196F3',
-  familia: '#00838F'
+  família: '#00838F'
 }
 
 type StringPropsKeys<T extends { [key: string]: string }> = {

@@ -18,7 +18,5 @@ export interface User {
 export interface Schools {
   id: string
   name: string
-  roles: {
-    name: string
-  }[]
+  roles: string[]
 }

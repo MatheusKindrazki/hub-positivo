@@ -5,7 +5,7 @@ import Box, { BoxProps } from '../Box'
 const Card: React.FC<BoxProps> = ({ children, ...rest }) => {
   return (
     <Box
-      background="white"
+      background="var(--hub-box-color)"
       width="100%"
       minWidth="200px"
       borderWidth="1px"
