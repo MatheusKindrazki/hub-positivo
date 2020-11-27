@@ -85,6 +85,7 @@ const DesktopMenu: React.FC = () => {
         dispatch(loading(false))
         dispatch(
           setProfile({
+            guid: data.id,
             name: data.title,
             profile: data.colorProfile
           })

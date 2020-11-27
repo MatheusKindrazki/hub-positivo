@@ -13,11 +13,11 @@ import user from './user/reducer'
 
 export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
   return combineReducers({
-    router: connectRouter(history),
     auth,
     user,
     profile,
     products,
-    global
+    global,
+    router: connectRouter(history)
   })
 }

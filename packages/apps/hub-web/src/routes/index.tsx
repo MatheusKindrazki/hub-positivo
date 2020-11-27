@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { ConnectedRouter } from 'connected-react-router'
-import { Switch } from 'wouter'
+import { Switch } from 'react-router'
 
 import Profile from '~/pages/Auth/Profile'
 import SignIn from '~/pages/Auth/SignIn'

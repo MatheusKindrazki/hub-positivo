@@ -4,10 +4,11 @@ import {
   Route as ReactRoute,
   RouteProps as RoutePropsWouter,
   Redirect
-} from 'wouter'
+} from 'react-router'
 
 import Auth from '~/layouts/Auth'
 import Logged from '~/layouts/Logged'
+import { store } from '~/store'
 interface RouteProps extends RoutePropsWouter {
   isPrivate?: boolean
 }
@@ -17,7 +18,7 @@ const Route: React.FC<RouteProps> = ({
   component,
   ...rest
 }) => {
-  const signed = false
+  const { signed } = store.getState().auth
 
   const RenderLayout = signed ? Logged : Auth
 

@@ -3,17 +3,22 @@ import {
   ClipboardText,
   BookBookmark,
   Users,
-  Pencil
+  Pencil,
+  Archive,
+  Pedestrian,
+  Browsers
 } from 'phosphor-react'
 
 const types = {
-  default: Briefcase,
+  default: Archive,
   gestor: Briefcase,
   administrador: Briefcase,
   coordenador: ClipboardText,
+  colaborador: Pedestrian,
   professor: Pencil,
   aluno: BookBookmark,
-  familia: Users
+  editor: Browsers,
+  família: Users
 }
 
 export default types

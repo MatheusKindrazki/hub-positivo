@@ -5,27 +5,33 @@ import { Container } from './styles'
 
 type CardPropsButton = ButtonHTMLAttributes<HTMLButtonElement>
 
-type Icon = 'professor' | 'gestor' | 'aluno' | 'familia' | 'administrador'
+export type Icons =
+  | 'professor'
+  | 'gestor'
+  | 'aluno'
+  | 'família'
+  | 'administrador'
+  | 'editor'
+  | 'colaborador'
+const profiles = [
+  'professor',
+  'gestor',
+  'aluno',
+  'família',
+  'administrador',
+  'editor',
+  'colaborador'
+]
+
 interface CardProps extends CardPropsButton {
   title: string
-  icon?: 'professor' | 'gestor' | 'aluno' | 'familia' | 'administrador' | string
+  icon: Icons
 }
 
 const CardBox: React.FC<CardProps> = ({ icon, title, onClick }) => {
-  const enableIcon = [
-    'professor',
-    'gestor',
-    'aluno',
-    'familia',
-    'administrador'
-  ]
-  const HasChoiceIcon = enableIcon.includes(icon as string)
+  const hasIconProfile = profiles.includes(icon as string) ? icon : 'default'
 
-  const getIcon = (icon as unknown) as Icon
-
-  const conditionalIcon = HasChoiceIcon ? getIcon : 'default'
-
-  const IconType = iconTypes[conditionalIcon]
+  const IconType = iconTypes[hasIconProfile as Icons]
 
   return (
     <Container onClick={onClick}>

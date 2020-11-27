@@ -25,6 +25,7 @@ export interface SignInSuccess {
   iat: number | null
   user?: {
     name: string
+    integration_id: string | null
     username: string
     schools?: Schools[]
     email: string
@@ -32,12 +33,8 @@ export interface SignInSuccess {
 }
 interface Schools {
   id: string
-  idUser: string
+  idUser?: string
   integration_id: string | null
   name: string
   roles: string[]
-}
-
-interface Roles {
-  name: string
 }
