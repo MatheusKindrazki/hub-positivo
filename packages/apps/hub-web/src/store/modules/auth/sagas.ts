@@ -49,6 +49,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
       exp: user?.exp,
       iat: user?.iat,
       user: {
+        integration_id: user?.integration_id,
         email: user?.email,
         name: user?.name,
         username: user?.username,
@@ -57,7 +58,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
     })
   )
 
-  return history.push('/profile')
+  history.push('/profile')
 }
 
 type ExpiringRehydrate = Payload<{
@@ -70,6 +71,12 @@ export function* checkingExpiringToken({
   if (!payload) return
 
   const { exp } = payload.auth
+
+  console.log(exp)
+
+  if (!exp || exp === 0) {
+    return
+  }
 
   const date = (new Date() as unknown) as number
 

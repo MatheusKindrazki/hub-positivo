@@ -16,6 +16,7 @@ const App: React.FC = () => {
     <ThemeProvider>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
+          <Routes />
           <ToastContainer
             position="bottom-center"
             autoClose={3000}
@@ -30,7 +31,6 @@ const App: React.FC = () => {
             draggable
             pauseOnHover
           />
-          <Routes />
         </PersistGate>
       </Provider>
     </ThemeProvider>
