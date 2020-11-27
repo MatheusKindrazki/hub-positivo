@@ -4,15 +4,17 @@ export default createGlobalStyle`
 
   :root {
     --hub-base-color: #1E88E5;
+    --hub-box-color: white;
+    --hub-background-color: #ECEFF1;
   }
 
   body {
     -webkit-font-smoothing: antialiased;
+    background: var(--hub-background-color);
+    padding: 0;
+    margin: 0;
   }
 
-  .background-animate, button {
-    transition: background-color 1s, color 1s, ease 0.5s!important;
-  }
 
   button {
     cursor: pointer;

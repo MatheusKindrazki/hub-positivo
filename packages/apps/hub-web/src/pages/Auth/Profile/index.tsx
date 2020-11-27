@@ -10,7 +10,7 @@ import { setSigned } from '~/store/modules/auth/actions'
 import { setProfile, profiles } from '~/store/modules/profile/actions'
 import { Profiles } from '~/store/modules/profile/types'
 import { setSchool as setSchoolUser } from '~/store/modules/user/actions'
-import transpileProfile, { Transpile } from '~/utils/transpileProfile'
+import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
 
 import CardBox, { Icons } from './Components/CardBox'
 
@@ -30,10 +30,12 @@ const Profile: React.FC = () => {
   const { user } = useSelector((state: Store.State) => state.user)
 
   useEffect(() => {
-    if (!token) {
-      history.push('/')
-    }
+    !token && history.push('/login')
   }, [token])
+
+  const renderSchools = useMemo(() => prepareSchool(user?.schools), [user])
+
+  const renderProfiles = useMemo(() => prepareRoles(school?.roles), [school])
 
   const handleSelected = useCallback(
     data => {
@@ -44,28 +46,6 @@ const Profile: React.FC = () => {
     [dispatch]
   )
 
-  const renderSchools = useMemo(() => {
-    if (!user?.schools?.length) return []
-
-    return user?.schools?.map(s => ({
-      value: s.id,
-      label: s.name,
-      roles: s.roles
-    }))
-  }, [user])
-
-  const renderProfiles = useMemo(() => {
-    if (!school?.roles.length) return []
-
-    return school.roles.map(i => ({
-      title: transpileProfile(i as Transpile)?.label || 'Desconhecido',
-      icon: transpileProfile(i as Transpile)?.label?.toLowerCase() || 'default',
-      colorProfile:
-        transpileProfile(i as Transpile)?.label?.toLowerCase() || 'default',
-      id: transpileProfile(i as Transpile)?.value || 'default'
-    }))
-  }, [school])
-
   const handleProfileSelect = useCallback(
     data => {
       dispatch(setSigned())
@@ -74,7 +54,8 @@ const Profile: React.FC = () => {
         setProfile({
           guid: data.id,
           name: data.title,
-          profile: data.colorProfile
+          profile: data.profile,
+          colorProfile: data.colorProfile
         })
       )
 

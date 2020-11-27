@@ -13,6 +13,7 @@ export interface Profile {
   name: string
   profile: VariantsProps
   guid: string
+  colorProfile: string
 }
 
 export interface Profiles {

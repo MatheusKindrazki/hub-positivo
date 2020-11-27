@@ -1,20 +1,13 @@
-import React from 'react'
-
 import {
-  Menu as MenuChakra,
+  Menu as MenuContainer,
   MenuButton,
   MenuList,
   MenuDivider,
   MenuItem,
-  MenuProps,
   MenuGroup,
   MenuItemOption,
   MenuOptionGroup
 } from '@chakra-ui/react'
-
-const MenuContainer: React.FC<MenuProps> = ({ children, ...rest }) => {
-  return <MenuChakra {...rest}>{children}</MenuChakra>
-}
 
 export default {
   MenuContainer,

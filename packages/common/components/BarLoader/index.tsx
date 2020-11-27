@@ -17,6 +17,9 @@ const BarLoader: React.FC<BarProps> = ({ loading, ...rest }) => {
       loading={loading}
       css={`
         border-radius: 8px;
+        position: fixed;
+        top: 0
+        bottom:0;
       `}
       {...rest}
     />
