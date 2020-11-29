@@ -7,7 +7,6 @@ import { VariantsProps } from '@hub/common/layout/styles/colors'
 
 import { ConnectedRouter } from 'connected-react-router'
 import { Switch } from 'react-router'
-import { CSSTransition } from 'react-transition-group'
 
 import Profile from '~/pages/Auth/Profile'
 import SignIn from '~/pages/Auth/SignIn'
