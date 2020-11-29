@@ -1,9 +1,3 @@
-import React from 'react'
-
-import { Text as TextChackra, TextProps } from '@chakra-ui/react'
-
-const Text: React.FC<TextProps> = ({ children }) => {
-  return <TextChackra>{children}</TextChackra>
-}
+import { Text } from '@chakra-ui/react'
 
 export default Text

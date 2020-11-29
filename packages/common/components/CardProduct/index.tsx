@@ -2,6 +2,10 @@ import React from 'react'
 
 import { Box, Image, Heading, Text, Badge } from '@hub/common/components'
 
+import classNames from 'classnames'
+
+import { Container } from './styles'
+
 export interface CardProps {
   id: string
   nome: string
@@ -9,18 +13,25 @@ export interface CardProps {
   arquivo: string
   notificacao?: string | number
   ativo: boolean
-  url?: string
-  handlePush: (url: string) => void
+  link?: string
 }
 
-const CardProduct: React.FC<{ cor: string; card: CardProps }> = ({
-  card,
-  cor
-}) => {
-  const { nome, arquivo, descricao, handlePush, url = '' } = card
+interface CardProductProps {
+  handlePush: (url: string) => void
+  cor: string
+  card: CardProps
+}
+
+const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
+  const { nome, arquivo, descricao, link = '' } = card
+
+  console.log(card)
 
   return (
-    <Box
+    <Container
+      className={classNames({
+        disabled: !link
+      })}
       background="white"
       rounded="md"
       overflow="hidden"
@@ -53,7 +64,7 @@ const CardProduct: React.FC<{ cor: string; card: CardProps }> = ({
         p={['4', '4', '1.1rem']}
         outline="none"
         boxShadow="none"
-        onClick={() => handlePush(url)}
+        onClick={() => handlePush(link)}
       >
         {card?.notificacao && (
           <Badge
@@ -86,7 +97,7 @@ const CardProduct: React.FC<{ cor: string; card: CardProps }> = ({
           </Text>
         </Box>
       </Box>
-    </Box>
+    </Container>
   )
 }
 

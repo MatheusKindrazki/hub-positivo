@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 
 import {
   Collapse as CollapseUI,
   Box,
   Heading,
-  SimpleGrid
-} from '@chakra-ui/core'
+  SimpleGrid,
+  useDisclosure
+} from '@chakra-ui/react'
 import { CaretDown } from 'phosphor-react'
 
 import CollapseGlobal from './styles'
@@ -14,7 +15,7 @@ interface CollapseProps {
   id: string
   nome: string
   cor: string
-  gridColumns: number | number[]
+  gridColumns?: number | number[]
 }
 
 const Collapse: React.FC<CollapseProps> = ({
@@ -23,7 +24,14 @@ const Collapse: React.FC<CollapseProps> = ({
   children,
   gridColumns
 }) => {
-  const [show, setShow] = useState(true)
+  const { isOpen, onToggle } = useDisclosure()
+
+  useEffect(() => {
+    if (isOpen) return
+
+    onToggle()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
@@ -34,7 +42,7 @@ const Collapse: React.FC<CollapseProps> = ({
           d="flex"
           justifyContent="space-between"
           alignItems="center"
-          onClick={() => setShow(!show)}
+          onClick={onToggle}
         >
           <Heading
             as="h6"
@@ -49,14 +57,14 @@ const Collapse: React.FC<CollapseProps> = ({
           <Box
             as={CaretDown}
             color="blue.500"
-            size={6}
+            size="1.25rem"
             style={{
               transition: 'all .2s linear',
-              transform: show ? 'rotate(-180deg)' : 'rotate(0deg)'
+              transform: isOpen ? 'rotate(-180deg)' : 'rotate(0deg)'
             }}
           />
         </Box>
-        <CollapseUI isOpen={show}>
+        <CollapseUI in={isOpen} animateOpacity style={{ padding: '10px 5px' }}>
           <SimpleGrid
             columns={gridColumns || [1, 1, 2, 3, 4]}
             spacing={4}

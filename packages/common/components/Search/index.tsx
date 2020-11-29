@@ -5,17 +5,15 @@ import {
   InputGroup,
   Input,
   InputRightElement,
-  Icon
+  InputProps
 } from '@chakra-ui/react'
 
-interface SearchProps {
-  onChange: (e: string) => void
-}
+import { MagnifyingGlass } from '../Icons'
 
-const Search: React.FC<SearchProps> = ({ onChange }) => {
+const Search: React.FC<InputProps> = ({ onChange, ...rest }) => {
   const handleChange = useCallback(
     event => {
-      onChange(event.target.value)
+      onChange && onChange(event.target.value)
     },
     [onChange]
   )
@@ -24,6 +22,7 @@ const Search: React.FC<SearchProps> = ({ onChange }) => {
     <Box>
       <InputGroup height="3rem">
         <Input
+          {...rest}
           borderColor="#C4C4C4!important"
           height="3rem"
           placeholder="Buscar produto"
@@ -35,8 +34,9 @@ const Search: React.FC<SearchProps> = ({ onChange }) => {
           }}
         />
         <InputRightElement
+          width="3rem"
           height="3rem"
-          children={<Icon name="search" color="blue.500" />}
+          children={<Box as={MagnifyingGlass} size="30px" color="blue.500" />}
         />
       </InputGroup>
     </Box>
