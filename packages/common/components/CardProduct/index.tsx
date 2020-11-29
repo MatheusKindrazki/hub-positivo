@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Box, Image, Heading, Text, Badge } from '@hub/common/components'
 
+import { Skeleton } from '@chakra-ui/react'
 import classNames from 'classnames'
 
 import { Container } from './styles'
@@ -20,12 +21,16 @@ interface CardProductProps {
   handlePush: (url: string) => void
   cor: string
   card: CardProps
+  load?: boolean
 }
 
-const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
+const CardProduct: React.FC<CardProductProps> = ({
+  card,
+  cor,
+  handlePush,
+  load = true
+}) => {
   const { nome, arquivo, descricao, link = '' } = card
-
-  console.log(card)
 
   return (
     <Container
@@ -41,22 +46,24 @@ const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
       boxShadow="sm"
       style={{ position: 'relative' }}
     >
-      <Box
-        h="100%"
-        minWidth={['4.7rem', '5.9375rem']}
-        d="flex"
-        justifyContent="center"
-        alignItems="center"
-        backgroundColor={cor}
-        p="0.625rem"
-      >
-        <Image
-          height={['auto', 'auto', '3.875rem', '3.875rem']}
-          width={['3rem', '3rem', 'auto', 'auto']}
-          objectFit="contain"
-          src={arquivo}
-        />
-      </Box>
+      <Skeleton startColor="gray.200" endColor="gray.400" isLoaded={!load}>
+        <Box
+          h="100%"
+          minWidth={['4.7rem', '5.9375rem']}
+          d="flex"
+          justifyContent="center"
+          alignItems="center"
+          backgroundColor={cor}
+          p="0.625rem"
+        >
+          <Image
+            height={['auto', 'auto', '3.875rem', '3.875rem']}
+            width={['3rem', '3rem', 'auto', 'auto']}
+            objectFit="contain"
+            src={arquivo}
+          />
+        </Box>
+      </Skeleton>
 
       <Box
         data-testid="button"
@@ -89,12 +96,42 @@ const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
           h="100%"
           pr="1.125rem"
         >
-          <Heading as="b" fontWeight="normal" fontSize="1.125rem" color="black">
-            {nome}
-          </Heading>
-          <Text mt="2" color="gray.500" fontSize="0.875rem">
-            {descricao}
-          </Text>
+          <Skeleton
+            startColor="gray.50"
+            endColor="gray.400"
+            height="10px"
+            width="130px"
+            isLoaded={!load}
+          >
+            <Heading
+              as="b"
+              fontWeight="normal"
+              fontSize="1.125rem"
+              color="black"
+            >
+              {nome}
+            </Heading>
+          </Skeleton>
+          <Skeleton
+            startColor="gray.50"
+            endColor="gray.400"
+            mt="4"
+            height="10px"
+            width="170px"
+            isLoaded={!load}
+          >
+            <Text mt="2" color="gray.500" fontSize="0.875rem">
+              {descricao}
+            </Text>
+          </Skeleton>
+          <Skeleton
+            startColor="gray.50"
+            endColor="gray.400"
+            mt="2"
+            height="10px"
+            width="120px"
+            isLoaded={!load}
+          ></Skeleton>
         </Box>
       </Box>
     </Container>
