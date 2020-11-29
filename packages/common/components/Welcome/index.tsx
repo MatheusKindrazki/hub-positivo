@@ -47,12 +47,18 @@ const Welcome: React.FC<WelcomeProps> = ({
         ) : (
           <>
             Olá {name?.split(' ')[0] || 'Usuário'}, seja bem-vindo!
-            <Text fontSize={['sm', '1rem']} color="blue.100" mt="1">
+            <Heading
+              fontSize={['sm', 'md']}
+              fontWeight="normal"
+              as="p"
+              color="blue.100"
+              mt="1"
+            >
               {profile || 'Perfil'} em{' '}
               {capitalizeFirstLetter(
                 schoolName?.toLocaleLowerCase() || 'Escola'
               )}
-            </Text>
+            </Heading>
           </>
         )}
       </Heading>
