@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import {
   Collapse as CollapseUI,
@@ -25,13 +25,6 @@ const Collapse: React.FC<CollapseProps> = ({
   gridColumns
 }) => {
   const { isOpen, onToggle } = useDisclosure()
-
-  useEffect(() => {
-    if (isOpen) return
-
-    onToggle()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <>
@@ -64,7 +57,7 @@ const Collapse: React.FC<CollapseProps> = ({
             }}
           />
         </Box>
-        <CollapseUI in={isOpen} animateOpacity style={{ padding: '10px 5px' }}>
+        <CollapseUI in={isOpen} animateOpacity style={{ padding: '10px 0' }}>
           <SimpleGrid
             columns={gridColumns || [1, 1, 2, 3, 4]}
             spacing={4}

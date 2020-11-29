@@ -150,6 +150,7 @@ const Home: React.FC = () => {
                     handlePush={url => console.log(url)}
                     cor={card.cor}
                     card={item}
+                    load={load}
                   />
                 ))}
               </Collapse>

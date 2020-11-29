@@ -3,10 +3,12 @@ import { Reducer } from 'redux'
 import { produce } from 'immer'
 
 import { Actions } from './actions'
+import dataLoading from './mock'
 import { ProductReducer } from './types'
 
 export const INITIAL_STATE: ProductReducer = {
-  loading: false
+  loading: false,
+  data: (dataLoading as unknown) as ProductReducer['data']
 }
 
 type ReturnReducer = Reducer<ProductReducer>
