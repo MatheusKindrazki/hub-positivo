@@ -11,6 +11,7 @@ import { Switch } from 'react-router'
 import Profile from '~/pages/Auth/Profile'
 import SignIn from '~/pages/Auth/SignIn'
 import Home from '~/pages/Home'
+import Inject from '~/pages/Inject'
 
 import history from '~/services/history'
 
@@ -29,6 +30,7 @@ const Routes: React.FC = () => {
     <ConnectedRouter history={history}>
       <div className="hub-color">
         <Switch>
+          <Route path="/auth/:guid+" component={Inject} />
           <Route path="/login" component={SignIn} />
           <Route path="/profile" component={Profile} />
 

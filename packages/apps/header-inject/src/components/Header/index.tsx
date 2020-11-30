@@ -7,8 +7,7 @@ import Logo from '../Logo'
 
 const Header: React.FC = () => {
   const handleGoBack = useCallback(() => {
-    window.location.href =
-      'https://api2.positivoon.com.br/hubdigital-front-dev/'
+    window.location.href = process.env.HUB_URL_FRONT || ''
   }, [])
 
   return (

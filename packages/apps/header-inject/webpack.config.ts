@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+import Dotenv from 'dotenv-webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 import webpack from 'webpack'
@@ -10,6 +12,8 @@ interface Config extends webpack.Configuration {
     port: number
   }
 }
+
+dotenv.config()
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -52,7 +56,8 @@ const config: Config = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html'),
       title: 'Hub Digital - Header Inject'
-    })
+    }),
+    new Dotenv()
   ].filter(Boolean)
 }
 
