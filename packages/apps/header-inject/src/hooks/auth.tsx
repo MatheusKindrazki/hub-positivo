@@ -45,7 +45,9 @@ const AuthProvider: React.FC = ({ children }) => {
       })
 
       setTimeout(() => {
-        // window.location.href = process.env.HUB_URL_FRONT || ''
+        if (process.env.NODE_ENV === 'production') {
+          window.location.href = process.env.HUB_URL_FRONT || ''
+        }
       }, 5000)
     }
 
