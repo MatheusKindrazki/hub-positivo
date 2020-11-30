@@ -34,7 +34,12 @@ const Home: React.FC = () => {
 
   const dispatch = useDispatch()
 
-  const { profile } = useSelector((state: Store.State) => state.profile)
+  const { user, avatar, school: useSchool } = useSelector(
+    (state: Store.State) => state.user
+  )
+  const { profile, name: nameProfile } = useSelector(
+    (state: Store.State) => state.profile
+  )
 
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
@@ -135,7 +140,12 @@ const Home: React.FC = () => {
           alignItems="center"
           flexDirection={['column', 'column', 'column', 'row']}
         >
-          <Welcome name="Matheus Kindrazki" />
+          <Welcome
+            name={user?.name || ''}
+            avatar={avatar}
+            profile={nameProfile || ''}
+            schoolName={useSchool?.label || ''}
+          />
 
           <Box
             w="100%"

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import capitalizeFirstLetter from '../../utils/capitalize'
-import { Avatar, Box, Heading, Text } from '../index'
+import { Avatar, Box, Heading } from '../index'
 
 interface WelcomeProps {
   size?: string
