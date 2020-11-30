@@ -1,4 +1,12 @@
-import React, { createContext, useEffect } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
+
+import BarLoader from '@hub/common/components/BarLoader'
+
+import { useToast } from '@chakra-ui/react'
+import { useParams } from 'react-router'
+
+import getUserInfo, { UserInfoProps } from '../services/getUserInfo'
+import { getStorage, setStorage } from '../utils/localStorage'
 
 interface AuthProps {
   token: string | null
@@ -10,30 +18,61 @@ const defaultValue = {
   token: null
 }
 
+interface RouteParams {
+  guid?: string
+}
+
 const AuthContext = createContext<AuthProps>({} as AuthProps)
 
 const AuthProvider: React.FC = ({ children }) => {
-  useEffect(() => {
-    const url = window.location.hash
+  const [loading, setLoading] = useState(false)
 
-    const storage = localStorage.getItem('@positivo:hub:auth:inject')
+  const toast = useToast()
 
-    if (!url.includes('auth') && !storage) {
-      window.location.href =
-        'https://api2.positivoon.com.br/hubdigital-front-dev/'
+  const params = useParams<RouteParams>()
 
-      console.log('HUB: Usuário sem autenticação')
+  async function authUser(guid: string): Promise<void> {
+    try {
+      const userInfo: UserInfoProps = await getUserInfo(guid)
 
-      return
+      setStorage<UserInfoProps>(userInfo)
+    } catch (error) {
+      toast({
+        title: 'Erro na autenticação, token inválido!',
+        description: 'Você será redirecionado para o login novamente.',
+        status: 'error',
+        duration: 4000
+      })
+
+      setTimeout(() => {
+        // window.location.href = process.env.HUB_URL_FRONT || ''
+      }, 5000)
     }
 
-    console.log('preparado para login')
-  }, [])
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    setLoading(true)
+
+    const storage = getStorage()
+
+    if (!params?.guid && !storage) {
+      window.location.href = process.env.HUB_URL_FRONT || ''
+
+      console.log('HUB: Usuário sem autenticação')
+    }
+
+    const guid = params?.guid || ''
+
+    authUser(guid)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params])
 
   return (
     <AuthContext.Provider value={defaultValue}>
+      <BarLoader loading={loading} />
       {children}
-      <p></p>
     </AuthContext.Provider>
   )
 }

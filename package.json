@@ -14,7 +14,7 @@
   "scripts": {
     "test": "jest --passWithNoTests",
     "build:web": "npm run --prefix packages/apps/hub-web build",
-    "build:header": "npm run --prefix packages/apps/hub-inject build"
+    "build:header": "npm run --prefix packages/apps/header-inject build"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
