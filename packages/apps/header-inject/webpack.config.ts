@@ -18,7 +18,7 @@ const config: Config = {
 
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, '..', 'hub-web', 'build', 'static', 'js'),
     filename: 'bundle.js'
   },
   devServer: {
