@@ -194,14 +194,14 @@ const Home: React.FC = () => {
           {filterCards &&
             filterCards.map(card => (
               <Collapse
-                key={card.id}
+                key={Math.random()}
                 cor={card.cor}
                 id={card.id}
                 nome={card.nome}
               >
                 {card.solucoes?.map(item => (
                   <CardProduct
-                    key={item.id}
+                    key={Math.random()}
                     handlePush={url => handlePushProduct(url)}
                     cor={card.cor}
                     card={item}

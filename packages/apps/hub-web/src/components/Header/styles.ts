@@ -5,9 +5,7 @@ export default createGlobalStyle`
     z-index: 999;
     position: relative;
     > div:not(.background-animate) {
-      position: absolute;
-      left: -86px!important;
-      top: 57px!important;
+      top: 8px!important;
     }
   }
 `

@@ -81,7 +81,6 @@ const DesktopMenu: React.FC = () => {
       </Button>
       <MenuContainer>
         <MenuButton
-          as={Button}
           type="button"
           w="2.8125rem"
           background="transparent!important"
