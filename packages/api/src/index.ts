@@ -9,7 +9,7 @@ const apiAuth = axios.create({
 })
 
 const apiAuthProduct = axios.create({
-  baseURL: 'https://appsv-tokenmanagement-dev-001.azurewebsites.net'
+  baseURL: process.env.REACT_APP_API_AUTH_PRODUCT_URL
 })
 
 export { apiAuth, apiAuthProduct }

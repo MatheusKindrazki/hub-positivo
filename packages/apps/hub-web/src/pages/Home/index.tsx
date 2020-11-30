@@ -31,7 +31,6 @@ const Home: React.FC = () => {
 
   const [dataTemp, setDataTemp] = useState()
   const [searchValue, setSearchValue] = useState('')
-
   const dispatch = useDispatch()
 
   const { user, avatar, school: useSchool } = useSelector(
