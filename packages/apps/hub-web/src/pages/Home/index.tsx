@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -15,9 +15,11 @@ import documentTitle from '@hub/common/utils/documentTitle'
 
 import { debounce } from 'ts-debounce'
 
+import { authProductRequest } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
 import { setLevel } from '~/store/modules/levelEducation/actions'
 import { productRequest } from '~/store/modules/products/actions'
+import { CardProduct as CardProductProps } from '~/store/modules/products/types'
 
 import { mockAlunos, mockProfessores } from './mock'
 import { Container } from './styles'
@@ -28,6 +30,7 @@ const Home: React.FC = () => {
   documentTitle('Home')
 
   const [dataTemp, setDataTemp] = useState()
+  const [searchValue, setSearchValue] = useState('')
 
   const dispatch = useDispatch()
 
@@ -59,19 +62,61 @@ const Home: React.FC = () => {
     dispatch(loading(true))
 
     setTimeout(() => {
-      dispatch(
-        productRequest({
-          search
-        })
-      )
+      setSearchValue(search)
 
       dispatch(loading(false))
-    }, 2000)
+    }, 1000)
   }, 550)
+
+  const handlePushProduct = useCallback(
+    data => {
+      dispatch(
+        authProductRequest({
+          product: 'aulas',
+          url: data
+        })
+      )
+    },
+    [dispatch]
+  )
 
   useEffect(() => {
     dispatch(productRequest({}))
   }, [dispatch])
+
+  const filterCards = useMemo(() => {
+    if (!searchValue) return cards
+
+    const newcards = [] as CardProductProps[]
+
+    cards?.forEach(i => {
+      i.solucoes?.forEach(card => {
+        if (card.nome.toLowerCase().includes(searchValue.toLowerCase())) {
+          if (!newcards.length) {
+            newcards.push({
+              id: i.id,
+              nome: i.nome,
+              cor: i.cor,
+              solucoes: i.solucoes
+            })
+          } else {
+            const index = newcards.findIndex(newCard => newCard.id === i.id)
+
+            const cardsNew = newcards[index]?.solucoes || []
+
+            newcards[index] = {
+              id: i.id,
+              cor: i.cor,
+              nome: i.nome,
+              solucoes: [...cardsNew, card]
+            }
+          }
+        }
+      })
+    })
+
+    return newcards
+  }, [cards, searchValue])
 
   return (
     <>
@@ -136,8 +181,8 @@ const Home: React.FC = () => {
           alignItems="flex-start"
           flexDirection="column"
         >
-          {cards &&
-            cards.map(card => (
+          {filterCards &&
+            filterCards.map(card => (
               <Collapse
                 key={card.id}
                 cor={card.cor}
@@ -147,7 +192,7 @@ const Home: React.FC = () => {
                 {card.solucoes?.map(item => (
                   <CardProduct
                     key={item.id}
-                    handlePush={url => console.log(url)}
+                    handlePush={url => handlePushProduct(url)}
                     cor={card.cor}
                     card={item}
                     load={load}

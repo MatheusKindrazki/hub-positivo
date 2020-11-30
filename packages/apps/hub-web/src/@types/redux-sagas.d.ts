@@ -8,10 +8,6 @@ interface ActionSagas {
 }
 
 declare module 'redux-saga/effects' {
-  interface ApiResponse {
-    data: unknown
-  }
-
   export interface Payload<T> extends ActionSagas {
     payload: T
   }
