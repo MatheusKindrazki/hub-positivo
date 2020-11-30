@@ -1,11 +1,23 @@
-const getStorage = (): string | null => {
-  const storage = localStorage.getItem('@positivo:hub:auth:inject')
+import CryptoJS from 'crypto-js'
 
-  return storage
+import { UserInfoProps } from '../services/getUserInfo'
+
+const key = process.env.HUB_ENCRYPT_INJECT_STORAGE || ''
+
+const getStorage = (): UserInfoProps => {
+  const storage = localStorage.getItem('@positivo:hub:auth:inject') || ''
+
+  const decrypt = CryptoJS.AES.decrypt(JSON.parse(storage), key).toString(
+    CryptoJS.enc.Utf8
+  )
+
+  return JSON.parse(decrypt) as UserInfoProps
 }
 
 function setStorage<T>(data: T): void {
-  localStorage.setItem('@positivo:hub:auth:inject', JSON.stringify(data))
+  const encryptData = CryptoJS.AES.encrypt(JSON.stringify(data), key).toString()
+
+  localStorage.setItem('@positivo:hub:auth:inject', JSON.stringify(encryptData))
 }
 
 export { getStorage, setStorage }
