@@ -1,6 +1,13 @@
 import React from 'react'
 
-import { Box, Image, Heading, Text, Badge } from '@hub/common/components'
+import {
+  Box,
+  Image,
+  Heading,
+  Text,
+  Badge,
+  Tooltip
+} from '@hub/common/components'
 
 import { Skeleton } from '@chakra-ui/react'
 import classNames from 'classnames'
@@ -99,8 +106,8 @@ const CardProduct: React.FC<CardProductProps> = ({
           <Skeleton
             startColor="gray.50"
             endColor="gray.400"
-            height="10px"
-            width="130px"
+            height={load ? '10px' : 'auto'}
+            width={load ? '130px' : '100%'}
             isLoaded={!load}
           >
             <Heading
@@ -115,21 +122,23 @@ const CardProduct: React.FC<CardProductProps> = ({
           <Skeleton
             startColor="gray.50"
             endColor="gray.400"
-            mt="4"
-            height="10px"
-            width="170px"
+            mt={load ? 4 : 0}
+            height={load ? '10px' : 'auto'}
+            width={load ? '170px' : '100%'}
             isLoaded={!load}
           >
-            <Text mt="2" color="gray.500" fontSize="0.875rem">
-              {descricao}
-            </Text>
+            <Tooltip hasArrow label={descricao} openDelay={500} w="21rem">
+              <Text mt="2" color="gray.500" noOfLines={2} fontSize="0.875rem">
+                {descricao}
+              </Text>
+            </Tooltip>
           </Skeleton>
           <Skeleton
             startColor="gray.50"
             endColor="gray.400"
             mt="2"
-            height="10px"
-            width="120px"
+            height={load ? '10px' : 'auto'}
+            width={load ? '120px' : '100%'}
             isLoaded={!load}
           ></Skeleton>
         </Box>

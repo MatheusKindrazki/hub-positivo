@@ -1,13 +1,8 @@
 import React from 'react'
 
-import {
-  Collapse as CollapseUI,
-  Box,
-  Heading,
-  SimpleGrid,
-  useDisclosure
-} from '@chakra-ui/react'
+import { Box, Heading, SimpleGrid, useDisclosure } from '@chakra-ui/react'
 import { CaretDown } from 'phosphor-react'
+import { Collapse as CollapseUI } from 'react-collapse'
 
 import CollapseGlobal from './styles'
 
@@ -24,7 +19,7 @@ const Collapse: React.FC<CollapseProps> = ({
   children,
   gridColumns
 }) => {
-  const { isOpen, onToggle } = useDisclosure()
+  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true })
 
   return (
     <>
@@ -57,7 +52,7 @@ const Collapse: React.FC<CollapseProps> = ({
             }}
           />
         </Box>
-        <CollapseUI in={isOpen} animateOpacity style={{ padding: '10px 0' }}>
+        <CollapseUI isOpened={isOpen} style={{ padding: '10px 0' }}>
           <SimpleGrid
             columns={gridColumns || [1, 1, 2, 3, 4]}
             spacing={4}
