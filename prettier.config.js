@@ -1,6 +1,8 @@
 module.exports = {
+  semi: false,
   singleQuote: true,
-  trailingComma: 'all',
   arrowParens: 'avoid',
-  eol: "lf"
+  trailingComma: 'none',
+  endOfLine: 'auto',
+  bracketSpacing: true
 }

@@ -1,5 +1,4 @@
-**/*.js
-node_modules
-build
 .eslintrc.js
-.eslintrc.json
+packages/**/*.js
+node_modules
+dist
