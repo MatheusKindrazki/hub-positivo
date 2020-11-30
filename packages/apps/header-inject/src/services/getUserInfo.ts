@@ -1,7 +1,5 @@
 import { apiAuthProduct } from '@hub/api'
 
-import { toast } from '@chakra-ui/react'
-
 export interface UserInfoProps {
   token: string
   product: string

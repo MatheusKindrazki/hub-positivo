@@ -41,14 +41,39 @@ const AuthProvider: React.FC = ({ children }) => {
         title: 'Erro na autenticação, token inválido!',
         description: 'Você será redirecionado para o login novamente.',
         status: 'error',
-        duration: 4000
-      })
-
-      setTimeout(() => {
-        if (process.env.NODE_ENV === 'production') {
-          window.location.href = process.env.HUB_URL_FRONT || ''
+        duration: 4000,
+        onCloseComplete: () => {
+          if (process.env.NODE_ENV === 'production') {
+            window.location.href = process.env.HUB_URL_FRONT || ''
+          }
         }
-      }, 5000)
+      })
+    }
+
+    setLoading(false)
+  }
+
+  function checkTokenValidity(): void {
+    const storage = getStorage()
+
+    console.log(storage)
+
+    const date = (new Date() as unknown) as number
+
+    const now = Math.round(date / 1000)
+
+    if (now >= storage.expire_in) {
+      toast({
+        title: 'Seu token expirou!',
+        description: 'Faça o login novamente para continuar',
+        duration: 3000,
+        status: 'info',
+        onCloseComplete: () => {
+          if (process.env.NODE_ENV === 'production') {
+            window.location.href = process.env.HUB_URL_FRONT || ''
+          }
+        }
+      })
     }
 
     setLoading(false)
@@ -65,9 +90,15 @@ const AuthProvider: React.FC = ({ children }) => {
       console.log('HUB: Usuário sem autenticação')
     }
 
-    const guid = params?.guid || ''
+    if (params?.guid) {
+      const guid = params?.guid || ''
 
-    authUser(guid)
+      authUser(guid)
+
+      return
+    }
+
+    checkTokenValidity()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params])
 
