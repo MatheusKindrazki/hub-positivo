@@ -82,7 +82,7 @@ const Profile: React.FC = () => {
         <Box mt="3" pt="3">
           {renderProfiles.map((item, i) => (
             <CardBox
-              key={i}
+              key={String(i)}
               icon={item.icon as Icons}
               title={item.title}
               onClick={() => handleProfileSelect(item)}
