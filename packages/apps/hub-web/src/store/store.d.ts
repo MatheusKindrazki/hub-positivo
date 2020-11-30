@@ -1,4 +1,5 @@
 import { AuthReducer } from './modules/auth/types'
+import { AuthReducer as AuthProductReducer } from './modules/authProduct/types'
 import { GlobalReducer } from './modules/global/types'
 import { EducationReducer } from './modules/levelEducation/types'
 import { ProductReducer } from './modules/products/types'
@@ -12,6 +13,7 @@ interface ApplicationState {
   products: ProductReducer
   user: UserReducer
   levelEducation: EducationReducer
+  authProduct: AuthProductReducer
 }
 declare global {
   declare namespace Store {

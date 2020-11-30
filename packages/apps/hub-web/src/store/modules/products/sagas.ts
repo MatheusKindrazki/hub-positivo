@@ -7,16 +7,11 @@ import { toast } from 'react-toastify'
 
 import { store } from '~/store'
 
-import { loading } from '../global/actions'
 import { Actions as ProfileActions } from '../profile/actions'
 import { Actions, productSuccess } from './actions'
-import { CardProduct, ProductRequest } from './types'
+import { CardProduct } from './types'
 
-type ProductsPayload = Payload<ProductRequest>
-
-export function* getProducts({ payload }: ProductsPayload): Generator {
-  const { search } = payload
-
+export function* getProducts(): Generator {
   const { guid } = store.getState().profile
   const { level } = store.getState().levelEducation
 
@@ -39,49 +34,9 @@ export function* getProducts({ payload }: ProductsPayload): Generator {
     return
   }
 
-  if (!search) {
-    yield put(
-      productSuccess({
-        data
-      })
-    )
-
-    return
-  }
-
-  yield put(loading(true))
-
-  const newcards = [] as CardProduct[]
-
-  data?.forEach(i => {
-    i.solucoes?.forEach(card => {
-      if (card.nome.toLowerCase().includes(search.toLowerCase())) {
-        if (!newcards.length) {
-          newcards.push({
-            id: i.id,
-            nome: i.nome,
-            cor: i.cor,
-            solucoes: i.solucoes
-          })
-        } else {
-          const index = newcards.findIndex(newCard => newCard.id === i.id)
-
-          const cardsNew = newcards[index]?.solucoes || []
-
-          newcards[index] = {
-            id: i.id,
-            cor: i.cor,
-            nome: i.nome,
-            solucoes: [...cardsNew, card]
-          }
-        }
-      }
-    })
-  })
-
-  return yield put(
+  yield put(
     productSuccess({
-      data: newcards
+      data
     })
   )
 }

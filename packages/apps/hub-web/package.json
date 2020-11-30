@@ -39,6 +39,7 @@
     "@types/classnames": "^2.2.11",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/node": "^12.0.0",
+    "apisauce": "^2.0.0",
     "@types/qs": "^6.9.5",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
