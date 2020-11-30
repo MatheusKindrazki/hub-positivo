@@ -112,7 +112,8 @@ const DesktopMenu: React.FC = () => {
           ></MenuItem>
           <Box px="4" py="2" w="100%" h="auto">
             <Welcome
-              name="Matheus Kindrazki"
+              name={user?.name || ''}
+              avatar={avatar}
               option="name"
               fontSize="1.125rem"
               size="40px"
