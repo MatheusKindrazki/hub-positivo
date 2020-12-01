@@ -1,15 +1,21 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 
 import { Box, Button } from '@hub/common/components'
 import { ArrowLeft } from '@hub/common/components/Icons'
+import { useMediaQuery } from '@hub/common/layout/styles'
 
+import { AuthContext } from '../../hooks/auth'
 import Logo from '../Logo'
+import HeaderDesktop from './HeaderDesktop'
 
 const Header: React.FC = () => {
+  const { token } = useContext(AuthContext)
+
   const handleGoBack = useCallback(() => {
     window.location.href = process.env.HUB_URL_FRONT || ''
   }, [])
 
+  const [isDesktop] = useMediaQuery('(min-width: 480px)')
   return (
     <Box
       p="4"
@@ -38,15 +44,9 @@ const Header: React.FC = () => {
         </Button>
         <Logo />
       </Box>
-      <Button
-        fontSize="0.875rem"
-        backgroundColor="white"
-        fontWeight="bold"
-        color="blue.500"
-        mx="1"
-      >
-        Produtos
-      </Button>
+      <Box position="relative">
+        {token && <>{isDesktop && <HeaderDesktop />}</>}
+      </Box>
     </Box>
   )
 }
