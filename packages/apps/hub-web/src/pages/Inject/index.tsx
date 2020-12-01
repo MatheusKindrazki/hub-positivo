@@ -10,7 +10,10 @@ interface Auth {
 
 const Inject: React.FC = () => {
   const params = useParams<Auth>()
-  console.log(params.guid)
+
+  useEffect(() => {
+    history.push('/')
+  }, [])
 
   return <div />
 }
