@@ -14,6 +14,10 @@ export interface UserInfoProps {
 }
 
 const getUserInfo = async (guid: string): Promise<UserInfoProps> => {
+  if (!guid) {
+    throw new Error()
+  }
+
   const response = await apiAuthProduct.get('/api/TokenStorage', {
     guid
   })

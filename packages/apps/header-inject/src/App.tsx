@@ -8,7 +8,7 @@ import { Router, Switch, Route } from 'react-router'
 import Header from './pages/Header'
 import GlobalStyle from './styles/global'
 
-const history = createBrowserHistory()
+export const history = createBrowserHistory()
 
 const App: React.FC = () => {
   return (

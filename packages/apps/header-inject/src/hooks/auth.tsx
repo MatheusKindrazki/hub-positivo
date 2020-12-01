@@ -5,6 +5,7 @@ import BarLoader from '@hub/common/components/BarLoader'
 import { useToast } from '@chakra-ui/react'
 import { useParams } from 'react-router'
 
+import { history } from '../App'
 import getUserInfo, { UserInfoProps } from '../services/getUserInfo'
 import { getStorage, setStorage } from '../utils/localStorage'
 
@@ -51,6 +52,8 @@ const AuthProvider: React.FC = ({ children }) => {
         }
       })
     }
+
+    history.push('/')
 
     setLoading(false)
   }
