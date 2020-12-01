@@ -44,7 +44,9 @@ const AuthProvider: React.FC = ({ children }) => {
         duration: 4000,
         onCloseComplete: () => {
           if (process.env.NODE_ENV === 'production') {
-            window.location.href = process.env.HUB_URL_FRONT || ''
+            if (!window.location.host.includes('localhost')) {
+              window.location.href = process.env.HUB_URL_FRONT || ''
+            }
           }
         }
       })
@@ -68,7 +70,9 @@ const AuthProvider: React.FC = ({ children }) => {
         status: 'info',
         onCloseComplete: () => {
           if (process.env.NODE_ENV === 'production') {
-            window.location.href = process.env.HUB_URL_FRONT || ''
+            if (!window.location.host.includes('localhost')) {
+              window.location.href = process.env.HUB_URL_FRONT || ''
+            }
           }
         }
       })
