@@ -4,8 +4,12 @@ import { UserInfoProps } from '../services/getUserInfo'
 
 const key = process.env.HUB_ENCRYPT_INJECT_STORAGE || ''
 
-const getStorage = (): UserInfoProps => {
+const getStorage = (): UserInfoProps | undefined => {
   const storage = localStorage.getItem('@positivo:hub:auth:inject') || ''
+
+  if (!storage) {
+    return undefined
+  }
 
   const decrypt = CryptoJS.AES.decrypt(JSON.parse(storage), key).toString(
     CryptoJS.enc.Utf8

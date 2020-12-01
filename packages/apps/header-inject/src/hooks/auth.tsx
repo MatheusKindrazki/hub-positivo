@@ -56,13 +56,13 @@ const AuthProvider: React.FC = ({ children }) => {
   }
 
   function checkTokenValidity(): void {
-    const storage = getStorage()
+    const storage = getStorage() as UserInfoProps
 
     const date = (new Date() as unknown) as number
 
     const now = Math.round(date / 1000)
 
-    if (now >= storage.expire_in) {
+    if (now >= storage?.expire_in) {
       toast({
         title: 'Seu token expirou!',
         description: 'Faça o login novamente para continuar',
@@ -94,9 +94,17 @@ const AuthProvider: React.FC = ({ children }) => {
     const storage = getStorage()
 
     if (!params?.guid && !storage) {
-      window.location.href = process.env.HUB_URL_FRONT || ''
+      if (process.env.NODE_ENV === 'production') {
+        if (!window.location.host.includes('localhost')) {
+          window.location.href = process.env.HUB_URL_FRONT || ''
+        }
+      }
 
       console.log('HUB: Usuário sem autenticação')
+
+      setLoading(false)
+
+      return
     }
 
     if (params?.guid) {

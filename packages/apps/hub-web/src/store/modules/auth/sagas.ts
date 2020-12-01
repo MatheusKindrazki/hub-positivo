@@ -8,7 +8,6 @@ import qs from 'qs'
 import { toast } from 'react-toastify'
 
 import history from '~/services/history'
-import verifyKeyJwt from '~/utils/verifyKeyJwt'
 
 import { Actions, signInFailure, signInSuccess, signOut } from './actions'
 import { SignInRequest, AuthApi } from './types'

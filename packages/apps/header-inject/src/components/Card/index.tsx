@@ -3,11 +3,17 @@ import React from 'react'
 import { Box, Text, Image } from '@hub/common/components'
 
 interface CardProps {
+  id: string
   nome: string
+  descricao: string
   arquivo: string
+  notificacao?: string | number
+  ativo: boolean
+  link?: string
 }
+const Card: React.FC<CardProps> = props => {
+  const { nome, arquivo, link } = props
 
-const Card: React.FC<CardProps> = () => {
   return (
     <Box
       w="5rem"
@@ -15,6 +21,8 @@ const Card: React.FC<CardProps> = () => {
       justifyContent="center"
       alignItems="center"
       flexDirection="column"
+      cursor="pointer"
+      onClick={() => console.log(link)}
     >
       <Box
         backgroundColor="blue.500"
@@ -27,13 +35,16 @@ const Card: React.FC<CardProps> = () => {
         alignContent="center"
         p="8px!important"
       >
-        <Image
-          objectFit="contain"
-          src="https://sthubdigitalassetsdev001.blob.core.windows.net/imagenscards/405f9d63f1244c919ede1ad101ffdbc1%23atividades.svg"
-        />
+        <Image objectFit="contain" src={arquivo} />
       </Box>
-      <Text fontSize="sm" color="black" noOfLines={2} textAlign="center">
-        Teste solução
+      <Text
+        fontSize="sm"
+        lineHeight="sm"
+        color="black"
+        noOfLines={2}
+        textAlign="center"
+      >
+        {nome}
       </Text>
     </Box>
   )
