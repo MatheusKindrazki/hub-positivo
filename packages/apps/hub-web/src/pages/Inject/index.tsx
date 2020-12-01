@@ -12,7 +12,7 @@ const Inject: React.FC = () => {
   const params = useParams<Auth>()
 
   useEffect(() => {
-    history.push('/')
+    // history.push('/')
   }, [])
 
   return <div />
