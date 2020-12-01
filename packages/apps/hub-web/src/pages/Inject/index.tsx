@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useParams } from 'react-router'
+
+import history from '~/services/history'
 
 interface Auth {
   guid?: string
@@ -9,7 +11,9 @@ interface Auth {
 const Inject: React.FC = () => {
   const params = useParams<Auth>()
 
-  console.log(params.guid)
+  useEffect(() => {
+    // history.push('/')
+  }, [])
 
   return <div />
 }
