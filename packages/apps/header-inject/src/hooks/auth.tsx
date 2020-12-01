@@ -12,12 +12,6 @@ interface AuthProps {
   token: string | null
   product: string | null
 }
-
-const defaultValue = {
-  product: null,
-  token: null
-}
-
 interface RouteParams {
   guid?: string
 }
@@ -26,6 +20,8 @@ const AuthContext = createContext<AuthProps>({} as AuthProps)
 
 const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(false)
+  const [product, setProduct] = useState<string | null>(null)
+  const [token, setToken] = useState<string | null>(null)
 
   const toast = useToast()
 
@@ -34,6 +30,10 @@ const AuthProvider: React.FC = ({ children }) => {
   async function authUser(guid: string): Promise<void> {
     try {
       const userInfo: UserInfoProps = await getUserInfo(guid)
+
+      setToken(userInfo.token)
+
+      setProduct(userInfo.product)
 
       setStorage<UserInfoProps>(userInfo)
     } catch (error) {
@@ -56,8 +56,6 @@ const AuthProvider: React.FC = ({ children }) => {
   function checkTokenValidity(): void {
     const storage = getStorage()
 
-    console.log(storage)
-
     const date = (new Date() as unknown) as number
 
     const now = Math.round(date / 1000)
@@ -66,7 +64,7 @@ const AuthProvider: React.FC = ({ children }) => {
       toast({
         title: 'Seu token expirou!',
         description: 'Faça o login novamente para continuar',
-        duration: 3000,
+        duration: 4000,
         status: 'info',
         onCloseComplete: () => {
           if (process.env.NODE_ENV === 'production') {
@@ -74,7 +72,14 @@ const AuthProvider: React.FC = ({ children }) => {
           }
         }
       })
+
+      setLoading(false)
+
+      return
     }
+
+    setToken(storage.token)
+    setToken(storage.product)
 
     setLoading(false)
   }
@@ -93,17 +98,20 @@ const AuthProvider: React.FC = ({ children }) => {
     if (params?.guid) {
       const guid = params?.guid || ''
 
+      console.log('HUB: Autênticando usuário')
+
       authUser(guid)
 
       return
     }
 
+    console.log('HUB: Validando token')
     checkTokenValidity()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params])
 
   return (
-    <AuthContext.Provider value={defaultValue}>
+    <AuthContext.Provider value={{ product, token }}>
       <BarLoader loading={loading} />
       {children}
     </AuthContext.Provider>
@@ -113,3 +121,5 @@ const AuthProvider: React.FC = ({ children }) => {
 export default AuthProvider
 
 export { AuthContext }
+
+export type { AuthProps }

@@ -11,6 +11,7 @@ export default createGlobalStyle`
     top: 0;
     left: 0;
     width: 100%;
-    height: auto;
+    height: 72px;
+    z-index: 99999999999!important;
   }
 `
