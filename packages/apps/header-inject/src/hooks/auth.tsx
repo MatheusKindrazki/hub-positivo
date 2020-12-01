@@ -73,8 +73,6 @@ const AuthProvider: React.FC = ({ children }) => {
 
       setLoading(false)
 
-      window.__HUB_IS_LOADED__ = true
-
       return
     }
 
@@ -90,13 +88,19 @@ const AuthProvider: React.FC = ({ children }) => {
     const storage = getStorage()
 
     if (!window.__HUB_GUID__ && !storage) {
-      if (process.env.NODE_ENV === 'production') {
-        if (!window.location.host.includes('localhost')) {
-          window.location.href = process.env.HUB_URL_FRONT || ''
+      toast({
+        title: 'Token não encontrado',
+        description: 'Faça o login para continuar',
+        duration: 4000,
+        status: 'info',
+        onCloseComplete: () => {
+          if (process.env.NODE_ENV === 'production') {
+            if (!window.location.host.includes('localhost')) {
+              window.location.href = process.env.HUB_URL_FRONT || ''
+            }
+          }
         }
-      }
-
-      console.log('HUB: Usuário sem autenticação')
+      })
 
       setLoading(false)
 
@@ -105,15 +109,11 @@ const AuthProvider: React.FC = ({ children }) => {
 
     if (window.__HUB_GUID__) {
       const guid = window.__HUB_GUID__ || ''
-
-      console.log('HUB: Autênticando usuário')
-
       authUser(guid)
 
       return
     }
 
-    console.log('HUB: Validando token')
     checkTokenValidity()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

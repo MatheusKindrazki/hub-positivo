@@ -15,18 +15,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
-    <!-- <script>(function(w,s,l){
-      var x=w.createElement('div'); x.setAttribute(s,l);
-      var j=w.createElement('script');j.type='text/javascript'; j.async=true;
-      j.src='https://api2.positivoon.com.br/hubdigital-front-dev/static/js/bundle.js';
-      document.body.appendChild(x);document.body.appendChild(j);
-      })(document,'id','hub-inject');
-    </script> -->
-
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="hub-psd"></div>
   </body>
+
+  <script>(function(w,s,l,p){
+    var g=p.split('/');
+    var x=w.createElement('div'); x.setAttribute(s,l);
+    var j=w.createElement('script');j.type='text/javascript'; j.async=true;
+    if(p.split('-').length===5)window.__HUB_GUID__=g[g.length - 1];
+    j.src='http://localhost:3001/bundle.js';
+    document.body.appendChild(x);document.body.appendChild(j);
+    })(document,'id','hub-inject', window.location.pathname);
+  </script>
 
 </html>
