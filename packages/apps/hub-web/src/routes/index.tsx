@@ -6,7 +6,7 @@ import ThemeContext from '@hub/common/layout/Provider/context'
 import { VariantsProps } from '@hub/common/layout/styles/colors'
 
 import { ConnectedRouter } from 'connected-react-router'
-import { Switch } from 'react-router'
+import { Switch, HashRouter } from 'react-router-dom'
 
 import Profile from '~/pages/Auth/Profile'
 import SignIn from '~/pages/Auth/SignIn'
@@ -28,7 +28,10 @@ const Routes: React.FC = () => {
 
   return (
     <ConnectedRouter history={history}>
-      <div className="hub-color">
+      <HashRouter
+        hashType="slash"
+        basename={process.env.REACT_APP_PATHNAME_RESOLVE}
+      >
         <Switch>
           <Route path="/auth/:guid+" component={Inject} />
           <Route path="/login" component={SignIn} />
@@ -36,7 +39,7 @@ const Routes: React.FC = () => {
 
           <Route path="/" component={Home} isPrivate />
         </Switch>
-      </div>
+      </HashRouter>
     </ConnectedRouter>
   )
 }

@@ -4,7 +4,7 @@ import {
   Route as ReactRoute,
   RouteProps as RoutePropsWouter,
   Redirect
-} from 'react-router'
+} from 'react-router-dom'
 
 import Auth from '~/layouts/Auth'
 import Logged from '~/layouts/Logged'
