@@ -7,6 +7,7 @@ export interface UserInfoProps {
     school: {
       name: string
       id: string
+      class?: string
     }
     profile: string
   }

@@ -10,4 +10,27 @@ export default createGlobalStyle`
       top: 27px!important;
     }
   }
+
+  .hub-items {
+    h4 {
+      margin-top: 10px;
+
+      &.margin {
+        position: relative;
+        padding-top: 15px;
+
+        &:before {
+          content:"";
+          display: block;
+          position: absolute;
+          width: calc(100% + 3rem);
+          left: -1.5rem;
+          top: 5px;
+          height: 1px;
+          background-color: #C4C4C4;
+        }
+      }
+    }
+  }
+
 `

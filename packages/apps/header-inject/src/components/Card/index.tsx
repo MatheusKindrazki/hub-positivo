@@ -6,26 +6,32 @@ interface CardProps {
   id: string
   nome: string
   descricao: string
+  cor: string
   arquivo: string
   notificacao?: string | number
   ativo: boolean
-  link?: string
+  link: string
 }
-const Card: React.FC<CardProps> = props => {
-  const { nome, arquivo, link } = props
+
+interface CardRenderProps {
+  card: CardProps
+  onClick: (url: string) => void
+}
+
+const Card: React.FC<CardRenderProps> = ({ card, onClick }) => {
+  const { nome, arquivo, link, cor } = card
 
   return (
     <Box
-      w="5rem"
       d="flex"
-      justifyContent="center"
+      justifyContent="flex-start"
       alignItems="center"
       flexDirection="column"
       cursor="pointer"
-      onClick={() => console.log(link)}
+      onClick={() => onClick(link)}
     >
       <Box
-        backgroundColor="blue.500"
+        backgroundColor={cor}
         w="3rem"
         h="3rem"
         borderRadius="50%"
@@ -38,8 +44,9 @@ const Card: React.FC<CardProps> = props => {
         <Image objectFit="contain" src={arquivo} />
       </Box>
       <Text
-        fontSize="sm"
-        lineHeight="sm"
+        mt="8px"
+        fontSize="13px"
+        lineHeight="14px!important"
         color="black"
         noOfLines={2}
         textAlign="center"

@@ -1,7 +1,7 @@
 import api from '@hub/api'
 
 interface GetCardsProps {
-  levelEducation?: string
+  levelEducation?: string | null
   profile: string
 }
 export interface CardProduct {
@@ -18,6 +18,7 @@ export interface Product {
   arquivo: string
   notificacao?: string
   ativo: boolean
+  link: string
 }
 
 const getCards = async (data: GetCardsProps): Promise<CardProduct[]> => {

@@ -1,23 +1,23 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
 import BarLoader from '@hub/common/components/BarLoader'
-
-import { useToast } from '@chakra-ui/react'
+import { useToast } from '@hub/common/hooks'
 
 import getUserInfo, { UserInfoProps } from '../services/getUserInfo'
 import { getStorage, setStorage } from '../utils/localStorage'
 
 interface AuthProps {
-  token: string | null
-  product: string | null
+  token: string
+  product: string
+  profile: string
+  levelEducation?: string | null
 }
 
-const AuthContext = createContext<AuthProps>({} as AuthProps)
+export const AuthContext = createContext<AuthProps>({} as AuthProps)
 
 const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(false)
-  const [product, setProduct] = useState<string | null>(null)
-  const [token, setToken] = useState<string | null>(null)
+  const [info, setInfo] = useState<AuthProps>({} as AuthProps)
 
   const toast = useToast()
 
@@ -25,9 +25,12 @@ const AuthProvider: React.FC = ({ children }) => {
     try {
       const userInfo: UserInfoProps = await getUserInfo(guid)
 
-      setToken(userInfo.token)
-
-      setProduct(userInfo.product)
+      setInfo({
+        product: userInfo.product,
+        token: userInfo.token,
+        profile: userInfo?.logged_in?.profile,
+        levelEducation: userInfo?.logged_in?.school?.class || null
+      })
 
       setStorage<UserInfoProps>(userInfo)
     } catch (error) {
@@ -76,8 +79,12 @@ const AuthProvider: React.FC = ({ children }) => {
       return
     }
 
-    setToken(storage.token)
-    setToken(storage.product)
+    setInfo({
+      product: storage.product,
+      token: storage.token,
+      profile: storage?.logged_in?.profile,
+      levelEducation: storage?.logged_in?.school?.class || null
+    })
 
     setLoading(false)
   }
@@ -119,15 +126,28 @@ const AuthProvider: React.FC = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ product, token }}>
+    <AuthContext.Provider
+      value={{
+        product: info.product,
+        levelEducation: info.levelEducation,
+        profile: info.profile,
+        token: info.token
+      }}
+    >
       <BarLoader loading={loading} />
       {children}
     </AuthContext.Provider>
   )
 }
 
-export default AuthProvider
+function useAuth(): AuthProps {
+  const context = useContext(AuthContext)
 
-export { AuthContext }
+  if (!context) {
+    throw new Error('Para usar o useAuth, é obrigatório o usuário do Provider')
+  }
 
-export type { AuthProps }
+  return context
+}
+
+export { AuthProvider, useAuth }
