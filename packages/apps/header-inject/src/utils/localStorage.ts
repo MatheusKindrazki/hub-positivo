@@ -4,8 +4,10 @@ import { UserInfoProps } from '../services/getUserInfo'
 
 const key = process.env.HUB_ENCRYPT_INJECT_STORAGE || ''
 
+const keySTORAGE = '@positivo:hub:auth:inject'
+
 const getStorage = (): UserInfoProps | undefined => {
-  const storage = localStorage.getItem('@positivo:hub:auth:inject') || ''
+  const storage = localStorage.getItem(keySTORAGE) || ''
 
   if (!storage) {
     return undefined
@@ -21,7 +23,11 @@ const getStorage = (): UserInfoProps | undefined => {
 function setStorage<T>(data: T): void {
   const encryptData = CryptoJS.AES.encrypt(JSON.stringify(data), key).toString()
 
-  localStorage.setItem('@positivo:hub:auth:inject', JSON.stringify(encryptData))
+  localStorage.setItem(keySTORAGE, JSON.stringify(encryptData))
 }
 
-export { getStorage, setStorage }
+function removeStorage(): void {
+  localStorage.removeItem(keySTORAGE)
+}
+
+export { getStorage, setStorage, removeStorage }
