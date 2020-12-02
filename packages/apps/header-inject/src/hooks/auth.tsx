@@ -3,9 +3,8 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import BarLoader from '@hub/common/components/BarLoader'
 import { useToast } from '@hub/common/hooks'
 
-import validate from 'uuid-validate'
-
 import getUserInfo, { UserInfoProps } from '../services/getUserInfo'
+import validate from '../utils/findGuid'
 import { getStorage, setStorage, removeStorage } from '../utils/localStorage'
 
 interface AuthProps {
@@ -21,21 +20,25 @@ const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(false)
   const [info, setInfo] = useState<AuthProps>({} as AuthProps)
 
-  const [guid, setGuid] = useState<string | null>('undefined')
+  const [guid, setGuid] = useState<string | null>(null)
+  const [released, setReleased] = useState<boolean>(false)
 
   const toast = useToast()
 
   const findGUID = setInterval(() => {
-    if (validate(window.__HUB_GUID__)) {
-      setGuid(window.__HUB_GUID__)
+    const valid = validate(window.__HUB_GUID__)
+
+    if (valid) {
+      setGuid(valid)
+      setReleased(true)
       clearInterval(findGUID)
     }
   }, [500])
 
   setTimeout(() => {
     clearInterval(findGUID)
-    if (guid === 'undefined') {
-      setGuid(null)
+    if (!released) {
+      setReleased(true)
     }
   }, 4000)
 
@@ -111,7 +114,7 @@ const AuthProvider: React.FC = ({ children }) => {
   useEffect(() => {
     setLoading(true)
 
-    if (guid === 'undefined') return
+    if (!released) return
 
     const storage = getStorage()
 
@@ -145,7 +148,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
     checkTokenValidity()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [guid])
+  }, [guid, released])
 
   return (
     <AuthContext.Provider
