@@ -34,6 +34,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
       setStorage<UserInfoProps>(userInfo)
     } catch (error) {
+      console.log(error)
       toast({
         title: 'Erro na autenticação, token inválido!',
         description: 'Você será redirecionado para o login novamente.',
@@ -55,9 +56,7 @@ const AuthProvider: React.FC = ({ children }) => {
   function checkTokenValidity(): void {
     const storage = getStorage() as UserInfoProps
 
-    const date = (new Date() as unknown) as number
-
-    const now = Math.round(date / 1000)
+    const now = Math.round(+new Date() / 1000)
 
     if (now >= storage?.expire_in) {
       toast({
