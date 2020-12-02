@@ -51,7 +51,7 @@ export function* authProduct({ payload }: AuthPayload): Generator {
   }
   yield put(loading(false))
 
-  if (payload.integration_type === 'wordpress') {
+  if (payload?.integration_type === 'wordpress') {
     window.location.assign(`${payload.url}${data}`)
   } else {
     window.location.assign(`${payload.url}/${data}`)
