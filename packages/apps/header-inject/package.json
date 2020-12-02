@@ -18,7 +18,8 @@
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
 		"react-router": "^5.2.0",
-		"styled-components": "^5.2.1"
+		"styled-components": "^5.2.1",
+		"uuid-validate": "^0.0.3"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.3",
@@ -30,6 +31,7 @@
 		"@types/react": "^16.9.50",
 		"@types/react-dom": "^16.9.8",
 		"@types/styled-components": "^5.1.4",
+		"@types/uuid-validate": "^0.0.1",
 		"@types/webpack": "^4.41.25",
 		"@webpack-cli/serve": "^1.1.0",
 		"babel-cli": "^6.26.0",

@@ -3,6 +3,8 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import BarLoader from '@hub/common/components/BarLoader'
 import { useToast } from '@hub/common/hooks'
 
+import validate from 'uuid-validate'
+
 import getUserInfo, { UserInfoProps } from '../services/getUserInfo'
 import { getStorage, setStorage, removeStorage } from '../utils/localStorage'
 
@@ -19,7 +21,23 @@ const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(false)
   const [info, setInfo] = useState<AuthProps>({} as AuthProps)
 
+  const [guid, setGuid] = useState<string | null>('undefined')
+
   const toast = useToast()
+
+  const findGUID = setInterval(() => {
+    if (validate(window.__HUB_GUID__)) {
+      setGuid(window.__HUB_GUID__)
+      clearInterval(findGUID)
+    }
+  }, [500])
+
+  setTimeout(() => {
+    clearInterval(findGUID)
+    if (guid === 'undefined') {
+      setGuid(null)
+    }
+  }, 4000)
 
   async function authUser(guid: string): Promise<void> {
     try {
@@ -93,9 +111,11 @@ const AuthProvider: React.FC = ({ children }) => {
   useEffect(() => {
     setLoading(true)
 
+    if (guid === 'undefined') return
+
     const storage = getStorage()
 
-    if (!window.__HUB_GUID__ && !storage) {
+    if (!guid && !storage) {
       toast({
         title: 'Token não encontrado',
         description: 'Faça o login para continuar',
@@ -115,8 +135,7 @@ const AuthProvider: React.FC = ({ children }) => {
       return
     }
 
-    if (window.__HUB_GUID__) {
-      const guid = window.__HUB_GUID__ || ''
+    if (guid) {
       authUser(guid)
 
       removeStorage()
@@ -126,7 +145,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
     checkTokenValidity()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [guid])
 
   return (
     <AuthContext.Provider
