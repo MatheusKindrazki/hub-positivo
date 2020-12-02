@@ -20,6 +20,7 @@ import { loading } from '~/store/modules/global/actions'
 import { setLevel } from '~/store/modules/levelEducation/actions'
 import { productRequest } from '~/store/modules/products/actions'
 import { CardProduct as CardProductProps } from '~/store/modules/products/types'
+import createSlug from '~/utils/createSlug'
 
 import { mockAlunos, mockProfessores } from './mock'
 import { Container } from './styles'
@@ -73,10 +74,10 @@ const Home: React.FC = () => {
   }, 550)
 
   const handlePushProduct = useCallback(
-    data => {
+    (data, nome) => {
       dispatch(
         authProductRequest({
-          product: 'aulas',
+          product: createSlug(nome),
           url: data
         })
       )
@@ -201,7 +202,7 @@ const Home: React.FC = () => {
                 {card.solucoes?.map(item => (
                   <CardProduct
                     key={Math.random()}
-                    handlePush={url => handlePushProduct(url)}
+                    handlePush={url => handlePushProduct(url, item.nome)}
                     cor={card.cor}
                     card={item}
                     load={load}
