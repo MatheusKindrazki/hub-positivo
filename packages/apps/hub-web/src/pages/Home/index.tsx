@@ -74,11 +74,12 @@ const Home: React.FC = () => {
   }, 550)
 
   const handlePushProduct = useCallback(
-    (data, nome) => {
+    data => {
       dispatch(
         authProductRequest({
-          product: createSlug(nome),
-          url: data
+          product: createSlug(data.nome),
+          url: data.url,
+          integration_type: data.integration_type
         })
       )
     },
@@ -202,7 +203,13 @@ const Home: React.FC = () => {
                 {card.solucoes?.map(item => (
                   <CardProduct
                     key={Math.random()}
-                    handlePush={url => handlePushProduct(url, item.nome)}
+                    handlePush={url =>
+                      handlePushProduct({
+                        url,
+                        nome: item.nome,
+                        integration_type: item.integration_type
+                      })
+                    }
                     cor={card.cor}
                     card={item}
                     load={load}
