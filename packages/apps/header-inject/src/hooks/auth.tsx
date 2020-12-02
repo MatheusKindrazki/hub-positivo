@@ -4,7 +4,7 @@ import BarLoader from '@hub/common/components/BarLoader'
 import { useToast } from '@hub/common/hooks'
 
 import getUserInfo, { UserInfoProps } from '../services/getUserInfo'
-import { getStorage, setStorage } from '../utils/localStorage'
+import { getStorage, setStorage, removeStorage } from '../utils/localStorage'
 
 interface AuthProps {
   token: string
@@ -59,6 +59,8 @@ const AuthProvider: React.FC = ({ children }) => {
     const now = Math.round(+new Date() / 1000)
 
     if (now >= storage?.expire_in) {
+      removeStorage()
+
       toast({
         title: 'Seu token expirou!',
         description: 'Faça o login novamente para continuar',
@@ -116,6 +118,8 @@ const AuthProvider: React.FC = ({ children }) => {
     if (window.__HUB_GUID__) {
       const guid = window.__HUB_GUID__ || ''
       authUser(guid)
+
+      removeStorage()
 
       return
     }
