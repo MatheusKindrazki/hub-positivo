@@ -3,9 +3,9 @@ import { lighten, darken } from 'polished'
 type Colors = typeof theme.colors
 
 export const profileBaseColor = {
-  default: '#1E88E5',
-  editor: '#1E88E5',
-  colaborador: '#1E88E5',
+  default: '#1565C0',
+  editor: '#1565C0',
+  colaborador: '#1565C0',
   gestor: '#880E4F',
   administrador: '#AD1457',
   coordenador: '#C2185B',
