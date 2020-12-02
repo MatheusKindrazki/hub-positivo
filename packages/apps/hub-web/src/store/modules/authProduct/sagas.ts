@@ -51,7 +51,7 @@ export function* authProduct({ payload }: AuthPayload): Generator {
   }
   yield put(loading(false))
 
-  window.open(`${payload.url}/${data}`, '_blank')
+  window.location.assign(`${payload.url}/${data}`)
 
   return yield put(authProductSuccess())
 }
