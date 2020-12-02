@@ -27,9 +27,11 @@ export function* authProduct({ payload }: AuthPayload): Generator {
     logged_in: {
       school: {
         name: user.school?.label,
-        id: user.school?.value
+        id: user.school?.value,
+        class: null
       },
-      profile: profile.name
+      profile: profile.guid,
+      user_id: null
     },
     expires_in: auth.exp
   }
@@ -49,7 +51,7 @@ export function* authProduct({ payload }: AuthPayload): Generator {
   }
   yield put(loading(false))
 
-  window.location.assign(`${payload.url}/${data}`)
+  window.open(`${payload.url}/${data}`, '_blank')
 
   return yield put(authProductSuccess())
 }
