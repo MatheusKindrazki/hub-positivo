@@ -1,11 +1,22 @@
 import React from 'react'
 
-import { Menu, Button, Box, Heading } from '@hub/common/components'
+import {
+  Menu,
+  Box,
+  Button,
+  Heading,
+  SpinnerLoader,
+  SimpleGrid
+} from '@hub/common/components'
+
+import classNames from 'classnames'
 
 import Card from '../Card'
+import Search from '../Search'
+import { HeaderProps } from './index'
 import GlobalStyle from './styles'
 
-const HeaderDesktop: React.FC = () => {
+const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const { MenuContainer, MenuButton, MenuList } = Menu
 
   return (
@@ -44,20 +55,44 @@ const HeaderDesktop: React.FC = () => {
             maxW="330px"
             h="auto"
             background="white!important"
+            position="relative"
+            paddingTop="3.5rem"
+            className="hub-items"
           >
-            <Box mb="4">
-              <Heading as="h4" fontSize="sm">
-                Avaliações
-              </Heading>
-            </Box>
+            <Search />
+            {!cards || !cards.length ? (
+              <Box
+                w="100%"
+                d="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <SpinnerLoader loading={true} color="var(--hub-base-color)" />
+              </Box>
+            ) : null}
+            {cards?.map((card, i) => (
+              <React.Fragment key={i}>
+                <Box mb="4">
+                  <Heading
+                    as="h4"
+                    className={classNames({ margin: i !== 0 })}
+                    fontSize="sm"
+                  >
+                    {card.nome}
+                  </Heading>
+                </Box>
 
-            <Box
-              d="flex"
-              justifyContent="space-between"
-              alignItems="flex-start"
-            >
-              <Card />
-            </Box>
+                <SimpleGrid templateColumns="repeat(3, 1fr)" spacing={3}>
+                  {card.solucoes?.map(solucao => (
+                    <Card
+                      key={Math.random()}
+                      card={{ ...solucao, cor: card.cor }}
+                      onClick={handlePush}
+                    />
+                  ))}
+                </SimpleGrid>
+              </React.Fragment>
+            ))}
           </Box>
         </MenuList>
       </MenuContainer>

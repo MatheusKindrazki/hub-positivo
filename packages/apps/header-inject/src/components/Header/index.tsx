@@ -5,10 +5,16 @@ import { ArrowLeft } from '@hub/common/components/Icons'
 import { useMediaQuery } from '@hub/common/layout/styles'
 
 import { AuthContext } from '../../hooks/auth'
+import { CardProduct } from '../../services/getCards'
 import Logo from '../Logo'
 import HeaderDesktop from './HeaderDesktop'
 
-const Header: React.FC = () => {
+export interface HeaderProps {
+  handlePush: (url: string) => void
+  cards?: CardProduct[]
+}
+
+const Header: React.FC<HeaderProps> = ({ handlePush, cards }) => {
   const { token } = useContext(AuthContext)
 
   const handleGoBack = useCallback(() => {
@@ -45,7 +51,13 @@ const Header: React.FC = () => {
         <Logo />
       </Box>
       <Box position="relative">
-        {token && <>{isDesktop && <HeaderDesktop />}</>}
+        {token && (
+          <>
+            {isDesktop && (
+              <HeaderDesktop handlePush={handlePush} cards={cards} />
+            )}
+          </>
+        )}
       </Box>
     </Box>
   )

@@ -1,9 +1,11 @@
-/* eslint-disable prettier/prettier */
 import React from 'react'
 
 import ReactDOM from 'react-dom'
 
 import App from './App'
+
+console.error = function () {}; //eslint-disable-line
+console.warn = function () {}; //eslint-disable-line
 
 declare global {
   interface Window {
