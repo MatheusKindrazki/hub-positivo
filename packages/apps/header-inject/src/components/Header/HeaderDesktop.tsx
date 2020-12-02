@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import {
   Menu,
@@ -18,6 +18,12 @@ import GlobalStyle from './styles'
 
 const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const { MenuContainer, MenuButton, MenuList } = Menu
+
+  const heightBox = useMemo(() => {
+    const height = window.document.body.clientHeight / 1.7
+
+    return !cards || !cards.length ? 'auto' : height
+  }, [cards])
 
   return (
     <div className="hub-header-list">
@@ -49,50 +55,59 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
             borderRadius="4px"
             boxShadow="sm"
             top="8px!important"
-            px="6"
-            py="4"
             w="100%"
             maxW="330px"
-            h="auto"
+            h={heightBox}
+            maxHeight="69vh"
             background="white!important"
             position="relative"
-            paddingTop="3.5rem"
             className="hub-items"
+            paddingTop="2.5rem"
           >
-            <Search />
-            {!cards || !cards.length ? (
-              <Box
-                w="100%"
-                d="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <SpinnerLoader loading={true} color="var(--hub-base-color)" />
-              </Box>
-            ) : null}
-            {cards?.map((card, i) => (
-              <React.Fragment key={i}>
-                <Box mb="4">
-                  <Heading
-                    as="h4"
-                    className={classNames({ margin: i !== 0 })}
-                    fontSize="sm"
-                  >
-                    {card.nome}
-                  </Heading>
+            <Box
+              style={{ zIndex: 9999 }}
+              w="100%"
+              height="100%"
+              overflow="auto"
+              paddingTop="3.5rem"
+              px="6"
+              py="4"
+            >
+              <Search style={{ zIndex: 999999 }} />
+              {!cards || !cards.length ? (
+                <Box
+                  w="100%"
+                  d="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <SpinnerLoader loading={true} color="var(--hub-base-color)" />
                 </Box>
+              ) : null}
+              {cards?.map((card, i) => (
+                <React.Fragment key={i}>
+                  <Box mb="4">
+                    <Heading
+                      as="h4"
+                      className={classNames({ margin: i !== 0 })}
+                      fontSize="sm"
+                    >
+                      {card.nome}
+                    </Heading>
+                  </Box>
 
-                <SimpleGrid templateColumns="repeat(3, 1fr)" spacing={3}>
-                  {card.solucoes?.map(solucao => (
-                    <Card
-                      key={Math.random()}
-                      card={{ ...solucao, cor: card.cor }}
-                      onClick={handlePush}
-                    />
-                  ))}
-                </SimpleGrid>
-              </React.Fragment>
-            ))}
+                  <SimpleGrid templateColumns="repeat(3, 1fr)" spacing={3}>
+                    {card.solucoes?.map(solucao => (
+                      <Card
+                        key={Math.random()}
+                        card={{ ...solucao, cor: card.cor }}
+                        onClick={handlePush}
+                      />
+                    ))}
+                  </SimpleGrid>
+                </React.Fragment>
+              ))}
+            </Box>
           </Box>
         </MenuList>
       </MenuContainer>

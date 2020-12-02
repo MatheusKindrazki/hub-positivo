@@ -12,6 +12,12 @@ export default createGlobalStyle`
   }
 
   .hub-items {
+     * {
+      ::-webkit-scrollbar {
+        display: none!important;
+      }
+    }
+
     h4 {
       margin-top: 10px;
 

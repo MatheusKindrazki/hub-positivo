@@ -15,7 +15,7 @@ const HeaderPage: React.FC = () => {
   const { profile, levelEducation } = useAuth()
 
   const handlePush = useCallback(() => {
-    alert('brasil')
+    alert('Enviando para a url')
   }, [])
 
   useEffect(() => {
