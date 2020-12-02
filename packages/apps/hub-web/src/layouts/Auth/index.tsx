@@ -10,8 +10,9 @@ const Auth: React.FC = ({ children }) => {
   return (
     <Container>
       <Logo />
-
-      <CardBox maxWidth="25.9375rem">{children}</CardBox>
+      <CardBox mt="2.1875rem" maxWidth="25.9375rem">
+        {children}
+      </CardBox>
     </Container>
   )
 }

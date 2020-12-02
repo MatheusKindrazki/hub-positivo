@@ -41,11 +41,11 @@ const AuthProvider: React.FC = ({ children }) => {
         status: 'error',
         duration: 4000,
         onCloseComplete: () => {
-          if (process.env.NODE_ENV === 'production') {
-            if (!window.location.host.includes('localhost')) {
-              window.location.href = process.env.HUB_URL_FRONT || ''
-            }
-          }
+          // if (process.env.NODE_ENV === 'production') {
+          //   if (!window.location.host.includes('localhost')) {
+          //     window.location.href = process.env.HUB_URL_FRONT || ''
+          //   }
+          // }
         }
       })
     }
@@ -65,11 +65,11 @@ const AuthProvider: React.FC = ({ children }) => {
         duration: 4000,
         status: 'info',
         onCloseComplete: () => {
-          if (process.env.NODE_ENV === 'production') {
-            if (!window.location.host.includes('localhost')) {
-              window.location.href = process.env.HUB_URL_FRONT || ''
-            }
-          }
+          // if (process.env.NODE_ENV === 'production') {
+          //   if (!window.location.host.includes('localhost')) {
+          //     window.location.href = process.env.HUB_URL_FRONT || ''
+          //   }
+          // }
         }
       })
 
@@ -100,11 +100,11 @@ const AuthProvider: React.FC = ({ children }) => {
         duration: 4000,
         status: 'info',
         onCloseComplete: () => {
-          if (process.env.NODE_ENV === 'production') {
-            if (!window.location.host.includes('localhost')) {
-              window.location.href = process.env.HUB_URL_FRONT || ''
-            }
-          }
+          // if (process.env.NODE_ENV === 'production') {
+          //   if (!window.location.host.includes('localhost')) {
+          //     window.location.href = process.env.HUB_URL_FRONT || ''
+          //   }
+          // }
         }
       })
 

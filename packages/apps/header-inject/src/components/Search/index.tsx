@@ -31,6 +31,7 @@ const Search: React.FC<InputProps> = ({ onChange, ...rest }) => {
         <InputLeftElement
           width="3rem"
           height="3rem"
+          zIndex="99999999"
           children={<Box as={MagnifyingGlass} size="20px" color="#7A7A7A" />}
         />
         <Input
