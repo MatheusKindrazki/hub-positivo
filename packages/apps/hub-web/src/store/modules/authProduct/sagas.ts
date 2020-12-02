@@ -33,7 +33,7 @@ export function* authProduct({ payload }: AuthPayload): Generator {
       profile: profile.guid,
       user_id: null
     },
-    expires_in: auth.exp
+    expire_in: auth.exp
   }
 
   const response = yield call(() => {
