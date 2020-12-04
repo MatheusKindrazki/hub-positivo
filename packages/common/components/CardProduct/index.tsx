@@ -9,7 +9,6 @@ import {
   Tooltip
 } from '@hub/common/components'
 
-import { Skeleton } from '@chakra-ui/react'
 import classNames from 'classnames'
 
 import { Container } from './styles'
@@ -31,12 +30,7 @@ interface CardProductProps {
   load?: boolean
 }
 
-const CardProduct: React.FC<CardProductProps> = ({
-  card,
-  cor,
-  handlePush,
-  load = true
-}) => {
+const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
   const { nome, arquivo, descricao, link = '' } = card
 
   return (
@@ -53,24 +47,22 @@ const CardProduct: React.FC<CardProductProps> = ({
       boxShadow="sm"
       style={{ position: 'relative' }}
     >
-      <Skeleton startColor="gray.200" endColor="gray.400" isLoaded={!load}>
-        <Box
-          h="100%"
-          minWidth={['4.7rem', '5.9375rem']}
-          d="flex"
-          justifyContent="center"
-          alignItems="center"
-          backgroundColor={cor}
-          p="0.625rem"
-        >
-          <Image
-            height={['auto', 'auto', '3.875rem', '3.875rem']}
-            width={['3rem', '3rem', 'auto', 'auto']}
-            objectFit="contain"
-            src={arquivo}
-          />
-        </Box>
-      </Skeleton>
+      <Box
+        h="100%"
+        minWidth={['4.7rem', '5.9375rem']}
+        d="flex"
+        justifyContent="center"
+        alignItems="center"
+        backgroundColor={cor}
+        p="0.625rem"
+      >
+        <Image
+          height={['auto', 'auto', '3.875rem', '3.875rem']}
+          width={['3rem', '3rem', 'auto', 'auto']}
+          objectFit="contain"
+          src={arquivo}
+        />
+      </Box>
 
       <Box
         data-testid="button"
@@ -103,44 +95,14 @@ const CardProduct: React.FC<CardProductProps> = ({
           h="100%"
           pr="1.125rem"
         >
-          <Skeleton
-            startColor="gray.50"
-            endColor="gray.400"
-            height={load ? '10px' : 'auto'}
-            width={load ? '130px' : '100%'}
-            isLoaded={!load}
-          >
-            <Heading
-              as="b"
-              fontWeight="normal"
-              fontSize="1.125rem"
-              color="black"
-            >
-              {nome}
-            </Heading>
-          </Skeleton>
-          <Skeleton
-            startColor="gray.50"
-            endColor="gray.400"
-            mt={load ? 4 : 0}
-            height={load ? '10px' : 'auto'}
-            width={load ? '170px' : '100%'}
-            isLoaded={!load}
-          >
-            <Tooltip hasArrow label={descricao} openDelay={500} w="21rem">
-              <Text mt="2" color="gray.500" noOfLines={2} fontSize="0.875rem">
-                {descricao}
-              </Text>
-            </Tooltip>
-          </Skeleton>
-          <Skeleton
-            startColor="gray.50"
-            endColor="gray.400"
-            mt="2"
-            height={load ? '10px' : 'auto'}
-            width={load ? '120px' : '100%'}
-            isLoaded={!load}
-          ></Skeleton>
+          <Heading as="b" fontWeight="normal" fontSize="1.125rem" color="black">
+            {nome}
+          </Heading>
+          <Tooltip hasArrow label={descricao} openDelay={500} w="21rem">
+            <Text mt="2" color="gray.500" noOfLines={2} fontSize="0.875rem">
+              {descricao}
+            </Text>
+          </Tooltip>
         </Box>
       </Box>
     </Container>

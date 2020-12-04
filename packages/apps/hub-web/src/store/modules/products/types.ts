@@ -20,6 +20,7 @@ export interface Product {
   nome: string
   descricao: string
   arquivo: string
+  link?: string
   integration_type?: string
   notificacao?: string
   ativo: boolean

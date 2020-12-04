@@ -91,7 +91,14 @@ const Home: React.FC = () => {
   }, [dispatch])
 
   const filterCards = useMemo(() => {
-    if (!searchValue) return cards
+    if (!searchValue) {
+      return cards?.map(c => {
+        return {
+          ...c,
+          solucoes: c.solucoes.filter(s => s.ativo)
+        }
+      })
+    }
 
     const newcards = [] as CardProductProps[]
 
@@ -121,7 +128,12 @@ const Home: React.FC = () => {
       })
     })
 
-    return newcards
+    return newcards?.map(c => {
+      return {
+        ...c,
+        solucoes: c.solucoes.filter(s => s.ativo)
+      }
+    })
   }, [cards, searchValue])
 
   return (
