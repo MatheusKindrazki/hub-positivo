@@ -28,6 +28,8 @@ import { Container } from './styles'
 
 const enableSelect = ['professor', 'familia']
 
+const apiArvore = ['Gestão Escolar Sae+C', 'Árvore Livros']
+
 const Home: React.FC = () => {
   documentTitle('Home')
 
@@ -78,6 +80,12 @@ const Home: React.FC = () => {
     data => {
       const slug = createSlug(data.nome)
 
+      if (apiArvore.includes(data.nome)) {
+        window.location.assign(data.url)
+
+        return
+      }
+
       dispatch(
         authProductRequest({
           product: slug,
@@ -85,10 +93,6 @@ const Home: React.FC = () => {
           integration_type: data.integration_type
         })
       )
-
-      setTimeout(() => {
-        history.push(`/dashboard/${slug}`)
-      }, 1000)
     },
     [dispatch]
   )

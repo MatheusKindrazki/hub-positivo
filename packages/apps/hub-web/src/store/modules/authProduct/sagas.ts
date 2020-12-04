@@ -6,6 +6,7 @@ import { ApiResponse } from 'apisauce'
 import qs from 'qs'
 import { toast } from 'react-toastify'
 
+import history from '~/services/history'
 import { store } from '~/store'
 
 import { loading } from '../global/actions'
@@ -63,7 +64,7 @@ export function* authProduct({ payload }: AuthPayload): Generator {
 
     yield put(setFrameURL({ url: newUrl }))
 
-    // window.location.assign(newUrl)
+    history.push(`/dashboard/${payload.product}`)
 
     yield put(loading(false))
 
