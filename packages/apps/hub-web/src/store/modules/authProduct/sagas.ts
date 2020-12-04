@@ -1,14 +1,17 @@
 import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
 
-import { apiAuthProduct } from '@hub/api'
+import { apiAuthProduct, apiAuth } from '@hub/api'
 
 import { ApiResponse } from 'apisauce'
+import qs from 'qs'
 import { toast } from 'react-toastify'
 
 import { store } from '~/store'
 
 import { loading } from '../global/actions'
+import { setFrameURL } from '../products/actions'
 import { Actions, authProductFailure, authProductSuccess } from './actions'
+import { StudosSolutions } from './caseJwt'
 import { AuthRequest } from './types'
 
 type AuthPayload = Payload<AuthRequest>
@@ -20,6 +23,52 @@ export function* authProduct({ payload }: AuthPayload): Generator {
   if (!auth && !profile && !user) return
 
   yield put(loading(true))
+
+  if (StudosSolutions.includes(payload.product)) {
+    const sendInfo = {
+      ...payload,
+      grant_type: 'change_school',
+      client_id: process.env.REACT_APP_API_AUTH_CLIENT_ID,
+      client_secret: process.env.REACT_APP_API_AUTH_SECRET_ID,
+      scope: process.env.REACT_APP_API_AUTH_SCOPE,
+      access_token: auth.token,
+      school_id: user.school?.value
+    }
+
+    const response = yield call(() => {
+      apiAuth.setHeaders({
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+        accept: '*/*'
+      })
+
+      return apiAuth.post('connect/token', qs.stringify(sendInfo))
+    })
+
+    const { data: dataJWT, ok: okJWT } = response as ApiResponse<{
+      access_token: string
+    }>
+
+    if (!okJWT) {
+      toast.error('Sinto mundo, algo deu errado :(')
+
+      yield put(loading(false))
+
+      return yield put(authProductFailure())
+    }
+
+    const newUrl = payload.url.replace(
+      '{token}',
+      dataJWT?.access_token || 'invalid-token'
+    )
+
+    yield put(setFrameURL({ url: newUrl }))
+
+    // window.location.assign(newUrl)
+
+    yield put(loading(false))
+
+    return yield put(authProductSuccess())
+  }
 
   const authTheProduct = {
     product: payload.product,

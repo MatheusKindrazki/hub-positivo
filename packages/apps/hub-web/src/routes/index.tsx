@@ -11,6 +11,7 @@ import { Switch, HashRouter } from 'react-router-dom'
 import Profile from '~/pages/Auth/Profile'
 import SignIn from '~/pages/Auth/SignIn'
 import Home from '~/pages/Home'
+import Iframe from '~/pages/Iframe'
 import Inject from '~/pages/Inject'
 
 import history from '~/services/history'
@@ -36,6 +37,8 @@ const Routes: React.FC = () => {
           <Route path="/auth/:guid+" component={Inject} />
           <Route path="/login" component={SignIn} />
           <Route path="/profile" component={Profile} />
+
+          <Route path="/dashboard/:solution" component={Iframe} isPrivate />
 
           <Route path="/" component={Home} isPrivate />
         </Switch>
