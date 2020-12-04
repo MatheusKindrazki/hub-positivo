@@ -19,7 +19,7 @@ import history from '~/services/history'
 import { authProductRequest } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
 import { setLevel } from '~/store/modules/levelEducation/actions'
-import { productRequest } from '~/store/modules/products/actions'
+import { productRequest, setFrameURL } from '~/store/modules/products/actions'
 import { CardProduct as CardProductProps } from '~/store/modules/products/types'
 import createSlug from '~/utils/createSlug'
 
@@ -82,6 +82,10 @@ const Home: React.FC = () => {
 
       if (apiArvore.includes(data.nome)) {
         window.location.assign(data.url)
+
+        // dispatch(setFrameURL({ url: data.url }))
+
+        // history.push(`/dashboard/${slug}`)
 
         return
       }
