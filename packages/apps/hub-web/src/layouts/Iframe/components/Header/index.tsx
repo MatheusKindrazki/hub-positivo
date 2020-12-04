@@ -10,8 +10,13 @@ import { CardProduct } from '~/store/modules/products/types'
 import Logo from '../Logo'
 import HeaderDesktop from './HeaderDesktop'
 
+interface HandleProps {
+  url: string
+  integration_type?: string
+  nome: string
+}
 export interface HeaderProps {
-  handlePush: (url: string) => void
+  handlePush: (data: HandleProps) => void
   cards?: CardProduct[]
 }
 
