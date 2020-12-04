@@ -18,8 +18,9 @@ const Iframe: React.FC = () => {
       src={frameUrl}
       frameBorder="0"
       style={{
+        marginTop: 72,
         width: '100%',
-        height: '100vh'
+        height: 'calc(100vh - 72px)'
       }}
     ></iframe>
   )
