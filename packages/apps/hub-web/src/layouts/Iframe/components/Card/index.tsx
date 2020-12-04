@@ -13,9 +13,15 @@ export interface CardProps {
   link?: string
 }
 
+interface HandleProps {
+  url: string
+  integration_type?: string
+  nome: string
+}
+
 interface CardRenderProps {
   card: CardProps
-  onClick: (url: string) => void
+  onClick: (data: HandleProps) => void
 }
 
 const Card: React.FC<CardRenderProps> = ({ card, onClick }) => {
@@ -28,7 +34,9 @@ const Card: React.FC<CardRenderProps> = ({ card, onClick }) => {
       alignItems="center"
       flexDirection="column"
       cursor="pointer"
-      onClick={() => onClick(link || '')}
+      onClick={() =>
+        onClick({ nome, url: link || '', integration_type: 'react' })
+      }
     >
       <Box
         backgroundColor={cor}
