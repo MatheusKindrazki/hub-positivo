@@ -15,6 +15,7 @@ import documentTitle from '@hub/common/utils/documentTitle'
 
 import { debounce } from 'ts-debounce'
 
+import history from '~/services/history'
 import { authProductRequest } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
 import { setLevel } from '~/store/modules/levelEducation/actions'
@@ -75,13 +76,19 @@ const Home: React.FC = () => {
 
   const handlePushProduct = useCallback(
     data => {
+      const slug = createSlug(data.nome)
+
       dispatch(
         authProductRequest({
-          product: createSlug(data.nome),
+          product: slug,
           url: data.url,
           integration_type: data.integration_type
         })
       )
+
+      setTimeout(() => {
+        history.push(`/dashboard/${slug}`)
+      }, 1000)
     },
     [dispatch]
   )
