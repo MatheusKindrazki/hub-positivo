@@ -32,6 +32,8 @@ const Header: React.FC<HeaderProps> = ({ handlePush, cards }) => {
       justifyContent="space-between"
       borderBottom="1px solid #D9D9D9"
       position="fixed"
+      top="0"
+      left="0"
       zIndex="99999"
     >
       <Box
