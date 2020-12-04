@@ -5,12 +5,15 @@ export interface UserReducer {
   school?: {
     value: string
     label: string
+    integration_id?: string
     roles: string[]
   }
 }
 
 export interface User {
   name: string | null
+  integration_id?: string
+  username: string
   schools?: Schools[]
   email: string | null
 }
