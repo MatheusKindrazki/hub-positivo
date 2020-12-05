@@ -25,7 +25,8 @@ import createSlug from '~/utils/createSlug'
 import { mockAlunos, mockProfessores } from './mock'
 import { Container } from './styles'
 
-const enableSelect = ['professor', 'familia']
+// const enableSelect = ['Professor', 'Família']
+const enableSelect = ['Professor']
 
 const apiArvore = ['Gestão Escolar Sae+C', 'Árvore Livros']
 
@@ -39,7 +40,7 @@ const Home: React.FC = () => {
   const { user, avatar, school: useSchool } = useSelector(
     (state: Store.State) => state.user
   )
-  const { profile, name: nameProfile } = useSelector(
+  const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
   )
 
@@ -54,15 +55,17 @@ const Home: React.FC = () => {
 
       dispatch(loading(true))
 
-      if ((profile as string).includes('professor')) {
+      if ((nameProfile as string).includes('Professor')) {
         dispatch(setLevel(data.label))
+
+        dispatch(productRequest({}))
       }
 
       setTimeout(() => {
         dispatch(loading(false))
       }, 2000)
     },
-    [dispatch, profile]
+    [dispatch, nameProfile]
   )
 
   const handleSearch = debounce(search => {
@@ -175,26 +178,26 @@ const Home: React.FC = () => {
             maxW={['100%', '100%', '100%', '308px']}
             mt={['5', '5', '5', '0']}
           >
-            {enableSelect.includes(profile as string) && (
+            {enableSelect.includes(nameProfile as string) && (
               <Select
-                key={profile as string}
+                key={nameProfile as string}
                 variant="blue-transparent"
                 value={dataTemp}
                 onChange={e => {
                   handleSelectProfile(e)
                 }}
                 defaultValue={
-                  (profile as string).includes('professor')
+                  (nameProfile as string).includes('Professor')
                     ? mockProfessores[0]
                     : mockAlunos[0]
                 }
                 placeholder={
-                  (profile as string).includes('professor')
+                  (nameProfile as string).includes('Professor')
                     ? 'Nível de ensino'
                     : 'Selecione o Familiar'
                 }
                 options={
-                  (profile as string).includes('professor')
+                  (nameProfile as string).includes('Professor')
                     ? mockProfessores
                     : mockAlunos
                 }
