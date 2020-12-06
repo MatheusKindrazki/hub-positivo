@@ -13,6 +13,7 @@ import {
 import SearchInput from '@hub/common/components/Search'
 import documentTitle from '@hub/common/utils/documentTitle'
 
+import classNames from 'classnames'
 import { debounce } from 'ts-debounce'
 
 import { authProductRequest } from '~/store/modules/authProduct/actions'
@@ -218,12 +219,15 @@ const Home: React.FC = () => {
           flexDirection="column"
         >
           {filterCards &&
-            filterCards.map(card => (
+            filterCards.map((card, i) => (
               <Collapse
                 key={Math.random()}
                 cor={card.cor}
                 id={card.id}
                 nome={card.nome}
+                className={classNames({
+                  isLine: i !== 0
+                })}
               >
                 {card.solucoes?.map(item => (
                   <CardProduct
