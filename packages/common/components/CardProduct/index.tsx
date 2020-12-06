@@ -1,13 +1,6 @@
 import React from 'react'
 
-import {
-  Box,
-  Image,
-  Heading,
-  Text,
-  Badge,
-  Tooltip
-} from '@hub/common/components'
+import { Box, Image, Heading, Text, Badge } from '@hub/common/components'
 
 import classNames from 'classnames'
 
@@ -103,11 +96,9 @@ const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
           <Heading as="b" fontWeight="normal" fontSize="1.125rem" color="black">
             {nome}
           </Heading>
-          <Tooltip hasArrow label={descricao} openDelay={500} w="21rem">
-            <Text mt="2" color="gray.500" noOfLines={2} fontSize="0.875rem">
-              {descricao}
-            </Text>
-          </Tooltip>
+          <Text mt="2" color="gray.500" noOfLines={2} fontSize="0.875rem">
+            {descricao}
+          </Text>
         </Box>
       </Box>
     </Container>
