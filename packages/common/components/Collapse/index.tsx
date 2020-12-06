@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Box, Heading, SimpleGrid, useDisclosure } from '@chakra-ui/react'
+import classNames from 'classnames'
 import { CaretDown } from 'phosphor-react'
 import { Collapse as CollapseUI } from 'react-collapse'
 
@@ -11,19 +12,26 @@ interface CollapseProps {
   nome: string
   cor: string
   gridColumns?: number | number[]
+  className?: string
 }
 
 const Collapse: React.FC<CollapseProps> = ({
   id,
   nome,
   children,
-  gridColumns
+  gridColumns,
+  className
 }) => {
   const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true })
 
   return (
     <>
-      <Box mt="8" key={id} width="100%" className="collapse-home">
+      <Box
+        mt="8"
+        key={id}
+        width="100%"
+        className={classNames(className, { 'collapse-home': true })}
+      >
         <Box
           width="100%"
           style={{ cursor: 'pointer' }}
