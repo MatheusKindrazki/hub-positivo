@@ -12,7 +12,7 @@ import { store } from '~/store'
 import { loading } from '../global/actions'
 import { setFrameURL } from '../products/actions'
 import { Actions, authProductFailure, authProductSuccess } from './actions'
-import { StudosSolutions } from './caseJwt'
+import { StudosSolutions, EemSolutions } from './caseJwt'
 import { AuthRequest } from './types'
 
 type AuthPayload = Payload<AuthRequest>
@@ -25,7 +25,10 @@ export function* authProduct({ payload }: AuthPayload): Generator {
 
   yield put(loading(true))
 
-  if (StudosSolutions.includes(payload.product)) {
+  if (
+    StudosSolutions.includes(payload.product) ||
+    EemSolutions.includes(payload.product)
+  ) {
     const sendInfo = {
       ...payload,
       grant_type: 'change_school',
