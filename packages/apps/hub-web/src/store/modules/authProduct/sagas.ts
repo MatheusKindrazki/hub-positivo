@@ -70,7 +70,7 @@ export function* authProduct({ payload }: AuthPayload): Generator {
 
       history.push(`/dashboard/${payload.product}`)
     } else {
-      window.location.assign(`${payload.url}`)
+      window.location.assign(`${newUrl}`)
     }
 
     yield put(loading(false))
