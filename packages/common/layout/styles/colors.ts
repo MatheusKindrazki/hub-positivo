@@ -7,7 +7,7 @@ export const profileBaseColor = {
   editor: '#1565C0',
   colaborador: '#1565C0',
   gestor: '#880E4F',
-  administrador: '#AD1457',
+  administrador: '#880E4F',
   coordenador: '#C2185B',
   professor: '#1565C0',
   aluno: '#2196F3',

@@ -46,7 +46,7 @@ const Welcome: React.FC<WelcomeProps> = ({
           <>{name || 'Usuário'}</>
         ) : (
           <>
-            Olá {name?.split(' ')[0] || 'Usuário'}, 👋
+            Olá, {name?.split(' ')[0] || 'Usuário'} 👋
             <Heading
               fontSize={['sm', 'md']}
               fontWeight="normal"
