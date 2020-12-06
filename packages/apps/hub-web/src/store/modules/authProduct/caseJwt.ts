@@ -6,4 +6,7 @@ const StudosSolutions = [
   'redacao',
   'meus-treinos'
 ]
-export { StudosSolutions }
+
+const EemSolutions = ['']
+
+export { StudosSolutions, EemSolutions }
