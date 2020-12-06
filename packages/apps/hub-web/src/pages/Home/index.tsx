@@ -28,7 +28,7 @@ import { Container } from './styles'
 // const enableSelect = ['Professor', 'Família']
 const enableSelect = ['Professor']
 
-const apiArvore = ['Gestão Escolar Sae+C', 'Árvore Livros']
+const apiArvore = ['SAE + C', 'Árvore Livros']
 
 const Home: React.FC = () => {
   documentTitle('Home')
