@@ -36,7 +36,8 @@ const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
   return (
     <Container
       className={classNames({
-        disabled: !link
+        disabled: !link,
+        isHover: true
       })}
       background="white"
       rounded="md"
@@ -44,7 +45,11 @@ const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
       d="flex"
       height="8.5rem"
       minW={['10.25rem', '10.25rem', '19.25rem']}
+      onClick={() => handlePush(link)}
       boxShadow="sm"
+      _hover={{
+        boxShadow: 'dark-lg'
+      }}
       style={{ position: 'relative' }}
     >
       <Box
@@ -67,10 +72,10 @@ const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
       <Box
         data-testid="button"
         as="button"
+        onClick={() => handlePush(link)}
         p={['4', '4', '1.1rem']}
         outline="none"
         boxShadow="none"
-        onClick={() => handlePush(link)}
       >
         {card?.notificacao && (
           <Badge
