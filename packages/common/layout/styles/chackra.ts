@@ -23,7 +23,7 @@ const customTheme: DefaultTheme = {
     ...theme.shadows,
     sm: '0px 1px 2px rgba(0, 0, 0, 0.15)',
     md: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-    'dark-lg': '0px 3px 4px rgba(0, 0, 0, 0.3)'
+    'dark-lg': 'rgba(0, 0, 20, 0.2) 0px 5px 30px;'
   },
   radii: {
     ...theme.radii,
