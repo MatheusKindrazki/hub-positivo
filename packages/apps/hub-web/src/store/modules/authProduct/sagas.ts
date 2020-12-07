@@ -12,7 +12,7 @@ import { store } from '~/store'
 import { loading } from '../global/actions'
 import { setFrameURL } from '../products/actions'
 import { Actions, authProductFailure, authProductSuccess } from './actions'
-import { StudosSolutions, EemSolutions } from './caseJwt'
+import { StudosSolutions, EemSolutions, setIframe } from './caseJwt'
 import { AuthRequest } from './types'
 
 type AuthPayload = Payload<AuthRequest>
@@ -27,7 +27,8 @@ export function* authProduct({ payload }: AuthPayload): Generator {
 
   if (
     StudosSolutions.includes(payload.product) ||
-    EemSolutions.includes(payload.product)
+    EemSolutions.includes(payload.product) ||
+    setIframe.includes(payload.product)
   ) {
     const sendInfo = {
       ...payload,
