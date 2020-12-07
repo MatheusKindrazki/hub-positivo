@@ -66,13 +66,9 @@ export function* authProduct({ payload }: AuthPayload): Generator {
       dataJWT?.access_token || 'invalid-token'
     )
 
-    if (!EemSolutions.includes(payload.product)) {
-      yield put(setFrameURL({ url: newUrl }))
+    yield put(setFrameURL({ url: newUrl }))
 
-      history.push(`/dashboard/${payload.product}`)
-    } else {
-      window.location.assign(`${newUrl}`)
-    }
+    history.push(`/dashboard/${payload.product}`)
 
     yield put(loading(false))
 

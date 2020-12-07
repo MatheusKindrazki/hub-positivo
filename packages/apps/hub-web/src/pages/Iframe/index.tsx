@@ -16,6 +16,7 @@ const Iframe: React.FC = () => {
   return (
     <iframe
       src={frameUrl}
+      referrerPolicy="no-referrer-when-downgrade"
       style={{
         marginTop: 72,
         width: '100%',
