@@ -29,13 +29,7 @@ import { Container } from './styles'
 // const enableSelect = ['Professor', 'Família']
 const enableSelect = ['Professor']
 
-const notLogged = [
-  'SAE + C',
-  'Árvore Livros',
-  'Ensino Religioso',
-  'Playlist Livro de Música',
-  'EAD'
-]
+const notLogged = ['SAE + C', 'Árvore Livros']
 
 const Home: React.FC = () => {
   documentTitle('Home')

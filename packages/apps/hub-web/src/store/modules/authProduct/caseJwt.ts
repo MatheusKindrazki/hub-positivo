@@ -21,4 +21,6 @@ const EemSolutions = [
   'cadastrar-usuarios'
 ]
 
-export { StudosSolutions, EemSolutions }
+const setIframe = ['ensino-religioso', 'playlist-livro-de-musica', 'ead']
+
+export { StudosSolutions, EemSolutions, setIframe }
