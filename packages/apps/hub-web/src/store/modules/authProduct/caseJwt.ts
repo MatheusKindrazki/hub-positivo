@@ -4,6 +4,7 @@ const StudosSolutions = [
   'relatorios',
   'simulados',
   'redacao',
+  'tarefas',
   'meus-treinos'
 ]
 

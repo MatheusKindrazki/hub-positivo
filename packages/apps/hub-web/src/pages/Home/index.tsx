@@ -84,7 +84,7 @@ const Home: React.FC = () => {
       const slug = createSlug(data.nome)
 
       if (apiArvore.includes(data.nome)) {
-        window.location.assign(data.url)
+        window.open(data.url, '_blank')
 
         return
       }

@@ -16,7 +16,6 @@ const Iframe: React.FC = () => {
   return (
     <iframe
       src={frameUrl}
-      frameBorder="0"
       style={{
         marginTop: 72,
         width: '100%',
