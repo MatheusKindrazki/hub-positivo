@@ -29,7 +29,13 @@ import { Container } from './styles'
 // const enableSelect = ['Professor', 'Família']
 const enableSelect = ['Professor']
 
-const apiArvore = ['SAE + C', 'Árvore Livros']
+const notLogged = [
+  'SAE + C',
+  'Árvore Livros',
+  'Ensino Religioso',
+  'Playlist Livro de Música',
+  'EAD'
+]
 
 const Home: React.FC = () => {
   documentTitle('Home')
@@ -83,7 +89,7 @@ const Home: React.FC = () => {
     data => {
       const slug = createSlug(data.nome)
 
-      if (apiArvore.includes(data.nome)) {
+      if (notLogged.includes(data.nome)) {
         window.open(data.url, '_blank')
 
         return
