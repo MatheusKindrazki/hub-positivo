@@ -9,8 +9,8 @@ const customTheme: DefaultTheme = {
     ...theme.fontSizes
   },
   fonts: {
-    body: 'Nunito, system-ui, sans-serif',
-    heading: 'Nunito, system-ui, sans-serif',
+    body: 'TTNorms, system-ui, sans-serif',
+    heading: 'TTNorms, system-ui, sans-serif',
     mono: 'Menlo, monospace'
   },
   fontWeights: {
