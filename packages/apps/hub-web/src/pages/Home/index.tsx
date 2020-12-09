@@ -155,6 +155,10 @@ const Home: React.FC = () => {
       <Box
         py="5"
         px="4"
+        pb={{
+          sm: '0',
+          md: '4'
+        }}
         backgroundColor="blue.500"
         className="background-animate"
       >
@@ -164,7 +168,7 @@ const Home: React.FC = () => {
           margin="0 auto"
           d="flex"
           justifyContent="space-between"
-          alignItems="center"
+          alignItems={['center', 'flex-start', 'flex-start', 'center']}
           flexDirection={['column', 'column', 'column', 'row']}
         >
           <Welcome
