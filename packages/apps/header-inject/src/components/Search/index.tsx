@@ -38,7 +38,7 @@ const Search: React.FC<InputProps> = ({ onChange, ...rest }) => {
           {...rest}
           border="none!important"
           height="3rem"
-          placeholder="Buscar produto"
+          placeholder="Buscar soluções"
           borderRadius="none"
           fontSize="sm"
           borderBottom="1px solid #9e9e9e!important"
