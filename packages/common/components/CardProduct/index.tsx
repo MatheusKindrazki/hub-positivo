@@ -37,7 +37,7 @@ const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
       overflow="hidden"
       d="flex"
       height="8.5rem"
-      minW={['10.25rem', '10.25rem', '19.25rem']}
+      minW={['7.25rem', '10.25rem', '10.25rem', '19.25rem']}
       onClick={() => handlePush(link)}
       boxShadow="sm"
       _hover={{
