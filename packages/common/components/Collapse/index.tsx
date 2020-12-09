@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
-import { Box, Heading, SimpleGrid, useDisclosure } from '@chakra-ui/react'
+import {
+  Box,
+  Heading,
+  SimpleGrid,
+  useDisclosure,
+  useMediaQuery
+} from '@chakra-ui/react'
 import classNames from 'classnames'
 import { CaretDown } from 'phosphor-react'
 import { Collapse as CollapseUI } from 'react-collapse'
@@ -13,6 +19,7 @@ interface CollapseProps {
   cor: string
   gridColumns?: number | number[]
   className?: string
+  grid?: boolean
 }
 
 const Collapse: React.FC<CollapseProps> = ({
@@ -20,9 +27,16 @@ const Collapse: React.FC<CollapseProps> = ({
   nome,
   children,
   gridColumns,
+  grid = true,
   className
 }) => {
   const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true })
+
+  const [isLargerThan1280] = useMediaQuery('(min-width: 1300px)')
+
+  const responsiveGrid = useMemo(() => {
+    return isLargerThan1280 ? 4 : 3
+  }, [isLargerThan1280])
 
   return (
     <>
@@ -61,13 +75,17 @@ const Collapse: React.FC<CollapseProps> = ({
           />
         </Box>
         <CollapseUI isOpened={isOpen} style={{ padding: '10px 0' }}>
-          <SimpleGrid
-            columns={gridColumns || [1, 1, 2, 3, 4]}
-            spacing={4}
-            mt="4"
-          >
-            {children}
-          </SimpleGrid>
+          {grid ? (
+            <SimpleGrid
+              columns={gridColumns || [1, 2, 2, responsiveGrid]}
+              spacing={4}
+              mt="4"
+            >
+              {children}
+            </SimpleGrid>
+          ) : (
+            <>{children}</>
+          )}
         </CollapseUI>
       </Box>
       <CollapseGlobal />
