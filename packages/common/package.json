@@ -1,0 +1,47 @@
+{
+  "name": "@hub/common",
+  "version": "1.0.0",
+  "description": "",
+  "author": "MatheusKindrazki",
+  "license": "MIT",
+  "repository": "PSD/@hub/common",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.tsx",
+  "engines": {
+    "node": ">=10"
+  },
+  "peerDependencies": {
+    "@types/classnames": "^2.2.11",
+    "@types/styled-components": "^5.1.4",
+    "classnames": "^2.2.6",
+    "react": "^16.0.0",
+    "styled-components": "^5.2.1"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^1.0.1",
+    "@emotion/react": "^11.1.1",
+    "@emotion/styled": "^11.0.0",
+    "@types/react-collapse": "^5.0.0",
+    "@unform/core": "^2.1.3",
+    "@unform/web": "^2.1.3",
+    "framer-motion": "^2.9.4",
+    "phosphor-react": "^1.1.1",
+    "polished": "^4.0.4",
+    "react": "^17.0.1",
+    "react-collapse": "^5.1.0",
+    "react-dom": "^17.0.1",
+    "react-select": "^3.1.1",
+    "react-spinners": "^0.9.0"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.11",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-select": "^3.0.26"
+  },
+  "files": [
+    "dist"
+  ]
+}
