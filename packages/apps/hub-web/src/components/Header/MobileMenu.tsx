@@ -1,6 +1,6 @@
-import React, { useCallback, useImperativeHandle } from 'react'
+import React, { useCallback, useImperativeHandle, useMemo } from 'react'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Box, Button, Select, Welcome } from '@hub/common/components'
 import Drawer from '@hub/common/components/Drawer'
@@ -8,6 +8,11 @@ import Menu from '@hub/common/components/Menu'
 
 import history from '~/services/history'
 import { signOut } from '~/store/modules/auth/actions'
+import { loading } from '~/store/modules/global/actions'
+import { profiles, setProfile } from '~/store/modules/profile/actions'
+import { Profiles } from '~/store/modules/profile/types'
+import { setSchool } from '~/store/modules/user/actions'
+import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
 
 export interface RefMenuProps {
   openMenu: () => void
@@ -19,7 +24,17 @@ const { useDisclosure, DrawerContainer, DrawerContent } = Drawer
 const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
   const dispatch = useDispatch()
 
+  const { user, school, avatar } = useSelector(
+    (state: Store.State) => state.user
+  )
+
   const { isOpen, onClose, onOpen } = useDisclosure()
+
+  const profile = useSelector((state: Store.State) => state.profile)
+
+  const renderSchools = useMemo(() => prepareSchool(user?.schools), [user])
+
+  const renderProfiles = useMemo(() => prepareRoles(school?.roles), [school])
 
   const openMenu = (): void => {
     if (!isOpen) {
@@ -34,6 +49,36 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
       openMenu
     }
   })
+
+  const handleSelected = useCallback(
+    data => {
+      dispatch(setSchool(data))
+    },
+    [dispatch]
+  )
+
+  const handleProfileSelect = useCallback(
+    data => {
+      dispatch(loading(true))
+
+      onClose()
+
+      setTimeout(() => {
+        dispatch(loading(false))
+        dispatch(
+          setProfile({
+            guid: data.id,
+            name: data.title,
+            profile: data.profile,
+            colorProfile: data.colorProfile
+          })
+        )
+      }, 1500)
+
+      dispatch(profiles((renderProfiles as unknown) as Profiles))
+    },
+    [dispatch, onClose, renderProfiles]
+  )
 
   const handleClosed = useCallback(() => {
     dispatch(signOut())
@@ -54,9 +99,10 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
           <Box px="4" py="2" w="100%" h="auto">
             <Welcome
               option="name"
-              name="Matheus Kindrazki"
+              name={user?.name || ''}
               fontSize="1.125rem"
               size="40px"
+              avatar={avatar || ''}
               fontWeight="bold"
             />
           </Box>
@@ -66,16 +112,9 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
               variant="normal"
               placeholder="Selecione"
               className="height-md"
-              defaultValue={{
-                value: 'teste',
-                label: 'Escola Positivo Soluções didáticas'
-              }}
-              options={[
-                {
-                  label: 'Escola Positivo Soluções didáticas',
-                  value: 'teste'
-                }
-              ]}
+              value={school}
+              options={renderSchools}
+              onChange={handleSelected}
             />
           </Box>
           <Box px="4" pb="3">
@@ -83,16 +122,16 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
               variant="normal"
               placeholder="Selecione"
               className="height-md"
-              defaultValue={{
-                label: 'Professor',
-                value: 'prof'
+              options={renderProfiles.map(item => ({
+                label: item.title,
+                value: (item.id as unknown) as string,
+                ...item
+              }))}
+              value={{
+                label: profile.name as string,
+                value: profile.guid as string
               }}
-              options={[
-                {
-                  label: 'Professor',
-                  value: 'prof'
-                }
-              ]}
+              onChange={handleProfileSelect}
             />
           </Box>
           <MenuDivider />

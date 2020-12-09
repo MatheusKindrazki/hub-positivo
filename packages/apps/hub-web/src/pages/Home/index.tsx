@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   Box,
   Heading,
-  Select,
   Welcome,
   Collapse,
   CardProduct
@@ -18,23 +17,17 @@ import { debounce } from 'ts-debounce'
 
 import { authProductRequest } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
-import { setLevel } from '~/store/modules/levelEducation/actions'
 import { productRequest } from '~/store/modules/products/actions'
 import { CardProduct as CardProductProps } from '~/store/modules/products/types'
 import createSlug from '~/utils/createSlug'
 
-import { mockAlunos, mockProfessores } from './mock'
 import { Container } from './styles'
-
-// const enableSelect = ['Professor', 'Família']
-const enableSelect = ['Professor']
 
 const notLogged = ['SAE + C', 'Árvore Livros']
 
 const Home: React.FC = () => {
   documentTitle('Home')
 
-  const [dataTemp, setDataTemp] = useState()
   const [searchValue, setSearchValue] = useState('')
   const dispatch = useDispatch()
 
@@ -47,26 +40,6 @@ const Home: React.FC = () => {
 
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
-  )
-
-  const handleSelectProfile = useCallback(
-    data => {
-      setDataTemp(data)
-      if (!data.profile) return false
-
-      dispatch(loading(true))
-
-      if ((nameProfile as string).includes('Professor')) {
-        dispatch(setLevel(data.label))
-
-        dispatch(productRequest({}))
-      }
-
-      setTimeout(() => {
-        dispatch(loading(false))
-      }, 2000)
-    },
-    [dispatch, nameProfile]
   )
 
   const handleSearch = debounce(search => {
@@ -183,31 +156,7 @@ const Home: React.FC = () => {
             maxW={['100%', '100%', '100%', '308px']}
             mt={['5', '5', '5', '0']}
           >
-            {enableSelect.includes(nameProfile as string) && (
-              <Select
-                key={nameProfile as string}
-                variant="blue-transparent"
-                value={dataTemp}
-                onChange={e => {
-                  handleSelectProfile(e)
-                }}
-                defaultValue={
-                  (nameProfile as string).includes('Professor')
-                    ? mockProfessores[0]
-                    : mockAlunos[0]
-                }
-                placeholder={
-                  (nameProfile as string).includes('Professor')
-                    ? 'Nível de ensino'
-                    : 'Selecione o Familiar'
-                }
-                options={
-                  (nameProfile as string).includes('Professor')
-                    ? mockProfessores
-                    : mockAlunos
-                }
-              />
-            )}
+            {/* o Silêncio vale ouro */}
           </Box>
         </Box>
       </Box>

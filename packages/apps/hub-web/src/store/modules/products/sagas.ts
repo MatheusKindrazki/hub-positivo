@@ -67,7 +67,7 @@ export function* getProducts(): Generator {
             link: dataLivros?.redirects_to || undefined,
             ativo: !!dataLivros?.redirects_to
           }
-        } else if (s.nome === 'Gestão Escolar Sae+C') {
+        } else if (s.nome === 'SAE + C') {
           return {
             ...s,
             link: dataMHUND?.redirects_to || undefined,
