@@ -77,7 +77,7 @@ const Collapse: React.FC<CollapseProps> = ({
         <CollapseUI isOpened={isOpen} style={{ padding: '10px 0' }}>
           {grid ? (
             <SimpleGrid
-              columns={gridColumns || [1, 2, 2, responsiveGrid]}
+              columns={gridColumns || [1, 1, 2, responsiveGrid]}
               spacing={4}
               mt="4"
             >
