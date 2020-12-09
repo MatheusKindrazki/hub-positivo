@@ -157,7 +157,7 @@ const Home: React.FC = () => {
         px="4"
         pb={{
           sm: '0',
-          md: '4'
+          md: '5'
         }}
         backgroundColor="blue.500"
         className="background-animate"
