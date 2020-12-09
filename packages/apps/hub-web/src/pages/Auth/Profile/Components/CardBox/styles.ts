@@ -59,7 +59,7 @@ export const Container = styled.button`
 
   p {
     margin: 0px !important;
-    font-family: Nunito;
+    font-family: 'TTNorms';
     font-style: normal;
     font-weight: bold !important;
     font-size: 18px;
