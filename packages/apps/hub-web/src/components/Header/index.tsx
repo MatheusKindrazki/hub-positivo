@@ -1,10 +1,11 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useMemo, useRef } from 'react'
 
 import { Box, Button } from '@hub/common/components'
 import { List } from '@hub/common/components/Icons'
 import { useTheme } from '@hub/common/layout'
 
 import { useMediaQuery } from '@chakra-ui/react'
+import Headroom from 'react-headroom'
 
 import Logo from '~/components/LogoOn'
 
@@ -39,8 +40,12 @@ const Header: React.FC = () => {
     menuRef.current?.openMenu()
   }, [])
 
+  const CustomHeader = useMemo(() => {
+    return isDesktop ? React.Fragment : Headroom
+  }, [isDesktop])
+
   return (
-    <>
+    <CustomHeader>
       <Box
         p="4"
         width="100%"
@@ -67,7 +72,7 @@ const Header: React.FC = () => {
         {!isDesktop && <MobileMenu ref={menuRef} />}
       </Box>
       {!isDesktop && <Box height="72px" />}
-    </>
+    </CustomHeader>
   )
 }
 

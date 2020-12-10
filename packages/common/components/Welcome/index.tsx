@@ -25,7 +25,7 @@ const Welcome: React.FC<WelcomeProps> = ({
   profile
 }) => {
   return (
-    <Box display="flex" alignItems="center">
+    <Box display="flex" alignItems="center" className="hub-welcome">
       <Avatar
         width={size || '3.5rem'}
         height={size || '3.5rem'}

@@ -13,7 +13,7 @@ const BarLoader: React.FC<BarProps> = ({ loading, ...rest }) => {
     <Loading
       color={colors.blue[500]}
       width="100%"
-      height="5px"
+      height="8px"
       loading={loading}
       css={`
         border-radius: 8px;
