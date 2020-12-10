@@ -15,20 +15,17 @@ import documentTitle from '@hub/common/utils/documentTitle'
 import classNames from 'classnames'
 import { debounce } from 'ts-debounce'
 
-import { authProductRequest } from '~/store/modules/authProduct/actions'
+import { preAuth } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
 import { productRequest } from '~/store/modules/products/actions'
-import { CardProduct as CardProductProps } from '~/store/modules/products/types'
 import createSlug from '~/utils/createSlug'
 
 import { Container } from './styles'
 
-const notLogged = ['SAE + C', 'Árvore Livros']
-
 const Home: React.FC = () => {
   documentTitle('Home')
 
-  const [searchValue, setSearchValue] = useState('')
+  const [, setSearchValue] = useState('')
   const dispatch = useDispatch()
 
   const { user, avatar, school: useSchool } = useSelector(
@@ -56,17 +53,11 @@ const Home: React.FC = () => {
     data => {
       const slug = createSlug(data.nome)
 
-      if (notLogged.includes(data.nome)) {
-        window.open(data.url, '_blank')
-
-        return
-      }
-
       dispatch(
-        authProductRequest({
+        preAuth({
           product: slug,
           url: data.url,
-          integration_type: data.integration_type
+          tipoRenderizacao: data.tipoRenderizacao
         })
       )
     },
@@ -77,51 +68,7 @@ const Home: React.FC = () => {
     dispatch(productRequest({}))
   }, [dispatch])
 
-  const filterCards = useMemo(() => {
-    if (!searchValue) {
-      return cards?.map(c => {
-        return {
-          ...c,
-          solucoes: c.solucoes.filter(s => s.ativo)
-        }
-      })
-    }
-
-    const newcards = [] as CardProductProps[]
-
-    cards?.forEach(i => {
-      i.solucoes?.forEach(card => {
-        if (card.nome.toLowerCase().includes(searchValue.toLowerCase())) {
-          if (!newcards.length) {
-            newcards.push({
-              id: i.id,
-              nome: i.nome,
-              cor: i.cor,
-              solucoes: i.solucoes
-            })
-          } else {
-            const index = newcards.findIndex(newCard => newCard.id === i.id)
-
-            const cardsNew = newcards[index]?.solucoes || []
-
-            newcards[index] = {
-              id: i.id,
-              cor: i.cor,
-              nome: i.nome,
-              solucoes: [...cardsNew, card]
-            }
-          }
-        }
-      })
-    })
-
-    return newcards?.map(c => {
-      return {
-        ...c,
-        solucoes: c.solucoes.filter(s => s.ativo)
-      }
-    })
-  }, [cards, searchValue])
+  const filterCards = useMemo(() => cards, [cards])
 
   return (
     <>
@@ -189,7 +136,7 @@ const Home: React.FC = () => {
                       handlePushProduct({
                         url,
                         nome: item.nome,
-                        integration_type: item.integration_type
+                        tipoRenderizacao: item.tipoRenderizacao
                       })
                     }
                     cor={card.cor}

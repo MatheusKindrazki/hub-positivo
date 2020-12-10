@@ -80,38 +80,14 @@ export function* getProducts(): Generator {
 
   yield put(loading(false))
 
-  if (process.env.REACT_APP_INTEGRATION === 'enabled') {
-    const mocked = {
-      id: '5dc527c2-60cb-4946-9f04-0469949ae947',
-      nome: 'Páprica Integração',
-      descricao: 'Integração com as soluções',
-      arquivo:
-        'https://sthubdigitalassetsdev001.blob.core.windows.net/imagenscards/19b493149c9a49a58ef6f487c09c3eb1%23simulados.svg',
-      link: 'http://positivo.paprica.ag/auth?guid=',
-      integration_type: 'wordpress',
-      ativo: true
-    }
-    const dataMock = alterData?.map(i => {
-      if (i.nome === 'Avaliação') {
-        return {
-          ...i,
-          solucoes: [mocked, ...i.solucoes]
-        }
-      }
-
-      return i
-    })
-
-    return yield yield put(
-      productSuccess({
-        data: dataMock as CardProduct[]
-      })
-    )
-  }
-
   yield put(
     productSuccess({
-      data: alterData
+      data: alterData?.map(c => {
+        return {
+          ...c,
+          solucoes: c.solucoes.filter(s => s.ativo)
+        }
+      })
     })
   )
 }

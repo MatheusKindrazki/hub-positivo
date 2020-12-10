@@ -1,12 +1,10 @@
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
-import { apiAuth } from '@hub/api'
-
 import { ApiResponse } from 'apisauce'
 import { decode } from 'jsonwebtoken'
-import qs from 'qs'
 import { toast } from 'react-toastify'
 
+import { EEMConnectPost } from '~/services/eemConnect'
 import history from '~/services/history'
 
 import { Actions, signInFailure, signInSuccess, signOut } from './actions'
@@ -15,21 +13,14 @@ import { SignInRequest, AuthApi } from './types'
 type SignInPayload = Payload<SignInRequest>
 
 export function* signIn({ payload }: SignInPayload): Generator {
-  const sendInfo = {
-    ...payload,
-    grant_type: process.env.REACT_APP_API_AUTH_TYPE,
-    client_id: process.env.REACT_APP_API_AUTH_CLIENT_ID,
-    client_secret: process.env.REACT_APP_API_AUTH_SECRET_ID,
-    scope: process.env.REACT_APP_API_AUTH_SCOPE
-  }
-
   const response = yield call(() => {
-    apiAuth.setHeaders({
-      'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-      accept: '*/*'
+    return EEMConnectPost({
+      endpoint: 'connect/token',
+      data: {
+        ...payload,
+        grant_type: 'password'
+      }
     })
-
-    return apiAuth.post('connect/token', qs.stringify(sendInfo))
   })
 
   const { data, ok } = response as ApiResponse<AuthApi>
