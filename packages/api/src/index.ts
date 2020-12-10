@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL
 })
 
-const apiAuth = axios.create({
+const apiEEM = axios.create({
   baseURL: process.env.REACT_APP_API_AUTH_URL
 })
 
@@ -20,6 +20,6 @@ const apiMHUND = axios.create({
   baseURL: 'https://appsv-saedigital-dev-001.azurewebsites.net/api/mhund'
 })
 
-export { apiAuth, apiAuthProduct, apiLivro, apiMHUND }
+export { apiEEM, apiAuthProduct, apiLivro, apiMHUND }
 
 export default api
