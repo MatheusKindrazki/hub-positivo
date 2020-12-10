@@ -93,7 +93,7 @@ const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
           h="100%"
           pr="1rem"
         >
-          <Heading as="b" fontWeight="500" fontSize="1.125rem" color="black">
+          <Heading as="b" fontWeight="normal" fontSize="1.125rem" color="black">
             {nome}
           </Heading>
           <Text mt="2" color="gray.500" noOfLines={2} fontSize="1rem">
