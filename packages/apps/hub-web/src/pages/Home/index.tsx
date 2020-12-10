@@ -9,6 +9,7 @@ import {
   Collapse,
   CardProduct
 } from '@hub/common/components'
+import { Tour } from '@hub/common/components'
 import SearchInput from '@hub/common/components/Search'
 import documentTitle from '@hub/common/utils/documentTitle'
 
