@@ -25,7 +25,7 @@ const Search: React.FC<InputProps> = ({ onChange, ...rest }) => {
           {...rest}
           borderColor="#C4C4C4!important"
           height="3rem"
-          placeholder="Buscar produto"
+          placeholder="Buscar soluções"
           borderRadius="md"
           onChange={handleChange}
           _placeholder={{
