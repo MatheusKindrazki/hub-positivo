@@ -39,7 +39,7 @@ const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
       color: 'white',
       borderColor: colors.blue[700],
       zIndex: 99,
-      boxShadow: shadows.md
+      boxShadow: shadows['dark-lg']
     }),
     option: (provided, state) => ({
       ...provided,

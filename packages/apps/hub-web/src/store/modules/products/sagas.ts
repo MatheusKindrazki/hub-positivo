@@ -15,14 +15,17 @@ import { CardProduct } from './types'
 export function* getProducts(): Generator {
   yield put(loading(true))
 
+  const enableFilterLevel = ['PROFESSOR', 'ALUNO']
+
   const { guid } = store.getState().profile
   const { level } = store.getState().levelEducation
 
   const { user, school } = store.getState().user
-
   let query: string
 
-  if (level && guid === 'PROFESSOR') {
+  if (!user) return
+
+  if (level && enableFilterLevel.includes(guid)) {
     query = `${guid}?NivelEnsino=${level}`
   } else {
     query = `${guid}`
@@ -93,6 +96,7 @@ export function* getProducts(): Generator {
 }
 
 export default all([
+  takeLatest(Actions.REHYDRATE, getProducts),
   takeLatest(Actions.PRODUCT_REQUEST, getProducts),
   takeLatest(ProfileActions.SET_PROFILE, getProducts)
 ])

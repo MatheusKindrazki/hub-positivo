@@ -88,6 +88,7 @@ const DesktopMenu: React.FC = () => {
         >
           <Avatar
             width="2.5rem"
+            color="#3C3C3C"
             height="2.5rem"
             backgroundColor="gray.400"
             name={user?.name || ''}
@@ -98,7 +99,7 @@ const DesktopMenu: React.FC = () => {
           style={{ zIndex: 9 }}
           minW="300px"
           borderRadius="4px"
-          boxShadow="sm"
+          boxShadow="dark-lg"
           mr="2rem!important"
           top="8px!important"
         >

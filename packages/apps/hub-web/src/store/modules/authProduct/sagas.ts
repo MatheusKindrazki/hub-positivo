@@ -38,9 +38,11 @@ export function* productSorting({ payload }: AuthPayload): Generator {
 
   if (!auth && !profile && !user) return
 
-  const { tipoRenderizacao, url } = payload
+  const { tipoRenderizacao, url, product } = payload
 
   if (tipoRenderizacao === 'iframenoauth') {
+    history.push(`/solucao/${product}`)
+
     return yield put(setFrameURL({ url }))
   }
 
@@ -99,11 +101,9 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   }
   yield put(loading(false))
 
-  if (payload?.tipoRenderizacao === 'wordpress') {
-    window.location.assign(`${payload.url}${data}`)
-  } else {
-    window.location.assign(`${payload.url}/${data}`)
-  }
+  yield put(setFrameURL({ url: `${payload.url}/${data}` }))
+
+  history.push(`/solucao/${payload.product}`)
 
   return yield put(authProductSuccess())
 }
@@ -148,7 +148,7 @@ export function* authProductEEM({ payload }: AuthPayload): Generator {
 
   yield put(setFrameURL({ url: newUrl }))
 
-  history.push(`/dashboard/${payload.product}`)
+  history.push(`/solucao/${payload.product}`)
 
   yield put(loading(false))
 
