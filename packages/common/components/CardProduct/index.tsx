@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { Box, Image, Heading, Text, Badge } from '@hub/common/components'
+import createSlug from '@hub/common/utils/createSlug'
 
 import classNames from 'classnames'
 
@@ -21,10 +22,20 @@ interface CardProductProps {
   cor: string
   card: CardProps
   load?: boolean
+  category?: string
 }
 
-const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
+const CardProduct: React.FC<CardProductProps> = ({
+  card,
+  cor,
+  category,
+  handlePush
+}) => {
   const { nome, arquivo, descricao, link = '' } = card
+
+  const renderCardName = useMemo(() => {
+    return `${createSlug(category || 'hub')}-${createSlug(nome)}`
+  }, [nome, category])
 
   return (
     <Container
@@ -32,6 +43,7 @@ const CardProduct: React.FC<CardProductProps> = ({ card, cor, handlePush }) => {
         disabled: !link,
         isHover: true
       })}
+      id={`${renderCardName}`}
       background="white"
       rounded="md"
       overflow="hidden"

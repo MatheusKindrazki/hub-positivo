@@ -1,22 +1,68 @@
 import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
 
-import { apiAuthProduct, apiAuth } from '@hub/api'
+import { apiAuthProduct } from '@hub/api'
 
 import { ApiResponse } from 'apisauce'
-import qs from 'qs'
 import { toast } from 'react-toastify'
 
+import { EEMConnectPost } from '~/services/eemConnect'
 import history from '~/services/history'
 import { store } from '~/store'
 
 import { loading } from '../global/actions'
 import { setFrameURL } from '../products/actions'
-import { Actions, authProductFailure, authProductSuccess } from './actions'
-import { StudosSolutions, EemSolutions, setIframe } from './caseJwt'
+import {
+  Actions,
+  authProductFailure,
+  authProductSuccess,
+  authProductRequest
+} from './actions'
 import { AuthRequest } from './types'
 
+// tipos de renderização
+// | 'iframe'
+// | 'headerinject'
+// | 'targetblank'
+// | 'iframenoauth'
+// | 'wordpress'
+
 type AuthPayload = Payload<AuthRequest>
-export function* authProduct({ payload }: AuthPayload): Generator {
+
+/*
+  ?Triagem das soluções
+*/
+export function* productSorting({ payload }: AuthPayload): Generator {
+  const auth = store.getState().auth
+  const profile = store.getState().profile
+  const user = store.getState().user
+
+  if (!auth && !profile && !user) return
+
+  const { tipoRenderizacao, url, product } = payload
+
+  if (tipoRenderizacao === 'iframenoauth') {
+    history.push(`/solucao/${product}`)
+
+    return yield put(setFrameURL({ url }))
+  }
+
+  if (tipoRenderizacao === 'targetblank') {
+    window.open(url, '_blank')
+
+    return yield put(authProductSuccess())
+  }
+
+  if (tipoRenderizacao === 'iframe') {
+    return yield put(authProductRequest(payload, 'AUTH_PRODUCT_EEM_REQUEST'))
+  }
+
+  return yield put(authProductRequest(payload, 'AUTH_PRODUCT_GUID_REQUEST'))
+}
+
+/*
+  ! Autenticação utilizando API GUID
+*/
+export function* authProductGUID({ payload }: AuthPayload): Generator {
   const auth = store.getState().auth
   const profile = store.getState().profile
   const user = store.getState().user
@@ -24,56 +70,6 @@ export function* authProduct({ payload }: AuthPayload): Generator {
   if (!auth && !profile && !user) return
 
   yield put(loading(true))
-
-  if (
-    StudosSolutions.includes(payload.product) ||
-    EemSolutions.includes(payload.product) ||
-    setIframe.includes(payload.product)
-  ) {
-    const sendInfo = {
-      ...payload,
-      grant_type: 'change_school',
-      client_id: process.env.REACT_APP_API_AUTH_CLIENT_ID,
-      client_secret: process.env.REACT_APP_API_AUTH_SECRET_ID,
-      scope: process.env.REACT_APP_API_AUTH_SCOPE,
-      access_token: auth.token,
-      school_id: user.school?.value
-    }
-
-    const response = yield call(() => {
-      apiAuth.setHeaders({
-        'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-        accept: '*/*'
-      })
-
-      return apiAuth.post('connect/token', qs.stringify(sendInfo))
-    })
-
-    const { data: dataJWT, ok: okJWT } = response as ApiResponse<{
-      access_token: string
-    }>
-
-    if (!okJWT) {
-      toast.error('Sinto mundo, algo deu errado :(')
-
-      yield put(loading(false))
-
-      return yield put(authProductFailure())
-    }
-
-    const newUrl = payload.url.replace(
-      '{token}',
-      dataJWT?.access_token || 'invalid-token'
-    )
-
-    yield put(setFrameURL({ url: newUrl }))
-
-    history.push(`/dashboard/${payload.product}`)
-
-    yield put(loading(false))
-
-    return yield put(authProductSuccess())
-  }
 
   const authTheProduct = {
     product: payload.product,
@@ -105,12 +101,62 @@ export function* authProduct({ payload }: AuthPayload): Generator {
   }
   yield put(loading(false))
 
-  if (payload?.integration_type === 'wordpress') {
-    window.location.assign(`${payload.url}${data}`)
-  } else {
-    window.location.assign(`${payload.url}/${data}`)
-  }
+  yield put(setFrameURL({ url: `${payload.url}/${data}` }))
+
+  history.push(`/solucao/${payload.product}`)
+
   return yield put(authProductSuccess())
 }
 
-export default all([takeLatest(Actions.AUTH_PRODUCT_REQUEST, authProduct)])
+/*
+  ! Autenticação utilizando JWT EEM
+*/
+export function* authProductEEM({ payload }: AuthPayload): Generator {
+  const auth = store.getState().auth
+  const profile = store.getState().profile
+  const user = store.getState().user
+
+  if (!auth && !profile && !user) return
+
+  yield put(loading(true))
+
+  const response = yield call(() => {
+    return EEMConnectPost({
+      endpoint: 'connect/token',
+      data: {
+        access_token: auth?.token || '',
+        school_id: user.school?.value,
+        grant_type: 'change_school'
+      }
+    })
+  })
+
+  const { data, ok } = response as ApiResponse<{ access_token: string }>
+
+  if (!ok) {
+    toast.error('Sinto mundo, algo deu errado :(')
+
+    yield put(loading(false))
+
+    return yield put(authProductFailure())
+  }
+
+  const newUrl = payload.url.replace(
+    '{token}',
+    data?.access_token || 'invalid-token'
+  )
+
+  yield put(setFrameURL({ url: newUrl }))
+
+  history.push(`/solucao/${payload.product}`)
+
+  yield put(loading(false))
+
+  return yield put(authProductSuccess())
+}
+
+export default all([
+  takeLatest(Actions.AUTH_PRODUCT_REQUEST, productSorting),
+  takeLatest(Actions.AUTH_PRODUCT_GUID_REQUEST, authProductGUID),
+  takeLatest(Actions.AUTH_PRODUCT_EEM_REQUEST, authProductEEM)
+])

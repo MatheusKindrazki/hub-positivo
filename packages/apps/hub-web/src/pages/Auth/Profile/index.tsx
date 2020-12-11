@@ -54,7 +54,7 @@ const Profile: React.FC = () => {
         setProfile({
           guid: data.id,
           name: data.title,
-          profile: data.profile,
+          profile: data.icon,
           colorProfile: data.colorProfile
         })
       )
