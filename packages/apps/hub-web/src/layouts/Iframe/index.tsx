@@ -19,6 +19,8 @@ const Iframe: React.FC = ({ children }) => {
     data => {
       const slug = createSlug(data.nome)
 
+      console.log(data)
+
       dispatch(
         preAuth({
           product: slug,

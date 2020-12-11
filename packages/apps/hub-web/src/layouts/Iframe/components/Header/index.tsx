@@ -11,7 +11,7 @@ import HeaderDesktop from './HeaderDesktop'
 
 interface HandleProps {
   url: string
-  integration_type?: string
+  tipoRenderizacao: string
   nome: string
 }
 export interface HeaderProps {

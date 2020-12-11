@@ -4,15 +4,15 @@ interface FrameStorageProps {
 }
 
 function setFrame(data: FrameStorageProps): void {
-  localStorage.setItem(data.key, data.url)
+  sessionStorage.setItem(data.key, data.url)
 }
 
 function getFrame(key: string): string | null {
-  return localStorage.getItem(key)
+  return sessionStorage.getItem(key)
 }
 
 function removeAllFrames(): void {
-  localStorage.clear()
+  sessionStorage.clear()
 }
 
 export { setFrame, getFrame, removeAllFrames }
