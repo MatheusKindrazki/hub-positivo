@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import ReactTour from 'reactour'
 
+import GlobalStyle from './styles'
 export interface StepsTour {
   selector: string
   content: string
@@ -15,21 +16,30 @@ export interface TourProps {
 }
 
 const Tour: React.FC<TourProps> = ({ steps, open, onClosed }) => {
-  const [isTourOpen, setIsTourOpen] = useState(open)
   const handleClosed = useCallback(() => {
-    setIsTourOpen(false)
     onClosed()
   }, [onClosed])
 
+  useEffect(() => {
+    if (open) {
+      window.document.body.style.overflow = 'hidden'
+    } else {
+      window.document.body.style.overflow = 'auto'
+    }
+  }, [open])
+
   return (
-    <ReactTour
-      steps={steps}
-      isOpen={isTourOpen}
-      disableKeyboardNavigation={['esc']}
-      onRequestClose={handleClosed}
-      accentColor="red"
-      className="hub-tour"
-    />
+    <>
+      <ReactTour
+        steps={steps}
+        isOpen={open}
+        disableKeyboardNavigation={['esc']}
+        onRequestClose={handleClosed}
+        accentColor="#1565C0"
+        className="hub-tour"
+      />
+      <GlobalStyle />
+    </>
   )
 }
 

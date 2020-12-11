@@ -19,6 +19,7 @@ import { debounce } from 'ts-debounce'
 
 import { preAuth } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
+import { openTour as tourOpen } from '~/store/modules/tour/actions'
 
 import Filter from './components/Filter'
 import stepProf from './stepsProf'
@@ -40,6 +41,8 @@ const Home: React.FC = () => {
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
   )
+
+  const { open: openTour } = useSelector((state: Store.State) => state.tour)
 
   const handleSearch = debounce(search => {
     dispatch(loading(true))
@@ -66,11 +69,17 @@ const Home: React.FC = () => {
     [dispatch]
   )
 
+  const handleClosedTour = useCallback(() => {
+    dispatch(tourOpen(false))
+  }, [dispatch])
+
   const filterCards = useMemo(() => cards, [cards])
 
   return (
     <>
-      <Tour onClosed={() => console.log()} open={true} steps={stepProf} />
+      {!!filterCards?.length && nameProfile === 'Professor' ? (
+        <Tour onClosed={handleClosedTour} open={openTour} steps={stepProf} />
+      ) : null}
       <Box
         py="5"
         px="4"

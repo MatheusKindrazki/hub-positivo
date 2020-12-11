@@ -4,6 +4,7 @@ import { GlobalReducer } from './modules/global/types'
 import { EducationReducer } from './modules/levelEducation/types'
 import { ProductReducer } from './modules/products/types'
 import { ProfileReducer } from './modules/profile/types'
+import { TourReducer } from './modules/tour/types'
 import { UserReducer } from './modules/user/types'
 
 interface ApplicationState {
@@ -14,6 +15,7 @@ interface ApplicationState {
   user: UserReducer
   levelEducation: EducationReducer
   authProduct: AuthProductReducer
+  tour: TourReducer
 }
 declare global {
   declare namespace Store {
