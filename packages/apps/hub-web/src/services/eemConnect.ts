@@ -45,10 +45,9 @@ async function EEMConnectGET<T, A = any>(
 ): Promise<ApiResponse<A>> {
   const { data, endpoint, token } = attributes
 
-  apiEEMAuth.setHeaders({
-    'content-type': 'application/json',
-    Authorization: token,
-    accept: '*/*'
+  apiEEMInfos.setHeaders({
+    'Content-Type': 'application/json',
+    Authorization: token
   })
 
   return await apiEEMInfos.get(endpoint, data)

@@ -38,8 +38,8 @@ const DesktopMenu: React.FC = () => {
     [dispatch]
   )
 
-  const handleSignOut = useCallback(() => {
-    removeAllFrames()
+  const handleSignOut = useCallback(async () => {
+    await removeAllFrames()
 
     dispatch(signOut())
     history.push('/login')
