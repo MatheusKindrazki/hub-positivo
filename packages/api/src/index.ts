@@ -9,8 +9,7 @@ const apiEEMAuth = axios.create({
 })
 
 const apiEEMInfos = axios.create({
-  // baseURL: process.env.REACT_APP_API_EEM_INFOS
-  baseURL: 'https://api.escolaapp.com/recursos/api'
+  baseURL: process.env.REACT_APP_API_EEM_INFOS
 })
 
 const apiAuthProduct = axios.create({
@@ -18,11 +17,11 @@ const apiAuthProduct = axios.create({
 })
 
 const apiLivro = axios.create({
-  baseURL: 'https://appsv-arvorelivro-dev-001.azurewebsites.net/api/arvore'
+  baseURL: process.env.REACT_APP_API_ARVORE
 })
 
 const apiMHUND = axios.create({
-  baseURL: 'https://appsv-saedigital-dev-001.azurewebsites.net/api/mhund'
+  baseURL: process.env.REACT_APP_API_MHUND
 })
 
 export { apiEEMAuth, apiAuthProduct, apiEEMInfos, apiLivro, apiMHUND }
