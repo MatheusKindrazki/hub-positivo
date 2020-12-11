@@ -7,6 +7,7 @@ import Drawer from '@hub/common/components/Drawer'
 import Menu from '@hub/common/components/Menu'
 
 import history from '~/services/history'
+import { removeAllFrames } from '~/services/sessionStorage'
 import { signOut } from '~/store/modules/auth/actions'
 import { loading } from '~/store/modules/global/actions'
 import { profiles, setProfile } from '~/store/modules/profile/actions'
@@ -80,7 +81,9 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
     [dispatch, onClose, renderProfiles]
   )
 
-  const handleClosed = useCallback(() => {
+  const handleClosed = useCallback(async () => {
+    await removeAllFrames()
+
     dispatch(signOut())
 
     history.push('/')

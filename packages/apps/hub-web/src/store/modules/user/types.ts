@@ -5,6 +5,7 @@ export interface UserReducer {
   school?: {
     value: string
     label: string
+    user_id: string
     integration_id?: string
     roles: string[]
   }

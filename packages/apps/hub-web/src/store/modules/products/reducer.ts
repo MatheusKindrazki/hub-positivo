@@ -6,7 +6,7 @@ import { Actions } from './actions'
 import { ProductReducer } from './types'
 
 export const INITIAL_STATE: ProductReducer = {
-  loading: false,
+  loading: true,
   data: []
 }
 
@@ -33,6 +33,12 @@ const products: ReturnReducer = (state = INITIAL_STATE, action) => {
 
       case Actions.FRAME_URL: {
         draft.frameUrl = action.payload
+        break
+      }
+
+      case Actions.SIGN_OUT: {
+        draft.data = []
+        draft.loading = true
         break
       }
       default:

@@ -6,12 +6,12 @@ export const profileBaseColor = {
   default: '#1565C0',
   editor: '#1565C0',
   colaborador: '#1565C0',
-  gestor: '#880E4F',
-  administrador: '#880E4F',
-  coordenador: '#C2185B',
-  professor: '#1565C0',
-  aluno: '#2196F3',
-  família: '#00838F'
+  gestor: '#8835A7',
+  administrador: '#1565C0',
+  coordenador: '#8835A7',
+  professor: '#21B0A3',
+  aluno: '#DCAA41',
+  família: '#DC6A3C'
 }
 
 type StringPropsKeys<T extends { [key: string]: string }> = {

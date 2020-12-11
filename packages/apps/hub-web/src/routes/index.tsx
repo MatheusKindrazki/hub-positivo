@@ -38,7 +38,7 @@ const Routes: React.FC = () => {
           <Route path="/login" component={SignIn} />
           <Route path="/profile" component={Profile} />
 
-          <Route path="/dashboard/:solution" component={Iframe} isPrivate />
+          <Route path="/solucao/:solution" component={Iframe} isPrivate />
 
           <Route path="/" component={Home} isPrivate />
         </Switch>
