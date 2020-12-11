@@ -1,4 +1,4 @@
-import React, { useCallback, memo } from 'react'
+import React, { memo } from 'react'
 
 import { MagnifyingGlass } from '@hub/common/components/Icons'
 
@@ -9,14 +9,16 @@ import {
   InputLeftElement,
   InputProps
 } from '@chakra-ui/react'
+import { debounce } from 'ts-debounce'
 
-const Search: React.FC<InputProps> = ({ onChange, ...rest }) => {
-  const handleChange = useCallback(
-    event => {
-      onChange && onChange(event.target.value)
-    },
-    [onChange]
-  )
+interface HandleChange extends InputProps {
+  handleChange: (e: string) => void
+}
+
+const Search: React.FC<HandleChange> = ({ handleChange, ...rest }) => {
+  const handleInput = debounce(event => {
+    handleChange(event.target.value)
+  }, 500)
 
   return (
     <>
@@ -35,19 +37,21 @@ const Search: React.FC<InputProps> = ({ onChange, ...rest }) => {
           children={<Box as={MagnifyingGlass} size="20px" color="#7A7A7A" />}
         />
         <Input
-          {...rest}
           border="none!important"
           height="3rem"
           placeholder="Buscar soluções"
           borderRadius="none"
           fontSize="sm"
           borderBottom="1px solid #9e9e9e!important"
-          onChange={handleChange}
+          onChange={e => {
+            handleInput(e)
+          }}
           _placeholder={{
             color: '#7A7A7A',
             fontSize: '14px',
             fontWeight: 'normal'
           }}
+          {...rest}
         />
       </InputGroup>
     </>

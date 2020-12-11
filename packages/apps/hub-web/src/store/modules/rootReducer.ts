@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Reducer } from 'react'
 
 import { AnyAction, CombinedState, combineReducers } from 'redux'

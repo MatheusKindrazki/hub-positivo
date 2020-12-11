@@ -40,7 +40,7 @@ async function EEMConnectPost<T>(attributes: EEMProps): ReturnConnect<T> {
   return await apiEEMAuth.post(endpoint, qs.stringify(sendInfo))
 }
 
-async function EEMConnectGET<T, A = any>(
+async function EEMConnectGET<T, A = unknown>(
   attributes: EEMPropsInfo<T>
 ): Promise<ApiResponse<A>> {
   const { data, endpoint, token } = attributes
