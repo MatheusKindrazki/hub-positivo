@@ -72,7 +72,6 @@ const Home: React.FC = () => {
   )
 
   const handleClosedTour = useCallback(() => {
-    console.log(viewed)
     if (!viewed) {
       dispatch(postTour())
     }
