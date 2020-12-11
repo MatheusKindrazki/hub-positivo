@@ -11,11 +11,12 @@ export interface CardProps {
   notificacao?: string | number
   ativo: boolean
   link?: string
+  tipoRenderizacao: string
 }
 
 interface HandleProps {
   url: string
-  integration_type?: string
+  tipoRenderizacao: string
   nome: string
 }
 
@@ -25,7 +26,7 @@ interface CardRenderProps {
 }
 
 const Card: React.FC<CardRenderProps> = ({ card, onClick }) => {
-  const { nome, arquivo, link, cor } = card
+  const { nome, arquivo, link, cor, tipoRenderizacao } = card
 
   return (
     <Box
@@ -34,9 +35,7 @@ const Card: React.FC<CardRenderProps> = ({ card, onClick }) => {
       alignItems="center"
       flexDirection="column"
       cursor="pointer"
-      onClick={() =>
-        onClick({ nome, url: link || '', integration_type: 'react' })
-      }
+      onClick={() => onClick({ nome, url: link || '', tipoRenderizacao })}
     >
       <Box
         backgroundColor={cor}

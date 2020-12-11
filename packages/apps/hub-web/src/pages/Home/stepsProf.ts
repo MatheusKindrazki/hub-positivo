@@ -46,4 +46,5 @@ const tour: StepsTour[] = [
     selector: '#conteudo-livro-digital'
   }
 ]
+
 export default tour

@@ -21,7 +21,7 @@ export interface Product {
   descricao: string
   arquivo: string
   link?: string
-  tipoRenderizacao?: string
+  tipoRenderizacao: string
   notificacao?: string
   ativo: boolean
 }

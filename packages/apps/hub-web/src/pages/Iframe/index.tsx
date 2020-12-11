@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -18,23 +18,24 @@ interface IframePropsRouter {
 
 const Iframe: React.FC = () => {
   const { colors } = useTheme()
+  const [url, setUrl] = useState('')
 
   const { solution } = useParams<IframePropsRouter>()
 
   const { frameUrl } = useSelector((state: Store.State) => state.products)
 
-  const renderUrl = useMemo(() => {
+  useEffect(() => {
     if (!frameUrl) {
       const getUrl = getFrame(solution)
 
       if (!getUrl) return history.push('/')
 
-      return getUrl
+      setUrl(getUrl)
     }
 
-    setFrame({ key: solution, url: frameUrl })
+    setFrame({ key: solution, url: frameUrl || '' })
 
-    return frameUrl
+    return setUrl(frameUrl || '')
   }, [frameUrl, solution])
 
   return (
@@ -52,7 +53,7 @@ const Iframe: React.FC = () => {
       />
       <iframe
         loading="lazy"
-        src={renderUrl || ''}
+        src={url}
         referrerPolicy="no-referrer-when-downgrade"
       />
     </IframeContainer>
