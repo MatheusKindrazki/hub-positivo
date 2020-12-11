@@ -33,7 +33,7 @@ export interface SignInSuccess {
 }
 interface Schools {
   id: string
-  idUser?: string
+  user_id?: string
   integration_id: string | null
   name: string
   roles: string[]

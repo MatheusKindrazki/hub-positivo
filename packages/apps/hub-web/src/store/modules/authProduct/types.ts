@@ -1,7 +1,7 @@
 export interface AuthRequest {
   product: string
   url: string
-  integration_type?: 'wordpress'
+  tipoRenderizacao?: string
 }
 
 export interface AuthReducer {

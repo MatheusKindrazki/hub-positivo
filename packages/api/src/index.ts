@@ -4,8 +4,12 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL
 })
 
-const apiAuth = axios.create({
+const apiEEMAuth = axios.create({
   baseURL: process.env.REACT_APP_API_AUTH_URL
+})
+
+const apiEEMInfos = axios.create({
+  baseURL: process.env.REACT_APP_API_EEM_INFOS
 })
 
 const apiAuthProduct = axios.create({
@@ -13,13 +17,13 @@ const apiAuthProduct = axios.create({
 })
 
 const apiLivro = axios.create({
-  baseURL: 'https://appsv-arvorelivro-dev-001.azurewebsites.net/api/arvore'
+  baseURL: process.env.REACT_APP_API_ARVORE
 })
 
 const apiMHUND = axios.create({
-  baseURL: 'https://appsv-saedigital-dev-001.azurewebsites.net/api/mhund'
+  baseURL: process.env.REACT_APP_API_MHUND
 })
 
-export { apiAuth, apiAuthProduct, apiLivro, apiMHUND }
+export { apiEEMAuth, apiAuthProduct, apiEEMInfos, apiLivro, apiMHUND }
 
 export default api

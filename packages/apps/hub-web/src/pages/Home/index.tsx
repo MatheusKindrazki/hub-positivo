@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -10,36 +10,40 @@ import {
   CardProduct
 } from '@hub/common/components'
 import SearchInput from '@hub/common/components/Search'
+import Tour from '@hub/common/components/Tour'
+import createSlug from '@hub/common/utils/createSlug'
 import documentTitle from '@hub/common/utils/documentTitle'
 
 import classNames from 'classnames'
 import { debounce } from 'ts-debounce'
 
-import { authProductRequest } from '~/store/modules/authProduct/actions'
+import { preAuth } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
-import { productRequest } from '~/store/modules/products/actions'
-import { CardProduct as CardProductProps } from '~/store/modules/products/types'
-import createSlug from '~/utils/createSlug'
+import { openTour as tourOpen, postTour } from '~/store/modules/tour/actions'
 
+import Filter from './components/Filter'
+import stepProf from './stepsProf'
 import { Container } from './styles'
-
-const notLogged = ['SAE + C', 'Árvore Livros']
 
 const Home: React.FC = () => {
   documentTitle('Home')
 
-  const [searchValue, setSearchValue] = useState('')
+  const [, setSearchValue] = useState('')
   const dispatch = useDispatch()
-
   const { user, avatar, school: useSchool } = useSelector(
     (state: Store.State) => state.user
   )
+
   const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
   )
 
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
+  )
+
+  const { open: openTour, viewed } = useSelector(
+    (state: Store.State) => state.tour
   )
 
   const handleSearch = debounce(search => {
@@ -56,75 +60,32 @@ const Home: React.FC = () => {
     data => {
       const slug = createSlug(data.nome)
 
-      if (notLogged.includes(data.nome)) {
-        window.open(data.url, '_blank')
-
-        return
-      }
-
       dispatch(
-        authProductRequest({
+        preAuth({
           product: slug,
           url: data.url,
-          integration_type: data.integration_type
+          tipoRenderizacao: data.tipoRenderizacao
         })
       )
     },
     [dispatch]
   )
 
-  useEffect(() => {
-    dispatch(productRequest({}))
-  }, [dispatch])
-
-  const filterCards = useMemo(() => {
-    if (!searchValue) {
-      return cards?.map(c => {
-        return {
-          ...c,
-          solucoes: c.solucoes.filter(s => s.ativo)
-        }
-      })
+  const handleClosedTour = useCallback(() => {
+    if (!viewed) {
+      dispatch(postTour())
     }
 
-    const newcards = [] as CardProductProps[]
+    dispatch(tourOpen(false))
+  }, [dispatch, viewed])
 
-    cards?.forEach(i => {
-      i.solucoes?.forEach(card => {
-        if (card.nome.toLowerCase().includes(searchValue.toLowerCase())) {
-          if (!newcards.length) {
-            newcards.push({
-              id: i.id,
-              nome: i.nome,
-              cor: i.cor,
-              solucoes: i.solucoes
-            })
-          } else {
-            const index = newcards.findIndex(newCard => newCard.id === i.id)
-
-            const cardsNew = newcards[index]?.solucoes || []
-
-            newcards[index] = {
-              id: i.id,
-              cor: i.cor,
-              nome: i.nome,
-              solucoes: [...cardsNew, card]
-            }
-          }
-        }
-      })
-    })
-
-    return newcards?.map(c => {
-      return {
-        ...c,
-        solucoes: c.solucoes.filter(s => s.ativo)
-      }
-    })
-  }, [cards, searchValue])
+  const filterCards = useMemo(() => cards, [cards])
 
   return (
     <>
+      {!!filterCards?.length && nameProfile === 'Professor' ? (
+        <Tour onClosed={handleClosedTour} open={openTour} steps={stepProf} />
+      ) : null}
       <Box
         py="5"
         px="4"
@@ -156,7 +117,7 @@ const Home: React.FC = () => {
             maxW={['100%', '100%', '100%', '308px']}
             mt={['5', '5', '5', '0']}
           >
-            {/* o Silêncio vale ouro */}
+            <Filter />
           </Box>
         </Box>
       </Box>
@@ -189,10 +150,11 @@ const Home: React.FC = () => {
                       handlePushProduct({
                         url,
                         nome: item.nome,
-                        integration_type: item.integration_type
+                        tipoRenderizacao: item.tipoRenderizacao
                       })
                     }
                     cor={card.cor}
+                    category={card.nome}
                     card={item}
                     load={load}
                   />

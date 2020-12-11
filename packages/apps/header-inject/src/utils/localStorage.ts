@@ -2,7 +2,7 @@ import CryptoJS from 'crypto-js'
 
 import { UserInfoProps } from '../services/getUserInfo'
 
-const key = process.env.HUB_ENCRYPT_INJECT_STORAGE || ''
+const key = 'keyhubcripto'
 
 const keySTORAGE = '@positivo:hub:auth:inject'
 

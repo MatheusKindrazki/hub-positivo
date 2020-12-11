@@ -7,10 +7,12 @@ import Drawer from '@hub/common/components/Drawer'
 import Menu from '@hub/common/components/Menu'
 
 import history from '~/services/history'
+import { removeAllFrames } from '~/services/sessionStorage'
 import { signOut } from '~/store/modules/auth/actions'
 import { loading } from '~/store/modules/global/actions'
 import { profiles, setProfile } from '~/store/modules/profile/actions'
 import { Profiles } from '~/store/modules/profile/types'
+import { openTour } from '~/store/modules/tour/actions'
 import { setSchool } from '~/store/modules/user/actions'
 import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
 
@@ -80,11 +82,18 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
     [dispatch, onClose, renderProfiles]
   )
 
-  const handleClosed = useCallback(() => {
+  const handleClosed = useCallback(async () => {
+    await removeAllFrames()
+
     dispatch(signOut())
 
     history.push('/')
   }, [dispatch])
+
+  const handleOpenTour = useCallback(() => {
+    onClose()
+    dispatch(openTour(true))
+  }, [dispatch, onClose])
 
   return (
     <>
@@ -136,7 +145,7 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
           </Box>
           <MenuDivider />
           <Box px="4" py="3">
-            <Button
+            {/* <Button
               variant="ghost"
               width="100%"
               alignItems="center"
@@ -150,37 +159,25 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
               fontSize="0.875rem"
             >
               Início
-            </Button>
-            <Button
-              variant="ghost"
-              width="100%"
-              alignItems="center"
-              justifyContent="flex-start"
-              color="gray.500"
-              ml="-10px"
-              _hover={{
-                color: 'blue.500',
-                backgroundColor: 'gray.200'
-              }}
-              fontSize="0.875rem"
-            >
-              Tutoriais
-            </Button>
-            <Button
-              variant="ghost"
-              width="100%"
-              alignItems="center"
-              justifyContent="flex-start"
-              color="gray.500"
-              ml="-10px"
-              _hover={{
-                color: 'blue.500',
-                backgroundColor: 'gray.200'
-              }}
-              fontSize="0.875rem"
-            >
-              Agenda
-            </Button>
+            </Button> */}
+            {profile.guid === 'PROFESSOR' && (
+              <Button
+                variant="ghost"
+                width="100%"
+                alignItems="center"
+                justifyContent="flex-start"
+                color="gray.500"
+                ml="-10px"
+                onClick={handleOpenTour}
+                _hover={{
+                  color: 'blue.500',
+                  backgroundColor: 'gray.200'
+                }}
+                fontSize="0.875rem"
+              >
+                Tutorial de primeiro acesso
+              </Button>
+            )}
           </Box>
           <Box
             px="4"
