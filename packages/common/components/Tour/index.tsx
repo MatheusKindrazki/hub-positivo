@@ -6,7 +6,6 @@ export interface StepsTour {
   selector: string
   content: string
   position?: 'top' | 'right' | 'bottom' | 'left' | 'center'
-  style?: string
 }
 
 export interface TourProps {

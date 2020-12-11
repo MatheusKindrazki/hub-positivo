@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -9,8 +9,9 @@ import {
   Collapse,
   CardProduct
 } from '@hub/common/components'
-import { Tour } from '@hub/common/components'
 import SearchInput from '@hub/common/components/Search'
+import Tour from '@hub/common/components/Tour'
+import createSlug from '@hub/common/utils/createSlug'
 import documentTitle from '@hub/common/utils/documentTitle'
 
 import classNames from 'classnames'
@@ -18,10 +19,9 @@ import { debounce } from 'ts-debounce'
 
 import { preAuth } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
-import { productRequest } from '~/store/modules/products/actions'
-import createSlug from '~/utils/createSlug'
 
 import Filter from './components/Filter'
+import stepProf from './stepsProf'
 import { Container } from './styles'
 
 const Home: React.FC = () => {
@@ -70,6 +70,7 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <Tour onClosed={() => console.log()} open={true} steps={stepProf} />
       <Box
         py="5"
         px="4"
@@ -138,6 +139,7 @@ const Home: React.FC = () => {
                       })
                     }
                     cor={card.cor}
+                    category={card.nome}
                     card={item}
                     load={load}
                   />
