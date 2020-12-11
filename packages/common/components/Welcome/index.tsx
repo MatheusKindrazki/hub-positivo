@@ -30,6 +30,7 @@ const Welcome: React.FC<WelcomeProps> = ({
         width={size || '3.5rem'}
         height={size || '3.5rem'}
         name={name || ''}
+        color="#3C3C3C"
         src={avatar}
         background="#CFD8DC"
         borderColor="white"

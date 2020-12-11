@@ -7,8 +7,7 @@ import {
   Heading,
   Welcome,
   Collapse,
-  CardProduct,
-  Select
+  CardProduct
 } from '@hub/common/components'
 import SearchInput from '@hub/common/components/Search'
 import documentTitle from '@hub/common/utils/documentTitle'
@@ -21,6 +20,7 @@ import { loading } from '~/store/modules/global/actions'
 import { productRequest } from '~/store/modules/products/actions'
 import createSlug from '~/utils/createSlug'
 
+import Filter from './components/Filter'
 import { Container } from './styles'
 
 const Home: React.FC = () => {
@@ -28,11 +28,6 @@ const Home: React.FC = () => {
 
   const [, setSearchValue] = useState('')
   const dispatch = useDispatch()
-
-  const { levels, level } = useSelector(
-    (state: Store.State) => state.levelEducation
-  )
-
   const { user, avatar, school: useSchool } = useSelector(
     (state: Store.State) => state.user
   )
@@ -70,10 +65,6 @@ const Home: React.FC = () => {
     [dispatch]
   )
 
-  useEffect(() => {
-    dispatch(productRequest({}))
-  }, [dispatch])
-
   const filterCards = useMemo(() => cards, [cards])
 
   return (
@@ -109,14 +100,7 @@ const Home: React.FC = () => {
             maxW={['100%', '100%', '100%', '308px']}
             mt={['5', '5', '5', '0']}
           >
-            {!!levels?.length && (
-              <Select
-                variant="blue-transparent"
-                defaultValue={{ label: level, value: level }}
-                options={levels}
-                onChange={e => console.log(e)}
-              />
-            )}
+            <Filter />
           </Box>
         </Box>
       </Box>

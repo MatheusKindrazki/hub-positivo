@@ -7,7 +7,7 @@ import { EducationReducer } from './types'
 
 export const INITIAL_STATE: EducationReducer = {
   loading: false,
-  level: 'Ensino Médio',
+  level: '',
   levels: undefined
 }
 

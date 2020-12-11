@@ -26,7 +26,7 @@ const Route: React.FC<RouteProps> = ({
 
   let RenderLayout = signed ? Logged : Auth
 
-  if (pathname.includes('dashboard')) {
+  if (pathname.includes('solucao')) {
     RenderLayout = Iframe
   }
 
