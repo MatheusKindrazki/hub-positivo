@@ -4,13 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { BarLoader } from '@hub/common/components'
 
-import { authProductRequest } from '~/store/modules/authProduct/actions'
+import { preAuth } from '~/store/modules/authProduct/actions'
 import { CardProduct } from '~/store/modules/products/types'
 import createSlug from '~/utils/createSlug'
 
 import Header from './components/Header'
-
-const apiArvore = ['Gestão Escolar Sae+C', 'Árvore Livros']
 
 const Iframe: React.FC = ({ children }) => {
   const dispatch = useDispatch()
@@ -21,17 +19,11 @@ const Iframe: React.FC = ({ children }) => {
     data => {
       const slug = createSlug(data.nome)
 
-      if (apiArvore.includes(data.nome)) {
-        window.location.assign(data.url)
-
-        return
-      }
-
       dispatch(
-        authProductRequest({
+        preAuth({
+          product: slug,
           url: data.url,
-          integration_type: data.integration_type,
-          product: slug
+          tipoRenderizacao: data.tipoRenderizacao
         })
       )
     },

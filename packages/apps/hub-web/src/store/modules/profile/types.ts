@@ -1,7 +1,7 @@
 import { VariantsProps } from '@hub/common/layout/styles/colors'
 
 export interface ProfileReducer {
-  guid: number | string
+  guid: string
   profile: unknown
   name: string
   icon?: string

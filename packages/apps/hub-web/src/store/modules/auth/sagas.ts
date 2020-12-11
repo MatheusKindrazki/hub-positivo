@@ -1,12 +1,12 @@
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
-import { apiAuth } from '@hub/api'
+import api from '@hub/api'
 
 import { ApiResponse } from 'apisauce'
 import { decode } from 'jsonwebtoken'
-import qs from 'qs'
 import { toast } from 'react-toastify'
 
+import { EEMConnectPost } from '~/services/eemConnect'
 import history from '~/services/history'
 
 import { Actions, signInFailure, signInSuccess, signOut } from './actions'
@@ -15,21 +15,14 @@ import { SignInRequest, AuthApi } from './types'
 type SignInPayload = Payload<SignInRequest>
 
 export function* signIn({ payload }: SignInPayload): Generator {
-  const sendInfo = {
-    ...payload,
-    grant_type: process.env.REACT_APP_API_AUTH_TYPE,
-    client_id: process.env.REACT_APP_API_AUTH_CLIENT_ID,
-    client_secret: process.env.REACT_APP_API_AUTH_SECRET_ID,
-    scope: process.env.REACT_APP_API_AUTH_SCOPE
-  }
-
   const response = yield call(() => {
-    apiAuth.setHeaders({
-      'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-      accept: '*/*'
+    return EEMConnectPost({
+      endpoint: 'connect/token',
+      data: {
+        ...payload,
+        grant_type: 'password'
+      }
     })
-
-    return apiAuth.post('connect/token', qs.stringify(sendInfo))
   })
 
   const { data, ok } = response as ApiResponse<AuthApi>
@@ -39,6 +32,10 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
     return yield put(signInFailure())
   }
+
+  api.setHeaders({
+    Authorization: `Bearer ${data?.access_token || ''}`
+  })
 
   const user = decode(data?.access_token || '') as any
 
@@ -70,11 +67,15 @@ export function* checkingExpiringToken({
 }: ExpiringRehydrate): Generator {
   if (!payload) return
 
-  const { exp } = payload.auth
+  const { exp, token } = payload.auth
 
   if (!exp || exp === 0) {
     return
   }
+
+  api.setHeaders({
+    Authorization: `Bearer ${token || ''}`
+  })
 
   const date = (new Date() as unknown) as number
 

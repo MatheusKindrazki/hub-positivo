@@ -7,6 +7,7 @@ import Select from '@hub/common/components/Select'
 import Welcome from '@hub/common/components/Welcome'
 
 import history from '~/services/history'
+import { removeAllFrames } from '~/services/sessionStorage'
 import { signOut } from '~/store/modules/auth/actions'
 import { loading } from '~/store/modules/global/actions'
 import { profiles, setProfile } from '~/store/modules/profile/actions'
@@ -37,7 +38,9 @@ const DesktopMenu: React.FC = () => {
     [dispatch]
   )
 
-  const handleSignOut = useCallback(() => {
+  const handleSignOut = useCallback(async () => {
+    await removeAllFrames()
+
     dispatch(signOut())
     history.push('/login')
   }, [dispatch])
@@ -52,7 +55,7 @@ const DesktopMenu: React.FC = () => {
           setProfile({
             guid: data.id,
             name: data.title,
-            profile: data.profile,
+            profile: data.icon,
             colorProfile: data.colorProfile
           })
         )
@@ -88,6 +91,7 @@ const DesktopMenu: React.FC = () => {
         >
           <Avatar
             width="2.5rem"
+            color="#3C3C3C"
             height="2.5rem"
             backgroundColor="gray.400"
             name={user?.name || ''}
@@ -98,7 +102,8 @@ const DesktopMenu: React.FC = () => {
           style={{ zIndex: 9 }}
           minW="300px"
           borderRadius="4px"
-          boxShadow="sm"
+          boxShadow="dark-lg"
+          border="1px solid #D9D9D9"
           mr="2rem!important"
           top="8px!important"
         >
