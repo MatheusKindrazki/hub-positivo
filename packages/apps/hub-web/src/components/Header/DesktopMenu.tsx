@@ -100,6 +100,7 @@ const DesktopMenu: React.FC = () => {
           minW="300px"
           borderRadius="4px"
           boxShadow="dark-lg"
+          border="1px solid #D9D9D9"
           mr="2rem!important"
           top="8px!important"
         >

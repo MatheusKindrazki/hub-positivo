@@ -1,5 +1,7 @@
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
+import api from '@hub/api'
+
 import { ApiResponse } from 'apisauce'
 import { decode } from 'jsonwebtoken'
 import { toast } from 'react-toastify'
@@ -31,6 +33,10 @@ export function* signIn({ payload }: SignInPayload): Generator {
     return yield put(signInFailure())
   }
 
+  api.setHeaders({
+    Authorization: `Bearer ${data?.access_token || ''}`
+  })
+
   const user = decode(data?.access_token || '') as any
 
   yield put(
@@ -61,11 +67,15 @@ export function* checkingExpiringToken({
 }: ExpiringRehydrate): Generator {
   if (!payload) return
 
-  const { exp } = payload.auth
+  const { exp, token } = payload.auth
 
   if (!exp || exp === 0) {
     return
   }
+
+  api.setHeaders({
+    Authorization: `Bearer ${token || ''}`
+  })
 
   const date = (new Date() as unknown) as number
 
