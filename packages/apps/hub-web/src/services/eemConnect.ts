@@ -45,11 +45,9 @@ async function EEMConnectGET<T, A = any>(
 ): Promise<ApiResponse<A>> {
   const { data, endpoint, token } = attributes
 
-  apiEEMInfos.setHeaders({
-    'Content-Type': 'application/json',
-    Authorization: token
+  return await apiEEMInfos.get(endpoint, data, {
+    headers: { Authorization: token }
   })
-
-  return await apiEEMInfos.get(endpoint, data)
 }
+
 export { EEMConnectPost, EEMConnectGET }
