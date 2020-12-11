@@ -30,7 +30,6 @@ export function* getUserTour(): Generator {
 }
 
 export function* postUserTour(): Generator {
-  console.log('brasil de mais')
   const response = yield call(() => {
     return api.post('Tour')
   })
