@@ -9,7 +9,8 @@ const apiEEMAuth = axios.create({
 })
 
 const apiEEMInfos = axios.create({
-  baseURL: process.env.REACT_APP_API_EEM_INFOS
+  // baseURL: process.env.REACT_APP_API_EEM_INFOS
+  baseURL: 'https://api.escolaapp.com/recursos/api'
 })
 
 const apiAuthProduct = axios.create({
