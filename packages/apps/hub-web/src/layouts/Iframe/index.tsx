@@ -3,10 +3,10 @@ import React, { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { BarLoader } from '@hub/common/components'
+import createSlug from '@hub/common/utils/createSlug'
 
 import { preAuth } from '~/store/modules/authProduct/actions'
 import { CardProduct } from '~/store/modules/products/types'
-import createSlug from '~/utils/createSlug'
 
 import Header from './components/Header'
 

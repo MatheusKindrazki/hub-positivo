@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -10,6 +10,8 @@ import {
   CardProduct
 } from '@hub/common/components'
 import SearchInput from '@hub/common/components/Search'
+import Tour from '@hub/common/components/Tour'
+import createSlug from '@hub/common/utils/createSlug'
 import documentTitle from '@hub/common/utils/documentTitle'
 
 import classNames from 'classnames'
@@ -17,10 +19,10 @@ import { debounce } from 'ts-debounce'
 
 import { preAuth } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
-import { productRequest } from '~/store/modules/products/actions'
-import createSlug from '~/utils/createSlug'
+import { openTour as tourOpen, postTour } from '~/store/modules/tour/actions'
 
 import Filter from './components/Filter'
+import stepProf from './stepsProf'
 import { Container } from './styles'
 
 const Home: React.FC = () => {
@@ -38,6 +40,10 @@ const Home: React.FC = () => {
 
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
+  )
+
+  const { open: openTour, viewed } = useSelector(
+    (state: Store.State) => state.tour
   )
 
   const handleSearch = debounce(search => {
@@ -65,10 +71,22 @@ const Home: React.FC = () => {
     [dispatch]
   )
 
+  const handleClosedTour = useCallback(() => {
+    console.log(viewed)
+    if (!viewed) {
+      dispatch(postTour())
+    }
+
+    dispatch(tourOpen(false))
+  }, [dispatch, viewed])
+
   const filterCards = useMemo(() => cards, [cards])
 
   return (
     <>
+      {!!filterCards?.length && nameProfile === 'Professor' ? (
+        <Tour onClosed={handleClosedTour} open={openTour} steps={stepProf} />
+      ) : null}
       <Box
         py="5"
         px="4"
@@ -137,6 +155,7 @@ const Home: React.FC = () => {
                       })
                     }
                     cor={card.cor}
+                    category={card.nome}
                     card={item}
                     load={load}
                   />
