@@ -2,6 +2,7 @@
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
 import api from '@hub/api'
+import capitalize from '@hub/common/utils/capitalize'
 
 import { ApiResponse } from 'apisauce'
 import { decode } from 'jsonwebtoken'
@@ -49,7 +50,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
       user: {
         integration_id: user?.integration_id,
         email: user?.email,
-        name: user?.name,
+        name: user?.name ? capitalize(user?.name) : '',
         username: user?.username,
         schools: user?.schools
       }
