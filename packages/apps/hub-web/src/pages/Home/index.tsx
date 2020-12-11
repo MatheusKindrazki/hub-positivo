@@ -88,7 +88,12 @@ const Home: React.FC = () => {
   return (
     <>
       {!!filterCards?.length && nameProfile === 'Professor' ? (
-        <Tour onClosed={handleClosedTour} open={openTour} steps={stepProf} />
+        <Tour
+          onClosed={handleClosedTour}
+          open={openTour}
+          steps={stepProf}
+          key={openTour ? Math.random() : 1}
+        />
       ) : null}
       <Box
         py="5"
