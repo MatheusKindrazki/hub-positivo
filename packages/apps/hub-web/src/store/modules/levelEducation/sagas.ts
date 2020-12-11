@@ -1,8 +1,9 @@
-import { all, put, Payload, takeLatest } from 'redux-saga/effects'
+import { all, put, call, Payload, takeLatest } from 'redux-saga/effects'
 
 import _ from 'lodash'
 
-// import { store } from '~/store'
+import { EEMConnectGET } from '~/services/eemConnect'
+import { store } from '~/store'
 import { Actions } from '~/store/modules/profile/actions'
 import { Profile } from '~/store/modules/profile/types'
 
@@ -18,21 +19,23 @@ export function* getLevelByProfile({ payload }: Payload<Profile>): Generator {
     return yield put(resetProfileLevels())
   }
 
-  // interface SendInfo {
-  //   usuarioId: string
-  // }
-  // const { school } = store.getState().user
-  // const { token } = store.getState().auth
+  interface SendInfo {
+    usuarioId: string
+  }
+  const { school } = store.getState().user
+  const { token } = store.getState().auth
 
-  // const response = yield call(() => {
-  //   return EEMConnectGET<SendInfo>({
-  //     endpoint: '/v1/Academico/turmas',
-  //     token: token || '',
-  //     data: {
-  //       usuarioId: school?.user_id || ''
-  //     }
-  //   })
-  // })
+  const response = yield call(() => {
+    return EEMConnectGET<SendInfo>({
+      endpoint: '/v1/Academico/turmas',
+      token: token || '',
+      data: {
+        usuarioId: school?.user_id || ''
+      }
+    })
+  })
+
+  console.log(response)
 
   interface Ciclos {
     id: number

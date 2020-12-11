@@ -26,7 +26,7 @@ export const Container = styled(Box)`
       opacity: 1;
     }
     .hub-svg-logo {
-      transform: translateX(25px);
+      transform: translateX(35px);
     }
   }
 `
