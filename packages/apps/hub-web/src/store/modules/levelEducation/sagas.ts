@@ -19,23 +19,23 @@ export function* getLevelByProfile({ payload }: Payload<Profile>): Generator {
     return yield put(resetProfileLevels())
   }
 
-  interface SendInfo {
-    usuarioId: string
-  }
-  const { school } = store.getState().user
-  const { token } = store.getState().auth
+  // interface SendInfo {
+  //   usuarioId: string
+  // }
+  // const { school } = store.getState().user
+  // const { token } = store.getState().auth
 
-  const response = yield call(() => {
-    return EEMConnectGET<SendInfo>({
-      endpoint: '/v1/Academico/turmas',
-      token: token || '',
-      data: {
-        usuarioId: school?.user_id || ''
-      }
-    })
-  })
+  // const response = yield call(() => {
+  //   return EEMConnectGET<SendInfo>({
+  //     endpoint: '/v1/Academico/turmas',
+  //     token: token || '',
+  //     data: {
+  //       usuarioId: school?.user_id || ''
+  //     }
+  //   })
+  // })
 
-  console.log(response)
+  // console.log(response)
 
   interface Ciclos {
     id: number

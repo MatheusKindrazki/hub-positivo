@@ -81,8 +81,8 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
     [dispatch, onClose, renderProfiles]
   )
 
-  const handleClosed = useCallback(() => {
-    removeAllFrames()
+  const handleClosed = useCallback(async () => {
+    await removeAllFrames()
 
     dispatch(signOut())
 
