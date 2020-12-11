@@ -82,21 +82,23 @@ const DesktopMenu: React.FC = () => {
         fontSize="0.875rem"
         backgroundColor="white"
         fontWeight="bold"
-        color="blue.500"
+        color="blue.500"Tutoriais
         mx="1"
       >
         Estou com uma dúvida
       </Button> */}
-      <Button
-        fontSize="0.875rem"
-        backgroundColor="white"
-        fontWeight="bold"
-        color="blue.500"
-        onClick={handleOpenTour}
-        mx="1"
-      >
-        Tutorial de primeiro acesso
-      </Button>
+      {profile.guid === 'PROFESSOR' && (
+        <Button
+          fontSize="0.875rem"
+          backgroundColor="white"
+          fontWeight="bold"
+          color="blue.500"
+          onClick={handleOpenTour}
+          mx="1"
+        >
+          Tutorial de primeiro acesso
+        </Button>
+      )}
       <MenuContainer>
         <MenuButton
           type="button"
