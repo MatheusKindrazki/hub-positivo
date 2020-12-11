@@ -7,6 +7,7 @@ import Select from '@hub/common/components/Select'
 import Welcome from '@hub/common/components/Welcome'
 
 import history from '~/services/history'
+import { removeAllFrames } from '~/services/sessionStorage'
 import { signOut } from '~/store/modules/auth/actions'
 import { loading } from '~/store/modules/global/actions'
 import { profiles, setProfile } from '~/store/modules/profile/actions'
@@ -38,6 +39,8 @@ const DesktopMenu: React.FC = () => {
   )
 
   const handleSignOut = useCallback(() => {
+    removeAllFrames()
+
     dispatch(signOut())
     history.push('/login')
   }, [dispatch])

@@ -54,6 +54,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
             style={{ zIndex: 999999 }}
             borderRadius="4px"
             boxShadow="dark-lg"
+            border="1px solid #DADADA"
             top="8px!important"
             w="100%"
             maxW="330px"

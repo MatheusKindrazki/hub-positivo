@@ -1,13 +1,12 @@
 import React, { useCallback } from 'react'
 
-import { Box, Button } from '@hub/common/components'
-import { ArrowLeft } from '@hub/common/components/Icons'
+import { Box } from '@hub/common/components'
 import { useMediaQuery } from '@hub/common/layout/styles'
 
 import history from '~/services/history'
 import { CardProduct } from '~/store/modules/products/types'
 
-import Logo from '../Logo'
+import AnimateGoBack from './AnimateGoBack'
 import HeaderDesktop from './HeaderDesktop'
 
 interface HandleProps {
@@ -41,21 +40,7 @@ const Header: React.FC<HeaderProps> = ({ handlePush, cards }) => {
       left="0"
       zIndex="99999"
     >
-      <Box
-        className="hub-logo"
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-      >
-        <Button
-          paddingLeft="0px"
-          background="transparent!important"
-          onClick={handleGoBack}
-        >
-          <Box as={ArrowLeft} size={24} color="blue.500" />
-        </Button>
-        <Logo />
-      </Box>
+      <AnimateGoBack onClick={handleGoBack} />
       <Box position="relative">
         {isDesktop && <HeaderDesktop handlePush={handlePush} cards={cards} />}
       </Box>
