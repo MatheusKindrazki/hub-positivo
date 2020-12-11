@@ -19,6 +19,13 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.open = action.payload
         break
       }
+
+      case Actions.GET_TOUR_SUCCESS: {
+        draft.open = !action.payload
+        draft.viewed = action.payload
+        break
+      }
+
       default:
     }
   })

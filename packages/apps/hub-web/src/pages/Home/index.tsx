@@ -19,7 +19,7 @@ import { debounce } from 'ts-debounce'
 
 import { preAuth } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
-import { openTour as tourOpen } from '~/store/modules/tour/actions'
+import { openTour as tourOpen, postTour } from '~/store/modules/tour/actions'
 
 import Filter from './components/Filter'
 import stepProf from './stepsProf'
@@ -42,7 +42,9 @@ const Home: React.FC = () => {
     (state: Store.State) => state.products
   )
 
-  const { open: openTour } = useSelector((state: Store.State) => state.tour)
+  const { open: openTour, viewed } = useSelector(
+    (state: Store.State) => state.tour
+  )
 
   const handleSearch = debounce(search => {
     dispatch(loading(true))
@@ -70,8 +72,13 @@ const Home: React.FC = () => {
   )
 
   const handleClosedTour = useCallback(() => {
+    console.log(viewed)
+    if (!viewed) {
+      dispatch(postTour())
+    }
+
     dispatch(tourOpen(false))
-  }, [dispatch])
+  }, [dispatch, viewed])
 
   const filterCards = useMemo(() => cards, [cards])
 
