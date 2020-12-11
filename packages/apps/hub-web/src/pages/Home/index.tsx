@@ -21,6 +21,7 @@ import { preAuth } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
 import { openTour as tourOpen, postTour } from '~/store/modules/tour/actions'
 
+import { cardFilter } from './cardFilter'
 import Filter from './components/Filter'
 import stepProf from './stepsProf'
 import { Container } from './styles'
@@ -28,7 +29,7 @@ import { Container } from './styles'
 const Home: React.FC = () => {
   documentTitle('Home')
 
-  const [, setSearchValue] = useState('')
+  const [search, setSearchValue] = useState('')
   const dispatch = useDispatch()
   const { user, avatar, school: useSchool } = useSelector(
     (state: Store.State) => state.user
@@ -79,12 +80,20 @@ const Home: React.FC = () => {
     dispatch(tourOpen(false))
   }, [dispatch, viewed])
 
-  const filterCards = useMemo(() => cards, [cards])
+  const filterCards = useMemo(
+    () => cardFilter({ data: cards || [], search: search }),
+    [cards, search]
+  )
 
   return (
     <>
       {!!filterCards?.length && nameProfile === 'Professor' ? (
-        <Tour onClosed={handleClosedTour} open={openTour} steps={stepProf} />
+        <Tour
+          onClosed={handleClosedTour}
+          open={openTour}
+          steps={stepProf}
+          key={openTour ? Math.random() : 1}
+        />
       ) : null}
       <Box
         py="5"

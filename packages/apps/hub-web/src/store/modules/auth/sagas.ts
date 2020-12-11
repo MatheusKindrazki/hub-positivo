@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
 import api from '@hub/api'
