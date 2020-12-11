@@ -12,6 +12,7 @@ import { signOut } from '~/store/modules/auth/actions'
 import { loading } from '~/store/modules/global/actions'
 import { profiles, setProfile } from '~/store/modules/profile/actions'
 import { Profiles } from '~/store/modules/profile/types'
+import { openTour } from '~/store/modules/tour/actions'
 import { setSchool } from '~/store/modules/user/actions'
 import { prepareSchool, prepareRoles } from '~/utils/prepareSchoolAndRoles'
 
@@ -66,6 +67,10 @@ const DesktopMenu: React.FC = () => {
     [dispatch, renderProfiles]
   )
 
+  const handleOpenTour = useCallback(() => {
+    dispatch(openTour(true))
+  }, [dispatch])
+
   return (
     <Box
       className="hub-logo"
@@ -73,15 +78,27 @@ const DesktopMenu: React.FC = () => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Button
+      {/* <Button
         fontSize="0.875rem"
         backgroundColor="white"
         fontWeight="bold"
-        color="blue.500"
+        color="blue.500"Tutoriais
         mx="1"
       >
         Estou com uma dúvida
-      </Button>
+      </Button> */}
+      {profile.guid === 'PROFESSOR' && (
+        <Button
+          fontSize="0.875rem"
+          backgroundColor="white"
+          fontWeight="bold"
+          color="blue.500"
+          onClick={handleOpenTour}
+          mx="1"
+        >
+          Tutorial de primeiro acesso
+        </Button>
+      )}
       <MenuContainer>
         <MenuButton
           type="button"
