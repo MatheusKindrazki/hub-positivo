@@ -8,7 +8,7 @@ const tour: StepsTour[] = [
   {
     content:
       'Realize e aplique suas provas importando questões de um arquivo externo, adicionando questões do nosso banco ou criando questões em branco.',
-    selector: '#avaliacao-avaliacoes'
+    selector: '#avaliacao-provas'
   },
   {
     content:

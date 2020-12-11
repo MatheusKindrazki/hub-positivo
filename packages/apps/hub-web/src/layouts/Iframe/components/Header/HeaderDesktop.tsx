@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 
 import {
   Menu,
@@ -13,11 +13,14 @@ import classNames from 'classnames'
 
 import Card from '../Card'
 import Search from '../Search'
+import { cardFilter } from './cardFilter'
 import { HeaderProps } from './index'
 import GlobalStyle from './styles'
 
 const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const { MenuContainer, MenuButton, MenuList } = Menu
+
+  const [search, setSearch] = useState('')
 
   const heightBox = useMemo(() => {
     const height = window.document.body.clientHeight / 1.7
@@ -25,6 +28,10 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
     return !cards || !cards.length ? 'auto' : height
   }, [cards])
 
+  const filterCards = useMemo(
+    () => cardFilter({ data: cards || [], search: search }),
+    [cards, search]
+  )
   return (
     <div className="hub-header-list">
       <MenuContainer>
@@ -74,7 +81,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
               px="6"
               py="4"
             >
-              <Search style={{ zIndex: 999999 }} />
+              <Search handleChange={setSearch} />
               {!cards || !cards.length ? (
                 <Box
                   w="100%"
@@ -85,7 +92,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                   <SpinnerLoader loading={true} color="var(--hub-base-color)" />
                 </Box>
               ) : null}
-              {cards?.map((card, i) => (
+              {filterCards?.map((card, i) => (
                 <React.Fragment key={i}>
                   <Box mb="4">
                     <Heading
