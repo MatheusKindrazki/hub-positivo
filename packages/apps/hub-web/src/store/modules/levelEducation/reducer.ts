@@ -7,7 +7,8 @@ import { EducationReducer } from './types'
 
 export const INITIAL_STATE: EducationReducer = {
   loading: false,
-  level: 'Ensino Médio'
+  level: 'Ensino Médio',
+  levels: undefined
 }
 
 type ReturnReducer = Reducer<EducationReducer>
@@ -17,6 +18,18 @@ const global: ReturnReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
       case Actions.SET_LEVEL: {
         draft.level = action.payload
+        break
+      }
+
+      case Actions.RESET_LEVEL: {
+        draft.level = ''
+        draft.levels = undefined
+        break
+      }
+
+      case Actions.GET_LEVEL_SUCCESS: {
+        draft.level = action.payload.level
+        draft.levels = action.payload.levels
         break
       }
       default:

@@ -1,4 +1,4 @@
-import { apiEEM } from '@hub/api'
+import { apiEEMAuth, apiEEMInfos } from '@hub/api'
 
 import { ApiResponse } from 'apisauce'
 import qs from 'qs'
@@ -14,6 +14,12 @@ interface EEMProps {
   }
 }
 
+interface EEMPropsInfo<T> {
+  endpoint: string
+  token: string
+  data: T
+}
+
 type ReturnConnect<T> = Promise<ApiResponse<T>>
 
 async function EEMConnectPost<T>(attributes: EEMProps): ReturnConnect<T> {
@@ -26,12 +32,25 @@ async function EEMConnectPost<T>(attributes: EEMProps): ReturnConnect<T> {
     scope: process.env.REACT_APP_API_AUTH_SCOPE
   }
 
-  apiEEM.setHeaders({
+  apiEEMAuth.setHeaders({
     'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
     accept: '*/*'
   })
 
-  return await apiEEM.post(endpoint, qs.stringify(sendInfo))
+  return await apiEEMAuth.post(endpoint, qs.stringify(sendInfo))
 }
 
-export { EEMConnectPost }
+async function EEMConnectGET<T, A = any>(
+  attributes: EEMPropsInfo<T>
+): Promise<ApiResponse<A>> {
+  const { data, endpoint, token } = attributes
+
+  apiEEMAuth.setHeaders({
+    'content-type': 'application/json',
+    Authorization: token,
+    accept: '*/*'
+  })
+
+  return await apiEEMInfos.get(endpoint, data)
+}
+export { EEMConnectPost, EEMConnectGET }

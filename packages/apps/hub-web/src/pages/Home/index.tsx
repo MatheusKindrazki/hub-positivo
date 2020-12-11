@@ -7,7 +7,8 @@ import {
   Heading,
   Welcome,
   Collapse,
-  CardProduct
+  CardProduct,
+  Select
 } from '@hub/common/components'
 import SearchInput from '@hub/common/components/Search'
 import documentTitle from '@hub/common/utils/documentTitle'
@@ -28,9 +29,14 @@ const Home: React.FC = () => {
   const [, setSearchValue] = useState('')
   const dispatch = useDispatch()
 
+  const { levels, level } = useSelector(
+    (state: Store.State) => state.levelEducation
+  )
+
   const { user, avatar, school: useSchool } = useSelector(
     (state: Store.State) => state.user
   )
+
   const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
   )
@@ -103,7 +109,14 @@ const Home: React.FC = () => {
             maxW={['100%', '100%', '100%', '308px']}
             mt={['5', '5', '5', '0']}
           >
-            {/* o Silêncio vale ouro */}
+            {!!levels?.length && (
+              <Select
+                variant="blue-transparent"
+                defaultValue={{ label: level, value: level }}
+                options={levels}
+                onChange={e => console.log(e)}
+              />
+            )}
           </Box>
         </Box>
       </Box>
