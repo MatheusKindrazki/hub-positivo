@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -19,6 +19,7 @@ interface IframePropsRouter {
 const Iframe: React.FC = () => {
   const { colors } = useTheme()
   const [url, setUrl] = useState('')
+  const [loading, setLoading] = useState(true)
 
   const { solution } = useParams<IframePropsRouter>()
 
@@ -31,9 +32,19 @@ const Iframe: React.FC = () => {
       if (!getUrl) return history.push('/')
 
       setUrl(getUrl)
+
+      setTimeout(() => {
+        setLoading(false)
+      }, 2500)
+
+      return
     }
 
     setFrame({ key: solution, url: frameUrl || '' })
+
+    setTimeout(() => {
+      setLoading(false)
+    }, 2500)
 
     return setUrl(frameUrl || '')
   }, [frameUrl, solution])
@@ -42,7 +53,7 @@ const Iframe: React.FC = () => {
     <IframeContainer>
       <PulseLoader
         color={colors.blue[500]}
-        loading
+        loading={loading}
         size={30}
         css={`
           position: absolute;
