@@ -15,6 +15,11 @@ export default createGlobalStyle`
       font-size: bold!important;
       border-radius: 5px!important;
 
+      @media(max-width: 350px) {
+        max-width: 300px!important;
+        padding: 20px!important;
+      }
+
       >div {
         justify-content: center;
       }
