@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef } from 'react'
+import React, { useCallback, useRef } from 'react'
 
 import { Box, Button } from '@hub/common/components'
 import { List } from '@hub/common/components/Icons'
@@ -40,12 +40,8 @@ const Header: React.FC = () => {
     menuRef.current?.openMenu()
   }, [])
 
-  const CustomHeader = useMemo(() => {
-    return isDesktop ? React.Fragment : Headroom
-  }, [isDesktop])
-
   return (
-    <CustomHeader style={{ zIndex: 99999 }}>
+    <Headroom disable={isDesktop} style={{ zIndex: 99999 }}>
       <Box
         p="4"
         width="100%"
@@ -71,8 +67,8 @@ const Header: React.FC = () => {
         {isDesktop && <DesktopMenu />}
         {!isDesktop && <MobileMenu ref={menuRef} />}
       </Box>
-      {!isDesktop && <Box height="72px" />}
-    </CustomHeader>
+      {/* {!isDesktop && <Box height="72px" />} */}
+    </Headroom>
   )
 }
 

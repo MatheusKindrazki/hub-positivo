@@ -85,14 +85,14 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                 </Box>
               ) : null}
               {cards?.map((card, i) => (
-                <React.Fragment key={i}>
+                <div key={String(i)}>
                   <Box mb="4">
                     <Heading
                       as="h4"
                       className={classNames({ margin: i !== 0 })}
                       fontSize="sm"
                     >
-                      {card.nome}
+                      {card.nome}ss
                     </Heading>
                   </Box>
 
@@ -105,7 +105,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                       />
                     ))}
                   </SimpleGrid>
-                </React.Fragment>
+                </div>
               ))}
             </Box>
           </Box>

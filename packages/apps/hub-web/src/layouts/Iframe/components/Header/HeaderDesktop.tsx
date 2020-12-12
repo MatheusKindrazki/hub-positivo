@@ -82,7 +82,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
               </Box>
             ) : null}
             {filterCards?.map((card, i) => (
-              <React.Fragment key={i}>
+              <div key={String(i)}>
                 <Box mb="4">
                   <Heading
                     as="h4"
@@ -104,7 +104,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                     />
                   ))}
                 </SimpleGrid>
-              </React.Fragment>
+              </div>
             ))}
           </Box>
         </Box>

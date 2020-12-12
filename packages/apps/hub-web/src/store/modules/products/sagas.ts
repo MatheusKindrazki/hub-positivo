@@ -23,7 +23,7 @@ export function* getProducts(): Generator {
   const { user, school } = store.getState().user
   let query: string
 
-  if (!user) return
+  if (!user && !school) return
 
   if (level && enableFilterLevel.includes(guid)) {
     query = `${guid}?NivelEnsino=${level}`
@@ -35,30 +35,30 @@ export function* getProducts(): Generator {
     return api.get(`Categoria/Solucoes/Perfil/${query}`)
   })
 
-  const { ok, data } = response as ApiResponse<CardProduct[]>
+  const { ok, data, status } = response as ApiResponse<CardProduct[]>
 
-  if (!ok) {
+  if (!ok && status !== 401) {
     toast.error('Erro ao buscar soluções, tente novamente mais tarde!')
     return
   }
 
-  // const apiLivrosResponse = yield call(() => {
-  //   return apiLivro.get(`checkuser?integrationId=${user?.integration_id || 0}`)
-  // })
+  const apiLivrosResponse = yield call(() => {
+    return apiLivro.get(`checkuser?integrationId=${user?.integration_id || 0}`)
+  })
 
-  // const { data: dataLivros } = apiLivrosResponse as ApiResponse<{
-  //   redirects_to: string
-  // }>
+  const { data: dataLivros } = apiLivrosResponse as ApiResponse<{
+    redirects_to: string
+  }>
 
-  // const apiMHUNDResponse = yield call(() => {
-  //   return apiMHUND.get(
-  //     `checkschool?integrationId=${school?.integration_id || 0}`
-  //   )
-  // })
+  const apiMHUNDResponse = yield call(() => {
+    return apiMHUND.get(
+      `checkschool?integrationId=${school?.integration_id || 0}`
+    )
+  })
 
-  // const { data: dataMHUND } = apiMHUNDResponse as ApiResponse<{
-  //   redirects_to: string
-  // }>
+  const { data: dataMHUND } = apiMHUNDResponse as ApiResponse<{
+    redirects_to: string
+  }>
 
   const alterData = data?.map(d => {
     return {
@@ -67,14 +67,14 @@ export function* getProducts(): Generator {
         if (s.nome === 'Árvore Livros') {
           return {
             ...s,
-            link: '',
-            ativo: false
+            link: dataLivros?.redirects_to || '',
+            ativo: !!dataLivros?.redirects_to
           }
-        } else if (s.nome === 'SAE + C') {
+        } else if (s.nome === 'Gestão Escolar - Mhund') {
           return {
             ...s,
-            link: '',
-            ativo: false
+            link: dataMHUND?.redirects_to || '',
+            ativo: !!dataMHUND?.redirects_to
           }
         } else return s
       })
