@@ -6,17 +6,17 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import ThemeProvider from '@hub/common/layout/Provider'
 
-import TagManager, { TagManagerArgs } from 'react-gtm-module'
+// import TagManager, { TagManagerArgs } from 'react-gtm-module'
 import { ToastContainer } from 'react-toastify'
 
 import Routes from '~/routes'
 import { store, persistor } from '~/store'
 
-const tagManagerArgs: TagManagerArgs = {
-  gtmId: 'GTM-PCPNTVS'
-}
+// const tagManagerArgs: TagManagerArgs = {
+//   gtmId: 'GTM-PCPNTVS'
+// }
 
-TagManager.initialize(tagManagerArgs)
+// TagManager.initialize(tagManagerArgs)
 
 const App: React.FC = () => {
   return (
