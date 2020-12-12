@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react'
 
 import {
-  Menu,
   Box,
   Button,
   Heading,
@@ -18,107 +17,77 @@ import { HeaderProps } from './index'
 import GlobalStyle from './styles'
 
 const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
-  const { MenuContainer, MenuButton, MenuList } = Menu
-
   const [search, setSearch] = useState('')
-
-  const heightBox = useMemo(() => {
-    const height = window.document.body.clientHeight / 1.7
-
-    return !cards || !cards.length ? 'auto' : height
-  }, [cards])
 
   const filterCards = useMemo(
     () => cardFilter({ data: cards || [], search: search }),
     [cards, search]
   )
+
   return (
     <div className="hub-header-list">
-      <MenuContainer>
-        <MenuButton
-          as={Button}
-          fontSize="0.875rem"
-          backgroundColor="white"
-          fontWeight="bold"
-          color="blue.500"
-          mx="1"
-          type="button"
+      <Button
+        fontSize="0.875rem"
+        backgroundColor="white"
+        fontWeight="bold"
+        color="blue.500"
+        mx="1"
+        type="button"
+      >
+        Produtos
+      </Button>
+      <Box
+        borderRadius="4px"
+        boxShadow="dark-lg"
+        border="1px solid #DADADA"
+        w="330px"
+        h="auto"
+        maxHeight="69vh"
+        overflow="hidden"
+        background="white!important"
+        className="hub-items"
+        paddingTop="2.5rem"
+      >
+        <Search handleChange={setSearch} style={{ zIndex: 9 }} />
+        <Box
+          w="100%"
+          h="auto"
+          maxHeight="69vh"
+          overflow="auto"
+          paddingTop="3.5rem"
+          px="6"
+          py="4"
         >
-          Produtos
-        </MenuButton>
-        <MenuList
-          style={{ zIndex: 9999 }}
-          minW="300px"
-          h="100%"
-          borderRadius="0"
-          background="transparent!important"
-          border="none"
-          boxShadow="none"
-          className="hub-header-list"
-          w="19rem"
-        >
-          <Box
-            style={{ zIndex: 999999 }}
-            borderRadius="4px"
-            boxShadow="dark-lg"
-            border="1px solid #DADADA"
-            top="8px!important"
-            w="100%"
-            maxW="330px"
-            h={heightBox}
-            maxHeight="69vh"
-            background="white!important"
-            position="relative"
-            className="hub-items"
-            paddingTop="2.5rem"
-          >
-            <Box
-              style={{ zIndex: 9999 }}
-              w="100%"
-              height="100%"
-              overflow="auto"
-              paddingTop="3.5rem"
-              px="6"
-              py="4"
-            >
-              <Search handleChange={setSearch} />
-              {!cards || !cards.length ? (
-                <Box
-                  w="100%"
-                  d="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <SpinnerLoader loading={true} color="var(--hub-base-color)" />
-                </Box>
-              ) : null}
-              {filterCards?.map((card, i) => (
-                <React.Fragment key={i}>
-                  <Box mb="4">
-                    <Heading
-                      as="h4"
-                      className={classNames({ margin: i !== 0 })}
-                      fontSize="sm"
-                    >
-                      {card.nome}
-                    </Heading>
-                  </Box>
-
-                  <SimpleGrid templateColumns="repeat(3, 1fr)" spacing={3}>
-                    {card.solucoes?.map(solucao => (
-                      <Card
-                        key={Math.random()}
-                        card={{ ...solucao, cor: card.cor }}
-                        onClick={handlePush}
-                      />
-                    ))}
-                  </SimpleGrid>
-                </React.Fragment>
-              ))}
+          {!cards || !cards.length ? (
+            <Box w="100%" d="flex" justifyContent="center" alignItems="center">
+              <SpinnerLoader loading={true} color="var(--hub-base-color)" />
             </Box>
-          </Box>
-        </MenuList>
-      </MenuContainer>
+          ) : null}
+          {filterCards?.map((card, i) => (
+            <React.Fragment key={i}>
+              <Box mb="4">
+                <Heading
+                  as="h4"
+                  className={classNames({ margin: i !== 0 })}
+                  fontSize="sm"
+                >
+                  {card.nome}
+                </Heading>
+              </Box>
+
+              <SimpleGrid templateColumns="repeat(3, 1fr)" spacing={3}>
+                {card.solucoes?.map(solucao => (
+                  <Card
+                    key={Math.random()}
+                    card={{ ...solucao, cor: card.cor }}
+                    onClick={handlePush}
+                  />
+                ))}
+              </SimpleGrid>
+            </React.Fragment>
+          ))}
+        </Box>
+      </Box>
       <GlobalStyle />
     </div>
   )
