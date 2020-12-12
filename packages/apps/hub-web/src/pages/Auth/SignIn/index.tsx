@@ -70,6 +70,7 @@ const SignIn: React.FC = () => {
           name="password"
           type={!view ? 'password' : 'text'}
           placeholder="Digite sua senha"
+          autoComplete="current-password"
           data-testid="password"
           iconRight={
             <Box
