@@ -45,7 +45,7 @@ const Header: React.FC = () => {
   }, [isDesktop])
 
   return (
-    <CustomHeader>
+    <CustomHeader style={{ zIndex: 99999 }}>
       <Box
         p="4"
         width="100%"
@@ -56,7 +56,7 @@ const Header: React.FC = () => {
         justifyContent="space-between"
         borderBottom="1px solid #D9D9D9"
         position={!isDesktop ? 'fixed' : 'inherit'}
-        zIndex={!isDesktop ? 999 : 'auto'}
+        zIndex={99999}
       >
         <Box
           className="hub-logo"

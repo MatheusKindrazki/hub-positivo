@@ -21,7 +21,7 @@ const Search: React.FC<HandleChange> = ({ handleChange, ...rest }) => {
   }, 500)
 
   return (
-    <>
+    <Box zIndex="999999">
       <InputGroup
         backgroundColor="gray.200"
         height="3rem"
@@ -54,7 +54,7 @@ const Search: React.FC<HandleChange> = ({ handleChange, ...rest }) => {
           {...rest}
         />
       </InputGroup>
-    </>
+    </Box>
   )
 }
 
