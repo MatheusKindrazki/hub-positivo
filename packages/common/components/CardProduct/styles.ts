@@ -8,9 +8,22 @@ export const Container = styled(Box)`
   &.disabled {
     pointer-events: none;
     position: relative;
-    filter: grayscale(0.9);
     box-shadow: none;
-    opacity: 0.4;
+    background: rgba(255, 255, 255, 0.6) !important;
+
+    *:not(span) {
+      filter: grayscale(0.9);
+      opacity: 0.5;
+    }
+
+    b,
+    p {
+      opacity: 1 !important;
+    }
+
+    > span {
+      z-index: 1;
+    }
   }
 
   &.isHover {
