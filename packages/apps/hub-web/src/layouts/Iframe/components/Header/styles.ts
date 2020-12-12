@@ -7,7 +7,7 @@ export default createGlobalStyle`
       position: absolute;
       left: auto!important;
       right: 0!important;
-      top: 27px!important;
+      top: 55px!important;
     }
   }
 
