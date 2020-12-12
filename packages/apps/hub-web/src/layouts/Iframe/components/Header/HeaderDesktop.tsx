@@ -9,6 +9,7 @@ import {
 } from '@hub/common/components'
 
 import classNames from 'classnames'
+import { CSSTransition } from 'react-transition-group'
 
 import Card from '../Card'
 import Search from '../Search'
@@ -18,6 +19,7 @@ import GlobalStyle from './styles'
 
 const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const [search, setSearch] = useState('')
+  const [show, setShow] = useState(false)
 
   const filterCards = useMemo(
     () => cardFilter({ data: cards || [], search: search }),
@@ -33,61 +35,80 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
         color="blue.500"
         mx="1"
         type="button"
+        className="button-header"
+        onClick={() => setShow(!show)}
       >
         Produtos
       </Button>
-      <Box
-        borderRadius="4px"
-        boxShadow="dark-lg"
-        border="1px solid #DADADA"
-        w="330px"
-        h="auto"
-        maxHeight="69vh"
-        overflow="hidden"
-        background="white!important"
-        className="hub-items"
-        paddingTop="2.5rem"
+      <CSSTransition
+        in={show}
+        timeout={400}
+        unmountOnExit
+        classNames="hub-menu"
       >
-        <Search handleChange={setSearch} style={{ zIndex: 9 }} />
         <Box
-          w="100%"
+          borderRadius="4px"
+          boxShadow="dark-lg"
+          border="1px solid #DADADA"
+          w="330px"
           h="auto"
           maxHeight="69vh"
-          overflow="auto"
-          paddingTop="3.5rem"
-          px="6"
-          py="4"
+          overflow="hidden"
+          background="white!important"
+          onMouseLeave={() => setShow(false)}
+          className={classNames({
+            'hub-items': true
+          })}
+          paddingTop="2.5rem"
         >
-          {!cards || !cards.length ? (
-            <Box w="100%" d="flex" justifyContent="center" alignItems="center">
-              <SpinnerLoader loading={true} color="var(--hub-base-color)" />
-            </Box>
-          ) : null}
-          {filterCards?.map((card, i) => (
-            <React.Fragment key={i}>
-              <Box mb="4">
-                <Heading
-                  as="h4"
-                  className={classNames({ margin: i !== 0 })}
-                  fontSize="sm"
-                >
-                  {card.nome}
-                </Heading>
+          <Search handleChange={setSearch} style={{ zIndex: 9 }} />
+          <Box
+            w="100%"
+            h="auto"
+            maxHeight="69vh"
+            overflow="auto"
+            paddingTop="3.5rem"
+            px="6"
+            py="4"
+          >
+            {!cards || !cards.length ? (
+              <Box
+                w="100%"
+                d="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <SpinnerLoader loading={true} color="var(--hub-base-color)" />
               </Box>
-
-              <SimpleGrid templateColumns="repeat(3, 1fr)" spacing={3}>
-                {card.solucoes?.map(solucao => (
-                  <Card
-                    key={Math.random()}
-                    card={{ ...solucao, cor: card.cor }}
-                    onClick={handlePush}
-                  />
-                ))}
-              </SimpleGrid>
-            </React.Fragment>
-          ))}
+            ) : null}
+            {filterCards?.map((card, i) => (
+              <React.Fragment key={i}>
+                <Box mb="4">
+                  <Heading
+                    as="h4"
+                    className={classNames({ margin: i !== 0 })}
+                    fontSize="sm"
+                  >
+                    {card.nome}
+                  </Heading>
+                </Box>
+                <SimpleGrid templateColumns="repeat(3, 1fr)" spacing={3}>
+                  {card.solucoes?.map(solucao => (
+                    <Card
+                      key={Math.random()}
+                      card={{ ...solucao, cor: card.cor }}
+                      onClick={e => {
+                        handlePush(e)
+                        setShow(false)
+                      }}
+                    />
+                  ))}
+                </SimpleGrid>
+              </React.Fragment>
+            ))}
+          </Box>
         </Box>
-      </Box>
+      </CSSTransition>
       <GlobalStyle />
     </div>
   )
