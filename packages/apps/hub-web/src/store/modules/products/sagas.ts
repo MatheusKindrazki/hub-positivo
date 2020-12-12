@@ -42,23 +42,23 @@ export function* getProducts(): Generator {
     return
   }
 
-  const apiLivrosResponse = yield call(() => {
-    return apiLivro.get(`checkuser?integrationId=${user?.integration_id || 0}`)
-  })
+  // const apiLivrosResponse = yield call(() => {
+  //   return apiLivro.get(`checkuser?integrationId=${user?.integration_id || 0}`)
+  // })
 
-  const { data: dataLivros } = apiLivrosResponse as ApiResponse<{
-    redirects_to: string
-  }>
+  // const { data: dataLivros } = apiLivrosResponse as ApiResponse<{
+  //   redirects_to: string
+  // }>
 
-  const apiMHUNDResponse = yield call(() => {
-    return apiMHUND.get(
-      `checkschool?integrationId=${school?.integration_id || 0}`
-    )
-  })
+  // const apiMHUNDResponse = yield call(() => {
+  //   return apiMHUND.get(
+  //     `checkschool?integrationId=${school?.integration_id || 0}`
+  //   )
+  // })
 
-  const { data: dataMHUND } = apiMHUNDResponse as ApiResponse<{
-    redirects_to: string
-  }>
+  // const { data: dataMHUND } = apiMHUNDResponse as ApiResponse<{
+  //   redirects_to: string
+  // }>
 
   const alterData = data?.map(d => {
     return {
@@ -67,14 +67,14 @@ export function* getProducts(): Generator {
         if (s.nome === 'Árvore Livros') {
           return {
             ...s,
-            link: dataLivros?.redirects_to || undefined,
-            ativo: !!dataLivros?.redirects_to
+            link: '',
+            ativo: false
           }
         } else if (s.nome === 'SAE + C') {
           return {
             ...s,
-            link: dataMHUND?.redirects_to || undefined,
-            ativo: !!dataMHUND?.redirects_to
+            link: '',
+            ativo: false
           }
         } else return s
       })
