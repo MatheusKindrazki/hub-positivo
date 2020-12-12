@@ -57,6 +57,20 @@ const CardProduct: React.FC<CardProductProps> = ({
       }}
       style={{ position: 'relative' }}
     >
+      {!link && (
+        <Badge
+          colorScheme="blue"
+          w="75px"
+          top="6px"
+          right="6px"
+          h="0.9375rem"
+          borderRadius="4px"
+          position="absolute"
+          m="4px"
+        >
+          Em Breve
+        </Badge>
+      )}
       <Box
         h="100%"
         minWidth={['4.7rem', '5.9375rem']}
@@ -77,6 +91,7 @@ const CardProduct: React.FC<CardProductProps> = ({
       <Box
         data-testid="button"
         as="button"
+        className="card-click"
         onClick={() => handlePush(link)}
         p={['4', '4', '1.1rem']}
         outline="none"
