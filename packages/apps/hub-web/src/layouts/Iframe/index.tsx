@@ -24,6 +24,7 @@ const Iframe: React.FC = ({ children }) => {
       dispatch(
         preAuth({
           product: slug,
+          name: data.nome,
           url: data.url,
           tipoRenderizacao: data.tipoRenderizacao
         })

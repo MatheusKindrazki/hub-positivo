@@ -5,6 +5,7 @@ export interface ProductRequest {
 export interface ProductReducer {
   loading: boolean
   frameUrl?: string
+  frameName?: string
   data?: CardProduct[]
 }
 

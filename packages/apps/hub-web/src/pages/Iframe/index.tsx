@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { useTheme } from '@hub/common/layout/styles'
+import documentTitle from '@hub/common/utils/documentTitle'
 
 import { useParams } from 'react-router-dom'
 import { PulseLoader } from 'react-spinners'
@@ -23,7 +24,9 @@ const Iframe: React.FC = () => {
 
   const { solution } = useParams<IframePropsRouter>()
 
-  const { frameUrl } = useSelector((state: Store.State) => state.products)
+  const { frameUrl, frameName } = useSelector(
+    (state: Store.State) => state.products
+  )
 
   useEffect(() => {
     if (!frameUrl) {
@@ -31,7 +34,9 @@ const Iframe: React.FC = () => {
 
       if (!getUrl) return history.push('/')
 
-      setUrl(getUrl)
+      documentTitle(getUrl.name)
+
+      setUrl(getUrl.url)
 
       setTimeout(() => {
         setLoading(false)
@@ -40,14 +45,15 @@ const Iframe: React.FC = () => {
       return
     }
 
-    setFrame({ key: solution, url: frameUrl || '' })
+    setFrame({ key: solution, url: frameUrl || '', name: frameName || 'Hub' })
 
+    documentTitle(frameName || 'Hub')
     setTimeout(() => {
       setLoading(false)
     }, 2500)
 
     return setUrl(frameUrl || '')
-  }, [frameUrl, solution])
+  }, [frameName, frameUrl, solution])
 
   return (
     <IframeContainer>
