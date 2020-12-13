@@ -10,7 +10,6 @@ import {
 import Auth from '~/layouts/Auth'
 import Iframe from '~/layouts/Iframe'
 import Logged from '~/layouts/Logged'
-import history from '~/services/history'
 import { store } from '~/store'
 interface RouteProps extends RoutePropsWouter {
   isPrivate?: boolean
@@ -22,14 +21,6 @@ const Route: React.FC<RouteProps> = ({
   ...rest
 }) => {
   const { pathname } = useLocation()
-
-  if (process.env.NODE_ENV !== 'development') {
-    history.listen(() => {
-      window.ga('send', 'pageview', {
-        page: pathname
-      })
-    })
-  }
 
   const { signed } = store.getState().auth
 
