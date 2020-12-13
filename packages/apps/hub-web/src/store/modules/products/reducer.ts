@@ -32,7 +32,8 @@ const products: ReturnReducer = (state = INITIAL_STATE, action) => {
       }
 
       case Actions.FRAME_URL: {
-        draft.frameUrl = action.payload
+        draft.frameUrl = action.payload.url
+        draft.frameName = action.payload.name
         break
       }
 

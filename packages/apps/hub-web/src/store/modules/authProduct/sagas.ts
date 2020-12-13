@@ -43,7 +43,7 @@ export function* productSorting({ payload }: AuthPayload): Generator {
   if (tipoRenderizacao === 'iframenoauth') {
     history.push(`/solucao/${product}`)
 
-    return yield put(setFrameURL({ url }))
+    return yield put(setFrameURL({ url, name: payload.name }))
   }
 
   if (tipoRenderizacao === 'targetblank') {
@@ -101,7 +101,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   }
   yield put(loading(false))
 
-  yield put(setFrameURL({ url: `${payload.url}/${data}` }))
+  yield put(setFrameURL({ url: `${payload.url}/${data}`, name: payload.name }))
 
   history.push(`/solucao/${payload.product}`)
 
@@ -146,7 +146,7 @@ export function* authProductEEM({ payload }: AuthPayload): Generator {
     data?.access_token || 'invalid-token'
   )
 
-  yield put(setFrameURL({ url: newUrl }))
+  yield put(setFrameURL({ url: newUrl, name: payload.name }))
 
   history.push(`/solucao/${payload.product}`)
 
