@@ -39,9 +39,12 @@ const CardProduct: React.FC<CardProductProps> = ({
 
   return (
     <Container
+      data-categoria={`${category}`}
+      data-solucao={`${nome}`}
       className={classNames({
         disabled: !link,
-        isHover: true
+        isHover: true,
+        'hub-card-solucao': true
       })}
       id={`${renderCardName}`}
       background="white"
