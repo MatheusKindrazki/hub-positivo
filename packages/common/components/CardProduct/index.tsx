@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 
 import { Box, Image, Heading, Text, Badge } from '@hub/common/components'
 import createSlug from '@hub/common/utils/createSlug'
@@ -39,9 +39,12 @@ const CardProduct: React.FC<CardProductProps> = ({
 
   return (
     <Container
+      data-categoria={`${category}`}
+      data-solucao={`${nome}`}
       className={classNames({
         disabled: !link,
-        isHover: true
+        isHover: true,
+        'hub-card-solucao': true
       })}
       id={`${renderCardName}`}
       background="white"
@@ -77,6 +80,7 @@ const CardProduct: React.FC<CardProductProps> = ({
         d="flex"
         justifyContent="center"
         alignItems="center"
+        pointerEvents="none"
         backgroundColor={cor}
         p="0.625rem"
       >
@@ -92,7 +96,7 @@ const CardProduct: React.FC<CardProductProps> = ({
         data-testid="button"
         as="button"
         className="card-click"
-        onClick={() => handlePush(link)}
+        pointerEvents="none"
         p={['4', '4', '1.1rem']}
         outline="none"
         boxShadow="none"

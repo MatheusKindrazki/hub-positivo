@@ -37,9 +37,15 @@ export function productFailure(): Action {
   }
 }
 
-export function setFrameURL({ url }: { url: string }): Action {
+export function setFrameURL({
+  url,
+  name
+}: {
+  url: string
+  name: string
+}): Action {
   return {
     type: Actions.FRAME_URL,
-    payload: url
+    payload: { url, name }
   }
 }
