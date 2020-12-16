@@ -18,11 +18,14 @@ const ForgotPassword: React.FC = () => {
   const formRef = useRef<FormProps>(null)
   const history = useHistory()
 
-  const handleSubmit = useCallback(async data => {
-    return data.userInfo === 'email@teste.com'
-      ? history.push('/login')
-      : console.log('email error')
-  }, [])
+  const handleSubmit = useCallback(
+    async data => {
+      return data.userInfo === 'email@teste.com'
+        ? history.push('/login')
+        : console.log('email error')
+    },
+    [history]
+  )
 
   return (
     <Box p="6">
