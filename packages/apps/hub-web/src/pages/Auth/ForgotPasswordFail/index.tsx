@@ -6,7 +6,7 @@ import documentTitle from '@hub/common/utils/documentTitle'
 
 import { useHistory } from 'react-router-dom'
 
-const ForgotPassword: React.FC = () => {
+const ForgotPasswordFail: React.FC = () => {
   documentTitle('Esqueci minha senha')
 
   const history = useHistory()
@@ -38,4 +38,4 @@ const ForgotPassword: React.FC = () => {
   )
 }
 
-export default ForgotPassword
+export default ForgotPasswordFail
