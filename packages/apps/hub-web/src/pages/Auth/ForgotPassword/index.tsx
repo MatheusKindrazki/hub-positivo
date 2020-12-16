@@ -20,9 +20,10 @@ const ForgotPassword: React.FC = () => {
 
   const handleSubmit = useCallback(
     async data => {
+      console.log(data)
       return data.userInfo === 'email@teste.com'
         ? history.push('/login')
-        : console.log('email error')
+        : history.push('/forgot-password-failure')
     },
     [history]
   )
@@ -30,7 +31,12 @@ const ForgotPassword: React.FC = () => {
   return (
     <Box p="6">
       <Box d="flex" alignItems="center" justifyContent="flex-start" mb="2">
-        <Button colorScheme="blue" variant="link" justifyContent="flex-start">
+        <Button
+          colorScheme="blue"
+          variant="link"
+          justifyContent="flex-start"
+          onClick={() => history.goBack()}
+        >
           <Box as={ArrowLeft} color="blue.500" size={24} />
         </Button>
         <Heading color="black" fontSize="2xl" mb="2">
@@ -46,7 +52,7 @@ const ForgotPassword: React.FC = () => {
           name="userInfo"
           type="text"
           placeholder="Usuário, E-mail ou CPF"
-          iconLeft={<Box as={User} color="blue.500" size="21px" />}
+          iconLeft={<Box as={User} color="blue.500" />}
         />
         <ButtonForm mt="6">Solicitar Link</ButtonForm>
       </Form>
