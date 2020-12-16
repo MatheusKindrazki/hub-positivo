@@ -51,7 +51,7 @@ const Header: React.FC = () => {
         alignItems="center"
         justifyContent="space-between"
         borderBottom="1px solid #D9D9D9"
-        position={!isDesktop ? 'fixed' : 'inherit'}
+        // position={!isDesktop ? 'fixed' : 'inherit'}
         zIndex={99999}
       >
         <Box
