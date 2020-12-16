@@ -23,7 +23,7 @@ const ForgotPassword: React.FC = () => {
       console.log(data)
       return data.userInfo === 'email@teste.com'
         ? history.push('/login')
-        : history.push('/forgot-password-failure')
+        : history.push('/forgot-password/failure')
     },
     [history]
   )

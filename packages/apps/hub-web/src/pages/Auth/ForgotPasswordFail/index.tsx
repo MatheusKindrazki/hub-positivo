@@ -18,7 +18,7 @@ const ForgotPasswordFail: React.FC = () => {
           colorScheme="blue"
           variant="link"
           justifyContent="flex-start"
-          onClick={() => history.push('/login')}
+          onClick={() => history.goBack()}
         >
           <Box as={ArrowLeft} color="blue.500" size={24} />
         </Button>
@@ -30,7 +30,11 @@ const ForgotPasswordFail: React.FC = () => {
         <Text fontSize="xl" color="black" mb="6">
           Entre em contato com sua escola para realizar essa requisição
         </Text>
-        <Button colorScheme="blue" size="lg">
+        <Button
+          colorScheme="blue"
+          size="lg"
+          onClick={() => history.push('/login')}
+        >
           Voltar para o login
         </Button>
       </Box>

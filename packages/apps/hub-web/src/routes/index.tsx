@@ -39,11 +39,11 @@ const Routes: React.FC = () => {
           <Route path="/auth/:guid+" component={Inject} />
           <Route path="/login" component={SignIn} />
           <Route path="/profile" component={Profile} />
-          <Route path="/forgot-password" component={ForgotPassword} />
           <Route
-            path="/forgot-password-failure"
+            path="/forgot-password/failure"
             component={ForgotPasswordFail}
           />
+          <Route path="/forgot-password" component={ForgotPassword} />
           <Route path="/solucao/:solution" component={Iframe} isPrivate />
 
           <Route path="/" component={Home} isPrivate />
