@@ -20,6 +20,8 @@ const ForgotPassword: React.FC = () => {
   const formRef = useRef<FormProps>(null)
   const history = useHistory()
 
+  const handleGoBack = () => history.goBack()
+
   const handleSubmit = useCallback(
     async data => {
       return data.userInfo === 'email@teste.com'
@@ -31,11 +33,7 @@ const ForgotPassword: React.FC = () => {
 
   return (
     <Box p="6">
-      <GoBack
-        header="Nova senha"
-        colorScheme="blue"
-        onClick={() => history.goBack}
-      />
+      <GoBack header="Nova senha" colorScheme="blue" onClick={handleGoBack} />
       <Text fontSize="md" color="gray.500" mb="6">
         Insira seu nome de usuário, e-mail ou CPF. Um link para criação de uma
         nova senha será enviado para seu e-mail ou celular cadastrado.
