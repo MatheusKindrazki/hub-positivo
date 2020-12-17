@@ -13,7 +13,7 @@ const ForgotPasswordFail: React.FC = () => {
 
   return (
     <Box p="6">
-      <Box d="flex" alignItems="center" justifyContent="flex-start" mb="2">
+      <Box d="flex" alignItems="center" justifyContent="flex-start" mb="4">
         <Button
           colorScheme="blue"
           variant="link"
@@ -22,7 +22,7 @@ const ForgotPasswordFail: React.FC = () => {
         >
           <Box as={ArrowLeft} color="blue.500" size={24} />
         </Button>
-        <Heading color="black" fontSize="2xl" mb="2">
+        <Heading color="black" fontSize="2xl">
           O link não pôde ser enviado
         </Heading>
       </Box>
