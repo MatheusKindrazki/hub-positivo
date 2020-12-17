@@ -27,7 +27,12 @@ if (process.env.REACT_APP_NODE_ENV === 'production') {
 
 declare global {
   interface Window {
-    ga: any
+    __HUB_USER_INFO__: {
+      role: string
+      name: string
+      school: string
+      grade_level: string
+    }
   }
 }
 
