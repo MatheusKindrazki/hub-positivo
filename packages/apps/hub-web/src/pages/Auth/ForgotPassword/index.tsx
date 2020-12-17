@@ -39,7 +39,7 @@ const ForgotPassword: React.FC = () => {
         >
           <Box as={ArrowLeft} color="blue.500" size={24} />
         </Button>
-        <Heading color="black" fontSize="2xl">
+        <Heading color="black" fontSize="xl">
           Nova senha
         </Heading>
       </Box>
