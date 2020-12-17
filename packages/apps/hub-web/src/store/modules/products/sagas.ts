@@ -6,6 +6,7 @@ import { ApiResponse } from 'apisauce'
 import { toast } from 'react-toastify'
 
 import { store } from '~/store'
+import { getTourViewedRequest } from '~/store/modules/tour/actions'
 
 import { loading } from '../global/actions'
 import { Actions as ProfileActions } from '../profile/actions'
@@ -82,6 +83,8 @@ export function* getProducts(): Generator {
   })
 
   yield put(loading(false))
+
+  yield put(getTourViewedRequest())
 
   yield put(
     productSuccess({

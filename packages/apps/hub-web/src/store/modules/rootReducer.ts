@@ -19,12 +19,12 @@ export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
   return combineReducers({
     auth,
     user,
-    tour,
     profile,
     products,
     global,
     levelEducation,
     authProduct,
+    tour,
     router: connectRouter(history)
   })
 }
