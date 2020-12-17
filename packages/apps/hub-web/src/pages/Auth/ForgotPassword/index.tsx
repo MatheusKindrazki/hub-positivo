@@ -1,16 +1,18 @@
 import React, { useRef, useCallback } from 'react'
 
-import { Box, Heading, Text, Button } from '@hub/common/components'
+import { Box, Text } from '@hub/common/components'
 import {
   Input,
   Form,
   FormProps,
   Button as ButtonForm
 } from '@hub/common/components/Form'
-import { ArrowLeft, User } from '@hub/common/components/Icons'
+import { User } from '@hub/common/components/Icons'
 import documentTitle from '@hub/common/utils/documentTitle'
 
 import { useHistory } from 'react-router-dom'
+
+import GoBack from '~/components/GoBack'
 
 const ForgotPassword: React.FC = () => {
   documentTitle('Esqueci minha senha')
@@ -20,7 +22,6 @@ const ForgotPassword: React.FC = () => {
 
   const handleSubmit = useCallback(
     async data => {
-      console.log(data)
       return data.userInfo === 'email@teste.com'
         ? history.push('/login')
         : history.push('/forgot-password/failure')
@@ -30,19 +31,11 @@ const ForgotPassword: React.FC = () => {
 
   return (
     <Box p="6">
-      <Box d="flex" alignItems="center" justifyContent="flex-start" mb="2">
-        <Button
-          colorScheme="blue"
-          variant="link"
-          justifyContent="flex-start"
-          onClick={() => history.goBack()}
-        >
-          <Box as={ArrowLeft} color="blue.500" size={24} />
-        </Button>
-        <Heading color="black" fontSize="xl">
-          Nova senha
-        </Heading>
-      </Box>
+      <GoBack
+        header="Nova senha"
+        colorScheme="blue"
+        onClick={() => history.goBack}
+      />
       <Text fontSize="md" color="gray.500" mb="6">
         Insira seu nome de usuário, e-mail ou CPF. Um link para criação de uma
         nova senha será enviado para seu e-mail ou celular cadastrado.
