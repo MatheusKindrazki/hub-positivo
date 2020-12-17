@@ -9,7 +9,7 @@ import Tour from '@hub/common/components/Tour'
 import Header from '~/components/Header'
 
 import { openTour } from '~/store/modules/tour/actions'
-import { postTour } from '~/store/modules/tour/sagas'
+import { postTourViewed } from '~/store/modules/tour/actions'
 
 import { Container } from './styles'
 
@@ -23,7 +23,7 @@ const Dashboard: React.FC = ({ children }) => {
   const handleClosedTour = useCallback(() => {
     if (viewed) return dispatch(openTour(false))
 
-    dispatch(postTour())
+    dispatch(postTourViewed())
   }, [dispatch, viewed])
 
   return (

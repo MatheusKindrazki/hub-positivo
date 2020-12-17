@@ -26,7 +26,7 @@ const tour: Tour = (state = INITIAL_STATE, action) => {
 
       case Actions.GET_INFO_VIEWED_SUCCESS: {
         draft.loading = false
-        draft.open = action.payload.viewed
+        draft.open = !action.payload.viewed
         draft.viewed = action.payload.viewed
 
         break
