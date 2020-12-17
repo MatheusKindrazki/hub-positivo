@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from 'react'
+import React, { useRef, useState, useCallback, useEffect } from 'react'
 
 import { Box, Heading, Text, Button } from '@hub/common/components'
 import {
@@ -9,16 +9,29 @@ import {
 } from '@hub/common/components/Form'
 import { ArrowLeft, Eye, EyeSlash, Lock } from '@hub/common/components/Icons'
 
+import { useParams } from 'react-router'
 import { toast } from 'react-toastify'
 import { ValidationError } from 'yup'
 
+import history from '~/services/history'
 import { getValidationErrors } from '~/validators'
 import passValidation from '~/validators/auth/createNewPassword'
 
-const CreateNewPassword: React.FC = () => {
+interface ChangePasswordPropsRouter {
+  token: string
+}
+
+const ChangePassword: React.FC = () => {
   const formRef = useRef<FormProps>(null)
 
   const [view, setView] = useState(false)
+
+  const { token } = useParams<ChangePasswordPropsRouter>()
+
+  useEffect(() => {
+    const validToken = true
+    if (!validToken) history.push(`/expiredtoken/${token}`)
+  }, [token])
 
   const handleSubmit = useCallback(async data => {
     formRef?.current?.setErrors({})
@@ -47,11 +60,11 @@ const CreateNewPassword: React.FC = () => {
         <Button colorScheme="blue" variant="link" justifyContent="flex-start">
           <Box as={ArrowLeft} color="blue.500" size={24} />
         </Button>
-        <Heading color="black" fontSize="2xl">
+        <Heading color="black" fontSize="xl">
           Criar Nova Senha
         </Heading>
       </Box>
-      <Text fontSize="19px" color="black" mb="8">
+      <Text fontSize="md" color="gray.500" mb="8">
         Defina uma nova senha de acesso ao Positivo On
       </Text>
 
@@ -92,4 +105,4 @@ const CreateNewPassword: React.FC = () => {
   )
 }
 
-export default CreateNewPassword
+export default ChangePassword

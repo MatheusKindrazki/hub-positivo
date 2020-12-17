@@ -8,7 +8,8 @@ import { VariantsProps } from '@hub/common/layout/styles/colors'
 import { ConnectedRouter } from 'connected-react-router'
 import { Switch, HashRouter } from 'react-router-dom'
 
-import CreateNewPassword from '~/pages/Auth/CreateNewPassword'
+import ChangePassword from '~/pages/Auth/ChangePassword'
+import ExpiredToken from '~/pages/Auth/ExpiredToken'
 import Profile from '~/pages/Auth/Profile'
 import SignIn from '~/pages/Auth/SignIn'
 import Home from '~/pages/Home'
@@ -38,7 +39,8 @@ const Routes: React.FC = () => {
           <Route path="/auth/:guid+" component={Inject} />
           <Route path="/login" component={SignIn} />
           <Route path="/profile" component={Profile} />
-          <Route path="/redefinir-senha" component={CreateNewPassword} />
+          <Route path="/expiredtoken/:token+" component={ExpiredToken} />
+          <Route path="/changepassword/:token+" component={ChangePassword} />
           <Route path="/solucao/:solution" component={Iframe} isPrivate />
 
           <Route path="/" component={Home} isPrivate />
