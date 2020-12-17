@@ -1,0 +1,31 @@
+import React from 'react'
+import { MouseEventHandler } from 'react'
+
+import { Box, Heading, Button } from '@hub/common/components'
+import { ArrowLeft } from '@hub/common/components/Icons'
+
+type GobackProps = {
+  header: string
+  colorScheme: string
+  onClick: MouseEventHandler<HTMLButtonElement>
+}
+
+const GoBack: React.FC<GobackProps> = ({ onClick, header, colorScheme }) => {
+  return (
+    <Box d="flex" justifyContent="flex-start" mb="4">
+      <Button
+        colorScheme={colorScheme}
+        variant="link"
+        justifyContent="flex-start"
+        onClick={onClick}
+      >
+        <Box as={ArrowLeft} color={`${colorScheme}.500`} size={24} />
+      </Button>
+      <Heading color="black" fontSize="xl">
+        {header}
+      </Heading>
+    </Box>
+  )
+}
+
+export default GoBack

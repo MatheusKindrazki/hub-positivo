@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { Box, Heading, Text, Button } from '@hub/common/components'
-import { ArrowLeft } from '@hub/common/components/Icons'
+import { Box, Text, Button } from '@hub/common/components'
 import documentTitle from '@hub/common/utils/documentTitle'
 
 import { useHistory } from 'react-router-dom'
+
+import GoBack from '~/components/GoBack'
 
 const ForgotPasswordFail: React.FC = () => {
   documentTitle('Esqueci minha senha')
@@ -13,19 +14,11 @@ const ForgotPasswordFail: React.FC = () => {
 
   return (
     <Box p="6">
-      <Box d="flex" alignItems="center" justifyContent="flex-start" mb="4">
-        <Button
-          colorScheme="blue"
-          variant="link"
-          justifyContent="flex-start"
-          onClick={() => history.goBack()}
-        >
-          <Box as={ArrowLeft} color="blue.500" size={24} />
-        </Button>
-        <Heading color="black" fontSize="xl">
-          O link não pôde ser enviado
-        </Heading>
-      </Box>
+      <GoBack
+        header="O link não pôde ser enviado"
+        colorScheme="blue"
+        onClick={() => history.goBack}
+      />
       <Box d="flex" flexDir="column">
         <Text fontSize="md" color="gray.500" mb="6">
           Entre em contato com sua escola para realizar essa requisição
