@@ -27,7 +27,7 @@ const ForgotPasswordFail: React.FC = () => {
         </Heading>
       </Box>
       <Box d="flex" flexDir="column">
-        <Text fontSize="xl" color="black" mb="6">
+        <Text fontSize="md" color="gray.500" mb="6">
           Entre em contato com sua escola para realizar essa requisição
         </Text>
         <Button

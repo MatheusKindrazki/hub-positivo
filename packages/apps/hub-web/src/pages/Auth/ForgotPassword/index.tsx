@@ -43,7 +43,7 @@ const ForgotPassword: React.FC = () => {
           Nova senha
         </Heading>
       </Box>
-      <Text fontSize="xl" color="black" mb="3">
+      <Text fontSize="md" color="gray.500" mb="6">
         Insira seu nome de usuário, e-mail ou CPF. Um link para criação de uma
         nova senha será enviado para seu e-mail ou celular cadastrado.
       </Text>
