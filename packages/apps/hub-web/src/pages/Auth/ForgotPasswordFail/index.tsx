@@ -12,12 +12,14 @@ const ForgotPasswordFail: React.FC = () => {
 
   const history = useHistory()
 
+  const handleGoBack = () => history.goBack()
+
   return (
     <Box p="6">
       <GoBack
         header="O link não pôde ser enviado"
         colorScheme="blue"
-        onClick={() => history.goBack}
+        onClick={handleGoBack}
       />
       <Box d="flex" flexDir="column">
         <Text fontSize="md" color="gray.500" mb="6">
