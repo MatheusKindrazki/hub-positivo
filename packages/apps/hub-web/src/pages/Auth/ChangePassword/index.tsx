@@ -1,17 +1,19 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
 
-import { Box, Heading, Text, Button } from '@hub/common/components'
+import { Box, Text } from '@hub/common/components'
 import {
   FormProps,
   Form,
   Input,
   Button as ButtonForm
 } from '@hub/common/components/Form'
-import { ArrowLeft, Eye, EyeSlash, Lock } from '@hub/common/components/Icons'
+import { Eye, EyeSlash, Lock } from '@hub/common/components/Icons'
 
 import { useParams } from 'react-router'
 import { toast } from 'react-toastify'
 import { ValidationError } from 'yup'
+
+import GoBack from '~/components/GoBack'
 
 import history from '~/services/history'
 import { getValidationErrors } from '~/validators'
@@ -32,6 +34,8 @@ const ChangePassword: React.FC = () => {
     const validToken = true
     if (!validToken) history.push(`/expiredtoken/${token}`)
   }, [token])
+
+  const handleLoginRedirect = () => history.push('/login')
 
   const handleSubmit = useCallback(async data => {
     formRef?.current?.setErrors({})
@@ -56,14 +60,9 @@ const ChangePassword: React.FC = () => {
 
   return (
     <Box p="6">
-      <Box d="flex" alignItems="center" justifyContent="flex-start" mb="2">
-        <Button colorScheme="blue" variant="link" justifyContent="flex-start">
-          <Box as={ArrowLeft} color="blue.500" size={24} />
-        </Button>
-        <Heading color="black" fontSize="xl">
-          Criar Nova Senha
-        </Heading>
-      </Box>
+      <GoBack colorScheme="blue" onClick={handleLoginRedirect}>
+        Criar Nova Senha
+      </GoBack>
       <Text fontSize="md" color="gray.500" mb="8">
         Defina uma nova senha de acesso ao Positivo On
       </Text>
