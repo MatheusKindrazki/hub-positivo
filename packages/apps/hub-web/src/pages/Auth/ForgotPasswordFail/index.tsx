@@ -16,11 +16,9 @@ const ForgotPasswordFail: React.FC = () => {
 
   return (
     <Box p="6">
-      <GoBack
-        header="O link não pôde ser enviado"
-        colorScheme="blue"
-        onClick={handleGoBack}
-      />
+      <GoBack colorScheme="blue" onClick={handleGoBack}>
+        O link não pôde ser enviado
+      </GoBack>
       <Box d="flex" flexDir="column">
         <Text fontSize="md" color="gray.500" mb="6">
           Entre em contato com sua escola para realizar essa requisição
