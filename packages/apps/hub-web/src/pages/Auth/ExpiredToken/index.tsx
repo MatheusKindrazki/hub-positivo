@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Box, Button, Text } from '@hub/common/components'
-import { Button as ButtonForm } from '@hub/common/components/Form'
+import { Box, Text } from '@hub/common/components'
+import { Button } from '@hub/common/components/Form'
 
 import { toast } from 'react-toastify'
 
@@ -21,24 +21,13 @@ const ExpiredToken: React.FC = () => {
       <GoBack colorScheme="blue" onClick={handleLoginRedirect}>
         O link expirou
       </GoBack>
-      <Text fontSize="md" color="gray.500" mb="6">
+      <Text fontSize="md" color="gray.500" mb="4">
         Solicite um novo link para redefinir sua senha.
       </Text>
 
-      <ButtonForm mt="2" mb="6" onClick={handleSubmit}>
+      <Button mt="2" mb="4" onClick={handleSubmit}>
         Solicitar novo link
-      </ButtonForm>
-
-      <Box d="flex" justifyContent="center">
-        <Button
-          onClick={handleLoginRedirect}
-          colorScheme="blue"
-          variant="link"
-          justifyContent="center"
-        >
-          Voltar para o login
-        </Button>
-      </Box>
+      </Button>
     </Box>
   )
 }
