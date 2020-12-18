@@ -1,12 +1,7 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
 
 import { Box, Text } from '@hub/common/components'
-import {
-  FormProps,
-  Form,
-  Input,
-  Button as ButtonForm
-} from '@hub/common/components/Form'
+import { FormProps, Form, Input, Button } from '@hub/common/components/Form'
 import { Eye, EyeSlash, Lock } from '@hub/common/components/Icons'
 
 import { useParams } from 'react-router'
@@ -98,7 +93,7 @@ const ChangePassword: React.FC = () => {
           iconLeft={<Box as={Lock} color="blue.500" size="21px" />}
         />
 
-        <ButtonForm>Salvar nova senha</ButtonForm>
+        <Button>Salvar nova senha</Button>
       </Form>
     </Box>
   )
