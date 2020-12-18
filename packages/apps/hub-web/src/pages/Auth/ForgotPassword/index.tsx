@@ -11,8 +11,13 @@ import { User } from '@hub/common/components/Icons'
 import documentTitle from '@hub/common/utils/documentTitle'
 
 import { useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { ValidationError } from 'yup'
 
 import GoBack from '~/components/GoBack'
+
+import { getValidationErrors } from '~/validators'
+import email from '~/validators/auth/forgotPassword'
 
 const ForgotPassword: React.FC = () => {
   documentTitle('Esqueci minha senha')
@@ -22,14 +27,25 @@ const ForgotPassword: React.FC = () => {
 
   const handleGoBack = () => history.goBack()
 
-  const handleSubmit = useCallback(
-    async data => {
-      return data.userInfo === 'email@teste.com'
-        ? history.push('/login')
-        : history.push('/forgot-password/failure')
-    },
-    [history]
-  )
+  const handleSubmit = useCallback(async data => {
+    formRef?.current?.setErrors({})
+    try {
+      await email.validate({ email: data.userInfo }, { abortEarly: false })
+
+      return console.log(data)
+    } catch (err) {
+      if (err instanceof ValidationError) {
+        console.log(err)
+        const errors = getValidationErrors(err)
+
+        formRef?.current?.setErrors(errors)
+
+        return toast.error(
+          'Algo deu errado, Verifique seus dados e tente novamente!'
+        )
+      }
+    }
+  }, [])
 
   return (
     <Box p="6">
