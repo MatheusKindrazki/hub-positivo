@@ -49,6 +49,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
       iat: user?.iat,
       user: {
         integration_id: user?.integration_id,
+        id: user?.id,
         email: user?.email,
         name: user?.name ? capitalize(user?.name) : '',
         username: user?.username,
