@@ -5,12 +5,12 @@ import { Box, Heading, Button } from '@hub/common/components'
 import { ArrowLeft } from '@hub/common/components/Icons'
 
 type GobackProps = {
-  header: string
+  children: string
   colorScheme: string
   onClick: MouseEventHandler<HTMLButtonElement>
 }
 
-const GoBack: React.FC<GobackProps> = ({ onClick, header, colorScheme }) => {
+const GoBack: React.FC<GobackProps> = ({ onClick, colorScheme, children }) => {
   return (
     <Box d="flex" justifyContent="flex-start" mb="4">
       <Button
@@ -22,7 +22,7 @@ const GoBack: React.FC<GobackProps> = ({ onClick, header, colorScheme }) => {
         <Box as={ArrowLeft} color={`${colorScheme}.500`} size={24} />
       </Button>
       <Heading color="black" fontSize="xl">
-        {header}
+        {children}
       </Heading>
     </Box>
   )
