@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 
-import api, { apiLivro, apiMHUND } from '@hub/api'
+import api, { apiLivro, apiMHUND, apiAuthProduct } from '@hub/api'
 
 import { ApiResponse } from 'apisauce'
 import { toast } from 'react-toastify'
@@ -19,6 +19,9 @@ export function* getProducts(): Generator {
 
   const { guid } = store.getState().profile
   const { level } = store.getState().levelEducation
+
+  const auth = store.getState().auth
+  const profile = store.getState().profile
 
   const { user, school } = store.getState().user
   let query: string
@@ -42,6 +45,28 @@ export function* getProducts(): Generator {
     return
   }
 
+  /* Inicio ( Cod: Temporário ) */
+  const authTheProduct = {
+    product: 'mhund',
+    token: auth.token,
+    logged_in: {
+      school: {
+        name: school?.label,
+        id: school?.value,
+        class: null
+      },
+      profile: profile.guid,
+      user_id: null
+    },
+    expire_in: auth.exp
+  }
+
+  const responseGUID = yield call(() => {
+    return apiAuthProduct.post('api/TokenStorage', authTheProduct)
+  })
+
+  const { data: dataGUID } = responseGUID as ApiResponse<object>
+
   const apiLivrosResponse = yield call(() => {
     return apiLivro.get(`checkuser?integrationId=${user?.integration_id || 0}`)
   })
@@ -50,12 +75,10 @@ export function* getProducts(): Generator {
     redirects_to: string
   }>
 
+  // https://appsv-saedigital-dev-001.azurewebsites.net/api/mhund/CheckUser?guid=60111456-7f53-4652-9baa-89fcdafecebb
   const apiMHUNDResponse = yield call(() => {
-    return apiMHUND.get(
-      `checkschool?integrationId=${school?.integration_id || 0}`
-    )
+    return apiMHUND.get(`checkuser?guid=${dataGUID || 0}`)
   })
-
   const { data: dataMHUND } = apiMHUNDResponse as ApiResponse<{
     redirects_to: string
   }>
@@ -80,6 +103,8 @@ export function* getProducts(): Generator {
       })
     }
   })
+
+  /* Fim ( Cod: Temporário ) */
 
   yield put(loading(false))
 
