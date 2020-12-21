@@ -1,5 +1,7 @@
 import React, { useRef, useCallback } from 'react'
 
+import { useDispatch } from 'react-redux'
+
 import { Box, Text } from '@hub/common/components'
 import {
   Input,
@@ -16,36 +18,40 @@ import { ValidationError } from 'yup'
 
 import GoBack from '~/components/GoBack'
 
+import { pwdTokenRequest } from '~/store/modules/forgotPassword/actions'
 import { getValidationErrors } from '~/validators'
 import email from '~/validators/auth/forgotPassword'
 
 const ForgotPassword: React.FC = () => {
   documentTitle('Esqueci minha senha')
 
+  const dispatch = useDispatch()
   const formRef = useRef<FormProps>(null)
   const history = useHistory()
 
   const handleGoBack = () => history.goBack()
 
-  const handleSubmit = useCallback(async data => {
-    formRef?.current?.setErrors({})
-    try {
-      await email.validate({ email: data.userInfo }, { abortEarly: false })
+  const handleSubmit = useCallback(
+    async data => {
+      formRef?.current?.setErrors({})
+      try {
+        await email.validate({ email: data.userInfo }, { abortEarly: false })
 
-      return console.log(data)
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        console.log(err)
-        const errors = getValidationErrors(err)
+        return dispatch(pwdTokenRequest(data))
+      } catch (err) {
+        if (err instanceof ValidationError) {
+          console.log(err)
+          const errors = getValidationErrors(err)
 
-        formRef?.current?.setErrors(errors)
-
+          formRef?.current?.setErrors(errors)
+        }
         return toast.error(
           'Algo deu errado, Verifique seus dados e tente novamente!'
         )
       }
-    }
-  }, [])
+    },
+    [dispatch]
+  )
 
   return (
     <Box p="6">
