@@ -1,25 +1,20 @@
 import React from 'react'
-import { MouseEventHandler } from 'react'
 
 import { Box, Heading, Button } from '@hub/common/components'
 import { ArrowLeft } from '@hub/common/components/Icons'
 
-type GobackProps = {
-  children: string
-  colorScheme: string
-  onClick: MouseEventHandler<HTMLButtonElement>
-}
+import { ButtonProps } from '@chakra-ui/react'
 
-const GoBack: React.FC<GobackProps> = ({ onClick, colorScheme, children }) => {
+const GoBack: React.FC<ButtonProps> = ({ onClick, children, ...rest }) => {
   return (
     <Box d="flex" justifyContent="flex-start" mb="4">
       <Button
-        colorScheme={colorScheme}
         variant="link"
         justifyContent="flex-start"
         onClick={onClick}
+        {...rest}
       >
-        <Box as={ArrowLeft} color={`${colorScheme}.500`} size={24} />
+        <Box as={ArrowLeft} size={24} />
       </Button>
       <Heading color="black" fontSize="xl">
         {children}
