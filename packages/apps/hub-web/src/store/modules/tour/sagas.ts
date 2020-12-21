@@ -5,12 +5,52 @@ import api from '@hub/api'
 import { ApiResponse } from 'apisauce'
 import { toast } from 'react-toastify'
 
+import { store } from '~/store'
+
 import {
   Actions,
   getTourViewedFailure,
+  getTourViewedRequest,
+  getTourFailure,
+  getTourSuccess,
   getTourViewedSuccess,
   openTour
 } from './actions'
+import { StepsTour, StepsTourResponseApi } from './types'
+
+export function* getTour(): Generator {
+  const { viewedLoaded } = store.getState().tour
+
+  if (!viewedLoaded) {
+    yield put(getTourViewedRequest())
+  }
+
+  const { guid } = store.getState().profile
+
+  const response = yield call(() => {
+    return api.get('/Tour/Steps', {
+      perfil: guid
+    })
+  })
+
+  const { data, ok } = response as ApiResponse<StepsTourResponseApi[]>
+  if (!ok) {
+    toast.error('erro ao buscar steps do tour')
+    console.error(data)
+
+    return yield put(getTourFailure())
+  }
+
+  const prepareTour: StepsTour[] | undefined = data?.map(item => {
+    return {
+      content: item.conteudo,
+      selector: item.seletor,
+      position: item.posicao
+    }
+  })
+  return yield put(getTourSuccess(prepareTour))
+}
+
 export function* getViewed(): Generator {
   const response = yield call(() => {
     return api.get('/Tour')
@@ -44,6 +84,7 @@ export function* postTour(): Generator {
 }
 
 export default all([
+  takeLatest(Actions.GET_TOUR_REQUEST, getTour),
   takeLatest(Actions.GET_INFO_VIEWED_REQUEST, getViewed),
   takeLatest(Actions.POST_TOUR, postTour)
 ])
