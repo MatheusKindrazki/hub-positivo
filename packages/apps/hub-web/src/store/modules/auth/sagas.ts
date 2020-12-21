@@ -2,11 +2,11 @@
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
 import api from '@hub/api'
+import { toast } from '@hub/common/utils'
 import capitalize from '@hub/common/utils/capitalize'
 
 import { ApiResponse } from 'apisauce'
 import { decode } from 'jsonwebtoken'
-import { toast } from 'react-toastify'
 
 import { EEMConnectPost } from '~/services/eemConnect'
 import history from '~/services/history'
