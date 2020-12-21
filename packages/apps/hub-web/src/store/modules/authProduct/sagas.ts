@@ -66,6 +66,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   const auth = store.getState().auth
   const profile = store.getState().profile
   const user = store.getState().user
+  const { level } = store.getState().levelEducation
 
   if (!auth && !profile && !user) return
 
@@ -78,10 +79,10 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
       school: {
         name: user.school?.label,
         id: user.school?.value,
-        class: null
+        class: level
       },
       profile: profile.guid,
-      user_id: null
+      user_id: user.user?.integration_id || user.user?.id
     },
     expire_in: auth.exp
   }

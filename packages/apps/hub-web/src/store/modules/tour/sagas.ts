@@ -1,49 +1,49 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects'
+import { all, takeLatest, call, put } from 'redux-saga/effects'
 
 import api from '@hub/api'
 
 import { ApiResponse } from 'apisauce'
 import { toast } from 'react-toastify'
 
-import { store } from '~/store'
-
-import { Actions, getTourFailure, getTourSuccess } from './actions'
-
-export function* getUserTour(): Generator {
-  const profile = store.getState().profile
-
-  if (profile.guid !== 'PROFESSOR') return
-
+import {
+  Actions,
+  getTourViewedFailure,
+  getTourViewedSuccess,
+  openTour
+} from './actions'
+export function* getViewed(): Generator {
   const response = yield call(() => {
-    return api.get('Tour')
+    return api.get('/Tour')
   })
 
   const { data, ok } = response as ApiResponse<boolean>
-
   if (!ok) {
-    toast.error('Erro ao buscar Tour')
+    toast.error('erro ao buscar informações do Tour')
+    console.error(data)
 
-    return yield put(getTourFailure())
+    return yield put(getTourViewedFailure())
   }
-
-  return yield put(getTourSuccess(data || false))
+  return yield put(getTourViewedSuccess({ viewed: data as boolean }))
 }
 
-export function* postUserTour(): Generator {
+export function* postTour(): Generator {
+  yield put(openTour(false))
+
   const response = yield call(() => {
-    return api.post('Tour')
+    return api.post('/Tour')
   })
 
-  const { ok } = response as ApiResponse<boolean>
-
+  const { data, ok } = response as ApiResponse<boolean>
   if (!ok) {
-    toast.error('Erro ao buscar Tour')
+    console.error(data)
+
+    return
   }
 
   return yield true
 }
 
 export default all([
-  takeLatest(Actions.GET_TOUR_REQUEST, getUserTour),
-  takeLatest(Actions.POST_TOUR_REQUEST, postUserTour)
+  takeLatest(Actions.GET_INFO_VIEWED_REQUEST, getViewed),
+  takeLatest(Actions.POST_TOUR, postTour)
 ])
