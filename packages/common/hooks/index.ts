@@ -1,2 +1,5 @@
-import { useDisclosure, useBreakpoint, useToast } from '@chakra-ui/react'
+import { useDisclosure, useBreakpoint } from '@chakra-ui/react'
+
+import { useToast } from './toast'
+
 export { useDisclosure, useBreakpoint, useToast }
