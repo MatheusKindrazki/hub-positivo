@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { BarLoader } from '@hub/common/components'
 import Tour from '@hub/common/components/Tour'
+import { toast } from '@hub/common/utils'
 
 import Header from '~/components/Header'
 
@@ -13,6 +14,8 @@ import { postTourViewed } from '~/store/modules/tour/actions'
 import { Container } from './styles'
 
 const Dashboard: React.FC = ({ children }) => {
+  toast.error('ola mundo')
+
   const dispatch = useDispatch()
   const { loading } = useSelector((state: Store.State) => state.global)
   const { user, school } = useSelector((state: Store.State) => state.user)
