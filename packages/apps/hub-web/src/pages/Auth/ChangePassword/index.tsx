@@ -3,9 +3,9 @@ import React, { useRef, useState, useCallback, useEffect } from 'react'
 import { Box, Text } from '@hub/common/components'
 import { FormProps, Form, Input, Button } from '@hub/common/components/Form'
 import { Eye, EyeSlash, Lock } from '@hub/common/components/Icons'
+import { useToast } from '@hub/common/hooks'
 
 import { useParams } from 'react-router'
-import { toast } from 'react-toastify'
 import { ValidationError } from 'yup'
 
 import GoBack from '~/components/GoBack'
@@ -19,6 +19,8 @@ interface ChangePasswordPropsRouter {
 }
 
 const ChangePassword: React.FC = () => {
+  const { error } = useToast()
+
   const formRef = useRef<FormProps>(null)
 
   const [view, setView] = useState(false)
@@ -49,7 +51,7 @@ const ChangePassword: React.FC = () => {
         return
       }
 
-      toast.error('Algo deu errado, Verifique seus dados e tente novamente!')
+      error('Algo deu errado, Verifique seus dados e tente novamente!')
     }
   }, [])
 

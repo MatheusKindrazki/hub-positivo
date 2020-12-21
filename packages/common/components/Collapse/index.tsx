@@ -13,7 +13,7 @@ import { Collapse as CollapseUI } from 'react-collapse'
 
 import CollapseGlobal from './styles'
 
-interface CollapseProps {
+export interface CollapseProps {
   id: string
   nome: string
   cor: string
