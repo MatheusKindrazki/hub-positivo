@@ -1,13 +1,15 @@
 import React from 'react'
-import { useEffect } from 'react'
+import { useCallback } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { BarLoader } from '@hub/common/components'
+import Tour from '@hub/common/components/Tour'
 
 import Header from '~/components/Header'
 
-import { getTourRequest } from '~/store/modules/tour/actions'
+import { openTour } from '~/store/modules/tour/actions'
+import { postTourViewed } from '~/store/modules/tour/actions'
 
 import { Container } from './styles'
 
@@ -27,13 +29,19 @@ const Dashboard: React.FC = ({ children }) => {
     }
   }, [level, name, school?.label, user?.name])
 
-  useEffect(() => {
-    dispatch(getTourRequest())
-  }, [dispatch])
+  const { open, steps, viewed } = useSelector(
+    (state: Store.State) => state.tour
+  )
+  const handleClosedTour = useCallback(() => {
+    if (viewed) return dispatch(openTour(false))
+
+    dispatch(postTourViewed())
+  }, [dispatch, viewed])
 
   return (
     <Container>
       <BarLoader width="100%" height="4px" loading={loading} />
+      <Tour onClosed={handleClosedTour} open={open} steps={steps || []} />
       <Header />
       {children}
     </Container>

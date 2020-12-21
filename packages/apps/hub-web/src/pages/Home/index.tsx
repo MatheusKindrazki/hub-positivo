@@ -10,7 +10,6 @@ import {
   CardProduct
 } from '@hub/common/components'
 import SearchInput from '@hub/common/components/Search'
-import Tour from '@hub/common/components/Tour'
 import createSlug from '@hub/common/utils/createSlug'
 import documentTitle from '@hub/common/utils/documentTitle'
 
@@ -19,11 +18,9 @@ import { debounce } from 'ts-debounce'
 
 import { preAuth } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
-import { openTour as tourOpen, postTour } from '~/store/modules/tour/actions'
 
 import { cardFilter } from './cardFilter'
 import Filter from './components/Filter'
-import stepProf from './stepsProf'
 import { Container } from './styles'
 
 const Home: React.FC = () => {
@@ -41,10 +38,6 @@ const Home: React.FC = () => {
 
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
-  )
-
-  const { open: openTour, viewed } = useSelector(
-    (state: Store.State) => state.tour
   )
 
   const handleSearch = debounce(search => {
@@ -73,14 +66,6 @@ const Home: React.FC = () => {
     [dispatch]
   )
 
-  const handleClosedTour = useCallback(() => {
-    if (!viewed) {
-      dispatch(postTour())
-    }
-
-    dispatch(tourOpen(false))
-  }, [dispatch, viewed])
-
   const filterCards = useMemo(
     () => cardFilter({ data: cards || [], search: search }),
     [cards, search]
@@ -88,14 +73,6 @@ const Home: React.FC = () => {
 
   return (
     <>
-      {!!filterCards?.length && nameProfile === 'Professor' ? (
-        <Tour
-          onClosed={handleClosedTour}
-          open={openTour}
-          steps={stepProf}
-          key={openTour ? Math.random() : 1}
-        />
-      ) : null}
       <Box
         py="5"
         px="4"
