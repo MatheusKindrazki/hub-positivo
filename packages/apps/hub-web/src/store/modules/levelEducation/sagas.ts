@@ -1,8 +1,9 @@
 import { all, put, Payload, takeLatest, call } from 'redux-saga/effects'
 
+import { toast } from '@hub/common/utils'
+
 import { ApiResponse } from 'apisauce'
 import _ from 'lodash'
-import { toast } from 'react-toastify'
 
 import { EEMConnectGET } from '~/services/eemConnect'
 import { store } from '~/store'

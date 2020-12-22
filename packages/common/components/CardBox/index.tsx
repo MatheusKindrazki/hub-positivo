@@ -19,3 +19,5 @@ const Card: React.FC<BoxProps> = ({ children, ...rest }) => {
 }
 
 export default Card
+
+export type CardProps = BoxProps
