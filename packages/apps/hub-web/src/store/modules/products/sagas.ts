@@ -1,11 +1,12 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 
 import api, { apiLivro, apiMHUND, apiAuthProduct } from '@hub/api'
+import { toast } from '@hub/common/utils'
 
 import { ApiResponse } from 'apisauce'
-import { toast } from 'react-toastify'
 
 import { store } from '~/store'
+import { getTourViewedRequest } from '~/store/modules/tour/actions'
 
 import { loading } from '../global/actions'
 import { Actions as ProfileActions } from '../profile/actions'
@@ -107,6 +108,8 @@ export function* getProducts(): Generator {
   /* Fim ( Cod: Temporário ) */
 
   yield put(loading(false))
+
+  yield put(getTourViewedRequest())
 
   yield put(
     productSuccess({
