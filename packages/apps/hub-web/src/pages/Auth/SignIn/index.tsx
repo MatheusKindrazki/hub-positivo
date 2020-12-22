@@ -2,12 +2,18 @@ import React, { useRef, useState, useCallback } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Box, Heading, Text } from '@hub/common/components'
-import { Input, Button, Form, FormProps } from '@hub/common/components/Form'
+import { Box, Heading, Text, Button } from '@hub/common/components'
+import {
+  Input,
+  Button as FormButton,
+  Form,
+  FormProps
+} from '@hub/common/components/Form'
 import { Lock, User, Eye, EyeSlash } from '@hub/common/components/Icons'
+import { toast } from '@hub/common/utils'
 import documentTitle from '@hub/common/utils/documentTitle'
 
-import { toast } from 'react-toastify'
+import { useHistory } from 'react-router-dom'
 
 import { signInRequest } from '~/store/modules/auth/actions'
 import { ValidationError, getValidationErrors } from '~/validators'
@@ -22,6 +28,8 @@ const SignIn: React.FC = () => {
   const { loading } = useSelector((state: Store.State) => state.auth)
 
   const formRef = useRef<FormProps>(null)
+
+  const history = useHistory()
 
   const handleSubmit = useCallback(
     async data => {
@@ -83,10 +91,20 @@ const SignIn: React.FC = () => {
           iconLeft={<Box as={Lock} color="blue.500" size="21px" />}
         />
 
-        <Button data-testid="submit-button" isLoading={loading}>
+        <FormButton data-testid="submit-button" isLoading={loading} mb="6">
           Entrar
-        </Button>
+        </FormButton>
       </Form>
+      <Button
+        variant="link"
+        colorScheme="blue"
+        size="lg"
+        width="100%"
+        mb="2"
+        onClick={() => history.push('/forgot-password')}
+      >
+        Esqueci minha senha
+      </Button>
     </Box>
   )
 }

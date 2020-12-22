@@ -1,4 +1,7 @@
+import { StepsTour } from '@hub/common/components/Tour'
 export interface TourReducer {
-  open: boolean
   viewed: boolean
+  loading: boolean
+  open: boolean
+  steps?: StepsTour[]
 }
