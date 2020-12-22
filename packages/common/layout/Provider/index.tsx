@@ -1,6 +1,7 @@
-import React, { useMemo, useState, useContext, useEffect } from 'react'
+import React, { useMemo, useState, useContext } from 'react'
 
 import { ChakraProvider, CSSReset } from '@chakra-ui/react'
+import { ToastContainer } from 'react-toastify'
 import { ThemeProvider as StyledProvider } from 'styled-components'
 
 import { theme as HubTheme } from '../styles'
@@ -47,6 +48,19 @@ const ThemeContainer: React.FC = ({ children }) => {
         <CSSReset />
         <GlobalStyles />
         {children}
+        <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          closeButton={false}
+          hideProgressBar
+          limit={3}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </StyledProvider>
     </ChakraProvider>
   )

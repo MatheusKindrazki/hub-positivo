@@ -10,10 +10,10 @@ import {
   FormProps
 } from '@hub/common/components/Form'
 import { Lock, User, Eye, EyeSlash } from '@hub/common/components/Icons'
+import { toast } from '@hub/common/utils'
 import documentTitle from '@hub/common/utils/documentTitle'
 
 import { useHistory } from 'react-router-dom'
-import { toast } from 'react-toastify'
 
 import { signInRequest } from '~/store/modules/auth/actions'
 import { ValidationError, getValidationErrors } from '~/validators'

@@ -5,8 +5,6 @@ import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 import ReactDOM from 'react-dom'
 
-import 'react-toastify/dist/ReactToastify.css'
-
 import App from './App'
 
 // do luiz => GTM-PCPNTVS
