@@ -20,7 +20,7 @@ import GoBack from '~/components/GoBack'
 
 import { pwdTokenRequest } from '~/store/modules/forgotPassword/actions'
 import { getValidationErrors } from '~/validators'
-import email from '~/validators/auth/forgotPassword'
+import userInfo from '~/validators/auth/forgotPassword'
 
 const ForgotPassword: React.FC = () => {
   documentTitle('Esqueci minha senha')
@@ -35,7 +35,7 @@ const ForgotPassword: React.FC = () => {
     async data => {
       formRef?.current?.setErrors({})
       try {
-        await email.validate({ email: data.userInfo }, { abortEarly: false })
+        await userInfo.validate({ email: data.userInfo }, { abortEarly: false })
 
         return dispatch(pwdTokenRequest(data))
       } catch (err) {
