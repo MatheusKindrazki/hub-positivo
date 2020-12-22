@@ -5,3 +5,7 @@ export interface PwdTokenRequest {
 export interface ForgotPasswordReducer {
   loading: boolean
 }
+
+export interface PwdTokenApi {
+  error: boolean
+}

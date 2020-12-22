@@ -1,10 +1,13 @@
 import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
 
+import { apiEEMAuth } from '@hub/api'
+
 import { ApiResponse } from 'apisauce'
 import { toast } from 'react-toastify'
 
 import history from '~/services/history'
 
+import { AuthApi } from '../auth/types'
 import { Actions, pwdTokenSuccess, pwdTokenFailure } from './actions'
 import { PwdTokenRequest } from './types'
 
@@ -12,13 +15,15 @@ type PwdTokenPayload = Payload<PwdTokenRequest>
 
 export function* pwdToken({ payload }: PwdTokenPayload): Generator {
   const response = yield call(() => {
-    // mockando post request a api para envio do token no email do usuario
-    return { data: payload, ok: true }
+    return apiEEMAuth.post('/api/v1/users/request-new-password', {
+      userInfo: payload.userInfo,
+      urlChangePassword: 'https://localhost/nova-senha'
+    })
   })
 
-  const { data, ok } = response as ApiResponse<PwdTokenRequest>
+  console.log(response)
 
-  console.log('succesful request:', data)
+  const { data, ok } = response as ApiResponse<AuthApi>
 
   if (!ok) {
     toast.error('Algo deu errado, verifique seus dados e tente novamente!')
