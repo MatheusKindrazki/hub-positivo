@@ -17,7 +17,7 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
   const response = yield call(() => {
     return apiEEMAuth.post('/api/v1/users/request-new-password', {
       userInfo: payload.userInfo,
-      urlChangePassword: 'https://localhost/nova-senha'
+      urlChangePassword: 'https://localhost/change-password'
     })
   })
 
