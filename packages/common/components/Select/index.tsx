@@ -7,7 +7,7 @@ import Select from 'react-select'
 import { useTheme } from '../../layout'
 import GlobalSelectStyle from './styles'
 
-interface PropsSelect extends Props {
+export interface PropsSelect extends Props {
   variant: 'blue-transparent' | 'normal'
 }
 

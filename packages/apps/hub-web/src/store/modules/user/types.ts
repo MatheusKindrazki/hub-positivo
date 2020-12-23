@@ -14,6 +14,7 @@ export interface UserReducer {
 export interface User {
   name: string | null
   integration_id?: string
+  id?: string
   username: string
   schools?: Schools[]
   email: string | null
