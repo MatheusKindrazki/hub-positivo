@@ -2,11 +2,11 @@
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
 import api from '@hub/api'
+import { toast } from '@hub/common/utils'
 import capitalize from '@hub/common/utils/capitalize'
 
 import { ApiResponse } from 'apisauce'
 import { decode } from 'jsonwebtoken'
-import { toast } from 'react-toastify'
 
 import { EEMConnectPost } from '~/services/eemConnect'
 import history from '~/services/history'
@@ -49,6 +49,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
       iat: user?.iat,
       user: {
         integration_id: user?.integration_id,
+        id: user?.id,
         email: user?.email,
         name: user?.name ? capitalize(user?.name) : '',
         username: user?.username,

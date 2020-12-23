@@ -3,7 +3,7 @@ import React from 'react'
 import capitalizeFirstLetter from '../../utils/capitalize'
 import { Avatar, Box, Heading } from '../index'
 
-interface WelcomeProps {
+export interface WelcomeProps {
   size?: string
   fontSize?: string
   option?: 'name' | 'welcome'
