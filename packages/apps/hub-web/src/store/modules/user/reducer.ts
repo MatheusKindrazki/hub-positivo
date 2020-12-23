@@ -31,6 +31,19 @@ const user: ReturnReducer = (state = INITIAL_STATE, action) => {
         break
       }
 
+      case Actions.USER_PASSWORD_REQUEST: {
+        draft.loading = true
+        break
+      }
+      case Actions.USER_PASSWORD_SUCCESS: {
+        draft.loading = false
+        break
+      }
+      case Actions.USER_PASSWORD_FAILURE: {
+        draft.loading = false
+        break
+      }
+
       default:
     }
   })

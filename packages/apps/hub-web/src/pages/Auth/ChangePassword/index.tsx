@@ -16,6 +16,7 @@ import GoBack from '~/components/GoBack'
 import useQuery from '~/hooks/useQuery'
 import history from '~/services/history'
 import { validatePinRequest } from '~/store/modules/forgotPassword/actions'
+import { alterPasswordRequest } from '~/store/modules/user/actions'
 import { getValidationErrors } from '~/validators'
 import passValidation from '~/validators/auth/createNewPassword'
 
@@ -27,6 +28,9 @@ const ChangePassword: React.FC = () => {
   const search = useQuery()
 
   const { loading } = useSelector((state: Store.State) => state.forgotPassword)
+  const { loading: alterLoading } = useSelector(
+    (state: Store.State) => state.user
+  )
 
   const formRef = useRef<FormProps>(null)
 
@@ -56,7 +60,12 @@ const ChangePassword: React.FC = () => {
           abortEarly: false
         })
 
-        console.log(data)
+        dispatch(
+          alterPasswordRequest({
+            newPassword: data.password,
+            pin: token
+          })
+        )
       } catch (err) {
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)
@@ -69,7 +78,7 @@ const ChangePassword: React.FC = () => {
         error('Algo deu errado, Verifique seus dados e tente novamente!')
       }
     },
-    [error]
+    [dispatch, error, token]
   )
   return (
     <Container p="6" position="relative" overflow="hidden">
@@ -127,7 +136,7 @@ const ChangePassword: React.FC = () => {
           iconLeft={<Box as={Lock} color="blue.500" size="21px" />}
         />
 
-        <Button>Salvar nova senha</Button>
+        <Button isLoading={alterLoading}>Salvar nova senha</Button>
       </Form>
     </Container>
   )
