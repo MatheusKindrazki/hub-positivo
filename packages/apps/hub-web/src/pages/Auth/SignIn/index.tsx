@@ -91,7 +91,12 @@ const SignIn: React.FC = () => {
           iconLeft={<Box as={Lock} color="blue.500" size="21px" />}
         />
 
-        <FormButton data-testid="submit-button" isLoading={loading} mb="6">
+        <FormButton
+          textTransform="uppercase"
+          data-testid="submit-button"
+          isLoading={loading}
+          mb="6"
+        >
           Entrar
         </FormButton>
       </Form>
@@ -100,6 +105,8 @@ const SignIn: React.FC = () => {
         colorScheme="blue"
         size="lg"
         width="100%"
+        textTransform="uppercase"
+        fontSize="0.875rem"
         mb="2"
         onClick={() => history.push('/forgot-password')}
       >
