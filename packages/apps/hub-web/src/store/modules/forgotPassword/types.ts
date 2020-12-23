@@ -8,4 +8,5 @@ export interface ForgotPasswordReducer {
 
 export interface PwdTokenApi {
   error: boolean
+  errorMessage?: string
 }
