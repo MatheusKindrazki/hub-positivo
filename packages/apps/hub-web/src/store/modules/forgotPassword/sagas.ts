@@ -30,7 +30,8 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
       },
       {
         headers: {
-          'Content-Type': 'application/json'
+          'content-type': 'application/json;charset=UTF-8',
+          'Access-Control-Allow-Origin': '*'
         }
       }
     )
@@ -38,8 +39,14 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
 
   const { data, ok } = response as ApiResponse<PwdTokenApi>
 
-  if (!ok || data?.error) {
+  if (!ok) {
     history.push('/forgot-password/failure')
+
+    return yield put(pwdTokenFailure())
+  }
+
+  if (data?.error) {
+    toast.error(data.errorMessage || 'Erro ao verificar usuário')
 
     return yield put(pwdTokenFailure())
   }
@@ -63,7 +70,8 @@ export function* validatePIN({ payload }: ValidatePINtPayload): Generator {
       },
       {
         headers: {
-          'Content-Type': 'application/json'
+          'content-type': 'application/json;charset=UTF-8',
+          'Access-Control-Allow-Origin': '*'
         }
       }
     )
