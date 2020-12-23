@@ -124,7 +124,6 @@ export function* getProducts(): Generator {
 }
 
 export default all([
-  takeLatest(Actions.REHYDRATE, getProducts),
   takeLatest(Actions.PRODUCT_REQUEST, getProducts),
   takeLatest(ProfileActions.SET_PROFILE, getProducts)
 ])
