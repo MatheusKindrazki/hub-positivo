@@ -6,10 +6,12 @@ import forgotPassword from './forgotPassword/sagas'
 import levelEducation from './levelEducation/sagas'
 import products from './products/sagas'
 import tour from './tour/sagas'
+import user from './user/sagas'
 
 export default function* rootSaga(): Generator {
   return yield all([
     auth,
+    user,
     authProduct,
     forgotPassword,
     levelEducation,

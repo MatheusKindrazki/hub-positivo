@@ -22,10 +22,18 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
   const setURL = process.env.PUBLIC_URL || 'http://localhost:3000'
 
   const response = yield call(() => {
-    return apiEEMAuth.post('/api/v1/users/request-new-password', {
-      userInfo: payload.userInfo,
-      urlChangePassword: `${setURL}/#/change-password`
-    })
+    return apiEEMAuth.post(
+      '/api/v1/users/request-new-password',
+      {
+        userInfo: payload.userInfo,
+        urlChangePassword: `${setURL}/#/change-password`
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
   })
 
   const { data, ok } = response as ApiResponse<PwdTokenApi>
@@ -48,9 +56,17 @@ type ValidatePINtPayload = Payload<ValidatePin>
 
 export function* validatePIN({ payload }: ValidatePINtPayload): Generator {
   const response = yield call(() => {
-    return apiEEMAuth.post('/api/v1/users/reset-password/check-pin', {
-      pin: payload.pin
-    })
+    return apiEEMAuth.post(
+      '/api/v1/users/reset-password/check-pin',
+      {
+        pin: payload.pin
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
   })
 
   const { data, ok } = response as ApiResponse<ValidatePinAPI>
