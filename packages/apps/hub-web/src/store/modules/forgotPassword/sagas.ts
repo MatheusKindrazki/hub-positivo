@@ -7,8 +7,8 @@ import { toast } from 'react-toastify'
 
 import history from '~/services/history'
 
-import { AuthApi } from '../auth/types'
 import { Actions, pwdTokenSuccess, pwdTokenFailure } from './actions'
+import { PwdTokenApi } from './types'
 import { PwdTokenRequest } from './types'
 
 type PwdTokenPayload = Payload<PwdTokenRequest>
@@ -21,11 +21,9 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
     })
   })
 
-  console.log(response)
+  const { data, ok } = response as ApiResponse<PwdTokenApi>
 
-  const { data, ok } = response as ApiResponse<AuthApi>
-
-  if (!ok) {
+  if (!ok || data?.error) {
     toast.error('Algo deu errado, verifique seus dados e tente novamente!')
 
     return yield put(pwdTokenFailure())
