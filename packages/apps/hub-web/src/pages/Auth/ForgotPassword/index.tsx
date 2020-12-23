@@ -1,6 +1,6 @@
 import React, { useRef, useCallback } from 'react'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Box, Text } from '@hub/common/components'
 import {
@@ -24,6 +24,8 @@ import userInfo from '~/validators/auth/forgotPassword'
 
 const ForgotPassword: React.FC = () => {
   documentTitle('Esqueci minha senha')
+
+  const { loading } = useSelector((state: Store.State) => state.forgotPassword)
 
   const dispatch = useDispatch()
   const formRef = useRef<FormProps>(null)
@@ -69,7 +71,9 @@ const ForgotPassword: React.FC = () => {
           placeholder="Usuário, E-mail ou CPF"
           iconLeft={<Box as={User} color="blue.500" />}
         />
-        <ButtonForm mt="6">Solicitar Link</ButtonForm>
+        <ButtonForm mt="6" isLoading={loading} textTransform="uppercase">
+          Solicitar Link
+        </ButtonForm>
       </Form>
     </Box>
   )
