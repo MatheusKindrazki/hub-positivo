@@ -63,13 +63,16 @@ export function* signIn({ payload }: SignInPayload): Generator {
 }
 
 type ExpiringRehydrate = Payload<{
-  auth: { exp: number; iat: number; token: string }
+  auth: { exp: number; iat: number; token: string; signed: boolean }
 }>
 
 export function* checkingExpiringToken({
   payload
 }: ExpiringRehydrate): Generator {
   if (!payload) return
+  if (!payload.auth.signed) {
+    return yield put(signOut())
+  }
 
   const { exp, token } = payload.auth
 
