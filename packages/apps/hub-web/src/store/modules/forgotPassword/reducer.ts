@@ -8,7 +8,8 @@ import { ForgotPasswordReducer } from './types'
 export const INITIAL_STATE: ForgotPasswordReducer = {
   loading: false,
   validatePin: false,
-  validateViewPin: false
+  validateViewPin: false,
+  sendViewToken: false
 }
 
 type ReturnReducer = Reducer<ForgotPasswordReducer>
@@ -23,6 +24,7 @@ const forgotPassword: ReturnReducer = (state = INITIAL_STATE, action) => {
 
       case Actions.PWD_TOKEN_SUCCESS: {
         draft.loading = false
+        draft.sendViewToken = true
         break
       }
 

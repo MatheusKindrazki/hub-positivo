@@ -6,6 +6,7 @@ export interface ForgotPasswordReducer {
   loading: boolean
   validatePin: boolean
   validateViewPin: boolean
+  sendViewToken: boolean
 }
 
 export interface PwdTokenApi {

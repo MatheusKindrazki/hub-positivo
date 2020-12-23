@@ -12,12 +12,12 @@ import {
 import { User } from '@hub/common/components/Icons'
 import documentTitle from '@hub/common/utils/documentTitle'
 
-import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { ValidationError } from 'yup'
 
 import GoBack from '~/components/GoBack'
 
+import history from '~/services/history'
 import { pwdTokenRequest } from '~/store/modules/forgotPassword/actions'
 import { getValidationErrors } from '~/validators'
 import userInfo from '~/validators/auth/forgotPassword'
@@ -27,9 +27,14 @@ const ForgotPassword: React.FC = () => {
 
   const { loading } = useSelector((state: Store.State) => state.forgotPassword)
 
+  const { sendViewToken } = useSelector(
+    (state: Store.State) => state.forgotPassword
+  )
+
+  if (sendViewToken) history.push('/')
+
   const dispatch = useDispatch()
   const formRef = useRef<FormProps>(null)
-  const history = useHistory()
 
   const handleGoBack = () => history.goBack()
 
