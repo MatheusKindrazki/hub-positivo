@@ -15,7 +15,8 @@ export function* alterPassword({ payload }: AlterPasswordPayload): Generator {
   const response = yield call(() => {
     return apiEEMAuth.put('/api/v1/users/reset-password', payload, {
       headers: {
-        'Content-Type': 'application/json'
+        'content-type': 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*'
       }
     })
   })

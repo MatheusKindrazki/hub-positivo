@@ -27,10 +27,6 @@ const SignIn: React.FC = () => {
 
   const { loading } = useSelector((state: Store.State) => state.auth)
 
-  const { sendViewToken } = useSelector(
-    (state: Store.State) => state.forgotPassword
-  )
-
   const formRef = useRef<FormProps>(null)
 
   const history = useHistory()
@@ -61,11 +57,6 @@ const SignIn: React.FC = () => {
   )
 
   const handleForgotPasswordLink = () => {
-    if (sendViewToken) {
-      return toast.warning(
-        'Um link para alteração de senha já foi enviado, tente novamente mais tarde'
-      )
-    }
     history.push('/forgot-password')
   }
 
