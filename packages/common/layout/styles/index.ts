@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react'
 import baseStyled, { ThemedStyledInterface } from 'styled-components'
 
-import chakra from './chackra'
+import chakra from './chakra'
 
 export const theme = chakra
 

@@ -47,3 +47,5 @@ const Search: React.FC<InputProps> = ({ onChange, ...rest }) => {
 }
 
 export default memo(Search)
+
+export type SearchProps = InputProps

@@ -2,15 +2,16 @@
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
 import api from '@hub/api'
+import { toast } from '@hub/common/utils'
 import capitalize from '@hub/common/utils/capitalize'
 
 import { ApiResponse } from 'apisauce'
 import { decode } from 'jsonwebtoken'
-import { toast } from 'react-toastify'
 
 import { EEMConnectPost } from '~/services/eemConnect'
 import history from '~/services/history'
 
+import { productRequest } from '../products/actions'
 import { Actions, signInFailure, signInSuccess, signOut } from './actions'
 import { SignInRequest, AuthApi } from './types'
 
@@ -62,13 +63,16 @@ export function* signIn({ payload }: SignInPayload): Generator {
 }
 
 type ExpiringRehydrate = Payload<{
-  auth: { exp: number; iat: number; token: string }
+  auth: { exp: number; iat: number; token: string; signed: boolean }
 }>
 
 export function* checkingExpiringToken({
   payload
 }: ExpiringRehydrate): Generator {
   if (!payload) return
+  if (!payload.auth.signed) {
+    return yield put(signOut())
+  }
 
   const { exp, token } = payload.auth
 
@@ -92,7 +96,7 @@ export function* checkingExpiringToken({
     history.push('/login')
   }
 
-  return yield true
+  return yield put(productRequest({}))
 }
 
 export default all([
