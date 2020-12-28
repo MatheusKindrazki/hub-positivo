@@ -18,6 +18,8 @@ import {
 } from './actions'
 import { StepsTour, StepsTourResponseApi } from './types'
 
+const enableFilterLevel = ['PROFESSOR', 'ALUNO']
+
 export function* getTour(): Generator {
   const { viewedLoaded } = store.getState().tour
 
@@ -25,12 +27,18 @@ export function* getTour(): Generator {
     yield put(getTourViewedRequest())
   }
 
+  const { level } = store.getState().levelEducation
   const { guid } = store.getState().profile
+  let query: string
+
+  if (level && enableFilterLevel.includes(guid)) {
+    query = `?perfil=${guid}?nivelEnsino=${level}`
+  } else {
+    query = `?perfil=${guid}`
+  }
 
   const response = yield call(() => {
-    return api.get('/Tour/Steps', {
-      perfil: guid
-    })
+    return api.get(`/Tour/Steps${query}`)
   })
 
   const { data, ok } = response as ApiResponse<StepsTourResponseApi[]>
