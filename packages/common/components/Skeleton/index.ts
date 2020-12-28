@@ -7,11 +7,7 @@ import {
   Stack
 } from '@chakra-ui/react'
 
-export default {
-  Skeleton,
-  SkeletonCircle,
-  SkeletonText,
-  Stack
-}
+export default Skeleton
+export { Skeleton, SkeletonCircle, SkeletonText, Stack }
 
 export type { SkeletonProps, SkeletonTextProps }
