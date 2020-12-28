@@ -32,7 +32,7 @@ export function* getTour(): Generator {
   let query: string
 
   if (level && enableFilterLevel.includes(guid)) {
-    query = `?perfil=${guid}?nivelEnsino=${level}`
+    query = `?perfil=${guid}&nivelEnsino=${level}`
   } else {
     query = `?perfil=${guid}`
   }
