@@ -25,3 +25,11 @@ export interface Schools {
   name: string
   roles: string[]
 }
+export interface UserAlterPass {
+  pin?: string
+  newPassword: string
+}
+export interface UserAlterPassApi {
+  error: boolean
+  errorMessage: string
+}

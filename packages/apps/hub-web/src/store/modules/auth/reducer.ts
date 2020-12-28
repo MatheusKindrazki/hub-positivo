@@ -51,6 +51,11 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
 
       case Actions.SIGN_OUT: {
         draft.signed = false
+        draft.token = null
+        draft.auth_time = 0
+        draft.iat = 0
+        draft.exp = 0
+        draft.loading = false
         break
       }
       default:
