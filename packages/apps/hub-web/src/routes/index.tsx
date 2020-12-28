@@ -8,11 +8,11 @@ import { VariantsProps } from '@hub/common/layout/styles/colors'
 import { ConnectedRouter } from 'connected-react-router'
 import { Switch, HashRouter } from 'react-router-dom'
 
+import ChangePassword from '~/pages/Auth/ChangePassword'
+import ExpiredToken from '~/pages/Auth/ExpiredToken'
 import ForgotPassword from '~/pages/Auth/ForgotPassword'
 import ForgotPasswordFail from '~/pages/Auth/ForgotPasswordFail'
 import Profile from '~/pages/Auth/Profile'
-import ChangePassword from '~/pages/Auth/ChangePassword'
-import ExpiredToken from '~/pages/Auth/ExpiredToken'
 import SignIn from '~/pages/Auth/SignIn'
 import Home from '~/pages/Home'
 import Iframe from '~/pages/Iframe'
@@ -45,9 +45,9 @@ const Routes: React.FC = () => {
             path="/forgot-password/failure"
             component={ForgotPasswordFail}
           />
-          <Route path="/forgot-password" component={ForgotPassword} />
-          <Route path="/expired-token/:token+" component={ExpiredToken} />
-          <Route path="/change-password/:token+" component={ChangePassword} />
+          <Route path="/forgot-password" exact component={ForgotPassword} />
+          <Route path="/expired-token" component={ExpiredToken} />
+          <Route path="/change-password" component={ChangePassword} />
           <Route path="/solucao/:solution" component={Iframe} isPrivate />
 
           <Route path="/" component={Home} isPrivate />

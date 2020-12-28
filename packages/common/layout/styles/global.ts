@@ -8,8 +8,8 @@ export default createGlobalStyle`
     --hub-box-color: white;
     --hub-background-color: #ECEFF1;
 
-    --hub-success: #F2C44C;
-    --hub-warning: #0097A7;
+    --hub-success: #0097A7;
+    --hub-warning: #F2C44C;
     --hub-error: #D81B60;
     --hub-info: #263238;
   }
