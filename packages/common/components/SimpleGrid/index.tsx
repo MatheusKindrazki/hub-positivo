@@ -1,3 +1,5 @@
-import { SimpleGrid } from '@chakra-ui/react'
+import { SimpleGrid, SimpleGridProps } from '@chakra-ui/react'
 
 export default SimpleGrid
+
+export type { SimpleGridProps }

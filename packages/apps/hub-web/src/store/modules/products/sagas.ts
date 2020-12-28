@@ -1,9 +1,9 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 
 import api, { apiLivro, apiMHUND, apiAuthProduct } from '@hub/api'
+import { toast } from '@hub/common/utils'
 
 import { ApiResponse } from 'apisauce'
-import { toast } from 'react-toastify'
 
 import { store } from '~/store'
 import { getTourRequest } from '~/store/modules/tour/actions'
@@ -124,7 +124,6 @@ export function* getProducts(): Generator {
 }
 
 export default all([
-  takeLatest(Actions.REHYDRATE, getProducts),
   takeLatest(Actions.PRODUCT_REQUEST, getProducts),
   takeLatest(ProfileActions.SET_PROFILE, getProducts)
 ])

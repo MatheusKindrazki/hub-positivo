@@ -1,9 +1,9 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects'
 
 import api from '@hub/api'
+import { toast } from '@hub/common/utils'
 
 import { ApiResponse } from 'apisauce'
-import { toast } from 'react-toastify'
 
 import { store } from '~/store'
 

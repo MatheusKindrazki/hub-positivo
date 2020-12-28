@@ -52,7 +52,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
           border="1px solid #DADADA"
           w="330px"
           h="auto"
-          maxHeight="69vh"
+          maxHeight="65vh"
           overflow="hidden"
           background="white!important"
           onMouseLeave={() => setShow(false)}
@@ -65,7 +65,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
           <Box
             w="100%"
             h="auto"
-            maxHeight="69vh"
+            maxHeight="60vh"
             overflow="auto"
             paddingTop="3.5rem"
             px="6"
