@@ -1,17 +1,23 @@
 import React from 'react'
 
+import { useSelector } from 'react-redux'
+
 import { Box, Text } from '@hub/common/components'
 import { Button } from '@hub/common/components/Form'
-
-import { toast } from 'react-toastify'
 
 import GoBack from '~/components/GoBack'
 
 import history from '~/services/history'
 
 const ExpiredToken: React.FC = () => {
+  const { validateViewPin } = useSelector(
+    (state: Store.State) => state.forgotPassword
+  )
+
+  if (!validateViewPin) history.push('/')
+
   const handleSubmit = () => {
-    toast('O link foi enviado para seu <e-mail ou celular>!')
+    history.push('/forgot-password')
   }
 
   const handleLoginRedirect = () => history.push('/login')

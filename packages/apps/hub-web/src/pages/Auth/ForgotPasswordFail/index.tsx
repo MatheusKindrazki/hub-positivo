@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { useSelector } from 'react-redux'
+
 import { Box, Text, Button } from '@hub/common/components'
 import documentTitle from '@hub/common/utils/documentTitle'
 
@@ -10,7 +12,13 @@ import GoBack from '~/components/GoBack'
 const ForgotPasswordFail: React.FC = () => {
   documentTitle('Esqueci minha senha')
 
+  const { sendViewToken } = useSelector(
+    (state: Store.State) => state.forgotPassword
+  )
+
   const history = useHistory()
+
+  if (!sendViewToken) history.push('/login')
 
   const handleGoBack = () => history.goBack()
 

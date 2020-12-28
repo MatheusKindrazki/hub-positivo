@@ -1,62 +1,97 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
 
+import { useDispatch, useSelector } from 'react-redux'
+
 import { Box, Text } from '@hub/common/components'
+import BarLoader from '@hub/common/components/BarLoader'
 import { FormProps, Form, Input, Button } from '@hub/common/components/Form'
 import { Eye, EyeSlash, Lock } from '@hub/common/components/Icons'
 import { useToast } from '@hub/common/hooks'
 
-import { useParams } from 'react-router'
+import classNames from 'classnames'
 import { ValidationError } from 'yup'
 
 import GoBack from '~/components/GoBack'
 
+import useQuery from '~/hooks/useQuery'
 import history from '~/services/history'
+import { validatePinRequest } from '~/store/modules/forgotPassword/actions'
+import { alterPasswordRequest } from '~/store/modules/user/actions'
 import { getValidationErrors } from '~/validators'
 import passValidation from '~/validators/auth/createNewPassword'
 
-interface ChangePasswordPropsRouter {
-  token: string
-}
+import { Container } from './styles'
 
 const ChangePassword: React.FC = () => {
+  const dispatch = useDispatch()
   const { error } = useToast()
+  const search = useQuery()
+
+  const { loading } = useSelector((state: Store.State) => state.forgotPassword)
+  const { loading: alterLoading } = useSelector(
+    (state: Store.State) => state.user
+  )
 
   const formRef = useRef<FormProps>(null)
 
   const [view, setView] = useState(false)
 
-  const { token } = useParams<ChangePasswordPropsRouter>()
+  const [token] = useState(() => {
+    return search.get('pin') || undefined
+  })
 
   useEffect(() => {
-    const validToken = true
-    if (!validToken) history.push(`/expiredtoken/${token}`)
-  }, [token])
+    if (!token) return history.push('/login')
+
+    dispatch(
+      validatePinRequest({
+        pin: token
+      })
+    )
+  }, [token, dispatch])
 
   const handleLoginRedirect = () => history.push('/login')
 
-  const handleSubmit = useCallback(async data => {
-    formRef?.current?.setErrors({})
-    try {
-      await passValidation.validate(data, {
-        abortEarly: false
-      })
+  const handleSubmit = useCallback(
+    async data => {
+      formRef?.current?.setErrors({})
+      try {
+        await passValidation.validate(data, {
+          abortEarly: false
+        })
 
-      console.log(data)
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        const errors = getValidationErrors(err)
+        dispatch(
+          alterPasswordRequest({
+            newPassword: data.password,
+            pin: token
+          })
+        )
+      } catch (err) {
+        if (err instanceof ValidationError) {
+          const errors = getValidationErrors(err)
 
-        formRef?.current?.setErrors(errors)
+          formRef?.current?.setErrors(errors)
 
-        return
+          return
+        }
+
+        error('Algo deu errado, Verifique seus dados e tente novamente!')
       }
-
-      error('Algo deu errado, Verifique seus dados e tente novamente!')
-    }
-  }, [])
-
+    },
+    [dispatch, error, token]
+  )
   return (
-    <Box p="6">
+    <Container p="6" position="relative" overflow="hidden">
+      <BarLoader
+        loading={loading}
+        css={`
+          position: absolute;
+          top: 0;
+          left: 0;
+        `}
+        height="5px"
+        color="var(--hub-base-color)"
+      />
       <GoBack colorScheme="blue" onClick={handleLoginRedirect}>
         Criar Nova Senha
       </GoBack>
@@ -64,7 +99,13 @@ const ChangePassword: React.FC = () => {
         Defina uma nova senha de acesso ao Positivo On
       </Text>
 
-      <Form ref={formRef} onSubmit={handleSubmit}>
+      <Form
+        ref={formRef}
+        onSubmit={handleSubmit}
+        className={classNames({
+          disabled: loading
+        })}
+      >
         <Input
           name="password"
           type={!view ? 'password' : 'text'}
@@ -95,9 +136,9 @@ const ChangePassword: React.FC = () => {
           iconLeft={<Box as={Lock} color="blue.500" size="21px" />}
         />
 
-        <Button>Salvar nova senha</Button>
+        <Button isLoading={alterLoading}>Salvar nova senha</Button>
       </Form>
-    </Box>
+    </Container>
   )
 }
 
