@@ -93,7 +93,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   const { data, ok } = response as ApiResponse<object>
 
   if (!ok) {
-    toast.error('Sinto mundo, algo deu errado :(')
+    toast.error('Sinto muito, algo deu errado :(')
 
     yield put(loading(false))
 
@@ -134,7 +134,7 @@ export function* authProductEEM({ payload }: AuthPayload): Generator {
   const { data, ok } = response as ApiResponse<{ access_token: string }>
 
   if (!ok) {
-    toast.error('Sinto mundo, algo deu errado :(')
+    toast.error('Sinto muito, algo deu errado :(')
 
     yield put(loading(false))
 
