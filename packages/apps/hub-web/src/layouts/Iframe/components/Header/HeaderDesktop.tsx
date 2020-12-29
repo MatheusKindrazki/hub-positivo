@@ -1,10 +1,13 @@
 import React, { useMemo, useState } from 'react'
 
+import { useSelector } from 'react-redux'
+
 import {
   Box,
   Button,
   Heading,
   SpinnerLoader,
+  Avatar,
   SimpleGrid
 } from '@hub/common/components'
 
@@ -26,6 +29,8 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
     [cards, search]
   )
 
+  const { user, avatar } = useSelector((state: Store.State) => state.user)
+
   return (
     <div className="hub-header-list">
       <Button
@@ -40,6 +45,14 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
       >
         Produtos
       </Button>
+      <Avatar
+        width="2.5rem"
+        color="#3C3C3C"
+        height="2.5rem"
+        backgroundColor="gray.400"
+        name={user?.name || ''}
+        src={avatar}
+      />
       <CSSTransition
         in={show}
         timeout={400}
