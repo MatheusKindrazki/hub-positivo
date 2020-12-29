@@ -8,6 +8,7 @@ import documentTitle from '@hub/common/utils/documentTitle'
 import { useParams } from 'react-router-dom'
 import { PulseLoader } from 'react-spinners'
 
+import usePostMessage from '~/hooks/usePostMessage'
 import history from '~/services/history'
 import { getFrame, setFrame } from '~/services/sessionStorage'
 
@@ -27,6 +28,8 @@ const Iframe: React.FC = () => {
   const { frameUrl, frameName } = useSelector(
     (state: Store.State) => state.products
   )
+
+  usePostMessage()
 
   useEffect(() => {
     if (!frameUrl) {
