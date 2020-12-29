@@ -95,6 +95,10 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
     dispatch(openTour(true))
   }, [dispatch, onClose])
 
+  const handleNeedHelp = () => {
+    window.location.href = 'https://suporte.positivoon.com.br/portal/pt/home'
+  }
+
   return (
     <>
       <Box
@@ -178,6 +182,22 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
                 Fazer tour
               </Button>
             )}
+            <Button
+              variant="ghost"
+              width="100%"
+              alignItems="center"
+              justifyContent="flex-start"
+              color="gray.500"
+              ml="-10px"
+              onClick={handleNeedHelp}
+              _hover={{
+                color: 'blue.500',
+                backgroundColor: 'gray.200'
+              }}
+              fontSize="0.875rem"
+            >
+              Estou com uma dúvida
+            </Button>
           </Box>
           <Box
             px="4"
