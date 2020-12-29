@@ -31,7 +31,6 @@ const Home: React.FC = () => {
   const { user, avatar, school: useSchool } = useSelector(
     (state: Store.State) => state.user
   )
-
   const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
   )
