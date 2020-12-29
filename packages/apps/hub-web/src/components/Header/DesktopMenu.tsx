@@ -71,6 +71,10 @@ const DesktopMenu: React.FC = () => {
     dispatch(openTour(true))
   }, [dispatch])
 
+  const handleNeedHelp = () => {
+    window.location.href = 'https://suporte.positivoon.com.br/portal/pt/home'
+  }
+
   return (
     <Box
       className="hub-logo"
@@ -78,15 +82,6 @@ const DesktopMenu: React.FC = () => {
       alignItems="center"
       justifyContent="space-between"
     >
-      {/* <Button
-        fontSize="0.875rem"
-        backgroundColor="white"
-        fontWeight="bold"
-        color="blue.500"Tutoriais
-        mx="1"
-      >
-        Estou com uma dúvida
-      </Button> */}
       {profile.guid === 'PROFESSOR' && (
         <Button
           fontSize="0.875rem"
@@ -99,6 +94,16 @@ const DesktopMenu: React.FC = () => {
           Fazer tour
         </Button>
       )}
+      <Button
+        fontSize="0.875rem"
+        backgroundColor="white"
+        fontWeight="bold"
+        color="blue.500"
+        onClick={handleNeedHelp}
+        mx="1"
+      >
+        Estou com uma dúvida
+      </Button>
       <MenuContainer>
         <MenuButton
           type="button"
