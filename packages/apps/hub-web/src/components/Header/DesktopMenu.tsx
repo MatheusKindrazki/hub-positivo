@@ -96,7 +96,7 @@ const DesktopMenu: React.FC = () => {
           onClick={handleOpenTour}
           mx="1"
         >
-          Tutorial de primeiro acesso
+          Fazer tour
         </Button>
       )}
       <MenuContainer>

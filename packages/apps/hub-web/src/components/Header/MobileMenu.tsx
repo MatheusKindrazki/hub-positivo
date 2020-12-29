@@ -175,7 +175,7 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
                 }}
                 fontSize="0.875rem"
               >
-                Tutorial de primeiro acesso
+                Fazer tour
               </Button>
             )}
           </Box>
