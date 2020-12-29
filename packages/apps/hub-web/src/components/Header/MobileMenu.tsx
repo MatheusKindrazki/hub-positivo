@@ -199,14 +199,7 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
               Estou com uma dúvida
             </Button>
           </Box>
-          <Box
-            px="4"
-            py="3"
-            position="absolute"
-            bottom="80px"
-            left="0"
-            width="100%"
-          >
+          <Box px="4" py="3" bottom="80px" left="0" width="100%">
             <MenuDivider />
             <Button
               onClick={handleClosed}
