@@ -47,7 +47,7 @@ const usePostMessage = (): void => {
     return () => {
       window.removeEventListener('message', handleEvent)
     }
-  }, [history, location.pathname])
+  }, [history, location.pathname, params.solution])
 }
 
 export default usePostMessage
