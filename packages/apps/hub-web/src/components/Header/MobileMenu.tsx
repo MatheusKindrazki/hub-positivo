@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Box, Button, Select, Welcome } from '@hub/common/components'
 import Drawer from '@hub/common/components/Drawer'
+import { DotsNine } from '@hub/common/components/Icons'
 import Menu from '@hub/common/components/Menu'
 
 import history from '~/services/history'
@@ -103,6 +104,9 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
         alignItems="center"
         justifyContent="space-between"
       ></Box>
+      <Button variant="link" justifyContent="flex-start">
+        <Box as={DotsNine} size={24} />
+      </Button>
       <DrawerContainer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerContent mt={['72px', '72px']} position="relative">
           <Box px="4" py="2" w="100%" h="auto">
