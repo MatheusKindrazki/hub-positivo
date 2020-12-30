@@ -10,7 +10,6 @@ import {
   CardProduct
 } from '@hub/common/components'
 import SearchInput from '@hub/common/components/Search'
-import Tour from '@hub/common/components/Tour'
 import createSlug from '@hub/common/utils/createSlug'
 import documentTitle from '@hub/common/utils/documentTitle'
 
@@ -19,11 +18,12 @@ import { debounce } from 'ts-debounce'
 
 import { preAuth } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
-import { openTour as tourOpen, postTour } from '~/store/modules/tour/actions'
 
 import { cardFilter } from './cardFilter'
+import FakeCollapse from './components/FakeCollapse'
+import mockFakeLoading from './components/FakeCollapse/mock'
+import FakeLoadingCard from './components/FakeLoading'
 import Filter from './components/Filter'
-import stepProf from './stepsProf'
 import { Container } from './styles'
 
 const Home: React.FC = () => {
@@ -34,7 +34,6 @@ const Home: React.FC = () => {
   const { user, avatar, school: useSchool } = useSelector(
     (state: Store.State) => state.user
   )
-
   const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
   )
@@ -42,9 +41,8 @@ const Home: React.FC = () => {
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
   )
-
-  const { open: openTour, viewed } = useSelector(
-    (state: Store.State) => state.tour
+  const { loading: globalLoading } = useSelector(
+    (state: Store.State) => state.global
   )
 
   const handleSearch = debounce(search => {
@@ -73,14 +71,6 @@ const Home: React.FC = () => {
     [dispatch]
   )
 
-  const handleClosedTour = useCallback(() => {
-    if (!viewed) {
-      dispatch(postTour())
-    }
-
-    dispatch(tourOpen(false))
-  }, [dispatch, viewed])
-
   const filterCards = useMemo(
     () => cardFilter({ data: cards || [], search: search }),
     [cards, search]
@@ -88,14 +78,6 @@ const Home: React.FC = () => {
 
   return (
     <>
-      {!!filterCards?.length && nameProfile === 'Professor' ? (
-        <Tour
-          onClosed={handleClosedTour}
-          open={openTour}
-          steps={stepProf}
-          key={openTour ? Math.random() : 1}
-        />
-      ) : null}
       <Box
         py="5"
         px="4"
@@ -142,7 +124,7 @@ const Home: React.FC = () => {
           alignItems="flex-start"
           flexDirection="column"
         >
-          {filterCards &&
+          {!load && !globalLoading && filterCards ? (
             filterCards.map((card, i) => (
               <Collapse
                 key={Math.random()}
@@ -170,7 +152,18 @@ const Home: React.FC = () => {
                   />
                 ))}
               </Collapse>
-            ))}
+            ))
+          ) : (
+            <>
+              {mockFakeLoading.map((item, index) => (
+                <FakeCollapse key={index} id={String(index)}>
+                  {item.cardMock.map((card, i) => (
+                    <FakeLoadingCard key={i} />
+                  ))}
+                </FakeCollapse>
+              ))}
+            </>
+          )}
         </Box>
 
         {!cards?.length && !load ? (
