@@ -1,10 +1,17 @@
-import React, { useCallback, useImperativeHandle, useMemo } from 'react'
+import React, {
+  useCallback,
+  useImperativeHandle,
+  useContext,
+  useMemo
+} from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Box, Button, Select, Welcome } from '@hub/common/components'
 import Drawer from '@hub/common/components/Drawer'
 import Menu from '@hub/common/components/Menu'
+
+import ModalSupportContext from '~/components/ModalSupport/context'
 
 import history from '~/services/history'
 import { removeAllFrames } from '~/services/sessionStorage'
@@ -30,6 +37,8 @@ const { useDisclosure, DrawerContainer, DrawerContent } = Drawer
 const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
   ({ openModalPass }, ref) => {
     const dispatch = useDispatch()
+
+    const { onOpen: openModalSupport } = useContext(ModalSupportContext)
 
     const { user, school, avatar } = useSelector(
       (state: Store.State) => state.user
@@ -149,42 +158,6 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               />
             </Box>
             <MenuDivider />
-            <Box px="4" py="3">
-              {/* <Button
-              variant="ghost"
-              width="100%"
-              alignItems="center"
-              justifyContent="flex-start"
-              color="gray.500"
-              ml="-10px"
-              _hover={{
-                color: 'blue.500',
-                backgroundColor: 'gray.200'
-              }}
-              fontSize="0.875rem"
-            >
-              Início
-            </Button> */}
-              {steps?.length && (
-                <Button
-                  variant="ghost"
-                  width="100%"
-                  alignItems="center"
-                  justifyContent="flex-start"
-                  color="gray.500"
-                  ml="-10px"
-                  onClick={handleOpenTour}
-                  _hover={{
-                    color: 'blue.500',
-                    backgroundColor: 'gray.200'
-                  }}
-                  fontSize="0.875rem"
-                >
-                  Tutorial de primeiro acesso
-                </Button>
-              )}
-            </Box>
-            <MenuDivider />
             <Box
               px="4"
               py="3"
@@ -196,19 +169,63 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               left="0"
               width="100%"
             >
+              {steps?.length && (
+                <Button
+                  onClick={handleOpenTour}
+                  variant="link"
+                  color="gray.500"
+                  fontWeight="500"
+                  fontSize="0.875rem"
+                  ml="2"
+                  mb="2"
+                >
+                  Fazer tour
+                </Button>
+              )}
+              <Button
+                id="header-suporte"
+                variant="ghost"
+                width="100%"
+                alignItems="center"
+                justifyContent="flex-start"
+                onClick={openModalSupport}
+                color="gray.500"
+                fontWeight="500"
+                ml="-10px"
+                _hover={{
+                  color: 'blue.500',
+                  backgroundColor: 'gray.200'
+                }}
+                fontSize="0.875rem"
+              >
+                Estou com uma dúvida
+              </Button>
+            </Box>
+            <MenuDivider />
+            <Box
+              px="4"
+              py="3"
+              bottom="80px"
+              left="0"
+              width="100%"
+              d="flex"
+              flexDirection="column"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+            >
               <Button
                 onClick={openModalPass}
-                variant="link"
                 color="gray.500"
                 fontSize="0.875rem"
-                ml="2"
-                mb="2"
+                variant="ghost"
+                ml="-10px"
               >
-                Alterar Senha
+                Alterar minha senha
               </Button>
               <Button
                 onClick={handleClosed}
-                variant="link"
+                variant="ghost"
+                ml="-10px"
                 color="gray.500"
                 fontSize="0.875rem"
               >

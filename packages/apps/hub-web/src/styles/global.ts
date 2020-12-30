@@ -6,4 +6,5 @@ export default createGlobalStyle`
     transition: background-color 1s, color 1s, fill 1s, ease 0.5s!important;
   }
 
+
 `

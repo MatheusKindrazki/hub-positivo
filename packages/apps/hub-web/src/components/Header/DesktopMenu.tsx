@@ -1,10 +1,12 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useContext } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Box, Button, Avatar, Menu } from '@hub/common/components'
 import Select from '@hub/common/components/Select'
 import Welcome from '@hub/common/components/Welcome'
+
+import ModalSupportContext from '~/components/ModalSupport/context'
 
 import history from '~/services/history'
 import { removeAllFrames } from '~/services/sessionStorage'
@@ -23,6 +25,8 @@ interface DesktopMenuProps {
 }
 
 const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
+  const { onOpen } = useContext(ModalSupportContext)
+
   const { MenuContainer, MenuButton, MenuList, MenuDivider, MenuItem } = Menu
 
   const dispatch = useDispatch()
@@ -77,6 +81,10 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
     dispatch(openTour(true))
   }, [dispatch])
 
+  const handleNeedHelp = () => {
+    window.location.href = 'https://suporte.positivoon.com.br/portal/pt/home'
+  }
+
   return (
     <Box
       className="hub-logo"
@@ -84,15 +92,6 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
       alignItems="center"
       justifyContent="space-between"
     >
-      {/* <Button
-        fontSize="0.875rem"
-        backgroundColor="white"
-        fontWeight="bold"
-        color="blue.500"Tutoriais
-        mx="1"
-      >
-        Estou com uma dúvida
-      </Button> */}
       {steps?.length && (
         <Button
           fontSize="0.875rem"
@@ -102,9 +101,20 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
           onClick={handleOpenTour}
           mx="1"
         >
-          Tutorial de primeiro acesso
+          Fazer tour
         </Button>
       )}
+      <Button
+        id="header-suporte"
+        fontSize="0.875rem"
+        backgroundColor="white"
+        fontWeight="bold"
+        color="blue.500"
+        onClick={onOpen}
+        mx="1"
+      >
+        Estou com uma dúvida
+      </Button>
       <MenuContainer>
         <MenuButton
           type="button"

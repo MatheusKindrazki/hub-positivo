@@ -6,6 +6,8 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import ThemeProvider from '@hub/common/layout/Provider'
 
+import ModalSupport from '~/components/ModalSupport'
+
 import Routes from '~/routes'
 import { store, persistor } from '~/store'
 
@@ -15,6 +17,7 @@ const App: React.FC = () => {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Routes />
+          <ModalSupport />
         </PersistGate>
       </Provider>
     </ThemeProvider>

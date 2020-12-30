@@ -92,7 +92,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                       className={classNames({ margin: i !== 0 })}
                       fontSize="sm"
                     >
-                      {card.nome}ss
+                      {card.nome}
                     </Heading>
                   </Box>
 
