@@ -43,7 +43,6 @@ export function* getTour(): Generator {
 
   const { data, ok } = response as ApiResponse<StepsTourResponseApi[]>
   if (!ok) {
-    toast.error('erro ao buscar steps do tour')
     console.error(data)
 
     return yield put(getTourFailure())
@@ -56,7 +55,7 @@ export function* getTour(): Generator {
       position: item.posicao
     }
   })
-  return yield put(getTourSuccess(prepareTour))
+  return yield put(getTourSuccess(prepareTour || []))
 }
 
 export function* getViewed(): Generator {
@@ -66,7 +65,6 @@ export function* getViewed(): Generator {
 
   const { data, ok } = response as ApiResponse<boolean>
   if (!ok) {
-    toast.error('erro ao buscar informações do Tour')
     console.error(data)
 
     return yield put(getTourViewedFailure())
