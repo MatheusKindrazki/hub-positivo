@@ -36,6 +36,8 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
 
   const renderProfiles = useMemo(() => prepareRoles(school?.roles), [school])
 
+  const { steps } = useSelector((state: Store.State) => state.tour)
+
   const handleSelected = useCallback(
     data => {
       dispatch(setSchool(data))
@@ -91,7 +93,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
       >
         Estou com uma dúvida
       </Button> */}
-      {profile.guid === 'PROFESSOR' && (
+      {steps?.length && (
         <Button
           fontSize="0.875rem"
           backgroundColor="white"

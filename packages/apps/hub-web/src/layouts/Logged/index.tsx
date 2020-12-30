@@ -40,7 +40,9 @@ const Dashboard: React.FC = ({ children }) => {
   return (
     <Container>
       <BarLoader width="100%" height="4px" loading={loading} />
-      <Tour onClosed={handleClosedTour} open={open} steps={steps || []} />
+      {steps?.length && (
+        <Tour onClosed={handleClosedTour} open={open} steps={steps || []} />
+      )}
       <Header />
       {children}
     </Container>

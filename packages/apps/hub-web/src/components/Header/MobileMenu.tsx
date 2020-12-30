@@ -42,6 +42,8 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
 
     const renderProfiles = useMemo(() => prepareRoles(school?.roles), [school])
 
+    const { steps } = useSelector((state: Store.State) => state.tour)
+
     const openMenu = (): void => {
       if (!isOpen) {
         onOpen()
@@ -163,7 +165,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
             >
               Início
             </Button> */}
-              {profile.guid === 'PROFESSOR' && (
+              {steps?.length && (
                 <Button
                   variant="ghost"
                   width="100%"
