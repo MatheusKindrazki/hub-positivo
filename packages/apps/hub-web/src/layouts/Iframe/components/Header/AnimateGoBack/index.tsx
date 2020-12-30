@@ -8,9 +8,10 @@ import { Container } from './styles'
 
 interface AnimateGoBackProps {
   onClick: () => void
+  width?: number
 }
 
-const AnimateGoBack: React.FC<AnimateGoBackProps> = ({ onClick }) => {
+const AnimateGoBack: React.FC<AnimateGoBackProps> = ({ onClick, width }) => {
   const { colors } = useTheme()
 
   return (
@@ -27,8 +28,8 @@ const AnimateGoBack: React.FC<AnimateGoBackProps> = ({ onClick }) => {
       <Box className="hub-svg-logo">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="60"
-          height="118"
+          width={width || '60'}
+          height={width ? width * 2 : 118}
           viewBox="0 0 1045.49 543.6"
         >
           <g id="Layer_2" data-name="Layer 2">

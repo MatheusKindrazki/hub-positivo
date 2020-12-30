@@ -29,7 +29,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
 
   return (
     <div className="hub-header-list">
-      <Button
+      {/* <Button
         fontSize="0.875rem"
         backgroundColor="white"
         fontWeight="bold"
@@ -40,7 +40,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
         onClick={() => setShow(!show)}
       >
         <Box as={DotsNine} size={24} />
-      </Button>
+      </Button> */}
       <CSSTransition
         in={show}
         timeout={400}
