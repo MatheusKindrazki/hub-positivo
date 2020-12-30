@@ -39,6 +39,12 @@ const tour: Tour = (state = INITIAL_STATE, action) => {
         break
       }
 
+      case Actions.OPEN_TOUR: {
+        draft.open = action.payload.open
+
+        break
+      }
+
       case Actions.GET_TOUR_SUCCESS: {
         draft.steps = action.payload
 
