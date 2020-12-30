@@ -8,6 +8,7 @@ import { CardProduct } from '~/store/modules/products/types'
 
 import AnimateGoBack from './AnimateGoBack'
 import HeaderDesktop from './HeaderDesktop'
+import HeaderMobile from './HeaderMobile'
 
 interface HandleProps {
   url: string
@@ -29,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ handlePush, cards }) => {
     <Box
       p="4"
       width="100%"
-      height="72px"
+      height={isDesktop ? '72px' : '41px'}
       background="white"
       display="flex"
       alignItems="center"
@@ -43,6 +44,7 @@ const Header: React.FC<HeaderProps> = ({ handlePush, cards }) => {
       <AnimateGoBack onClick={handleGoBack} />
       <Box position="relative">
         {isDesktop && <HeaderDesktop handlePush={handlePush} cards={cards} />}
+        {!isDesktop && <HeaderMobile handlePush={handlePush} cards={cards} />}
       </Box>
     </Box>
   )
