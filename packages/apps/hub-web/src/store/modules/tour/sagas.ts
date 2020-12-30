@@ -51,11 +51,10 @@ export function* getTour(): Generator {
   const prepareTour: StepsTour[] | undefined = data?.map(item => {
     return {
       content: item.conteudo,
-      selector: item.seletor,
-      position: item.posicao
+      selector: item.seletor
     }
   })
-  return yield put(getTourSuccess(prepareTour || []))
+  return yield put(getTourSuccess(prepareTour))
 }
 
 export function* getViewed(): Generator {
