@@ -67,7 +67,15 @@ const Header: React.FC = () => {
           </Box>
 
           {isDesktop && <DesktopMenu handleAlterPass={onOpen} />}
-          {!isDesktop && <MobileMenu ref={menuRef} />}
+          {!isDesktop && (
+            <MobileMenu
+              openModalPass={() => {
+                menuRef.current?.openMenu()
+                onOpen()
+              }}
+              ref={menuRef}
+            />
+          )}
         </Box>
       </Headroom>
       <Modal
