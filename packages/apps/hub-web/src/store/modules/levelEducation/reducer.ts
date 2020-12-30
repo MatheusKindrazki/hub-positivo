@@ -21,7 +21,14 @@ const global: ReturnReducer = (state = INITIAL_STATE, action) => {
         break
       }
 
+      case Actions.SIGN_OUT: {
+        draft.level = ''
+        draft.levels = undefined
+        break
+      }
+
       case Actions.RESET_LEVEL: {
+        draft.loading = false
         draft.level = ''
         draft.levels = undefined
         break
