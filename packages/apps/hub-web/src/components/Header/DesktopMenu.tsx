@@ -105,6 +105,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
         </Button>
       )}
       <Button
+        id="header-suporte"
         fontSize="0.875rem"
         backgroundColor="white"
         fontWeight="bold"
