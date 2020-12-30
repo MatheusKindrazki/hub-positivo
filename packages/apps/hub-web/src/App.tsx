@@ -6,17 +6,10 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import ThemeProvider from '@hub/common/layout/Provider'
 
-// import TagManager, { TagManagerArgs } from 'react-gtm-module'
-import { ToastContainer } from 'react-toastify'
+import ModalSupport from '~/components/ModalSupport'
 
 import Routes from '~/routes'
 import { store, persistor } from '~/store'
-
-// const tagManagerArgs: TagManagerArgs = {
-//   gtmId: 'GTM-PCPNTVS'
-// }
-
-// TagManager.initialize(tagManagerArgs)
 
 const App: React.FC = () => {
   return (
@@ -24,20 +17,7 @@ const App: React.FC = () => {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Routes />
-          <ToastContainer
-            position="bottom-center"
-            autoClose={3000}
-            style={{
-              borderRadius: 8
-            }}
-            limit={3}
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
+          <ModalSupport />
         </PersistGate>
       </Provider>
     </ThemeProvider>

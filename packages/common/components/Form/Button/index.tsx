@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Button as BtnChackra, ButtonProps } from '@chakra-ui/react'
+import { Button as BtnChakra, ButtonProps } from '@chakra-ui/react'
 
 interface ButtonParams extends ButtonProps {
   loading?: boolean
@@ -8,7 +8,7 @@ interface ButtonParams extends ButtonProps {
 
 const Button: React.FC<ButtonParams> = ({ children, ...rest }) => {
   return (
-    <BtnChackra
+    <BtnChakra
       mt="2rem"
       type="submit"
       color="white"
@@ -20,7 +20,7 @@ const Button: React.FC<ButtonParams> = ({ children, ...rest }) => {
       {...rest}
     >
       {children}
-    </BtnChackra>
+    </BtnChakra>
   )
 }
 

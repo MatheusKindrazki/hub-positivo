@@ -1,13 +1,21 @@
-import React, { useRef, useState, useCallback } from 'react'
+import React, { useRef, useState, useCallback, useContext } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Box, Heading, Text } from '@hub/common/components'
-import { Input, Button, Form, FormProps } from '@hub/common/components/Form'
+import { Box, Heading, Text, Button } from '@hub/common/components'
+import {
+  Input,
+  Button as FormButton,
+  Form,
+  FormProps
+} from '@hub/common/components/Form'
 import { Lock, User, Eye, EyeSlash } from '@hub/common/components/Icons'
+import { toast } from '@hub/common/utils'
 import documentTitle from '@hub/common/utils/documentTitle'
 
-import { toast } from 'react-toastify'
+import { useHistory } from 'react-router-dom'
+
+import ModalSupportContext from '~/components/ModalSupport/context'
 
 import { signInRequest } from '~/store/modules/auth/actions'
 import { ValidationError, getValidationErrors } from '~/validators'
@@ -16,12 +24,16 @@ import signInValidator from '~/validators/auth/signIn'
 const SignIn: React.FC = () => {
   documentTitle('Entrar')
 
+  const { onOpen } = useContext(ModalSupportContext)
+
   const dispatch = useDispatch()
   const [view, setView] = useState(false)
 
   const { loading } = useSelector((state: Store.State) => state.auth)
 
   const formRef = useRef<FormProps>(null)
+
+  const history = useHistory()
 
   const handleSubmit = useCallback(
     async data => {
@@ -48,6 +60,9 @@ const SignIn: React.FC = () => {
     [dispatch]
   )
 
+  const handleForgotPasswordLink = () => {
+    history.push('/forgot-password')
+  }
   return (
     <Box p="6">
       <Heading color="black" fontSize="xl" mb="2">
@@ -83,10 +98,39 @@ const SignIn: React.FC = () => {
           iconLeft={<Box as={Lock} color="blue.500" size="21px" />}
         />
 
-        <Button data-testid="submit-button" isLoading={loading}>
+        <FormButton
+          textTransform="uppercase"
+          data-testid="submit-button"
+          isLoading={loading}
+          mb="6"
+        >
           Entrar
-        </Button>
+        </FormButton>
       </Form>
+      <Button
+        variant="link"
+        colorScheme="blue"
+        size="lg"
+        width="100%"
+        textTransform="uppercase"
+        fontSize="0.875rem"
+        mb="8"
+        onClick={handleForgotPasswordLink}
+      >
+        Esqueci minha senha
+      </Button>
+      <Button
+        variant="link"
+        colorScheme="blue"
+        size="lg"
+        width="100%"
+        textTransform="uppercase"
+        fontSize="0.875rem"
+        mb="2"
+        onClick={onOpen}
+      >
+        Preciso de ajuda
+      </Button>
     </Box>
   )
 }

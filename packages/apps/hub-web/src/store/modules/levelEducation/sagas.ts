@@ -1,17 +1,18 @@
-import { all, put, Payload, takeLatest } from 'redux-saga/effects'
+import { all, put, Payload, takeLatest, call } from 'redux-saga/effects'
 
-// import { ApiResponse } from 'apisauce'
+import { toast } from '@hub/common/utils'
+
+import { ApiResponse } from 'apisauce'
 import _ from 'lodash'
-// import { toast } from 'react-toastify'
 
-// import { EEMConnectGET } from '~/services/eemConnect'
-// import { store } from '~/store'
+import { EEMConnectGET } from '~/services/eemConnect'
+import { store } from '~/store'
 import { Actions } from '~/store/modules/profile/actions'
 import { Profile } from '~/store/modules/profile/types'
 
 import { resetProfileLevels, setProfileLevels } from './actions'
-import mock from './mock.json'
-import { Ciclos } from './types'
+// import mock from './mock.json'
+import { Ciclos, ContentResponse } from './types'
 
 export function* getLevelByProfile({ payload }: Payload<Profile>): Generator {
   const { profile } = payload
@@ -22,38 +23,38 @@ export function* getLevelByProfile({ payload }: Payload<Profile>): Generator {
     return yield put(resetProfileLevels())
   }
 
-  // interface SendInfo {
-  //   usuarioId: string
-  // }
-  // const { school } = store.getState().user
-  // const { token } = store.getState().auth
+  interface SendInfo {
+    usuarioId: string
+  }
+  const { school } = store.getState().user
+  const { token } = store.getState().auth
 
-  // const response = yield call(() => {
-  //   return EEMConnectGET<SendInfo>({
-  //     endpoint: '/v1/Academico/turmas',
-  //     token: token || '',
-  //     data: {
-  //       usuarioId: school?.user_id || ''
-  //     }
-  //   })
-  // })
+  const response = yield call(() => {
+    return EEMConnectGET<SendInfo>({
+      endpoint: '/v1/Academico/turmas',
+      token: token || '',
+      data: {
+        usuarioId: school?.user_id || ''
+      }
+    })
+  })
 
-  // const { ok, data } = response as ApiResponse<{
-  //   conteudo: ContentResponse[]
-  // }>
+  const { ok, data } = response as ApiResponse<{
+    conteudo: ContentResponse[]
+  }>
 
-  // if (!ok) {
-  //   toast.error('Ocorreu um erro ao buscar seu Perfil!')
+  if (!ok) {
+    toast.error('Ocorreu um erro ao buscar seu Perfil!')
 
-  //   return
-  // }
+    return
+  }
 
   const ciclos = [] as Ciclos[]
 
   let selectedCiclo = {} as Ciclos
   let setDefaultCiclo = false
 
-  mock?.conteudo.forEach(e => {
+  data?.conteudo.forEach(e => {
     if (!setDefaultCiclo && !!e.serie.ciclo) {
       selectedCiclo = {
         id: e.serie.ciclo.id,

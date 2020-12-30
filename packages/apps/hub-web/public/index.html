@@ -12,36 +12,25 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
 
     <title>%REACT_APP_HUB_TITLE%</title>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> -->
     <link href="./fonts.css" rel="stylesheet">
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NSCS85L');</script>
+    'https://www.googletagmanager.com/gtm.js?id='+'%REACT_APP_GTM_MODULE%'+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer');</script>
     <!-- End Google Tag Manager -->
+
 
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NSCS85L"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=%REACT_APP_GTM_MODULE%"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <noscript>Você precisa do javascript ativo para rodar essa aplicação</noscript>
     <div id="hub-psd"></div>
 
   </body>
-  <!-- <script>(function(w,s,l,p){
-    var g=p.split('/').filter(n => n);
-    var x=w.createElement('div'); x.setAttribute(s,l);
-    var j=w.createElement('script');j.type='text/javascript'; j.async=true;
-    window.__HUB_GUID__=g[g.length-1];
-    j.src='%REACT_APP_URL_HEADER%';
-    w.body.appendChild(x);w.body.appendChild(j);
-    })(document,'id','hub-inject', window.location.href);
-  </script> -->
-
 </html>

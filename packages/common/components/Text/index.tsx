@@ -1,3 +1,5 @@
-import { Text } from '@chakra-ui/react'
+import { Text, TextProps } from '@chakra-ui/react'
 
 export default Text
+
+export type { TextProps }
