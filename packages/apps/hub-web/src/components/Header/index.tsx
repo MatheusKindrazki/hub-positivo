@@ -9,6 +9,7 @@ import Headroom from 'react-headroom'
 
 import Logo from '~/components/LogoOn'
 
+import AlterPass from './components/AlterPass'
 import DesktopMenu from './DesktopMenu'
 import MobileMenu from './MobileMenu'
 import { RefMenuProps } from './MobileMenu'
@@ -43,7 +44,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <Headroom disable={isDesktop} style={{ zIndex: isOpen ? 1 : 99999 }}>
+      <Headroom disable={isDesktop} style={{ zIndex: isOpen ? 2 : 99999 }}>
         <Box
           p="4"
           width="100%"
@@ -69,8 +70,14 @@ const Header: React.FC = () => {
           {!isDesktop && <MobileMenu ref={menuRef} />}
         </Box>
       </Headroom>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        Brasil de mais
+      <Modal
+        title="Alterar senha"
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered
+        autoFocus
+      >
+        <AlterPass onClose={onClose} />
       </Modal>
     </>
   )

@@ -13,14 +13,24 @@ import {
 
 export interface ModalProps extends Omit<Props, 'children'> {
   footerContent?: React.ReactNode
+  title: string
+  maxW?: string
 }
 
-const Modal: React.FC<ModalProps> = ({ children, footerContent, ...rest }) => {
+const Modal: React.FC<ModalProps> = ({
+  children,
+  footerContent,
+  title,
+  maxW = '26rem',
+  ...rest
+}) => {
   return (
     <ModalChakra {...rest}>
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
+      <ModalContent maxW={maxW}>
+        <ModalHeader fontWeight="500" fontSize="1.125rem">
+          {title}
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>{children}</ModalBody>
         {footerContent && <ModalFooter>{footerContent}</ModalFooter>}

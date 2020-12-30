@@ -50,6 +50,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
       user: {
         integration_id: user?.integration_id,
         id: user?.id,
+        guid: user?.guid,
         email: user?.email,
         name: user?.name ? capitalize(user?.name) : '',
         username: user?.username,
