@@ -1,10 +1,12 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useContext } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Box, Button, Avatar, Menu } from '@hub/common/components'
 import Select from '@hub/common/components/Select'
 import Welcome from '@hub/common/components/Welcome'
+
+import ModalSupportContext from '~/components/ModalSupport/context'
 
 import history from '~/services/history'
 import { removeAllFrames } from '~/services/sessionStorage'
@@ -23,6 +25,8 @@ interface DesktopMenuProps {
 }
 
 const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
+  const { onOpen } = useContext(ModalSupportContext)
+
   const { MenuContainer, MenuButton, MenuList, MenuDivider, MenuItem } = Menu
 
   const dispatch = useDispatch()
@@ -105,7 +109,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
         backgroundColor="white"
         fontWeight="bold"
         color="blue.500"
-        onClick={handleNeedHelp}
+        onClick={onOpen}
         mx="1"
       >
         Estou com uma dúvida
