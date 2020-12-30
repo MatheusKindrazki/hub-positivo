@@ -1,10 +1,17 @@
-import React, { useCallback, useImperativeHandle, useMemo } from 'react'
+import React, {
+  useCallback,
+  useImperativeHandle,
+  useContext,
+  useMemo
+} from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Box, Button, Select, Welcome } from '@hub/common/components'
 import Drawer from '@hub/common/components/Drawer'
 import Menu from '@hub/common/components/Menu'
+
+import ModalSupportContext from '~/components/ModalSupport/context'
 
 import history from '~/services/history'
 import { removeAllFrames } from '~/services/sessionStorage'
@@ -30,6 +37,8 @@ const { useDisclosure, DrawerContainer, DrawerContent } = Drawer
 const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
   ({ openModalPass }, ref) => {
     const dispatch = useDispatch()
+
+    const { onOpen: openModalSupport } = useContext(ModalSupportContext)
 
     const { user, school, avatar } = useSelector(
       (state: Store.State) => state.user
@@ -165,6 +174,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                   onClick={handleOpenTour}
                   variant="link"
                   color="gray.500"
+                  fontWeight="500"
                   fontSize="0.875rem"
                   ml="2"
                   mb="2"
@@ -177,7 +187,9 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                 width="100%"
                 alignItems="center"
                 justifyContent="flex-start"
+                onClick={openModalSupport}
                 color="gray.500"
+                fontWeight="500"
                 ml="-10px"
                 _hover={{
                   color: 'blue.500',

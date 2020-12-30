@@ -44,7 +44,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <Headroom disable={isDesktop} style={{ zIndex: isOpen ? 2 : 99999 }}>
+      <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
         <Box
           p="4"
           width="100%"
