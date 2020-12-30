@@ -113,12 +113,14 @@ export function* getProducts(): Generator {
 
   yield put(
     productSuccess({
-      data: alterData?.map(c => {
-        return {
-          ...c,
-          solucoes: c.solucoes.filter(s => s.ativo)
-        }
-      })
+      data: alterData
+        ?.filter(e => e.ativo)
+        .map(c => {
+          return {
+            ...c,
+            solucoes: c.solucoes.filter(s => s.ativo)
+          }
+        })
     })
   )
 }
