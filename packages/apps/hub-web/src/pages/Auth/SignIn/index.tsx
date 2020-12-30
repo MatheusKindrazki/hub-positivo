@@ -111,10 +111,21 @@ const SignIn: React.FC = () => {
         width="100%"
         textTransform="uppercase"
         fontSize="0.875rem"
-        mb="2"
+        mb="8"
         onClick={handleForgotPasswordLink}
       >
         Esqueci minha senha
+      </Button>
+      <Button
+        variant="link"
+        colorScheme="blue"
+        size="lg"
+        width="100%"
+        textTransform="uppercase"
+        fontSize="0.875rem"
+        mb="2"
+      >
+        Preciso de ajuda
       </Button>
     </Box>
   )

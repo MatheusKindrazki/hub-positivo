@@ -18,7 +18,11 @@ import { prepareSchool, prepareRoles } from '~/utils/prepareSchoolAndRoles'
 
 import GlobalStyle from './styles'
 
-const DesktopMenu: React.FC = () => {
+interface DesktopMenuProps {
+  handleAlterPass: () => void
+}
+
+const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
   const { MenuContainer, MenuButton, MenuList, MenuDivider, MenuItem } = Menu
 
   const dispatch = useDispatch()
@@ -31,6 +35,8 @@ const DesktopMenu: React.FC = () => {
   const renderSchools = useMemo(() => prepareSchool(user?.schools), [user])
 
   const renderProfiles = useMemo(() => prepareRoles(school?.roles), [school])
+
+  const { steps } = useSelector((state: Store.State) => state.tour)
 
   const handleSelected = useCallback(
     data => {
@@ -87,7 +93,7 @@ const DesktopMenu: React.FC = () => {
       >
         Estou com uma dúvida
       </Button> */}
-      {profile.guid === 'PROFESSOR' && (
+      {steps?.length && (
         <Button
           fontSize="0.875rem"
           backgroundColor="white"
@@ -107,7 +113,7 @@ const DesktopMenu: React.FC = () => {
           style={{ zIndex: 9 }}
         >
           <Avatar
-            width="2.5rem"
+            width="2.6rem"
             color="#3C3C3C"
             height="2.5rem"
             backgroundColor="gray.400"
@@ -117,8 +123,8 @@ const DesktopMenu: React.FC = () => {
         </MenuButton>
         <MenuList
           style={{ zIndex: 9 }}
-          minW="300px"
-          borderRadius="4px"
+          minW="310px"
+          borderRadius="md"
           boxShadow="dark-lg"
           border="1px solid #D9D9D9"
           mr="2rem!important"
@@ -137,12 +143,12 @@ const DesktopMenu: React.FC = () => {
               avatar={avatar}
               option="name"
               fontSize="1.125rem"
-              size="40px"
+              size="48px"
               fontWeight="bold"
             />
           </Box>
           <MenuDivider />
-          <Box px="4" pt="3" pb="1">
+          <Box px="4" pt="3" pb="3">
             <Select
               variant="normal"
               placeholder="Selecione"
@@ -170,7 +176,17 @@ const DesktopMenu: React.FC = () => {
             />
           </Box>
           <MenuDivider />
-          <Box px="4" py="3">
+          <Box px="5" py="3">
+            <Button
+              variant="link"
+              color="gray.500"
+              fontSize="0.875rem"
+              onClick={handleAlterPass}
+            >
+              Alterar minha senha
+            </Button>
+          </Box>
+          <Box px="3" py="3" pt="0">
             <Button
               variant="link"
               color="gray.500"

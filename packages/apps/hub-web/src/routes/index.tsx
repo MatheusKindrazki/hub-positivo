@@ -48,7 +48,11 @@ const Routes: React.FC = () => {
           <Route path="/forgot-password" exact component={ForgotPassword} />
           <Route path="/expired-token" component={ExpiredToken} />
           <Route path="/change-password" component={ChangePassword} />
-          <Route path="/solucao/:solution" component={Iframe} isPrivate />
+          <Route
+            path="/solucao/:solution/:subpath?"
+            component={Iframe}
+            isPrivate
+          />
 
           <Route path="/" component={Home} isPrivate />
         </Switch>
