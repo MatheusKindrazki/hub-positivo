@@ -18,6 +18,7 @@ import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
 
 export interface RefMenuProps {
   openMenu: () => void
+  openModalPass: () => void
 }
 
 const { MenuDivider } = Menu
@@ -31,6 +32,12 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
   )
 
   const { isOpen, onClose, onOpen } = useDisclosure()
+
+  const {
+    isOpen: isOpenModal,
+    onClose: onCloseModal,
+    onOpen: onOpenModal
+  } = useDisclosure()
 
   const profile = useSelector((state: Store.State) => state.profile)
 
@@ -46,9 +53,18 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
     }
   }
 
+  const openModalPass = (): void => {
+    if (!isOpenModal) {
+      onOpenModal()
+    } else {
+      onCloseModal()
+    }
+  }
+
   useImperativeHandle(ref, () => {
     return {
-      openMenu
+      openMenu,
+      openModalPass
     }
   })
 
@@ -179,15 +195,28 @@ const MobileMenu = React.forwardRef<RefMenuProps>((_, ref) => {
               </Button>
             )}
           </Box>
+          <MenuDivider />
           <Box
             px="4"
             py="3"
-            position="absolute"
+            d="flex"
+            flexDirection="column"
+            justifyContent="flex-start"
+            alignItems="flex-start"
             bottom="80px"
             left="0"
             width="100%"
           >
-            <MenuDivider />
+            <Button
+              onClick={openModalPass}
+              variant="link"
+              color="gray.500"
+              fontSize="0.875rem"
+              ml="2"
+              mb="2"
+            >
+              Alterar Senha
+            </Button>
             <Button
               onClick={handleClosed}
               variant="link"
