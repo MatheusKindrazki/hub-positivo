@@ -162,7 +162,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
             >
               {steps?.length && (
                 <Button
-                  onClick={openModalPass}
+                  onClick={handleOpenTour}
                   variant="link"
                   color="gray.500"
                   fontSize="0.875rem"
@@ -188,11 +188,31 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                 Estou com uma dúvida
               </Button>
             </Box>
-            <Box px="4" py="3" bottom="80px" left="0" width="100%">
-              <MenuDivider />
+            <MenuDivider />
+            <Box
+              px="4"
+              py="3"
+              bottom="80px"
+              left="0"
+              width="100%"
+              d="flex"
+              flexDirection="column"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+            >
+              <Button
+                onClick={openModalPass}
+                color="gray.500"
+                fontSize="0.875rem"
+                variant="ghost"
+                ml="-10px"
+              >
+                Alterar minha senha
+              </Button>
               <Button
                 onClick={handleClosed}
-                variant="link"
+                variant="ghost"
+                ml="-10px"
                 color="gray.500"
                 fontSize="0.875rem"
               >
