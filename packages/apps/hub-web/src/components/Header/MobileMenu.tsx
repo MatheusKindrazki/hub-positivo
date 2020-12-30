@@ -149,42 +149,6 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               />
             </Box>
             <MenuDivider />
-            <Box px="4" py="3">
-              {/* <Button
-              variant="ghost"
-              width="100%"
-              alignItems="center"
-              justifyContent="flex-start"
-              color="gray.500"
-              ml="-10px"
-              _hover={{
-                color: 'blue.500',
-                backgroundColor: 'gray.200'
-              }}
-              fontSize="0.875rem"
-            >
-              Início
-            </Button> */}
-              {steps?.length && (
-                <Button
-                  variant="ghost"
-                  width="100%"
-                  alignItems="center"
-                  justifyContent="flex-start"
-                  color="gray.500"
-                  ml="-10px"
-                  onClick={handleOpenTour}
-                  _hover={{
-                    color: 'blue.500',
-                    backgroundColor: 'gray.200'
-                  }}
-                  fontSize="0.875rem"
-                >
-                  Tutorial de primeiro acesso
-                </Button>
-              )}
-            </Box>
-            <MenuDivider />
             <Box
               px="4"
               py="3"
@@ -196,16 +160,36 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               left="0"
               width="100%"
             >
+              {steps?.length && (
+                <Button
+                  onClick={openModalPass}
+                  variant="link"
+                  color="gray.500"
+                  fontSize="0.875rem"
+                  ml="2"
+                  mb="2"
+                >
+                  Fazer tour
+                </Button>
+              )}
               <Button
-                onClick={openModalPass}
-                variant="link"
+                variant="ghost"
+                width="100%"
+                alignItems="center"
+                justifyContent="flex-start"
                 color="gray.500"
+                ml="-10px"
+                _hover={{
+                  color: 'blue.500',
+                  backgroundColor: 'gray.200'
+                }}
                 fontSize="0.875rem"
-                ml="2"
-                mb="2"
               >
-                Alterar Senha
+                Estou com uma dúvida
               </Button>
+            </Box>
+            <Box px="4" py="3" bottom="80px" left="0" width="100%">
+              <MenuDivider />
               <Button
                 onClick={handleClosed}
                 variant="link"

@@ -13,6 +13,7 @@ import { Lock, User, Eye, EyeSlash } from '@hub/common/components/Icons'
 import { toast } from '@hub/common/utils'
 import documentTitle from '@hub/common/utils/documentTitle'
 
+import { Redirect } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 
 import { signInRequest } from '~/store/modules/auth/actions'
@@ -58,6 +59,10 @@ const SignIn: React.FC = () => {
 
   const handleForgotPasswordLink = () => {
     history.push('/forgot-password')
+  }
+
+  const handleNeedHelpLink = () => {
+    window.location.href = 'https://suporte.positivoon.com.br/portal/pt/home'
   }
 
   return (
@@ -124,6 +129,7 @@ const SignIn: React.FC = () => {
         textTransform="uppercase"
         fontSize="0.875rem"
         mb="2"
+        onClick={handleNeedHelpLink}
       >
         Preciso de ajuda
       </Button>
