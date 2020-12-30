@@ -25,26 +25,29 @@ const AlterPass: React.FC<AlterPassProps> = ({ onClose }) => {
 
   const formRef = useRef<FormProps>(null)
 
-  const handleSubmit = useCallback(async data => {
-    formRef.current?.setErrors({})
+  const handleSubmit = useCallback(
+    async data => {
+      formRef.current?.setErrors({})
 
-    try {
-      await alterPassword.validate(data, {
-        abortEarly: false
-      })
+      try {
+        await alterPassword.validate(data, {
+          abortEarly: false
+        })
 
-      dispatch(alterPasswordRequest(data))
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        const errors = getValidationErrors(err)
-        formRef?.current?.setErrors(errors)
+        dispatch(alterPasswordRequest(data))
+      } catch (err) {
+        if (err instanceof ValidationError) {
+          const errors = getValidationErrors(err)
+          formRef?.current?.setErrors(errors)
 
-        return
+          return
+        }
+
+        toast.error('Algo deu errado, Verifique seus dados e tente novamente!')
       }
-
-      toast.error('Algo deu errado, Verifique seus dados e tente novamente!')
-    }
-  }, [])
+    },
+    [dispatch]
+  )
 
   return (
     <Box>
