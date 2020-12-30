@@ -88,15 +88,6 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
       alignItems="center"
       justifyContent="space-between"
     >
-      {/* <Button
-        fontSize="0.875rem"
-        backgroundColor="white"
-        fontWeight="bold"
-        color="blue.500"Tutoriais
-        mx="1"
-      >
-        Estou com uma dúvida
-      </Button> */}
       {steps?.length && (
         <Button
           fontSize="0.875rem"
