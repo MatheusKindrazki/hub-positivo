@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { Avatar as AvatarChackra, AvatarProps } from '@chakra-ui/react'
+import { Avatar as AvatarChakra, AvatarProps } from '@chakra-ui/react'
 
 const Avatar: React.FC<AvatarProps> = ({ ...rest }) => {
   return (
-    <AvatarChackra
+    <AvatarChakra
       width="2.5rem"
       height="2.5rem"
       backgroundColor="gray.400"
@@ -15,3 +15,4 @@ const Avatar: React.FC<AvatarProps> = ({ ...rest }) => {
 }
 
 export default Avatar
+export type { AvatarProps }

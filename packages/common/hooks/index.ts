@@ -1,2 +1,5 @@
-import { useDisclosure, useBreakpoint, useToast } from '@chakra-ui/react'
-export { useDisclosure, useBreakpoint, useToast }
+import { useDisclosure, useBreakpoint, useMediaQuery } from '@chakra-ui/react'
+
+import { useToast } from './toast'
+
+export { useDisclosure, useBreakpoint, useToast, useMediaQuery }

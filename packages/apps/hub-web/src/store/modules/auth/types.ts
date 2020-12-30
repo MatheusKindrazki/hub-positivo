@@ -26,6 +26,8 @@ export interface SignInSuccess {
   user?: {
     name: string
     integration_id: string | null
+    id: string | null
+    guid: string | null
     username: string
     schools?: Schools[]
     email: string
