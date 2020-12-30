@@ -12,6 +12,7 @@ import { ModalProps } from './Modal'
 import { SearchProps } from './Search'
 import { PropsSelect } from './Select'
 import { SimpleGridProps } from './SimpleGrid'
+import { SkeletonProps, SkeletonTextProps } from './Skeleton'
 import { SpinnerProps } from './SpinnerLoader'
 import { TextProps } from './Text'
 import { TooltipProps } from './Tooltip'
@@ -39,5 +40,6 @@ declare global {
     export { StepsTour, TourProps }
     export { WelcomeProps }
     export { ModalProps }
+    export { SkeletonProps, SkeletonTextProps }
   }
 }
