@@ -44,6 +44,19 @@ const user: ReturnReducer = (state = INITIAL_STATE, action) => {
         break
       }
 
+      case Actions.USER_PASSWORD_PANEL_REQUEST: {
+        draft.loading = true
+        break
+      }
+      case Actions.USER_PASSWORD_PANEL_SUCCESS: {
+        draft.loading = false
+        break
+      }
+      case Actions.USER_PASSWORD_PANEL_FAILURE: {
+        draft.loading = false
+        break
+      }
+
       default:
     }
   })
