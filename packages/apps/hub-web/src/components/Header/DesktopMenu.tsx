@@ -77,6 +77,10 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
     dispatch(openTour(true))
   }, [dispatch])
 
+  const handleNeedHelp = () => {
+    window.location.href = 'https://suporte.positivoon.com.br/portal/pt/home'
+  }
+
   return (
     <Box
       className="hub-logo"
@@ -102,9 +106,19 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
           onClick={handleOpenTour}
           mx="1"
         >
-          Tutorial de primeiro acesso
+          Fazer tour
         </Button>
       )}
+      <Button
+        fontSize="0.875rem"
+        backgroundColor="white"
+        fontWeight="bold"
+        color="blue.500"
+        onClick={handleNeedHelp}
+        mx="1"
+      >
+        Estou com uma dúvida
+      </Button>
       <MenuContainer>
         <MenuButton
           type="button"
