@@ -11,7 +11,7 @@ import {
   ModalProps as Props
 } from '@chakra-ui/react'
 
-export interface ModalProps extends Props {
+export interface ModalProps extends Omit<Props, 'children'> {
   footerContent?: React.ReactNode
 }
 
