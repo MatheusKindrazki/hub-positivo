@@ -16,7 +16,7 @@ import GoBack from '~/components/GoBack'
 import useQuery from '~/hooks/useQuery'
 import history from '~/services/history'
 import { validatePinRequest } from '~/store/modules/forgotPassword/actions'
-import { alterPasswordRequest } from '~/store/modules/user/actions'
+import { forgotPasswordRequest } from '~/store/modules/user/actions'
 import { getValidationErrors } from '~/validators'
 import passValidation from '~/validators/auth/createNewPassword'
 
@@ -61,7 +61,7 @@ const ChangePassword: React.FC = () => {
         })
 
         dispatch(
-          alterPasswordRequest({
+          forgotPasswordRequest({
             newPassword: data.password,
             pin: token
           })
