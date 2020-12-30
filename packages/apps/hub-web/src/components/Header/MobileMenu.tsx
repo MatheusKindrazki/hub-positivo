@@ -183,6 +183,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                 </Button>
               )}
               <Button
+                id="header-suporte"
                 variant="ghost"
                 width="100%"
                 alignItems="center"
