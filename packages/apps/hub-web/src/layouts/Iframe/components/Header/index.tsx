@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ handlePush, cards }) => {
       left="0"
       zIndex="99999"
     >
-      <AnimateGoBack onClick={handleGoBack} />
+      <AnimateGoBack onClick={handleGoBack} width={isDesktop ? 60 : 40} />
       <Box position="relative">
         {isDesktop && <HeaderDesktop handlePush={handlePush} cards={cards} />}
         {!isDesktop && <HeaderMobile handlePush={handlePush} cards={cards} />}
