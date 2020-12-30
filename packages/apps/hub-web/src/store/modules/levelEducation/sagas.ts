@@ -7,6 +7,7 @@ import _ from 'lodash'
 
 import { EEMConnectGET } from '~/services/eemConnect'
 import { store } from '~/store'
+import { productRequest } from '~/store/modules/products/actions'
 import { Actions } from '~/store/modules/profile/actions'
 import { Profile } from '~/store/modules/profile/types'
 
@@ -20,7 +21,9 @@ export function* getLevelByProfile({ payload }: Payload<Profile>): Generator {
   const searchLevels = ['professor', 'aluno']
 
   if (!searchLevels.includes(profile)) {
-    return yield put(resetProfileLevels())
+    yield put(resetProfileLevels())
+
+    return yield put(productRequest({}))
   }
 
   interface SendInfo {
@@ -74,12 +77,14 @@ export function* getLevelByProfile({ payload }: Payload<Profile>): Generator {
 
   const uniByCiclo = _.unionBy(ciclos, 'id')
 
-  return yield put(
+  yield put(
     setProfileLevels({
       levels: uniByCiclo,
       level: selectedCiclo.label
     })
   )
+
+  return yield put(productRequest({}))
 }
 
 export default all([takeLatest(Actions.SET_PROFILE, getLevelByProfile)])
