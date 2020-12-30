@@ -7,7 +7,7 @@ import Select from 'react-select'
 import { useTheme } from '../../layout'
 import GlobalSelectStyle from './styles'
 
-interface PropsSelect extends Props {
+export interface PropsSelect extends Props {
   variant: 'blue-transparent' | 'normal'
 }
 
@@ -17,6 +17,7 @@ const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
   const transparentColor: StylesConfig = {
     control: provided => ({
       ...provided,
+      cursor: 'pointer',
       backgroundColor: 'transparent',
       color: 'white'
     }),
@@ -45,6 +46,8 @@ const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
       ...provided,
       backgroundColor: state.isSelected ? colors.blue[400] : colors.blue[500],
       color: 'white',
+      textTransform: 'capitalize',
+      cursor: 'pointer',
 
       '&:active': {
         color: 'white',

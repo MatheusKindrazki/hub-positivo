@@ -7,7 +7,9 @@ export const Actions = {
   RESET_LEVEL: '@education/RESET_LEVEL',
 
   GET_LEVEL_REQUEST: '@education/GET_LEVEL_REQUEST',
-  GET_LEVEL_SUCCESS: '@education/GET_LEVEL_SUCCESS'
+  GET_LEVEL_SUCCESS: '@education/GET_LEVEL_SUCCESS',
+
+  SIGN_OUT: '@auth/SIGN_OUT'
 }
 
 export function setLevel(level: string): Action {

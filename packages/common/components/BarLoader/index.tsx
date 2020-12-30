@@ -4,7 +4,7 @@ import { BarLoader as Loading } from 'react-spinners'
 
 import { useTheme } from '../../layout'
 
-type BarProps = typeof Loading.defaultProps
+export type BarProps = typeof Loading.defaultProps
 
 const BarLoader: React.FC<BarProps> = ({ loading, ...rest }) => {
   const { colors } = useTheme()

@@ -4,13 +4,14 @@ import React from 'react'
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 import ReactDOM from 'react-dom'
-import 'react-toastify/dist/ReactToastify.css'
 
 import App from './App'
 
-if (process.env.NODE_ENV !== 'development') {
-  console.error = function () {}; //eslint-disable-line
-  console.warn = function () {}; //eslint-disable-line
+// do luiz => GTM-PCPNTVS
+// temporário => GTM-NSCS85L
+if (process.env.REACT_APP_NODE_ENV === 'production') {
+  console.error = function () {} //eslint-disable-line
+  console.warn = function () {} //eslint-disable-line
 
   Sentry.init({
     dsn:
@@ -24,7 +25,12 @@ if (process.env.NODE_ENV !== 'development') {
 
 declare global {
   interface Window {
-    ga: any
+    __HUB_USER_INFO__: {
+      role: string
+      name: string
+      school: string
+      grade_level: string
+    }
   }
 }
 
