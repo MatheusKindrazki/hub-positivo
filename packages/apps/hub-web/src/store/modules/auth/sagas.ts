@@ -41,7 +41,6 @@ export function* signIn({ payload }: SignInPayload): Generator {
   })
 
   const user = decode(data?.access_token || '') as any
-
   yield put(
     signInSuccess({
       token: data?.access_token || '',
@@ -51,6 +50,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
       user: {
         integration_id: user?.integration_id,
         id: user?.id,
+        guid: user?.sub,
         email: user?.email,
         name: user?.name ? capitalize(user?.name) : '',
         username: user?.username,
