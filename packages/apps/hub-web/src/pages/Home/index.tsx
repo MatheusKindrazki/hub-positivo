@@ -20,6 +20,9 @@ import { preAuth } from '~/store/modules/authProduct/actions'
 import { loading } from '~/store/modules/global/actions'
 
 import { cardFilter } from './cardFilter'
+import FakeCollapse from './components/FakeCollapse'
+import mockFakeLoading from './components/FakeCollapse/mock'
+import FakeLoadingCard from './components/FakeLoading'
 import Filter from './components/Filter'
 import { Container } from './styles'
 
@@ -37,6 +40,9 @@ const Home: React.FC = () => {
 
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
+  )
+  const { loading: globalLoading } = useSelector(
+    (state: Store.State) => state.global
   )
 
   const handleSearch = debounce(search => {
@@ -118,7 +124,7 @@ const Home: React.FC = () => {
           alignItems="flex-start"
           flexDirection="column"
         >
-          {filterCards &&
+          {!load && !globalLoading && filterCards ? (
             filterCards.map((card, i) => (
               <Collapse
                 key={Math.random()}
@@ -146,7 +152,18 @@ const Home: React.FC = () => {
                   />
                 ))}
               </Collapse>
-            ))}
+            ))
+          ) : (
+            <>
+              {mockFakeLoading.map((item, index) => (
+                <FakeCollapse key={index} id={String(index)}>
+                  {item.cardMock.map((card, i) => (
+                    <FakeLoadingCard key={i} />
+                  ))}
+                </FakeCollapse>
+              ))}
+            </>
+          )}
         </Box>
 
         {!cards?.length && !load ? (
