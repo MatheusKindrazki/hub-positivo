@@ -10,6 +10,7 @@ const Auth: React.FC = ({ children }) => {
   /* Variáveis para controle do GTM */
   useEffect(() => {
     window.__HUB_USER_INFO__ = {
+      id: '',
       grade_level: '',
       name: '',
       role: '',
