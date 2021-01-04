@@ -21,7 +21,7 @@ const Dashboard: React.FC = ({ children }) => {
 
   useEffect(() => {
     window.__HUB_USER_INFO__ = {
-      id: user?.guid || '',
+      id: user?.guid as string,
       grade_level: level,
       name: user?.name as string,
       role: name,
