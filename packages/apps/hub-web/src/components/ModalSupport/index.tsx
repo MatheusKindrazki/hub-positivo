@@ -35,9 +35,9 @@ const ModalSupport: React.FC = () => {
       >
         <Image src={cerebro} w={isDesktop ? '18rem' : '15rem'} />
         <Text mt="1rem" fontSize="14px" lineHeight="20px">
-          Oi! Montamos um conteúdo super completo para suas possíveis dúvidas.
+          Oi! Montamos um conteúdo supercompleto para sanar possíveis dúvidas.
           São mais de 100 perguntas e respostas com tutoriais de navegação do
-          Positivo On. Dá uma olhada:
+          Positivo On. Dê uma olhada:
         </Text>
 
         <Button
@@ -55,8 +55,8 @@ const ModalSupport: React.FC = () => {
           ACESSAR FAQ
         </Button>
         <Text mt=".4rem" fontSize="14px" lineHeight="20px">
-          Não encontrou sua dúvida no link acima? Entra em contato com a gente
-          que te ajudamos:
+          Não encontrou sua dúvida no link acima? Entre em contato com a gente
+          para te ajudarmos:
         </Text>
 
         <SimpleGrid
