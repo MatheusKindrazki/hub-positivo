@@ -21,12 +21,13 @@ const Dashboard: React.FC = ({ children }) => {
 
   useEffect(() => {
     window.__HUB_USER_INFO__ = {
+      id: user?.guid || '',
       grade_level: level,
       name: user?.name as string,
       role: name,
       school: school?.label as string
     }
-  }, [level, name, school?.label, user?.name])
+  }, [level, name, school?.label, user])
 
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
