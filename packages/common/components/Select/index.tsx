@@ -28,17 +28,20 @@ const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
     container: provided => ({
       ...provided,
       backgroundColor: 'transparent',
-      color: 'white'
+      color: 'white',
+      textTransform: 'capitalize'
     }),
     input: provided => ({
       ...provided,
-      color: 'white'
+      color: 'white',
+      textTransform: 'capitalize'
     }),
     menu: provided => ({
       ...provided,
       backgroundColor: colors.blue[500],
       color: 'white',
       borderColor: colors.blue[700],
+      textTransform: 'capitalize',
       zIndex: 99,
       boxShadow: shadows['dark-lg']
     }),
