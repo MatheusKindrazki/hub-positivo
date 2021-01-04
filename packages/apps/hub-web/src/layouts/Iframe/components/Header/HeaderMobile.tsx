@@ -53,7 +53,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
           border="1px solid #DADADA"
           w="360px"
           h="auto"
-          overflow="hidden"
+          overflow="auto"
           background="white!important"
           className={classNames({
             'hub-items': true
@@ -65,7 +65,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
             w="100%"
             h="auto"
             maxHeight="87vh"
-            overflow="scroll"
+            overflow="auto"
             paddingTop="3.5rem"
             px="6"
             py="4"
