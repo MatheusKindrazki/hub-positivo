@@ -29,7 +29,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
 
   return (
     <div className="hub-header-list">
-      {/* <Button
+      <Button
         fontSize="0.875rem"
         backgroundColor="white"
         fontWeight="bold"
@@ -40,7 +40,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
         onClick={() => setShow(!show)}
       >
         <Box as={DotsNine} size={24} />
-      </Button> */}
+      </Button>
       <CSSTransition
         in={show}
         timeout={400}
@@ -51,9 +51,8 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
           borderRadius="4px"
           boxShadow="dark-lg"
           border="1px solid #DADADA"
-          w="330px"
+          w="360px"
           h="auto"
-          maxHeight="65vh"
           overflow="hidden"
           background="white!important"
           className={classNames({
@@ -65,8 +64,8 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
           <Box
             w="100%"
             h="auto"
-            maxHeight="60vh"
-            overflow="auto"
+            maxHeight="87vh"
+            overflow="scroll"
             paddingTop="3.5rem"
             px="6"
             py="4"
