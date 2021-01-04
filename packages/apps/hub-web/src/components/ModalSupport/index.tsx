@@ -23,7 +23,7 @@ const ModalSupport: React.FC = () => {
       title="Estou com uma dúvida"
       isCentered
       autoFocus
-      maxW={isDesktop ? '26.5rem' : '22rem'}
+      maxW={isDesktop ? '26.5rem' : '20rem'}
       isOpen={isOpen}
       onClose={onClose}
     >
