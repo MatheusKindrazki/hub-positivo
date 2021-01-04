@@ -33,7 +33,7 @@ const ModalSupport: React.FC = () => {
         alignItems="center"
         flexDir="column"
       >
-        <Image src={cerebro} w={isDesktop ? '18rem' : '15rem'} />
+        <Image src={cerebro} w={isDesktop ? '18rem' : '10rem'} />
         <Text mt="1rem" fontSize="14px" lineHeight="20px">
           Oi! Montamos um conteúdo supercompleto para sanar possíveis dúvidas.
           São mais de 100 perguntas e respostas com tutoriais de navegação do
