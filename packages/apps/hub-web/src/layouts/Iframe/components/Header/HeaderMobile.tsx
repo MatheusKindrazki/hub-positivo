@@ -56,7 +56,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
           borderRadius="4px"
           boxShadow="dark-lg"
           border="1px solid #DADADA"
-          w="360px"
+          w="22.5rem"
           h="auto"
           overflow="auto"
           background="white!important"
@@ -69,7 +69,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
           <Box
             w="100%"
             h="auto"
-            maxHeight="87vh"
+            maxHeight="90vh"
             overflow="auto"
             paddingTop="3.5rem"
             px="6"
