@@ -81,10 +81,6 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
     dispatch(openTour(true))
   }, [dispatch])
 
-  const handleNeedHelp = () => {
-    window.location.href = 'https://suporte.positivoon.com.br/portal/pt/home'
-  }
-
   return (
     <Box
       className="hub-logo"
