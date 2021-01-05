@@ -11,6 +11,7 @@ export interface ProductReducer {
 
 export interface CardProduct {
   id: string
+  ativo: boolean
   nome: string
   cor: string
   solucoes: Product[]

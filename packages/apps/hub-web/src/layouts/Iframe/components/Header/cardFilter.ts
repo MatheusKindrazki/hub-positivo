@@ -19,6 +19,7 @@ const cardFilter = (attributes: CardFilterProps): CardProduct[] => {
           newcards.push({
             id: i.id,
             nome: i.nome,
+            ativo: i.ativo,
             cor: i.cor,
             solucoes: [card]
           })
@@ -30,6 +31,7 @@ const cardFilter = (attributes: CardFilterProps): CardProduct[] => {
           newcards[index] = {
             id: i.id,
             nome: i.nome,
+            ativo: i.ativo,
             cor: i.cor,
             solucoes: [...cardsNew, card]
           }

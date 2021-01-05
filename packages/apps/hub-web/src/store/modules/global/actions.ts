@@ -1,7 +1,9 @@
 import { Action } from 'redux'
 
 export const Actions = {
-  LOADING: '@global/LOADING'
+  LOADING: '@global/LOADING',
+
+  MODAL: '@global/MODAL'
 }
 
 export function loading(status: boolean): Action {

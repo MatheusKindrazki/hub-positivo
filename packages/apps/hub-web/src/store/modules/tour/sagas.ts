@@ -43,7 +43,6 @@ export function* getTour(): Generator {
 
   const { data, ok } = response as ApiResponse<StepsTourResponseApi[]>
   if (!ok) {
-    toast.error('erro ao buscar steps do tour')
     console.error(data)
 
     return yield put(getTourFailure())
@@ -52,8 +51,7 @@ export function* getTour(): Generator {
   const prepareTour: StepsTour[] | undefined = data?.map(item => {
     return {
       content: item.conteudo,
-      selector: item.seletor,
-      position: item.posicao
+      selector: item.seletor
     }
   })
   return yield put(getTourSuccess(prepareTour))
@@ -66,7 +64,6 @@ export function* getViewed(): Generator {
 
   const { data, ok } = response as ApiResponse<boolean>
   if (!ok) {
-    toast.error('erro ao buscar informações do Tour')
     console.error(data)
 
     return yield put(getTourViewedFailure())

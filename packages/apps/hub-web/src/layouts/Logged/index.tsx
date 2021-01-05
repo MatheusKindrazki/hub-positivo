@@ -21,12 +21,13 @@ const Dashboard: React.FC = ({ children }) => {
 
   useEffect(() => {
     window.__HUB_USER_INFO__ = {
+      id: user?.guid as string,
       grade_level: level,
       name: user?.name as string,
       role: name,
       school: school?.label as string
     }
-  }, [level, name, school?.label, user?.name])
+  }, [level, name, school?.label, user])
 
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
@@ -40,7 +41,9 @@ const Dashboard: React.FC = ({ children }) => {
   return (
     <Container>
       <BarLoader width="100%" height="4px" loading={loading} />
-      <Tour onClosed={handleClosedTour} open={open} steps={steps || []} />
+      {steps?.length && (
+        <Tour onClosed={handleClosedTour} open={open} steps={steps || []} />
+      )}
       <Header />
       {children}
     </Container>
