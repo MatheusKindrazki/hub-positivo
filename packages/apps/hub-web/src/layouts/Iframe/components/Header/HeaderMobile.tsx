@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react'
+import { useCallback } from 'react'
 
 import {
   Box,
@@ -16,7 +17,7 @@ import Card from '../Card'
 import Search from '../Search'
 import { cardFilter } from './cardFilter'
 import { HeaderProps } from './index'
-import GlobalStyle from './styles'
+import GlobalStyle from './stylesMobile'
 
 const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const [search, setSearch] = useState('')
@@ -43,9 +44,13 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
       </Button>
       <CSSTransition
         in={show}
-        timeout={400}
-        unmountOnExit
+        timeout={{
+          appear: 400,
+          enter: 400,
+          exit: 100
+        }}
         classNames="hub-menu"
+        unmountOnExit
       >
         <Box
           borderRadius="4px"
