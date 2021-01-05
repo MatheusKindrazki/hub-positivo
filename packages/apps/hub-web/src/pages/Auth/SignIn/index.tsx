@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from 'react'
+import React, { useRef, useState, useCallback, useContext } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -15,12 +15,16 @@ import documentTitle from '@hub/common/utils/documentTitle'
 
 import { useHistory } from 'react-router-dom'
 
+import ModalSupportContext from '~/components/ModalSupport/context'
+
 import { signInRequest } from '~/store/modules/auth/actions'
 import { ValidationError, getValidationErrors } from '~/validators'
 import signInValidator from '~/validators/auth/signIn'
 
 const SignIn: React.FC = () => {
   documentTitle('Entrar')
+
+  const { onOpen } = useContext(ModalSupportContext)
 
   const dispatch = useDispatch()
   const [view, setView] = useState(false)
@@ -59,7 +63,6 @@ const SignIn: React.FC = () => {
   const handleForgotPasswordLink = () => {
     history.push('/forgot-password')
   }
-
   return (
     <Box p="6">
       <Heading color="black" fontSize="xl" mb="2">
@@ -111,10 +114,22 @@ const SignIn: React.FC = () => {
         width="100%"
         textTransform="uppercase"
         fontSize="0.875rem"
-        mb="2"
+        mb="8"
         onClick={handleForgotPasswordLink}
       >
         Esqueci minha senha
+      </Button>
+      <Button
+        variant="link"
+        colorScheme="blue"
+        size="lg"
+        width="100%"
+        textTransform="uppercase"
+        fontSize="0.875rem"
+        mb="2"
+        onClick={onOpen}
+      >
+        Preciso de ajuda
       </Button>
     </Box>
   )

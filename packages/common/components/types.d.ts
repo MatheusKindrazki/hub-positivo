@@ -8,9 +8,11 @@ import { FlexProps } from './Flex'
 import { HeadingProps } from './Heading'
 import { ImageProps } from './Image'
 import { InputProps } from './Input'
+import { ModalProps } from './Modal'
 import { SearchProps } from './Search'
 import { PropsSelect } from './Select'
 import { SimpleGridProps } from './SimpleGrid'
+import { SkeletonProps, SkeletonTextProps } from './Skeleton'
 import { SpinnerProps } from './SpinnerLoader'
 import { TextProps } from './Text'
 import { TooltipProps } from './Tooltip'
@@ -37,5 +39,7 @@ declare global {
     export { TooltipProps }
     export { StepsTour, TourProps }
     export { WelcomeProps }
+    export { ModalProps }
+    export { SkeletonProps, SkeletonTextProps }
   }
 }
