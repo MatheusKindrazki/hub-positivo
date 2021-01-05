@@ -81,7 +81,7 @@ const Header: React.FC = () => {
       <Modal
         title="Alterar senha"
         isOpen={isOpen}
-        maxW={isDesktop ? '26rem' : '22rem'}
+        maxW={isDesktop ? '26rem' : '20rem'}
         onClose={onClose}
         isCentered
         autoFocus
