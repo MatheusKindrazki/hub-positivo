@@ -14,7 +14,6 @@ import Menu from '@hub/common/components/Menu'
 import ModalSupportContext from '~/components/ModalSupport/context'
 
 import history from '~/services/history'
-import { removeAllFrames } from '~/services/sessionStorage'
 import { signOut } from '~/store/modules/auth/actions'
 import { loading } from '~/store/modules/global/actions'
 import { profiles, setProfile } from '~/store/modules/profile/actions'
@@ -97,8 +96,6 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
     )
 
     const handleClosed = useCallback(async () => {
-      await removeAllFrames()
-
       dispatch(signOut())
 
       history.push('/')
