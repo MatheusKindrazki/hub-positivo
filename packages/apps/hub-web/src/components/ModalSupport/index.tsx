@@ -73,7 +73,7 @@ const ModalSupport: React.FC = () => {
           <Box d="flex">
             <Box as={EnvelopeSimple} color="blue.500" size={19} mr="5px" />
             <Text fontSize="14px" lineHeight="20px">
-              atendimento@spe.com.br
+              atendimento@sistemapositivo.com.br
             </Text>
           </Box>
         </SimpleGrid>
