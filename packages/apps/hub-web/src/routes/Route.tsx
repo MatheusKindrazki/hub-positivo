@@ -14,7 +14,6 @@ import { store } from '~/store'
 interface RouteProps extends RoutePropsWouter {
   isPrivate?: boolean
 }
-
 const Route: React.FC<RouteProps> = ({
   isPrivate = false,
   component,
@@ -31,6 +30,9 @@ const Route: React.FC<RouteProps> = ({
   }
 
   if (!signed && isPrivate) {
+    if (pathname.includes('solucao')) {
+      return <Redirect to={`/login?redirect=${pathname}`} />
+    }
     return <Redirect to="/login" />
   }
 
