@@ -10,7 +10,7 @@ export default createGlobalStyle`
 
   .hub-menu-enter {
     opacity: 1;
-    transform: translateY(-10px);
+    transform: translateX(360px);
   }
   .hub-menu-enter-active {
     opacity: 1;
@@ -22,7 +22,7 @@ export default createGlobalStyle`
   }
   .hub-menu-exit-active {
     opacity: 1;
-    transform: translateY(0px);
+    transform: translateX(0px);
     transition: all 300ms ease-in;
   }
 
