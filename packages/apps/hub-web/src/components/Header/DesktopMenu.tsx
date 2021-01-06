@@ -9,7 +9,6 @@ import Welcome from '@hub/common/components/Welcome'
 import ModalSupportContext from '~/components/ModalSupport/context'
 
 import history from '~/services/history'
-import { removeAllFrames } from '~/services/sessionStorage'
 import { signOut } from '~/store/modules/auth/actions'
 import { loading } from '~/store/modules/global/actions'
 import { profiles, setProfile } from '~/store/modules/profile/actions'
@@ -50,8 +49,6 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
   )
 
   const handleSignOut = useCallback(async () => {
-    await removeAllFrames()
-
     dispatch(signOut())
     history.push('/login')
   }, [dispatch])
@@ -80,10 +77,6 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
   const handleOpenTour = useCallback(() => {
     dispatch(openTour(true))
   }, [dispatch])
-
-  const handleNeedHelp = () => {
-    window.location.href = 'https://suporte.positivoon.com.br/portal/pt/home'
-  }
 
   return (
     <Box

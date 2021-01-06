@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useTheme } from '@hub/common/layout/styles'
+import createSlug from '@hub/common/utils/createSlug'
 import documentTitle from '@hub/common/utils/documentTitle'
 
 import { useParams } from 'react-router-dom'
@@ -10,15 +11,20 @@ import { PulseLoader } from 'react-spinners'
 
 import usePostMessage from '~/hooks/usePostMessage'
 import history from '~/services/history'
-import { getFrame, setFrame } from '~/services/sessionStorage'
+import { preAuth } from '~/store/modules/authProduct/actions'
 
+import { getCardBySlug } from './services/getCardBySlug'
 import { IframeContainer } from './styles'
 
 interface IframePropsRouter {
   solution: string
+  subpath: string
 }
 
 const Iframe: React.FC = () => {
+  const dispatch = useDispatch()
+  usePostMessage()
+
   const { colors } = useTheme()
   const [url, setUrl] = useState('')
   const [loading, setLoading] = useState(true)
@@ -29,34 +35,35 @@ const Iframe: React.FC = () => {
     (state: Store.State) => state.products
   )
 
-  usePostMessage()
-
   useEffect(() => {
     if (!frameUrl) {
-      const getUrl = getFrame(solution)
-
-      if (!getUrl) return history.push('/')
-
-      documentTitle(getUrl.name)
-
-      setUrl(getUrl.url)
-
-      setTimeout(() => {
-        setLoading(false)
-      }, 2500)
+      getCardInformation()
 
       return
     }
 
-    setFrame({ key: solution, url: frameUrl || '', name: frameName || 'Hub' })
+    async function getCardInformation() {
+      const card = await getCardBySlug({ slug: solution })
+
+      if (!card) return history.push('/')
+
+      const product = createSlug(card.nome)
+
+      dispatch(
+        preAuth({
+          name: card.nome,
+          url: card.link || '',
+          tipoRenderizacao: card.tipoRenderizacao,
+          product: product
+        })
+      )
+    }
 
     documentTitle(frameName || 'Hub')
-    setTimeout(() => {
-      setLoading(false)
-    }, 2500)
+    setTimeout(() => setLoading(false), 2500)
 
     return setUrl(frameUrl || '')
-  }, [frameName, frameUrl, solution])
+  }, [dispatch, frameName, frameUrl, solution])
 
   return (
     <IframeContainer>
