@@ -7,6 +7,7 @@ import {
   useLocation
 } from 'react-router-dom'
 
+import useQuery from '~/hooks/useQuery'
 import Auth from '~/layouts/Auth'
 import Iframe from '~/layouts/Iframe'
 import Logged from '~/layouts/Logged'
@@ -20,6 +21,9 @@ const Route: React.FC<RouteProps> = ({
   ...rest
 }) => {
   const { pathname } = useLocation()
+
+  const search = useQuery()
+  const redirectTo = search.get('redirect') || undefined
 
   const { signed } = store.getState().auth
 
@@ -37,6 +41,9 @@ const Route: React.FC<RouteProps> = ({
   }
 
   if (signed && !isPrivate) {
+    if (redirectTo) {
+      return <Redirect to={redirectTo} />
+    }
     return <Redirect to="/" />
   }
 
