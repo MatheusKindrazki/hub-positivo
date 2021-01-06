@@ -22,8 +22,8 @@ export default createGlobalStyle`
   }
   .hub-menu-exit-active {
     opacity: 1;
-    transform: translateX(0px);
-    transition: all 300ms ease-in;
+    transform: translateX(380px);
+    transition: all 300ms ease-out;
   }
 
 

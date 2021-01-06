@@ -43,11 +43,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
       </Button>
       <CSSTransition
         in={show}
-        timeout={{
-          appear: 400,
-          enter: 400,
-          exit: 100
-        }}
+        timeout={400}
         classNames="hub-menu"
         unmountOnExit
       >
