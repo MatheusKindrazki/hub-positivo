@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 
 import * as Sentry from '@sentry/react'
@@ -7,8 +6,6 @@ import ReactDOM from 'react-dom'
 
 import App from './App'
 
-// do luiz => GTM-PCPNTVS
-// temporário => GTM-NSCS85L
 if (process.env.REACT_APP_NODE_ENV === 'production') {
   console.error = function () {} //eslint-disable-line
   console.warn = function () {} //eslint-disable-line
