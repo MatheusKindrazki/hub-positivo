@@ -17,6 +17,7 @@ const products: ReturnReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
       case Actions.PRODUCT_REQUEST: {
         draft.loading = true
+        draft.data = []
         break
       }
 
@@ -28,6 +29,7 @@ const products: ReturnReducer = (state = INITIAL_STATE, action) => {
 
       case Actions.PRODUCT_FAILURE: {
         draft.loading = false
+        draft.data = []
         break
       }
 
