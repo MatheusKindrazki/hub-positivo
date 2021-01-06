@@ -32,8 +32,6 @@ export function* signIn({ payload }: SignInPayload): Generator {
     })
   })
 
-  console.log(redirectTo)
-
   const { data, ok } = response as ApiResponse<AuthApi>
 
   if (!ok) {
@@ -47,8 +45,6 @@ export function* signIn({ payload }: SignInPayload): Generator {
   })
 
   const user = decode(data?.access_token || '') as any
-
-  console.log(user)
 
   yield put(
     signInSuccess({
@@ -67,6 +63,11 @@ export function* signIn({ payload }: SignInPayload): Generator {
       }
     })
   )
+
+  if (redirectTo) {
+    history.push(`/profile?redirect=${redirectTo}`)
+    return
+  }
 
   history.push('/profile')
 }
