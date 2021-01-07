@@ -42,8 +42,6 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
   const user = decode(data?.access_token || '') as any
 
-  console.log(user)
-
   yield put(
     signInSuccess({
       token: data?.access_token || '',

@@ -11,7 +11,7 @@ const Auth: React.FC = ({ children }) => {
   useEffect(() => {
     window.__HUB_USER_INFO__ = {
       id: '',
-      grade_level: '',
+      educational_stage: '',
       name: '',
       role: '',
       school: ''
