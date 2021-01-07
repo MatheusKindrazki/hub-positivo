@@ -20,7 +20,7 @@ async function getCardBySlug(data: CarBySlugProps): Promise<Product | null> {
   const { ok, data: responseData } = response
 
   if (!ok) {
-    toast.error('Erro ao carregar solução!')
+    toast.error('Sinto muito, você não tem acesso a esta solução.')
 
     return null
   }
