@@ -3,6 +3,7 @@ export interface AuthRequest {
   name: string
   url: string
   tipoRenderizacao?: string
+  subpath?: string
 }
 
 export interface AuthReducer {

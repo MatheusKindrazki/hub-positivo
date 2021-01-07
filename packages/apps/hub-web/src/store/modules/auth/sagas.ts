@@ -18,6 +18,10 @@ import { SignInRequest, AuthApi } from './types'
 type SignInPayload = Payload<SignInRequest>
 
 export function* signIn({ payload }: SignInPayload): Generator {
+  const redirectTo = payload.redirect
+
+  delete payload.redirect
+
   const response = yield call(() => {
     return EEMConnectPost({
       endpoint: 'connect/token',
@@ -42,8 +46,6 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
   const user = decode(data?.access_token || '') as any
 
-  console.log(user)
-
   yield put(
     signInSuccess({
       token: data?.access_token || '',
@@ -61,6 +63,11 @@ export function* signIn({ payload }: SignInPayload): Generator {
       }
     })
   )
+
+  if (redirectTo) {
+    history.push(`/profile?redirect=${redirectTo}`)
+    return
+  }
 
   history.push('/profile')
 }

@@ -11,6 +11,7 @@ import { PulseLoader } from 'react-spinners'
 
 import usePostMessage from '~/hooks/usePostMessage'
 import history from '~/services/history'
+import { store } from '~/store'
 import { preAuth } from '~/store/modules/authProduct/actions'
 
 import { getCardBySlug } from './services/getCardBySlug'
@@ -29,7 +30,10 @@ const Iframe: React.FC = () => {
   const [url, setUrl] = useState('')
   const [loading, setLoading] = useState(true)
 
-  const { solution } = useParams<IframePropsRouter>()
+  const { guid } = store.getState().profile
+  const { level } = store.getState().levelEducation
+
+  const { solution, subpath } = useParams<IframePropsRouter>()
 
   const { frameUrl, frameName } = useSelector(
     (state: Store.State) => state.products
@@ -38,32 +42,38 @@ const Iframe: React.FC = () => {
   useEffect(() => {
     if (!frameUrl) {
       getCardInformation()
-
       return
     }
-
     async function getCardInformation() {
-      const card = await getCardBySlug({ slug: solution })
-
+      const card = await getCardBySlug({
+        slug: solution,
+        nivelEnsino: level,
+        perfil: guid
+      })
       if (!card) return history.push('/')
-
       const product = createSlug(card.nome)
+
+      let path = ''
+      if (subpath) {
+        const queryParams = window.location.hash.split('?')[1] || undefined
+
+        path = `${subpath}${queryParams ? `?${queryParams}` : ''}`
+      }
 
       dispatch(
         preAuth({
           name: card.nome,
           url: card.link || '',
           tipoRenderizacao: card.tipoRenderizacao,
-          product: product
+          product: product,
+          subpath: path
         })
       )
     }
-
     documentTitle(frameName || 'Hub')
-    setTimeout(() => setLoading(false), 2500)
-
+    setTimeout(() => setLoading(false), 3000)
     return setUrl(frameUrl || '')
-  }, [dispatch, frameName, frameUrl, solution])
+  }, [dispatch, frameName, frameUrl, guid, level, solution, subpath])
 
   return (
     <IframeContainer>
