@@ -60,11 +60,11 @@ const ModalSupport: React.FC = () => {
         </Text>
 
         <SimpleGrid
-          templateColumns={isDesktop ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)'}
+          templateColumns={'repeat(1, 1fr)'}
           spacing={3}
           my="1.1875rem"
         >
-          <Box d="flex" justifyContent={isDesktop ? 'inherit' : 'center'}>
+          <Box d="flex" justifyContent={'center'}>
             <Box as={Phone} color="blue.500" size={19} mr="5px" />
             <Text fontSize="14px" lineHeight="20px">
               0800 591 1510
