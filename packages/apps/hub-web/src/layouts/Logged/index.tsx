@@ -35,14 +35,14 @@ const Dashboard: React.FC = ({ children }) => {
         email: user?.email as string,
         role: name,
         school: school?.label as string,
-        grade_level: level,
+        educational_stage: level,
         id: user?.guid as string
       })
     }
 
     window.__HUB_USER_INFO__ = {
       id: user?.guid as string,
-      grade_level: level,
+      educational_stage: level,
       name: user?.name as string,
       role: name,
       school: school?.label as string
