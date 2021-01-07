@@ -47,7 +47,7 @@ const Routes: React.FC = () => {
           <Route path="/expired-token" component={ExpiredToken} />
           <Route path="/change-password" component={ChangePassword} />
           <Route
-            path={['/solucao/:solution', '/solucao/:solution/:subpath+']}
+            path={['/solucao/:solution/:subpath+', '/solucao/:solution']}
             component={Iframe}
             isPrivate
           />
