@@ -29,7 +29,7 @@ const Iframe: React.FC = () => {
   const [url, setUrl] = useState('')
   const [loading, setLoading] = useState(true)
 
-  const { solution } = useParams<IframePropsRouter>()
+  const { solution, subpath } = useParams<IframePropsRouter>()
 
   const { frameUrl, frameName } = useSelector(
     (state: Store.State) => state.products
@@ -48,13 +48,13 @@ const Iframe: React.FC = () => {
       if (!card) return history.push('/')
 
       const product = createSlug(card.nome)
-
       dispatch(
         preAuth({
           name: card.nome,
           url: card.link || '',
           tipoRenderizacao: card.tipoRenderizacao,
-          product: product
+          product: product,
+          subpath: subpath !== undefined ? subpath : ''
         })
       )
     }
@@ -63,7 +63,7 @@ const Iframe: React.FC = () => {
     setTimeout(() => setLoading(false), 2500)
 
     return setUrl(frameUrl || '')
-  }, [dispatch, frameName, frameUrl, solution])
+  }, [dispatch, frameName, frameUrl, solution, subpath])
 
   return (
     <IframeContainer>
