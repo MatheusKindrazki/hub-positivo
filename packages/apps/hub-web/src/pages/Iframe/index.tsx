@@ -11,6 +11,7 @@ import { PulseLoader } from 'react-spinners'
 
 import usePostMessage from '~/hooks/usePostMessage'
 import history from '~/services/history'
+import { store } from '~/store'
 import { preAuth } from '~/store/modules/authProduct/actions'
 
 import { getCardBySlug } from './services/getCardBySlug'
@@ -29,6 +30,9 @@ const Iframe: React.FC = () => {
   const [url, setUrl] = useState('')
   const [loading, setLoading] = useState(true)
 
+  const { guid } = store.getState().profile
+  const { level } = store.getState().levelEducation
+
   const { solution, subpath } = useParams<IframePropsRouter>()
 
   const { frameUrl, frameName } = useSelector(
@@ -43,7 +47,11 @@ const Iframe: React.FC = () => {
     }
 
     async function getCardInformation() {
-      const card = await getCardBySlug({ slug: solution })
+      const card = await getCardBySlug({
+        slug: solution,
+        nivelEnsino: level,
+        perfil: guid
+      })
 
       if (!card) return history.push('/')
 
