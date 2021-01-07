@@ -102,10 +102,12 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   }
   yield put(loading(false))
 
-  history.push(`/solucao/${payload.product}/${payload.subpath}`)
+  const subpath = payload.subpath !== undefined ? payload.subpath : ''
+
+  history.push(`/solucao/${payload.product}/${subpath}`)
   yield put(
     setFrameURL({
-      url: `${payload.url}/${data}/${payload.subpath}`,
+      url: `${payload.url}/${data}/${subpath}`,
       name: payload.name
     })
   )
