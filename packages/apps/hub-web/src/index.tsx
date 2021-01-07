@@ -27,7 +27,7 @@ declare global {
       role: string
       name: string
       school: string
-      grade_level: string
+      educational_stage: string
     }
   }
 }
