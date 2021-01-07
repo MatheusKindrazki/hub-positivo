@@ -68,10 +68,10 @@ const Iframe: React.FC = () => {
     }
 
     documentTitle(frameName || 'Hub')
-    setTimeout(() => setLoading(false), 2500)
+    setTimeout(() => setLoading(false), 3000)
 
     return setUrl(frameUrl || '')
-  }, [dispatch, frameName, frameUrl, solution, subpath])
+  }, [dispatch, frameName, frameUrl, guid, level, solution, subpath])
 
   return (
     <IframeContainer>
