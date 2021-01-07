@@ -42,34 +42,36 @@ const Iframe: React.FC = () => {
   useEffect(() => {
     if (!frameUrl) {
       getCardInformation()
-
       return
     }
-
     async function getCardInformation() {
       const card = await getCardBySlug({
         slug: solution,
         nivelEnsino: level,
         perfil: guid
       })
-
       if (!card) return history.push('/')
-
       const product = createSlug(card.nome)
+
+      let path = ''
+      if (subpath) {
+        const queryParams = window.location.hash.split('?')[1] || undefined
+
+        path = `${subpath}${queryParams ? `?${queryParams}` : ''}`
+      }
+
       dispatch(
         preAuth({
           name: card.nome,
           url: card.link || '',
           tipoRenderizacao: card.tipoRenderizacao,
           product: product,
-          subpath: subpath !== undefined ? subpath : ''
+          subpath: path
         })
       )
     }
-
     documentTitle(frameName || 'Hub')
     setTimeout(() => setLoading(false), 3000)
-
     return setUrl(frameUrl || '')
   }, [dispatch, frameName, frameUrl, guid, level, solution, subpath])
 
