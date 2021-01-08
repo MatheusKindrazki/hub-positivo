@@ -10,7 +10,7 @@ const useSendGlobalInfo = (): void => {
   useEffect(() => {
     window.__HUB_USER_INFO__ = {
       id: user?.guid as string,
-      educational_stage: level,
+      educational_stage: level || '',
       name: user?.name as string,
       role: name,
       school: school?.label as string
