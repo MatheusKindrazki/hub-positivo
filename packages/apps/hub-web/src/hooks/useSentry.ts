@@ -2,8 +2,6 @@ import { useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import api from '@hub/api'
-
 import * as Sentry from '@sentry/react'
 
 const useSentry = (): void => {
@@ -27,19 +25,6 @@ const useSentry = (): void => {
         school: school?.label as string,
         educational_stage: level,
         id: user?.guid as string
-      })
-
-      api.addMonitor(monitor => {
-        if (!monitor.ok) {
-          const sendMessage = {
-            data: monitor.data,
-            status: monitor.status,
-            duration: monitor.duration,
-            error: monitor.originalError
-          }
-
-          Sentry.captureException(sendMessage)
-        }
       })
     }
   }, [level, name, school?.label, user])
