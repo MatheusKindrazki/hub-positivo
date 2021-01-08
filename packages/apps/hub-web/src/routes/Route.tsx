@@ -7,6 +7,7 @@ import {
   useLocation
 } from 'react-router-dom'
 
+import useQuery from '~/hooks/useQuery'
 import Auth from '~/layouts/Auth'
 import Iframe from '~/layouts/Iframe'
 import Logged from '~/layouts/Logged'
@@ -14,13 +15,15 @@ import { store } from '~/store'
 interface RouteProps extends RoutePropsWouter {
   isPrivate?: boolean
 }
-
 const Route: React.FC<RouteProps> = ({
   isPrivate = false,
   component,
   ...rest
 }) => {
   const { pathname } = useLocation()
+
+  const search = useQuery()
+  const redirectTo = search.get('redirect') || undefined
 
   const { signed } = store.getState().auth
 
@@ -31,10 +34,16 @@ const Route: React.FC<RouteProps> = ({
   }
 
   if (!signed && isPrivate) {
+    if (pathname.includes('solucao')) {
+      return <Redirect to={`/login?redirect=${pathname}`} />
+    }
     return <Redirect to="/login" />
   }
 
   if (signed && !isPrivate) {
+    if (redirectTo) {
+      return <Redirect to={redirectTo} />
+    }
     return <Redirect to="/" />
   }
 
