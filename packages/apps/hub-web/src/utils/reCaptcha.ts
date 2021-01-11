@@ -1,52 +1,32 @@
+import lscache from 'lscache'
 import moment from 'moment'
 
 const dateFormat = 'DD/MM/YYYY, H:mm:ss'
 
-const initStrikeLog = (): void => {
+export const checkForStrikes = (): boolean => {
+  const strikes = lscache.get('loginStrikes' || '{}')
+  console.log(`strike number ${strikes?.length}`)
+  if (strikes?.length >= 3) {
+    return true
+  }
+  return false
+}
+
+export const storeStrike = (): void => {
+  const strikes = lscache.get('loginStrikes' || '{}')
   const time = moment().format(dateFormat)
-  localStorage.setItem('loginStrikes', JSON.stringify([{ timestamp: time }]))
-}
-
-const saveStrike = (strikes: [{ timestamp: string }]): void => {
-  const time = moment().format(dateFormat)
-  strikes.push({ timestamp: time })
-  const data = JSON.stringify(strikes)
-  localStorage.setItem('loginStrikes', data)
-}
-
-const filterStrikes = (strike: { timestamp: string }): boolean => {
-  const validationTime = moment().subtract(2, 'hours').format(dateFormat)
-  console.log(
-    `strike timestamp: ${
-      strike.timestamp
-    }, validation time: ${validationTime}, comparison: ${
-      new Date(strike.timestamp).valueOf() > new Date(validationTime).valueOf()
-    }`
-  )
-  return (
-    new Date(strike.timestamp).valueOf() > new Date(validationTime).valueOf()
-  )
-}
-
-const checkForStrikes = (
-  callback: any,
-  strikes: [{ timestamp: string }]
-): void => {
-  const filteredStrikes = strikes?.filter(filterStrikes)
-  localStorage.setItem('loginStrikes', JSON.stringify(filteredStrikes))
-  console.log(`strike number ${filteredStrikes.length}`)
-  if (filteredStrikes?.length >= 3) {
-    callback()
+  if (strikes?.length) {
+    lscache.set('loginStrikes', [...strikes, { timestamp: time }], 7200000)
+  } else {
+    lscache.set('loginStrikes', [{ timestamp: time }], 7200000)
   }
 }
 
-export const storeStrike = (callback: any): void => {
-  const strikes = JSON.parse(localStorage.getItem('loginStrikes') || '{}')
-  strikes === null ? initStrikeLog() : saveStrike(strikes)
-  checkForStrikes(callback, strikes)
+export const clearStrikes = (): void => {
+  lscache.remove('loginStrikes')
 }
 
-export const handleCaptcha = (value: string | null): void => {
+export const handleCaptcha = (value: any): void => {
   // fetch com post do token para api
   console.log('token:', value)
 }

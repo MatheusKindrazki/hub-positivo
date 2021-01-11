@@ -20,7 +20,7 @@ import ModalSupportContext from '~/components/ModalSupport/context'
 
 import useQuery from '~/hooks/useQuery'
 import { signInRequest } from '~/store/modules/auth/actions'
-import { storeStrike, handleCaptcha } from '~/utils/reCaptcha'
+import { storeStrike, handleCaptcha, checkForStrikes } from '~/utils/reCaptcha'
 import { ValidationError, getValidationErrors } from '~/validators'
 import signInValidator from '~/validators/auth/signIn'
 
@@ -64,15 +64,16 @@ const SignIn: React.FC = () => {
 
           formRef?.current?.setErrors(errors)
 
-          storeStrike(recaptchaRef.current?.execute)
-
           return
         }
-
         toast.error('Algo deu errado, Verifique seus dados e tente novamente!')
       }
+      if (checkForStrikes()) {
+        const token = await recaptchaRef.current?.executeAsync()
+        return handleCaptcha(token)
+      }
     },
-    [dispatch, redirectTo, recaptchaRef]
+    [dispatch, redirectTo]
   )
 
   const handleForgotPasswordLink = () => {
@@ -80,6 +81,13 @@ const SignIn: React.FC = () => {
   }
   return (
     <Box p="6">
+      <ReCAPTCHA
+        theme="light"
+        ref={recaptchaRef}
+        size="invisible"
+        sitekey="6LcFeCQaAAAAACgJMy0UrmhpoDNlCYjPl6Ls84A5"
+        onChange={token => handleCaptcha(token)}
+      />
       <Heading color="black" fontSize="xl" mb="2">
         Entrar
       </Heading>
@@ -146,13 +154,6 @@ const SignIn: React.FC = () => {
       >
         Preciso de ajuda
       </Button>
-      <ReCAPTCHA
-        theme="dark"
-        ref={recaptchaRef}
-        size="invisible"
-        sitekey="6LcFeCQaAAAAACgJMy0UrmhpoDNlCYjPl6Ls84A5"
-        onChange={token => handleCaptcha(token)}
-      />
     </Box>
   )
 }
