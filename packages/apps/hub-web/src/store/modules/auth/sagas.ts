@@ -10,6 +10,7 @@ import { decode } from 'jsonwebtoken'
 
 import { EEMConnectPost } from '~/services/eemConnect'
 import history from '~/services/history'
+import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
 
 import { productRequest } from '../products/actions'
 import { Actions, signInFailure, signInSuccess, signOut } from './actions'
@@ -37,6 +38,8 @@ export function* signIn({ payload }: SignInPayload): Generator {
   if (!ok) {
     toast.error('Algo deu errado, verifique seus dados e tente novamente!')
 
+    storeStrike()
+
     return yield put(signInFailure())
   }
 
@@ -45,6 +48,8 @@ export function* signIn({ payload }: SignInPayload): Generator {
   })
 
   const user = decode(data?.access_token || '') as any
+
+  clearStrikes()
 
   yield put(
     signInSuccess({
