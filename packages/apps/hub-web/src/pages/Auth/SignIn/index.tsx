@@ -13,12 +13,14 @@ import { Lock, User, Eye, EyeSlash } from '@hub/common/components/Icons'
 import { toast } from '@hub/common/utils'
 import documentTitle from '@hub/common/utils/documentTitle'
 
+import ReCAPTCHA from 'react-google-recaptcha'
 import { useHistory } from 'react-router-dom'
 
 import ModalSupportContext from '~/components/ModalSupport/context'
 
 import useQuery from '~/hooks/useQuery'
 import { signInRequest } from '~/store/modules/auth/actions'
+import { storeStrike, handleCaptcha } from '~/utils/reCaptcha'
 import { ValidationError, getValidationErrors } from '~/validators'
 import signInValidator from '~/validators/auth/signIn'
 
@@ -36,6 +38,8 @@ const SignIn: React.FC = () => {
   const { loading } = useSelector((state: Store.State) => state.auth)
 
   const formRef = useRef<FormProps>(null)
+
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   const history = useHistory()
 
@@ -60,13 +64,15 @@ const SignIn: React.FC = () => {
 
           formRef?.current?.setErrors(errors)
 
+          storeStrike(recaptchaRef.current?.execute)
+
           return
         }
 
         toast.error('Algo deu errado, Verifique seus dados e tente novamente!')
       }
     },
-    [dispatch, redirectTo]
+    [dispatch, redirectTo, recaptchaRef]
   )
 
   const handleForgotPasswordLink = () => {
@@ -140,6 +146,13 @@ const SignIn: React.FC = () => {
       >
         Preciso de ajuda
       </Button>
+      <ReCAPTCHA
+        theme="dark"
+        ref={recaptchaRef}
+        size="invisible"
+        sitekey="6LcFeCQaAAAAACgJMy0UrmhpoDNlCYjPl6Ls84A5"
+        onChange={token => handleCaptcha(token)}
+      />
     </Box>
   )
 }
