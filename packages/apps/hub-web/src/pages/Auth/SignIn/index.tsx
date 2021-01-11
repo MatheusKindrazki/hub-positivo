@@ -20,7 +20,7 @@ import ModalSupportContext from '~/components/ModalSupport/context'
 
 import useQuery from '~/hooks/useQuery'
 import { signInRequest } from '~/store/modules/auth/actions'
-import { storeStrike, handleCaptcha, checkForStrikes } from '~/utils/reCaptcha'
+import { handleCaptcha, checkForStrikes } from '~/utils/reCaptcha'
 import { ValidationError, getValidationErrors } from '~/validators'
 import signInValidator from '~/validators/auth/signIn'
 
