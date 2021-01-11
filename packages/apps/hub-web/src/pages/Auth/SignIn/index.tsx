@@ -1,4 +1,5 @@
 import React, { useRef, useState, useCallback, useContext } from 'react'
+import { useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -35,13 +36,23 @@ const SignIn: React.FC = () => {
   const dispatch = useDispatch()
   const [view, setView] = useState(false)
 
-  const { loading } = useSelector((state: Store.State) => state.auth)
+  const { loading, signInStrike } = useSelector(
+    (state: Store.State) => state.auth
+  )
 
   const formRef = useRef<FormProps>(null)
 
   const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   const history = useHistory()
+
+  useEffect(() => {
+    if (signInStrike) {
+      if (checkForStrikes()) {
+        recaptchaRef.current?.executeAsync().then(token => handleCaptcha(token))
+      }
+    }
+  }, [signInStrike])
 
   const handleSubmit = useCallback(
     async data => {
@@ -68,12 +79,8 @@ const SignIn: React.FC = () => {
         }
         toast.error('Algo deu errado, Verifique seus dados e tente novamente!')
       }
-      if (checkForStrikes()) {
-        const token = await recaptchaRef.current?.executeAsync()
-        return handleCaptcha(token)
-      }
     },
-    [dispatch, redirectTo]
+    [dispatch, redirectTo, signInStrike]
   )
 
   const handleForgotPasswordLink = () => {
