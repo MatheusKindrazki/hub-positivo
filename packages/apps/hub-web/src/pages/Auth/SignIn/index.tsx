@@ -90,13 +90,6 @@ const SignIn: React.FC = () => {
   }
   return (
     <Box p="6">
-      <ReCAPTCHA
-        theme="light"
-        ref={recaptchaRef}
-        size="invisible"
-        sitekey="6LcFeCQaAAAAACgJMy0UrmhpoDNlCYjPl6Ls84A5"
-        onChange={token => handleCaptcha(token)}
-      />
       <Heading color="black" fontSize="xl" mb="2">
         Entrar
       </Heading>
@@ -163,6 +156,13 @@ const SignIn: React.FC = () => {
       >
         Preciso de ajuda
       </Button>
+      <ReCAPTCHA
+        theme="light"
+        ref={recaptchaRef}
+        size="invisible"
+        sitekey={process.env.REACT_APP_RECAPTCHA_SITEKEY || ''}
+        onChange={token => handleCaptcha(token)}
+      />
     </Box>
   )
 }
