@@ -14,6 +14,7 @@ import { Lock, User, Eye, EyeSlash } from '@hub/common/components/Icons'
 import { toast } from '@hub/common/utils'
 import documentTitle from '@hub/common/utils/documentTitle'
 
+import lscache from 'lscache'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useHistory } from 'react-router-dom'
 
@@ -47,9 +48,10 @@ const SignIn: React.FC = () => {
   const history = useHistory()
 
   useEffect(() => {
+    lscache.flushExpired()
     if (signInStrike) {
       if (checkForStrikes()) {
-        recaptchaRef.current?.executeAsync().then(token => handleCaptcha(token))
+        recaptchaRef.current?.executeAsync()
       }
     }
   }, [signInStrike])
@@ -80,7 +82,7 @@ const SignIn: React.FC = () => {
         toast.error('Algo deu errado, Verifique seus dados e tente novamente!')
       }
     },
-    [dispatch, redirectTo, signInStrike]
+    [dispatch, redirectTo]
   )
 
   const handleForgotPasswordLink = () => {
