@@ -16,9 +16,9 @@ export const storeStrike = (): void => {
   const strikes = lscache.get('loginStrikes' || '{}')
   const time = moment().format(dateFormat)
   if (strikes?.length) {
-    lscache.set('loginStrikes', [...strikes, { timestamp: time }], 7200000)
+    lscache.set('loginStrikes', [...strikes, { timestamp: time }], 120)
   } else {
-    lscache.set('loginStrikes', [{ timestamp: time }], 7200000)
+    lscache.set('loginStrikes', [{ timestamp: time }], 120)
   }
 }
 
