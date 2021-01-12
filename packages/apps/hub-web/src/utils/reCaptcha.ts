@@ -26,7 +26,7 @@ export const clearStrikes = (): void => {
   lscache.remove('loginStrikes')
 }
 
-export const handleCaptcha = (value: any): void => {
+export const handleCaptcha = (value: null | string): void => {
   // fetch com post do token para api
   console.log('token:', value)
 }
