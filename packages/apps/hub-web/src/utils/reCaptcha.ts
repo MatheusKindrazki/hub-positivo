@@ -26,7 +26,18 @@ export const clearStrikes = (): void => {
   lscache.remove('loginStrikes')
 }
 
-export const handleCaptcha = (value: null | string): void => {
+export const handleCaptcha = async (token: null | string): Promise<void> => {
   // fetch com post do token para api
-  console.log('token:', value)
+  const response = await fetch(
+    process.env.REACT_APP_RECAPTCHA_VERIFY_URL || '',
+    {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      body: `secret=${process.env.REACT_APP_RECAPTCHA_SECRET_KEY}&response=${token}`
+    }
+  )
+  console.log('retorno da api:', response)
 }

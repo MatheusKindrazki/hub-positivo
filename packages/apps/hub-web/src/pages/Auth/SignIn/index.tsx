@@ -160,7 +160,7 @@ const SignIn: React.FC = () => {
         theme="light"
         ref={recaptchaRef}
         size="invisible"
-        sitekey={process.env.REACT_APP_RECAPTCHA_SITEKEY || ''}
+        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY || ''}
         onChange={token => handleCaptcha(token)}
       />
     </Box>
