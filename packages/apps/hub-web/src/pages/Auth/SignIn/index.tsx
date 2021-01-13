@@ -17,12 +17,16 @@ import { useHistory } from 'react-router-dom'
 
 import ModalSupportContext from '~/components/ModalSupport/context'
 
+import useQuery from '~/hooks/useQuery'
 import { signInRequest } from '~/store/modules/auth/actions'
 import { ValidationError, getValidationErrors } from '~/validators'
 import signInValidator from '~/validators/auth/signIn'
 
 const SignIn: React.FC = () => {
   documentTitle('Entrar')
+
+  const search = useQuery()
+  const redirectTo = search.get('redirect') || undefined
 
   const { onOpen } = useContext(ModalSupportContext)
 
@@ -44,7 +48,12 @@ const SignIn: React.FC = () => {
           abortEarly: true
         })
 
-        dispatch(signInRequest(data))
+        dispatch(
+          signInRequest({
+            ...data,
+            redirect: redirectTo
+          })
+        )
       } catch (err) {
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)
@@ -57,7 +66,7 @@ const SignIn: React.FC = () => {
         toast.error('Algo deu errado, Verifique seus dados e tente novamente!')
       }
     },
-    [dispatch]
+    [dispatch, redirectTo]
   )
 
   const handleForgotPasswordLink = () => {
