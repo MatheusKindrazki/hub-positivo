@@ -4,6 +4,9 @@ node_modules
 /.pnp
 .pnp.js
 
+.vscode
+remote-profile
+
 # testing
 coverage
 
