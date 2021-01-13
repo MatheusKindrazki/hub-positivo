@@ -16,7 +16,6 @@ import Profile from '~/pages/Auth/Profile'
 import SignIn from '~/pages/Auth/SignIn'
 import Home from '~/pages/Home'
 import Iframe from '~/pages/Iframe'
-import Inject from '~/pages/Inject'
 
 import history from '~/services/history'
 
@@ -38,7 +37,6 @@ const Routes: React.FC = () => {
         basename={process.env.REACT_APP_PATHNAME_RESOLVE}
       >
         <Switch>
-          <Route path="/auth/:guid+" component={Inject} />
           <Route path="/login" component={SignIn} />
           <Route path="/profile" component={Profile} />
           <Route
@@ -49,7 +47,7 @@ const Routes: React.FC = () => {
           <Route path="/expired-token" component={ExpiredToken} />
           <Route path="/change-password" component={ChangePassword} />
           <Route
-            path={['/solucao/:solution', '/solucao/:solution/:subpath+']}
+            path={['/solucao/:solution/:subpath+', '/solucao/:solution']}
             component={Iframe}
             isPrivate
           />

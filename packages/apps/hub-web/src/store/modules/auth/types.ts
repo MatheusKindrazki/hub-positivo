@@ -1,6 +1,7 @@
 export interface SignInRequest {
   username: string
   password: string
+  redirect: string | undefined
 }
 
 export interface AuthReducer {
