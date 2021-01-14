@@ -66,7 +66,7 @@ const Iframe: React.FC = () => {
           url: card.link || '',
           tipoRenderizacao: card.tipoRenderizacao,
           product: product,
-          subpath: path
+          subpath: path !== 'undefined' ? path : ''
         })
       )
     }
