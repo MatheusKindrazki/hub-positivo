@@ -28,7 +28,6 @@ const products: ReturnReducer = (state = INITIAL_STATE, action) => {
       }
 
       case Actions.PRODUCT_INTEGRATION: {
-        console.log('alterou legal')
         draft.data = action.payload
         break
       }
