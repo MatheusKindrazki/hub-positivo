@@ -166,8 +166,11 @@ const SignIn: React.FC = () => {
         ref={recaptchaRef}
         size="invisible"
         sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY || ''}
+        children
         onChange={token => {
           handleCaptcha(token)
+          setDisableSubmit(false)
+          recaptchaRef.current?.reset()
         }}
       />
     </Box>
