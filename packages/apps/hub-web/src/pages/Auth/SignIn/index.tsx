@@ -36,6 +36,7 @@ const SignIn: React.FC = () => {
 
   const dispatch = useDispatch()
   const [view, setView] = useState(false)
+  const [disableSubmit, setDisableSubmit] = useState(false)
 
   const { loading, signInStrike } = useSelector(
     (state: Store.State) => state.auth
@@ -51,7 +52,7 @@ const SignIn: React.FC = () => {
     lscache.flushExpired()
     if (signInStrike) {
       if (checkForStrikes()) {
-        recaptchaRef.current?.executeAsync()
+        setDisableSubmit(true)
       }
     }
   }, [signInStrike])
@@ -64,6 +65,10 @@ const SignIn: React.FC = () => {
         await signInValidator.validate(data, {
           abortEarly: true
         })
+
+        if (disableSubmit) {
+          return recaptchaRef.current?.execute()
+        }
 
         dispatch(
           signInRequest({
@@ -82,7 +87,7 @@ const SignIn: React.FC = () => {
         toast.error('Algo deu errado, Verifique seus dados e tente novamente!')
       }
     },
-    [dispatch, redirectTo]
+    [dispatch, redirectTo, disableSubmit]
   )
 
   const handleForgotPasswordLink = () => {
@@ -161,7 +166,9 @@ const SignIn: React.FC = () => {
         ref={recaptchaRef}
         size="invisible"
         sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY || ''}
-        onChange={token => handleCaptcha(token)}
+        onChange={token => {
+          handleCaptcha(token)
+        }}
       />
     </Box>
   )

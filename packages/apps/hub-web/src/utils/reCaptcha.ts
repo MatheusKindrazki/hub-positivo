@@ -1,7 +1,7 @@
+import { format } from 'date-fns'
 import lscache from 'lscache'
-import moment from 'moment'
 
-const dateFormat = 'DD/MM/YYYY, H:mm:ss'
+const dateFormat = 'dd MM yyyy, H:mm:ss'
 
 export const checkForStrikes = (): boolean => {
   const strikes = lscache.get('loginStrikes' || '{}')
@@ -14,7 +14,7 @@ export const checkForStrikes = (): boolean => {
 
 export const storeStrike = (): void => {
   const strikes = lscache.get('loginStrikes' || '{}')
-  const time = moment().format(dateFormat)
+  const time = format(new Date(), dateFormat)
   if (strikes?.length) {
     lscache.set('loginStrikes', [...strikes, { timestamp: time }], 120)
   } else {
@@ -28,16 +28,17 @@ export const clearStrikes = (): void => {
 
 export const handleCaptcha = async (token: null | string): Promise<void> => {
   // fetch com post do token para api
-  const response = await fetch(
-    process.env.REACT_APP_RECAPTCHA_VERIFY_URL || '',
-    {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-      },
-      body: `secret=${process.env.REACT_APP_RECAPTCHA_SECRET_KEY}&response=${token}`
-    }
-  )
-  console.log('retorno da api:', response)
+  // const response = await fetch(
+  //   process.env.REACT_APP_RECAPTCHA_VERIFY_URL || '',
+  //   {
+  //     method: 'post',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+  //     },
+  //     body: `secret=${process.env.REACT_APP_RECAPTCHA_SECRET_KEY}&response=${token}`
+  //   }
+  // )
+  console.log('retorno da api:', token)
+  lscache.remove('loginStrikes')
 }
