@@ -30,7 +30,6 @@ export const handleCaptcha = async (token: null | string): Promise<void> => {
   // fetch com post do token para api
   const query = `token=${token}`
   const url = `${process.env.REACT_APP_RECAPTCHA_VERIFY_URL}?${query}`
-  console.log(`url: ${url}`)
   const response = await fetch(url, { method: 'GET' })
   const isHuman = await response.json()
   if (isHuman) lscache.remove('loginStrikes')
