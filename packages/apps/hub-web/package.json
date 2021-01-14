@@ -5,9 +5,6 @@
   "dependencies": {
     "@hub/api": "*",
     "@hub/common": "*",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.8.0",
     "history": "4.10.1",
@@ -60,7 +57,10 @@
     "babel-plugin-root-import": "^6.6.0",
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.1.6",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10"
   },
   "browserslist": {
     "production": [
