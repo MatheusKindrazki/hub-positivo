@@ -8,10 +8,12 @@ import {
 } from 'react-router-dom'
 
 import useQuery from '~/hooks/useQuery'
-import Auth from '~/layouts/Auth'
-import Iframe from '~/layouts/Iframe'
-import Logged from '~/layouts/Logged'
+import withSuspense from '~/routes/withSuspense'
 import { store } from '~/store'
+
+const Auth = React.lazy(() => import('~/layouts/Auth'))
+const Iframe = React.lazy(() => import('~/layouts/Iframe'))
+const Logged = React.lazy(() => import('~/layouts/Logged'))
 interface RouteProps extends RoutePropsWouter {
   isPrivate?: boolean
 }
@@ -27,10 +29,10 @@ const Route: React.FC<RouteProps> = ({
 
   const { signed } = store.getState().auth
 
-  let RenderLayout = signed ? Logged : Auth
+  let RenderLayout = signed ? withSuspense(Logged) : withSuspense(Auth)
 
   if (pathname.includes('solucao')) {
-    RenderLayout = Iframe
+    RenderLayout = withSuspense(Iframe)
   }
 
   if (!signed && isPrivate) {
