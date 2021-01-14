@@ -51,9 +51,7 @@ const SignIn: React.FC = () => {
   useEffect(() => {
     lscache.flushExpired()
     if (signInStrike) {
-      if (checkForStrikes()) {
-        setDisableSubmit(true)
-      }
+      setDisableSubmit(checkForStrikes)
     }
   }, [signInStrike])
 
