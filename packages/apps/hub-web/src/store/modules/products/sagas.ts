@@ -60,7 +60,7 @@ export function* getProducts(): Generator {
 
   yield put(getTourRequest())
 
-  yield put(
+  return yield put(
     productSuccess({
       data: alterData
         ?.filter(e => e.ativo)
