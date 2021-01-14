@@ -36,6 +36,8 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "postbuild": "npm run analyze",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
