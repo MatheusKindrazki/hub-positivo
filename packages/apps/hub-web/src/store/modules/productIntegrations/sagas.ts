@@ -2,27 +2,32 @@ import { all, takeLatest, call, put, Payload } from 'redux-saga/effects'
 
 import { apiMHUND, apiLivro } from '@hub/api'
 
+import { ApiResponse } from 'apisauce'
+
 import { store } from '~/store'
+import { productIntegration } from '~/store/modules/products/actions'
 import { CardProduct, Product } from '~/store/modules/products/types'
 
 import { Actions } from './actions'
 
 interface CardType extends Product {
-  type: 'apisae' | 'mhund'
+  slug: string
 }
-
 interface IntegrationCardProps extends CardProduct {
   solucoes: CardType[]
 }
 
-type IntegrationPayload = Payload<IntegrationCardProps[]>
-export function* mhundIntegration({ payload }: IntegrationPayload): Generator {
+export function* mhundArvoreIntegration(): Generator {
   const auth = store.getState().auth
   const { school } = store.getState().user
   const profile = store.getState().profile
 
+  const products = store.getState().products
+
+  const productData = products.data as IntegrationCardProps[]
+
   const authTheProduct = {
-    product: 'mhund',
+    product: 'gestao-escolar-mhund',
     token: auth.token,
     logged_in: {
       school: {
@@ -37,19 +42,38 @@ export function* mhundIntegration({ payload }: IntegrationPayload): Generator {
   }
 
   const response = yield call(() => {
-    return apiMHUND.post('checkuser', authTheProduct)
+    return Promise.all([
+      apiMHUND.post('checkuser', authTheProduct),
+      apiLivro.post('checkuser', authTheProduct)
+    ])
   })
 
-  console.log(response)
+  const [livro, mhund] = response as ApiResponse<{ redirects_to: string }>[]
 
-  // const cardfilter = payload.filter(c =>
-  //   c.solucoes.filter(solucao => {
-  //     if (solucao.type === 'apisae') {
-  //     }
-  //   })
-  // )
+  const cardFilter = productData.map(c => {
+    return {
+      ...c,
+      solucoes: c.solucoes.map(solucao => {
+        if (solucao.slug === 'gestao-escolar-mhund') {
+          return {
+            ...solucao,
+            link: livro.data?.redirects_to || ''
+          }
+        }
+        if (solucao.slug === 'arvore-livros') {
+          return {
+            ...solucao,
+            link: mhund.data?.redirects_to || ''
+          }
+        }
+        return solucao
+      })
+    }
+  })
 
-  return yield true
+  return yield put(productIntegration(cardFilter))
 }
 
-export default all([Actions.PRODUCT_SUCCESS, mhundIntegration])
+export default all([
+  takeLatest(Actions.SAE_ARVORE_INTEGRATION, mhundArvoreIntegration)
+])

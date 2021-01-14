@@ -9,8 +9,9 @@ import { store } from '~/store'
 import { getTourRequest } from '~/store/modules/tour/actions'
 
 import { loading } from '../global/actions'
+import { mhundArvoreIntegration } from '../productIntegrations/actions'
 import { Actions, productSuccess } from './actions'
-import { CardProduct, CardProps } from './types'
+import { CardProduct } from './types'
 
 export function* getProducts(): Generator {
   yield put(loading(true))
@@ -42,27 +43,13 @@ export function* getProducts(): Generator {
     return
   }
 
-  const cardName = {
-    'Árvore Livros': 'apisae',
-    'Gestão Escolar - Mhund': 'mhund'
-  }
-
-  const alterData = data?.filter(e =>
-    e.solucoes.filter(s => {
-      if (cardName[s.nome as CardProps]) {
-        return { ...s, type: cardName[s.nome as CardProps] }
-      }
-      return s
-    })
-  )
-
   yield put(loading(false))
 
   yield put(getTourRequest())
 
-  return yield put(
+  yield put(
     productSuccess({
-      data: alterData
+      data: data
         ?.filter(e => e.ativo)
         .map(c => {
           return {
@@ -72,6 +59,8 @@ export function* getProducts(): Generator {
         })
     })
   )
+
+  yield put(mhundArvoreIntegration())
 }
 
 export default all([takeLatest(Actions.PRODUCT_REQUEST, getProducts)])
