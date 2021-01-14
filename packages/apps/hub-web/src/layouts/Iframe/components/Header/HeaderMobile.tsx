@@ -30,6 +30,15 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
     [cards, search]
   )
 
+  const toggleMenu = () => {
+    if (show) {
+      onClose()
+    } else {
+      onOpen()
+    }
+    setShow(!show)
+  }
+
   return (
     <div className="hub-header-list">
       <Button
@@ -40,14 +49,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
         mx="1"
         type="button"
         className="button-header"
-        onClick={() => {
-          if (show) {
-            onClose()
-          } else {
-            onOpen()
-          }
-          setShow(!show)
-        }}
+        onClick={toggleMenu}
       >
         <Box as={DotsNine} size={24} />
       </Button>
