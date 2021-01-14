@@ -11,25 +11,12 @@ if (process.env.REACT_APP_NODE_ENV === 'production') {
   console.warn = function () {} //eslint-disable-line
 
   Sentry.init({
-    dsn:
-      'https://47feebc700d446a7a58574fbe0acbec2@o490568.ingest.sentry.io/5554689',
+    dsn: process.env.REACT_APP_SENTRY,
     autoSessionTracking: true,
     integrations: [new Integrations.BrowserTracing()],
 
     tracesSampleRate: 1.0
   })
-}
-
-declare global {
-  interface Window {
-    __HUB_USER_INFO__: {
-      id: string
-      role: string
-      name: string
-      school: string
-      educational_stage: string
-    }
-  }
 }
 
 ReactDOM.render(<App />, document.getElementById('hub-psd'))
