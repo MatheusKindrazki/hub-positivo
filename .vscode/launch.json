@@ -1,0 +1,23 @@
+{
+  // Use o IntelliSense para saber mais sobre os atributos possíveis.
+  // Focalizar para exibir as descrições dos atributos existentes.
+  // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach chrome",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9222,
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/packages/apps/hub-web"
+    },
+    {
+      "type": "edge",
+      "request": "launch",
+      "name": "Iniciar o Edge em relação a localhost",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/packages/apps/hub-web"
+    }
+  ]
+}
