@@ -3,7 +3,7 @@ import { all, put, Payload, takeLatest, call } from 'redux-saga/effects'
 import { toast } from '@hub/common/utils'
 
 import { ApiResponse } from 'apisauce'
-import _ from 'lodash'
+import { unionBy } from 'lodash'
 
 import { EEMConnectGET } from '~/services/eemConnect'
 import { store } from '~/store'
@@ -75,7 +75,7 @@ export function* getLevelByProfile({ payload }: Payload<Profile>): Generator {
     })
   })
 
-  const uniByCiclo = _.unionBy(ciclos, 'id')
+  const uniByCiclo = unionBy(ciclos, 'id')
 
   yield put(
     setProfileLevels({
