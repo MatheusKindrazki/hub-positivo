@@ -11,7 +11,6 @@ import Drawer from '@hub/common/components/Drawer'
 import { DotsNine } from '@hub/common/components/Icons'
 
 import classNames from 'classnames'
-import { CSSTransition } from 'react-transition-group'
 
 import Card from '../Card'
 import Search from '../Search'
