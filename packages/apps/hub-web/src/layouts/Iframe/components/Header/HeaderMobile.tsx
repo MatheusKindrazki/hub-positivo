@@ -56,7 +56,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
       <DrawerContainer
         isOpen={isOpen}
         placement="right"
-        onClose={() => console.log('close')}
+        onClose={() => setShow(false)}
       >
         <DrawerContent
           mt={['41px', '41px']}
