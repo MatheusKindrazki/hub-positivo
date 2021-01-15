@@ -7,7 +7,7 @@ import { ButtonProps } from '@chakra-ui/react'
 
 const GoBack: React.FC<ButtonProps> = ({ onClick, children, ...rest }) => {
   return (
-    <Box d="flex" justifyContent="flex-start" mb="4">
+    <Box d="flex" justifyContent="flex-start">
       <Button
         variant="link"
         justifyContent="flex-start"
