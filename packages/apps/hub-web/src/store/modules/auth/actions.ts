@@ -7,6 +7,8 @@ export const Actions = {
   SIGN_IN_SUCCESS: '@auth/SIGN_IN_SUCCESS',
   SIGN_IN_FAILURE: '@auth/SIGN_IN_FAILURE',
 
+  WITHOUT_ACCESS: '@auth/WITHOUT_ACCESS',
+
   SIGN_OUT: '@auth/SIGN_OUT',
 
   SET_PROFILE_REQUEST: '@auth/SET_PROFILE_REQUEST',
@@ -42,6 +44,12 @@ export function signInFailure(): Action {
 export function setSigned(): Action {
   return {
     type: Actions.SET_SIGNED
+  }
+}
+
+export function withoutAccess(): Action {
+  return {
+    type: Actions.WITHOUT_ACCESS
   }
 }
 
