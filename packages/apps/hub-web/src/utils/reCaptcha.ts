@@ -1,5 +1,6 @@
 import api from '@hub/api'
 
+import { ApiResponse } from 'apisauce'
 import { format } from 'date-fns'
 import lscache from 'lscache'
 
@@ -29,9 +30,14 @@ export const clearStrikes = (): void => {
   lscache.remove('loginStrikes')
 }
 
-export const handleCaptcha = async (token: null | string): Promise<void> => {
-  const query = `token=${token}`
-  const url = `${process.env.REACT_APP_RECAPTCHA_VERIFY_URL}?${query}`
-  const response = await api.get(url, { method: 'GET' })
-  if (response.data) lscache.remove('loginStrikes')
+export const handleCaptcha = async (token: null | string): Promise<boolean> => {
+  const response = await api.get('Captcha/Validate', {
+    token
+  })
+
+  const { data } = response as ApiResponse<boolean>
+
+  if (data) lscache.remove('loginStrikes')
+
+  return data || false
 }

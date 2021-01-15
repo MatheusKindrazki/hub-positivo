@@ -30,23 +30,23 @@ const SignIn: React.FC = () => {
   documentTitle('Entrar')
 
   const search = useQuery()
-  const redirectTo = search.get('redirect') || undefined
-
-  const { onOpen } = useContext(ModalSupportContext)
-
+  const history = useHistory()
   const dispatch = useDispatch()
-  const [view, setView] = useState(false)
-  const [disableSubmit, setDisableSubmit] = useState(false)
-
-  const { loading, signInStrike } = useSelector(
-    (state: Store.State) => state.auth
-  )
 
   const formRef = useRef<FormProps>(null)
 
   const recaptchaRef = useRef<ReCAPTCHA>(null)
 
-  const history = useHistory()
+  const [view, setView] = useState(false)
+  const [disableSubmit, setDisableSubmit] = useState(false)
+
+  const redirectTo = search.get('redirect') || undefined
+
+  const { onOpen } = useContext(ModalSupportContext)
+
+  const { loading, signInStrike } = useSelector(
+    (state: Store.State) => state.auth
+  )
 
   useEffect(() => {
     lscache.flushExpired()
@@ -63,10 +63,6 @@ const SignIn: React.FC = () => {
         await signInValidator.validate(data, {
           abortEarly: true
         })
-
-        if (disableSubmit) {
-          return recaptchaRef.current?.executeAsync()
-        }
 
         dispatch(
           signInRequest({
@@ -85,8 +81,17 @@ const SignIn: React.FC = () => {
         toast.error('Algo deu errado, Verifique seus dados e tente novamente!')
       }
     },
-    [dispatch, redirectTo, disableSubmit]
+    [dispatch, redirectTo]
   )
+
+  const handleRecaptchaSubmit = useCallback(async token => {
+    const validate = await handleCaptcha(token)
+
+    if (!validate) return
+
+    recaptchaRef.current?.reset()
+    formRef.current?.submitForm()
+  }, [])
 
   const handleForgotPasswordLink = () => {
     history.push('/forgot-password')
@@ -130,6 +135,12 @@ const SignIn: React.FC = () => {
           textTransform="uppercase"
           data-testid="submit-button"
           isLoading={loading}
+          type={disableSubmit ? 'button' : 'submit'}
+          onClick={
+            disableSubmit
+              ? () => recaptchaRef.current?.executeAsync()
+              : undefined
+          }
           mb="6"
         >
           Entrar
@@ -163,14 +174,9 @@ const SignIn: React.FC = () => {
         theme="light"
         ref={recaptchaRef}
         size="invisible"
-        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY || ''}
+        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY as string}
         children
-        onChange={token => {
-          handleCaptcha(token)
-          setDisableSubmit(false)
-          recaptchaRef.current?.reset()
-          formRef.current?.submitForm()
-        }}
+        onChange={handleRecaptchaSubmit}
       />
     </Box>
   )
