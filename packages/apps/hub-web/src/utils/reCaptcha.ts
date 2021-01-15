@@ -18,9 +18,11 @@ export const storeStrike = (): void => {
   const time = format(new Date(), dateFormat)
   if (strikes?.length) {
     lscache.set('loginStrikes', [...strikes, { timestamp: time }], 120)
-  } else {
-    lscache.set('loginStrikes', [{ timestamp: time }], 120)
+
+    return
   }
+
+  lscache.set('loginStrikes', [{ timestamp: time }], 120)
 }
 
 export const clearStrikes = (): void => {
