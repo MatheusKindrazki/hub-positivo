@@ -12,6 +12,7 @@ export interface AuthReducer {
   iat: number
   exp: number
   signInStrike: boolean
+  withoutAccess: boolean
 }
 
 export interface AuthApi {

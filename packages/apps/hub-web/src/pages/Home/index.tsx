@@ -29,15 +29,16 @@ import { Container } from './styles'
 const Home: React.FC = () => {
   documentTitle('Home')
 
-  const [search, setSearchValue] = useState('')
   const dispatch = useDispatch()
+
+  const [search, setSearchValue] = useState('')
+
   const { user, avatar, school: useSchool } = useSelector(
     (state: Store.State) => state.user
   )
   const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
   )
-
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
   )
@@ -166,7 +167,7 @@ const Home: React.FC = () => {
           )}
         </Box>
 
-        {!cards?.length && !load ? (
+        {!cards?.length && !load && !globalLoading ? (
           <Box mt="5">
             <Heading as="h5" fontSize="1.5rem" color="blue.500">
               Nenhum produto encontrado!
