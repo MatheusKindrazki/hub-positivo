@@ -11,6 +11,7 @@ export interface AuthReducer {
   auth_time: number
   iat: number
   exp: number
+  withoutAccess: boolean
 }
 
 export interface AuthApi {
