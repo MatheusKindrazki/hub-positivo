@@ -5,7 +5,9 @@ const dateFormat = 'dd MM yyyy, H:mm:ss'
 
 export const checkForStrikes = (): boolean => {
   const strikes = lscache.get('loginStrikes' || '{}')
-  console.log(`strike number ${strikes?.length}`)
+  console.log(
+    strikes?.length > 0 ? `strike ${strikes?.length}` : 'zero strikes'
+  )
   if (strikes?.length >= 3) {
     return true
   }
@@ -28,9 +30,11 @@ export const clearStrikes = (): void => {
 
 export const handleCaptcha = async (token: null | string): Promise<void> => {
   // fetch com post do token para api
+  console.log(`token: ${token}`)
   const query = `token=${token}`
   const url = `${process.env.REACT_APP_RECAPTCHA_VERIFY_URL}?${query}`
   const response = await fetch(url, { method: 'GET' })
   const isHuman = await response.json()
+  console.log(`retorno da verificacao: ${isHuman}`)
   if (isHuman) lscache.remove('loginStrikes')
 }
