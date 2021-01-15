@@ -1,3 +1,5 @@
+import api from '@hub/api'
+
 import { format } from 'date-fns'
 import lscache from 'lscache'
 
@@ -26,10 +28,8 @@ export const clearStrikes = (): void => {
 }
 
 export const handleCaptcha = async (token: null | string): Promise<void> => {
-  // fetch com post do token para api
   const query = `token=${token}`
   const url = `${process.env.REACT_APP_RECAPTCHA_VERIFY_URL}?${query}`
-  const response = await fetch(url, { method: 'GET' })
-  const isHuman = await response.json()
-  if (isHuman) lscache.remove('loginStrikes')
+  const response = await api.get(url, { method: 'GET' })
+  if (response.data) lscache.remove('loginStrikes')
 }
