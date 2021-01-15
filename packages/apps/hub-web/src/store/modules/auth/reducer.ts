@@ -11,7 +11,8 @@ export const INITIAL_STATE: AuthReducer = {
   token: null,
   auth_time: 0,
   iat: 0,
-  exp: 0
+  exp: 0,
+  withoutAccess: false
 }
 
 type ReturnReducer = Reducer<AuthReducer>
@@ -22,6 +23,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
       case Actions.SIGN_IN_REQUEST: {
         draft.signed = false
         draft.loading = true
+        draft.withoutAccess = false
         break
       }
 
@@ -30,6 +32,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.auth_time = action.payload.auth_time
         draft.iat = action.payload.iat
         draft.exp = action.payload.exp
+        draft.withoutAccess = false
 
         draft.loading = false
         break
@@ -42,10 +45,18 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.iat = 0
         draft.exp = 0
         draft.loading = false
+        draft.withoutAccess = false
         break
       }
+
       case Actions.SET_SIGNED: {
         draft.signed = true
+        draft.withoutAccess = false
+        break
+      }
+
+      case Actions.WITHOUT_ACCESS: {
+        draft.withoutAccess = true
         break
       }
 
@@ -56,6 +67,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.iat = 0
         draft.exp = 0
         draft.loading = false
+        draft.withoutAccess = false
         break
       }
       default:

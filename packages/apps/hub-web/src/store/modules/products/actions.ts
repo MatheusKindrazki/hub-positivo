@@ -7,6 +7,8 @@ export const Actions = {
   PRODUCT_SUCCESS: '@products/PRODUCT_SUCCESS',
   PRODUCT_FAILURE: '@products/PRODUCT_FAILURE',
 
+  WITHOUT_ACCESS: '@auth/WITHOUT_ACCESS',
+
   SIGN_OUT: '@auth/SIGN_OUT',
 
   FRAME_URL: '@products/FRAME_URL',

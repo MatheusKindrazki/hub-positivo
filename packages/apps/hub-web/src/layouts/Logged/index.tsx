@@ -6,6 +6,7 @@ import { BarLoader } from '@hub/common/components'
 import Tour from '@hub/common/components/Tour'
 
 import Header from '~/components/Header'
+import ModalNoClass from '~/components/ModalNoClass'
 
 import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
 import { useSentry } from '~/hooks/useSentry'
@@ -33,6 +34,7 @@ const Dashboard: React.FC = ({ children }) => {
 
   return (
     <Container>
+      <ModalNoClass />
       <BarLoader width="100%" height="4px" loading={loading} />
       {steps?.length && (
         <Tour onClosed={handleClosedTour} open={open} steps={steps || []} />

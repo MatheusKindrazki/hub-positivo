@@ -33,6 +33,12 @@ const products: ReturnReducer = (state = INITIAL_STATE, action) => {
         break
       }
 
+      case Actions.WITHOUT_ACCESS: {
+        draft.loading = true
+        draft.data = []
+        break
+      }
+
       case Actions.FRAME_URL: {
         draft.frameUrl = action.payload.url
         draft.frameName = action.payload.name
