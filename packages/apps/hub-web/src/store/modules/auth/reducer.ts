@@ -12,6 +12,7 @@ export const INITIAL_STATE: AuthReducer = {
   auth_time: 0,
   iat: 0,
   exp: 0,
+  signInStrike: false,
   withoutAccess: false
 }
 
@@ -23,6 +24,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
       case Actions.SIGN_IN_REQUEST: {
         draft.signed = false
         draft.loading = true
+        draft.signInStrike = false
         draft.withoutAccess = false
         break
       }
@@ -32,6 +34,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.auth_time = action.payload.auth_time
         draft.iat = action.payload.iat
         draft.exp = action.payload.exp
+        draft.signInStrike = false
         draft.withoutAccess = false
 
         draft.loading = false
@@ -45,6 +48,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.iat = 0
         draft.exp = 0
         draft.loading = false
+        draft.signInStrike = true
         draft.withoutAccess = false
         break
       }
