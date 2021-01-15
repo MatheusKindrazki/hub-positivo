@@ -8,6 +8,7 @@ export const Actions = {
   PRODUCT_FAILURE: '@products/PRODUCT_FAILURE',
 
   WITHOUT_ACCESS: '@auth/WITHOUT_ACCESS',
+  PRODUCT_INTEGRATION: '@products/PRODUCT_INTEGRATION',
 
   SIGN_OUT: '@auth/SIGN_OUT',
 
@@ -33,6 +34,12 @@ export function productSuccess(data: Omit<ProductReducer, 'loading'>): Action {
   }
 }
 
+export function productIntegration(data: ProductReducer['data']): Action {
+  return {
+    type: Actions.PRODUCT_INTEGRATION,
+    payload: data
+  }
+}
 export function productFailure(): Action {
   return {
     type: Actions.PRODUCT_FAILURE
