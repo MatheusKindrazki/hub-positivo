@@ -160,7 +160,6 @@ const SignIn: React.FC = () => {
         Preciso de ajuda
       </Button>
       <ReCAPTCHA
-        type="image"
         theme="light"
         ref={recaptchaRef}
         size="invisible"
