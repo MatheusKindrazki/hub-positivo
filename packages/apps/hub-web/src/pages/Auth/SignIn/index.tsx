@@ -65,7 +65,7 @@ const SignIn: React.FC = () => {
         })
 
         if (disableSubmit) {
-          return recaptchaRef.current?.execute()
+          return recaptchaRef.current?.executeAsync()
         }
 
         dispatch(
@@ -160,6 +160,7 @@ const SignIn: React.FC = () => {
         Preciso de ajuda
       </Button>
       <ReCAPTCHA
+        type="image"
         theme="light"
         ref={recaptchaRef}
         size="invisible"
@@ -169,6 +170,7 @@ const SignIn: React.FC = () => {
           handleCaptcha(token)
           setDisableSubmit(false)
           recaptchaRef.current?.reset()
+          formRef.current?.submitForm()
         }}
       />
     </Box>
