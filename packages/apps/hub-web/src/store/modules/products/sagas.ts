@@ -8,6 +8,7 @@ import { ApiResponse } from 'apisauce'
 import { store } from '~/store'
 import { getTourRequest } from '~/store/modules/tour/actions'
 
+import { withoutAccess } from '../auth/actions'
 import { loading } from '../global/actions'
 import { mhundArvoreIntegration } from '../productIntegrations/actions'
 import { Actions, productSuccess } from './actions'
@@ -26,7 +27,12 @@ export function* getProducts(): Generator {
 
   if (!user && !school) return
 
-  if (level && enableFilterLevel.includes(guid)) {
+  if (enableFilterLevel.includes(guid)) {
+    if (!level) {
+      yield put(loading(false))
+      return yield put(withoutAccess())
+    }
+
     query = `${guid}?NivelEnsino=${level}`
   } else {
     query = `${guid}`
