@@ -27,3 +27,5 @@ export interface Product {
   notificacao?: string
   ativo: boolean
 }
+
+export type CardProps = 'Árvore Livros' | 'Gestão Escolar - Mhund'

@@ -1,6 +1,7 @@
 export interface SignInRequest {
   username: string
   password: string
+  redirect: string | undefined
 }
 
 export interface AuthReducer {
@@ -10,6 +11,8 @@ export interface AuthReducer {
   auth_time: number
   iat: number
   exp: number
+  signInStrike: boolean
+  withoutAccess: boolean
 }
 
 export interface AuthApi {

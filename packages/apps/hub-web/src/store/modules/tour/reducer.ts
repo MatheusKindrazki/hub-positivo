@@ -45,6 +45,16 @@ const tour: Tour = (state = INITIAL_STATE, action) => {
         break
       }
 
+      case Actions.SIGN_OUT: {
+        draft.loading = false
+        draft.open = false
+        draft.viewed = false
+        draft.viewedLoaded = false
+        draft.steps = undefined
+
+        break
+      }
+
       case Actions.GET_TOUR_SUCCESS: {
         draft.steps = action.payload
 
