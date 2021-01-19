@@ -114,7 +114,11 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
           alignItems="center"
           justifyContent="space-between"
         ></Box>
-        <DrawerContainer isOpen={isOpen} placement="left" onClose={onClose}>
+        <DrawerContainer
+          isOpen={isOpen}
+          placement="left"
+          onClose={() => onClose()}
+        >
           <DrawerContent mt={['72px', '72px']} position="relative">
             <Box px="4" py="2" w="100%" h="auto">
               <Welcome

@@ -3,37 +3,49 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="viewport" content="width=device-width, user-scalable=no" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
 
-    <meta name="theme-color" content="#673AB7" />
-    <meta
-      name="description"
-      content="Hub On"
-    />
+    <meta name="theme-color" content="var(--hub-base-color)" />
+
+    <meta name="title" content="Positivo On">
+    <meta name="description"
+      content="O Positivo On é a plataforma virtual de aprendizagem que permite que as escolas particulares conveniadas ao Sistema Positivo de Ensino disponibilizem conteúdos relacionados ao ensino híbrido como: livros digitais, salas virtuais, avaliações, relatórios de desempenho e muito mais.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="%PUBLIC_URL%">
+    <meta property="og:title" content="Positivo On">
+    <meta property="og:description"
+      content="O Positivo On é a plataforma virtual de aprendizagem que permite que as escolas particulares conveniadas ao Sistema Positivo de Ensino disponibilizem conteúdos relacionados ao ensino híbrido como: livros digitais, salas virtuais, avaliações, relatórios de desempenho e muito mais.">
+    <meta property="og:image" content="%PUBLIC_URL%/meta.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="%PUBLIC_URL%">
+    <meta property="twitter:title" content="Positivo On">
+    <meta property="twitter:description"
+      content="O Positivo On é a plataforma virtual de aprendizagem que permite que as escolas particulares conveniadas ao Sistema Positivo de Ensino disponibilizem conteúdos relacionados ao ensino híbrido como: livros digitais, salas virtuais, avaliações, relatórios de desempenho e muito mais.">
+    <meta property="twitter:image" content="%PUBLIC_URL%/meta.png">
+
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
 
     <title>%REACT_APP_HUB_TITLE%</title>
     <link href="./fonts.css" rel="stylesheet">
 
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+'%REACT_APP_GTM_MODULE%'+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer');</script>
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + '%REACT_APP_GTM_MODULE%' + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer');</script>
     <!-- End Google Tag Manager -->
-
 
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=%REACT_APP_GTM_MODULE%"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <noscript>Você precisa do javascript ativo para rodar essa aplicação</noscript>
     <div id="hub-psd"></div>
-
   </body>
 </html>

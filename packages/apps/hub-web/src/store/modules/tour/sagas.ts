@@ -74,8 +74,9 @@ export function* getViewed(): Generator {
 export function* postTour(): Generator {
   yield put(openTour(false))
 
+  const { guid } = store.getState().profile
   const response = yield call(() => {
-    return api.post('/Tour')
+    return api.post('/Tour', `"${guid}"`)
   })
 
   const { data, ok } = response as ApiResponse<boolean>
