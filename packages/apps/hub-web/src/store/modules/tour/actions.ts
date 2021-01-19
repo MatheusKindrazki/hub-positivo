@@ -13,7 +13,9 @@ export const Actions = {
 
   OPEN_TOUR: '@tour/OPEN_TOUR',
 
-  POST_TOUR: '@tour/POST_TOUR'
+  POST_TOUR: '@tour/POST_TOUR',
+
+  SIGN_OUT: '@auth/SIGN_OUT'
 }
 
 /*
