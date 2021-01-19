@@ -1,34 +1,60 @@
 trigger:
-  - develop
+  branches:
+    include:
+    - refs/heads/develop
+name: $(date:yyyyMMdd)$(rev:.r)
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/develop
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: ubuntu-16.04
+  steps:
+  - checkout: self
+  - task: PowerShell@2
+    displayName: Set Variables
+    inputs:
+      targetType: inline
+      script: >-
+        switch(${env:BUILD_SOURCEBRANCH}) {
 
-pool:
-  vmImage: ubuntu-latest
+        'refs/heads/homolog' {Write-Host "##vso[task.setvariable variable=buildEnv]hml"; }
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Instalando Node.js'
+        'refs/heads/develop' {Write-Host "##vso[task.setvariable variable=buildEnv]dev"; }
 
-- script: 
-    npm install
-    npm run build
-  displayName: 'Instalando dependências e executando o Build'
+        default {Write-Host "##vso[task.setvariable variable=buildEnv]prod"; }
 
-- task: ArchiveFiles@2
-  displayName: 'Preparando arquivos buildados'
-  inputs:
-    rootFolderOrFile: 'build'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publicando...'
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'devhubdigital'
-    publishLocation: 'Container'
-  
-  
+        }
+  - task: replacetokens@3
+    displayName: Replace tokens in **/*.env.azure and cp .env
+    inputs:
+      rootDirectory: packages/apps
+      targetFiles: '**/**/.env.$(buildEnv).azure => .env'
+  - task: YarnInstaller@3
+    displayName: Configurate yarn 1.x
+  - task: Yarn@3
+    displayName: Yarn workspaces install dependencies  mono-repo
+    inputs:
+      arguments: install
+  - task: NodeTool@0
+    displayName: Configurate Node v14.x
+    inputs:
+      versionSpec: 14.x
+  - task: Yarn@3
+    displayName: Node deploy web
+    inputs:
+      arguments: build:web
+  - task: ArchiveFiles@2
+    displayName: Archive files
+    inputs:
+      rootFolderOrFile: $(System.DefaultWorkingDirectory)/packages/apps/hub-web/build
+      includeRootFolder: false
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish artifacts: hub'
+    inputs:
+      ArtifactName: devhubdigital
+      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
