@@ -42,6 +42,9 @@ const usePostMessage = (): void => {
           const mergeLocation = pathname + params.solution
 
           const mountURL = mergeLocation + newURL.pathname
+
+          if (mountURL === location.pathname) return
+
           history.push(mountURL)
         }
       }
