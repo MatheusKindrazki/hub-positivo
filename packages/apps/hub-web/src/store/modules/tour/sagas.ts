@@ -1,7 +1,6 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects'
 
 import api from '@hub/api'
-import { toast } from '@hub/common/utils'
 
 import { ApiResponse } from 'apisauce'
 
@@ -74,8 +73,10 @@ export function* getViewed(): Generator {
 export function* postTour(): Generator {
   yield put(openTour(false))
 
+  const { guid } = store.getState().profile
+
   const response = yield call(() => {
-    return api.post('/Tour')
+    return api.post('/Tour', `"${guid}"`)
   })
 
   const { data, ok } = response as ApiResponse<boolean>
