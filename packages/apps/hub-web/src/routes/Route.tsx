@@ -7,7 +7,7 @@ import {
   useLocation
 } from 'react-router-dom'
 
-import useQuery from '~/hooks/useQuery'
+import searchQuery from '~/hooks/useQuery'
 import { store } from '~/store'
 
 const Auth = React.lazy(() => import('~/layouts/Auth'))
@@ -22,9 +22,6 @@ const Route: React.FC<RouteProps> = ({
   ...rest
 }) => {
   const { pathname } = useLocation()
-
-  const search = useQuery()
-  const redirectTo = search.get('redirect') || undefined
 
   const { signed } = store.getState().auth
 
@@ -42,6 +39,9 @@ const Route: React.FC<RouteProps> = ({
   }
 
   if (signed && !isPrivate) {
+    const search = searchQuery()
+    const redirectTo = search.get('redirect') || undefined
+
     if (redirectTo) {
       return <Redirect to={redirectTo} />
     }
