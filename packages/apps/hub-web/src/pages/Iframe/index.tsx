@@ -24,7 +24,6 @@ interface IframePropsRouter {
 
 const Iframe: React.FC = () => {
   const dispatch = useDispatch()
-  usePostMessage()
 
   const { colors } = useTheme()
   const [url, setUrl] = useState('')
@@ -50,6 +49,7 @@ const Iframe: React.FC = () => {
         nivelEnsino: level,
         perfil: guid
       })
+
       if (!card) return history.push('/')
       const product = createSlug(card.nome)
 
