@@ -18,6 +18,7 @@ const regexAccept = ['/#!/', '/#/']
 const usePostMessage = (): void => {
   const history = useHistory()
   const location = useLocation()
+
   const params = useParams<ParamsProps>()
 
   useEffect(() => {
