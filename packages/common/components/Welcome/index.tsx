@@ -51,6 +51,7 @@ const Welcome: React.FC<WelcomeProps> = ({
             <Heading
               fontSize={['sm', 'md']}
               fontWeight="normal"
+              textTransform="uppercase"
               as="p"
               color="blue.100"
               mt="1"
