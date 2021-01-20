@@ -71,7 +71,6 @@ const Iframe: React.FC = () => {
       )
     }
     documentTitle(frameName || 'Hub')
-    setTimeout(() => setLoading(false), 3000)
     return setUrl(frameUrl || '')
   }, [dispatch, frameName, frameUrl, guid, level, solution, subpath])
 
@@ -90,6 +89,7 @@ const Iframe: React.FC = () => {
       />
       <iframe
         loading="lazy"
+        onLoad={() => setLoading(false)}
         src={url}
         referrerPolicy="no-referrer-when-downgrade"
       />
