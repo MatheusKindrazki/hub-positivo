@@ -9,6 +9,8 @@ export const Actions = {
 
   SIGN_OUT: '@auth/SIGN_OUT',
 
+  PRODUCT_INTEGRATION: '@products/PRODUCT_INTEGRATION',
+
   FRAME_URL: '@products/FRAME_URL',
 
   REHYDRATE: 'persist/REHYDRATE'
@@ -34,6 +36,13 @@ export function productSuccess(data: Omit<ProductReducer, 'loading'>): Action {
 export function productFailure(): Action {
   return {
     type: Actions.PRODUCT_FAILURE
+  }
+}
+
+export function productIntegration(data: ProductReducer['data']): Action {
+  return {
+    type: Actions.PRODUCT_INTEGRATION,
+    payload: data
   }
 }
 
