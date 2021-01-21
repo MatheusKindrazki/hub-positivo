@@ -63,9 +63,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
     signInSuccess({
       token: data?.access_token || '',
       refresh_token: data?.refresh_token || '',
-      auth_time: user?.auth_time,
       exp: user?.exp,
-      iat: user?.iat,
       user: {
         integration_id: user?.integration_id,
         id: user?.id,
@@ -105,10 +103,6 @@ export function* checkingExpiringToken({
     return
   }
 
-  api.setHeaders({
-    Authorization: `Bearer ${token || ''}`
-  })
-
   const date = (new Date() as unknown) as number
 
   const now = Math.round(date / 1000)
@@ -116,6 +110,10 @@ export function* checkingExpiringToken({
   if (now >= exp) {
     yield put(refreshTokenRequest())
   }
+
+  api.setHeaders({
+    Authorization: `Bearer ${token || ''}`
+  })
 
   return yield put(productRequest({}))
 }
@@ -127,7 +125,7 @@ export function* refreshToken(): Generator {
     return EEMConnectPost({
       endpoint: 'connect/token',
       data: {
-        refresh_token: refresh_token + 'batata',
+        refresh_token: refresh_token,
         grant_type: 'refresh_token'
       }
     })
@@ -143,10 +141,13 @@ export function* refreshToken(): Generator {
     history.push('/login')
   }
 
+  const user = decode(data?.access_token || '') as any
+
   return yield put(
     refreshTokenSuccess({
       refresh_token: data?.refresh_token as string,
-      token: data?.access_token as string
+      token: data?.access_token as string,
+      exp: user?.exp as number
     })
   )
 }

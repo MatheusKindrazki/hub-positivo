@@ -24,9 +24,7 @@ export interface AuthApi {
 export interface SignInSuccess {
   token: string | null
   refresh_token: string | null
-  auth_time: number | null
   exp: number | null
-  iat: number | null
   user?: {
     name: string
     integration_id: string | null
@@ -47,8 +45,10 @@ interface Schools {
 export interface RefreshToken {
   token: string | null
   refresh_token: string | null
+  exp: number | null
 }
 export interface RefreshTokenApi {
   access_token: string | null
   refresh_token: string | null
+  exp: number | null
 }

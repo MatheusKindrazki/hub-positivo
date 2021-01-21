@@ -55,6 +55,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
       case Actions.REFRESH_TOKEN_SUCCESS: {
         draft.refresh_token = action.payload.refresh_token
         draft.token = action.payload.token
+        draft.exp = action.payload.exp
 
         break
       }
