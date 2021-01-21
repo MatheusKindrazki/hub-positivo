@@ -10,11 +10,12 @@ import { decode } from 'jsonwebtoken'
 
 import { EEMConnectPost } from '~/services/eemConnect'
 import history from '~/services/history'
+import { store } from '~/store'
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
 
 import { productRequest } from '../products/actions'
 import { Actions, signInFailure, signInSuccess, signOut } from './actions'
-import { SignInRequest, AuthApi } from './types'
+import { SignInRequest, AuthApi, RefreshTokenApi } from './types'
 
 type SignInPayload = Payload<SignInRequest>
 
@@ -114,6 +115,30 @@ export function* checkingExpiringToken({
   }
 
   return yield put(productRequest({}))
+}
+
+export function* refreshToken(): Generator {
+  const { refresh_token } = store.getState().auth
+
+  const response = yield call(() => {
+    return EEMConnectPost({
+      endpoint: 'connect/token',
+      data: {
+        refresh_token,
+        grant_type: 'refresh_token'
+      }
+    })
+  })
+
+  const { data, ok } = response as ApiResponse<RefreshTokenApi>
+
+  if (!ok) {
+    toast.warn('Seu token expirou! Faça o login novamente para continuar!')
+
+    yield put(signOut())
+
+    history.push('/login')
+  }
 }
 
 export default all([

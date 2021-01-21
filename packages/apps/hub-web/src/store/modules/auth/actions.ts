@@ -15,6 +15,9 @@ export const Actions = {
 
   SET_SIGNED: '@auth/SET_SIGNED',
 
+  REFRESH_TOKEN_REQUEST: '@auth/REFRESH_TOKEN_REQUEST',
+  REFRESH_TOKEN_SUCCESS: '@auth/REFRESH_TOKEN_SUCCESS',
+
   REHYDRATE: 'persist/REHYDRATE'
 }
 
@@ -41,12 +44,18 @@ export function signInFailure(): Action {
   }
 }
 
+/*
+  Autoriza usuário a entrar na Home
+*/
 export function setSigned(): Action {
   return {
     type: Actions.SET_SIGNED
   }
 }
 
+/*
+  Caso o usuário não possua nivelEnsino
+*/
 export function withoutAccess(): Action {
   return {
     type: Actions.WITHOUT_ACCESS
@@ -56,5 +65,20 @@ export function withoutAccess(): Action {
 export function signOut(): Action {
   return {
     type: Actions.SIGN_OUT
+  }
+}
+
+/*
+  Atualiza o token do usuário
+*/
+export function refreshTokenRequest(): Action {
+  return {
+    type: Actions.REFRESH_TOKEN_REQUEST
+  }
+}
+
+export function refreshTokenSuccess(): Action {
+  return {
+    type: Actions.REFRESH_TOKEN_SUCCESS
   }
 }
