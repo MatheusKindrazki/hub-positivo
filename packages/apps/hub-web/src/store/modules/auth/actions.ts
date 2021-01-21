@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-import { SignInRequest, SignInSuccess } from './types'
+import { SignInRequest, SignInSuccess, RefreshToken } from './types'
 
 export const Actions = {
   SIGN_IN_REQUEST: '@auth/SIGN_IN_REQUEST',
@@ -77,8 +77,9 @@ export function refreshTokenRequest(): Action {
   }
 }
 
-export function refreshTokenSuccess(): Action {
+export function refreshTokenSuccess(data: RefreshToken): Action {
   return {
-    type: Actions.REFRESH_TOKEN_SUCCESS
+    type: Actions.REFRESH_TOKEN_SUCCESS,
+    payload: data
   }
 }

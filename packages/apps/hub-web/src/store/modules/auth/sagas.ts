@@ -14,7 +14,14 @@ import { store } from '~/store'
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
 
 import { productRequest } from '../products/actions'
-import { Actions, signInFailure, signInSuccess, signOut } from './actions'
+import {
+  Actions,
+  signInFailure,
+  refreshTokenRequest,
+  signInSuccess,
+  signOut,
+  refreshTokenSuccess
+} from './actions'
 import { SignInRequest, AuthApi, RefreshTokenApi } from './types'
 
 type SignInPayload = Payload<SignInRequest>
@@ -107,11 +114,7 @@ export function* checkingExpiringToken({
   const now = Math.round(date / 1000)
 
   if (now >= exp) {
-    toast.warn('Seu token expirou! Faça o login novamente para continuar!')
-
-    yield put(signOut())
-
-    history.push('/login')
+    yield put(refreshTokenRequest())
   }
 
   return yield put(productRequest({}))
@@ -124,7 +127,7 @@ export function* refreshToken(): Generator {
     return EEMConnectPost({
       endpoint: 'connect/token',
       data: {
-        refresh_token,
+        refresh_token: refresh_token + 'batata',
         grant_type: 'refresh_token'
       }
     })
@@ -139,9 +142,17 @@ export function* refreshToken(): Generator {
 
     history.push('/login')
   }
+
+  return yield put(
+    refreshTokenSuccess({
+      refresh_token: data?.refresh_token as string,
+      token: data?.access_token as string
+    })
+  )
 }
 
 export default all([
   takeLatest(Actions.REHYDRATE, checkingExpiringToken),
-  takeLatest(Actions.SIGN_IN_REQUEST, signIn)
+  takeLatest(Actions.SIGN_IN_REQUEST, signIn),
+  takeLatest(Actions.REFRESH_TOKEN_REQUEST, refreshToken)
 ])
