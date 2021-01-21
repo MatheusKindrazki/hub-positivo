@@ -18,6 +18,7 @@ const regexAccept = ['/#!/', '/#/']
 const usePostMessage = (): void => {
   const history = useHistory()
   const location = useLocation()
+
   const params = useParams<ParamsProps>()
 
   useEffect(() => {
@@ -41,6 +42,9 @@ const usePostMessage = (): void => {
           const mergeLocation = pathname + params.solution
 
           const mountURL = mergeLocation + newURL.pathname
+
+          if (mountURL === location.pathname) return
+
           history.push(mountURL)
         }
       }
