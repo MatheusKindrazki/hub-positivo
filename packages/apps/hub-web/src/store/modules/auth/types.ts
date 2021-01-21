@@ -5,24 +5,25 @@ export interface SignInRequest {
 }
 
 export interface AuthReducer {
+  exp: number
   signed: boolean
   loading: boolean
   token: string | null
-  auth_time: number
-  iat: number
-  exp: number
   signInStrike: boolean
   withoutAccess: boolean
+  refresh_token: string | null
 }
 
 export interface AuthApi {
   access_token: string
+  refresh_token: string
   expires_in: string
   token_type: string
 }
 
 export interface SignInSuccess {
   token: string | null
+  refresh_token: string | null
   auth_time: number | null
   exp: number | null
   iat: number | null
@@ -42,4 +43,12 @@ interface Schools {
   integration_id: string | null
   name: string
   roles: string[]
+}
+export interface RefreshToken {
+  token: string | null
+  refresh_token: string | null
+}
+export interface RefreshTokenApi {
+  access_token: string | null
+  refresh_token: string | null
 }

@@ -10,11 +10,19 @@ import { decode } from 'jsonwebtoken'
 
 import { EEMConnectPost } from '~/services/eemConnect'
 import history from '~/services/history'
+import { store } from '~/store'
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
 
 import { productRequest } from '../products/actions'
-import { Actions, signInFailure, signInSuccess, signOut } from './actions'
-import { SignInRequest, AuthApi } from './types'
+import {
+  Actions,
+  signInFailure,
+  refreshTokenRequest,
+  signInSuccess,
+  signOut,
+  refreshTokenSuccess
+} from './actions'
+import { SignInRequest, AuthApi, RefreshTokenApi } from './types'
 
 type SignInPayload = Payload<SignInRequest>
 
@@ -54,6 +62,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
   yield put(
     signInSuccess({
       token: data?.access_token || '',
+      refresh_token: data?.refresh_token || '',
       auth_time: user?.auth_time,
       exp: user?.exp,
       iat: user?.iat,
@@ -85,6 +94,7 @@ export function* checkingExpiringToken({
   payload
 }: ExpiringRehydrate): Generator {
   if (!payload) return
+
   if (!payload.auth.signed) {
     return yield put(signOut())
   }
@@ -104,6 +114,28 @@ export function* checkingExpiringToken({
   const now = Math.round(date / 1000)
 
   if (now >= exp) {
+    yield put(refreshTokenRequest())
+  }
+
+  return yield put(productRequest({}))
+}
+
+export function* refreshToken(): Generator {
+  const { refresh_token } = store.getState().auth
+
+  const response = yield call(() => {
+    return EEMConnectPost({
+      endpoint: 'connect/token',
+      data: {
+        refresh_token: refresh_token + 'batata',
+        grant_type: 'refresh_token'
+      }
+    })
+  })
+
+  const { data, ok } = response as ApiResponse<RefreshTokenApi>
+
+  if (!ok) {
     toast.warn('Seu token expirou! Faça o login novamente para continuar!')
 
     yield put(signOut())
@@ -111,10 +143,16 @@ export function* checkingExpiringToken({
     history.push('/login')
   }
 
-  return yield put(productRequest({}))
+  return yield put(
+    refreshTokenSuccess({
+      refresh_token: data?.refresh_token as string,
+      token: data?.access_token as string
+    })
+  )
 }
 
 export default all([
   takeLatest(Actions.REHYDRATE, checkingExpiringToken),
-  takeLatest(Actions.SIGN_IN_REQUEST, signIn)
+  takeLatest(Actions.SIGN_IN_REQUEST, signIn),
+  takeLatest(Actions.REFRESH_TOKEN_REQUEST, refreshToken)
 ])
