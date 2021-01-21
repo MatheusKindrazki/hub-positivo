@@ -54,6 +54,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
   yield put(
     signInSuccess({
       token: data?.access_token || '',
+      refresh_token: data?.refresh_token || '',
       auth_time: user?.auth_time,
       exp: user?.exp,
       iat: user?.iat,
@@ -85,6 +86,7 @@ export function* checkingExpiringToken({
   payload
 }: ExpiringRehydrate): Generator {
   if (!payload) return
+
   if (!payload.auth.signed) {
     return yield put(signOut())
   }
