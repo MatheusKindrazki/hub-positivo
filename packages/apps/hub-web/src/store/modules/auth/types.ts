@@ -44,3 +44,11 @@ interface Schools {
   name: string
   roles: string[]
 }
+export interface RefreshToken {
+  token: string | null
+  refresh_token: string | null
+}
+export interface RefreshTokenApi {
+  access_token: string | null
+  refresh_token: string | null
+}

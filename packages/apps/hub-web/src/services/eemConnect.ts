@@ -6,8 +6,9 @@ import qs from 'qs'
 interface EEMProps {
   endpoint: string
   data: {
-    grant_type: 'change_school' | 'password'
+    grant_type: 'change_school' | 'password' | 'refresh_token'
     access_token?: string
+    refresh_token?: string | null
     school_id?: string
     password?: string
     username?: string

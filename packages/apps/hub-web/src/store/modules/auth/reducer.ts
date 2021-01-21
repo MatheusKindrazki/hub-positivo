@@ -25,6 +25,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.loading = true
         draft.signInStrike = false
         draft.withoutAccess = false
+
         break
       }
 
@@ -34,8 +35,8 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.exp = action.payload.exp
         draft.signInStrike = false
         draft.withoutAccess = false
-
         draft.loading = false
+
         break
       }
 
@@ -47,17 +48,27 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.loading = false
         draft.signInStrike = true
         draft.withoutAccess = false
+
+        break
+      }
+
+      case Actions.REFRESH_TOKEN_SUCCESS: {
+        draft.refresh_token = action.payload.refresh_token
+        draft.token = action.payload.token
+
         break
       }
 
       case Actions.SET_SIGNED: {
         draft.signed = true
         draft.withoutAccess = false
+
         break
       }
 
       case Actions.WITHOUT_ACCESS: {
         draft.withoutAccess = true
+
         break
       }
 
@@ -68,6 +79,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.loading = false
         draft.refresh_token = null
         draft.withoutAccess = false
+
         break
       }
       default:
