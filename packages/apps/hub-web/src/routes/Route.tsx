@@ -7,8 +7,7 @@ import {
   useLocation
 } from 'react-router-dom'
 
-import useQuery from '~/hooks/useQuery'
-import withSuspense from '~/routes/withSuspense'
+import searchQuery from '~/hooks/useQuery'
 import { store } from '~/store'
 
 const Auth = React.lazy(() => import('~/layouts/Auth'))
@@ -24,15 +23,12 @@ const Route: React.FC<RouteProps> = ({
 }) => {
   const { pathname } = useLocation()
 
-  const search = useQuery()
-  const redirectTo = search.get('redirect') || undefined
-
   const { signed } = store.getState().auth
 
-  let RenderLayout = signed ? withSuspense(Logged) : withSuspense(Auth)
+  let RenderLayout = signed ? Logged : Auth
 
   if (pathname.includes('solucao')) {
-    RenderLayout = withSuspense(Iframe)
+    RenderLayout = Iframe
   }
 
   if (!signed && isPrivate) {
@@ -43,6 +39,9 @@ const Route: React.FC<RouteProps> = ({
   }
 
   if (signed && !isPrivate) {
+    const search = searchQuery()
+    const redirectTo = search.get('redirect') || undefined
+
     if (redirectTo) {
       return <Redirect to={redirectTo} />
     }
@@ -50,9 +49,11 @@ const Route: React.FC<RouteProps> = ({
   }
 
   return (
-    <RenderLayout>
-      <ReactRoute component={component} {...rest} />
-    </RenderLayout>
+    <React.Suspense fallback={null}>
+      <RenderLayout>
+        <ReactRoute component={component} {...rest} />
+      </RenderLayout>
+    </React.Suspense>
   )
 }
 

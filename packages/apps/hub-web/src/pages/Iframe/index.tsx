@@ -66,12 +66,11 @@ const Iframe: React.FC = () => {
           url: card.link || '',
           tipoRenderizacao: card.tipoRenderizacao,
           product: product,
-          subpath: path !== 'undefined' ? path : ''
+          subpath: path.includes('undefined') ? '' : path
         })
       )
     }
     documentTitle(frameName || 'Hub')
-    setTimeout(() => setLoading(false), 3000)
     return setUrl(frameUrl || '')
   }, [dispatch, frameName, frameUrl, guid, level, solution, subpath])
 
@@ -90,6 +89,7 @@ const Iframe: React.FC = () => {
       />
       <iframe
         loading="lazy"
+        onLoad={() => setLoading(false)}
         src={url}
         referrerPolicy="no-referrer-when-downgrade"
       />

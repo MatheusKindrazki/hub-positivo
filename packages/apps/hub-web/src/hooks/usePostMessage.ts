@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 
 import { useHistory, useLocation, useParams } from 'react-router-dom'
 
+import hasJsonStructure from '~/utils/hasJsonStructure'
+
 interface MessageProps {
   event: 'history-change' | undefined
   data: string
@@ -16,11 +18,14 @@ const regexAccept = ['/#!/', '/#/']
 const usePostMessage = (): void => {
   const history = useHistory()
   const location = useLocation()
+
   const params = useParams<ParamsProps>()
 
   useEffect(() => {
     function handleEvent(event: { data: string }): void {
       if (typeof event.data === 'string') {
+        if (!hasJsonStructure(event.data)) return
+
         const parseData = (JSON.parse(event.data) as MessageProps) || undefined
 
         if (parseData.event === 'history-change') {
@@ -37,6 +42,9 @@ const usePostMessage = (): void => {
           const mergeLocation = pathname + params.solution
 
           const mountURL = mergeLocation + newURL.pathname
+
+          if (mountURL === location.pathname) return
+
           history.push(mountURL)
         }
       }
