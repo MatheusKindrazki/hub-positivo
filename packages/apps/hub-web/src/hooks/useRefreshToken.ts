@@ -10,7 +10,7 @@ import { Actions as AuthActions } from '~/store/modules/auth/actions'
 import { RefreshTokenApi } from '~/store/modules/auth/types'
 
 api.axiosInstance.interceptors.request.use(async config => {
-  const { exp, refresh_token } = store.getState().auth
+  const { exp, refresh_token, token } = store.getState().auth
 
   const date = (new Date() as unknown) as number
 
@@ -46,9 +46,7 @@ api.axiosInstance.interceptors.request.use(async config => {
       }
     })
 
-    api.setHeaders({
-      Authorization: `Bearer ${data?.access_token}`
-    })
+    api.axiosInstance.defaults.headers.Authorization = `Bearer ${data?.access_token}`
 
     return {
       ...config,
@@ -59,5 +57,13 @@ api.axiosInstance.interceptors.request.use(async config => {
     }
   }
 
-  return config
+  api.axiosInstance.defaults.headers.Authorization = `Bearer ${token}`
+
+  return {
+    ...config,
+    headers: {
+      ...config.headers,
+      Authorization: `Bearer ${token}`
+    }
+  }
 })

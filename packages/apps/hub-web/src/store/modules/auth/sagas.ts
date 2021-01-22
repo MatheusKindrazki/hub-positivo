@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
 import api from '@hub/api'
@@ -23,6 +22,8 @@ import {
   refreshTokenSuccess
 } from './actions'
 import { SignInRequest, AuthApi, RefreshTokenApi } from './types'
+
+import '~/hooks/useRefreshToken'
 
 type SignInPayload = Payload<SignInRequest>
 
@@ -50,10 +51,6 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
     return yield put(signInFailure())
   }
-
-  api.setHeaders({
-    Authorization: `Bearer ${data?.access_token || ''}`
-  })
 
   const user = decode(data?.access_token || '') as any
 
@@ -97,7 +94,7 @@ export function* checkingExpiringToken({
     return yield put(signOut())
   }
 
-  const { exp, token } = payload.auth
+  const { exp } = payload.auth
 
   if (!exp || exp === 0) {
     return
@@ -110,10 +107,6 @@ export function* checkingExpiringToken({
   if (now >= exp) {
     yield put(refreshTokenRequest())
   }
-
-  api.setHeaders({
-    Authorization: `Bearer ${token || ''}`
-  })
 
   return yield put(productRequest({}))
 }
