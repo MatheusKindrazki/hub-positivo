@@ -28,6 +28,7 @@ const Dashboard: React.FC = ({ children }) => {
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
   )
+
   const handleClosedTour = useCallback(() => {
     if (viewed) return dispatch(openTour(false))
 
