@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, Suspense } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -8,19 +8,19 @@ import { VariantsProps } from '@hub/common/layout/styles/colors'
 import { ConnectedRouter } from 'connected-react-router'
 import { Switch, HashRouter } from 'react-router-dom'
 
-import ChangePassword from '~/pages/Auth/ChangePassword'
-import ExpiredToken from '~/pages/Auth/ExpiredToken'
-import ForgotPassword from '~/pages/Auth/ForgotPassword'
-import ForgotPasswordFail from '~/pages/Auth/ForgotPasswordFail'
-import Profile from '~/pages/Auth/Profile'
-import SignIn from '~/pages/Auth/SignIn'
-import Home from '~/pages/Home'
-import Iframe from '~/pages/Iframe'
-import Inject from '~/pages/Inject'
-
 import history from '~/services/history'
 
 import Route from './Route'
+
+// ? Importação das páginas
+const Home = React.lazy(() => import('~/pages/Home'))
+const Iframe = React.lazy(() => import('~/pages/Iframe'))
+const SignIn = React.lazy(() => import('~/pages/Auth/SignIn'))
+const Profile = React.lazy(() => import('~/pages/Auth/Profile'))
+const ForgotFail = React.lazy(() => import('~/pages/Auth/ForgotFail'))
+const ExpiredToken = React.lazy(() => import('~/pages/Auth/ExpiredToken'))
+const ChangePassword = React.lazy(() => import('~/pages/Auth/ChangePassword'))
+const ForgotPassword = React.lazy(() => import('~/pages/Auth/ForgotPassword'))
 
 const Routes: React.FC = () => {
   const { colorProfile } = useSelector((state: Store.State) => state.profile)
@@ -32,32 +32,30 @@ const Routes: React.FC = () => {
   }, [colorProfile, theme])
 
   return (
-    <ConnectedRouter history={history}>
-      <HashRouter
-        hashType="slash"
-        basename={process.env.REACT_APP_PATHNAME_RESOLVE}
-      >
-        <Switch>
-          <Route path="/auth/:guid+" component={Inject} />
-          <Route path="/login" component={SignIn} />
-          <Route path="/profile" component={Profile} />
-          <Route
-            path="/forgot-password/failure"
-            component={ForgotPasswordFail}
-          />
-          <Route path="/forgot-password" exact component={ForgotPassword} />
-          <Route path="/expired-token" component={ExpiredToken} />
-          <Route path="/change-password" component={ChangePassword} />
-          <Route
-            path={['/solucao/:solution', '/solucao/:solution/:subpath+']}
-            component={Iframe}
-            isPrivate
-          />
+    <Suspense fallback={null}>
+      <ConnectedRouter history={history}>
+        <HashRouter
+          hashType="slash"
+          basename={process.env.REACT_APP_PATHNAME_RESOLVE}
+        >
+          <Switch>
+            <Route path="/login" component={SignIn} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/forgot-password/failure" component={ForgotFail} />
+            <Route path="/forgot-password" exact component={ForgotPassword} />
+            <Route path="/expired-token" component={ExpiredToken} />
+            <Route path="/change-password" component={ChangePassword} />
+            <Route
+              path={['/solucao/:solution/:subpath+', '/solucao/:solution']}
+              component={Iframe}
+              isPrivate
+            />
 
-          <Route path="/" component={Home} isPrivate />
-        </Switch>
-      </HashRouter>
-    </ConnectedRouter>
+            <Route path="/" component={Home} isPrivate />
+          </Switch>
+        </HashRouter>
+      </ConnectedRouter>
+    </Suspense>
   )
 }
 

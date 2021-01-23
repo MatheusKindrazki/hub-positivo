@@ -27,8 +27,19 @@ const products: ReturnReducer = (state = INITIAL_STATE, action) => {
         break
       }
 
+      case Actions.PRODUCT_INTEGRATION: {
+        draft.data = action.payload
+        break
+      }
+
       case Actions.PRODUCT_FAILURE: {
         draft.loading = false
+        draft.data = []
+        break
+      }
+
+      case Actions.WITHOUT_ACCESS: {
+        draft.loading = true
         draft.data = []
         break
       }

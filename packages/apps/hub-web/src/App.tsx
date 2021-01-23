@@ -10,7 +10,6 @@ import ModalSupport from '~/components/ModalSupport'
 
 import Routes from '~/routes'
 import { store, persistor } from '~/store'
-
 const App: React.FC = () => {
   return (
     <ThemeProvider>

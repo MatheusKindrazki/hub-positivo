@@ -7,14 +7,15 @@ import {
   useLocation
 } from 'react-router-dom'
 
-import Auth from '~/layouts/Auth'
-import Iframe from '~/layouts/Iframe'
-import Logged from '~/layouts/Logged'
+import searchQuery from '~/hooks/useQuery'
 import { store } from '~/store'
+
+const Auth = React.lazy(() => import('~/layouts/Auth'))
+const Iframe = React.lazy(() => import('~/layouts/Iframe'))
+const Logged = React.lazy(() => import('~/layouts/Logged'))
 interface RouteProps extends RoutePropsWouter {
   isPrivate?: boolean
 }
-
 const Route: React.FC<RouteProps> = ({
   isPrivate = false,
   component,
@@ -31,17 +32,28 @@ const Route: React.FC<RouteProps> = ({
   }
 
   if (!signed && isPrivate) {
+    if (pathname.includes('solucao')) {
+      return <Redirect to={`/login?redirect=${pathname}`} />
+    }
     return <Redirect to="/login" />
   }
 
   if (signed && !isPrivate) {
+    const search = searchQuery()
+    const redirectTo = search.get('redirect') || undefined
+
+    if (redirectTo) {
+      return <Redirect to={redirectTo} />
+    }
     return <Redirect to="/" />
   }
 
   return (
-    <RenderLayout>
-      <ReactRoute component={component} {...rest} />
-    </RenderLayout>
+    <React.Suspense fallback={null}>
+      <RenderLayout>
+        <ReactRoute component={component} {...rest} />
+      </RenderLayout>
+    </React.Suspense>
   )
 }
 

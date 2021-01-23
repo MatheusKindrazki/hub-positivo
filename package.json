@@ -2,7 +2,20 @@
   "name": "hub",
   "version": "1.0.0",
   "private": true,
-  "license": "MIT",
+  "version": "1.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront"
+  },
+  "author": {
+    "email": "matheussaldanha@positivosolucoes.com.br",
+    "name": "Matheus Kindrazki"
+  },
+  "badges": [
+    "hub",
+    "novo-on",
+    "positivo-on"
+  ],
   "workspaces": {
     "packages": [
       "packages/*",
@@ -32,6 +45,7 @@
   },
   "dependencies": {
     "@sentry/react": "^5.29.0",
-    "@sentry/tracing": "^5.29.0"
+    "@sentry/tracing": "^5.29.0",
+    "source-map-explorer": "^2.5.2"
   }
 }

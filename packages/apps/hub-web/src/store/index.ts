@@ -34,10 +34,9 @@ const persistedReducer = persistReducer(
   createRootReducer(history)
 )
 
-const store: Store<Store.State> = createStore(
-  persistedReducer,
-  composeWithDevTools(applyMiddleware(...middlewares))
-)
+const compose = composeWithDevTools(applyMiddleware(...middlewares))
+
+const store: Store<Store.State> = createStore(persistedReducer, compose)
 
 const persistor = persistStore(store)
 
