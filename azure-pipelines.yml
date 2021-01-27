@@ -2,15 +2,15 @@ trigger:
   branches:
     include:
     - refs/heads/develop
+    - refs/heads/homolog
+    - refs/heads/master
 name: $(date:yyyyMMdd)$(rev:.r)
-resources:
-  repositories:
-  - repository: self
-    type: git
-    ref: refs/heads/develop
+
+
 jobs:
 - job: Job_1
   displayName: Agent job 1
+
   pool:
     vmImage: ubuntu-16.04
   steps:
@@ -23,9 +23,7 @@ jobs:
         switch(${env:BUILD_SOURCEBRANCH}) {
 
         'refs/heads/homolog' {Write-Host "##vso[task.setvariable variable=buildEnv]hml"; }
-
         'refs/heads/develop' {Write-Host "##vso[task.setvariable variable=buildEnv]dev"; }
-
         default {Write-Host "##vso[task.setvariable variable=buildEnv]prod"; }
 
         }
