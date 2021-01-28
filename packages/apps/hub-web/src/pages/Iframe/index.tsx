@@ -9,7 +9,7 @@ import documentTitle from '@hub/common/utils/documentTitle'
 import { useParams } from 'react-router-dom'
 import { PulseLoader } from 'react-spinners'
 
-import usePostMessage from '~/hooks/usePostMessage'
+import postMessage from '~/middlewares/postMessage'
 import history from '~/services/history'
 import { store } from '~/store'
 import { preAuth } from '~/store/modules/authProduct/actions'
@@ -23,8 +23,9 @@ interface IframePropsRouter {
 }
 
 const Iframe: React.FC = () => {
+  postMessage()
+
   const dispatch = useDispatch()
-  usePostMessage()
 
   const { colors } = useTheme()
   const [url, setUrl] = useState('')

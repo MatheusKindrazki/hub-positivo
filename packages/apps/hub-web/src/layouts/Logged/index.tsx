@@ -15,7 +15,7 @@ import { postTourViewed } from '~/store/modules/tour/actions'
 
 import { Container } from './styles'
 
-import '~/hooks/useRefreshToken'
+import '~/middlewares/refreshToken'
 
 const Dashboard: React.FC = ({ children }) => {
   useSentry()

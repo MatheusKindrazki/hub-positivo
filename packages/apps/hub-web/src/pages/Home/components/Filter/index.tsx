@@ -33,7 +33,7 @@ const Filter: React.FC = () => {
     <Box mb={isMobile ? 5 : 0}>
       <Select
         variant="blue-transparent"
-        defaultValue={{ label: level, value: level }}
+        value={{ label: level, value: level }}
         options={levels}
         onChange={e => handleSelect(e)}
       />

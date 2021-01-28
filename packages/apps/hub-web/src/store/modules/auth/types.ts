@@ -12,6 +12,7 @@ export interface AuthReducer {
   signInStrike: boolean
   withoutAccess: boolean
   refresh_token: string | null
+  reduced_token: string | null
 }
 
 export interface AuthApi {
@@ -51,4 +52,13 @@ export interface RefreshTokenApi {
   access_token: string | null
   refresh_token: string | null
   exp: number | null
+}
+export interface RehydrateAuth {
+  auth: {
+    exp: number
+    iat: number
+    token: string
+    signed: boolean
+    reduced_token: string
+  }
 }

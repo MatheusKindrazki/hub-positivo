@@ -11,10 +11,10 @@ export const INITIAL_STATE: AuthReducer = {
   signed: false,
   loading: false,
   refresh_token: null,
+  reduced_token: null,
   signInStrike: false,
   withoutAccess: false
 }
-
 type ReturnReducer = Reducer<AuthReducer>
 
 const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
@@ -44,6 +44,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.signed = false
         draft.token = null
         draft.refresh_token = null
+        draft.reduced_token = null
         draft.exp = 0
         draft.loading = false
         draft.signInStrike = true
@@ -73,12 +74,19 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         break
       }
 
+      case Actions.REDUCED_TOKEN_EEM: {
+        draft.reduced_token = action.payload
+
+        break
+      }
+
       case Actions.SIGN_OUT: {
         draft.signed = false
         draft.token = null
         draft.exp = 0
         draft.loading = false
         draft.refresh_token = null
+        draft.reduced_token = null
         draft.withoutAccess = false
 
         break

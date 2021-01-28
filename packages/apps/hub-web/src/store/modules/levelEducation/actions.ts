@@ -9,6 +9,10 @@ export const Actions = {
   GET_LEVEL_REQUEST: '@education/GET_LEVEL_REQUEST',
   GET_LEVEL_SUCCESS: '@education/GET_LEVEL_SUCCESS',
 
+  REFRESH_LEVEL_EDUCATION: '@education/REFRESH_LEVEL_EDUCATION',
+
+  REHYDRATE: 'persist/REHYDRATE',
+
   SIGN_OUT: '@auth/SIGN_OUT'
 }
 
@@ -29,5 +33,11 @@ export function setProfileLevels(data: SetLevelSuccess): Action {
   return {
     type: Actions.GET_LEVEL_SUCCESS,
     payload: data
+  }
+}
+
+export function refreshEducation(): Action {
+  return {
+    type: Actions.REFRESH_LEVEL_EDUCATION
   }
 }

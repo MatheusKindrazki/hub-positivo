@@ -1,6 +1,5 @@
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
-import api from '@hub/api'
 import { toast } from '@hub/common/utils'
 import capitalize from '@hub/common/utils/capitalize'
 
@@ -12,6 +11,7 @@ import history from '~/services/history'
 import { store } from '~/store'
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
 
+import { uniqueTokenPerSchoolEEM } from '../productIntegrations/actions'
 import { productRequest } from '../products/actions'
 import {
   Actions,
@@ -21,9 +21,9 @@ import {
   signOut,
   refreshTokenSuccess
 } from './actions'
-import { SignInRequest, AuthApi, RefreshTokenApi } from './types'
+import { SignInRequest, AuthApi, RefreshTokenApi, RehydrateAuth } from './types'
 
-import '~/hooks/useRefreshToken'
+import '~/middlewares/refreshToken'
 
 type SignInPayload = Payload<SignInRequest>
 
@@ -52,7 +52,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
     return yield put(signInFailure())
   }
 
-  const user = decode(data?.access_token || '') as any
+  const user = decode(data?.access_token as string) as any
 
   clearStrikes()
 
@@ -81,9 +81,11 @@ export function* signIn({ payload }: SignInPayload): Generator {
   history.push('/profile')
 }
 
-type ExpiringRehydrate = Payload<{
-  auth: { exp: number; iat: number; token: string; signed: boolean }
-}>
+/*
+  Acionado no ciclo de vida primário da aplicação
+  Buscando o token e chamando os produtos
+*/
+type ExpiringRehydrate = Payload<RehydrateAuth>
 
 export function* checkingExpiringToken({
   payload
@@ -96,11 +98,9 @@ export function* checkingExpiringToken({
 
   const { exp } = payload.auth
 
-  if (!exp || exp === 0) {
-    return
-  }
+  if (!exp || exp === 0) return
 
-  const date = (new Date() as unknown) as number
+  const date = new Date().getTime()
 
   const now = Math.round(date / 1000)
 
@@ -111,6 +111,11 @@ export function* checkingExpiringToken({
   return yield put(productRequest({}))
 }
 
+/*
+  Realiza do refresh do token e gera um novo
+  token reduzido para transição entre as soluções
+  do tipo EEM e Studos
+*/
 export function* refreshToken(): Generator {
   const { refresh_token } = store.getState().auth
 
@@ -134,13 +139,15 @@ export function* refreshToken(): Generator {
     history.push('/login')
   }
 
-  const user = decode(data?.access_token || '') as any
+  yield put(uniqueTokenPerSchoolEEM({ callClasses: false }))
+
+  const user = decode(data?.access_token as string) as { exp: number }
 
   return yield put(
     refreshTokenSuccess({
       refresh_token: data?.refresh_token as string,
       token: data?.access_token as string,
-      exp: user?.exp as number
+      exp: user?.exp
     })
   )
 }
