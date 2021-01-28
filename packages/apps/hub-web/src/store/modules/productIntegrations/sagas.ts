@@ -1,4 +1,4 @@
-import { all, takeLatest, call, put } from 'redux-saga/effects'
+import { all, takeLatest, call, put, Payload } from 'redux-saga/effects'
 
 import { apiMHUND, apiLivro } from '@hub/api'
 
@@ -7,6 +7,7 @@ import { ApiResponse } from 'apisauce'
 import { EEMConnectPost } from '~/services/eemConnect'
 import { store } from '~/store'
 import { reducedTokenEEM } from '~/store/modules/auth/actions'
+import { refreshEducation } from '~/store/modules/levelEducation/actions'
 import { productIntegration } from '~/store/modules/products/actions'
 import { CardProduct, Product } from '~/store/modules/products/types'
 
@@ -75,7 +76,8 @@ export function* mhundArvoreIntegration(): Generator {
   return yield put(productIntegration(cardFilter))
 }
 
-export function* getReducedToken(): Generator {
+type ReducedPayload = Payload<{ callClasses: boolean }>
+export function* getReducedToken({ payload }: ReducedPayload): Generator {
   const auth = store.getState().auth
   const { school } = store.getState().user
 
@@ -92,9 +94,13 @@ export function* getReducedToken(): Generator {
 
   const { data, ok } = response as ApiResponse<{ access_token: string }>
 
-  if (!ok) return yield put(uniqueTokenPerSchoolEEM())
+  if (!ok) return yield put(uniqueTokenPerSchoolEEM({ callClasses: false }))
 
-  return yield put(reducedTokenEEM(data?.access_token as string))
+  yield put(reducedTokenEEM(data?.access_token as string))
+
+  if (payload.callClasses) {
+    yield put(refreshEducation())
+  }
 }
 
 export default all([

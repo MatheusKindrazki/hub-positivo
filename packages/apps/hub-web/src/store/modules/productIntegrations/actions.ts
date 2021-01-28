@@ -12,8 +12,13 @@ export function mhundArvoreIntegration(): Action {
   }
 }
 
-export function uniqueTokenPerSchoolEEM(): Action {
+interface TokenSchool {
+  callClasses: boolean
+}
+
+export function uniqueTokenPerSchoolEEM(data: TokenSchool): Action {
   return {
-    type: Actions.UNIQUE_TOKEN_PER_SCHOOL_EEM
+    type: Actions.UNIQUE_TOKEN_PER_SCHOOL_EEM,
+    payload: data
   }
 }

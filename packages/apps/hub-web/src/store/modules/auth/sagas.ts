@@ -139,7 +139,7 @@ export function* refreshToken(): Generator {
     history.push('/login')
   }
 
-  yield put(uniqueTokenPerSchoolEEM())
+  yield put(uniqueTokenPerSchoolEEM({ callClasses: false }))
 
   const user = decode(data?.access_token as string) as { exp: number }
 

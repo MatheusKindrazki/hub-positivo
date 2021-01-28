@@ -69,7 +69,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
     const handleSelected = useCallback(
       data => {
         dispatch(setSchool(data))
-        dispatch(uniqueTokenPerSchoolEEM())
+        dispatch(uniqueTokenPerSchoolEEM({ callClasses: true }))
       },
       [dispatch]
     )

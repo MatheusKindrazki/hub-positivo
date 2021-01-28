@@ -44,7 +44,7 @@ const Profile: React.FC = () => {
     data => {
       dispatch(setSchoolUser(data))
 
-      dispatch(uniqueTokenPerSchoolEEM())
+      dispatch(uniqueTokenPerSchoolEEM({ callClasses: false }))
 
       setSchool(data)
     },

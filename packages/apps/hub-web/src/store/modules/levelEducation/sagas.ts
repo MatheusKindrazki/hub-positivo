@@ -98,8 +98,12 @@ export function* getLevelByPerson({ payload }: Payload<Profile>): Generator {
 export function* REHYDRATEProfile(): Generator {
   return yield getEducationStage()
 }
+export function* refreshProfile(): Generator {
+  yield getEducationStage()
+}
 
 export default all([
   takeLatest(Actions.SET_PROFILE, getLevelByPerson),
-  takeLatest(EducationActions.REHYDRATE, REHYDRATEProfile)
+  takeLatest(EducationActions.REHYDRATE, REHYDRATEProfile),
+  takeLatest(EducationActions.REFRESH_LEVEL_EDUCATION, refreshProfile)
 ])
