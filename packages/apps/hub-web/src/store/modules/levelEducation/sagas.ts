@@ -12,7 +12,6 @@ import { Actions } from '~/store/modules/profile/actions'
 import { Profile } from '~/store/modules/profile/types'
 
 import { resetProfileLevels, setProfileLevels } from './actions'
-// import mock from './mock.json'
 import { Ciclos, ContentResponse } from './types'
 
 export function* getLevelByProfile({ payload }: Payload<Profile>): Generator {
@@ -29,6 +28,7 @@ export function* getLevelByProfile({ payload }: Payload<Profile>): Generator {
   interface SendInfo {
     usuarioId: string
   }
+
   const { school } = store.getState().user
   const { token } = store.getState().auth
 

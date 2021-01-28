@@ -1,15 +1,16 @@
-import { all, takeLatest, call, put, Payload } from 'redux-saga/effects'
+import { all, takeLatest, call, put } from 'redux-saga/effects'
 
 import { apiMHUND, apiLivro } from '@hub/api'
 
 import { ApiResponse } from 'apisauce'
 
+import { EEMConnectPost } from '~/services/eemConnect'
 import { store } from '~/store'
+import { reducedTokenEEM } from '~/store/modules/auth/actions'
 import { productIntegration } from '~/store/modules/products/actions'
 import { CardProduct, Product } from '~/store/modules/products/types'
 
-import { Actions } from './actions'
-
+import { Actions, uniqueTokenPerSchoolEEM } from './actions'
 interface CardType extends Product {
   slug: string
 }
@@ -74,6 +75,29 @@ export function* mhundArvoreIntegration(): Generator {
   return yield put(productIntegration(cardFilter))
 }
 
+export function* getReducedToken(): Generator {
+  const auth = store.getState().auth
+  const { school } = store.getState().user
+
+  const response = yield call(() => {
+    return EEMConnectPost({
+      endpoint: 'connect/token',
+      data: {
+        access_token: auth?.token as string,
+        school_id: school?.value,
+        grant_type: 'change_school'
+      }
+    })
+  })
+
+  const { data, ok } = response as ApiResponse<{ access_token: string }>
+
+  if (!ok) return yield put(uniqueTokenPerSchoolEEM())
+
+  return yield put(reducedTokenEEM(data?.access_token as string))
+}
+
 export default all([
-  takeLatest(Actions.SAE_ARVORE_INTEGRATION, mhundArvoreIntegration)
+  takeLatest(Actions.SAE_ARVORE_INTEGRATION, mhundArvoreIntegration),
+  takeLatest(Actions.UNIQUE_TOKEN_PER_SCHOOL_EEM, getReducedToken)
 ])

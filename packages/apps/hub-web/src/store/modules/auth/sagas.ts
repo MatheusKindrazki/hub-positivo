@@ -1,6 +1,5 @@
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
-import api from '@hub/api'
 import { toast } from '@hub/common/utils'
 import capitalize from '@hub/common/utils/capitalize'
 
@@ -52,7 +51,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
     return yield put(signInFailure())
   }
 
-  const user = decode(data?.access_token || '') as any
+  const user = decode(data?.access_token as string) as any
 
   clearStrikes()
 
@@ -96,11 +95,9 @@ export function* checkingExpiringToken({
 
   const { exp } = payload.auth
 
-  if (!exp || exp === 0) {
-    return
-  }
+  if (!exp || exp === 0) return
 
-  const date = (new Date() as unknown) as number
+  const date = new Date().getTime()
 
   const now = Math.round(date / 1000)
 

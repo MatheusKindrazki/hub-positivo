@@ -11,10 +11,10 @@ export const INITIAL_STATE: AuthReducer = {
   signed: false,
   loading: false,
   refresh_token: null,
+  reduced_token: null,
   signInStrike: false,
   withoutAccess: false
 }
-
 type ReturnReducer = Reducer<AuthReducer>
 
 const auth: ReturnReducer = (state = INITIAL_STATE, action) => {

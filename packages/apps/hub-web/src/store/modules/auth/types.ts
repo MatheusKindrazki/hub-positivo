@@ -12,6 +12,7 @@ export interface AuthReducer {
   signInStrike: boolean
   withoutAccess: boolean
   refresh_token: string | null
+  reduced_token: string | null
 }
 
 export interface AuthApi {
