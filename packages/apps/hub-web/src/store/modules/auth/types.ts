@@ -53,3 +53,12 @@ export interface RefreshTokenApi {
   refresh_token: string | null
   exp: number | null
 }
+export interface RehydrateAuth {
+  auth: {
+    exp: number
+    iat: number
+    token: string
+    signed: boolean
+    reduced_token: string
+  }
+}

@@ -8,11 +8,12 @@ import history from '~/services/history'
 import { store } from '~/store'
 import { Actions as AuthActions } from '~/store/modules/auth/actions'
 import { RefreshTokenApi } from '~/store/modules/auth/types'
+import { Actions as IntegrationActions } from '~/store/modules/productIntegrations/actions'
 
 api.axiosInstance.interceptors.request.use(async config => {
   const { exp, refresh_token, token } = store.getState().auth
 
-  const date = (new Date() as unknown) as number
+  const date = new Date().getTime()
 
   const now = Math.round(date / 1000)
 
@@ -35,7 +36,7 @@ api.axiosInstance.interceptors.request.use(async config => {
       history.push('/login')
     }
 
-    const user = decode(data?.access_token || '') as { exp: number }
+    const user = decode(data?.access_token as string) as { exp: number }
 
     store.dispatch({
       type: AuthActions.REFRESH_TOKEN_SUCCESS,
@@ -44,6 +45,11 @@ api.axiosInstance.interceptors.request.use(async config => {
         refresh_token: data?.refresh_token,
         exp: user?.exp
       }
+    })
+
+    // chama a api para criar um token reduzido
+    store.dispatch({
+      type: IntegrationActions.UNIQUE_TOKEN_PER_SCHOOL_EEM
     })
 
     api.axiosInstance.defaults.headers.Authorization = `Bearer ${data?.access_token}`
