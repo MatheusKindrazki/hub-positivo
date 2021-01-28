@@ -119,9 +119,11 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   ! Autenticação utilizando JWT EEM
 */
 export function* authProductEEM({ payload }: AuthPayload): Generator {
+  const { reduced_token } = store.getState().auth
+
   yield put(loading(true))
 
-  const newUrl = payload.url.replace('{token}', 'invalid-token')
+  const newUrl = payload.url.replace('{token}', reduced_token as string)
 
   yield put(setFrameURL({ url: newUrl, name: payload.name }))
 
