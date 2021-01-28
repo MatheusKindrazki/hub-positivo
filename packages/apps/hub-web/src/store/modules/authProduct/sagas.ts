@@ -75,6 +75,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   const authTheProduct = {
     product: payload.product,
     token: auth.token,
+    reduced_token: auth.reduced_token,
     logged_in: {
       school: {
         name: user.school?.label,
