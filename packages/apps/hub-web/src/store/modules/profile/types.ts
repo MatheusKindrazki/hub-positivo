@@ -11,9 +11,9 @@ export interface ProfileReducer {
 
 export interface Profile {
   name: string
-  profile: VariantsProps
   guid: string
   colorProfile: string
+  profile: VariantsProps
 }
 
 export interface Profiles {

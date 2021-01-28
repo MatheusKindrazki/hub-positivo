@@ -1,7 +1,15 @@
+import { Profiles } from '../profile/types'
+
 export interface SignInRequest {
   username: string
   password: string
   redirect: string | undefined
+}
+
+export interface FirstAccessData {
+  selected_school: Schools
+  selected_profile: Profiles
+  profiles: Profiles[]
 }
 
 export interface AuthReducer {
@@ -23,8 +31,8 @@ export interface AuthApi {
 }
 
 export interface SignInSuccess {
-  token: string | null
-  refresh_token: string | null
+  token: string | undefined
+  refresh_token: string | undefined
   exp: number | null
   user?: {
     name: string
@@ -36,12 +44,15 @@ export interface SignInSuccess {
     email: string
   }
 }
-interface Schools {
+export interface Schools {
   id: string
   user_id?: string
-  integration_id: string | null
+  integration_id: string | undefined
   name: string
+  time_zone?: string
   roles: string[]
+  label: string
+  value: string
 }
 export interface RefreshToken {
   token: string | null

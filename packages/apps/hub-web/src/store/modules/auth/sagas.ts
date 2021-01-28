@@ -21,7 +21,13 @@ import {
   signOut,
   refreshTokenSuccess
 } from './actions'
-import { SignInRequest, AuthApi, RefreshTokenApi, RehydrateAuth } from './types'
+import {
+  SignInRequest,
+  AuthApi,
+  RefreshTokenApi,
+  RehydrateAuth,
+  SignInSuccess
+} from './types'
 
 import '~/middlewares/refreshToken'
 
@@ -58,17 +64,14 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
   yield put(
     signInSuccess({
-      token: data?.access_token || '',
-      refresh_token: data?.refresh_token || '',
+      token: data?.access_token,
+      refresh_token: data?.refresh_token,
       exp: user?.exp,
       user: {
-        integration_id: user?.integration_id,
-        id: user?.id,
+        ...user,
         guid: user?.sub,
-        email: user?.email,
-        name: user?.name ? capitalize(user?.name) : '',
         username: user?.username,
-        schools: user?.schools
+        name: capitalize(user?.name as string)
       }
     })
   )
