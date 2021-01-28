@@ -11,6 +11,7 @@ import history from '~/services/history'
 import { store } from '~/store'
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
 
+import { uniqueTokenPerSchoolEEM } from '../productIntegrations/actions'
 import { productRequest } from '../products/actions'
 import {
   Actions,
@@ -130,6 +131,8 @@ export function* refreshToken(): Generator {
 
     history.push('/login')
   }
+
+  yield put(uniqueTokenPerSchoolEEM())
 
   const user = decode(data?.access_token || '') as any
 
