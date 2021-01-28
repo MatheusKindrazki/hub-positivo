@@ -24,16 +24,17 @@ interface SelectItem {
 const Profile: React.FC = () => {
   documentTitle('Selecione o Perfil')
 
-  const dispatch = useDispatch()
-
-  const [school, setSchool] = useState<SelectItem>()
-
   const { token } = useSelector((state: Store.State) => state.auth)
-  const { user } = useSelector((state: Store.State) => state.user)
 
   useEffect(() => {
     !token && history.push('/login')
   }, [token])
+
+  const dispatch = useDispatch()
+
+  const [school, setSchool] = useState<SelectItem>()
+
+  const { user } = useSelector((state: Store.State) => state.user)
 
   const renderSchools = useMemo(() => prepareSchool(user?.schools), [user])
 
