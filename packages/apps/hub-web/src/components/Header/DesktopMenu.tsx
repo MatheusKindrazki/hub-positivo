@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useContext } from 'react'
+import React, { useCallback, useMemo, useContext, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -11,6 +11,8 @@ import ModalSupportContext from '~/components/ModalSupport/context'
 import history from '~/services/history'
 import { signOut } from '~/store/modules/auth/actions'
 import { loading } from '~/store/modules/global/actions'
+import { uniqueTokenPerSchoolEEM } from '~/store/modules/productIntegrations/actions'
+import { productRequest } from '~/store/modules/products/actions'
 import { profiles, setProfile } from '~/store/modules/profile/actions'
 import { Profiles } from '~/store/modules/profile/types'
 import { openTour } from '~/store/modules/tour/actions'
@@ -25,6 +27,8 @@ interface DesktopMenuProps {
 
 const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
   const { onOpen } = useContext(ModalSupportContext)
+
+  const [removeSelectedProfile, setRemoveSelectedProfile] = useState(false)
 
   const { MenuContainer, MenuButton, MenuList, MenuDivider, MenuItem } = Menu
 
@@ -44,6 +48,9 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
   const handleSelected = useCallback(
     data => {
       dispatch(setSchool(data))
+      dispatch(uniqueTokenPerSchoolEEM({ callClasses: true }))
+
+      setRemoveSelectedProfile(true)
     },
     [dispatch]
   )
@@ -56,6 +63,8 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
   const handleProfileSelect = useCallback(
     data => {
       dispatch(loading(true))
+
+      setRemoveSelectedProfile(false)
 
       setTimeout(() => {
         dispatch(loading(false))
@@ -73,6 +82,15 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
     },
     [dispatch, renderProfiles]
   )
+
+  const TMPSelectProfile = useMemo(() => {
+    if (removeSelectedProfile) return undefined
+
+    return {
+      label: profile.name as string,
+      value: profile.guid as string
+    }
+  }, [profile, removeSelectedProfile])
 
   const handleOpenTour = useCallback(() => {
     dispatch(openTour(true))
@@ -108,7 +126,14 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
       >
         Estou com uma dúvida
       </Button>
-      <MenuContainer>
+      <MenuContainer
+        onClose={() => {
+          if (removeSelectedProfile) {
+            dispatch(productRequest({}))
+            setRemoveSelectedProfile(false)
+          }
+        }}
+      >
         <MenuButton
           type="button"
           w="2.8125rem"
@@ -163,6 +188,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
           </Box>
           <Box px="4" pb="3">
             <Select
+              key={String(profile.name)}
               variant="normal"
               placeholder="Selecione"
               className="height-md"
@@ -171,10 +197,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
                 value: (item.id as unknown) as string,
                 ...item
               }))}
-              value={{
-                label: profile.name as string,
-                value: profile.guid as string
-              }}
+              value={TMPSelectProfile}
               onChange={handleProfileSelect}
             />
           </Box>

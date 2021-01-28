@@ -18,6 +18,8 @@ export const Actions = {
   REFRESH_TOKEN_REQUEST: '@auth/REFRESH_TOKEN_REQUEST',
   REFRESH_TOKEN_SUCCESS: '@auth/REFRESH_TOKEN_SUCCESS',
 
+  REDUCED_TOKEN_EEM: '@auth/REDUCED_TOKEN_EEM',
+
   REHYDRATE: 'persist/REHYDRATE'
 }
 
@@ -45,7 +47,7 @@ export function signInFailure(): Action {
 }
 
 /*
-  Autoriza usuário a entrar na Home
+  Autoriza usuário a entrar
 */
 export function setSigned(): Action {
   return {
@@ -81,5 +83,15 @@ export function refreshTokenSuccess(data: RefreshToken): Action {
   return {
     type: Actions.REFRESH_TOKEN_SUCCESS,
     payload: data
+  }
+}
+
+/*
+  Recebe token secundário para autenticação na EEM
+*/
+export function reducedTokenEEM(token: string): Action {
+  return {
+    type: Actions.REDUCED_TOKEN_EEM,
+    payload: token
   }
 }

@@ -12,6 +12,7 @@ export interface AuthReducer {
   signInStrike: boolean
   withoutAccess: boolean
   refresh_token: string | null
+  reduced_token: string | null
 }
 
 export interface AuthApi {
@@ -24,9 +25,7 @@ export interface AuthApi {
 export interface SignInSuccess {
   token: string | null
   refresh_token: string | null
-  auth_time: number | null
   exp: number | null
-  iat: number | null
   user?: {
     name: string
     integration_id: string | null
@@ -47,8 +46,19 @@ interface Schools {
 export interface RefreshToken {
   token: string | null
   refresh_token: string | null
+  exp: number | null
 }
 export interface RefreshTokenApi {
   access_token: string | null
   refresh_token: string | null
+  exp: number | null
+}
+export interface RehydrateAuth {
+  auth: {
+    exp: number
+    iat: number
+    token: string
+    signed: boolean
+    reduced_token: string
+  }
 }

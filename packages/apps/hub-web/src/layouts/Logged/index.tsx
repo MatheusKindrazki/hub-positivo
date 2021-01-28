@@ -15,6 +15,8 @@ import { postTourViewed } from '~/store/modules/tour/actions'
 
 import { Container } from './styles'
 
+import '~/middlewares/refreshToken'
+
 const Dashboard: React.FC = ({ children }) => {
   useSentry()
   useSendGlobalInfo()
@@ -26,6 +28,7 @@ const Dashboard: React.FC = ({ children }) => {
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
   )
+
   const handleClosedTour = useCallback(() => {
     if (viewed) return dispatch(openTour(false))
 

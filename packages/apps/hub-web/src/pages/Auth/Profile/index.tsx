@@ -5,9 +5,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Select, Box, Heading } from '@hub/common/components'
 import documentTitle from '@hub/common/utils/documentTitle'
 
-import useQuery from '~/hooks/useQuery'
 import history from '~/services/history'
 import { setSigned } from '~/store/modules/auth/actions'
+import { uniqueTokenPerSchoolEEM } from '~/store/modules/productIntegrations/actions'
 import { setProfile, profiles } from '~/store/modules/profile/actions'
 import { Profiles } from '~/store/modules/profile/types'
 import { setSchool as setSchoolUser } from '~/store/modules/user/actions'
@@ -24,16 +24,17 @@ interface SelectItem {
 const Profile: React.FC = () => {
   documentTitle('Selecione o Perfil')
 
-  const dispatch = useDispatch()
-
-  const [school, setSchool] = useState<SelectItem>()
-
   const { token } = useSelector((state: Store.State) => state.auth)
-  const { user } = useSelector((state: Store.State) => state.user)
 
   useEffect(() => {
     !token && history.push('/login')
   }, [token])
+
+  const dispatch = useDispatch()
+
+  const [school, setSchool] = useState<SelectItem>()
+
+  const { user } = useSelector((state: Store.State) => state.user)
 
   const renderSchools = useMemo(() => prepareSchool(user?.schools), [user])
 
@@ -42,6 +43,8 @@ const Profile: React.FC = () => {
   const handleSelected = useCallback(
     data => {
       dispatch(setSchoolUser(data))
+
+      dispatch(uniqueTokenPerSchoolEEM({ callClasses: false }))
 
       setSchool(data)
     },
