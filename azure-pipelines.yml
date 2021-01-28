@@ -6,6 +6,15 @@ trigger:
     - refs/heads/master
 name: $(date:yyyyMMdd)$(rev:.r)
 
+variables:
+  uiSource: 'src'
+  uiBuild: '$(uiSource)/build'
+  ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+    stageName: prod
+  ${{ if eq(variables['Build.SourceBranchName'], 'develop') }}:
+    stageName: dev
+  ${{ if eq(variables['Build.SourceBranchName'], 'homolog') }}:
+    stageName: hml
 
 jobs:
 - job: Job_1
@@ -13,44 +22,55 @@ jobs:
 
   pool:
     vmImage: ubuntu-16.04
+
   steps:
-  - checkout: self
-  - task: PowerShell@2
-    displayName: Set Variables
+  - task: SonarCloudPrepare@1
+    displayName: SonarCloud Prepare
     inputs:
-      targetType: inline
-      script: >-
-        switch(${env:BUILD_SOURCEBRANCH}) {
+      SonarCloud: 'SonarCloud'
+      organization: 'editorati'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      cliProjectKey: 'editorati_HubDigitalFront'
+      cliProjectName: 'HubDigitalFront'
+      cliSources: '.'
 
-        'refs/heads/homolog' {Write-Host "##vso[task.setvariable variable=buildEnv]hml"; }
-        'refs/heads/develop' {Write-Host "##vso[task.setvariable variable=buildEnv]dev"; }
-        default {Write-Host "##vso[task.setvariable variable=buildEnv]prod"; }
-
-        }
-  - task: replacetokens@3
-    displayName: Replace tokens in **/*.env.azure and cp .env
+  - task: DownloadSecureFile@1
+    displayName: "Download env file"
+    name: envFile
     inputs:
-      rootDirectory: packages/apps
-      targetFiles: '**/**/.env.$(buildEnv).azure => .env'
+      secureFile: 'env-hub-$(stageName)'
+
+
+  - script: |
+      cp $(envFile.secureFilePath) ./apps/hub-web/.env
+    displayName: "Copy env file"
+
   - task: YarnInstaller@3
     displayName: Configurate yarn 1.x
+
+
   - task: Yarn@3
     displayName: Yarn workspaces install dependencies  mono-repo
     inputs:
       arguments: install
+
   - task: NodeTool@0
     displayName: Configurate Node v14.x
     inputs:
       versionSpec: 14.x
+
   - task: Yarn@3
     displayName: Node deploy web
     inputs:
       arguments: build:web
+
   - task: ArchiveFiles@2
     displayName: Archive files
     inputs:
       rootFolderOrFile: $(System.DefaultWorkingDirectory)/packages/apps/hub-web/build
       includeRootFolder: false
+
   - task: PublishBuildArtifacts@1
     displayName: 'Publish artifacts: hub'
     inputs:
