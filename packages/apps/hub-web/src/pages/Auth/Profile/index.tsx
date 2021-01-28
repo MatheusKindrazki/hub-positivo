@@ -5,9 +5,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Select, Box, Heading } from '@hub/common/components'
 import documentTitle from '@hub/common/utils/documentTitle'
 
-import useQuery from '~/hooks/useQuery'
 import history from '~/services/history'
 import { setSigned } from '~/store/modules/auth/actions'
+import { uniqueTokenPerSchoolEEM } from '~/store/modules/productIntegrations/actions'
 import { setProfile, profiles } from '~/store/modules/profile/actions'
 import { Profiles } from '~/store/modules/profile/types'
 import { setSchool as setSchoolUser } from '~/store/modules/user/actions'
@@ -51,6 +51,8 @@ const Profile: React.FC = () => {
   const handleProfileSelect = useCallback(
     data => {
       dispatch(setSigned())
+
+      dispatch(uniqueTokenPerSchoolEEM())
 
       dispatch(
         setProfile({
