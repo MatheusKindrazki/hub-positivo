@@ -90,8 +90,6 @@ type ExpiringRehydrate = Payload<RehydrateAuth>
 export function* checkingExpiringToken({
   payload
 }: ExpiringRehydrate): Generator {
-  console.log(payload)
-
   if (!payload) return
 
   if (!payload.auth.signed) {
