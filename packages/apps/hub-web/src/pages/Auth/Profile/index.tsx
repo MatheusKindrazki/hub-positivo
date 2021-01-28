@@ -43,6 +43,8 @@ const Profile: React.FC = () => {
     data => {
       dispatch(setSchoolUser(data))
 
+      dispatch(uniqueTokenPerSchoolEEM())
+
       setSchool(data)
     },
     [dispatch]
@@ -51,8 +53,6 @@ const Profile: React.FC = () => {
   const handleProfileSelect = useCallback(
     data => {
       dispatch(setSigned())
-
-      dispatch(uniqueTokenPerSchoolEEM())
 
       dispatch(
         setProfile({

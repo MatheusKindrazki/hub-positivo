@@ -9,6 +9,8 @@ export const Actions = {
   GET_LEVEL_REQUEST: '@education/GET_LEVEL_REQUEST',
   GET_LEVEL_SUCCESS: '@education/GET_LEVEL_SUCCESS',
 
+  REHYDRATE: 'persist/REHYDRATE',
+
   SIGN_OUT: '@auth/SIGN_OUT'
 }
 

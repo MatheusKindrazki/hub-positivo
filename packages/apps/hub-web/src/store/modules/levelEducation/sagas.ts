@@ -11,33 +11,29 @@ import { productRequest } from '~/store/modules/products/actions'
 import { Actions } from '~/store/modules/profile/actions'
 import { Profile } from '~/store/modules/profile/types'
 
-import { resetProfileLevels, setProfileLevels } from './actions'
+import {
+  resetProfileLevels,
+  setProfileLevels,
+  Actions as EducationActions
+} from './actions'
 import { Ciclos, ContentResponse } from './types'
 
-export function* getLevelByProfile({ payload }: Payload<Profile>): Generator {
-  const { profile } = payload
+const searchLevels = ['professor', 'aluno']
 
-  const searchLevels = ['professor', 'aluno']
-
-  if (!searchLevels.includes(profile)) {
-    yield put(resetProfileLevels())
-
-    return yield put(productRequest({}))
-  }
-
+function* getEducationStage(): Generator {
   interface SendInfo {
     usuarioId: string
   }
 
   const { school } = store.getState().user
-  const { token } = store.getState().auth
+  const { reduced_token } = store.getState().auth
 
   const response = yield call(() => {
     return EEMConnectGET<SendInfo>({
       endpoint: '/v1/Academico/turmas',
-      token: token || '',
+      token: reduced_token as string,
       data: {
-        usuarioId: school?.user_id || ''
+        usuarioId: school?.user_id as string
       }
     })
   })
@@ -77,14 +73,33 @@ export function* getLevelByProfile({ payload }: Payload<Profile>): Generator {
 
   const uniByCiclo = unionBy(ciclos, 'id')
 
-  yield put(
+  return yield put(
     setProfileLevels({
       levels: uniByCiclo,
       level: selectedCiclo.label
     })
   )
+}
+
+export function* getLevelByPerson({ payload }: Payload<Profile>): Generator {
+  const { profile } = payload
+
+  if (!searchLevels.includes(profile)) {
+    yield put(resetProfileLevels())
+
+    return yield put(productRequest({}))
+  }
+
+  yield getEducationStage()
 
   return yield put(productRequest({}))
 }
 
-export default all([takeLatest(Actions.SET_PROFILE, getLevelByProfile)])
+export function* REHYDRATEProfile(): Generator {
+  return yield getEducationStage()
+}
+
+export default all([
+  takeLatest(Actions.SET_PROFILE, getLevelByPerson),
+  takeLatest(EducationActions.REHYDRATE, REHYDRATEProfile)
+])

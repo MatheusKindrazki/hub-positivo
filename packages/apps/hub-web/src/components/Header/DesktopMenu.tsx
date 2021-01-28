@@ -11,6 +11,7 @@ import ModalSupportContext from '~/components/ModalSupport/context'
 import history from '~/services/history'
 import { signOut } from '~/store/modules/auth/actions'
 import { loading } from '~/store/modules/global/actions'
+import { uniqueTokenPerSchoolEEM } from '~/store/modules/productIntegrations/actions'
 import { profiles, setProfile } from '~/store/modules/profile/actions'
 import { Profiles } from '~/store/modules/profile/types'
 import { openTour } from '~/store/modules/tour/actions'
@@ -44,6 +45,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
   const handleSelected = useCallback(
     data => {
       dispatch(setSchool(data))
+      dispatch(uniqueTokenPerSchoolEEM())
     },
     [dispatch]
   )
