@@ -47,18 +47,21 @@ module.exports = {
         'newlinesBetween': 'always',
         'groups': [
           '/^react$/',
+          'module',
           '/^react-redux/',
           '/^redux/',
+          '/^~/store/',
           '/^@hub/',
-          '/^@chackra/',
-          'module',
+          '/^@chakra/',
+          '/^~/services/',
+          '/^~/utils/',
           '/^~/pages/',
           '/^~/components/',
           '/^~/assets/',
           '/^~/',
           ['parent', 'sibling', 'index']
         ],
-        'alphabetize': { 'order': 'asc', 'ignoreCase': true }
+        'alphabetize': { 'order': 'desc', 'ignoreCase': true }
       }
     ],
     "@typescript-eslint/ban-types": [

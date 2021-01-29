@@ -1,18 +1,18 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects'
-
-import api from '@hub/api'
-import { toast } from '@hub/common/utils'
-
 import { ApiResponse } from 'apisauce'
 
-import { store } from '~/store'
-import { getTourRequest } from '~/store/modules/tour/actions'
+import { all, call, put, takeLatest } from 'redux-saga/effects'
 
-import { withoutAccess } from '../auth/actions'
-import { loading } from '../global/actions'
-import { mhundArvoreIntegration } from '../productIntegrations/actions'
-import { Actions, productSuccess } from './actions'
+import { getTourRequest } from '~/store/modules/tour/actions'
+import { store } from '~/store'
+
+import { toast } from '@hub/common/utils'
+import api from '@hub/api'
+
 import { CardProduct } from './types'
+import { Actions, productSuccess } from './actions'
+import { mhundArvoreIntegration } from '../productIntegrations/actions'
+import { loading } from '../global/actions'
+import { withoutAccess } from '../auth/actions'
 
 export function* getProducts(): Generator {
   yield put(loading(true))
@@ -20,7 +20,7 @@ export function* getProducts(): Generator {
   const enableFilterLevel = ['PROFESSOR', 'ALUNO']
 
   const { guid } = store.getState().profile
-  const { level } = store.getState().levelEducation
+  const { level } = store.getState().educationalStage
 
   const { user, school } = store.getState().user
   let query: string

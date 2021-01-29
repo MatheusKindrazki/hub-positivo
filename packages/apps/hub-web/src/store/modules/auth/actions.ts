@@ -88,7 +88,6 @@ export function refreshTokenRequest(): Action {
     type: Actions.REFRESH_TOKEN_REQUEST
   }
 }
-
 export function refreshTokenSuccess(data: RefreshToken): Action {
   return {
     type: Actions.REFRESH_TOKEN_SUCCESS,

@@ -35,9 +35,3 @@ export function setProfileLevels(data: SetLevelSuccess): Action {
     payload: data
   }
 }
-
-export function refreshEducation(): Action {
-  return {
-    type: Actions.REFRESH_LEVEL_EDUCATION
-  }
-}

@@ -2,11 +2,12 @@ import React, { useCallback, useState, useMemo } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { Select, Box, Heading } from '@hub/common/components'
-import documentTitle from '@hub/common/utils/documentTitle'
-
-import { prepareFirstAccess } from '~/store/modules/auth/actions'
 import { FirstAccessData } from '~/store/modules/auth/types'
+import { prepareFirstAccess } from '~/store/modules/auth/actions'
+
+import documentTitle from '@hub/common/utils/documentTitle'
+import { Select, Box, Heading } from '@hub/common/components'
+
 import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
 
 import CardBox, { Icons } from './Components/CardBox'
@@ -32,8 +33,6 @@ const Profile: React.FC = () => {
 
   const handleSignInUser = useCallback(
     data => {
-      console.log(renderProfiles)
-
       dispatch(
         prepareFirstAccess({
           selected_school: school as FirstAccessData['selected_school'],
@@ -41,8 +40,6 @@ const Profile: React.FC = () => {
           selected_profile: data
         })
       )
-
-      console.log(school, data, renderProfiles)
     },
     [dispatch, renderProfiles, school]
   )

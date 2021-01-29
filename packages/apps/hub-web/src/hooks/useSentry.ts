@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 
-import { useSelector } from 'react-redux'
-
 import * as Sentry from '@sentry/react'
+
+import { useSelector } from 'react-redux'
 
 const useSentry = (): void => {
   const { user, school } = useSelector((state: Store.State) => state.user)
   const { name } = useSelector((state: Store.State) => state.profile)
-  const { level } = useSelector((state: Store.State) => state.levelEducation)
+  const { level } = useSelector((state: Store.State) => state.educationalStage)
 
   useEffect(() => {
     // ? Captura de bugs para o Sentry
