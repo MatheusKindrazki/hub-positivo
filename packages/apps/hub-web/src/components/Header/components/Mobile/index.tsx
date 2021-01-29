@@ -15,6 +15,8 @@ import history from '~/services/history'
 
 import ModalSupportContext from '~/components/ModalSupport/context'
 
+import { useHeader } from '../../context'
+
 export interface RefMenuProps {
   openMenu: () => void
 }
@@ -48,19 +50,20 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
   ({ openModalPass }, ref) => {
     const dispatch = useDispatch()
 
+    const { schoolList, roleList, ...func } = useHeader()
+
     const { onOpen: openModalSupport } = useContext(ModalSupportContext)
 
-    const { user, school, avatar } = useSelector(
-      (state: Store.State) => state.user
-    )
+    const { user } = useSelector((state: Store.State) => state.user)
 
     const { isOpen, onClose, onOpen } = useDisclosure()
-    const profile = useSelector((state: Store.State) => state.profile)
 
     const { steps } = useSelector((state: Store.State) => state.tour)
 
     const openMenu = (): void => {
       if (!isOpen) {
+        resetInfo()
+
         onOpen()
       } else {
         onClose()
@@ -83,6 +86,8 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
       dispatch(openTour(true))
     }, [dispatch, onClose])
 
+    const { setRole, setSchool, resetInfo, defaultValue } = func
+
     return (
       <>
         <Box
@@ -93,6 +98,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
         ></Box>
         <DrawerContainer
           isOpen={isOpen}
+          autoFocus={false}
           placement="left"
           onClose={() => onClose()}
         >
@@ -103,7 +109,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                 name={user?.name || ''}
                 fontSize="1.125rem"
                 size="40px"
-                avatar={avatar || ''}
+                avatar=""
                 fontWeight="bold"
               />
             </Box>
@@ -113,19 +119,20 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                 variant="normal"
                 placeholder="Selecione"
                 className="height-md"
-                value={school}
-                options={[]}
-                onChange={() => console.log('')}
+                value={defaultValue.school}
+                options={schoolList}
+                onChange={e => setSchool(e as any)}
               />
             </Box>
             <Box px="4" pb="3">
               <Select
+                key={String(defaultValue.role)}
                 variant="normal"
                 placeholder="Selecione"
                 className="height-md"
-                options={[]}
-                value={[]}
-                onChange={() => console.log('')}
+                value={defaultValue.role}
+                options={roleList}
+                onChange={e => setRole(e as any)}
               />
             </Box>
             <MenuDivider />
