@@ -1,11 +1,11 @@
-import { Reducer } from 'redux'
-
 import { produce } from 'immer'
+
+import { Reducer } from 'redux'
 
 import { Actions as AuthAction } from '~/store/modules/auth/actions'
 
-import { Actions } from './actions'
 import { ProfileReducer } from './types'
+import { Actions } from './actions'
 
 export const INITIAL_STATE: ProfileReducer = {
   profile: 'default',

@@ -1,27 +1,19 @@
-import React, {
-  useCallback,
-  useImperativeHandle,
-  useContext,
-  useMemo
-} from 'react'
+import React, { useCallback, useImperativeHandle, useContext } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Box, Button, Select, Welcome } from '@hub/common/components'
-import Drawer from '@hub/common/components/Drawer'
-import Menu from '@hub/common/components/Menu'
+import { openTour } from '~/store/modules/tour/actions'
+import { signOut } from '~/store/modules/auth/actions'
 
-import ModalSupportContext from '~/components/ModalSupport/context'
+import { useTheme } from '@hub/common/layout/styles'
+import Menu from '@hub/common/components/Menu'
+import { List } from '@hub/common/components/Icons'
+import Drawer from '@hub/common/components/Drawer'
+import { Box, Button, Select, Welcome } from '@hub/common/components'
 
 import history from '~/services/history'
-import { signOut } from '~/store/modules/auth/actions'
-import { loading } from '~/store/modules/global/actions'
-import { uniqueTokenPerSchoolEEM } from '~/store/modules/productIntegrations/actions'
-import { profiles, setProfile } from '~/store/modules/profile/actions'
-import { Profiles } from '~/store/modules/profile/types'
-import { openTour } from '~/store/modules/tour/actions'
-import { setSchool } from '~/store/modules/user/actions'
-import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
+
+import ModalSupportContext from '~/components/ModalSupport/context'
 
 export interface RefMenuProps {
   openMenu: () => void
@@ -33,6 +25,24 @@ export interface MenuProps {
 
 const { MenuDivider } = Menu
 const { useDisclosure, DrawerContainer, DrawerContent } = Drawer
+
+interface MenuPropsButton {
+  onClick: () => void
+}
+
+export const MenuButton: React.FC<MenuPropsButton> = ({ onClick }) => {
+  const { colors } = useTheme()
+  return (
+    <Button
+      onClick={onClick}
+      backgroundColor="transparent!important"
+      ml="-0.625rem"
+      width="auto"
+    >
+      <List color={colors.blue[500]} size={24} />
+    </Button>
+  )
+}
 
 const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
   ({ openModalPass }, ref) => {
@@ -46,10 +56,6 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
 
     const { isOpen, onClose, onOpen } = useDisclosure()
     const profile = useSelector((state: Store.State) => state.profile)
-
-    const renderSchools = useMemo(() => prepareSchool(user?.schools), [user])
-
-    const renderProfiles = useMemo(() => prepareRoles(school?.roles), [school])
 
     const { steps } = useSelector((state: Store.State) => state.tour)
 
@@ -65,37 +71,6 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
         openMenu
       }
     })
-
-    const handleSelected = useCallback(
-      data => {
-        dispatch(setSchool(data))
-        dispatch(uniqueTokenPerSchoolEEM({ callClasses: true }))
-      },
-      [dispatch]
-    )
-
-    const handleProfileSelect = useCallback(
-      data => {
-        dispatch(loading(true))
-
-        onClose()
-
-        setTimeout(() => {
-          dispatch(loading(false))
-          dispatch(
-            setProfile({
-              guid: data.id,
-              name: data.title,
-              profile: data.profile,
-              colorProfile: data.colorProfile
-            })
-          )
-        }, 1500)
-
-        dispatch(profiles((renderProfiles as unknown) as Profiles))
-      },
-      [dispatch, onClose, renderProfiles]
-    )
 
     const handleClosed = useCallback(async () => {
       dispatch(signOut())
@@ -139,8 +114,8 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                 placeholder="Selecione"
                 className="height-md"
                 value={school}
-                options={renderSchools}
-                onChange={handleSelected}
+                options={[]}
+                onChange={() => console.log('')}
               />
             </Box>
             <Box px="4" pb="3">
@@ -148,16 +123,9 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                 variant="normal"
                 placeholder="Selecione"
                 className="height-md"
-                options={renderProfiles.map(item => ({
-                  label: item.title,
-                  value: (item.id as unknown) as string,
-                  ...item
-                }))}
-                value={{
-                  label: profile.name as string,
-                  value: profile.guid as string
-                }}
-                onChange={handleProfileSelect}
+                options={[]}
+                value={[]}
+                onChange={() => console.log('')}
               />
             </Box>
             <MenuDivider />

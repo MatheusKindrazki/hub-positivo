@@ -1,23 +1,23 @@
-import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
-
-import { apiAuthProduct } from '@hub/api'
-import { toast } from '@hub/common/utils'
-
 import { ApiResponse } from 'apisauce'
 
-import { EEMConnectPost } from '~/services/eemConnect'
-import history from '~/services/history'
+import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
+
 import { store } from '~/store'
 
-import { loading } from '../global/actions'
-import { setFrameURL } from '../products/actions'
+import { toast } from '@hub/common/utils'
+import { apiAuthProduct } from '@hub/api'
+
+import history from '~/services/history'
+
+import { AuthRequest } from './types'
 import {
   Actions,
   authProductFailure,
   authProductSuccess,
   authProductRequest
 } from './actions'
-import { AuthRequest } from './types'
+import { setFrameURL } from '../products/actions'
+import { loading } from '../global/actions'
 
 // tipos de renderização
 // | 'iframe'
@@ -66,7 +66,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   const auth = store.getState().auth
   const profile = store.getState().profile
   const user = store.getState().user
-  const { level } = store.getState().levelEducation
+  const { level } = store.getState().educationalStage
 
   if (!auth && !profile && !user) return
 

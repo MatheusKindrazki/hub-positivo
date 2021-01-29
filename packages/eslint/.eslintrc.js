@@ -35,6 +35,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'space-before-function-paren': 'off',
     'react-hooks/exhaustive-deps': 'warn',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     'import/extensions': 'off',
     "no-unused-vars": "off",
@@ -47,18 +48,21 @@ module.exports = {
         'newlinesBetween': 'always',
         'groups': [
           '/^react$/',
+          'module',
           '/^react-redux/',
           '/^redux/',
+          '/^~/store/',
           '/^@hub/',
-          '/^@chackra/',
-          'module',
+          '/^@chakra/',
+          '/^~/services/',
+          '/^~/utils/',
           '/^~/pages/',
           '/^~/components/',
           '/^~/assets/',
           '/^~/',
           ['parent', 'sibling', 'index']
         ],
-        'alphabetize': { 'order': 'asc', 'ignoreCase': true }
+        'alphabetize': { 'order': 'desc', 'ignoreCase': true }
       }
     ],
     "@typescript-eslint/ban-types": [

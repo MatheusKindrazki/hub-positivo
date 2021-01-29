@@ -2,11 +2,11 @@ import React, { useCallback } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Box, Select } from '@hub/common/components'
-import { useMediaQuery } from '@hub/common/layout/styles'
-
-import { setLevel } from '~/store/modules/levelEducation/actions'
 import { productRequest } from '~/store/modules/products/actions'
+import { setEducationalStage } from '~/store/modules/educationalStage/actions'
+
+import { useMediaQuery } from '@hub/common/layout/styles'
+import { Box, Select } from '@hub/common/components'
 
 const Filter: React.FC = () => {
   const dispatch = useDispatch()
@@ -15,12 +15,12 @@ const Filter: React.FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 480px)')
 
   const { levels, level } = useSelector(
-    (state: Store.State) => state.levelEducation
+    (state: Store.State) => state.educationalStage
   )
 
   const handleSelect = useCallback(
     data => {
-      dispatch(setLevel(data.label))
+      dispatch(setEducationalStage(data.label))
 
       dispatch(productRequest({}))
     },

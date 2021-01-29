@@ -1,9 +1,9 @@
-import { Reducer } from 'redux'
-
 import { produce } from 'immer'
 
-import { Actions } from './actions'
+import { Reducer } from 'redux'
+
 import { TourReducer } from './types'
+import { Actions } from './actions'
 
 const INITIAL_STATE: TourReducer = {
   loading: false,
