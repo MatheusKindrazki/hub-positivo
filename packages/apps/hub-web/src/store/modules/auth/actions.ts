@@ -1,11 +1,6 @@
 import { Action } from 'redux'
 
-import {
-  SignInRequest,
-  SignInSuccess,
-  RefreshToken,
-  FirstAccessData
-} from './types'
+import { SignInRequest, SignInSuccess, RefreshToken, AccessData } from './types'
 
 export const Actions = {
   SIGN_IN_REQUEST: '@auth/SIGN_IN_REQUEST',
@@ -56,7 +51,7 @@ export function signInFailure(): Action {
   Realiza Setup inicial do usuário
 */
 
-export function prepareFirstAccess(data: FirstAccessData): Action {
+export function preparingUserData(data: AccessData): Action {
   return {
     type: Actions.FIRST_ACCESS,
     payload: data

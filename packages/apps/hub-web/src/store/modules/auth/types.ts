@@ -6,10 +6,11 @@ export interface SignInRequest {
   redirect: string | undefined
 }
 
-export interface FirstAccessData {
+export interface AccessData {
   selected_school: Schools
   selected_profile: Profiles
   profiles: Profiles[]
+  redirect?: boolean
 }
 
 export interface AuthReducer {

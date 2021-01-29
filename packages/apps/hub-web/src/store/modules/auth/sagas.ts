@@ -27,7 +27,7 @@ import {
   AuthApi,
   RefreshTokenApi,
   RehydrateAuth,
-  FirstAccessData
+  AccessData
 } from './types'
 import {
   Actions,
@@ -95,13 +95,14 @@ export function* signIn({ payload }: SignInPayload): Generator {
 }
 
 /*
-  Configurações iniciais de acesso
+  !Evento disparado no login inicial do usuário
+  !e também no processo de alteração de escola/perfil
 */
-type FirstAccessPayload = Payload<FirstAccessData>
-export function* prepareFirstAccess({
+type PreparingAccessPayload = Payload<AccessData>
+export function* preparePreparingAccess({
   payload
-}: FirstAccessPayload): Generator {
-  const { profiles, selected_profile, selected_school } = payload
+}: PreparingAccessPayload): Generator {
+  const { profiles, selected_profile, selected_school, redirect } = payload
 
   yield put(loading(true))
 
@@ -125,9 +126,11 @@ export function* prepareFirstAccess({
   )
   yield put(setProfiles(profiles))
 
-  yield put(setSigned())
+  if (redirect) {
+    yield put(setSigned())
 
-  return history.push('/')
+    history.push('/')
+  }
 }
 
 /*
@@ -213,6 +216,6 @@ export function* refreshToken(): Generator {
 export default all([
   takeLatest(Actions.SIGN_IN_REQUEST, signIn),
   takeLatest(Actions.REHYDRATE, checkingExpiringToken),
-  takeLatest(Actions.FIRST_ACCESS, prepareFirstAccess),
+  takeLatest(Actions.FIRST_ACCESS, preparePreparingAccess),
   takeLatest(Actions.REFRESH_TOKEN_REQUEST, refreshToken)
 ])

@@ -1,6 +1,6 @@
 import transpileProfile, { Transpile } from './transpileProfile'
 
-interface RolesProps {
+export interface RolesProps {
   name: string
   icon: string
   colorProfile: string
@@ -25,7 +25,7 @@ interface SchoolsParamsRequest {
   roles: string[]
 }
 
-interface SchoolsProps {
+export interface SchoolsProps {
   value: string
   label: string
   roles: string[]

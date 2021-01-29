@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
+import { useField } from '@unform/core'
+
 import {
   Input as ChakraInput,
   FormControl,
@@ -9,7 +11,6 @@ import {
   InputLeftElement,
   InputRightElement
 } from '@chakra-ui/react'
-import { useField } from '@unform/core'
 
 type InputElement = InputProps
 

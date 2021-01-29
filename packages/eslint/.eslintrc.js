@@ -35,6 +35,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'space-before-function-paren': 'off',
     'react-hooks/exhaustive-deps': 'warn',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     'import/extensions': 'off',
     "no-unused-vars": "off",

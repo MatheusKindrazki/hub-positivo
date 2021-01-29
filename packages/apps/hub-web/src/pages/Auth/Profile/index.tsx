@@ -2,8 +2,8 @@ import React, { useCallback, useState, useMemo } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { FirstAccessData } from '~/store/modules/auth/types'
-import { prepareFirstAccess } from '~/store/modules/auth/actions'
+import { AccessData } from '~/store/modules/auth/types'
+import { preparingUserData } from '~/store/modules/auth/actions'
 
 import documentTitle from '@hub/common/utils/documentTitle'
 import { Select, Box, Heading } from '@hub/common/components'
@@ -34,10 +34,11 @@ const Profile: React.FC = () => {
   const handleSignInUser = useCallback(
     data => {
       dispatch(
-        prepareFirstAccess({
-          selected_school: school as FirstAccessData['selected_school'],
+        preparingUserData({
+          selected_school: school as AccessData['selected_school'],
           profiles: renderProfiles,
-          selected_profile: data
+          selected_profile: data,
+          redirect: true
         })
       )
     },
