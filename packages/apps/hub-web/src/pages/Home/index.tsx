@@ -1,7 +1,16 @@
 import React, { useCallback, useMemo, useState } from 'react'
 
+import { debounce } from 'ts-debounce'
+import classNames from 'classnames'
+
 import { useSelector, useDispatch } from 'react-redux'
 
+import { loading } from '~/store/modules/global/actions'
+import { preAuth } from '~/store/modules/authProduct/actions'
+
+import documentTitle from '@hub/common/utils/documentTitle'
+import createSlug from '@hub/common/utils/createSlug'
+import SearchInput from '@hub/common/components/Search'
 import {
   Box,
   Heading,
@@ -9,22 +18,13 @@ import {
   Collapse,
   CardProduct
 } from '@hub/common/components'
-import SearchInput from '@hub/common/components/Search'
-import createSlug from '@hub/common/utils/createSlug'
-import documentTitle from '@hub/common/utils/documentTitle'
 
-import classNames from 'classnames'
-import { debounce } from 'ts-debounce'
-
-import { preAuth } from '~/store/modules/authProduct/actions'
-import { loading } from '~/store/modules/global/actions'
-
-import { cardFilter } from './cardFilter'
-import FakeCollapse from './components/FakeCollapse'
-import mockFakeLoading from './components/FakeCollapse/mock'
-import FakeLoadingCard from './components/FakeLoading'
-import Filter from './components/Filter'
 import { Container } from './styles'
+import Filter from './components/Filter'
+import FakeLoadingCard from './components/FakeLoading'
+import mockFakeLoading from './components/FakeCollapse/mock'
+import FakeCollapse from './components/FakeCollapse'
+import { cardFilter } from './cardFilter'
 
 const Home: React.FC = () => {
   documentTitle('Home')
@@ -82,10 +82,7 @@ const Home: React.FC = () => {
       <Box
         py="5"
         px="4"
-        pb={{
-          sm: '0',
-          md: '5'
-        }}
+        pb={{ sm: '0', md: '5' }}
         backgroundColor="blue.500"
         className="background-animate"
       >
@@ -129,6 +126,7 @@ const Home: React.FC = () => {
             filterCards.map((card, i) => (
               <Collapse
                 key={Math.random()}
+                disable
                 cor={card.cor}
                 id={card.id}
                 nome={card.nome}
