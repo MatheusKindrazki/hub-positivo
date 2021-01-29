@@ -1,7 +1,7 @@
 import { decode } from 'jsonwebtoken'
 import { ApiResponse } from 'apisauce'
 
-import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
+import { all, call, delay, takeLatest, Payload, put } from 'redux-saga/effects'
 
 import { setSchool } from '~/store/modules/user/actions'
 import {
@@ -167,6 +167,8 @@ export function* checkingExpiringToken({
 
   yield put(enableRefreshTokenMiddleware())
 
+  yield delay(1500)
+
   return yield put(productRequest({}))
 }
 
@@ -217,6 +219,8 @@ export function* refreshToken(): Generator {
   )
 
   yield put(enableRefreshTokenMiddleware())
+
+  yield delay(1500)
 
   return yield put(productRequest({}))
 }
