@@ -8,7 +8,6 @@ import { toast } from '@hub/common/utils'
 import { apiAuthProduct } from '@hub/api'
 
 import history from '~/services/history'
-import { EEMConnectPost } from '~/services/eemConnect'
 
 import { AuthRequest } from './types'
 import {

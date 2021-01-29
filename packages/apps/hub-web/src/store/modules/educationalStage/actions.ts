@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-import { SetLevelSuccess } from './types'
+import { setEducationalStageSuccess } from './types'
 
 export const Actions = {
   SET_LEVEL: '@education/SET_LEVEL',
@@ -16,7 +16,7 @@ export const Actions = {
   SIGN_OUT: '@auth/SIGN_OUT'
 }
 
-export function setLevel(level: string): Action {
+export function setEducationalStage(level: string): Action {
   return {
     type: Actions.SET_LEVEL,
     payload: level
@@ -29,7 +29,7 @@ export function resetProfileLevels(): Action {
   }
 }
 
-export function setProfileLevels(data: SetLevelSuccess): Action {
+export function setEducationalLevels(data: setEducationalStageSuccess): Action {
   return {
     type: Actions.GET_LEVEL_SUCCESS,
     payload: data

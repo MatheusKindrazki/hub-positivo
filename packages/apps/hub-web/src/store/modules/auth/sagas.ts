@@ -144,7 +144,7 @@ export function* checkingExpiringToken({
     return yield put(signOut())
   }
 
-  const { exp } = payload.auth
+  const { exp, reduced_token } = payload.auth
 
   if (!exp || exp === 0) return
 
@@ -155,6 +155,8 @@ export function* checkingExpiringToken({
   if (now >= exp) {
     return yield put(refreshTokenRequest())
   }
+
+  yield put(reducedTokenEEM(reduced_token))
   return yield put(productRequest({}))
 }
 

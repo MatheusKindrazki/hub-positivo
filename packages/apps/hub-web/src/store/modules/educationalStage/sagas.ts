@@ -8,12 +8,10 @@ import { Actions } from '~/store/modules/profile/actions'
 import { productRequest } from '~/store/modules/products/actions'
 import { store } from '~/store'
 
-import { toast } from '@hub/common/utils'
-
 import { EEMConnectGET } from '~/services/eemConnect'
 
 import { Ciclos, ContentResponse } from './types'
-import { resetProfileLevels, setProfileLevels } from './actions'
+import { resetProfileLevels, setEducationalLevels } from './actions'
 
 const searchLevels = ['professor', 'aluno']
 
@@ -67,14 +65,16 @@ function* getEducationStage(): Generator {
   const uniByCiclo = unionBy(ciclos, 'id')
 
   return yield put(
-    setProfileLevels({
+    setEducationalLevels({
       levels: uniByCiclo,
       level: selectedCiclo.label
     })
   )
 }
 
-export function* getLevelByPerson({ payload }: Payload<Profile>): Generator {
+export function* getEducationalByPerson({
+  payload
+}: Payload<Profile>): Generator {
   const { profile } = payload
 
   if (!searchLevels.includes(profile)) {
@@ -87,4 +87,5 @@ export function* getLevelByPerson({ payload }: Payload<Profile>): Generator {
 
   return yield put(productRequest({}))
 }
-export default all([takeLatest(Actions.SET_PROFILE, getLevelByPerson)])
+
+export default all([takeLatest(Actions.SET_PROFILE, getEducationalByPerson)])

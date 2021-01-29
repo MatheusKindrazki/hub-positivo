@@ -3,7 +3,7 @@ import React, { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { productRequest } from '~/store/modules/products/actions'
-import { setLevel } from '~/store/modules/educationalStage/actions'
+import { setEducationalStage } from '~/store/modules/educationalStage/actions'
 
 import { useMediaQuery } from '@hub/common/layout/styles'
 import { Box, Select } from '@hub/common/components'
@@ -20,7 +20,7 @@ const Filter: React.FC = () => {
 
   const handleSelect = useCallback(
     data => {
-      dispatch(setLevel(data.label))
+      dispatch(setEducationalStage(data.label))
 
       dispatch(productRequest({}))
     },
