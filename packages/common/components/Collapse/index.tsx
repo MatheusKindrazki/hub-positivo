@@ -1,5 +1,9 @@
 import React, { useMemo } from 'react'
 
+import { Collapse as CollapseUI } from 'react-collapse'
+import { CaretDown } from 'phosphor-react'
+import classNames from 'classnames'
+
 import {
   Box,
   Heading,
@@ -7,15 +11,13 @@ import {
   useDisclosure,
   useMediaQuery
 } from '@chakra-ui/react'
-import classNames from 'classnames'
-import { CaretDown } from 'phosphor-react'
-import { Collapse as CollapseUI } from 'react-collapse'
 
 import CollapseGlobal from './styles'
 
 export interface CollapseProps {
   id: string
   nome: string
+  disable?: boolean
   cor: string
   gridColumns?: number | number[]
   className?: string
@@ -26,6 +28,7 @@ const Collapse: React.FC<CollapseProps> = ({
   id,
   nome,
   children,
+  disable,
   gridColumns,
   grid = true,
   className
@@ -48,7 +51,7 @@ const Collapse: React.FC<CollapseProps> = ({
       >
         <Box
           width="100%"
-          style={{ cursor: 'pointer' }}
+          style={!disable ? { cursor: 'pointer' } : {}}
           d="flex"
           justifyContent="space-between"
           alignItems="center"
@@ -63,18 +66,22 @@ const Collapse: React.FC<CollapseProps> = ({
           >
             {nome}
           </Heading>
-
-          <Box
-            as={CaretDown}
-            color="blue.500"
-            size="1.25rem"
-            style={{
-              transition: 'all .2s linear',
-              transform: isOpen ? 'rotate(-180deg)' : 'rotate(0deg)'
-            }}
-          />
+          {!disable && (
+            <Box
+              as={CaretDown}
+              color="blue.500"
+              size="1.25rem"
+              style={{
+                transition: 'all .2s linear',
+                transform: isOpen ? 'rotate(-180deg)' : 'rotate(0deg)'
+              }}
+            />
+          )}
         </Box>
-        <CollapseUI isOpened={isOpen} style={{ padding: '10px 0' }}>
+        <CollapseUI
+          isOpened={disable ? true : isOpen}
+          style={{ padding: '10px 0' }}
+        >
           {grid ? (
             <SimpleGrid
               columns={gridColumns || [1, 1, 2, responsiveGrid]}
