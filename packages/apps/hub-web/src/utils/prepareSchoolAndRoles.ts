@@ -5,6 +5,8 @@ export interface RolesProps {
   icon: string
   colorProfile: string
   id: string
+  label: string
+  value: string
 }
 
 const prepareRoles = (data?: string[]): RolesProps[] => {
@@ -15,7 +17,9 @@ const prepareRoles = (data?: string[]): RolesProps[] => {
     icon: transpileProfile(i as Transpile)?.label?.toLowerCase() || 'default',
     colorProfile:
       transpileProfile(i as Transpile)?.label?.toLowerCase() || 'default',
-    id: transpileProfile(i as Transpile)?.value || 'default'
+    id: transpileProfile(i as Transpile)?.value || 'default',
+    label: transpileProfile(i as Transpile)?.label || 'Desconhecido',
+    value: transpileProfile(i as Transpile)?.label?.toLowerCase() || 'default'
   }))
 }
 

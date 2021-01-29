@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { openTour } from '~/store/modules/tour/actions'
 import { signOut } from '~/store/modules/auth/actions'
 
+import { useDisclosure } from '@hub/common/hooks'
 import Welcome from '@hub/common/components/Welcome'
 import Select from '@hub/common/components/Select'
 import { Box, Button, Avatar, Menu } from '@hub/common/components'
@@ -13,7 +14,8 @@ import history from '~/services/history'
 
 import ModalSupportContext from '~/components/ModalSupport/context'
 
-import GlobalStyle from './styles'
+import GlobalStyle from '../../styles'
+import { useHeader } from '../../context'
 
 const { MenuContainer, MenuButton, MenuList, MenuDivider, MenuItem } = Menu
 
@@ -21,8 +23,7 @@ const DesktopMenu: React.FC = () => {
   const dispatch = useDispatch()
   const { onOpen } = useContext(ModalSupportContext)
 
-  const [openMenu, setOpenMenu] = useState(false)
-
+  const { schoolList, roleList, ...func } = useHeader()
   const { steps } = useSelector((state: Store.State) => state.tour)
 
   const { user } = useSelector((state: Store.State) => state.user)
@@ -35,6 +36,10 @@ const DesktopMenu: React.FC = () => {
   const handleOpenTour = useCallback(() => {
     dispatch(openTour(true))
   }, [dispatch])
+
+  const { setRole, setSchool, resetInfo, defaultValue } = func
+
+  const { isOpen, onOpen: menuOpen, onClose: menuClose } = useDisclosure()
 
   return (
     <Box
@@ -67,10 +72,12 @@ const DesktopMenu: React.FC = () => {
         Estou com uma dúvida
       </Button>
       <MenuContainer
-        onOpen={() => {
-          setOpenMenu(true)
+        onClose={() => {
+          menuClose()
+          resetInfo()
         }}
-        isOpen={openMenu}
+        onOpen={menuOpen}
+        isOpen={isOpen}
       >
         <MenuButton
           type="button"
@@ -119,13 +126,20 @@ const DesktopMenu: React.FC = () => {
               variant="normal"
               placeholder="Selecione"
               className="height-md"
+              value={defaultValue.school}
+              options={schoolList}
+              onChange={e => setSchool(e as any)}
             />
           </Box>
           <Box px="4" pb="3">
             <Select
+              key={String(defaultValue.role)}
               variant="normal"
               placeholder="Selecione"
               className="height-md"
+              value={defaultValue.role}
+              options={roleList}
+              onChange={e => setRole(e as any)}
             />
           </Box>
           <MenuDivider />

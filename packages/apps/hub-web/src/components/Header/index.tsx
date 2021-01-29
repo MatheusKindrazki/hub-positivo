@@ -2,36 +2,16 @@ import React, { useCallback, useRef } from 'react'
 
 import Headroom from 'react-headroom'
 
-import { useTheme } from '@hub/common/layout'
 import { useMediaQuery, useDisclosure } from '@hub/common/hooks'
-import { List } from '@hub/common/components/Icons'
-import { Box, Button, Modal } from '@hub/common/components'
+import { Box, Modal } from '@hub/common/components'
 
 import Logo from '~/components/LogoOn'
 
-import MobileMenu from './MobileMenu'
-import { RefMenuProps } from './MobileMenu'
-import DesktopMenu from './DesktopMenu'
+import { HeaderProvider } from './context'
+import MobileMenu, { MenuButton } from './components/Mobile'
+import { RefMenuProps } from './components/Mobile'
+import DesktopMenu from './components/Desktop'
 import AlterPass from './components/AlterPass'
-
-interface MenuProps {
-  onClick: () => void
-}
-
-const MenuMobile: React.FC<MenuProps> = ({ onClick }) => {
-  const { colors } = useTheme()
-  return (
-    <Button
-      onClick={onClick}
-      backgroundColor="transparent!important"
-      ml="-0.625rem"
-      width="auto"
-    >
-      <List color={colors.blue[500]} size={24} />
-    </Button>
-  )
-}
-
 const Header: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -43,7 +23,7 @@ const Header: React.FC = () => {
   }, [])
 
   return (
-    <>
+    <HeaderProvider>
       <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
         <Box
           p="4"
@@ -62,7 +42,7 @@ const Header: React.FC = () => {
             alignItems="center"
             justifyContent="space-between"
           >
-            {!isDesktop && <MenuMobile onClick={handleClick} />}
+            {!isDesktop && <MenuButton onClick={handleClick} />}
             <Logo />
           </Box>
 
@@ -89,7 +69,7 @@ const Header: React.FC = () => {
       >
         <AlterPass onClose={onClose} />
       </Modal>
-    </>
+    </HeaderProvider>
   )
 }
 

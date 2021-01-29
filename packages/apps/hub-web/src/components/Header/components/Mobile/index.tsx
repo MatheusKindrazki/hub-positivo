@@ -1,22 +1,17 @@
-import React, {
-  useCallback,
-  useImperativeHandle,
-  useContext,
-  useMemo
-} from 'react'
+import React, { useCallback, useImperativeHandle, useContext } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour } from '~/store/modules/tour/actions'
 import { signOut } from '~/store/modules/auth/actions'
 
+import { useTheme } from '@hub/common/layout/styles'
 import Menu from '@hub/common/components/Menu'
+import { List } from '@hub/common/components/Icons'
 import Drawer from '@hub/common/components/Drawer'
 import { Box, Button, Select, Welcome } from '@hub/common/components'
 
 import history from '~/services/history'
-
-import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
 
 import ModalSupportContext from '~/components/ModalSupport/context'
 
@@ -30,6 +25,24 @@ export interface MenuProps {
 
 const { MenuDivider } = Menu
 const { useDisclosure, DrawerContainer, DrawerContent } = Drawer
+
+interface MenuPropsButton {
+  onClick: () => void
+}
+
+export const MenuButton: React.FC<MenuPropsButton> = ({ onClick }) => {
+  const { colors } = useTheme()
+  return (
+    <Button
+      onClick={onClick}
+      backgroundColor="transparent!important"
+      ml="-0.625rem"
+      width="auto"
+    >
+      <List color={colors.blue[500]} size={24} />
+    </Button>
+  )
+}
 
 const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
   ({ openModalPass }, ref) => {
