@@ -157,6 +157,7 @@ export function* checkingExpiringToken({
   }
 
   yield put(reducedTokenEEM(reduced_token))
+
   return yield put(productRequest({}))
 }
 

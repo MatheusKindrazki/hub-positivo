@@ -1,9 +1,9 @@
-import { Reducer } from 'redux'
-
 import { produce } from 'immer'
 
-import { Actions } from './actions'
+import { Reducer } from 'redux'
+
 import { GlobalReducer } from './types'
+import { Actions } from './actions'
 
 export const INITIAL_STATE: GlobalReducer = {
   loading: false

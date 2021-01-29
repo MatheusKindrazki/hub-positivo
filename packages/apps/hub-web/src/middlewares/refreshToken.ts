@@ -1,14 +1,15 @@
+import { decode } from 'jsonwebtoken'
+import { ApiResponse } from 'apisauce'
+
+import { RefreshTokenApi } from '~/store/modules/auth/types'
+import { Actions as AuthActions } from '~/store/modules/auth/actions'
+import { store } from '~/store'
+
 import api from '@hub/api'
 
-import { ApiResponse } from 'apisauce'
-import { decode } from 'jsonwebtoken'
-
-import { EEMConnectPost } from '~/services/eemConnect'
 import history from '~/services/history'
-import { store } from '~/store'
-import { Actions as AuthActions } from '~/store/modules/auth/actions'
-import { RefreshTokenApi } from '~/store/modules/auth/types'
-import { Actions as IntegrationActions } from '~/store/modules/productIntegrations/actions'
+import { changeSchool } from '~/services/eemIntegration'
+import { EEMConnectPost } from '~/services/eemConnect'
 
 api.axiosInstance.interceptors.request.use(async config => {
   const { exp, refresh_token, token } = store.getState().auth
@@ -48,8 +49,11 @@ api.axiosInstance.interceptors.request.use(async config => {
     })
 
     // chama a api para criar um token reduzido
+    const res = await changeSchool()
+
     store.dispatch({
-      type: IntegrationActions.UNIQUE_TOKEN_PER_SCHOOL_EEM
+      type: AuthActions.REDUCED_TOKEN_EEM,
+      payload: res.access_token
     })
 
     api.axiosInstance.defaults.headers.Authorization = `Bearer ${data?.access_token}`
