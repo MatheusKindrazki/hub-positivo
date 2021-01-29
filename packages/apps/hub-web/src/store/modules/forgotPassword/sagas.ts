@@ -1,12 +1,14 @@
+import { ApiResponse } from 'apisauce'
+
 import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
 
-import { apiEEMAuth } from '@hub/api'
 import { toast } from '@hub/common/utils'
-
-import { ApiResponse } from 'apisauce'
+import { apiEEMAuth } from '@hub/api'
 
 import history from '~/services/history'
 
+import { PwdTokenApi, ValidatePin, ValidatePinAPI } from './types'
+import { PwdTokenRequest } from './types'
 import {
   Actions,
   pwdTokenSuccess,
@@ -14,8 +16,6 @@ import {
   validatePinFailure,
   validatePinSuccess
 } from './actions'
-import { PwdTokenApi, ValidatePin, ValidatePinAPI } from './types'
-import { PwdTokenRequest } from './types'
 
 type PwdTokenPayload = Payload<PwdTokenRequest>
 export function* pwdToken({ payload }: PwdTokenPayload): Generator {

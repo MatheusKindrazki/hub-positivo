@@ -1,11 +1,12 @@
-import { all, takeLatest, call, put } from 'redux-saga/effects'
-
-import api from '@hub/api'
-
 import { ApiResponse } from 'apisauce'
+
+import { all, takeLatest, call, put } from 'redux-saga/effects'
 
 import { store } from '~/store'
 
+import api from '@hub/api'
+
+import { StepsTour, StepsTourResponseApi } from './types'
 import {
   Actions,
   getTourViewedFailure,
@@ -15,7 +16,6 @@ import {
   getTourViewedSuccess,
   openTour
 } from './actions'
-import { StepsTour, StepsTourResponseApi } from './types'
 
 const enableFilterLevel = ['PROFESSOR', 'ALUNO']
 
@@ -26,7 +26,7 @@ export function* getTour(): Generator {
     yield put(getTourViewedRequest())
   }
 
-  const { level } = store.getState().levelEducation
+  const { level } = store.getState().educationalStage
   const { guid } = store.getState().profile
   let query: string
 

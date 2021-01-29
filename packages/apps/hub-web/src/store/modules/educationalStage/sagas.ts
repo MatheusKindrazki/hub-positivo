@@ -1,22 +1,17 @@
+import { unionBy } from 'lodash'
+import { ApiResponse } from 'apisauce'
+
 import { all, put, Payload, takeLatest, call } from 'redux-saga/effects'
 
-import { toast } from '@hub/common/utils'
-
-import { ApiResponse } from 'apisauce'
-import { unionBy } from 'lodash'
+import { Profile } from '~/store/modules/profile/types'
+import { Actions } from '~/store/modules/profile/actions'
+import { productRequest } from '~/store/modules/products/actions'
+import { store } from '~/store'
 
 import { EEMConnectGET } from '~/services/eemConnect'
-import { store } from '~/store'
-import { productRequest } from '~/store/modules/products/actions'
-import { Actions } from '~/store/modules/profile/actions'
-import { Profile } from '~/store/modules/profile/types'
 
-import {
-  resetProfileLevels,
-  setProfileLevels,
-  Actions as EducationActions
-} from './actions'
 import { Ciclos, ContentResponse } from './types'
+import { resetProfileLevels, setEducationalLevels } from './actions'
 
 const searchLevels = ['professor', 'aluno']
 
@@ -42,11 +37,7 @@ function* getEducationStage(): Generator {
     conteudo: ContentResponse[]
   }>
 
-  if (!ok) {
-    toast.error('Ocorreu um erro ao buscar seu Perfil!')
-
-    return
-  }
+  if (!ok) return
 
   const ciclos = [] as Ciclos[]
 
@@ -74,14 +65,16 @@ function* getEducationStage(): Generator {
   const uniByCiclo = unionBy(ciclos, 'id')
 
   return yield put(
-    setProfileLevels({
+    setEducationalLevels({
       levels: uniByCiclo,
       level: selectedCiclo.label
     })
   )
 }
 
-export function* getLevelByPerson({ payload }: Payload<Profile>): Generator {
+export function* getEducationalByPerson({
+  payload
+}: Payload<Profile>): Generator {
   const { profile } = payload
 
   if (!searchLevels.includes(profile)) {
@@ -95,15 +88,4 @@ export function* getLevelByPerson({ payload }: Payload<Profile>): Generator {
   return yield put(productRequest({}))
 }
 
-export function* REHYDRATEProfile(): Generator {
-  return yield getEducationStage()
-}
-export function* refreshProfile(): Generator {
-  yield getEducationStage()
-}
-
-export default all([
-  takeLatest(Actions.SET_PROFILE, getLevelByPerson),
-  takeLatest(EducationActions.REHYDRATE, REHYDRATEProfile),
-  takeLatest(EducationActions.REFRESH_LEVEL_EDUCATION, refreshProfile)
-])
+export default all([takeLatest(Actions.SET_PROFILE, getEducationalByPerson)])

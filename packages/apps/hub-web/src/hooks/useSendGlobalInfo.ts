@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 const useSendGlobalInfo = (): void => {
   const { user, school } = useSelector((state: Store.State) => state.user)
   const { name } = useSelector((state: Store.State) => state.profile)
-  const { level } = useSelector((state: Store.State) => state.levelEducation)
+  const { level } = useSelector((state: Store.State) => state.educationalStage)
 
   useEffect(() => {
     window.__HUB_USER_INFO__ = {

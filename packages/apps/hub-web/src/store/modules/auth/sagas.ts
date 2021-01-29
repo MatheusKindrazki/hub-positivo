@@ -1,29 +1,46 @@
+import { decode } from 'jsonwebtoken'
+import { ApiResponse } from 'apisauce'
+
 import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
 
-import { toast } from '@hub/common/utils'
-import capitalize from '@hub/common/utils/capitalize'
-
-import { ApiResponse } from 'apisauce'
-import { decode } from 'jsonwebtoken'
-
-import { EEMConnectPost } from '~/services/eemConnect'
-import history from '~/services/history'
+import { setSchool } from '~/store/modules/user/actions'
+import {
+  setProfile,
+  profiles as setProfiles
+} from '~/store/modules/profile/actions'
+import { productRequest } from '~/store/modules/products/actions'
+import {
+  loading,
+  enableRefreshTokenMiddleware
+} from '~/store/modules/global/actions'
+import { setSigned } from '~/store/modules/auth/actions'
 import { store } from '~/store'
+
+import capitalize from '@hub/common/utils/capitalize'
+import { toast } from '@hub/common/utils'
+
+import history from '~/services/history'
+import { changeSchool, ApiChange } from '~/services/eemIntegration'
+import { EEMConnectPost } from '~/services/eemConnect'
+
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
 
-import { uniqueTokenPerSchoolEEM } from '../productIntegrations/actions'
-import { productRequest } from '../products/actions'
+import {
+  SignInRequest,
+  AuthApi,
+  RefreshTokenApi,
+  RehydrateAuth,
+  AccessData
+} from './types'
 import {
   Actions,
   signInFailure,
   refreshTokenRequest,
   signInSuccess,
   signOut,
-  refreshTokenSuccess
+  refreshTokenSuccess,
+  reducedTokenEEM
 } from './actions'
-import { SignInRequest, AuthApi, RefreshTokenApi, RehydrateAuth } from './types'
-
-import '~/middlewares/refreshToken'
 
 type SignInPayload = Payload<SignInRequest>
 
@@ -58,17 +75,14 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
   yield put(
     signInSuccess({
-      token: data?.access_token || '',
-      refresh_token: data?.refresh_token || '',
+      token: data?.access_token,
+      refresh_token: data?.refresh_token,
       exp: user?.exp,
       user: {
-        integration_id: user?.integration_id,
-        id: user?.id,
+        ...user,
         guid: user?.sub,
-        email: user?.email,
-        name: user?.name ? capitalize(user?.name) : '',
         username: user?.username,
-        schools: user?.schools
+        name: capitalize(user?.name as string)
       }
     })
   )
@@ -82,11 +96,52 @@ export function* signIn({ payload }: SignInPayload): Generator {
 }
 
 /*
+  !Evento disparado no login inicial do usuário
+  !e também no processo de alteração de escola/perfil
+*/
+type PreparingAccessPayload = Payload<AccessData>
+export function* preparePreparingAccess({
+  payload
+}: PreparingAccessPayload): Generator {
+  const { profiles, selected_profile, selected_school, redirect } = payload
+
+  yield put(loading(true))
+
+  yield put(setSchool(selected_school))
+
+  const response = yield call(async () => {
+    return await changeSchool()
+  })
+
+  const { access_token } = response as ApiChange
+
+  yield put(reducedTokenEEM(access_token))
+
+  yield put(
+    setProfile({
+      colorProfile: selected_profile.colorProfile,
+      guid: selected_profile.id,
+      name: selected_profile.name,
+      profile: selected_profile.icon
+    })
+  )
+
+  yield put(setProfiles(profiles))
+
+  yield put(enableRefreshTokenMiddleware())
+
+  if (redirect) {
+    yield put(setSigned())
+
+    history.push('/')
+  }
+}
+
+/*
   Acionado no ciclo de vida primário da aplicação
   Buscando o token e chamando os produtos
 */
 type ExpiringRehydrate = Payload<RehydrateAuth>
-
 export function* checkingExpiringToken({
   payload
 }: ExpiringRehydrate): Generator {
@@ -96,7 +151,7 @@ export function* checkingExpiringToken({
     return yield put(signOut())
   }
 
-  const { exp } = payload.auth
+  const { exp, reduced_token } = payload.auth
 
   if (!exp || exp === 0) return
 
@@ -105,8 +160,12 @@ export function* checkingExpiringToken({
   const now = Math.round(date / 1000)
 
   if (now >= exp) {
-    yield put(refreshTokenRequest())
+    return yield put(refreshTokenRequest())
   }
+
+  yield put(reducedTokenEEM(reduced_token))
+
+  yield put(enableRefreshTokenMiddleware())
 
   return yield put(productRequest({}))
 }
@@ -139,21 +198,32 @@ export function* refreshToken(): Generator {
     history.push('/login')
   }
 
-  yield put(uniqueTokenPerSchoolEEM({ callClasses: false }))
+  const res = yield call(async () => {
+    return await changeSchool()
+  })
+
+  const { access_token } = res as ApiChange
+
+  yield put(reducedTokenEEM(access_token))
 
   const user = decode(data?.access_token as string) as { exp: number }
 
-  return yield put(
+  yield put(
     refreshTokenSuccess({
       refresh_token: data?.refresh_token as string,
       token: data?.access_token as string,
       exp: user?.exp
     })
   )
+
+  yield put(enableRefreshTokenMiddleware())
+
+  return yield put(productRequest({}))
 }
 
 export default all([
-  takeLatest(Actions.REHYDRATE, checkingExpiringToken),
   takeLatest(Actions.SIGN_IN_REQUEST, signIn),
+  takeLatest(Actions.REHYDRATE, checkingExpiringToken),
+  takeLatest(Actions.FIRST_ACCESS, preparePreparingAccess),
   takeLatest(Actions.REFRESH_TOKEN_REQUEST, refreshToken)
 ])

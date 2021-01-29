@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
 
+import { PulseLoader } from 'react-spinners'
+import { useParams } from 'react-router-dom'
+
 import { useDispatch, useSelector } from 'react-redux'
 
-import { useTheme } from '@hub/common/layout/styles'
-import createSlug from '@hub/common/utils/createSlug'
-import documentTitle from '@hub/common/utils/documentTitle'
+import { preAuth } from '~/store/modules/authProduct/actions'
+import { store } from '~/store'
 
-import { useParams } from 'react-router-dom'
-import { PulseLoader } from 'react-spinners'
+import documentTitle from '@hub/common/utils/documentTitle'
+import createSlug from '@hub/common/utils/createSlug'
+import { useTheme } from '@hub/common/layout/styles'
+
+import history from '~/services/history'
 
 import postMessage from '~/middlewares/postMessage'
-import history from '~/services/history'
-import { store } from '~/store'
-import { preAuth } from '~/store/modules/authProduct/actions'
 
-import { getCardBySlug } from './services/getCardBySlug'
 import { IframeContainer } from './styles'
+import { getCardBySlug } from './services/getCardBySlug'
 
 interface IframePropsRouter {
   solution: string
@@ -32,7 +34,7 @@ const Iframe: React.FC = () => {
   const [loading, setLoading] = useState(true)
 
   const { guid } = store.getState().profile
-  const { level } = store.getState().levelEducation
+  const { level } = store.getState().educationalStage
 
   const { solution, subpath } = useParams<IframePropsRouter>()
 

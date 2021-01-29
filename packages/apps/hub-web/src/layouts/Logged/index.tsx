@@ -2,16 +2,17 @@ import React, { useCallback } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { BarLoader } from '@hub/common/components'
-import Tour from '@hub/common/components/Tour'
-
-import Header from '~/components/Header'
-import ModalNoClass from '~/components/ModalNoClass'
-
-import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
-import { useSentry } from '~/hooks/useSentry'
 import { openTour } from '~/store/modules/tour/actions'
 import { postTourViewed } from '~/store/modules/tour/actions'
+
+import Tour from '@hub/common/components/Tour'
+import { BarLoader } from '@hub/common/components'
+
+import ModalNoClass from '~/components/ModalNoClass'
+import Header from '~/components/Header'
+
+import { useSentry } from '~/hooks/useSentry'
+import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
 
 import { Container } from './styles'
 
