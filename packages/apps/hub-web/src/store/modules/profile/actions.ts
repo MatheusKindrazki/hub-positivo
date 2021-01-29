@@ -15,7 +15,7 @@ export function setProfile(data: Profile): Action {
   }
 }
 
-export function profiles(data: Profiles): Action {
+export function profiles(data: Profiles[]): Action {
   return {
     type: Actions.PROFILES,
     payload: data

@@ -1,14 +1,15 @@
 import React, { useCallback } from 'react'
 
-import { Box } from '@hub/common/components'
-import { useMediaQuery } from '@hub/common/layout/styles'
-
-import history from '~/services/history'
 import { CardProduct } from '~/store/modules/products/types'
 
-import AnimateGoBack from './AnimateGoBack'
-import HeaderDesktop from './HeaderDesktop'
+import { useMediaQuery } from '@hub/common/layout/styles'
+import { Box } from '@hub/common/components'
+
+import history from '~/services/history'
+
 import HeaderMobile from './HeaderMobile'
+import HeaderDesktop from './HeaderDesktop'
+import AnimateGoBack from './AnimateGoBack'
 
 interface HandleProps {
   url: string

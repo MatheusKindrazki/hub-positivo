@@ -1,82 +1,45 @@
-import React, { useCallback, useMemo, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Box, Button, Avatar, Menu } from '@hub/common/components'
-import Select from '@hub/common/components/Select'
+import { openTour } from '~/store/modules/tour/actions'
+import { signOut } from '~/store/modules/auth/actions'
+
+import { useDisclosure } from '@hub/common/hooks'
 import Welcome from '@hub/common/components/Welcome'
+import Select from '@hub/common/components/Select'
+import { Box, Button, Avatar, Menu } from '@hub/common/components'
+
+import history from '~/services/history'
 
 import ModalSupportContext from '~/components/ModalSupport/context'
 
-import history from '~/services/history'
-import { signOut } from '~/store/modules/auth/actions'
-import { loading } from '~/store/modules/global/actions'
-import { profiles, setProfile } from '~/store/modules/profile/actions'
-import { Profiles } from '~/store/modules/profile/types'
-import { openTour } from '~/store/modules/tour/actions'
-import { setSchool } from '~/store/modules/user/actions'
-import { prepareSchool, prepareRoles } from '~/utils/prepareSchoolAndRoles'
+import GlobalStyle from '../../styles'
+import { useHeader } from '../../context'
 
-import GlobalStyle from './styles'
+const { MenuContainer, MenuButton, MenuList, MenuDivider, MenuItem } = Menu
 
-interface DesktopMenuProps {
-  handleAlterPass: () => void
-}
-
-const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
+const DesktopMenu: React.FC = () => {
+  const dispatch = useDispatch()
   const { onOpen } = useContext(ModalSupportContext)
 
-  const { MenuContainer, MenuButton, MenuList, MenuDivider, MenuItem } = Menu
-
-  const dispatch = useDispatch()
-
-  const { user, school, avatar } = useSelector(
-    (state: Store.State) => state.user
-  )
-  const profile = useSelector((state: Store.State) => state.profile)
-
-  const renderSchools = useMemo(() => prepareSchool(user?.schools), [user])
-
-  const renderProfiles = useMemo(() => prepareRoles(school?.roles), [school])
-
+  const { schoolList, roleList, ...func } = useHeader()
   const { steps } = useSelector((state: Store.State) => state.tour)
 
-  const handleSelected = useCallback(
-    data => {
-      dispatch(setSchool(data))
-    },
-    [dispatch]
-  )
+  const { user } = useSelector((state: Store.State) => state.user)
 
   const handleSignOut = useCallback(async () => {
     dispatch(signOut())
     history.push('/login')
   }, [dispatch])
 
-  const handleProfileSelect = useCallback(
-    data => {
-      dispatch(loading(true))
-
-      setTimeout(() => {
-        dispatch(loading(false))
-        dispatch(
-          setProfile({
-            guid: data.id,
-            name: data.title,
-            profile: data.icon,
-            colorProfile: data.colorProfile
-          })
-        )
-      }, 1500)
-
-      dispatch(profiles((renderProfiles as unknown) as Profiles))
-    },
-    [dispatch, renderProfiles]
-  )
-
   const handleOpenTour = useCallback(() => {
     dispatch(openTour(true))
   }, [dispatch])
+
+  const { setRole, setSchool, resetInfo, defaultValue } = func
+
+  const { isOpen, onOpen: menuOpen, onClose: menuClose } = useDisclosure()
 
   return (
     <Box
@@ -108,7 +71,14 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
       >
         Estou com uma dúvida
       </Button>
-      <MenuContainer>
+      <MenuContainer
+        onClose={() => {
+          menuClose()
+          resetInfo()
+        }}
+        onOpen={menuOpen}
+        isOpen={isOpen}
+      >
         <MenuButton
           type="button"
           w="2.8125rem"
@@ -121,7 +91,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
             height="2.5rem"
             backgroundColor="gray.400"
             name={user?.name || ''}
-            src={avatar}
+            src=""
           />
         </MenuButton>
         <MenuList
@@ -143,7 +113,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
           <Box px="4" py="2" w="100%" h="auto">
             <Welcome
               name={user?.name || ''}
-              avatar={avatar}
+              avatar=""
               option="name"
               fontSize="1.125rem"
               size="48px"
@@ -156,36 +126,25 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ handleAlterPass }) => {
               variant="normal"
               placeholder="Selecione"
               className="height-md"
-              value={school}
-              options={renderSchools}
-              onChange={handleSelected}
+              value={defaultValue.school}
+              options={schoolList}
+              onChange={e => setSchool(e as any)}
             />
           </Box>
           <Box px="4" pb="3">
             <Select
+              key={String(defaultValue.role)}
               variant="normal"
               placeholder="Selecione"
               className="height-md"
-              options={renderProfiles.map(item => ({
-                label: item.title,
-                value: (item.id as unknown) as string,
-                ...item
-              }))}
-              value={{
-                label: profile.name as string,
-                value: profile.guid as string
-              }}
-              onChange={handleProfileSelect}
+              value={defaultValue.role}
+              options={roleList}
+              onChange={e => setRole(e as any)}
             />
           </Box>
           <MenuDivider />
           <Box px="5" py="3">
-            <Button
-              variant="link"
-              color="gray.500"
-              fontSize="0.875rem"
-              onClick={handleAlterPass}
-            >
+            <Button variant="link" color="gray.500" fontSize="0.875rem">
               Alterar minha senha
             </Button>
           </Box>

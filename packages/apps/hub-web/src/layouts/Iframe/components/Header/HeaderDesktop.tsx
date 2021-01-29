@@ -1,5 +1,8 @@
 import React, { useMemo, useState } from 'react'
 
+import { CSSTransition } from 'react-transition-group'
+import classNames from 'classnames'
+
 import { useSelector } from 'react-redux'
 
 import {
@@ -11,14 +14,11 @@ import {
   SimpleGrid
 } from '@hub/common/components'
 
-import classNames from 'classnames'
-import { CSSTransition } from 'react-transition-group'
-
-import Card from '../Card'
-import Search from '../Search'
-import { cardFilter } from './cardFilter'
-import { HeaderProps } from './index'
 import GlobalStyle from './styles'
+import { HeaderProps } from './index'
+import { cardFilter } from './cardFilter'
+import Search from '../Search'
+import Card from '../Card'
 
 const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const [search, setSearch] = useState('')
@@ -45,14 +45,6 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
       >
         Produtos
       </Button>
-      <Avatar
-        width="2.5rem"
-        color="#3C3C3C"
-        height="2.5rem"
-        backgroundColor="gray.400"
-        name={user?.name || ''}
-        src={avatar}
-      />
       <CSSTransition
         in={show}
         timeout={400}

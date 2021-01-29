@@ -1,15 +1,14 @@
-import { all, takeLatest, call, put, Payload } from 'redux-saga/effects'
+import { ApiResponse } from 'apisauce'
+
+import { all, takeLatest, call, put } from 'redux-saga/effects'
+
+import { CardProduct, Product } from '~/store/modules/products/types'
+import { productIntegration } from '~/store/modules/products/actions'
+import { store } from '~/store'
 
 import { apiMHUND, apiLivro } from '@hub/api'
 
-import { ApiResponse } from 'apisauce'
-
-import { store } from '~/store'
-import { productIntegration } from '~/store/modules/products/actions'
-import { CardProduct, Product } from '~/store/modules/products/types'
-
 import { Actions } from './actions'
-
 interface CardType extends Product {
   slug: string
 }

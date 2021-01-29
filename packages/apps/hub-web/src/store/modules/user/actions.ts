@@ -38,7 +38,7 @@ export function userFailure(): Action {
     type: Actions.USER_FAILURE
   }
 }
-/* Seta a escola do usuário */
+
 export function setSchool(data: Schools): Action {
   return {
     type: Actions.SET_SCHOOL,

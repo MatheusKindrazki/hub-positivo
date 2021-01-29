@@ -1,16 +1,13 @@
-import React, { useEffect, useCallback, useState, useMemo } from 'react'
+import React, { useCallback, useState, useMemo } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { Select, Box, Heading } from '@hub/common/components'
-import documentTitle from '@hub/common/utils/documentTitle'
+import { AccessData } from '~/store/modules/auth/types'
+import { preparingUserData } from '~/store/modules/auth/actions'
 
-import useQuery from '~/hooks/useQuery'
-import history from '~/services/history'
-import { setSigned } from '~/store/modules/auth/actions'
-import { setProfile, profiles } from '~/store/modules/profile/actions'
-import { Profiles } from '~/store/modules/profile/types'
-import { setSchool as setSchoolUser } from '~/store/modules/user/actions'
+import documentTitle from '@hub/common/utils/documentTitle'
+import { Select, Box, Heading } from '@hub/common/components'
+
 import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
 
 import CardBox, { Icons } from './Components/CardBox'
@@ -28,42 +25,24 @@ const Profile: React.FC = () => {
 
   const [school, setSchool] = useState<SelectItem>()
 
-  const { token } = useSelector((state: Store.State) => state.auth)
   const { user } = useSelector((state: Store.State) => state.user)
-
-  useEffect(() => {
-    !token && history.push('/login')
-  }, [token])
 
   const renderSchools = useMemo(() => prepareSchool(user?.schools), [user])
 
   const renderProfiles = useMemo(() => prepareRoles(school?.roles), [school])
 
-  const handleSelected = useCallback(
+  const handleSignInUser = useCallback(
     data => {
-      dispatch(setSchoolUser(data))
-
-      setSchool(data)
-    },
-    [dispatch]
-  )
-
-  const handleProfileSelect = useCallback(
-    data => {
-      dispatch(setSigned())
-
       dispatch(
-        setProfile({
-          guid: data.id,
-          name: data.title,
-          profile: data.icon,
-          colorProfile: data.colorProfile
+        preparingUserData({
+          selected_school: school as AccessData['selected_school'],
+          profiles: renderProfiles,
+          selected_profile: data,
+          redirect: true
         })
       )
-
-      dispatch(profiles((renderProfiles as unknown) as Profiles))
     },
-    [dispatch, renderProfiles]
+    [dispatch, renderProfiles, school]
   )
 
   return (
@@ -74,8 +53,8 @@ const Profile: React.FC = () => {
       <Select
         variant="normal"
         placeholder="Selecione"
-        onChange={handleSelected}
         options={renderSchools}
+        onChange={data => setSchool(data as SelectItem)}
       />
 
       {school && (
@@ -84,8 +63,8 @@ const Profile: React.FC = () => {
             <CardBox
               key={String(i)}
               icon={item.icon as Icons}
-              title={item.title}
-              onClick={() => handleProfileSelect(item)}
+              title={item.name}
+              onClick={() => handleSignInUser(item)}
             />
           ))}
         </Box>

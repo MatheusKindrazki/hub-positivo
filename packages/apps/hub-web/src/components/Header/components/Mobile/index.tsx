@@ -1,26 +1,21 @@
-import React, {
-  useCallback,
-  useImperativeHandle,
-  useContext,
-  useMemo
-} from 'react'
+import React, { useCallback, useImperativeHandle, useContext } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Box, Button, Select, Welcome } from '@hub/common/components'
-import Drawer from '@hub/common/components/Drawer'
+import { openTour } from '~/store/modules/tour/actions'
+import { signOut } from '~/store/modules/auth/actions'
+
+import { useTheme } from '@hub/common/layout/styles'
 import Menu from '@hub/common/components/Menu'
+import { List } from '@hub/common/components/Icons'
+import Drawer from '@hub/common/components/Drawer'
+import { Box, Button, Select, Welcome } from '@hub/common/components'
+
+import history from '~/services/history'
 
 import ModalSupportContext from '~/components/ModalSupport/context'
 
-import history from '~/services/history'
-import { signOut } from '~/store/modules/auth/actions'
-import { loading } from '~/store/modules/global/actions'
-import { profiles, setProfile } from '~/store/modules/profile/actions'
-import { Profiles } from '~/store/modules/profile/types'
-import { openTour } from '~/store/modules/tour/actions'
-import { setSchool } from '~/store/modules/user/actions'
-import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
+import { useHeader } from '../../context'
 
 export interface RefMenuProps {
   openMenu: () => void
@@ -33,27 +28,42 @@ export interface MenuProps {
 const { MenuDivider } = Menu
 const { useDisclosure, DrawerContainer, DrawerContent } = Drawer
 
+interface MenuPropsButton {
+  onClick: () => void
+}
+
+export const MenuButton: React.FC<MenuPropsButton> = ({ onClick }) => {
+  const { colors } = useTheme()
+  return (
+    <Button
+      onClick={onClick}
+      backgroundColor="transparent!important"
+      ml="-0.625rem"
+      width="auto"
+    >
+      <List color={colors.blue[500]} size={24} />
+    </Button>
+  )
+}
+
 const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
   ({ openModalPass }, ref) => {
     const dispatch = useDispatch()
 
+    const { schoolList, roleList, ...func } = useHeader()
+
     const { onOpen: openModalSupport } = useContext(ModalSupportContext)
 
-    const { user, school, avatar } = useSelector(
-      (state: Store.State) => state.user
-    )
+    const { user } = useSelector((state: Store.State) => state.user)
 
     const { isOpen, onClose, onOpen } = useDisclosure()
-    const profile = useSelector((state: Store.State) => state.profile)
-
-    const renderSchools = useMemo(() => prepareSchool(user?.schools), [user])
-
-    const renderProfiles = useMemo(() => prepareRoles(school?.roles), [school])
 
     const { steps } = useSelector((state: Store.State) => state.tour)
 
     const openMenu = (): void => {
       if (!isOpen) {
+        resetInfo()
+
         onOpen()
       } else {
         onClose()
@@ -64,36 +74,6 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
         openMenu
       }
     })
-
-    const handleSelected = useCallback(
-      data => {
-        dispatch(setSchool(data))
-      },
-      [dispatch]
-    )
-
-    const handleProfileSelect = useCallback(
-      data => {
-        dispatch(loading(true))
-
-        onClose()
-
-        setTimeout(() => {
-          dispatch(loading(false))
-          dispatch(
-            setProfile({
-              guid: data.id,
-              name: data.title,
-              profile: data.profile,
-              colorProfile: data.colorProfile
-            })
-          )
-        }, 1500)
-
-        dispatch(profiles((renderProfiles as unknown) as Profiles))
-      },
-      [dispatch, onClose, renderProfiles]
-    )
 
     const handleClosed = useCallback(async () => {
       dispatch(signOut())
@@ -106,6 +86,8 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
       dispatch(openTour(true))
     }, [dispatch, onClose])
 
+    const { setRole, setSchool, resetInfo, defaultValue } = func
+
     return (
       <>
         <Box
@@ -116,6 +98,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
         ></Box>
         <DrawerContainer
           isOpen={isOpen}
+          autoFocus={false}
           placement="left"
           onClose={() => onClose()}
         >
@@ -126,7 +109,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                 name={user?.name || ''}
                 fontSize="1.125rem"
                 size="40px"
-                avatar={avatar || ''}
+                avatar=""
                 fontWeight="bold"
               />
             </Box>
@@ -136,26 +119,20 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                 variant="normal"
                 placeholder="Selecione"
                 className="height-md"
-                value={school}
-                options={renderSchools}
-                onChange={handleSelected}
+                value={defaultValue.school}
+                options={schoolList}
+                onChange={e => setSchool(e as any)}
               />
             </Box>
             <Box px="4" pb="3">
               <Select
+                key={String(defaultValue.role)}
                 variant="normal"
                 placeholder="Selecione"
                 className="height-md"
-                options={renderProfiles.map(item => ({
-                  label: item.title,
-                  value: (item.id as unknown) as string,
-                  ...item
-                }))}
-                value={{
-                  label: profile.name as string,
-                  value: profile.guid as string
-                }}
-                onChange={handleProfileSelect}
+                value={defaultValue.role}
+                options={roleList}
+                onChange={e => setRole(e as any)}
               />
             </Box>
             <MenuDivider />

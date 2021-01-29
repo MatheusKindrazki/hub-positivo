@@ -9,7 +9,7 @@ export interface LevelSelectOption {
   label: string
 }
 
-export interface SetLevelSuccess {
+export interface setEducationalStageSuccess {
   level: string
   levels?: LevelSelectOption[]
 }

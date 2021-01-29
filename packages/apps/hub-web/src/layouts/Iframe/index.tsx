@@ -2,13 +2,14 @@ import React, { useCallback } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { BarLoader } from '@hub/common/components'
-import createSlug from '@hub/common/utils/createSlug'
-
-import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
-import { useSentry } from '~/hooks/useSentry'
-import { preAuth } from '~/store/modules/authProduct/actions'
 import { CardProduct } from '~/store/modules/products/types'
+import { preAuth } from '~/store/modules/authProduct/actions'
+
+import createSlug from '@hub/common/utils/createSlug'
+import { BarLoader } from '@hub/common/components'
+
+import { useSentry } from '~/hooks/useSentry'
+import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
 
 import Header from './components/Header'
 
