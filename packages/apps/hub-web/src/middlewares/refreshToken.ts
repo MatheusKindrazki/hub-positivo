@@ -1,22 +1,25 @@
+import { decode } from 'jsonwebtoken'
+import { ApiResponse } from 'apisauce'
+
+import { RefreshTokenApi } from '~/store/modules/auth/types'
+import { Actions as AuthActions } from '~/store/modules/auth/actions'
+import { store } from '~/store'
+
 import api from '@hub/api'
 
-import { ApiResponse } from 'apisauce'
-import { decode } from 'jsonwebtoken'
-
-import { EEMConnectPost } from '~/services/eemConnect'
 import history from '~/services/history'
-import { store } from '~/store'
-import { Actions as AuthActions } from '~/store/modules/auth/actions'
-import { RefreshTokenApi } from '~/store/modules/auth/types'
+import { changeSchool } from '~/services/eemIntegration'
+import { EEMConnectPost } from '~/services/eemConnect'
 
 api.axiosInstance.interceptors.request.use(async config => {
   const { exp, refresh_token, token } = store.getState().auth
+  const { enableMiddlewareRefreshToken } = store.getState().global
 
-  const date = (new Date() as unknown) as number
+  const date = new Date().getTime()
 
   const now = Math.round(date / 1000)
 
-  if (now >= exp) {
+  if (now >= exp && enableMiddlewareRefreshToken) {
     const response = await EEMConnectPost({
       endpoint: 'connect/token',
       data: {
@@ -35,7 +38,7 @@ api.axiosInstance.interceptors.request.use(async config => {
       history.push('/login')
     }
 
-    const user = decode(data?.access_token || '') as { exp: number }
+    const user = decode(data?.access_token as string) as { exp: number }
 
     store.dispatch({
       type: AuthActions.REFRESH_TOKEN_SUCCESS,
@@ -44,6 +47,14 @@ api.axiosInstance.interceptors.request.use(async config => {
         refresh_token: data?.refresh_token,
         exp: user?.exp
       }
+    })
+
+    // chama a api para criar um token reduzido
+    const res = await changeSchool()
+
+    store.dispatch({
+      type: AuthActions.REDUCED_TOKEN_EEM,
+      payload: res.access_token
     })
 
     api.axiosInstance.defaults.headers.Authorization = `Bearer ${data?.access_token}`

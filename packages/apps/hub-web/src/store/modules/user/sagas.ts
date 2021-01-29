@@ -1,13 +1,15 @@
-import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
-
-import { apiEEMAuth } from '@hub/api'
-import { toast } from '@hub/common/utils'
-
 import { ApiResponse } from 'apisauce'
 
-import history from '~/services/history'
+import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
+
 import { store } from '~/store'
 
+import { toast } from '@hub/common/utils'
+import { apiEEMAuth } from '@hub/api'
+
+import history from '~/services/history'
+
+import { UserAlterPass, UserAlterPassPanel, UserAlterPassApi } from './types'
 import {
   Actions,
   forgotPasswordFailure,
@@ -15,7 +17,6 @@ import {
   alterPasswordFailure,
   alterPasswordSuccess
 } from './actions'
-import { UserAlterPass, UserAlterPassPanel, UserAlterPassApi } from './types'
 
 // ?Endpoint esqueci minha senha
 type AlterPasswordPayload = Payload<UserAlterPass>

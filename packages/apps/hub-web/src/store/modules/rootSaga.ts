@@ -1,13 +1,13 @@
 import { all } from 'redux-saga/effects'
 
-import auth from './auth/sagas'
-import authProduct from './authProduct/sagas'
-import forgotPassword from './forgotPassword/sagas'
-import levelEducation from './levelEducation/sagas'
-import productIntegrations from './productIntegrations/sagas'
-import products from './products/sagas'
-import tour from './tour/sagas'
 import user from './user/sagas'
+import tour from './tour/sagas'
+import products from './products/sagas'
+import productIntegrations from './productIntegrations/sagas'
+import forgotPassword from './forgotPassword/sagas'
+import educationalStage from './educationalStage/sagas'
+import authProduct from './authProduct/sagas'
+import auth from './auth/sagas'
 
 export default function* rootSaga(): Generator {
   return yield all([
@@ -15,7 +15,7 @@ export default function* rootSaga(): Generator {
     user,
     authProduct,
     forgotPassword,
-    levelEducation,
+    educationalStage,
     productIntegrations,
     products,
     tour

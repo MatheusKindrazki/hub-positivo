@@ -1,9 +1,9 @@
-import { Reducer } from 'redux'
-
 import { produce } from 'immer'
 
-import { Actions } from './actions'
+import { Reducer } from 'redux'
+
 import { EducationReducer } from './types'
+import { Actions } from './actions'
 
 export const INITIAL_STATE: EducationReducer = {
   loading: false,
@@ -18,10 +18,17 @@ const global: ReturnReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
       case Actions.SET_LEVEL: {
         draft.level = action.payload
+        draft.loading = false
+        break
+      }
+
+      case Actions.REFRESH_LEVEL_EDUCATION: {
+        draft.loading = true
         break
       }
 
       case Actions.SIGN_OUT: {
+        draft.loading = false
         draft.level = ''
         draft.levels = undefined
         break
@@ -37,8 +44,10 @@ const global: ReturnReducer = (state = INITIAL_STATE, action) => {
       case Actions.GET_LEVEL_SUCCESS: {
         draft.level = action.payload.level
         draft.levels = action.payload.levels
+        draft.loading = false
         break
       }
+
       default:
     }
   })

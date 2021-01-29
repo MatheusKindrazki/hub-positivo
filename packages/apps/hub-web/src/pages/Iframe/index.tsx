@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
 
+import { PulseLoader } from 'react-spinners'
+import { useParams } from 'react-router-dom'
+
 import { useDispatch, useSelector } from 'react-redux'
 
-import { useTheme } from '@hub/common/layout/styles'
-import createSlug from '@hub/common/utils/createSlug'
-import documentTitle from '@hub/common/utils/documentTitle'
-
-import { useParams } from 'react-router-dom'
-import { PulseLoader } from 'react-spinners'
-
-import usePostMessage from '~/hooks/usePostMessage'
-import history from '~/services/history'
-import { store } from '~/store'
 import { preAuth } from '~/store/modules/authProduct/actions'
+import { store } from '~/store'
 
-import { getCardBySlug } from './services/getCardBySlug'
+import documentTitle from '@hub/common/utils/documentTitle'
+import createSlug from '@hub/common/utils/createSlug'
+import { useTheme } from '@hub/common/layout/styles'
+
+import history from '~/services/history'
+
+import postMessage from '~/middlewares/postMessage'
+
 import { IframeContainer } from './styles'
+import { getCardBySlug } from './services/getCardBySlug'
 
 interface IframePropsRouter {
   solution: string
@@ -23,15 +25,16 @@ interface IframePropsRouter {
 }
 
 const Iframe: React.FC = () => {
+  postMessage()
+
   const dispatch = useDispatch()
-  usePostMessage()
 
   const { colors } = useTheme()
   const [url, setUrl] = useState('')
   const [loading, setLoading] = useState(true)
 
   const { guid } = store.getState().profile
-  const { level } = store.getState().levelEducation
+  const { level } = store.getState().educationalStage
 
   const { solution, subpath } = useParams<IframePropsRouter>()
 

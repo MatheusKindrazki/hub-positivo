@@ -1,23 +1,23 @@
-import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
-
-import { apiAuthProduct } from '@hub/api'
-import { toast } from '@hub/common/utils'
-
 import { ApiResponse } from 'apisauce'
 
-import { EEMConnectPost } from '~/services/eemConnect'
-import history from '~/services/history'
+import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
+
 import { store } from '~/store'
 
-import { loading } from '../global/actions'
-import { setFrameURL } from '../products/actions'
+import { toast } from '@hub/common/utils'
+import { apiAuthProduct } from '@hub/api'
+
+import history from '~/services/history'
+
+import { AuthRequest } from './types'
 import {
   Actions,
   authProductFailure,
   authProductSuccess,
   authProductRequest
 } from './actions'
-import { AuthRequest } from './types'
+import { setFrameURL } from '../products/actions'
+import { loading } from '../global/actions'
 
 // tipos de renderização
 // | 'iframe'
@@ -66,7 +66,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   const auth = store.getState().auth
   const profile = store.getState().profile
   const user = store.getState().user
-  const { level } = store.getState().levelEducation
+  const { level } = store.getState().educationalStage
 
   if (!auth && !profile && !user) return
 
@@ -75,6 +75,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   const authTheProduct = {
     product: payload.product,
     token: auth.token,
+    reduced_token: auth.reduced_token,
     logged_in: {
       school: {
         name: user.school?.label,
@@ -119,39 +120,11 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   ! Autenticação utilizando JWT EEM
 */
 export function* authProductEEM({ payload }: AuthPayload): Generator {
-  const auth = store.getState().auth
-  const profile = store.getState().profile
-  const user = store.getState().user
-
-  if (!auth && !profile && !user) return
+  const { reduced_token } = store.getState().auth
 
   yield put(loading(true))
 
-  const response = yield call(() => {
-    return EEMConnectPost({
-      endpoint: 'connect/token',
-      data: {
-        access_token: auth?.token || '',
-        school_id: user.school?.value,
-        grant_type: 'change_school'
-      }
-    })
-  })
-
-  const { data, ok } = response as ApiResponse<{ access_token: string }>
-
-  if (!ok) {
-    toast.error('Sinto muito, algo deu errado :(')
-
-    yield put(loading(false))
-
-    return yield put(authProductFailure())
-  }
-
-  const newUrl = payload.url.replace(
-    '{token}',
-    data?.access_token || 'invalid-token'
-  )
+  const newUrl = payload.url.replace('{token}', reduced_token as string)
 
   yield put(setFrameURL({ url: newUrl, name: payload.name }))
 

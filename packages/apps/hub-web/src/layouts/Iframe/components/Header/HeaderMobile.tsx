@@ -1,5 +1,9 @@
 import React, { useMemo, useState } from 'react'
 
+import classNames from 'classnames'
+
+import { DotsNine } from '@hub/common/components/Icons'
+import Drawer from '@hub/common/components/Drawer'
 import {
   Box,
   Button,
@@ -7,16 +11,12 @@ import {
   SpinnerLoader,
   SimpleGrid
 } from '@hub/common/components'
-import Drawer from '@hub/common/components/Drawer'
-import { DotsNine } from '@hub/common/components/Icons'
 
-import classNames from 'classnames'
-
-import Card from '../Card'
-import Search from '../Search'
-import { cardFilter } from './cardFilter'
-import { HeaderProps } from './index'
 import GlobalStyle from './stylesMobile'
+import { HeaderProps } from './index'
+import { cardFilter } from './cardFilter'
+import Search from '../Search'
+import Card from '../Card'
 
 const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const [search, setSearch] = useState('')
