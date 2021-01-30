@@ -3,7 +3,8 @@ import React, {
   useMemo,
   useCallback,
   useContext,
-  useState
+  useState,
+  useEffect
 } from 'react'
 
 import { useDispatch } from 'react-redux'
@@ -25,6 +26,7 @@ const HeaderProvider: React.FC = ({ children }) => {
   const { name, profile } = store.getState().profile
 
   const [roles, setRoles] = useState(userSchool?.roles)
+  const [nonRole, setNonRole] = useState(false)
 
   const [role, setRole] = useState<SelectProps | undefined>({
     label: name as string,
@@ -40,9 +42,13 @@ const HeaderProvider: React.FC = ({ children }) => {
     setSchool(data)
     setRoles(data.roles)
     setRole(undefined)
+
+    setNonRole(true)
   }, [])
 
   const handleResetInfo = useCallback(() => {
+    if (!nonRole) return
+
     setSchool({
       label: userSchool?.label as string,
       value: userSchool?.value as string
@@ -51,12 +57,12 @@ const HeaderProvider: React.FC = ({ children }) => {
       label: name as string,
       value: profile as string
     })
-
     setRoles(userSchool?.roles)
-  }, [name, profile, userSchool])
+  }, [name, nonRole, profile, userSchool])
 
   const setRoleAndDispatchRequest = useCallback(
     data => {
+      setNonRole(false)
       setRole(data)
 
       dispatch(
@@ -83,6 +89,7 @@ const HeaderProvider: React.FC = ({ children }) => {
     <HeaderContext.Provider
       value={{
         schoolList,
+        nonRole,
         roleList,
         setSchool: handleSetSchool,
         setRole: setRoleAndDispatchRequest,
