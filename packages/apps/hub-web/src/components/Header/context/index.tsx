@@ -45,6 +45,7 @@ const HeaderProvider: React.FC = ({ children }) => {
 
   const handleResetInfo = useCallback(() => {
     setSchool({
+      ...userSchool,
       label: userSchool?.label as string,
       value: userSchool?.value as string
     })
