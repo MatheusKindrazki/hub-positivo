@@ -1,7 +1,9 @@
-import api from '@hub/api'
-import { toast } from '@hub/common/utils'
-
 import { Product } from '~/store/modules/products/types'
+import { store } from '~/store'
+
+import { toast } from '@hub/common/utils'
+import api from '@hub/api'
+
 interface CarBySlugProps {
   slug?: string
   perfil?: string
@@ -10,12 +12,25 @@ interface CarBySlugProps {
 
 async function getCardBySlug(data: CarBySlugProps): Promise<Product | null> {
   if (!data.slug) return null
+  const { token } = store.getState().auth
 
-  const response = await api.get('Solucao/SolucaoPorSlug', {
-    slug: data.slug,
-    perfil: data.perfil,
-    nivelEnsino: data.nivelEnsino
+  api.setHeaders({
+    Authorization: `Bearer ${token}`
   })
+
+  const response = await api.get(
+    'Solucao/SolucaoPorSlug',
+    {
+      slug: data.slug,
+      perfil: data.perfil,
+      nivelEnsino: data.nivelEnsino
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
 
   const { ok, data: responseData } = response
 
