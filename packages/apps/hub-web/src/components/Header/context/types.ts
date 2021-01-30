@@ -6,7 +6,6 @@ export interface ContextHeaderProps {
   setSchool: (data: SchoolsProps) => void
   setRole: (data: RolesProps) => void
   resetInfo: () => void
-  nonRole: boolean
   defaultValue: {
     school?: SelectProps
     role?: SelectProps

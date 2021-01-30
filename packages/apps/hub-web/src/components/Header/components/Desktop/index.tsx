@@ -133,7 +133,7 @@ const DesktopMenu: React.FC = () => {
           </Box>
           <Box px="4" pb="3">
             <Select
-              key={String(`${defaultValue.role}${roleList}`)}
+              key={String(defaultValue.role)}
               variant="normal"
               placeholder="Selecione"
               className="height-md"
