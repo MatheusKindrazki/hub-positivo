@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { Box, Heading, Stack } from '@hub/common/components'
-import Skeleton from '@hub/common/components/Skeleton'
-
 import classNames from 'classnames'
+
+import Skeleton from '@hub/common/components/Skeleton'
+import { Box, Heading, Stack } from '@hub/common/components'
 
 import { Container } from './styles'
 const FakeLoadingCard: React.FC = () => {

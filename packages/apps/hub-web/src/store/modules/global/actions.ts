@@ -15,8 +15,9 @@ export function loading(status: boolean): Action {
   }
 }
 
-export function enableRefreshTokenMiddleware(): Action {
+export function enableRefreshTokenMiddleware(enable: boolean): Action {
   return {
-    type: Actions.ENABLE_REFRESH_TOKEN
+    type: Actions.ENABLE_REFRESH_TOKEN,
+    payload: enable
   }
 }

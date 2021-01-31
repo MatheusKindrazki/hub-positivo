@@ -16,8 +16,6 @@ import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
 
 import { Container } from './styles'
 
-import '~/middlewares/refreshToken'
-
 const Dashboard: React.FC = ({ children }) => {
   useSentry()
   useSendGlobalInfo()

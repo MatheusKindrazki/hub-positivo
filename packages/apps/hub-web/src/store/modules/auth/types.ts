@@ -10,7 +10,7 @@ export interface AccessData {
   selected_school: Schools
   selected_profile: Profiles
   profiles: Profiles[]
-  redirect?: boolean
+  redirect?: string
 }
 
 export interface AuthReducer {

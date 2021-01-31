@@ -10,6 +10,8 @@ import { Select, Box, Heading } from '@hub/common/components'
 
 import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
 
+import useQuery from '~/hooks/useQuery'
+
 import CardBox, { Icons } from './Components/CardBox'
 
 interface SelectItem {
@@ -20,6 +22,10 @@ interface SelectItem {
 
 const Profile: React.FC = () => {
   documentTitle('Selecione o Perfil')
+
+  const query = useQuery()
+
+  const redirect = query.get('redirect') || undefined
 
   const dispatch = useDispatch()
 
@@ -38,11 +44,11 @@ const Profile: React.FC = () => {
           selected_school: school as AccessData['selected_school'],
           profiles: renderProfiles,
           selected_profile: data,
-          redirect: true
+          redirect: redirect
         })
       )
     },
-    [dispatch, renderProfiles, school]
+    [dispatch, redirect, renderProfiles, school]
   )
 
   return (

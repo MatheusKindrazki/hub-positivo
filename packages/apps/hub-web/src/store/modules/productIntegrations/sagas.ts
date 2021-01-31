@@ -25,6 +25,8 @@ export function* mhundArvoreIntegration(): Generator {
 
   const productData = products.data as IntegrationCardProps[]
 
+  if (!productData || !productData?.length) return
+
   const authTheProduct = {
     product: 'gestao-escolar-mhund',
     token: auth.token,

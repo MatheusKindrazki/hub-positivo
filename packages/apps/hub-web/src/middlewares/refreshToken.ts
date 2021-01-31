@@ -1,18 +1,19 @@
 import { decode } from 'jsonwebtoken'
 import { ApiResponse } from 'apisauce'
 
+import { Actions as GlobalActions } from '~/store/modules/global/actions'
 import { RefreshTokenApi } from '~/store/modules/auth/types'
 import { Actions as AuthActions } from '~/store/modules/auth/actions'
 import { store } from '~/store'
 
+import { toast } from '@hub/common/utils'
 import api from '@hub/api'
 
 import history from '~/services/history'
-import { changeSchool } from '~/services/eemIntegration'
 import { EEMConnectPost } from '~/services/eemConnect'
 
-api.axiosInstance.interceptors.request.use(async config => {
-  const { exp, refresh_token, token } = store.getState().auth
+export default async (): Promise<boolean> => {
+  const { exp, refresh_token } = store.getState().auth
   const { enableMiddlewareRefreshToken } = store.getState().global
 
   const date = new Date().getTime()
@@ -20,6 +21,11 @@ api.axiosInstance.interceptors.request.use(async config => {
   const now = Math.round(date / 1000)
 
   if (now >= exp && enableMiddlewareRefreshToken) {
+    store.dispatch({
+      type: GlobalActions.ENABLE_REFRESH_TOKEN,
+      payload: false
+    })
+
     const response = await EEMConnectPost({
       endpoint: 'connect/token',
       data: {
@@ -35,8 +41,16 @@ api.axiosInstance.interceptors.request.use(async config => {
         type: AuthActions.SIGN_OUT
       })
 
+      toast.warn(
+        'Desculpe sua sessão expirou, realiza o login novamente para continuar!'
+      )
+
       history.push('/login')
     }
+
+    api.setHeaders({
+      Authorization: `Bearer ${data?.access_token || ''}`
+    })
 
     const user = decode(data?.access_token as string) as { exp: number }
 
@@ -49,32 +63,8 @@ api.axiosInstance.interceptors.request.use(async config => {
       }
     })
 
-    // chama a api para criar um token reduzido
-    const res = await changeSchool()
-
-    store.dispatch({
-      type: AuthActions.REDUCED_TOKEN_EEM,
-      payload: res.access_token
-    })
-
-    api.axiosInstance.defaults.headers.Authorization = `Bearer ${data?.access_token}`
-
-    return {
-      ...config,
-      headers: {
-        ...config.headers,
-        Authorization: `Bearer ${data?.access_token}`
-      }
-    }
+    return true
   }
 
-  api.axiosInstance.defaults.headers.Authorization = `Bearer ${token}`
-
-  return {
-    ...config,
-    headers: {
-      ...config.headers,
-      Authorization: `Bearer ${token}`
-    }
-  }
-})
+  return true
+}

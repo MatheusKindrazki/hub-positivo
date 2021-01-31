@@ -1,8 +1,8 @@
 import React from 'react'
 
-import * as Sentry from '@sentry/react'
-import { Integrations } from '@sentry/tracing'
 import ReactDOM from 'react-dom'
+import { Integrations } from '@sentry/tracing'
+import * as Sentry from '@sentry/react'
 
 import App from './App'
 
