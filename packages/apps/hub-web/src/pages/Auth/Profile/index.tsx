@@ -44,7 +44,7 @@ const Profile: React.FC = () => {
           selected_school: school as AccessData['selected_school'],
           profiles: renderProfiles,
           selected_profile: data,
-          redirect: redirect
+          redirect: redirect || '/'
         })
       )
     },
