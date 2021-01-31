@@ -1,7 +1,7 @@
-import { apiEEMAuth, apiEEMInfos } from '@hub/api'
-
-import { ApiResponse } from 'apisauce'
 import qs from 'qs'
+import { ApiResponse } from 'apisauce'
+
+import { apiEEMAuth, apiEEMInfos } from '@hub/api'
 
 interface EEMProps {
   endpoint: string

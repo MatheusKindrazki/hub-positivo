@@ -13,7 +13,7 @@ import {
   loading,
   enableRefreshTokenMiddleware
 } from '~/store/modules/global/actions'
-import { setSigned } from '~/store/modules/auth/actions'
+import { setSigned, signInRequestLoading } from '~/store/modules/auth/actions'
 import { store } from '~/store'
 
 import capitalize from '@hub/common/utils/capitalize'
@@ -48,6 +48,8 @@ export function* signIn({ payload }: SignInPayload): Generator {
   const redirectTo = payload.redirect
 
   delete payload.redirect
+
+  yield put(signInRequestLoading())
 
   const response = yield call(() => {
     return EEMConnectPost({
@@ -128,7 +130,7 @@ export function* preparePreparingAccess({
 
   yield put(setProfiles(profiles))
 
-  yield put(enableRefreshTokenMiddleware())
+  yield put(enableRefreshTokenMiddleware(true))
 
   if (redirect) {
     yield put(setSigned())
@@ -167,7 +169,7 @@ export function* checkingExpiringToken({
 
   yield put(reducedTokenEEM(reduced_token))
 
-  yield put(enableRefreshTokenMiddleware())
+  yield put(enableRefreshTokenMiddleware(true))
 
   yield delay(2000)
 
@@ -222,7 +224,7 @@ export function* refreshToken(): Generator {
     })
   )
 
-  yield put(enableRefreshTokenMiddleware())
+  yield put(enableRefreshTokenMiddleware(true))
 
   yield delay(2000)
 

@@ -1,9 +1,9 @@
-import { Reducer } from 'redux'
-
 import { produce } from 'immer'
 
-import { Actions } from './actions'
+import { Reducer } from 'redux'
+
 import { AuthReducer } from './types'
+import { Actions } from './actions'
 
 export const INITIAL_STATE: AuthReducer = {
   exp: 0,
@@ -22,9 +22,13 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
       case Actions.SIGN_IN_REQUEST: {
         draft.signed = false
-        draft.loading = true
         draft.signInStrike = false
         draft.withoutAccess = false
+
+        break
+      }
+      case Actions.SIGN_IN_REQUEST_LOADING: {
+        draft.loading = true
 
         break
       }

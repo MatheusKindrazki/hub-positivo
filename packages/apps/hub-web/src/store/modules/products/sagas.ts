@@ -1,6 +1,6 @@
 import { ApiResponse } from 'apisauce'
 
-import { all, call, put, takeLatest } from 'redux-saga/effects'
+import { all, call, delay, put, takeLatest } from 'redux-saga/effects'
 
 import { getTourRequest } from '~/store/modules/tour/actions'
 import { store } from '~/store'
@@ -11,7 +11,7 @@ import api from '@hub/api'
 import { CardProduct } from './types'
 import { Actions, productSuccess } from './actions'
 import { mhundArvoreIntegration } from '../productIntegrations/actions'
-import { loading } from '../global/actions'
+import { enableRefreshTokenMiddleware, loading } from '../global/actions'
 import { withoutAccess } from '../auth/actions'
 
 export function* getProducts(): Generator {
@@ -51,8 +51,6 @@ export function* getProducts(): Generator {
 
   yield put(loading(false))
 
-  yield put(getTourRequest())
-
   yield put(
     productSuccess({
       data: data
@@ -67,6 +65,16 @@ export function* getProducts(): Generator {
   )
 
   yield put(mhundArvoreIntegration())
+
+  // Aguarda os cards em tela para buscar o tour
+  yield delay(1500)
+
+  yield put(getTourRequest())
+
+  // Aguarda resposta do tour para não realizar novo refresh token
+  yield delay(2000)
+
+  return yield put(enableRefreshTokenMiddleware(true))
 }
 
 export default all([takeLatest(Actions.PRODUCT_REQUEST, getProducts)])

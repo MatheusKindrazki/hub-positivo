@@ -1,6 +1,7 @@
 import { decode } from 'jsonwebtoken'
 import { ApiResponse } from 'apisauce'
 
+import { Actions as GlobalActions } from '~/store/modules/global/actions'
 import { RefreshTokenApi } from '~/store/modules/auth/types'
 import { Actions as AuthActions } from '~/store/modules/auth/actions'
 import { store } from '~/store'
@@ -19,7 +20,14 @@ api.axiosInstance.interceptors.request.use(async config => {
 
   const now = Math.round(date / 1000)
 
+  console.log('enableMiddlewareRefreshToken', enableMiddlewareRefreshToken)
+
   if (now >= exp && enableMiddlewareRefreshToken) {
+    store.dispatch({
+      type: GlobalActions.ENABLE_REFRESH_TOKEN,
+      payload: false
+    })
+
     const response = await EEMConnectPost({
       endpoint: 'connect/token',
       data: {

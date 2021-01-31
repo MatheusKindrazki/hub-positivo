@@ -6,6 +6,7 @@ export const Actions = {
   SIGN_IN_REQUEST: '@auth/SIGN_IN_REQUEST',
   SIGN_IN_SUCCESS: '@auth/SIGN_IN_SUCCESS',
   SIGN_IN_FAILURE: '@auth/SIGN_IN_FAILURE',
+  SIGN_IN_REQUEST_LOADING: '@auth/SIGN_IN_REQUEST_LOADING',
 
   FIRST_ACCESS: '@auth/FIRST_ACCESS',
 
@@ -28,6 +29,12 @@ export const Actions = {
 /*
   Autenticação na aplicação
 */
+export function signInRequestLoading(): Action {
+  return {
+    type: Actions.SIGN_IN_REQUEST_LOADING
+  }
+}
+
 export function signInRequest(data: SignInRequest): Action {
   return {
     type: Actions.SIGN_IN_REQUEST,
