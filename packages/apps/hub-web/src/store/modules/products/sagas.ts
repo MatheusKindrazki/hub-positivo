@@ -38,8 +38,8 @@ export function* getProducts(): Generator {
     query = `${guid}`
   }
 
-  const response = yield call(() => {
-    return api.get(`Categoria/Solucoes/Perfil/${query}`)
+  const response = yield call(async () => {
+    return await api.get(`Categoria/Solucoes/Perfil/${query}`)
   })
 
   const { ok, data, status } = response as ApiResponse<CardProduct[]>

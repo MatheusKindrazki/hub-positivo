@@ -9,7 +9,10 @@ import {
   profiles as setProfiles
 } from '~/store/modules/profile/actions'
 import { productRequest } from '~/store/modules/products/actions'
-import { loading } from '~/store/modules/global/actions'
+import {
+  loading,
+  enableRefreshTokenMiddleware
+} from '~/store/modules/global/actions'
 import { setSigned } from '~/store/modules/auth/actions'
 import { store } from '~/store'
 
@@ -38,8 +41,6 @@ import {
   refreshTokenSuccess,
   reducedTokenEEM
 } from './actions'
-
-import '~/middlewares/refreshToken'
 
 type SignInPayload = Payload<SignInRequest>
 
@@ -124,7 +125,10 @@ export function* preparePreparingAccess({
       profile: selected_profile.icon
     })
   )
+
   yield put(setProfiles(profiles))
+
+  yield put(enableRefreshTokenMiddleware())
 
   if (redirect) {
     yield put(setSigned())
@@ -160,6 +164,8 @@ export function* checkingExpiringToken({
   }
 
   yield put(reducedTokenEEM(reduced_token))
+
+  yield put(enableRefreshTokenMiddleware())
 
   return yield put(productRequest({}))
 }
@@ -209,6 +215,8 @@ export function* refreshToken(): Generator {
       exp: user?.exp
     })
   )
+
+  yield put(enableRefreshTokenMiddleware())
 
   return yield put(productRequest({}))
 }

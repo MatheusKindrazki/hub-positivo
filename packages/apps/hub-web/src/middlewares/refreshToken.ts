@@ -13,12 +13,13 @@ import { EEMConnectPost } from '~/services/eemConnect'
 
 api.axiosInstance.interceptors.request.use(async config => {
   const { exp, refresh_token, token } = store.getState().auth
+  const { enableMiddlewareRefreshToken } = store.getState().global
 
   const date = new Date().getTime()
 
   const now = Math.round(date / 1000)
 
-  if (now >= exp) {
+  if (now >= exp && enableMiddlewareRefreshToken) {
     const response = await EEMConnectPost({
       endpoint: 'connect/token',
       data: {
