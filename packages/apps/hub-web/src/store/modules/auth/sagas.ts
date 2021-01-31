@@ -163,11 +163,13 @@ export function* checkingExpiringToken({
     return yield put(refreshTokenRequest())
   }
 
+  yield put(loading(true))
+
   yield put(reducedTokenEEM(reduced_token))
 
   yield put(enableRefreshTokenMiddleware())
 
-  yield delay(1500)
+  yield delay(2000)
 
   return yield put(productRequest({}))
 }
@@ -201,7 +203,9 @@ export function* refreshToken(): Generator {
   }
 
   const res = yield call(async () => {
-    return await changeSchool()
+    return await changeSchool({
+      token: data?.access_token
+    })
   })
 
   const { access_token } = res as ApiChange
@@ -220,7 +224,7 @@ export function* refreshToken(): Generator {
 
   yield put(enableRefreshTokenMiddleware())
 
-  yield delay(1500)
+  yield delay(2000)
 
   return yield put(productRequest({}))
 }

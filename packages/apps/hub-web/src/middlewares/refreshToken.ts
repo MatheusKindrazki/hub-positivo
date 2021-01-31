@@ -50,7 +50,9 @@ api.axiosInstance.interceptors.request.use(async config => {
     })
 
     // chama a api para criar um token reduzido
-    const res = await changeSchool()
+    const res = await changeSchool({
+      token: data?.access_token
+    })
 
     store.dispatch({
       type: AuthActions.REDUCED_TOKEN_EEM,
