@@ -47,7 +47,7 @@ const Header: React.FC = () => {
           </Box>
 
           {isDesktop ? (
-            <DesktopMenu />
+            <DesktopMenu openModalPass={onOpen} />
           ) : (
             <MobileMenu
               openModalPass={() => {

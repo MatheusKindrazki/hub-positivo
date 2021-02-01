@@ -19,7 +19,11 @@ import { useHeader } from '../../context'
 
 const { MenuContainer, MenuButton, MenuList, MenuDivider, MenuItem } = Menu
 
-const DesktopMenu: React.FC = () => {
+interface ModalProps {
+  openModalPass: () => void
+}
+
+const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
   const dispatch = useDispatch()
   const { onOpen } = useContext(ModalSupportContext)
 
@@ -144,7 +148,12 @@ const DesktopMenu: React.FC = () => {
           </Box>
           <MenuDivider />
           <Box px="5" py="3">
-            <Button variant="link" color="gray.500" fontSize="0.875rem">
+            <Button
+              onClick={openModalPass}
+              variant="link"
+              color="gray.500"
+              fontSize="0.875rem"
+            >
               Alterar minha senha
             </Button>
           </Box>
