@@ -8,7 +8,10 @@ import { signOut } from '~/store/modules/auth/actions'
 import { useTheme } from '@hub/common/layout/styles'
 import { MenuDivider } from '@hub/common/components/Menu'
 import { List } from '@hub/common/components/Icons'
-import Drawer from '@hub/common/components/Drawer'
+import Drawer, {
+  useDisclosure,
+  DrawerContent
+} from '@hub/common/components/Drawer'
 import { Box, Button, Select, Welcome } from '@hub/common/components'
 
 import history from '~/services/history'
@@ -24,9 +27,6 @@ export interface RefMenuProps {
 export interface MenuProps {
   openModalPass: () => void
 }
-
-const { useDisclosure, DrawerContainer, DrawerContent } = Drawer
-
 interface MenuPropsButton {
   onClick: () => void
 }
@@ -95,7 +95,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
           alignItems="center"
           justifyContent="space-between"
         ></Box>
-        <DrawerContainer
+        <Drawer
           isOpen={isOpen}
           autoFocus={false}
           placement="left"
@@ -210,7 +210,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               </Button>
             </Box>
           </DrawerContent>
-        </DrawerContainer>
+        </Drawer>
       </>
     )
   }
