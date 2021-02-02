@@ -1,22 +1,19 @@
-import {
-  Drawer as DrawerContainer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  useDisclosure
-} from '@chakra-ui/react'
+import { Drawer, useDisclosure } from '@chakra-ui/react'
 
-const Drawer = {
-  DrawerContainer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
+import DrawerOverlay from './DrawerOverlay'
+import DrawerHeader from './DrawerHeader'
+import DrawerFooter from './DrawerFooter'
+import DrawerContent from './DrawerContent'
+import DrawerCloseButton from './DrawerCloseButton'
+import DrawerBody from './DrawerBody'
+
+export {
   DrawerOverlay,
+  DrawerHeader,
+  DrawerFooter,
   DrawerContent,
   DrawerCloseButton,
+  DrawerBody,
   useDisclosure
 }
 
