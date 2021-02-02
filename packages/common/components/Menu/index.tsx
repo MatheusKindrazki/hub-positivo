@@ -1,21 +1,21 @@
-import {
-  Menu as MenuContainer,
-  MenuButton,
-  MenuList,
-  MenuDivider,
-  MenuItem,
-  MenuGroup,
-  MenuItemOption,
-  MenuOptionGroup
-} from '@chakra-ui/react'
+import { Menu } from '@chakra-ui/react'
 
-export default {
-  MenuContainer,
-  MenuButton,
+import MenuOptionGroup from './MenuOptionGroup'
+import MenuList from './MenuList'
+import MenuItemOption from './MenuItemOption'
+import MenuItem from './MenuItem'
+import MenuGroup from './MenuGroup'
+import MenuDivider from './MenuDivider'
+import MenuButton from './MenuButton'
+
+export {
+  MenuOptionGroup,
   MenuList,
-  MenuDivider,
+  MenuItemOption,
   MenuItem,
   MenuGroup,
-  MenuItemOption,
-  MenuOptionGroup
+  MenuDivider,
+  MenuButton
 }
+
+export default Menu

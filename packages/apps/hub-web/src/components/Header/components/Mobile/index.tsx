@@ -6,7 +6,7 @@ import { openTour } from '~/store/modules/tour/actions'
 import { signOut } from '~/store/modules/auth/actions'
 
 import { useTheme } from '@hub/common/layout/styles'
-import Menu from '@hub/common/components/Menu'
+import { MenuDivider } from '@hub/common/components/Menu'
 import { List } from '@hub/common/components/Icons'
 import Drawer from '@hub/common/components/Drawer'
 import { Box, Button, Select, Welcome } from '@hub/common/components'
@@ -25,7 +25,6 @@ export interface MenuProps {
   openModalPass: () => void
 }
 
-const { MenuDivider } = Menu
 const { useDisclosure, DrawerContainer, DrawerContent } = Drawer
 
 interface MenuPropsButton {

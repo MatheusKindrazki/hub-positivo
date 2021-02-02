@@ -12,7 +12,8 @@ import Popover, {
   PopoverTrigger,
   PopoverContent
 } from '@hub/common/components/Popover'
-import { Box, Button, Avatar, Menu } from '@hub/common/components'
+import { MenuDivider } from '@hub/common/components/Menu'
+import { Box, Button, Avatar } from '@hub/common/components'
 
 import history from '~/services/history'
 
@@ -20,9 +21,6 @@ import ModalSupportContext from '~/components/ModalSupport/context'
 
 import GlobalStyle from '../../styles'
 import { useHeader } from '../../context'
-
-const { MenuContainer, MenuButton, MenuList, MenuDivider, MenuItem } = Menu
-
 interface ModalProps {
   openModalPass: () => void
 }
