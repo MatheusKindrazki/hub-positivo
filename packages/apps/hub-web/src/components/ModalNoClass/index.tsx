@@ -2,11 +2,11 @@ import React, { useEffect, useCallback } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { Box, Button, Image, Text } from '@hub/common/components'
-import Modal from '@hub/common/components/Modal'
-import { useDisclosure, useMediaQuery } from '@hub/common/hooks'
-
 import { signOut } from '~/store/modules/auth/actions'
+
+import { useDisclosure, useMediaQuery } from '@hub/common/hooks'
+import Modal from '@hub/common/components/Modal'
+import { Box, Button, Image, Text } from '@hub/common/components'
 
 import turma from './turma.svg'
 

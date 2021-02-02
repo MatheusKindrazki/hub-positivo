@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Box, Text, Image } from '@hub/common/components'
-
 import classNames from 'classnames'
+
+import { Box, Text, Image } from '@hub/common/components'
 
 import GlobalStyle from './styles'
 export interface CardProps {

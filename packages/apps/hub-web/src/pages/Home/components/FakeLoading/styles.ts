@@ -1,6 +1,6 @@
-import Box from '@hub/common/components/Box'
-
 import styled from 'styled-components'
+
+import Box from '@hub/common/components/Box'
 
 export const Container = styled(Box)`
   cursor: pointer;

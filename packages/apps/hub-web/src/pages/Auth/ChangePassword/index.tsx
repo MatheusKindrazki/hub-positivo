@@ -1,24 +1,26 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
 
+import { ValidationError } from 'yup'
+import classNames from 'classnames'
+
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Box, Text } from '@hub/common/components'
-import BarLoader from '@hub/common/components/BarLoader'
-import { FormProps, Form, Input, Button } from '@hub/common/components/Form'
-import { Eye, EyeSlash, Lock } from '@hub/common/components/Icons'
-import { useToast } from '@hub/common/hooks'
+import { forgotPasswordRequest } from '~/store/modules/user/actions'
+import { validatePinRequest } from '~/store/modules/forgotPassword/actions'
 
-import classNames from 'classnames'
-import { ValidationError } from 'yup'
+import { useToast } from '@hub/common/hooks'
+import { Eye, EyeSlash, Lock } from '@hub/common/components/Icons'
+import { FormProps, Form, Input, Button } from '@hub/common/components/Form'
+import BarLoader from '@hub/common/components/BarLoader'
+import { Box, Text } from '@hub/common/components'
+
+import history from '~/services/history'
 
 import GoBack from '~/components/GoBack'
 
-import useQuery from '~/hooks/useQuery'
-import history from '~/services/history'
-import { validatePinRequest } from '~/store/modules/forgotPassword/actions'
-import { forgotPasswordRequest } from '~/store/modules/user/actions'
-import { getValidationErrors } from '~/validators'
 import passValidation from '~/validators/auth/createNewPassword'
+import { getValidationErrors } from '~/validators'
+import useQuery from '~/hooks/useQuery'
 
 import { Container } from './styles'
 

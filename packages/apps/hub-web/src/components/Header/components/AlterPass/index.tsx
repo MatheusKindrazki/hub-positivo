@@ -2,14 +2,15 @@ import React, { useCallback, useRef, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Box, Button, SimpleGrid } from '@hub/common/components'
-import { Form, FormProps, Input } from '@hub/common/components/Form'
-import { Eye, EyeSlash } from '@hub/common/components/Icons'
-import { toast } from '@hub/common/utils'
-
 import { alterPasswordRequest } from '~/store/modules/user/actions'
-import { getValidationErrors, ValidationError } from '~/validators'
+
+import { toast } from '@hub/common/utils'
+import { Eye, EyeSlash } from '@hub/common/components/Icons'
+import { Form, FormProps, Input } from '@hub/common/components/Form'
+import { Box, Button, SimpleGrid } from '@hub/common/components'
+
 import alterPassword from '~/validators/user/alterPassword'
+import { getValidationErrors, ValidationError } from '~/validators'
 
 interface AlterPassProps {
   onClose: () => void
