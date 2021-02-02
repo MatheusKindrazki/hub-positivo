@@ -146,7 +146,7 @@ export function* preparePreparingAccess({
   if (redirect) {
     yield put(setSigned())
 
-    history.push('/')
+    history.push(redirect || '/')
   }
 }
 
