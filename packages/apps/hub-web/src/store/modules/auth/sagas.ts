@@ -18,12 +18,15 @@ import { store } from '~/store'
 
 import capitalize from '@hub/common/utils/capitalize'
 import { toast } from '@hub/common/utils'
+import api from '@hub/api'
 
 import history from '~/services/history'
 import { changeSchool, ApiChange } from '~/services/eemIntegration'
 import { EEMConnectPost } from '~/services/eemConnect'
 
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
+
+import refreshTokenMiddleware from '~/middlewares/refreshToken'
 
 import {
   SignInRequest,
@@ -73,6 +76,10 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
   const user = decode(data?.access_token as string) as any
 
+  api.setHeaders({
+    Authorization: `Bearer ${data?.access_token || ''}`
+  })
+
   clearStrikes()
 
   yield put(
@@ -108,6 +115,10 @@ export function* preparePreparingAccess({
   const { profiles, selected_profile, selected_school, redirect } = payload
 
   yield put(loading(true))
+
+  yield call(async () => {
+    return await refreshTokenMiddleware()
+  })
 
   yield put(setSchool(selected_school))
 
@@ -153,7 +164,7 @@ export function* checkingExpiringToken({
     return yield put(signOut())
   }
 
-  const { exp, reduced_token } = payload.auth
+  const { exp, reduced_token, token } = payload.auth
 
   if (!exp || exp === 0) return
 
@@ -167,11 +178,15 @@ export function* checkingExpiringToken({
 
   yield put(loading(true))
 
+  api.setHeaders({
+    Authorization: `Bearer ${token || ''}`
+  })
+
   yield put(reducedTokenEEM(reduced_token))
 
   yield put(enableRefreshTokenMiddleware(true))
 
-  yield delay(2000)
+  yield delay(1500)
 
   return yield put(productRequest({}))
 }
@@ -203,6 +218,10 @@ export function* refreshToken(): Generator {
 
     history.push('/login')
   }
+
+  api.setHeaders({
+    Authorization: `Bearer ${data?.access_token || ''}`
+  })
 
   const res = yield call(async () => {
     return await changeSchool({

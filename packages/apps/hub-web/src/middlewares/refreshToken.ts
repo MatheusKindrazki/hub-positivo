@@ -12,15 +12,13 @@ import history from '~/services/history'
 import { changeSchool } from '~/services/eemIntegration'
 import { EEMConnectPost } from '~/services/eemConnect'
 
-api.axiosInstance.interceptors.request.use(async config => {
-  const { exp, refresh_token, token } = store.getState().auth
+export default async (): Promise<boolean> => {
+  const { exp, refresh_token } = store.getState().auth
   const { enableMiddlewareRefreshToken } = store.getState().global
 
   const date = new Date().getTime()
 
   const now = Math.round(date / 1000)
-
-  console.log('enableMiddlewareRefreshToken', enableMiddlewareRefreshToken)
 
   if (now >= exp && enableMiddlewareRefreshToken) {
     store.dispatch({
@@ -46,6 +44,10 @@ api.axiosInstance.interceptors.request.use(async config => {
       history.push('/login')
     }
 
+    api.setHeaders({
+      Authorization: `Bearer ${data?.access_token || ''}`
+    })
+
     const user = decode(data?.access_token as string) as { exp: number }
 
     store.dispatch({
@@ -57,34 +59,8 @@ api.axiosInstance.interceptors.request.use(async config => {
       }
     })
 
-    // chama a api para criar um token reduzido
-    const res = await changeSchool({
-      token: data?.access_token
-    })
-
-    store.dispatch({
-      type: AuthActions.REDUCED_TOKEN_EEM,
-      payload: res.access_token
-    })
-
-    api.axiosInstance.defaults.headers.Authorization = `Bearer ${data?.access_token}`
-
-    return {
-      ...config,
-      headers: {
-        ...config.headers,
-        Authorization: `Bearer ${data?.access_token}`
-      }
-    }
+    return true
   }
 
-  api.axiosInstance.defaults.headers.Authorization = `Bearer ${token}`
-
-  return {
-    ...config,
-    headers: {
-      ...config.headers,
-      Authorization: `Bearer ${token}`
-    }
-  }
-})
+  return true
+}

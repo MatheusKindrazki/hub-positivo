@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, Suspense } from 'react'
 
+import { Switch, HashRouter } from 'react-router-dom'
+import { ConnectedRouter } from 'connected-react-router'
+
 import { useSelector } from 'react-redux'
 
-import ThemeContext from '@hub/common/layout/Provider/context'
 import { VariantsProps } from '@hub/common/layout/styles/colors'
-
-import { ConnectedRouter } from 'connected-react-router'
-import { Switch, HashRouter } from 'react-router-dom'
+import ThemeContext from '@hub/common/layout/Provider/context'
 
 import history from '~/services/history'
 
