@@ -1,11 +1,11 @@
 import React from 'react'
 
-import classNames from 'classnames'
 import { Props, StylesConfig } from 'react-select'
 import Select from 'react-select'
+import classNames from 'classnames'
 
-import { useTheme } from '../../layout'
 import GlobalSelectStyle from './styles'
+import { useTheme } from '../../layout'
 
 export interface PropsSelect extends Props {
   variant: 'blue-transparent' | 'normal'
@@ -89,6 +89,7 @@ const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
           normal: variant === 'normal'
         })}
         classNamePrefix="hub"
+        isSearchable
         {...rest}
       />
       <GlobalSelectStyle />
