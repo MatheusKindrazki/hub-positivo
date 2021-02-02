@@ -6,10 +6,10 @@ import { RefreshTokenApi } from '~/store/modules/auth/types'
 import { Actions as AuthActions } from '~/store/modules/auth/actions'
 import { store } from '~/store'
 
+import { toast } from '@hub/common/utils'
 import api from '@hub/api'
 
 import history from '~/services/history'
-import { changeSchool } from '~/services/eemIntegration'
 import { EEMConnectPost } from '~/services/eemConnect'
 
 export default async (): Promise<boolean> => {
@@ -40,6 +40,10 @@ export default async (): Promise<boolean> => {
       store.dispatch({
         type: AuthActions.SIGN_OUT
       })
+
+      toast.warn(
+        'Desculpe sua sessão expirou, realiza o login novamente para continuar!'
+      )
 
       history.push('/login')
     }
