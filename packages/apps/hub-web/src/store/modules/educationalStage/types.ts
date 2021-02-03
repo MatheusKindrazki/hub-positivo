@@ -21,6 +21,7 @@ export interface Ciclos {
 }
 
 export interface ContentResponse {
+  ativo: boolean
   serie: {
     ciclo: {
       id: number
