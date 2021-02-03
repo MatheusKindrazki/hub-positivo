@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 
-import { Box, Button, Image, SimpleGrid, Text } from '@hub/common/components'
-import { Phone, EnvelopeSimple } from '@hub/common/components/Icons'
-import Modal from '@hub/common/components/Modal'
 import { useDisclosure, useMediaQuery } from '@hub/common/hooks'
+import Modal from '@hub/common/components/Modal'
+import { Phone, EnvelopeSimple } from '@hub/common/components/Icons'
+import { Box, Button, Image, SimpleGrid, Text } from '@hub/common/components'
 
-import cerebro from './cerebro.svg'
 import ModalContext from './context'
+import cerebro from './cerebro.svg'
 
 const ModalSupport: React.FC = () => {
   const context = useContext(ModalContext)

@@ -7,4 +7,10 @@ export default createGlobalStyle`
   }
 
 
+  body {
+    outline: none!important;
+  }
+
+
+
 `
