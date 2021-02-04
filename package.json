@@ -22,7 +22,7 @@
     ]
   },
   "scripts": {
-    "test": "jest --passWithNoTests",
+    "test": "jest --passWithNoTests --runInBand",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "build:web": "npm run --prefix packages/apps/hub-web build",
     "build:header": "npm run --prefix packages/apps/header-inject build"
