@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Box, Button } from '@hub/common/components'
-import { ArrowLeft } from '@hub/common/components/Icons'
 import { useTheme } from '@hub/common/layout/styles'
+import { ArrowLeft } from '@hub/common/components/Icons'
+import { Box, Button } from '@hub/common/components'
 
 import { Container } from './styles'
 

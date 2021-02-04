@@ -6,6 +6,8 @@ import React, {
   useState
 } from 'react'
 
+import { orderBy } from 'lodash'
+
 import { useDispatch } from 'react-redux'
 
 import { AccessData } from '~/store/modules/auth/types'
@@ -73,11 +75,15 @@ const HeaderProvider: React.FC = ({ children }) => {
 
   // ? Lista de escolas e perfis
   const schoolList = useMemo(() => {
-    return prepareSchool(user?.schools)
+    const schools = prepareSchool(user?.schools)
+
+    return orderBy(schools, 'label', 'asc')
   }, [user])
 
   const roleList = useMemo(() => {
-    return prepareRoles(roles)
+    const profiles = prepareRoles(roles)
+
+    return orderBy(profiles, 'label', 'asc')
   }, [roles])
 
   return (

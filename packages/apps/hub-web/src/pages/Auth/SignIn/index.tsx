@@ -1,30 +1,32 @@
 import React, { useRef, useState, useCallback, useContext } from 'react'
 import { useEffect } from 'react'
 
+import { useHistory } from 'react-router-dom'
+import ReCAPTCHA from 'react-google-recaptcha'
+import lscache from 'lscache'
+
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Box, Heading, Text, Button } from '@hub/common/components'
+import { signInRequest } from '~/store/modules/auth/actions'
+
+import documentTitle from '@hub/common/utils/documentTitle'
+import { toast } from '@hub/common/utils'
+import { Lock, User, Eye, EyeSlash } from '@hub/common/components/Icons'
 import {
   Input,
   Button as FormButton,
   Form,
   FormProps
 } from '@hub/common/components/Form'
-import { Lock, User, Eye, EyeSlash } from '@hub/common/components/Icons'
-import { toast } from '@hub/common/utils'
-import documentTitle from '@hub/common/utils/documentTitle'
+import { Box, Heading, Text, Button } from '@hub/common/components'
 
-import lscache from 'lscache'
-import ReCAPTCHA from 'react-google-recaptcha'
-import { useHistory } from 'react-router-dom'
+import { handleCaptcha, checkForStrikes } from '~/utils/reCaptcha'
 
 import ModalSupportContext from '~/components/ModalSupport/context'
 
-import useQuery from '~/hooks/useQuery'
-import { signInRequest } from '~/store/modules/auth/actions'
-import { handleCaptcha, checkForStrikes } from '~/utils/reCaptcha'
-import { ValidationError, getValidationErrors } from '~/validators'
 import signInValidator from '~/validators/auth/signIn'
+import { ValidationError, getValidationErrors } from '~/validators'
+import useQuery from '~/hooks/useQuery'
 
 const SignIn: React.FC = () => {
   documentTitle('Entrar')

@@ -1,5 +1,7 @@
 import React, { useCallback, useState, useMemo } from 'react'
 
+import { orderBy } from 'lodash'
+
 import { useSelector, useDispatch } from 'react-redux'
 
 import { AccessData } from '~/store/modules/auth/types'
@@ -33,9 +35,15 @@ const Profile: React.FC = () => {
 
   const { user } = useSelector((state: Store.State) => state.user)
 
-  const renderSchools = useMemo(() => prepareSchool(user?.schools), [user])
+  const renderSchools = useMemo(
+    () => orderBy(prepareSchool(user?.schools), 'label', 'asc'),
+    [user]
+  )
 
-  const renderProfiles = useMemo(() => prepareRoles(school?.roles), [school])
+  const renderProfiles = useMemo(
+    () => orderBy(prepareRoles(school?.roles), 'label', 'asc'),
+    [school]
+  )
 
   const handleSignInUser = useCallback(
     data => {

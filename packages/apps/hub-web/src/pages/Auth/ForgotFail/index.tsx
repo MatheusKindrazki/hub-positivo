@@ -1,11 +1,11 @@
 import React from 'react'
 
+import { useHistory } from 'react-router-dom'
+
 import { useSelector } from 'react-redux'
 
-import { Box, Text, Button } from '@hub/common/components'
 import documentTitle from '@hub/common/utils/documentTitle'
-
-import { useHistory } from 'react-router-dom'
+import { Box, Text, Button } from '@hub/common/components'
 
 import GoBack from '~/components/GoBack'
 

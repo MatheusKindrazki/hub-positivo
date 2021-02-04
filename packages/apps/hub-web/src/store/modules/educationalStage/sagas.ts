@@ -45,21 +45,23 @@ function* getEducationStage(): Generator {
   let setDefaultCiclo = false
 
   data?.conteudo.forEach(e => {
-    if (!setDefaultCiclo && !!e.serie.ciclo) {
-      selectedCiclo = {
+    if (e.ativo) {
+      if (!setDefaultCiclo && !!e.serie.ciclo) {
+        selectedCiclo = {
+          id: e.serie.ciclo.id,
+          label: e.serie.ciclo.descricao,
+          value: e.serie.ciclo.descricao
+        }
+
+        setDefaultCiclo = true
+      }
+
+      ciclos.push({
         id: e.serie.ciclo.id,
         label: e.serie.ciclo.descricao,
         value: e.serie.ciclo.descricao
-      }
-
-      setDefaultCiclo = true
+      })
     }
-
-    ciclos.push({
-      id: e.serie.ciclo.id,
-      label: e.serie.ciclo.descricao,
-      value: e.serie.ciclo.descricao
-    })
   })
 
   const uniByCiclo = unionBy(ciclos, 'id')
