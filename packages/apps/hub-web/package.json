@@ -13,6 +13,7 @@
   "dependencies": {
     "@hub/api": "*",
     "@hub/common": "*",
+    "@hub/test-utils": "*",
     "@types/lscache": "^1.3.0",
     "@types/react-google-recaptcha": "^2.1.0",
     "classnames": "^2.2.6",

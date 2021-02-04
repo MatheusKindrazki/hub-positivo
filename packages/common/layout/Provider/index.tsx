@@ -1,16 +1,22 @@
 import React, { useMemo, useState, useContext } from 'react'
 
-import { ChakraProvider, CSSReset } from '@chakra-ui/react'
-import { ToastContainer } from 'react-toastify'
 import { ThemeProvider as StyledProvider } from 'styled-components'
+import { ToastContainer } from 'react-toastify'
 
-import { theme as HubTheme } from '../styles'
+import { ChakraProvider, CSSReset } from '@chakra-ui/react'
+
+import ThemeContext from './context'
+import GlobalStyles from '../styles/global'
 import profileColors, {
   VariantsProps,
   profileBaseColor
 } from '../styles/colors'
-import GlobalStyles from '../styles/global'
-import ThemeContext from './context'
+import { theme as HubTheme } from '../styles'
+
+if (process.env.NODE_ENV !== 'test') {
+  require('react-toastify/dist/ReactToastify.css')
+}
+
 const ThemeContainer: React.FC = ({ children }) => {
   const [profile, setProfile] = useState<VariantsProps>('default')
 
