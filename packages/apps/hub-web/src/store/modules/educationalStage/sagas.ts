@@ -41,7 +41,7 @@ function* getEducationStage(): Generator {
   return yield put(
     setEducationalLevels({
       levels: ciclos,
-      level: ciclos[0].value || ''
+      level: ciclos.length ? ciclos[0].value : ''
     })
   )
 }

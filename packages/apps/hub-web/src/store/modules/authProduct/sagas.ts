@@ -97,7 +97,11 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   }
 
   const response = yield call(() => {
-    return apiAuthProduct.post('api/TokenStorage', authTheProduct)
+    return apiAuthProduct.post('api/TokenStorage', authTheProduct, {
+      headers: {
+        Authorization: `Bearer ${auth.reduced_token}`
+      }
+    })
   })
 
   const { data, ok } = response as ApiResponse<object>
