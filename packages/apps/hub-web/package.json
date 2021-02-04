@@ -1,7 +1,15 @@
 {
   "name": "@hub/web",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "license": "MIT",
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext ts,tsx",
+    "tsc": "tsc --noEmit"
+  },
   "dependencies": {
     "@hub/api": "*",
     "@hub/common": "*",
@@ -36,11 +44,17 @@
     "ts-debounce": "^2.1.0",
     "yup": "^0.31.0"
   },
-  "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -65,17 +79,5 @@
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.1.6",
     "redux-devtools-extension": "^2.13.8"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }
