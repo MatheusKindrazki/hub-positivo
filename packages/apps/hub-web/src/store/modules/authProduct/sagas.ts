@@ -19,7 +19,7 @@ import {
 import { setFrameURL } from '../products/actions'
 import { loading } from '../global/actions'
 
-// tipos de renderização
+// ! tipos de renderização
 // | 'iframe'
 // | 'headerinject'
 // | 'targetblank'
@@ -27,6 +27,8 @@ import { loading } from '../global/actions'
 // | 'wordpress'
 
 type AuthPayload = Payload<AuthRequest>
+
+const EEMIframeVerify = ['iframe', 'iframeblank']
 
 /*
   ?Triagem das soluções
@@ -52,7 +54,7 @@ export function* productSorting({ payload }: AuthPayload): Generator {
     return yield put(authProductSuccess())
   }
 
-  if (tipoRenderizacao === 'iframe') {
+  if (EEMIframeVerify.includes(tipoRenderizacao as string)) {
     return yield put(authProductRequest(payload, 'AUTH_PRODUCT_EEM_REQUEST'))
   }
 
@@ -126,9 +128,13 @@ export function* authProductEEM({ payload }: AuthPayload): Generator {
 
   const newUrl = payload.url.replace('{token}', reduced_token as string)
 
-  yield put(setFrameURL({ url: newUrl, name: payload.name }))
+  if (payload.tipoRenderizacao === 'iframeblank') {
+    window.open(newUrl, '_blank')
+  } else {
+    yield put(setFrameURL({ url: newUrl, name: payload.name }))
 
-  history.push(`/solucao/${payload.product}`)
+    history.push(`/solucao/${payload.product}`)
+  }
 
   yield put(loading(false))
 
