@@ -3,14 +3,11 @@ import React, { useMemo, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import classNames from 'classnames'
 
-import { useSelector } from 'react-redux'
-
 import {
   Box,
   Button,
   Heading,
   SpinnerLoader,
-  Avatar,
   SimpleGrid
 } from '@hub/common/components'
 
@@ -28,9 +25,6 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
     () => cardFilter({ data: cards || [], search: search }),
     [cards, search]
   )
-
-  const { user, avatar } = useSelector((state: Store.State) => state.user)
-
   return (
     <div className="hub-header-list">
       <Button

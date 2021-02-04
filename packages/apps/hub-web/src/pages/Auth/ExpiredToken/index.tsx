@@ -2,12 +2,12 @@ import React from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { Box, Text } from '@hub/common/components'
 import { Button } from '@hub/common/components/Form'
-
-import GoBack from '~/components/GoBack'
+import { Box, Text } from '@hub/common/components'
 
 import history from '~/services/history'
+
+import GoBack from '~/components/GoBack'
 
 const ExpiredToken: React.FC = () => {
   const { validateViewPin } = useSelector(

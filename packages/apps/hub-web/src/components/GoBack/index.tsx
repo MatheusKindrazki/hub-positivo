@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Box, Heading, Button } from '@hub/common/components'
 import { ArrowLeft } from '@hub/common/components/Icons'
+import { Box, Heading, Button } from '@hub/common/components'
 
 import { ButtonProps } from '@chakra-ui/react'
 

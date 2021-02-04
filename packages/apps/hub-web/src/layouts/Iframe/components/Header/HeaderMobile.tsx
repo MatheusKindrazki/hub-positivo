@@ -3,7 +3,10 @@ import React, { useMemo, useState } from 'react'
 import classNames from 'classnames'
 
 import { DotsNine } from '@hub/common/components/Icons'
-import Drawer from '@hub/common/components/Drawer'
+import Drawer, {
+  DrawerContent,
+  useDisclosure
+} from '@hub/common/components/Drawer'
 import {
   Box,
   Button,
@@ -22,7 +25,6 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const [search, setSearch] = useState('')
   const [show, setShow] = useState(false)
 
-  const { DrawerContainer, DrawerContent, useDisclosure } = Drawer
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const filterCards = useMemo(
@@ -53,11 +55,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
       >
         <Box as={DotsNine} size={24} />
       </Button>
-      <DrawerContainer
-        isOpen={isOpen}
-        placement="right"
-        onClose={() => onClose()}
-      >
+      <Drawer isOpen={isOpen} placement="right" onClose={() => onClose()}>
         <DrawerContent
           mt={['41px', '41px']}
           position="relative"
@@ -124,7 +122,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
             </Box>
           </Box>
         </DrawerContent>
-      </DrawerContainer>
+      </Drawer>
       <GlobalStyle />
     </div>
   )

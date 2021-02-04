@@ -8,7 +8,12 @@ import { signOut } from '~/store/modules/auth/actions'
 import { useDisclosure } from '@hub/common/hooks'
 import Welcome from '@hub/common/components/Welcome'
 import Select from '@hub/common/components/Select'
-import { Box, Button, Avatar, Menu } from '@hub/common/components'
+import Popover, {
+  PopoverTrigger,
+  PopoverContent
+} from '@hub/common/components/Popover'
+import { MenuDivider } from '@hub/common/components/Menu'
+import { Box, Button, Avatar } from '@hub/common/components'
 
 import history from '~/services/history'
 
@@ -16,12 +21,15 @@ import ModalSupportContext from '~/components/ModalSupport/context'
 
 import GlobalStyle from '../../styles'
 import { useHeader } from '../../context'
+interface ModalProps {
+  openModalPass: () => void
+}
 
-const { MenuContainer, MenuButton, MenuList, MenuDivider, MenuItem } = Menu
-
-const DesktopMenu: React.FC = () => {
+const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
   const dispatch = useDispatch()
   const { onOpen } = useContext(ModalSupportContext)
+
+  const [enableBlur, setEnableBlur] = useState(true)
 
   const { schoolList, roleList, ...func } = useHeader()
   const { steps } = useSelector((state: Store.State) => state.tour)
@@ -41,6 +49,11 @@ const DesktopMenu: React.FC = () => {
 
   const { isOpen, onOpen: menuOpen, onClose: menuClose } = useDisclosure()
 
+  const handleClosed = useCallback(() => {
+    menuClose()
+    resetInfo()
+  }, [menuClose, resetInfo])
+
   return (
     <Box
       className="hub-logo"
@@ -48,18 +61,17 @@ const DesktopMenu: React.FC = () => {
       alignItems="center"
       justifyContent="space-between"
     >
-      {steps?.length && (
-        <Button
-          fontSize="0.875rem"
-          backgroundColor="white"
-          fontWeight="bold"
-          color="blue.500"
-          onClick={handleOpenTour}
-          mx="1"
-        >
-          Fazer tour
-        </Button>
-      )}
+      <Button
+        disabled={!steps?.length}
+        fontSize="0.875rem"
+        backgroundColor="white"
+        fontWeight="bold"
+        color="blue.500"
+        onClick={handleOpenTour}
+        mx="1"
+      >
+        Fazer tour
+      </Button>
       <Button
         id="header-suporte"
         fontSize="0.875rem"
@@ -71,21 +83,16 @@ const DesktopMenu: React.FC = () => {
       >
         Estou com uma dúvida
       </Button>
-      <MenuContainer
-        onClose={() => {
-          menuClose()
-          resetInfo()
-        }}
+      <Popover
+        onClose={handleClosed}
         onOpen={menuOpen}
         isOpen={isOpen}
+        closeOnBlur={enableBlur}
+        isLazy
       >
-        <MenuButton
-          type="button"
-          w="2.8125rem"
-          background="transparent!important"
-          style={{ zIndex: 9 }}
-        >
+        <PopoverTrigger>
           <Avatar
+            cursor="pointer"
             width="2.6rem"
             color="#3C3C3C"
             height="2.5rem"
@@ -93,23 +100,19 @@ const DesktopMenu: React.FC = () => {
             name={user?.name || ''}
             src=""
           />
-        </MenuButton>
-        <MenuList
-          style={{ zIndex: 9 }}
+        </PopoverTrigger>
+        <PopoverContent
+          outline="none"
           minW="310px"
           borderRadius="md"
           boxShadow="dark-lg"
           border="1px solid #D9D9D9"
           mr="2rem!important"
-          top="8px!important"
+          top="50px!important"
+          _focus={{
+            boxShadow: 'dark-lg'
+          }}
         >
-          <MenuItem
-            style={{
-              position: 'absolute',
-              pointerEvents: 'none',
-              opacity: 0
-            }}
-          ></MenuItem>
           <Box px="4" py="2" w="100%" h="auto">
             <Welcome
               name={user?.name || ''}
@@ -124,11 +127,17 @@ const DesktopMenu: React.FC = () => {
           <Box px="4" pt="3" pb="3">
             <Select
               variant="normal"
+              blurInputOnSelect
               placeholder="Selecione"
+              isSearchable
               className="height-md"
               value={defaultValue.school}
               options={schoolList}
-              onChange={e => setSchool(e as any)}
+              onFocus={() => setEnableBlur(false)}
+              onBlur={() => setEnableBlur(true)}
+              onChange={e => {
+                setSchool(e as any)
+              }}
             />
           </Box>
           <Box px="4" pb="3">
@@ -139,12 +148,22 @@ const DesktopMenu: React.FC = () => {
               className="height-md"
               value={defaultValue.role}
               options={roleList}
-              onChange={e => setRole(e as any)}
+              onFocus={() => setEnableBlur(false)}
+              onBlur={() => setEnableBlur(true)}
+              onChange={e => {
+                setEnableBlur(true)
+                setRole(e as any)
+              }}
             />
           </Box>
           <MenuDivider />
           <Box px="5" py="3">
-            <Button variant="link" color="gray.500" fontSize="0.875rem">
+            <Button
+              onClick={openModalPass}
+              variant="link"
+              color="gray.500"
+              fontSize="0.875rem"
+            >
               Alterar minha senha
             </Button>
           </Box>
@@ -158,8 +177,8 @@ const DesktopMenu: React.FC = () => {
               Sair
             </Button>
           </Box>
-        </MenuList>
-      </MenuContainer>
+        </PopoverContent>
+      </Popover>
       <GlobalStyle />
     </Box>
   )

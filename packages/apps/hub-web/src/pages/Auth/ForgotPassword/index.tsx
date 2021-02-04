@@ -1,26 +1,28 @@
 import React, { useRef, useCallback } from 'react'
 
+import { ValidationError } from 'yup'
+import { toast } from 'react-toastify'
+
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Box, Text } from '@hub/common/components'
+import { pwdTokenRequest } from '~/store/modules/forgotPassword/actions'
+
+import documentTitle from '@hub/common/utils/documentTitle'
+import { User } from '@hub/common/components/Icons'
 import {
   Input,
   Form,
   FormProps,
   Button as ButtonForm
 } from '@hub/common/components/Form'
-import { User } from '@hub/common/components/Icons'
-import documentTitle from '@hub/common/utils/documentTitle'
+import { Box, Text } from '@hub/common/components'
 
-import { toast } from 'react-toastify'
-import { ValidationError } from 'yup'
+import history from '~/services/history'
 
 import GoBack from '~/components/GoBack'
 
-import history from '~/services/history'
-import { pwdTokenRequest } from '~/store/modules/forgotPassword/actions'
-import { getValidationErrors } from '~/validators'
 import userInfo from '~/validators/auth/forgotPassword'
+import { getValidationErrors } from '~/validators'
 
 const ForgotPassword: React.FC = () => {
   documentTitle('Esqueci minha senha')

@@ -1,5 +1,7 @@
 import React, { memo } from 'react'
 
+import { debounce } from 'ts-debounce'
+
 import { MagnifyingGlass } from '@hub/common/components/Icons'
 
 import {
@@ -9,7 +11,6 @@ import {
   InputLeftElement,
   InputProps
 } from '@chakra-ui/react'
-import { debounce } from 'ts-debounce'
 
 interface HandleChange extends InputProps {
   handleChange: (e: string) => void

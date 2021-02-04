@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes } from 'react'
 
-import iconTypes from './icons'
 import { Container } from './styles'
+import iconTypes from './icons'
 
 type CardPropsButton = ButtonHTMLAttributes<HTMLButtonElement>
 

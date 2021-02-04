@@ -7,8 +7,9 @@ import {
   useLocation
 } from 'react-router-dom'
 
-import searchQuery from '~/hooks/useQuery'
 import { store } from '~/store'
+
+import searchQuery from '~/hooks/useQuery'
 
 const Auth = React.lazy(() => import('~/layouts/Auth'))
 const Iframe = React.lazy(() => import('~/layouts/Iframe'))

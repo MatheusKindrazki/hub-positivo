@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
 
-import { Box, Image, Heading, Text, Badge } from '@hub/common/components'
-import createSlug from '@hub/common/utils/createSlug'
-
 import classNames from 'classnames'
+
+import createSlug from '@hub/common/utils/createSlug'
+import { Box, Image, Heading, Text, Badge } from '@hub/common/components'
 
 import { Container } from './styles'
 

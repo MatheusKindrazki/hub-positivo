@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Flex } from '@hub/common/components'
 import { useTheme } from '@hub/common/layout/styles'
+import { Flex } from '@hub/common/components'
 
 const Logo: React.FC = () => {
   const { colors } = useTheme()
