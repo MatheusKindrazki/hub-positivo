@@ -9,6 +9,8 @@ import { apiAuthProduct } from '@hub/api'
 
 import history from '~/services/history'
 
+import refreshTokenMiddleware from '~/middlewares/refreshToken'
+
 import { AuthRequest } from './types'
 import {
   Actions,
@@ -37,6 +39,10 @@ export function* productSorting({ payload }: AuthPayload): Generator {
   const user = store.getState().user
 
   if (!auth && !profile && !user) return
+
+  yield call(async () => {
+    return await refreshTokenMiddleware()
+  })
 
   const { tipoRenderizacao, url, product } = payload
 
