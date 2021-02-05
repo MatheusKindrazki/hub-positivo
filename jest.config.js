@@ -1,22 +1,22 @@
 module.exports = {
   clearMocks: true,
   collectCoverage: true,
-  verbose: true,
+  verbose: false,
   testEnvironment: 'node',
   preset: 'ts-jest',
   projects: ['<rootDir>/packages/**/jest.config.js'],
-  testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(test).ts?(x)'],
+  testMatch: ['**/__tests__/**/*.ts?(x)'],
   coverageThreshold: {
     global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: 100
+      branches: 85,
+      functions: 85,
+      lines: 85,
+      statements: 85
     }
   },
   globals: {
     'ts-jest': {
-      diagnostics: false
+      diagnostics: true
     }
   },
   transform: {

@@ -8,7 +8,14 @@ module.exports = {
     "~(.*)$": "<rootDir>/src/$1"
   },
   collectCoverageFrom: [
-    '<rootDir>/packages/**/.tsx',
-    '<rootDir>/packages/**/.ts'
+    '<rootDir>/src/components/**/.tsx',
+    '<rootDir>/src/layouts/**/.tsx',
+    '<rootDir>/src/pages/**/.tsx',
+    '<rootDir>/src/services/**/.tsx',
+    '<rootDir>/src/validators/**/.tsx',
+    '<rootDir>/src/middlewares/**/.ts',
+    '<rootDir>/src/utils/**/.ts',
+    '<rootDir>/src/hooks/**/.ts',
+    '<rootDir>/src/store/**/.ts',
   ],
 };

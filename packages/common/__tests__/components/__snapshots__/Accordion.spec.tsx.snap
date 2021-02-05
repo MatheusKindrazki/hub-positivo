@@ -3,9 +3,7 @@
 exports[`Accordion an UnmountClosed components Accordion being rendered on canvas 1`] = `
 Object {
   "asFragment": [Function],
-  "baseElement": <body
-    class="chakra-ui-light"
-  >
+  "baseElement": <body>
     <div
       id="chakra-toast-portal"
     >
@@ -46,9 +44,6 @@ Object {
           hub
         </div>
       </div>
-      <div
-        class="Toastify"
-      />
     </div>
   </body>,
   "container": <div>
@@ -63,9 +58,6 @@ Object {
         hub
       </div>
     </div>
-    <div
-      class="Toastify"
-    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -124,9 +116,7 @@ Object {
 exports[`Accordion an UnmountClosed components UnmountClosed being rendered on canvas 1`] = `
 Object {
   "asFragment": [Function],
-  "baseElement": <body
-    class="chakra-ui-light"
-  >
+  "baseElement": <body>
     <div
       id="chakra-toast-portal"
     >
@@ -167,9 +157,6 @@ Object {
           hub
         </div>
       </div>
-      <div
-        class="Toastify"
-      />
     </div>
   </body>,
   "container": <div>
@@ -184,9 +171,6 @@ Object {
         hub
       </div>
     </div>
-    <div
-      class="Toastify"
-    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

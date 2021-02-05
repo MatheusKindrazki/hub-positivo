@@ -13,18 +13,12 @@ import profileColors, {
 } from '../styles/colors'
 import { theme as HubTheme } from '../styles'
 
-if (process.env.NODE_ENV !== 'test') {
-  require('react-toastify/dist/ReactToastify.css')
-}
-
 const ThemeContainer: React.FC = ({ children }) => {
   const [profile, setProfile] = useState<VariantsProps>('default')
 
   const context = useContext(ThemeContext)
 
-  context.theme = ({ profile }) => {
-    setProfile(profile)
-  }
+  context.theme = ({ profile }) => setProfile(profile)
 
   const renderTheme = useMemo(() => {
     const profileTheme = profileColors({

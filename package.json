@@ -32,6 +32,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@hub/eslint-config": "*",
+    "@testing-library/react-hooks": "^5.0.3",
     "@types/jest": "^26.0.15",
     "commitizen": "^4.2.2",
     "cz-conventional-changelog": "^3.3.0",

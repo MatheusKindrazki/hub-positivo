@@ -12,7 +12,7 @@ export const INITIAL_STATE: GlobalReducer = {
 
 type ReturnReducer = Reducer<GlobalReducer>
 
-const global: ReturnReducer = (state = INITIAL_STATE, action) => {
+const globalReducer: ReturnReducer = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
       case Actions.LOADING: {
@@ -29,4 +29,4 @@ const global: ReturnReducer = (state = INITIAL_STATE, action) => {
   })
 }
 
-export default global
+export default globalReducer

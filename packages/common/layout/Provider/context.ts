@@ -6,7 +6,7 @@ interface VariantThemeProps {
   profile: VariantsProps
 }
 
-interface ThemeProps {
+export interface ThemeProps {
   theme: (theme: VariantThemeProps) => void
 }
 
