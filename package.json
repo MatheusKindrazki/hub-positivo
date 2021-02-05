@@ -1,7 +1,7 @@
 {
   "name": "hub",
   "private": true,
-  "version": "1.2.0",
+  "version": "1.2.2",
   "repository": {
     "type": "git",
     "url": "https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront"
@@ -18,13 +18,13 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "packages/@shared/*",
-      "packages/config/*",
       "packages/apps/*"
     ]
   },
   "scripts": {
-    "test": "jest --passWithNoTests",
+    "test": "jest --passWithNoTests --runInBand -u",
+    "test:watch": "jest --passWithNoTests --runInBand --watch -u",
+    "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "build:web": "npm run --prefix packages/apps/hub-web build",
     "build:header": "npm run --prefix packages/apps/header-inject build"
   },
@@ -32,6 +32,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@hub/eslint-config": "*",
+    "@testing-library/react-hooks": "^5.0.3",
     "@types/jest": "^26.0.15",
     "commitizen": "^4.2.2",
     "cz-conventional-changelog": "^3.3.0",
@@ -39,7 +40,7 @@
     "jest": "^26.6.3",
     "lint-staged": "^10.5.2",
     "npm-run-all": "^4.1.5",
-    "ts-jest": "^26.4.4",
+    "ts-jest": "^26.5.0",
     "typescript": "^4.0.3"
   },
   "dependencies": {
