@@ -14,8 +14,8 @@ module.exports = {
     '<rootDir>/src/services/**/.tsx',
     '<rootDir>/src/validators/**/.tsx',
     '<rootDir>/src/middlewares/**/.ts',
+    '<rootDir>/src/store/modules/**/.ts',
     '<rootDir>/src/utils/**/.ts',
     '<rootDir>/src/hooks/**/.ts',
-    '<rootDir>/src/store/**/.ts',
   ],
 };

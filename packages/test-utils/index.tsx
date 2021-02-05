@@ -1,19 +1,12 @@
 import React, { FC, ReactElement } from 'react'
 
-import { ThemeProvider as StyledProvider } from 'styled-components'
 import { render, RenderResult } from '@testing-library/react'
 import { RenderOptions } from '@testing-library/react'
 
-import theme from '@hub/common/layout/styles/chakra'
-
-import { ThemeProvider } from '@chakra-ui/react'
+import ThemeProviderHub from '@hub/common/layout/Provider'
 
 const Providers: FC = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <StyledProvider theme={theme}>{children}</StyledProvider>
-    </ThemeProvider>
-  )
+  return <ThemeProviderHub>{children}</ThemeProviderHub>
 }
 
 function customRender(
