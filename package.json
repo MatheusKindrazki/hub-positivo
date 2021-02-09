@@ -27,12 +27,15 @@
     "test:coverage": "jest -u && coverage-badges",
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
-    "build:web": "npm run --prefix packages/apps/hub-web build"
+    "build:web": "npm run --prefix packages/apps/hub-web build",
+    "release": "semantic-release --no-ci"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@hub/eslint-config": "*",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
     "@testing-library/react-hooks": "^5.0.3",
     "@types/jest": "^26.0.20",
     "commitizen": "^4.2.3",
@@ -41,6 +44,8 @@
     "husky": "~4.3.0",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
+    "semantic-release": "^17.3.8",
+    "semantic-release-ado": "^1.2.2",
     "svg-png-converter": "^0.0.9",
     "ts-jest": "^26.5.1",
     "typescript": "^4.1.3"
