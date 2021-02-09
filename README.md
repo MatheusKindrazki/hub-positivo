@@ -67,7 +67,7 @@ git clone https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigital
 
 Haverá a necessidade de autenticar-se através do terminal, como mostra a imagem abaixo:
 
-![README%20md%2019b2c3ae73c343e19c7ac9209dd44294/auth.png](README%20md%2019b2c3ae73c343e19c7ac9209dd44294/auth.png)
+![Auth](./docs/icons/auth.png)
 
 Após inserir o Username e Password (credenciais **PESSOAIS** geradas através do Azure devOps) o projeto estará disponível localmente.
 
@@ -228,9 +228,9 @@ const Box: React.FC<BoxProps> = ({ children, ...rest }) => {
 ...
 ```
 
-*Componente disponível em `packages/commom`.*
+*Componente disponível em `packages/common`.*
 
-No diretório `*packages/commom*` está disponível a grande maioria dos componentes criados com o Chacka UI. Dessa forma é possível prover utilitários comuns entre a aplicação, sem depender de uma estilização específica, deixando isso por responsabilidade de quem for utilizar este componente *genérico*.  [O trecho de código 2]() demonstra como o [trecho de código 1]() é utilizado.
+No diretório `*packages/common*` está disponível a grande maioria dos componentes criados com o Chacka UI. Dessa forma é possível prover utilitários comuns entre a aplicação, sem depender de uma estilização específica, deixando isso por responsabilidade de quem for utilizar este componente *genérico*.  [O trecho de código 2]() demonstra como o [trecho de código 1]() é utilizado.
 
 **Trecho de código 2:**
 
@@ -332,7 +332,7 @@ Os commits no repositório do Hub estarão sujeitos à análise do [Husky](https
 
 O commit deverá seguir o fluxo da CLI do Husky para ser feito, após avançar pelas etapas da interface, será gerado um commit personalizado de acordo com o padrão esperado no projeto, como consta na imagem abaixo:
 
-![README%20md%2019b2c3ae73c343e19c7ac9209dd44294/Captura_de_tela_de_2021-02-09_13-52-36.png](README%20md%2019b2c3ae73c343e19c7ac9209dd44294/Captura_de_tela_de_2021-02-09_13-52-36.png)
+![husky](./docs/icons/husky.png)
 
 ### 9.2. Regras de estilo
 
@@ -369,7 +369,7 @@ describe('Accordion an UnmountClosed components', () => {
 })
 ```
 
-*Código disponível em`packages/commom/__tests__/components/Accordion.spec.tsx`*
+*Código disponível em`packages/common/__tests__/components/Accordion.spec.tsx`*
 
 No primeiro teste (*it*) se renderiza o componente Accordion com o "hub" inserido como children, espera-se que ele tenha sido renderizado corretamente.
 
