@@ -22,8 +22,6 @@
   <img alt="Deploy" src="https://editorati.visualstudio.com/Produtos%20Digitais/_apis/build/status/PipelinesAntigos/hubdigital-front?branchName=master">
 </p>
 
-<br>
-
 <p align="center">
   <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_branches.svg.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Coverage branches" />
   <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_statements.svg.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Coverage statements" />
