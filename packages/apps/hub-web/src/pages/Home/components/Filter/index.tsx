@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react'
 
+import { orderBy } from 'lodash'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { productRequest } from '~/store/modules/products/actions'
@@ -34,7 +36,7 @@ const Filter: React.FC = () => {
       <Select
         variant="blue-transparent"
         value={levels.find(e => e.value === level)}
-        options={levels}
+        options={orderBy(levels, 'label', 'asc')}
         onChange={e => handleSelect(e)}
       />
     </Box>
