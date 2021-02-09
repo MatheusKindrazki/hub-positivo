@@ -1,7 +1,5 @@
-import { theme } from '@chakra-ui/react'
-
-type DefaultTheme = typeof theme
+import { DefaultChakraTheme } from '@chakra-ui/react'
 
 declare module '@chakra-ui/react' {
-  export declare function useTheme(): DefaultTheme
+  export declare function useTheme(): DefaultChakraTheme
 }

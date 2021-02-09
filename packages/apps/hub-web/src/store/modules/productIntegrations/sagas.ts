@@ -8,6 +8,7 @@ import { store } from '~/store'
 
 import { apiMHUND, apiLivro } from '@hub/api'
 
+import arvoreLivros from './mock.json'
 import { Actions } from './actions'
 interface CardType extends Product {
   slug: string
@@ -44,24 +45,18 @@ export function* mhundArvoreIntegration(): Generator {
 
   const response = yield call(() => {
     return Promise.all([
-      apiMHUND.post('checkuser', authTheProduct),
-      apiLivro.post('checkuser', authTheProduct)
+      apiLivro.post('checkuser', authTheProduct),
+      apiMHUND.post('checkuser', authTheProduct)
     ])
   })
 
   const [livro, mhund] = response as ApiResponse<{ redirects_to: string }>[]
 
-  const cardFilter = productData.map(c => {
+  let cardFilter = productData.map(c => {
     return {
       ...c,
       solucoes: c.solucoes.map(solucao => {
         if (solucao.slug === 'gestao-escolar-mhund') {
-          return {
-            ...solucao,
-            link: livro.data?.redirects_to || ''
-          }
-        }
-        if (solucao.slug === 'arvore-livros') {
           return {
             ...solucao,
             link: mhund.data?.redirects_to || ''
@@ -71,6 +66,25 @@ export function* mhundArvoreIntegration(): Generator {
       })
     }
   })
+
+  if (livro.data?.redirects_to) {
+    cardFilter = cardFilter.map(e => {
+      if (e.nome === 'Conteúdo') {
+        return {
+          ...e,
+          solucoes: [
+            ...e.solucoes,
+            {
+              ...arvoreLivros,
+              link: livro.data?.redirects_to
+            }
+          ]
+        }
+      }
+
+      return e
+    })
+  }
 
   return yield put(productIntegration(cardFilter))
 }

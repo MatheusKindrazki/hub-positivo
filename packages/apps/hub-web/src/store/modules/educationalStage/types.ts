@@ -13,8 +13,3 @@ export interface setEducationalStageSuccess {
   level: string
   levels?: LevelSelectOption[]
 }
-
-export interface ContentResponse {
-  value: string
-  label: string
-}
