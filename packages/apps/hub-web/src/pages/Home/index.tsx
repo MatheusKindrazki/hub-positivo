@@ -19,6 +19,8 @@ import {
   CardProduct
 } from '@hub/common/components'
 
+import { amplitudeToolOpened } from '~/services/amplitude'
+
 import { Container } from './styles'
 import Filter from './components/Filter'
 import FakeLoadingCard from './components/FakeLoading'
@@ -38,6 +40,9 @@ const Home: React.FC = () => {
   )
   const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
+  )
+  const { level: educational_stage } = useSelector(
+    (state: Store.State) => state.educationalStage
   )
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
@@ -59,7 +64,13 @@ const Home: React.FC = () => {
   const handlePushProduct = useCallback(
     data => {
       const slug = createSlug(data.nome)
-
+      amplitudeToolOpened({
+        category: data.category,
+        tool: data.nome,
+        educational_stage,
+        user_role: nameProfile,
+        user_school: useSchool?.value
+      })
       dispatch(
         preAuth({
           product: slug,
@@ -69,7 +80,7 @@ const Home: React.FC = () => {
         })
       )
     },
-    [dispatch]
+    [dispatch, educational_stage, nameProfile, useSchool]
   )
 
   const filterCards = useMemo(
