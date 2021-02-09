@@ -15,7 +15,6 @@
 <!-- Adicione qualquer outro contexto ou capturas de tela sobre a solicitação de recurso aqui. -->
 
 
-
 **Check-list do Dev**
 <!-- Check list para branch de desenvolvimento. -->
 
@@ -42,11 +41,3 @@
 - [ ] Ñao existe odores de código, áreas cinzentas ou suscetíveis a bugs
 - [ ] O código é o mais modular possível
 - [ ] O código considera as falhas e não apenas o caminho feliz
-
-
-**Check-list de produção**
-<!-- Check list para branch de produção. -->
-
-- [ ] Implementações testadas pela equipe de QA
-- [ ] Código coberto por no mínimo 75% de coverage ( Testes unitários funcionais e E2E )
-- [ ] Termologias em conforme com a Aplicação
