@@ -44,7 +44,7 @@
 - [ ] O código considera as falhas e não apenas o caminho feliz
 
 
-**Check-list**
+**Check-list de produção**
 <!-- Check list para branch de produção. -->
 
 - [ ] Implementações testadas pela equipe de QA
