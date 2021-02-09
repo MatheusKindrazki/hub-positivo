@@ -24,6 +24,7 @@
   "scripts": {
     "test": "jest --passWithNoTests --runInBand -u",
     "test:watch": "jest --passWithNoTests --runInBand --watch -u",
+    "test:coverage": "jest -u && coverage-badges",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "build:web": "npm run --prefix packages/apps/hub-web build",
     "build:header": "npm run --prefix packages/apps/header-inject build"
@@ -35,10 +36,10 @@
     "@testing-library/react-hooks": "^5.0.3",
     "@types/jest": "^26.0.20",
     "commitizen": "^4.2.3",
+    "coverage-badges": "^1.0.4",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "~4.3.0",
     "jest": "^26.6.3",
-    "jest-coverage-badges": "^1.1.2",
     "lint-staged": "^10.5.4",
     "ts-jest": "^26.5.1",
     "typescript": "^4.1.3"
