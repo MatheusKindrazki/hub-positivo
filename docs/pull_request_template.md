@@ -15,7 +15,9 @@
 <!-- Adicione qualquer outro contexto ou capturas de tela sobre a solicitação de recurso aqui. -->
 
 
+
 **Check-list do Dev**
+<!-- Check list para branch de desenvolvimento. -->
 
 - [ ] Teste unitários, funcionais e ou E2E foram aplicados e abrangem 75%+ do código
 - [ ] Nome do ramo de acordo com a convenção do projeto
@@ -26,6 +28,7 @@
 - [ ] Descrição detalhadas da PR (Adicione mídias como capturas de tela, gifs ou até mesmo pequenos videos)
 
 **Check-list do Aprovador**
+<!-- Check list para branch de desenvolvimento. -->
 
 - [ ] O código funciona? função e a lógica estão corretas.
 - [ ] As funções, métodos e variáveis estão nomeados de forma adequada
@@ -39,3 +42,11 @@
 - [ ] Ñao existe odores de código, áreas cinzentas ou suscetíveis a bugs
 - [ ] O código é o mais modular possível
 - [ ] O código considera as falhas e não apenas o caminho feliz
+
+
+**Check-list**
+<!-- Check list para branch de produção. -->
+
+- [ ] Implementações testadas pela equipe de QA
+- [ ] Código coberto por no mínimo 75% de coverage ( Testes unitários funcionais e E2E )
+- [ ] Termologias em conforme com a Aplicação
