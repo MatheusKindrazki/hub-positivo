@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="docs/icons/logo.png" alt="Hub Digital" width="100">
+  <img src="/./docs/icons/logo.png" alt="Hub Digital" width="100">
   <br>
   Hub Digital
   <br>
@@ -25,27 +25,27 @@
 <br>
 
 <p align="center">
-  <img src="./docs/icons/coverage_branches.svg" alt="Coverage branches" />
-  <img src="./docs/icons/coverage_statements.svg" alt="Coverage statements" />
-  <img src="./docs/icons/coverage_line.svg" alt="Coverage lines" />
-  <img src="./docs/icons/coverage_functions.svg" alt="Coverage functions" />
+  <img src="/./docs/icons/coverage_branches.svg" alt="Coverage branches" />
+  <img src="/./docs/icons/coverage_statements.svg" alt="Coverage statements" />
+  <img src="/./docs/icons/coverage_line.svg" alt="Coverage lines" />
+  <img src="/./docs/icons/coverage_functions.svg" alt="Coverage functions" />
 </p>
 
 # Sumário
 
-1. **[Clonando o repositório](#clonando-o-repositório)**
-2. **[Instalando dependências](#instalando-dependências)**
-3. **[Removendo dependências](#removendo-dependências)**
-4. **[Configurando as variáveis de ambiente](#configurando-as-variáveis-de-ambiente)**
-5. **[Inicializando](#inicializando)**
-6. [Estrutura monorepo](#estrutura-monorepo)
-7. [Principais dependências](#principais-dependências)
-8. [Guia de estilo](#guia-de-estilo)
-9. **[Versionamento](#versionamento)**
-10. [Testes](#testes)
-11. [Padronização](#padronização)
-12. [Como contribuir](#como-contribuir)
-13. [Changelog](#changelog)
+1. **[Clonando o repositório](#1.-clonando-o-repositório)**
+2. **[Instalando dependências](#2.-instalando-dependências)**
+3. **[Removendo dependências](#3.-removendo-dependências)**
+4. **[Configurando as variáveis de ambiente](#4.-configurando-as-variáveis-de-ambiente)**
+5. **[Inicializando](#5.-inicializando)**
+6. **[Estrutura monorepo](#6.-estrutura-monorepo)**
+7. **[Principais dependências](#7.-principais-dependências)**
+8. **[Guia de estilo](#8.-guia-de-estilo)**
+9. **[Versionamento](#9.-versionamento)**
+10. **[Testes](#10.-testes)**
+11. **[Padronização](#11.-padronização)**
+12. **[Como contribuir](#12.-como-contribuir)**
+13. **[Changelog](#13.-changelog)**
 
 # 1. Clonando o repositório
 
