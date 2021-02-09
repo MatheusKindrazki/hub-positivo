@@ -143,12 +143,10 @@ export function* preparePreparingAccess({
 
   yield put(enableRefreshTokenMiddleware(true))
 
-  console.log(redirect)
-
   if (redirect) {
     yield put(setSigned())
 
-    history.push(redirect || '/')
+    history.push(redirect)
   }
 }
 

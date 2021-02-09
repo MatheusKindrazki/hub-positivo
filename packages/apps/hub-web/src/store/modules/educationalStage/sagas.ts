@@ -1,3 +1,4 @@
+import { unionBy } from 'lodash'
 import { ApiResponse } from 'apisauce'
 
 import { all, put, Payload, takeLatest, call } from 'redux-saga/effects'
@@ -7,41 +8,44 @@ import { Actions } from '~/store/modules/profile/actions'
 import { productRequest } from '~/store/modules/products/actions'
 import { store } from '~/store'
 
-import api from '@hub/api'
+import { EEMConnectGET } from '~/services/eemConnect'
 
-import { ContentResponse } from './types'
+import prepareEducational, {
+  ContentResponse
+} from '~/utils/prepareEducationalStage'
+
 import { resetProfileLevels, setEducationalLevels } from './actions'
 
 const searchLevels = ['professor', 'aluno']
+
+interface SendInfo {
+  usuarioId: string
+}
 
 function* getEducationStage(): Generator {
   const { school } = store.getState().user
   const { reduced_token } = store.getState().auth
 
-  const response = yield call(async () => {
-    return await api.get(
-      'NivelEnsino',
-      {
+  const response = yield call(() => {
+    return EEMConnectGET<SendInfo>({
+      endpoint: '/v1/Academico/turmas',
+      token: reduced_token as string,
+      data: {
         usuarioId: school?.user_id as string
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${reduced_token as string}`
-        }
       }
-    )
+    })
   })
 
-  const { ok, data } = response as ApiResponse<ContentResponse[]>
+  const { ok, data } = response as ApiResponse<{ conteudo: ContentResponse[] }>
 
   if (!ok) return
 
-  const ciclos = data as ContentResponse[]
+  const { levels, selected } = prepareEducational(data?.conteudo)
 
   return yield put(
     setEducationalLevels({
-      levels: ciclos,
-      level: ciclos[0].value || ''
+      levels: unionBy(levels, 'value'),
+      level: selected
     })
   )
 }

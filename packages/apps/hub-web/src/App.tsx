@@ -11,6 +11,9 @@ import ThemeProvider from '@hub/common/layout/Provider'
 import ModalSupport from '~/components/ModalSupport'
 
 import Routes from '~/routes'
+
+console.log(`Versão da aplicação: ${process.env.REACT_APP_VERSION}`)
+
 const App: React.FC = () => {
   return (
     <ThemeProvider>
