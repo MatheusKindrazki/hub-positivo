@@ -4956,6 +4956,11 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
+coverage-badges@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/coverage-badges/-/coverage-badges-1.0.4.tgz#3d586f94a0056a840b04df5aff856cb66fd03ccc"
+  integrity sha512-tSqn5KIL3ikfkL/M/7B98O61LvE24fHt7Y5R4hlqD5exlUgbG3NMCzvv+SZJ2nlRTpn27UhIfDHOGyqeTX5DqA==
+
 create-ecdh@^4.0.0:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.4.tgz#d6e7f4bffa66736085a0762fd3a632684dabcc4e"
