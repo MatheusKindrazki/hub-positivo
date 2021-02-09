@@ -3,6 +3,6 @@
     "pre-commit": "lint-staged",
     "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
     "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-    "pre-push": "jest -u && coverage-badges && git add . && git commit -m  --no-verify 'docs: adicionando coverage report'"
+    "pre-push": "jest -u && coverage-badges && git add . && git commit -n -m 'docs: adicionando coverage report'"
   }
 }
