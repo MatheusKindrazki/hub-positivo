@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="/./docs/icons/logo.png" alt="Hub Digital" width="100">
+  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Flogo.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Hub Digital" width="100">
   <br>
   Hub Digital
   <br>
@@ -25,29 +25,29 @@
 <br>
 
 <p align="center">
-  <img src="/./docs/icons/coverage_branches.svg" alt="Coverage branches" />
-  <img src="/./docs/icons/coverage_statements.svg" alt="Coverage statements" />
-  <img src="/./docs/icons/coverage_line.svg" alt="Coverage lines" />
-  <img src="/./docs/icons/coverage_functions.svg" alt="Coverage functions" />
+  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_branches.svg&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0&download=false" alt="Coverage branches" />
+  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_functions.svg&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0&download=false" alt="Coverage statements" />
+  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_line.svg&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0&download=false" alt="Coverage lines" />
+  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_line.svg&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0&download=true" alt="Coverage functions" />
 </p>
 
 # Sumário
 
-1. **[Clonando o repositório](#1.-clonando-o-repositório)**
-2. **[Instalando dependências](#2.-instalando-dependências)**
-3. **[Removendo dependências](#3.-removendo-dependências)**
-4. **[Configurando as variáveis de ambiente](#4.-configurando-as-variáveis-de-ambiente)**
-5. **[Inicializando](#5.-inicializando)**
-6. **[Estrutura monorepo](#6.-estrutura-monorepo)**
-7. **[Principais dependências](#7.-principais-dependências)**
-8. **[Guia de estilo](#8.-guia-de-estilo)**
-9. **[Versionamento](#9.-versionamento)**
-10. **[Testes](#10.-testes)**
-11. **[Padronização](#11.-padronização)**
-12. **[Como contribuir](#12.-como-contribuir)**
-13. **[Changelog](#13.-changelog)**
+1. **[Clonando o repositório](#clonando-o-repositório)**
+2. **[Instalando dependências](#instalando-dependências)**
+3. **[Removendo dependências](#removendo-dependências)**
+4. **[Configurando as variáveis de ambiente](#configurando-as-variáveis-de-ambiente)**
+5. **[Inicializando](#inicializando)**
+6. **[Estrutura monorepo](#estrutura-monorepo)**
+7. **[Principais dependências](#principais-dependências)**
+8. **[Guia de estilo](#guia-de-estilo)**
+9. **[Versionamento](#versionamento)**
+10. **[Testes](#testes)**
+11. **[Padronização](#padronização)**
+12. **[Como contribuir](#como-contribuir)**
+13. **[Changelog](#changelog)**
 
-# 1. Clonando o repositório
+# Clonando o repositório
 
 O **primeiro passo** para inicializar o projeto é fazer a clonagem do repositório remoto. Se não houver uma chave SSH cadastrada siga estas [instruções](https://docs.microsoft.com/pt-br/azure/virtual-machines/linux/mac-create-ssh-keys).
 
@@ -74,7 +74,7 @@ Após inserir o Username e Password (credenciais **PESSOAIS** geradas através d
 *Clonar o repositório utilizando chave SSH não requer a geração de credenciais para autenticação, sendo necessário apenas que a chave esteja cadastrada em seu perfil da Azure Devops.*
 
 
-# 2. Instalando dependências
+# Instalando dependências
 
 O **segundo passo** é fazer a instalação das dependências, utilizando Yarn.
 
@@ -92,7 +92,7 @@ Para instalar uma dependência individual do hub-web:
 yarn workspace @hub/web add NOME_DA_DEPENDÊNCIA
 ```
 
-# 3. Removendo dependências
+# Removendo dependências
 
 Para remover uma dependência individual do hub-web:
 
@@ -100,7 +100,7 @@ Para remover uma dependência individual do hub-web:
 yarn workspace @hub/web remove NOME_DA_DEPENDÊNCIA
 ```
 
-# 4. Configurando variáveis de ambiente
+# Configurando variáveis de ambiente
 
 Antes de inicializar, precisa-se que as [**variáveis de ambiente](https://dev.to/guiselair/utilizando-variaveis-de-ambiente-com-create-react-app-5ckc)**  sejam configuradas no repositório. Elas, por padrão, não vêm configuradas na clonagem do repositório remoto.
 
@@ -114,7 +114,7 @@ Exemplo de uma variável de ambiente preenchida corretamente:
 REACT_APP_HUB_TITLE='Hub Positivo'
 ```
 
-# 5. Inicializando
+# Inicializando
 
 Neste momento já é possível inicializar o projeto localmente. Na raiz do projeto digite:
 
@@ -124,7 +124,7 @@ yarn workspace @hub/web start
 
 *Espera-se que o navegador abra na porta padrão do React (3000) com o projeto inicializado na tela de Login do Hub.*
 
-# 6. Estrutura Monorepo
+# Estrutura Monorepo
 
 O projeto foi construído em arquitetura monorepo. O que implica na união de todos os repositórios que compõem a aplicação em um só, e impacta diretamente na estrutura de pastas utilizada.
 
@@ -165,7 +165,7 @@ No diretório *api* temos a configuração das chamadas às APIS utilizadas no f
 
 Na pasta *apps* temos os arquivos relacionados ao Hub como solução individual, que se integram entre si mas não são exportados para outras soluções que compõem o monorepo.
 
-# 7. Principais dependências
+# Principais dependências
 
 ### 7.1. `redux`
 
@@ -203,7 +203,7 @@ A versão 5+ do history torna incompatível a comunicação dentre o connected r
 
 A atualização de quaisquer libs de rotas tornam necessária uma nova configuração de rotas dentro do projeto, tornando inviável a manutenção futura.
 
-# 8. Guia de estilo
+# Guia de estilo
 
 Para estilização dos componentes React, o projeto utiliza duas principais dependências:
 
@@ -311,7 +311,7 @@ Este código demonstra a criação de um componente `Container` que utiliza como
 
 Neste trecho demonstra-se como o `Container` criado no [Trecho de código 3]() encapsula todos os componentes que deseja-se estilizar. Simples e limpo.
 
-# 9. Padronização
+# Padronização
 
 Visando manter a organização, e um mínimo de qualidade, o desenvolvimento deste projeto conta com a aplicação de alguns padrões:
 
@@ -338,7 +338,7 @@ O commit deverá seguir o fluxo da CLI do Husky para ser feito, após avançar p
 
 O projeto conta com padronização de estilo própria. É necessário estar de acordo com as regras de estilo para que seja possível realizar um commit, caso contrário a modificação ficará travada na fase *lint staged* do Husky.
 
-# 10. Testes
+# Testes
 
 Atualmente o projeto conta com um coverage de testes de 75%. Os testes são aplicados às páginas, layouts, hooks e componentes  predominantemente com o uso de [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), assim como os middlewares, validadores, módulos da store e funções utilitárias são testadas unitariamente com [Jest](https://jestjs.io/docs/en/getting-started).
 
@@ -373,10 +373,10 @@ describe('Accordion an UnmountClosed components', () => {
 
 No primeiro teste (*it*) se renderiza o componente Accordion com o "hub" inserido como children, espera-se que ele tenha sido renderizado corretamente.
 
-# 10. Como contribuir
+# Como contribuir
 
 No arquivo`docs/CONTRIBUTING.md` presente na raiz do projeto encontra-se a explicação de como contribuir com o projeto, desde como ajudá-lo a melhorar diretamente a como enviar feedback.
 
-# 11. Changelog
+# Changelog
 
 O histórico de alterações no código encontra-se no arquivo`docs/CHANGELOG.md` , este arquivo possui todas as **features**, **bug fixes**, **hot fixes** e **releases** e está na raiz do projeto.
