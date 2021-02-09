@@ -31,6 +31,22 @@
   <img src="./docs/icons/coverage_functions.svg" alt="Coverage functions" />
 </p>
 
+# Sumário
+
+1. **[Clonando o repositório](#clonando-o-repositório)**
+2. **[Instalando dependências](#instalando-dependências)**
+3. **[Removendo dependências](#removendo-dependências)**
+4. **[Configurando as variáveis de ambiente](#configurando-as-variáveis-de-ambiente)**
+5. **[Inicializando](#inicializando)**
+6. [Estrutura monorepo](#estrutura-monorepo)
+7. [Principais dependências](#principais-dependências)
+8. [Guia de estilo](#guia-de-estilo)
+9. **[Versionamento](#versionamento)**
+10. [Testes](#testes)
+11. [Padronização](#padronização)
+12. [Como contribuir](#como-contribuir)
+13. [Changelog](#changelog)
+
 # 1. Clonando o repositório
 
 O **primeiro passo** para inicializar o projeto é fazer a clonagem do repositório remoto. Se não houver uma chave SSH cadastrada siga estas [instruções](https://docs.microsoft.com/pt-br/azure/virtual-machines/linux/mac-create-ssh-keys).
