@@ -1,3 +1,10 @@
+## [1.2.4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.2.3...v1.2.4) (2021-02-10)
+
+
+### Bug Fixes
+
+* remove semantic-release-ado ([44f388d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/44f388d4fdd6dd79241b9910293096d71fce3f97))
+
 ## [1.2.3](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/compare/v1.2.2...v1.2.3) (2021-02-10)
 
 
