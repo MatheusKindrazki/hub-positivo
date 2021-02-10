@@ -50,7 +50,7 @@ export function* productSorting({ payload }: AuthPayload): Generator {
 
   const { tipoRenderizacao, url, product } = payload
 
-  if (tipoRenderizacao === 'iframenoauth' && isMobile.iOS()) {
+  if (tipoRenderizacao === 'iframenoauth') {
     history.push(`/solucao/${product}`)
 
     return yield put(setFrameURL({ url, name: payload.name }))
@@ -140,7 +140,7 @@ export function* authProductEEM({ payload }: AuthPayload): Generator {
 
   const newUrl = payload.url.replace('{token}', reduced_token as string)
 
-  if (payload.tipoRenderizacao === 'iframeblank') {
+  if (payload.tipoRenderizacao === 'iframeblank' && isMobile.iOS()) {
     window.open(newUrl, '_blank')
   } else {
     yield put(setFrameURL({ url: newUrl, name: payload.name }))
