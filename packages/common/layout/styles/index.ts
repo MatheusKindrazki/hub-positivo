@@ -1,10 +1,11 @@
+import baseStyled, { ThemedStyledInterface } from 'styled-components'
+
 import {
   useTheme,
   useMediaQuery,
   useColorMode,
   useColorModeValue
 } from '@chakra-ui/react'
-import baseStyled, { ThemedStyledInterface } from 'styled-components'
 
 import chakra from './chakra'
 

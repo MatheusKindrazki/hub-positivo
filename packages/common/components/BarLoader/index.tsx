@@ -6,15 +6,14 @@ import { useTheme } from '../../layout'
 
 export type BarProps = typeof Loading.defaultProps
 
-const BarLoader: React.FC<BarProps> = ({ loading, ...rest }) => {
+const BarLoader: React.FC<Partial<BarProps>> = ({ loading, ...rest }) => {
   const { colors } = useTheme()
 
   return (
     <Loading
+      loading={loading}
       color={colors.blue[500]}
       width="100%"
-      height="8px"
-      loading={loading}
       css={`
         border-radius: 8px;
         position: fixed;

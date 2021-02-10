@@ -1,6 +1,6 @@
 {
   "name": "@hub/common",
-  "version": "1.0.0",
+  "version": "1.2.2",
   "description": "",
   "author": "MatheusKindrazki",
   "license": "MIT",
@@ -13,36 +13,37 @@
   },
   "peerDependencies": {
     "@types/classnames": "^2.2.11",
-    "@types/styled-components": "^5.1.4",
+    "@types/styled-components": "^5.1.7",
     "classnames": "^2.2.6",
-    "react": "^16.0.0",
+    "react": "^17.0.1",
     "styled-components": "^5.2.1"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.0.1",
-    "@emotion/react": "^11.1.1",
-    "@emotion/styled": "^11.0.0",
+    "@chakra-ui/react": "^1.3.2",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
     "@types/react-collapse": "^5.0.0",
-    "@unform/core": "^2.1.3",
-    "@unform/web": "^2.1.3",
-    "framer-motion": "^2.9.4",
-    "phosphor-react": "^1.1.1",
-    "polished": "^4.0.4",
+    "@unform/core": "^2.1.5",
+    "@unform/web": "^2.1.5",
+    "framer-motion": "^3.3.0",
+    "phosphor-react": "^1.1.2",
+    "polished": "^4.1.0",
     "react": "^17.0.1",
     "react-collapse": "^5.1.0",
     "react-dom": "^17.0.1",
-    "react-select": "^3.1.1",
-    "react-spinners": "^0.9.0",
-    "react-toastify": "^6.2.0",
+    "react-select": "^4.1.0",
+    "react-spinners": "^0.10.4",
+    "react-toastify": "^7.0.3",
     "reactour": "^1.18.0"
   },
   "devDependencies": {
+    "@hub/test-utils": "*",
     "@types/classnames": "^2.2.11",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
-    "@types/react-select": "^3.0.26",
-    "@types/reactour": "^1.17.1"
+    "@types/node": "^14.14.25",
+    "@types/react": "^17.0.1",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-select": "^4.0.13",
+    "@types/reactour": "^1.18.0"
   },
   "files": [
     "dist"

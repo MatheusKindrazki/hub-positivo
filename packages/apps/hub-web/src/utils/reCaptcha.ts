@@ -7,7 +7,7 @@ import api from '@hub/api'
 const dateFormat = 'dd MM yyyy, H:mm:ss'
 
 export const checkForStrikes = (): boolean => {
-  const strikes = lscache.get('loginStrikes' || '{}')
+  const strikes = lscache.get('loginStrikes')
   if (strikes?.length >= 3) {
     return true
   }
@@ -15,7 +15,7 @@ export const checkForStrikes = (): boolean => {
 }
 
 export const storeStrike = (): void => {
-  const strikes = lscache.get('loginStrikes' || '{}')
+  const strikes = lscache.get('loginStrikes')
   const time = format(new Date(), dateFormat)
   if (strikes?.length) {
     lscache.set('loginStrikes', [...strikes, { timestamp: time }], 120)

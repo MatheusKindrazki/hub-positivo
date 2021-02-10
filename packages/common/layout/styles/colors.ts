@@ -1,5 +1,6 @@
-import { theme } from '@chakra-ui/react'
 import { lighten, darken } from 'polished'
+
+import { theme } from '@chakra-ui/react'
 type Colors = typeof theme.colors
 
 export const profileBaseColor = {

@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "dependencies": {
-    "apisauce": "^2.0.0"
+    "apisauce": "^2.0.1"
   }
 }
