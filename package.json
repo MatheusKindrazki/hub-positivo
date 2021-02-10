@@ -1,7 +1,7 @@
 {
   "name": "hub",
   "private": true,
-  "version": "1.2.3",
+  "version": "1.2.2",
   "repository": {
     "type": "git",
     "url": "editorati@vs-ssh.visualstudio.com:v3/editorati/Produtos%20Digitais/HubDigitalFront"
