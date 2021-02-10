@@ -22,9 +22,9 @@
     ]
   },
   "scripts": {
-    "test": "jest --passWithNoTests --runInBand -u",
-    "test:watch": "jest --passWithNoTests --runInBand --watch -u",
-    "test:coverage": "jest -u && coverage-badges",
+    "test": "jest --runInBand -u",
+    "test:watch": "jest --runInBand --watch -u --collectCoverage",
+    "test:coverage": "jest --collectCoverage -u && coverage-badges",
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "build:web": "npm run --prefix packages/apps/hub-web build",

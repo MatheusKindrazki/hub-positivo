@@ -9,6 +9,8 @@ import { apiAuthProduct } from '@hub/api'
 
 import history from '~/services/history'
 
+import isMobile from '~/utils/isMobile'
+
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
 
 import { AuthRequest } from './types'
@@ -48,7 +50,7 @@ export function* productSorting({ payload }: AuthPayload): Generator {
 
   const { tipoRenderizacao, url, product } = payload
 
-  if (tipoRenderizacao === 'iframenoauth') {
+  if (tipoRenderizacao === 'iframenoauth' && isMobile.any()) {
     history.push(`/solucao/${product}`)
 
     return yield put(setFrameURL({ url, name: payload.name }))
