@@ -70,7 +70,7 @@ jobs:
       arguments: build:web
 
   - script: |
-      GH_TOKEN=$(GH_TOKEN) yarn release
+      export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release
     displayName: Semantic Release ( generate changelog and build tag )
     condition: eq(variables['Build.SourceBranchName'], 'master')
 
