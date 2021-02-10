@@ -16,10 +16,10 @@ if (process.env.REACT_APP_NODE_ENV === 'production') {
   hotjarInit()
   Sentry.init({
     dsn: process.env.REACT_APP_SENTRY,
-    autoSessionTracking: true,
     integrations: [new Integrations.BrowserTracing()],
 
-    tracesSampleRate: 1.0
+    tracesSampleRate: 0.5,
+    release: '@hub:' + process.env.REACT_APP_VERSION
   })
 }
 

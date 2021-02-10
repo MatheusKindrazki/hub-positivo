@@ -1,10 +1,10 @@
 {
   "name": "hub",
   "private": true,
-  "version": "1.2.2",
+  "version": "1.2.4",
   "repository": {
     "type": "git",
-    "url": "editorati@vs-ssh.visualstudio.com:v3/editorati/Produtos%20Digitais/HubDigitalFront"
+    "url": "https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront"
   },
   "author": {
     "email": "matheussaldanha@positivosolucoes.com.br",
@@ -22,9 +22,9 @@
     ]
   },
   "scripts": {
-    "test": "jest --passWithNoTests --runInBand -u",
-    "test:watch": "jest --passWithNoTests --runInBand --watch -u",
-    "test:coverage": "jest -u && coverage-badges",
+    "test": "jest --runInBand -u",
+    "test:watch": "jest --runInBand --watch -u --collectCoverage",
+    "test:coverage": "jest --collectCoverage -u && coverage-badges",
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "build:web": "npm run --prefix packages/apps/hub-web build",
