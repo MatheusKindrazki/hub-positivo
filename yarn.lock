@@ -14717,11 +14717,6 @@ selfsigned@^1.10.7:
   dependencies:
     node-forge "^0.10.0"
 
-semantic-release-ado@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/semantic-release-ado/-/semantic-release-ado-1.2.2.tgz#66b6d64283d735e9752be04b5cef4a48762f3bd4"
-  integrity sha512-5P3fJAqrHwbMY78rGowzsw8M//KrMIDbbkDwHQM43QMgIcrCs2vrUhSolV4llr+JLw3uEMWhxZTUeQQNwx1vbA==
-
 semantic-release@^17.3.8:
   version "17.3.8"
   resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-17.3.8.tgz#ae713d239f60a6ea9ca1c431318507d54b278c67"
