@@ -8,11 +8,12 @@ import hotjarInit from './services/hotjar/hotjarInit'
 import { amplitudeInit } from './services/amplitude'
 import App from './App'
 
+amplitudeInit()
+hotjarInit()
+
 if (process.env.REACT_APP_NODE_ENV === 'production') {
   console.error = function () {} //eslint-disable-line
   console.warn = function () {} //eslint-disable-line
-
-  amplitudeInit()
 
   Sentry.init({
     dsn: process.env.REACT_APP_SENTRY,

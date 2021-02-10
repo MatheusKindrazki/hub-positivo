@@ -20,7 +20,7 @@ export const useAmplitudePageView = (): void => {
 
   const { school } = useSelector((state: Store.State) => state.user)
   const { level: educational_stage } = useSelector(
-    (state: Store.State) => state.levelEducation
+    (state: Store.State) => state.educationalStage
   )
   const { name: role } = useSelector((state: Store.State) => state.profile)
 
