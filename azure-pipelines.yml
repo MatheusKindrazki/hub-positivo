@@ -16,14 +16,15 @@ variables:
   ${{ if eq(variables['Build.SourceBranchName'], 'homolog') }}:
     stageName: hml
 
-jobs:
-- job: Job_1
-  displayName: Agent job 1
+pool:
+  vmImage: ubuntu-16.04
 
-  pool:
-    vmImage: ubuntu-16.04
+jobs:
+- job: build_and_generate_artifact
+  displayName: "Building and generating the artifact"
 
   steps:
+
   - task: SonarCloudPrepare@1
     displayName: SonarCloud Prepare
     inputs:
@@ -41,27 +42,35 @@ jobs:
     inputs:
       secureFile: 'env-hub-$(stageName)'
 
-
   - script: |
-      cp $(envFile.secureFilePath) ./apps/hub-web/.env
+      cp $(envFile.secureFilePath) ./packages/apps/hub-web/.env
     displayName: "Copy env file"
 
-  - task: YarnInstaller@3
-    displayName: Configurate yarn 1.x
-
-
-  - task: Yarn@3
-    displayName: Yarn workspaces install dependencies  mono-repo
-    inputs:
-      arguments: install
-
   - task: NodeTool@0
-    displayName: Configurate Node v14.x
+    displayName: Installing node 14+
     inputs:
       versionSpec: 14.x
 
+  - task: YarnInstaller@3
+    displayName: Configuring yarn in its recent version
+
   - task: Yarn@3
-    displayName: Node deploy web
+    displayName: Installing project dependencies
+    inputs:
+      arguments: install
+
+  - task: Yarn@3
+    displayName: Running the project tests
+    inputs:
+      arguments: test
+
+  - script: |
+      export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release
+    displayName: Semantic Release ( generate changelog and build tag )
+    condition: eq(variables['Build.SourceBranchName'], 'master')
+
+  - task: Yarn@3
+    displayName: Build the project
     inputs:
       arguments: build:web
 

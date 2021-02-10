@@ -14,7 +14,7 @@ import profileColors, {
 import { theme as HubTheme } from '../styles'
 
 const ThemeContainer: React.FC = ({ children }) => {
-  const [profile, setProfile] = useState<VariantsProps>('default')
+  const [prof, setProfile] = useState<VariantsProps>('default')
 
   const context = useContext(ThemeContext)
 
@@ -22,7 +22,7 @@ const ThemeContainer: React.FC = ({ children }) => {
 
   const renderTheme = useMemo(() => {
     const profileTheme = profileColors({
-      profile: profile
+      profile: prof
     }).blue
 
     const hubThemeProfile = {
@@ -36,15 +36,15 @@ const ThemeContainer: React.FC = ({ children }) => {
     // !Apenas para efeito de animação
     document.documentElement.style.setProperty(
       '--hub-base-color',
-      profileBaseColor[profile as VariantsProps]
+      profileBaseColor[prof]
     )
 
     return hubThemeProfile
-  }, [profile])
+  }, [prof])
 
   return (
     <ChakraProvider theme={renderTheme}>
-      <StyledProvider theme={renderTheme}>
+      <StyledProvider theme={renderTheme as any}>
         <CSSReset />
         <GlobalStyles />
         {children}

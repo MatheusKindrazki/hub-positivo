@@ -1,6 +1,5 @@
 module.exports = {
   clearMocks: true,
-  collectCoverage: true,
   verbose: false,
   testEnvironment: 'node',
   preset: 'ts-jest',

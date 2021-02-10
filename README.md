@@ -22,13 +22,11 @@
   <img alt="Deploy" src="https://editorati.visualstudio.com/Produtos%20Digitais/_apis/build/status/PipelinesAntigos/hubdigital-front?branchName=master">
 </p>
 
-<br>
-
 <p align="center">
-  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_branches.svg&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0&download=false" alt="Coverage branches" />
-  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_functions.svg&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0&download=false" alt="Coverage statements" />
-  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_line.svg&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0&download=false" alt="Coverage lines" />
-  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_line.svg&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0&download=true" alt="Coverage functions" />
+  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_branches.svg.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Coverage branches" />
+  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_statements.svg.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Coverage statements" />
+  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_line.svg.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Coverage lines" />
+  <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_functions.svg.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Coverage functions" />
 </p>
 
 # Sumário
@@ -67,7 +65,7 @@ git clone https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigital
 
 Haverá a necessidade de autenticar-se através do terminal, como mostra a imagem abaixo:
 
-![README%20md%2019b2c3ae73c343e19c7ac9209dd44294/auth.png](README%20md%2019b2c3ae73c343e19c7ac9209dd44294/auth.png)
+![Auth](./docs/icons/auth.png)
 
 Após inserir o Username e Password (credenciais **PESSOAIS** geradas através do Azure devOps) o projeto estará disponível localmente.
 
@@ -228,9 +226,9 @@ const Box: React.FC<BoxProps> = ({ children, ...rest }) => {
 ...
 ```
 
-*Componente disponível em `packages/commom`.*
+*Componente disponível em `packages/common`.*
 
-No diretório `*packages/commom*` está disponível a grande maioria dos componentes criados com o Chacka UI. Dessa forma é possível prover utilitários comuns entre a aplicação, sem depender de uma estilização específica, deixando isso por responsabilidade de quem for utilizar este componente *genérico*.  [O trecho de código 2]() demonstra como o [trecho de código 1]() é utilizado.
+No diretório `*packages/common*` está disponível a grande maioria dos componentes criados com o Chacka UI. Dessa forma é possível prover utilitários comuns entre a aplicação, sem depender de uma estilização específica, deixando isso por responsabilidade de quem for utilizar este componente *genérico*.  [O trecho de código 2]() demonstra como o [trecho de código 1]() é utilizado.
 
 **Trecho de código 2:**
 
@@ -332,7 +330,7 @@ Os commits no repositório do Hub estarão sujeitos à análise do [Husky](https
 
 O commit deverá seguir o fluxo da CLI do Husky para ser feito, após avançar pelas etapas da interface, será gerado um commit personalizado de acordo com o padrão esperado no projeto, como consta na imagem abaixo:
 
-![README%20md%2019b2c3ae73c343e19c7ac9209dd44294/Captura_de_tela_de_2021-02-09_13-52-36.png](README%20md%2019b2c3ae73c343e19c7ac9209dd44294/Captura_de_tela_de_2021-02-09_13-52-36.png)
+![husky](./docs/icons/husky.png)
 
 ### 9.2. Regras de estilo
 
@@ -369,7 +367,7 @@ describe('Accordion an UnmountClosed components', () => {
 })
 ```
 
-*Código disponível em`packages/commom/__tests__/components/Accordion.spec.tsx`*
+*Código disponível em`packages/common/__tests__/components/Accordion.spec.tsx`*
 
 No primeiro teste (*it*) se renderiza o componente Accordion com o "hub" inserido como children, espera-se que ele tenha sido renderizado corretamente.
 

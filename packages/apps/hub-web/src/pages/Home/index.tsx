@@ -46,11 +46,11 @@ const Home: React.FC = () => {
     (state: Store.State) => state.global
   )
 
-  const handleSearch = debounce(search => {
+  const handleSearch = debounce(value => {
     dispatch(loading(true))
 
     setTimeout(() => {
-      setSearchValue(search)
+      setSearchValue(value)
 
       dispatch(loading(false))
     }, 1000)

@@ -16,6 +16,7 @@
 
 
 **Check-list do Dev**
+<!-- Check list para branch de desenvolvimento. -->
 
 - [ ] Teste unitários, funcionais e ou E2E foram aplicados e abrangem 75%+ do código
 - [ ] Nome do ramo de acordo com a convenção do projeto
@@ -26,6 +27,7 @@
 - [ ] Descrição detalhadas da PR (Adicione mídias como capturas de tela, gifs ou até mesmo pequenos videos)
 
 **Check-list do Aprovador**
+<!-- Check list para branch de desenvolvimento. -->
 
 - [ ] O código funciona? função e a lógica estão corretas.
 - [ ] As funções, métodos e variáveis estão nomeados de forma adequada
