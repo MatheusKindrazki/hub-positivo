@@ -5,7 +5,6 @@ const hjsv = 6
 
 const hotjarInit = (): void => {
   hotjar.initialize(hjid, hjsv)
-  console.log(`iniciando hotjar id: ${hjid}`)
 }
 
 export default hotjarInit

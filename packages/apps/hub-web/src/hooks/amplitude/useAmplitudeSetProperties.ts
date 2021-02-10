@@ -14,11 +14,6 @@ export const useAmplitudeSetProperties = (): void => {
   )
 
   useEffect(() => {
-    // ? Seta propriedades no amplitude
-    console.log(
-      `userProps: ${(schoolObject?.value, role, educational_stage, user)}`
-    )
-    console.log(`userId: ${schoolObject?.user_id}`)
     amplitude.getInstance().setUserProperties({
       user,
       school: schoolObject?.value,

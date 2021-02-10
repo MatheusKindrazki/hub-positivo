@@ -36,7 +36,6 @@ export const useAmplitudePageView = (): void => {
       user_role: role,
       user_school: school?.value
     }
-    console.log('eventProps', eventProperties)
     amplitude.getInstance().logEvent(pageViewedEvent, eventProperties)
   }, [pageViewedEvent, educational_stage, pathname, role, school?.value])
 }

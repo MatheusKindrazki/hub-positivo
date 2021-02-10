@@ -11,7 +11,5 @@ interface eventData {
 export const amplitudeToolOpened = (data: eventData): void => {
   const clickEvent = 'Tool Opened'
 
-  console.log(`data: ${Object.entries(data)}`)
-
   amplitude.getInstance().logEvent(clickEvent, { ...data })
 }
