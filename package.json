@@ -1,7 +1,7 @@
 {
   "name": "hub",
   "private": true,
-  "version": "1.2.3",
+  "version": "1.2.2",
   "repository": {
     "type": "git",
     "url": "editorati@vs-ssh.visualstudio.com:v3/editorati/Produtos%20Digitais/HubDigitalFront"
@@ -28,7 +28,7 @@
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "build:web": "npm run --prefix packages/apps/hub-web build",
-    "release": "GH_TOKEN=udzynszqa4srfj3tmtqklo2drv3ebzzazvohckmevo42takuvmfa HUSKY_SKIP_HOOKS=1 semantic-release --no-ci"
+    "release": "GH_TOKEN=udzynszqa4srfj3tmtqklo2drv3ebzzazvohckmevo42takuvmfa HUSKY_SKIP_HOOKS=1 semantic-release"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
