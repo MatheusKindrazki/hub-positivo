@@ -6,6 +6,7 @@ module.exports = {
   preset: 'ts-jest',
   projects: ['<rootDir>/packages/**/jest.config.js'],
   testMatch: ['**/__tests__/**/*.ts?(x)'],
+  coverageReporters: ['text', 'lcov', 'json-summary'],
   coverageThreshold: {
     global: {
       branches: 75,
