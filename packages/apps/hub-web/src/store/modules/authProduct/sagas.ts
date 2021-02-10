@@ -50,7 +50,7 @@ export function* productSorting({ payload }: AuthPayload): Generator {
 
   const { tipoRenderizacao, url, product } = payload
 
-  if (tipoRenderizacao === 'iframenoauth' && isMobile.any()) {
+  if (tipoRenderizacao === 'iframenoauth' && isMobile.iOS()) {
     history.push(`/solucao/${product}`)
 
     return yield put(setFrameURL({ url, name: payload.name }))
