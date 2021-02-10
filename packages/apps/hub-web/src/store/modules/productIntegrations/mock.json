@@ -1,0 +1,12 @@
+{
+  "id": "c4b76a4b-b4bd-4c1e-8ffb-daeb22310277",
+  "nome": "Árvore Livros",
+  "descricao": "Biblioteca de livros paradidáticos e romances",
+  "arquivo": "https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-cont-arvore.svg",
+  "link": null,
+  "idCategoria": "1dd900fa-f2b4-4ce3-ae36-0504b07e5d2c",
+  "ativo": true,
+  "tipoRenderizacao": "targetblank",
+  "slug": "arvore-livros",
+  "ordem": 99
+}

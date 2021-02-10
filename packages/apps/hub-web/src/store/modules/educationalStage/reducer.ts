@@ -13,7 +13,7 @@ export const INITIAL_STATE: EducationReducer = {
 
 type ReturnReducer = Reducer<EducationReducer>
 
-const global: ReturnReducer = (state = INITIAL_STATE, action) => {
+const educationalStage: ReturnReducer = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
       case Actions.SET_LEVEL: {
@@ -53,4 +53,4 @@ const global: ReturnReducer = (state = INITIAL_STATE, action) => {
   })
 }
 
-export default global
+export default educationalStage

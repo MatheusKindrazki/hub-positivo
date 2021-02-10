@@ -10,16 +10,19 @@ import { store } from '~/store'
 
 import { EEMConnectGET } from '~/services/eemConnect'
 
-import { Ciclos, ContentResponse } from './types'
+import prepareEducational, {
+  ContentResponse
+} from '~/utils/prepareEducationalStage'
+
 import { resetProfileLevels, setEducationalLevels } from './actions'
 
 const searchLevels = ['professor', 'aluno']
 
-function* getEducationStage(): Generator {
-  interface SendInfo {
-    usuarioId: string
-  }
+interface SendInfo {
+  usuarioId: string
+}
 
+function* getEducationStage(): Generator {
   const { school } = store.getState().user
   const { reduced_token } = store.getState().auth
 
@@ -33,43 +36,16 @@ function* getEducationStage(): Generator {
     })
   })
 
-  const { ok, data } = response as ApiResponse<{
-    conteudo: ContentResponse[]
-  }>
+  const { ok, data } = response as ApiResponse<{ conteudo: ContentResponse[] }>
 
   if (!ok) return
 
-  const ciclos = [] as Ciclos[]
-
-  let selectedCiclo = {} as Ciclos
-  let setDefaultCiclo = false
-
-  data?.conteudo.forEach(e => {
-    if (e.ativo) {
-      if (!setDefaultCiclo && !!e.serie.ciclo) {
-        selectedCiclo = {
-          id: e.serie.ciclo.id,
-          label: e.serie.ciclo.descricao,
-          value: e.serie.ciclo.descricao
-        }
-
-        setDefaultCiclo = true
-      }
-
-      ciclos.push({
-        id: e.serie.ciclo.id,
-        label: e.serie.ciclo.descricao,
-        value: e.serie.ciclo.descricao
-      })
-    }
-  })
-
-  const uniByCiclo = unionBy(ciclos, 'id')
+  const { levels, selected } = prepareEducational(data?.conteudo)
 
   return yield put(
     setEducationalLevels({
-      levels: uniByCiclo,
-      level: selectedCiclo.label
+      levels: unionBy(levels, 'value'),
+      level: selected
     })
   )
 }

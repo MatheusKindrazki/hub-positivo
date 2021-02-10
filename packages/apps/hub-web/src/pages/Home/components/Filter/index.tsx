@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react'
 
+import { orderBy } from 'lodash'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { productRequest } from '~/store/modules/products/actions'
@@ -20,7 +22,7 @@ const Filter: React.FC = () => {
 
   const handleSelect = useCallback(
     data => {
-      dispatch(setEducationalStage(data.label))
+      dispatch(setEducationalStage(data.value))
 
       dispatch(productRequest({}))
     },
@@ -33,8 +35,8 @@ const Filter: React.FC = () => {
     <Box mb={isMobile ? 5 : 0}>
       <Select
         variant="blue-transparent"
-        value={{ label: level, value: level }}
-        options={levels}
+        value={levels.find(e => e.value === level)}
+        options={orderBy(levels, 'label', 'asc')}
         onChange={e => handleSelect(e)}
       />
     </Box>

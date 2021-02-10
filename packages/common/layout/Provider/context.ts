@@ -6,12 +6,10 @@ interface VariantThemeProps {
   profile: VariantsProps
 }
 
-interface ThemeProps {
+export interface ThemeProps {
   theme: (theme: VariantThemeProps) => void
 }
 
-const ThemeContext = createContext<ThemeProps>({
-  theme: () => console.log('')
-})
+const ThemeContext = createContext({} as ThemeProps)
 
 export default ThemeContext
