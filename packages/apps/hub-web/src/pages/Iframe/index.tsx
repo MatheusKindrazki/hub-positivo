@@ -91,6 +91,7 @@ const Iframe: React.FC = () => {
         `}
       />
       <iframe
+        id="hub-solution-iframe"
         loading="lazy"
         onLoad={() => setLoading(false)}
         src={url}

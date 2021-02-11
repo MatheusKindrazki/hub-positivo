@@ -6,6 +6,7 @@ import {
   Redirect,
   useLocation
 } from 'react-router-dom'
+import * as Sentry from '@sentry/react'
 
 import { store } from '~/store'
 
@@ -23,6 +24,8 @@ const Route: React.FC<RouteProps> = ({
   ...rest
 }) => {
   const { pathname } = useLocation()
+
+  Sentry.configureScope(scope => scope.setTransactionName(pathname))
 
   const { signed } = store.getState().auth
 
