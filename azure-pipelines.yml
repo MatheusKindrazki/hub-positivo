@@ -60,13 +60,13 @@ jobs:
       arguments: install
 
   - task: Yarn@3
-    displayName: Running the project tests
+    displayName: Running tests and capturing coverage
     inputs:
-      arguments: test
+      arguments: test:coverage
 
   - script: |
       export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release
-    displayName: Semantic Release ( generate changelog and build tag )
+    displayName: Semantic Release ( generate changelog, colect and build tag )
     condition: eq(variables['Build.SourceBranchName'], 'master')
 
   - script: |

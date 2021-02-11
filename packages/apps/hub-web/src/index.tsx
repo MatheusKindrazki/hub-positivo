@@ -14,7 +14,7 @@ if (process.env.REACT_APP_NODE_ENV === 'production') {
     dsn: process.env.REACT_APP_SENTRY,
     integrations: [new Integrations.BrowserTracing()],
 
-    tracesSampleRate: 0.5,
+    tracesSampleRate: 0.1,
     release: '@hub:' + process.env.REACT_APP_VERSION
   })
 }
