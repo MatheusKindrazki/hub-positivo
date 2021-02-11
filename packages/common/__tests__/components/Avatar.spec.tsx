@@ -4,10 +4,9 @@ import { render } from '@hub/test-utils'
 
 import Avatar from '../../components/Avatar'
 
-describe('Accordion an UnmountClosed components', () => {
-  it('Accordion being rendered on canvas', () => {
+describe('Avatar renders without crashing', () => {
+  it('Avatar matches snapshot', () => {
     const wrapper = render(<Avatar />)
-    console.log(wrapper)
     expect(wrapper).toMatchSnapshot()
   })
 })

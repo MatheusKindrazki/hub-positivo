@@ -23,6 +23,7 @@ const Search: React.FC<InputProps> = ({ onChange, ...rest }) => {
       <InputGroup height="3rem">
         <Input
           {...rest}
+          data-testid="search-input"
           borderColor="#C4C4C4!important"
           height="3rem"
           placeholder="Buscar soluções"
