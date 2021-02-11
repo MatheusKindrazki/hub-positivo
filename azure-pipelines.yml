@@ -7,6 +7,7 @@ trigger:
 name: $(date:yyyyMMdd)$(rev:.r)
 
 variables:
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
   uiSource: 'src'
   uiBuild: '$(uiSource)/build'
   ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
@@ -54,25 +55,31 @@ jobs:
   - task: YarnInstaller@3
     displayName: Configuring yarn in its recent version
 
+  - task: Cache@2
+    inputs:
+      key: yarn | $(Agent.OS) | yarn.lock
+      path: $(YARN_CACHE_FOLDER)
+      restoreKeys: |
+        yarn | $(Agent.OS)
+        yarn
+    displayName: Cache Yarn packages
+
+  - script: yarn --frozen-lockfile
+
   - task: Yarn@3
     displayName: Installing project dependencies
     inputs:
       arguments: install
 
   - task: Yarn@3
-    displayName: Running tests and capturing coverage
+    displayName: Running the project tests
     inputs:
-      arguments: test:coverage
+      arguments: test
 
   - script: |
       export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release
-    displayName: Semantic Release ( generate changelog, colect and build tag )
+    displayName: Semantic Release ( generate changelog and build tag )
     condition: eq(variables['Build.SourceBranchName'], 'master')
-
-  - script: |
-      node ./scripts/update-version.js
-    displayName: Updating production version
-
 
   - task: Yarn@3
     displayName: Build the project
