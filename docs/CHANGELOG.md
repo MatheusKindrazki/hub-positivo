@@ -1,3 +1,17 @@
+# [1.3.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.2.4...v1.3.0) (2021-02-11)
+
+
+### Bug Fixes
+
+* abrindo eem em outra aba apenas no ios ([479034b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/479034b06f022c3689b92eac532270234de85ec7))
+* adicionando tag semantic no readme ([38d0fe3](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/38d0fe3fd64292d3a8b8151d041f2d3b18fa3241))
+* ajustando abertura apenas no ios ([f7e7480](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/f7e7480f535412038bf3b767d8b829e6d6928633))
+
+
+### Features
+
+* realizando de verificação de dispositivos mobiles ([7190161](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/719016137deec136e8a7ffc4fc742685e08468e8))
+
 ## [1.2.4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.2.3...v1.2.4) (2021-02-10)
 
 
