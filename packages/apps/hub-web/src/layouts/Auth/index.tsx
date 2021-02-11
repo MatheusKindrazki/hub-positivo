@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { BarLoader, CardBox } from '@hub/common/components'
+import { BarLoader, CardBox, Text } from '@hub/common/components'
 
 import Logo from '~/components/Logo'
 
@@ -29,6 +29,9 @@ const Auth: React.FC = ({ children }) => {
       <CardBox mt="2.1875rem" maxWidth="25.9375rem">
         {children}
       </CardBox>
+      <Text mt="4" color="gray.500">
+        v{process.env.REACT_APP_VERSION}
+      </Text>
     </Container>
   )
 }
