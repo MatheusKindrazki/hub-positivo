@@ -69,10 +69,10 @@ jobs:
     displayName: Semantic Release ( generate changelog and build tag )
     condition: eq(variables['Build.SourceBranchName'], 'master')
 
-  - task: Bash@3
-    displayName: Updating version
-    inputs:
-      filePath: './scripts/update-version.sh'
+  - script: |
+      node ./scripts/update-version.js
+    displayName: Updating production version
+
 
   - task: Yarn@3
     displayName: Build the project
