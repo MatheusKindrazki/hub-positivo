@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import amplitude from 'amplitude-js'
 
-import { useSelector } from 'react-redux'
+import { store } from '~/store'
 
 interface PageViewed {
   page_path: string
@@ -17,13 +17,9 @@ interface PageViewed {
 
 export const useAmplitudePageView = (): void => {
   const { pathname } = useLocation()
-
-  const { school } = useSelector((state: Store.State) => state.user)
-  const { level: educational_stage } = useSelector(
-    (state: Store.State) => state.educationalStage
-  )
-  const { name: role } = useSelector((state: Store.State) => state.profile)
-
+  const { school } = store.getState().user
+  const { level: educational_stage } = store.getState().educationalStage
+  const { name: role } = store.getState().profile
   const pageViewedEvent = 'Page Viewed'
 
   useEffect(() => {
