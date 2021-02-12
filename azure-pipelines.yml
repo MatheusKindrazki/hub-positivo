@@ -27,15 +27,21 @@ jobs:
   steps:
 
   - task: SonarCloudPrepare@1
-    displayName: SonarCloud Prepare
     inputs:
-      SonarCloud: 'SonarCloud'
+      SonarCloud: 'hub-sonarcloud'
       organization: 'editorati'
       scannerMode: 'CLI'
       configMode: 'manual'
       cliProjectKey: 'editorati_HubDigitalFront'
       cliProjectName: 'HubDigitalFront'
       cliSources: '.'
+      extraProperties: |
+        sonar.sources=packages/apps/hub-web/src/components,packages/apps/hub-web/src/pages,packages/apps/hub-web/src/services,packages/apps/hub-web/src/store/modules,packages/apps/hub-web/src/utils,packages/apps/hub-web/src/validators,packages/apps/hub-web/src/middlewares,packages/apps/hub-web/src/hooks,packages/common/components
+        sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,
+        sonar.coverage.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,
+        sonar.javascript.lcov.reportPaths=coverage/lcov.info
+        sonar.testExecutionReportPaths=test-report.xml
+        sonar.test.inclusions=packages/apps/hub-web/src/**/*.spec.tsx,packages/apps/hub-web/src/**/*.spec.ts,packages/common/**/*.spec.tsx,packages/apps/common/**/*.spec.ts
 
   - task: DownloadSecureFile@1
     displayName: "Download env file"
@@ -70,7 +76,9 @@ jobs:
   - task: Yarn@3
     displayName: Running the project tests
     inputs:
-      arguments: test
+      arguments: test:coverage
+
+  - task: SonarCloudAnalyze@1
 
   - script: |
       export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release
