@@ -14,7 +14,6 @@
 <br>
 
 <p align="center">
-
   <img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="Semantic Release" />
   <img src="https://img.shields.io/badge/yarn-v1.22.5-blue" alt="Yarn version" />
 
@@ -24,11 +23,23 @@
   <img alt="Deploy" src="https://editorati.visualstudio.com/Produtos%20Digitais/_apis/build/status/PipelinesAntigos/hubdigital-front?branchName=master">
 </p>
 
+<h4 align="center">Jest Coverage</h4>
 <p align="center">
   <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_branches.svg.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Coverage branches" />
   <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_statements.svg.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Coverage statements" />
   <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_line.svg.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Coverage lines" />
   <img src="https://editorati.visualstudio.com/62146a26-1398-4837-9c09-d05b262140cc/_apis/git/repositories/5f530fe6-eea4-4cfb-9467-171f7045552c/items?path=%2Fdocs%2Ficons%2Fcoverage_functions.svg.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=develop&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Coverage functions" />
+</p>
+
+<h4 align="center">Sonar Cloud</h4>
+<p align="center">
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=editorati_HubDigitalFront&metric=alert_status&token=21c8f491a7caeba5d24f0e07895c37607145a782" alt="Quality gate" />
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=editorati_HubDigitalFront&metric=bugs&token=21c8f491a7caeba5d24f0e07895c37607145a782" alt="Bugs" />
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=editorati_HubDigitalFront&metric=ncloc&token=21c8f491a7caeba5d24f0e07895c37607145a782" alt="Lines of code" />
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=editorati_HubDigitalFront&metric=coverage&token=21c8f491a7caeba5d24f0e07895c37607145a782" alt="Coverage All" />
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=editorati_HubDigitalFront&metric=security_rating&token=21c8f491a7caeba5d24f0e07895c37607145a782" alt="Security code" />
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=editorati_HubDigitalFront&metric=code_smells&token=21c8f491a7caeba5d24f0e07895c37607145a782" alt="Code smells" />
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=editorati_HubDigitalFront&metric=vulnerabilities&token=21c8f491a7caeba5d24f0e07895c37607145a782" alt="Vulnerabilities" />
 </p>
 
 # Sumário

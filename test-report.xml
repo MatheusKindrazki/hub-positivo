@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/isMobile.spec.ts">
+    <testCase name="Check device origin Should return if the device is not mobile" duration="3"/>
+    <testCase name="Check device origin Should return if the device is  mobile" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/transpileProfile.spec.ts">
+    <testCase name="Profile structure Must return the correct structure following a pre-defined string" duration="4"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/prepareSchoolAndRoles.spec.ts">
+    <testCase name="Adjust school structure and profiles Should return data structure of schools" duration="3"/>
+    <testCase name="Adjust school structure and profiles Should return data structure of Roles" duration="2"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/hasJsonStructure.spec.ts">
+    <testCase name="json-type structure Should be check if string has a json structure" duration="2"/>
+    <testCase name="json-type structure Must return that the structure sent is not of the JSON type" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/reCaptcha.spec.ts">
+    <testCase name="Captcha for Login Should trigger the lib that removes the captcha cache" duration="3"/>
+    <testCase name="Captcha for Login Must validate quantity of stored items and return a Bool" duration="1"/>
+    <testCase name="Captcha for Login Save to set login attempts in cache" duration="1"/>
+    <testCase name="Captcha for Login You must validate the captcha token and remove the cache if ok" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Accordion.spec.tsx">
+    <testCase name="Accordion an UnmountClosed components Accordion being rendered on canvas" duration="100"/>
+    <testCase name="Accordion an UnmountClosed components UnmountClosed being rendered on canvas" duration="63"/>
+  </file>
+</testExecutions>
