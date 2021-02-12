@@ -39,7 +39,7 @@ const Search: React.FC<InputProps> = ({ onChange, ...rest }) => {
           height="3rem"
           zIndex={1}
           children={
-            <Box as={MagnifyingGlass} size="30px" zIndex={1} color="blue.500" />
+            <Box as={MagnifyingGlass} size="23px" zIndex={1} color="blue.500" />
           }
         />
       </InputGroup>
