@@ -39,6 +39,7 @@ const CardProduct: React.FC<CardProductProps> = ({
 
   return (
     <Container
+      data-testid="card-container"
       data-categoria={`${category}`}
       data-solucao={`${nome}`}
       className={classNames({
