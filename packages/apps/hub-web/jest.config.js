@@ -7,6 +7,7 @@ module.exports = {
   moduleNameMapper: {
     '~(.*)$': '<rootDir>/src/$1'
   },
+
   collectCoverageFrom: [
     '<rootDir>/src/components/**/.tsx',
     '<rootDir>/src/layouts/**/.tsx',
