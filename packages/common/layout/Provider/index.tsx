@@ -50,11 +50,11 @@ const ThemeContainer: React.FC = ({ children }) => {
         {children}
         <ToastContainer
           position="bottom-center"
-          autoClose={3000}
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
           closeButton={false}
-          hideProgressBar
           limit={3}
-          newestOnTop
           closeOnClick
           rtl={false}
           pauseOnFocusLoss

@@ -118,7 +118,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
               name={user?.name || ''}
               avatar=""
               option="name"
-              fontSize="1.125rem"
+              fontSize="1rem"
               size="48px"
               fontWeight="bold"
             />

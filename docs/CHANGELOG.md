@@ -1,3 +1,17 @@
+# [1.3.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.2.4...v1.3.0) (2021-02-11)
+
+
+### Bug Fixes
+
+* abrindo eem em outra aba apenas no ios ([479034b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/479034b06f022c3689b92eac532270234de85ec7))
+* adicionando tag semantic no readme ([38d0fe3](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/38d0fe3fd64292d3a8b8151d041f2d3b18fa3241))
+* ajustando abertura apenas no ios ([f7e7480](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/f7e7480f535412038bf3b767d8b829e6d6928633))
+
+
+### Features
+
+* realizando de verificação de dispositivos mobiles ([7190161](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/719016137deec136e8a7ffc4fc742685e08468e8))
+
 ## [1.2.4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.2.3...v1.2.4) (2021-02-10)
 
 
@@ -21,55 +35,7 @@
 
 * revertendo configurações invalidas ([160c35f](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/160c35fdd31f8886d386eb3c7ae0bfa6967179f8))
 
-## [1.2.3](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/compare/v1.2.2...v1.2.3) (2021-02-10)
-
-
-### Bug Fixes
-
-* adicionado validação de token no iframe ( refresh token ) ([9e5da51](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/9e5da514757ca3c6bc3ebda5115fa766d81130a8))
-* adicionando snap no gitignore ([2cda211](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/2cda211c5b21f45eb8ab27009b760b5304dcc494))
-* removendo snapshot ([c470392](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/c4703921df5df5b4562f167a719f5abae0935a32))
-* testes na estrutura do perfil ([a4014a5](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/a4014a5cd933a144b524dc1c1f0df30661ac3d7a))
-* validando educationalStage ([eff09c1](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/eff09c1488b204ce9bac7cb98e91b63627ea0251))
-
-
-### Reverts
-
-* revertendo configurações invalidas ([160c35f](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/160c35fdd31f8886d386eb3c7ae0bfa6967179f8))
-
-## [1.2.3](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/compare/v1.2.2...v1.2.3) (2021-02-10)
-
-
-### Bug Fixes
-
-* adicionado validação de token no iframe ( refresh token ) ([9e5da51](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/9e5da514757ca3c6bc3ebda5115fa766d81130a8))
-* adicionando snap no gitignore ([2cda211](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/2cda211c5b21f45eb8ab27009b760b5304dcc494))
-* removendo snapshot ([c470392](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/c4703921df5df5b4562f167a719f5abae0935a32))
-* testes na estrutura do perfil ([a4014a5](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/a4014a5cd933a144b524dc1c1f0df30661ac3d7a))
-* validando educationalStage ([eff09c1](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/eff09c1488b204ce9bac7cb98e91b63627ea0251))
-
-
-### Reverts
-
-* revertendo configurações invalidas ([160c35f](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/160c35fdd31f8886d386eb3c7ae0bfa6967179f8))
-
-## [1.2.3](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/compare/v1.2.2...v1.2.3) (2021-02-10)
-
-
-### Bug Fixes
-
-* adicionado validação de token no iframe ( refresh token ) ([9e5da51](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/9e5da514757ca3c6bc3ebda5115fa766d81130a8))
-* adicionando snap no gitignore ([2cda211](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/2cda211c5b21f45eb8ab27009b760b5304dcc494))
-* removendo snapshot ([c470392](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/c4703921df5df5b4562f167a719f5abae0935a32))
-* testes na estrutura do perfil ([a4014a5](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/a4014a5cd933a144b524dc1c1f0df30661ac3d7a))
-* validando educationalStage ([eff09c1](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/eff09c1488b204ce9bac7cb98e91b63627ea0251))
-
-
-### Reverts
-
-* revertendo configurações invalidas ([160c35f](https://vs-ssh.visualstudio.com/v3/editorati/Produtos%20Digitais/HubDigitalFront/commit/160c35fdd31f8886d386eb3c7ae0bfa6967179f8))
-
-# 1.0.0 (2021-02-10)
+# 1.0.0 --> 1.2.2 (2021-02-10)
 
 
 ### Bug Fixes
