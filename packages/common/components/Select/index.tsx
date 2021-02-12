@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Props, StylesConfig } from 'react-select'
+import { Props } from 'react-select'
 import Select from 'react-select'
 import classNames from 'classnames'
 
@@ -14,7 +14,7 @@ export interface PropsSelect extends Props {
 const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
   const { colors, shadows } = useTheme()
 
-  const transparentColor: StylesConfig = {
+  const transparentColor: Props['styles'] = {
     control: provided => ({
       ...provided,
       cursor: 'pointer',
@@ -59,7 +59,7 @@ const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
     })
   }
 
-  const normal: StylesConfig = {
+  const normal: Props['styles'] = {
     menu: provided => ({
       ...provided,
       zIndex: 99
