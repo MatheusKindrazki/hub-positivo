@@ -7,6 +7,9 @@ node_modules
 .vscode
 remote-profile
 
+test-report.xml
+*/test-report.xml
+
 # testing
 coverage
 
