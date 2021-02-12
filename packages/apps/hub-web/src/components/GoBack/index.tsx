@@ -9,6 +9,7 @@ const GoBack: React.FC<ButtonProps> = ({ onClick, children, ...rest }) => {
   return (
     <Box d="flex" justifyContent="flex-start">
       <Button
+        data-testid="goback-button"
         variant="link"
         justifyContent="flex-start"
         onClick={onClick}
