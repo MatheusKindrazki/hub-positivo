@@ -9,6 +9,8 @@ import { apiAuthProduct } from '@hub/api'
 
 import history from '~/services/history'
 
+import isMobile from '~/utils/isMobile'
+
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
 
 import { AuthRequest } from './types'
@@ -138,7 +140,7 @@ export function* authProductEEM({ payload }: AuthPayload): Generator {
 
   const newUrl = payload.url.replace('{token}', reduced_token as string)
 
-  if (payload.tipoRenderizacao === 'iframeblank') {
+  if (payload.tipoRenderizacao === 'iframeblank' && isMobile.iOS()) {
     window.open(newUrl, '_blank')
   } else {
     yield put(setFrameURL({ url: newUrl, name: payload.name }))
