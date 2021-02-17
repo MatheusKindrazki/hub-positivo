@@ -17,7 +17,7 @@ export interface CardProps {
   link?: string
 }
 
-interface CardProductProps {
+export interface CardProductProps {
   handlePush: (url: string) => void
   cor: string
   card: CardProps

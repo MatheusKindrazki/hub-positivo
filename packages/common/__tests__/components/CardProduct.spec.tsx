@@ -4,24 +4,11 @@ import '@testing-library/jest-dom'
 import { render, fireEvent } from '@hub/test-utils'
 
 import CardProduct from '../../components/CardProduct'
+import { CardProductProps as propTypes } from '../../components/CardProduct'
 
-interface cardProduct {
-  handlePush: jest.Mock
-  cor: string
-  category?: string
-  card: {
-    id: string
-    nome: string
-    descricao: string
-    arquivo: string
-    ativo: boolean
-    link?: string
-    notificacao?: string | number
-  }
-}
 const handlePush = jest.fn()
 
-const CardProductProps: cardProduct = {
+const CardProductProps: propTypes = {
   handlePush,
   cor: 'test',
   category: 'teste',

@@ -7,7 +7,6 @@ import { renderHook } from '@testing-library/react-hooks'
 import { render } from '@hub/test-utils'
 
 import { Text } from '@chakra-ui/react'
-import * as chacka from '@chakra-ui/react'
 
 import Drawer from '../../components/Drawer'
 import {
