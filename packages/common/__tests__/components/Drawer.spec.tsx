@@ -6,8 +6,7 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { render } from '@hub/test-utils'
 
-import { Text } from '@chakra-ui/react'
-
+import Text from '../../components/Text'
 import Drawer from '../../components/Drawer'
 import {
   DrawerCloseButton,
