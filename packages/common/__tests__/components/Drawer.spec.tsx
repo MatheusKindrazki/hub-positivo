@@ -63,9 +63,6 @@ describe('Testing if Drawer component render correctly', () => {
 })
 
 describe('testing useDesclosure', () => {
-  beforeAll(() => {
-    jest.unmock('@chakra-ui/react')
-  })
   const {
     result: { current }
   } = renderHook(() => useDisclosure())
