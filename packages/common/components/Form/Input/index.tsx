@@ -49,7 +49,7 @@ const Input: React.FC<InputAddIcons> = ({
   }, [])
 
   return (
-    <FormControl mb={mb}>
+    <FormControl data-testid="form-input" mb={mb}>
       <InputGroup>
         {iconLeft && (
           <InputLeftElement children={iconLeft} width="3rem" height="3rem" />
@@ -83,7 +83,11 @@ const Input: React.FC<InputAddIcons> = ({
           <InputRightElement children={iconRight} width="3rem" height="3rem" />
         )}
       </InputGroup>
-      {!!error && <FormHelperText color="red.300">{error}</FormHelperText>}
+      {!!error && (
+        <FormHelperText data-testid="input-error" color="red.300">
+          {error}
+        </FormHelperText>
+      )}
     </FormControl>
   )
 }
