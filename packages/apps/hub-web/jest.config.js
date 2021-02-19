@@ -7,7 +7,9 @@ module.exports = {
   moduleNameMapper: {
     '~(.*)$': '<rootDir>/src/$1'
   },
-
+  transform: {
+    '^.+\\.svg$': 'jest-svg-transformer'
+  },
   collectCoverageFrom: [
     '<rootDir>/src/components/**/.tsx',
     '<rootDir>/src/layouts/**/.tsx',

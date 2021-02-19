@@ -15,7 +15,7 @@ const ModalNoClass: React.FC = () => {
 
   const { withoutAccess } = useSelector((state: Store.State) => state.auth)
 
-  const { isOpen, onOpen } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
     if (withoutAccess) {
@@ -36,7 +36,7 @@ const ModalNoClass: React.FC = () => {
       autoFocus
       maxW={isDesktop ? '26.5rem' : '20rem'}
       isOpen={isOpen}
-      onClose={() => console.log('')}
+      onClose={onClose}
     >
       <Box
         d="flex"

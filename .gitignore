@@ -31,7 +31,9 @@ __snapshots__
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-yarn.log*
+yarn.log
+
+yarn.lock
 debug.log
 
 .eslintcache
