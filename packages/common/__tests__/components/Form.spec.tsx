@@ -7,53 +7,32 @@ import { fireEvent, render } from '@hub/test-utils'
 
 import { Form, Input, Button } from '../../components/Form'
 
-const childrenValue = 'correct inner html'
-
 const mockedSubmit = jest.fn(props => {
   return props
 })
 
 describe('Form works properly', () => {
-  it('Form chama submit com value inserido no Input atraves do Button', () => {
-    const wrapper = render(
+  it('input deve renderizar icones corretamente', () => {
+    const { getByText } = render(
       <Form onSubmit={mockedSubmit}>
-        <Input name="test-input" type="text" placeholder="teste" />
+        <Input
+          name="test-input"
+          iconLeft={<h1>icone teste esquerda</h1>}
+          iconRight={<h1>icone teste direita</h1>}
+        />
         <Button />
       </Form>
     )
-    const { getByTestId, getByPlaceholderText } = wrapper
-    const mockedResult = {
-      'test-input': 'testando'
-    }
 
-    const formInput = getByPlaceholderText('teste')
-    const formButton = getByTestId('form-button')
-
-    fireEvent.change(formInput, { target: { value: 'testando' } })
-    fireEvent.blur(formInput)
-    fireEvent.click(formButton)
-
-    expect(mockedSubmit.mock.calls[0]).toContainEqual(mockedResult)
-  })
-
-  it('input lida com blur e focus', () => {
-    const wrapper = render(
-      <Form onSubmit={mockedSubmit}>
-        <Input name="test-input" type="text" placeholder="teste" />
-        <Button>{childrenValue}</Button>
-      </Form>
-    )
-    const { getByPlaceholderText } = wrapper
-
-    const formInput = getByPlaceholderText('teste')
-
-    fireEvent.blur(formInput)
-    fireEvent.focus(formInput)
+    const iconeEsquerdo = getByText('icone teste esquerda')
+    const iconeDireito = getByText('icone teste direita')
+    expect(iconeEsquerdo).toBeInTheDocument()
+    expect(iconeDireito).toBeInTheDocument()
   })
 
   it('input deve mostrar erro caso useField retorn error como true', () => {
+    // mock do useField para retornar erro
     const useFieldSpy = jest.spyOn(unform, 'useField')
-
     useFieldSpy.mockReturnValueOnce({
       fieldName: 'test-input',
       registerField: jest.fn(),
@@ -62,39 +41,40 @@ describe('Form works properly', () => {
       error: 'true'
     })
 
-    const wrapper = render(
+    const { getByTestId } = render(
       <Form onSubmit={mockedSubmit}>
-        <Input name="test-input" type="text" placeholder="teste" />
-        <Button>{childrenValue}</Button>
+        <Input name="test-input" />
+        <Button />
       </Form>
     )
-
-    const { getByTestId } = wrapper
 
     const inputError = getByTestId('input-error')
 
     expect(inputError).toBeInTheDocument()
   })
 
-  it('input deve renderizar icones corretamente', () => {
-    const wrapper = render(
+  it('Form chama submit com value inserido no Input atraves do Button', () => {
+    const mockedResult = {
+      'test-input': 'testando'
+    }
+
+    const { getByTestId, getByPlaceholderText } = render(
       <Form onSubmit={mockedSubmit}>
-        <Input
-          name="test-input"
-          type="text"
-          placeholder="teste"
-          iconLeft={<h1>icone teste esquerda</h1>}
-          iconRight={<h1>icone teste direita</h1>}
-        />
-        <Button>{childrenValue}</Button>
+        <Input name="test-input" placeholder="test-placeholder" />
+        <Button />
       </Form>
     )
 
-    const { getByText } = wrapper
+    const formInput = getByPlaceholderText('test-placeholder')
+    const formButton = getByTestId('form-button')
 
-    const iconeEsquerdo = getByText('icone teste esquerda')
-    const iconeDireito = getByText('icone teste direita')
-    expect(iconeEsquerdo).toBeInTheDocument()
-    expect(iconeDireito).toBeInTheDocument()
+    fireEvent.change(formInput, {
+      target: { value: mockedResult['test-input'] }
+    })
+    fireEvent.focus(formInput)
+    fireEvent.blur(formInput)
+    fireEvent.click(formButton)
+
+    expect(mockedSubmit.mock.calls[0]).toContainEqual(mockedResult)
   })
 })
