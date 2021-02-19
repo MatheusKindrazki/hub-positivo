@@ -7,8 +7,7 @@ import { renderHook } from '@testing-library/react-hooks'
 import { render } from '@hub/test-utils'
 
 import Text from '../../components/Text'
-import Drawer from '../../components/Drawer'
-import {
+import Drawer, {
   DrawerCloseButton,
   DrawerBody,
   DrawerContent,

@@ -4,8 +4,7 @@ import '@testing-library/jest-dom'
 
 import { fireEvent, render } from '@hub/test-utils'
 
-import Popover from '../../components/Popover'
-import {
+import Popover, {
   PopoverTrigger,
   PopoverContent,
   PopoverBody
@@ -26,7 +25,7 @@ const PopoverComponent = () => {
   )
 }
 
-describe('testing', () => {
+describe('Popover component should work properly', () => {
   it('Should render with correcly content', () => {
     const { getByText } = render(<PopoverComponent />)
     const content = getByText(phrase)
