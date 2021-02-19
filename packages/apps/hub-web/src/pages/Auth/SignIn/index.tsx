@@ -63,7 +63,7 @@ const SignIn: React.FC = () => {
 
       try {
         await signInValidator.validate(data, {
-          abortEarly: true
+          abortEarly: false
         })
 
         dispatch(

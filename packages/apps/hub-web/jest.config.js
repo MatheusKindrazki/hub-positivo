@@ -5,7 +5,7 @@ module.exports = {
   name,
   preset: 'ts-jest',
   moduleNameMapper: {
-    "~(.*)$": "<rootDir>/src/$1"
+    '~(.*)$': '<rootDir>/src/$1'
   },
   collectCoverageFrom: [
     '<rootDir>/src/components/**/.tsx',
@@ -16,6 +16,6 @@ module.exports = {
     '<rootDir>/src/middlewares/**/.ts',
     '<rootDir>/src/store/modules/**/.ts',
     '<rootDir>/src/utils/**/.ts',
-    '<rootDir>/src/hooks/**/.ts',
-  ],
-};
+    '<rootDir>/src/hooks/**/.{ts,tsx}'
+  ]
+}

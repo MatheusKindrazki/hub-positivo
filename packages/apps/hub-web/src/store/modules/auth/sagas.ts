@@ -67,7 +67,9 @@ export function* signIn({ payload }: SignInPayload): Generator {
   const { data, ok } = response as ApiResponse<AuthApi>
 
   if (!ok) {
-    toast.error('Algo deu errado, verifique seus dados e tente novamente!')
+    toast.error(
+      'Usuário ou senha inválidos, verifique seus dados e tente novamente!'
+    )
 
     storeStrike()
 
