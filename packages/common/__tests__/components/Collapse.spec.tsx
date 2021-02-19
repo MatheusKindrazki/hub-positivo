@@ -24,7 +24,7 @@ jest.mock('@chakra-ui/react', () => {
 })
 
 describe('Collapse component should work properly', () => {
-  it('Collapse nao renderiza componente box se disable for true', () => {
+  it('Collapse doesnt render collapse-box when disable is true', () => {
     CollapseProps.disable = true
     const { queryByTestId } = render(
       <Collapse {...CollapseProps}>Children</Collapse>
@@ -34,7 +34,7 @@ describe('Collapse component should work properly', () => {
     expect(collapseBox).toBe(null)
   })
 
-  it('Collapse muda animacao com isOpen true', () => {
+  it('Collapse change its animation when isOpen is true', () => {
     CollapseProps.disable = false
     const { queryByTestId } = render(
       <Collapse {...CollapseProps}>Children</Collapse>
@@ -44,7 +44,7 @@ describe('Collapse component should work properly', () => {
     expect(collapseBox?.style.transform).toBe('rotate(-180deg)')
   })
 
-  it('Collapse muda animacao com isOpen false', () => {
+  it('Collapse change its animation when isOpen is false', () => {
     // mockando useDisclosure para retornar isOpen: false
     const { useDisclosure } = media
     const disclosureSpy = jest.spyOn(media, 'useDisclosure')
@@ -58,7 +58,7 @@ describe('Collapse component should work properly', () => {
     expect(collapseBox?.style.transform).toBe('rotate(0deg)')
   })
 
-  it('Collapse renderiza nome dentro do Heading', () => {
+  it('Collapse render name inside Heading', () => {
     const { getByText } = render(
       <Collapse {...CollapseProps}>Children</Collapse>
     )
@@ -67,7 +67,7 @@ describe('Collapse component should work properly', () => {
     expect(header).toBeInTheDocument()
   })
 
-  it('Collapse sem grid nao usa SimpleGrid', () => {
+  it('Collapse with false grid doesnt render SimpleGrid', () => {
     CollapseProps.grid = false
     const { queryByTestId } = render(
       <Collapse {...CollapseProps}>Children</Collapse>
@@ -77,7 +77,7 @@ describe('Collapse component should work properly', () => {
     expect(collapseBox).toBe(null)
   })
 
-  it('Collapse usa numero correto de colunas no SimpleGrid', () => {
+  it('Collapse uses SimpleGrid in large screens', () => {
     CollapseProps.grid = true
     CollapseProps.disable = true
     // mockando useMediaQuery para que isLargerThan1280 retorne true

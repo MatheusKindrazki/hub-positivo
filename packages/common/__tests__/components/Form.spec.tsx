@@ -12,7 +12,7 @@ const mockedSubmit = jest.fn(props => {
 })
 
 describe('Form works properly', () => {
-  it('input deve renderizar icones corretamente', () => {
+  it('input should render icons correctly', () => {
     const { getByText } = render(
       <Form onSubmit={mockedSubmit}>
         <Input
@@ -30,7 +30,7 @@ describe('Form works properly', () => {
     expect(iconeDireito).toBeInTheDocument()
   })
 
-  it('input deve mostrar erro caso useField retorn error como true', () => {
+  it('input should display an error if useField returns error as truthy', () => {
     // mock do useField para retornar erro
     const useFieldSpy = jest.spyOn(unform, 'useField')
     useFieldSpy.mockReturnValueOnce({
@@ -53,7 +53,7 @@ describe('Form works properly', () => {
     expect(inputError).toBeInTheDocument()
   })
 
-  it('Form chama submit com value inserido no Input atraves do Button', () => {
+  it('Form calls submit with correct values', () => {
     const mockedResult = {
       'test-input': 'testando'
     }
