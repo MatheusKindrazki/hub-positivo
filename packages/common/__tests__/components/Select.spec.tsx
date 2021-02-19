@@ -5,31 +5,53 @@ import selectEvent from 'react-select-event'
 import { fireEvent, render } from '@hub/test-utils'
 
 import '@testing-library/jest-dom'
+import Select, { PropsSelect } from '../../components/Select'
 
-import Select from '../../components/Select'
-
-describe('Select renders without crashing', () => {
-  const mockedOptions = [
+const mockedProperties: PropsSelect = {
+  variant: 'normal',
+  placeholder: 'placeholder_test',
+  options: [
     { label: 'option1', value: '1' },
     { label: 'option2', value: '2' },
     { label: 'option3', value: '3' }
   ]
-  it('Select normal variant render options', () => {
-    expect(1).toBe(1)
-    // const teste = jest.fn()
-    // const wrapper = render(
-    //   <>
-    //     <Select
-    //       defaultIsOpen={true}
-    //       variant="normal"
-    //       className="select-selector"
-    //       classNamePrefix="test"
-    //       placeholder="placeholder_test"
-    //       options={mockedOptions}
-    //     />
-    //   </>
-    // // )
-    // selectEvent.select(wrapper.getByText('placeholder_test'), '1')
-    // wrapper.debug()
+}
+
+describe('Select renders without crashing', () => {
+  it('Select normal variant render all options', async () => {
+    const wrapper = render(<Select {...mockedProperties} />)
+
+    selectEvent.openMenu(wrapper.getByText('placeholder_test'))
+    const options = wrapper.getAllByText('option', { exact: false })
+
+    await selectEvent.select(wrapper.getByText('placeholder_test'), 'option2')
+    // Evento de mousedown para alteracao no estilo com state.isSelected
+    fireEvent.mouseDown(wrapper.getByText('option2'))
+
+    expect(options.length).toBe(3)
+  })
+
+  it('Select blue-transparent variant render options', async () => {
+    mockedProperties.variant = 'blue-transparent'
+    const wrapper = render(<Select {...mockedProperties} />)
+
+    selectEvent.openMenu(wrapper.getByText('placeholder_test'))
+    const options = wrapper.getAllByText('option', { exact: false })
+
+    await selectEvent.select(wrapper.getByText('placeholder_test'), 'option2')
+    // Evento de mousedown para alteracao no estilo com state.isSelected
+    fireEvent.mouseDown(wrapper.getByText('option2'))
+
+    expect(options.length).toBe(3)
+  })
+
+  it('Select displays error message when no options are provided', () => {
+    mockedProperties.options = []
+    const wrapper = render(<Select {...mockedProperties} />)
+
+    selectEvent.openMenu(wrapper.getByText('placeholder_test'))
+    const errorMessage = wrapper.getByText('Nada encontrado =(')
+
+    expect(errorMessage).toBeInTheDocument()
   })
 })
