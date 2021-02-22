@@ -12,22 +12,35 @@ const mockedSubmit = jest.fn(props => {
 })
 
 describe('Form works properly', () => {
-  it('input should render icons correctly', () => {
-    const { getByText } = render(
+  it('input should render icons correctly and change style when focused', () => {
+    const wrapper = render(
       <Form onSubmit={mockedSubmit}>
         <Input
           name="test-input"
+          placeholder="testholder"
           iconLeft={<h1>icone teste esquerda</h1>}
           iconRight={<h1>icone teste direita</h1>}
         />
         <Button />
       </Form>
     )
+    const { getByText, getByTestId } = wrapper
 
     const iconeEsquerdo = getByText('icone teste esquerda')
     const iconeDireito = getByText('icone teste direita')
+
+    const formInput = getByTestId('form-input')
     expect(iconeEsquerdo).toBeInTheDocument()
     expect(iconeDireito).toBeInTheDocument()
+
+    // testar se componente muda a cor da borda quando focado e desfocado
+    formInput.focus()
+    expect(formInput).toHaveFocus()
+    expect(wrapper).toMatchSnapshot()
+
+    formInput.blur()
+    expect(formInput).not.toHaveFocus()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('input should display an error if useField returns error as truthy', () => {
@@ -60,19 +73,17 @@ describe('Form works properly', () => {
 
     const { getByTestId, getByPlaceholderText } = render(
       <Form onSubmit={mockedSubmit}>
-        <Input name="test-input" placeholder="test-placeholder" />
+        <Input name="test-input" placeholder="testholder" />
         <Button />
       </Form>
     )
 
-    const formInput = getByPlaceholderText('test-placeholder')
+    const formInput = getByPlaceholderText('testholder')
     const formButton = getByTestId('form-button')
 
     fireEvent.change(formInput, {
       target: { value: mockedResult['test-input'] }
     })
-    fireEvent.focus(formInput)
-    fireEvent.blur(formInput)
     fireEvent.click(formButton)
 
     expect(mockedSubmit.mock.calls[0]).toContainEqual(mockedResult)

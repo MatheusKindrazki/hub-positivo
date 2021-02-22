@@ -49,12 +49,13 @@ const Input: React.FC<InputAddIcons> = ({
   }, [])
 
   return (
-    <FormControl data-testid="form-input" mb={mb}>
+    <FormControl mb={mb}>
       <InputGroup>
         {iconLeft && (
           <InputLeftElement children={iconLeft} width="3rem" height="3rem" />
         )}
         <ChakraInput
+          data-testid="form-input"
           ref={inputRef}
           rounded="md"
           height="3rem"
