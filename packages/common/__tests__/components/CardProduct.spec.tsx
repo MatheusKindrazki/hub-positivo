@@ -22,7 +22,7 @@ const CardProductProps: propTypes = {
 }
 
 describe('CardProduct component should work properly', () => {
-  it('Card redireciona para o link correto', () => {
+  it('Card redirects to the correct link', () => {
     const linkValue = 'this link is a test'
     CardProductProps.card.link = linkValue
     const { getByTestId } = render(<CardProduct {...CardProductProps} />)
@@ -32,7 +32,7 @@ describe('CardProduct component should work properly', () => {
     expect(handlePush).toHaveBeenCalledWith(linkValue)
   })
 
-  it('Card exibe a notificacao correta', () => {
+  it('Card shows correct notification', () => {
     const notificationText = 'this string is a test notification'
     CardProductProps.card.notificacao = notificationText
     const { getByText } = render(<CardProduct {...CardProductProps} />)
@@ -41,7 +41,7 @@ describe('CardProduct component should work properly', () => {
     expect(notification).toBeInTheDocument()
   })
 
-  it('Card apresenta categoria "hub" quando nao recebe uma categoria', () => {
+  it('Card has "hub" category when no category is received', () => {
     CardProductProps.category = undefined
     const { getByTestId } = render(<CardProduct {...CardProductProps} />)
     const cardSolucaoHub = getByTestId('card-container')
@@ -49,7 +49,7 @@ describe('CardProduct component should work properly', () => {
     expect(cardSolucaoHub.id).toContain('hub')
   })
 
-  it('Card exibe texto de em breve quando nao recebe um link', () => {
+  it('Card shows "Em breve" text when doesnt receive a link', () => {
     CardProductProps.card.link = undefined
     const { getByText } = render(<CardProduct {...CardProductProps} />)
     const textoDeEmbreve = getByText('Em Breve')
