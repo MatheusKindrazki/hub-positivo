@@ -56,7 +56,11 @@ describe('Select renders without crashing', () => {
     await selectEvent.select(getByText('placeholder_test'), 'option3')
     // Evento de mousedown para alteracao no estilo com state.isSelected
     fireEvent.mouseDown(getByText('option3'))
-    const optionSelected = container.getElementsByClassName('hub__option')[2]
+
+    const option3 = 2
+    const optionSelected = container.getElementsByClassName('hub__option')[
+      option3
+    ]
     expect(optionSelected).toHaveStyle(`background-color: ${colors.blue[500]};`)
     expect(options.length).toBe(3)
   })
@@ -79,9 +83,11 @@ describe('Select renders without crashing', () => {
     fireEvent.mouseDown(getByText('option2'))
 
     const option2 = 1
-    const selected = container.getElementsByClassName('hub__option')[option2]
+    const optionSelected = container.getElementsByClassName('hub__option')[
+      option2
+    ]
 
-    expect(selected).toHaveStyle(`background-color: ${colors.blue[400]};`)
+    expect(optionSelected).toHaveStyle(`background-color: ${colors.blue[400]};`)
     expect(options.length).toBe(3)
   })
 
