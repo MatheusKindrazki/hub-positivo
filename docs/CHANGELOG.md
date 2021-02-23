@@ -1,3 +1,27 @@
+# [1.4.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.3.0...v1.4.0) (2021-02-12)
+
+
+### Bug Fixes
+
+* ajustando toast ([db3d807](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/db3d807717bffeb91b5fb1e3c2cfa367d392a85b))
+* atualizando transações ([9fca21a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9fca21a3058418770ce84c6133b236a256ae2b0d))
+* iniciar funcoes de tracking somente em producao ([e1c71ad](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/e1c71ada1bedf6918d6ccdc683262d5cfffd4900))
+* tamanho do icone de lupa na barra de pesquisa reduzido de 30px para 23px ([dbcaed0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/dbcaed0e892579eb79ca93c2a7a99be2b333e7d6))
+* tamanho do nome no modal do avatar reduzido para 1rem ([876bac5](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/876bac57cc818af3f60312c9d73b59e5dcdab657))
+
+
+### Features
+
+* adicionando funcoes de tracking do hotjar e amplitude ([b747ba3](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b747ba3da8f3ee938fb40e18946b6d8f24e993f1))
+* funcoes de tracking atualizadas de acordo com a develop ([fcb97b4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/fcb97b42351f91974114eccd2109af3e23f3eb13))
+* implementando testes das funcoes do amplitude ([43d1598](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/43d15982c77b9e48f5bde87bd9747a5ea6b903d0))
+* testes de useAmplitudePageView e useAmplitudeSetProperties ([fe7017d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/fe7017d0a1eff7f7e8e6d12462bc855417bbc15f))
+
+
+### Reverts
+
+* voltando a atualização de versão via pipeline ([f01cf36](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/f01cf36a5596ae10cdd5e40bdcb482bae63e09c5))
+
 # [1.3.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.2.4...v1.3.0) (2021-02-11)
 
 
