@@ -11,7 +11,7 @@ const MyClasses: React.FC = () => {
   documentTitle('Minhas Turmas')
 
   return (
-    <>
+    <Box mx={[3, 0]}>
       <Box
         maxW="1400px"
         px={['0', '4']}
@@ -65,7 +65,7 @@ const MyClasses: React.FC = () => {
           <CardAlunos />
         </Collapse>
       </Box>
-    </>
+    </Box>
   )
 }
 
