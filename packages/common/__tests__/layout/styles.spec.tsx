@@ -2,12 +2,8 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { Providers } from '@hub/test-utils'
 
-import {
-  useTheme,
-  useMediaQuery,
-  useColorMode,
-  useColorModeValue
-} from '../../layout/styles'
+import { useColorMode, useColorModeValue } from '../../layout/styles'
+import { useTheme, useMediaQuery, theme } from '../../layout/'
 
 describe('Testing chacka`s styles hooks', () => {
   it('useTheme shouldn`t return void theme when encapsulated by a theme provider', () => {
@@ -17,6 +13,8 @@ describe('Testing chacka`s styles hooks', () => {
       wrapper: Providers
     })
     expect(current).not.toBe({})
+    // Blue é alterado durante a renderização do provider
+    expect(current.colors.blue).not.toEqual(theme.colors.blue)
   })
   it('useColorMode should  gives you access to the current color mode, and a function to toggle the color mode.', () => {
     const {

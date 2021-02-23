@@ -5,8 +5,8 @@ import '@testing-library/jest-dom'
 
 import { render, act } from '@hub/test-utils'
 
-import ThemeContainer from '../../layout/Provider/index'
 import ThemeContext from '../../layout/Provider/context'
+import { HubProvider } from '../../layout'
 
 describe('Testing Theme Provider', () => {
   it('should change theme when profile changes', () => {
@@ -16,7 +16,7 @@ describe('Testing Theme Provider', () => {
       result: { current }
     } = renderHook(() => useContext(ThemeContext))
     const children = 'testing'
-    const { getByText } = render(<ThemeContainer>{children}</ThemeContainer>)
+    const { getByText } = render(<HubProvider>{children}</HubProvider>)
     const spyCurrentTheme = jest.spyOn(current, 'theme')
     expect(spyCurrentTheme).not.toHaveBeenCalled()
     act(() => {
