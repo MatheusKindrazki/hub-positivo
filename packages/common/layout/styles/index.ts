@@ -10,8 +10,6 @@ import {
 import chakra from './chakra'
 
 export const theme = chakra
-
 export type Theme = typeof theme
 const styled = baseStyled as ThemedStyledInterface<Theme>
-
 export { styled, useTheme, useMediaQuery, useColorMode, useColorModeValue }
