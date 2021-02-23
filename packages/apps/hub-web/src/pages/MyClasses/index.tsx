@@ -6,6 +6,7 @@ import { documentTitle } from '@hub/common/utils'
 import SearchInput from '@hub/common/components/Search'
 import { Heading, Box, Collapse } from '@hub/common/components'
 
+import CardAlunos from './components/CardAlunos'
 const MyClasses: React.FC = () => {
   documentTitle('Minhas Turmas')
 
@@ -47,12 +48,22 @@ const MyClasses: React.FC = () => {
           key={Math.random()}
           cor="blue"
           id="1"
-          nome="Brasil"
+          nome="9º Ano"
           className={classNames({
             // isLine: 3 !== 0
             isLine: true
           })}
-        ></Collapse>
+        >
+          <Box width="100%" gridColumn="1/-1">
+            <Heading as="h5" fontSize="1.125rem" fontWeight="normal">
+              9º Ano A
+            </Heading>
+          </Box>
+          <CardAlunos />
+          <CardAlunos />
+          <CardAlunos />
+          <CardAlunos />
+        </Collapse>
       </Box>
     </>
   )
