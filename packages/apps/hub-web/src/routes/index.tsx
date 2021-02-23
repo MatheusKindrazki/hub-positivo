@@ -17,6 +17,7 @@ const Home = React.lazy(() => import('~/pages/Home'))
 const Iframe = React.lazy(() => import('~/pages/Iframe'))
 const SignIn = React.lazy(() => import('~/pages/Auth/SignIn'))
 const Profile = React.lazy(() => import('~/pages/Auth/Profile'))
+const MyClasses = React.lazy(() => import('~/pages/MyClasses'))
 const ForgotFail = React.lazy(() => import('~/pages/Auth/ForgotFail'))
 const ExpiredToken = React.lazy(() => import('~/pages/Auth/ExpiredToken'))
 const ChangePassword = React.lazy(() => import('~/pages/Auth/ChangePassword'))
@@ -40,18 +41,23 @@ const Routes: React.FC = () => {
         >
           <Switch>
             <Route path="/login" component={SignIn} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/forgot-password/failure" component={ForgotFail} />
-            <Route path="/forgot-password" exact component={ForgotPassword} />
-            <Route path="/expired-token" component={ExpiredToken} />
-            <Route path="/change-password" component={ChangePassword} />
+            <Route path="/perfil" component={Profile} />
+            <Route path="/esqueci-minha-senha/falhou" component={ForgotFail} />
+            <Route
+              path="/esqueci-minha-senha"
+              exact
+              component={ForgotPassword}
+            />
+            <Route path="/token-expirado" component={ExpiredToken} />
+            <Route path="/alterar-senha" component={ChangePassword} />
             <Route
               path={['/solucao/:solution/:subpath+', '/solucao/:solution']}
               component={Iframe}
               isPrivate
             />
 
-            <Route path="/" component={Home} isPrivate />
+            <Route path="/" exact component={Home} isPrivate />
+            <Route path="/minhas-turmas" component={MyClasses} isPrivate />
           </Switch>
         </HashRouter>
       </ConnectedRouter>

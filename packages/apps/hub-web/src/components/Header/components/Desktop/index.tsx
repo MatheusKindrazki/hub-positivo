@@ -157,7 +157,17 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
             />
           </Box>
           <MenuDivider />
-          <Box px="5" py="3">
+          <Box px="5" py="3" pt="5">
+            <Button
+              onClick={() => history.push('/minhas-turmas')}
+              variant="link"
+              color="gray.500"
+              fontSize="0.875rem"
+            >
+              Minhas turmas
+            </Button>
+          </Box>
+          <Box px="5" py="3" pt="0">
             <Button
               onClick={openModalPass}
               variant="link"
