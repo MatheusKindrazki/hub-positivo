@@ -3,7 +3,9 @@ import React, { useCallback, useRef } from 'react'
 import Headroom from 'react-headroom'
 
 import { useMediaQuery, useDisclosure } from '@hub/common/hooks'
-import { Box, Modal } from '@hub/common/components'
+import { Box, Button, Modal } from '@hub/common/components'
+
+import history from '~/services/history'
 
 import Logo from '~/components/LogoOn'
 
@@ -43,7 +45,15 @@ const Header: React.FC = () => {
             justifyContent="space-between"
           >
             {!isDesktop && <MenuButton onClick={handleClick} />}
-            <Logo />
+            <Button
+              background="transparent"
+              outline="none"
+              p="0"
+              m="0"
+              onClick={() => history.push('/')}
+            >
+              <Logo />
+            </Button>
           </Box>
 
           {isDesktop ? (
