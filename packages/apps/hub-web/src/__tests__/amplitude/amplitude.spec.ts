@@ -16,10 +16,11 @@ const mockState = {
   },
   user: {
     school: {
-      user_id: 'Fake id',
       value: 'Fake Value'
     },
-    user: 'Fake user'
+    user: {
+      guid: 'fake Guid'
+    }
   },
   educationalStage: {
     level: 'Fake level'
@@ -82,7 +83,7 @@ describe('testing amplitude functions', () => {
     renderHook(() => useAmplitudeSetProperties())
     expect(store.getState).toHaveBeenCalledTimes(3)
     expect(setUserProperties).toHaveBeenCalledWith(mockParamsSetProperties)
-    expect(setUserId).toHaveBeenCalledWith(mockState.user.school.user_id)
+    expect(setUserId).toHaveBeenCalledWith(mockState.user.user.guid)
   })
 
   it('useAmplitudePageView should log event', () => {
