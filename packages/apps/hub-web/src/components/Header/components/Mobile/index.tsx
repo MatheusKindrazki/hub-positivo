@@ -58,6 +58,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
     const { onOpen: openModalSupport } = useContext(ModalSupportContext)
 
     const { user } = useSelector((state: Store.State) => state.user)
+    const { guid } = useSelector((state: Store.State) => state.profile)
 
     const { isOpen, onClose, onOpen } = useDisclosure()
 
@@ -206,22 +207,24 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               >
                 Home
               </Button>
-              <Button
-                onClick={() => {
-                  history.push('/minhas-turmas')
-                  onClose()
-                }}
-                color={
-                  location.pathname === '/minhas-turmas'
-                    ? 'blue.500'
-                    : 'gray.500'
-                }
-                fontSize="0.875rem"
-                variant="ghost"
-                ml="-10px"
-              >
-                Minhas turmas
-              </Button>
+              {guid === 'PROFESSOR' && (
+                <Button
+                  onClick={() => {
+                    history.push('/minhas-turmas')
+                    onClose()
+                  }}
+                  color={
+                    location.pathname === '/minhas-turmas'
+                      ? 'blue.500'
+                      : 'gray.500'
+                  }
+                  fontSize="0.875rem"
+                  variant="ghost"
+                  ml="-10px"
+                >
+                  Minhas turmas
+                </Button>
+              )}
               <Button
                 onClick={openModalPass}
                 color="gray.500"

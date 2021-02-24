@@ -35,6 +35,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
   const { steps } = useSelector((state: Store.State) => state.tour)
 
   const { user } = useSelector((state: Store.State) => state.user)
+  const { guid } = useSelector((state: Store.State) => state.profile)
 
   const handleSignOut = useCallback(async () => {
     dispatch(signOut())
@@ -157,17 +158,19 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
             />
           </Box>
           <MenuDivider />
-          <Box px="5" py="3" pt="5">
-            <Button
-              onClick={() => history.push('/minhas-turmas')}
-              variant="link"
-              color="gray.500"
-              fontSize="0.875rem"
-            >
-              Minhas turmas
-            </Button>
-          </Box>
-          <Box px="5" py="3" pt="0">
+          {guid === 'PROFESSOR' && (
+            <Box px="5" py="3" pt="5">
+              <Button
+                onClick={() => history.push('/minhas-turmas')}
+                variant="link"
+                color="gray.500"
+                fontSize="0.875rem"
+              >
+                Minhas turmas
+              </Button>
+            </Box>
+          )}
+          <Box px="5" py="3" pt={guid === 'PROFESSOR' ? '0' : '3'}>
             <Button
               onClick={openModalPass}
               variant="link"
