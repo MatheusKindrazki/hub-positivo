@@ -4,7 +4,13 @@ import { Avatar, Text } from '@hub/common/components'
 
 import { Container } from './styles'
 
-const CardAlunos: React.FC = () => {
+interface CardAlunoProps {
+  ativo: boolean
+  idUsuarioUnico: string
+  nome: string
+}
+
+const CardAlunos: React.FC<CardAlunoProps> = ({ nome }) => {
   return (
     <Container
       background="white"
@@ -24,12 +30,13 @@ const CardAlunos: React.FC = () => {
       <Avatar
         w="40px"
         h="40px"
-        name="Matheus Kindrazki"
+        name={nome}
         backgroundColor="#B0BEC5"
+        color="black"
         fontWeight="normal"
       />
       <Text ml="8px" fontSize="0.875rem">
-        Matheus Kindrazki Saldanha
+        {nome}
       </Text>
     </Container>
   )

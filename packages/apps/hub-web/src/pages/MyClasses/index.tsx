@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import classNames from 'classnames'
+
+import { useDispatch, useSelector } from 'react-redux'
+
+import { classesRequest } from '~/store/modules/myClasses/actions'
 
 import { documentTitle } from '@hub/common/utils'
 import SearchInput from '@hub/common/components/Search'
@@ -9,6 +13,13 @@ import { Heading, Box, Collapse } from '@hub/common/components'
 import CardAlunos from './components/CardAlunos'
 const MyClasses: React.FC = () => {
   documentTitle('Minhas Turmas')
+
+  const dispatch = useDispatch()
+
+  const { classes } = useSelector((state: Store.State) => state.myClasses)
+  useEffect(() => {
+    dispatch(classesRequest())
+  }, [dispatch])
 
   return (
     <Box mx={[3, 0]}>
@@ -44,26 +55,24 @@ const MyClasses: React.FC = () => {
         margin="0 auto"
         px={['0', '4']}
       >
-        <Collapse
-          key={Math.random()}
-          cor="blue"
-          id="1"
-          nome="9º Ano"
-          className={classNames({
-            // isLine: 3 !== 0
-            isLine: true
-          })}
-        >
-          <Box width="100%" gridColumn="1/-1">
-            <Heading as="h5" fontSize="1.125rem" fontWeight="normal">
-              9º Ano A
-            </Heading>
-          </Box>
-          <CardAlunos />
-          <CardAlunos />
-          <CardAlunos />
-          <CardAlunos />
-        </Collapse>
+        {classes &&
+          classes.map((classe, i) => (
+            <Collapse
+              key={i}
+              cor="blue.500"
+              id={String(i)}
+              nome={`${classe.nome} - ${classe?.serie?.nome}`}
+              className={classNames({
+                isLine: i !== 0
+              })}
+            >
+              {classe.alunos
+                ?.filter(a => a.ativo)
+                .map(aluno => (
+                  <CardAlunos key={aluno.idUsuarioUnico} {...aluno} />
+                ))}
+            </Collapse>
+          ))}
       </Box>
     </Box>
   )
