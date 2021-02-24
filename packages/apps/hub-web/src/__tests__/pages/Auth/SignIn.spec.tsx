@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { useHistory } from 'react-router-dom'
+import { renderHook } from '@testing-library/react-hooks'
+
 import * as redux from 'react-redux'
 
 import { render, fireEvent, waitFor } from '@hub/test-utils'
@@ -11,7 +14,6 @@ import SignIn from '~/pages/Auth/SignIn'
 import signInValidator from '~/validators/auth/signIn'
 
 import '@testing-library/jest-dom'
-import { findRenderedComponentWithType } from 'react-dom/test-utils'
 // import { ValidationError, getValidationErrors } from '~/validators'
 
 jest.mock('react', () => {
@@ -88,7 +90,17 @@ describe('Testing that the Login page works correctly', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })
-
+  it('', () => {
+    // spyUseHistory.mockReturnValue({ push })
+    // const {
+    //   result: { current }
+    // } = renderHook(() => useHistory())
+    // const { getByText } = render(<SignIn />)
+    // const forgotPasswordButton = getByText('Esqueci minha senha', queryConfig)
+    // const spyCurrent = jest.spyOn(current, 'push')
+    // fireEvent.click(forgotPasswordButton)
+    // expect(spyCurrent).toHaveBeenCalledWith('/forgot-password')
+  })
   it('Should render the elements of the Login page', () => {
     const { queryAllByText, queryByText, queryByPlaceholderText } = render(
       <SignIn />
@@ -158,20 +170,19 @@ describe('Testing that the Login page works correctly', () => {
   })
 
   it('should call handleCaptcha when signInStrike is true and type button is not submit', async () => {
-    jest.spyOn(redux, 'useSelector').mockReturnValueOnce({
-      loading: false,
-      signInStrike: true
-    })
-    const spyHandleCaptcha = jest.spyOn(ReCAPTCHA, 'handleCaptcha')
-    jest.spyOn(ReCAPTCHA, 'checkForStrikes').mockImplementation(() => true)
-    spyHandleCaptcha.mockResolvedValue(true)
-
-    const wrapper = render(<SignIn />)
-    const { getByTestId } = wrapper
-    const button = getByTestId('submit-button')
-    expect(button).toHaveProperty('type', 'button')
-
-    await waitFor(() => fireEvent.click(button))
+    // jest.spyOn(redux, 'useSelector').mockReturnValueOnce({
+    //   loading: false,
+    //   signInStrike: true
+    // })
+    // const spyHandleCaptcha = jest.spyOn(ReCAPTCHA, 'handleCaptcha')
+    // jest.spyOn(ReCAPTCHA, 'checkForStrikes').mockImplementation(() => true)
+    // spyHandleCaptcha.mockResolvedValue(true)
+    // const wrapper = render(<SignIn />)
+    // const { getByTestId } = wrapper
+    // const button = getByTestId('submit-button')
+    // expect(button).toHaveProperty('type', 'button')
+    // await waitFor(() => fireEvent.click(button))
+    // wrapper.debug()
     // expect(spyHandleCaptcha).toHaveBeenCalled()
   })
 })
