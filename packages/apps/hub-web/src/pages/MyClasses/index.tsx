@@ -11,6 +11,9 @@ import { documentTitle } from '@hub/common/utils'
 import SearchInput from '@hub/common/components/Search'
 import { Heading, Box, Collapse } from '@hub/common/components'
 
+import FakeLoadingCard from './components/FakeLoading'
+import mockFakeLoading from './components/FakeCollapse/mock'
+import FakeCollapse from './components/FakeCollapse'
 import CardAlunos from './components/CardAlunos'
 import { cardFilter } from './cardFilter'
 
@@ -21,7 +24,10 @@ const MyClasses: React.FC = () => {
 
   const dispatch = useDispatch()
 
-  const { classes } = useSelector((state: Store.State) => state.myClasses)
+  const { classes, loading: l } = useSelector(
+    (state: Store.State) => state.myClasses
+  )
+  const { loading: globalL } = useSelector((state: Store.State) => state.global)
 
   useEffect(() => {
     dispatch(classesRequest())
@@ -69,7 +75,7 @@ const MyClasses: React.FC = () => {
         margin="0 auto"
         px={['0', '4']}
       >
-        {filterCards &&
+        {!l && filterCards ? (
           filterCards.map((classe, i) => (
             <Collapse
               key={i}
@@ -86,7 +92,26 @@ const MyClasses: React.FC = () => {
                   <CardAlunos key={aluno.idUsuarioUnico} {...aluno} />
                 ))}
             </Collapse>
-          ))}
+          ))
+        ) : (
+          <>
+            {mockFakeLoading.map((item, index) => (
+              <FakeCollapse key={index} id={String(index)}>
+                {item.cardMock.map((card, i) => (
+                  <FakeLoadingCard key={i} />
+                ))}
+              </FakeCollapse>
+            ))}
+          </>
+        )}
+
+        {!filterCards?.length && !l && !globalL ? (
+          <Box mt="5">
+            <Heading as="h5" fontSize="1.5rem" color="blue.500">
+              Nenhuma turma encontrada!
+            </Heading>
+          </Box>
+        ) : null}
       </Box>
     </Box>
   )
