@@ -36,7 +36,7 @@ const MyClasses: React.FC = () => {
     [classes, search]
   )
   return (
-    <Box mx={[3, 0]}>
+    <Box mx={[3, 0]} pb="25px">
       <Box
         maxW="1400px"
         px={['0', '3']}

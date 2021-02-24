@@ -37,6 +37,7 @@ export function* getClasses(): Generator {
   const prepareData: ClassesAPI[] | undefined = data?.conteudo
     .map(i => {
       return {
+        id: i.id,
         ativo: i.ativo,
         alunos: i.alunos,
         nome: i.nome,
