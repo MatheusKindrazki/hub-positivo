@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 
+import { debounce } from 'ts-debounce'
 import classNames from 'classnames'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,21 +12,34 @@ import SearchInput from '@hub/common/components/Search'
 import { Heading, Box, Collapse } from '@hub/common/components'
 
 import CardAlunos from './components/CardAlunos'
+import { cardFilter } from './cardFilter'
+
 const MyClasses: React.FC = () => {
   documentTitle('Minhas Turmas')
+
+  const [search, setSearch] = useState('')
 
   const dispatch = useDispatch()
 
   const { classes } = useSelector((state: Store.State) => state.myClasses)
+
   useEffect(() => {
     dispatch(classesRequest())
   }, [dispatch])
 
+  const handleSearch = debounce(value => {
+    setSearch(value)
+  }, 550)
+
+  const filterCards = useMemo(
+    () => cardFilter({ data: classes || [], search: search }),
+    [classes, search]
+  )
   return (
     <Box mx={[3, 0]}>
       <Box
         maxW="1400px"
-        px={['0', '4']}
+        px={['0', '3']}
         margin="0 auto"
         mt="32px"
         d="flex"
@@ -41,7 +55,7 @@ const MyClasses: React.FC = () => {
             <SearchInput
               placeholder="Buscar alunos"
               backgroundColor="white!important"
-              // onChange={handleSearch}
+              onChange={handleSearch}
             />
           </Box>
         </Box>
@@ -55,8 +69,8 @@ const MyClasses: React.FC = () => {
         margin="0 auto"
         px={['0', '4']}
       >
-        {classes &&
-          classes.map((classe, i) => (
+        {filterCards &&
+          filterCards.map((classe, i) => (
             <Collapse
               key={i}
               cor="blue.500"

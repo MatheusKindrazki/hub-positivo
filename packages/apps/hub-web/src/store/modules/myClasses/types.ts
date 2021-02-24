@@ -1,4 +1,5 @@
 export interface ClassesAPI {
+  id: number
   ativo: boolean
   nome: string
   serie: {
