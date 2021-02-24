@@ -16,30 +16,27 @@ import { withoutAccess } from '../auth/actions'
 
 export function* getProducts(): Generator {
   yield put(loading(true))
-
-  const enableFilterLevel = ['PROFESSOR', 'ALUNO']
-
   const { guid } = store.getState().profile
   const { level } = store.getState().educationalStage
 
   const { user, school } = store.getState().user
-  let query: string
 
   if (!user && !school) return
+
+  const enableFilterLevel = ['PROFESSOR', 'ALUNO']
 
   if (enableFilterLevel.includes(guid)) {
     if (!level) {
       yield put(loading(false))
       return yield put(withoutAccess())
     }
-
-    query = `${guid}?NivelEnsino=${level}`
-  } else {
-    query = `${guid}`
   }
 
   const response = yield call(async () => {
-    return await api.get(`Categoria/Solucoes/Perfil/${query}`)
+    return await api.get(`Categoria/Solucoes/Perfil/${guid}`, {
+      NivelEnsino: level,
+      IdEscola: school?.value
+    })
   })
 
   const { ok, data, status } = response as ApiResponse<CardProduct[]>
