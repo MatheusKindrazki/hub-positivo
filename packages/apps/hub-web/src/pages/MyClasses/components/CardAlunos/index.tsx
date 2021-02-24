@@ -36,7 +36,7 @@ const CardAlunos: React.FC<CardAlunoProps> = ({ nome }) => {
         fontWeight="normal"
       />
       <Text ml="8px" fontSize="0.875rem">
-        {nome}
+        {nome.toUpperCase()}
       </Text>
     </Container>
   )
