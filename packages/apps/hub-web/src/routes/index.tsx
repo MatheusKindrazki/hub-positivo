@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, Suspense } from 'react'
 
-import { Switch, HashRouter } from 'react-router-dom'
+import { Switch, HashRouter, Redirect } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 
 import { useSelector } from 'react-redux'
@@ -25,6 +25,7 @@ const ForgotPassword = React.lazy(() => import('~/pages/Auth/ForgotPassword'))
 
 const Routes: React.FC = () => {
   const { colorProfile } = useSelector((state: Store.State) => state.profile)
+  const { guid } = useSelector((state: Store.State) => state.profile)
 
   const { theme } = useContext(ThemeContext)
 
@@ -57,7 +58,11 @@ const Routes: React.FC = () => {
             />
 
             <Route path="/" exact component={Home} isPrivate />
-            <Route path="/minhas-turmas" component={MyClasses} isPrivate />
+            {guid === 'PROFESSOR' && (
+              <Route path="/minhas-turmas" component={MyClasses} isPrivate />
+            )}
+
+            <Redirect to="/" from="*" />
           </Switch>
         </HashRouter>
       </ConnectedRouter>
