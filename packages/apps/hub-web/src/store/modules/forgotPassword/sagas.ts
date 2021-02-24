@@ -26,7 +26,7 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
       '/api/v1/users/request-new-password',
       {
         userInfo: payload.userInfo,
-        urlChangePassword: `${setURL}/#/change-password`
+        urlChangePassword: `${setURL}/#/alterar-senha`
       },
       {
         headers: {
@@ -40,7 +40,7 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
   const { data, ok } = response as ApiResponse<PwdTokenApi>
 
   if (!ok) {
-    history.push('/forgot-password/failure')
+    history.push('/esqueci-minha-senha/falhou')
 
     return yield put(pwdTokenFailure())
   }
@@ -88,7 +88,7 @@ export function* validatePIN({ payload }: ValidatePINtPayload): Generator {
   }
 
   if (!data?.content) {
-    history.push('/expired-token')
+    history.push('/token-expirado')
 
     return yield put(validatePinSuccess(data?.content || false))
   }

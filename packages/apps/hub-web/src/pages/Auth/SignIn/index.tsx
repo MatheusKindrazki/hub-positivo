@@ -96,7 +96,7 @@ const SignIn: React.FC = () => {
   }, [])
 
   const handleForgotPasswordLink = () => {
-    history.push('/forgot-password')
+    history.push('/esqueci-minha-senha')
   }
   return (
     <Box p="6">

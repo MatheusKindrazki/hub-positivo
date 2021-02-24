@@ -97,7 +97,7 @@ const Iframe: React.FC = () => {
         loading="lazy"
         name={String(date.getTime())}
         onLoad={() => setLoading(false)}
-        src={url}
+        src={`${url}?date=${String(date.getTime())}`}
         referrerPolicy="no-referrer-when-downgrade"
       />
     </IframeContainer>
