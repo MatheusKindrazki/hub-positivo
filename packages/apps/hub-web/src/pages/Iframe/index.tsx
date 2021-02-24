@@ -42,8 +42,6 @@ const Iframe: React.FC = () => {
     (state: Store.State) => state.products
   )
 
-  const date = new Date()
-
   useEffect(() => {
     if (!frameUrl) {
       getCardInformation()
@@ -95,9 +93,8 @@ const Iframe: React.FC = () => {
       <iframe
         id="hub-solution-iframe"
         loading="lazy"
-        name={String(date.getTime())}
         onLoad={() => setLoading(false)}
-        src={`${url}?date=${String(date.getTime())}`}
+        src={url}
         referrerPolicy="no-referrer-when-downgrade"
       />
     </IframeContainer>
