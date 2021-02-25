@@ -4,6 +4,7 @@ import user from './user/sagas'
 import tour from './tour/sagas'
 import products from './products/sagas'
 import productIntegrations from './productIntegrations/sagas'
+import myClasses from './myClasses/sagas'
 import forgotPassword from './forgotPassword/sagas'
 import educationalStage from './educationalStage/sagas'
 import authProduct from './authProduct/sagas'
@@ -17,6 +18,7 @@ export default function* rootSaga(): Generator {
     forgotPassword,
     educationalStage,
     productIntegrations,
+    myClasses,
     products,
     tour
   ])

@@ -99,11 +99,11 @@ export function* signIn({ payload }: SignInPayload): Generator {
   )
 
   if (redirectTo) {
-    history.push(`/profile?redirect=${redirectTo}`)
+    history.push(`/perfil?redirect=${redirectTo}`)
     return
   }
 
-  history.push('/profile')
+  history.push('/perfil')
 }
 
 /*

@@ -1,5 +1,7 @@
 import React, { useCallback, useImperativeHandle, useContext } from 'react'
 
+import { useHistory } from 'react-router'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour } from '~/store/modules/tour/actions'
@@ -49,11 +51,14 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
   ({ openModalPass }, ref) => {
     const dispatch = useDispatch()
 
+    const { location } = useHistory()
+
     const { schoolList, roleList, ...func } = useHeader()
 
     const { onOpen: openModalSupport } = useContext(ModalSupportContext)
 
     const { user } = useSelector((state: Store.State) => state.user)
+    const { guid } = useSelector((state: Store.State) => state.profile)
 
     const { isOpen, onClose, onOpen } = useDisclosure()
 
@@ -190,6 +195,36 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               justifyContent="flex-start"
               alignItems="flex-start"
             >
+              <Button
+                onClick={() => {
+                  history.push('/')
+                  onClose()
+                }}
+                color={location.pathname === '/' ? 'blue.500' : 'gray.500'}
+                fontSize="0.875rem"
+                variant="ghost"
+                ml="-10px"
+              >
+                Home
+              </Button>
+              {guid === 'PROFESSOR' && (
+                <Button
+                  onClick={() => {
+                    history.push('/minhas-turmas')
+                    onClose()
+                  }}
+                  color={
+                    location.pathname === '/minhas-turmas'
+                      ? 'blue.500'
+                      : 'gray.500'
+                  }
+                  fontSize="0.875rem"
+                  variant="ghost"
+                  ml="-10px"
+                >
+                  Minhas turmas
+                </Button>
+              )}
               <Button
                 onClick={openModalPass}
                 color="gray.500"
