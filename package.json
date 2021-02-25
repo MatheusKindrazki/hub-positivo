@@ -53,6 +53,6 @@
   },
   "dependencies": {
     "@sentry/react": "^6.1.0",
-    "@sentry/tracing": "^6.1.0"
+    "@sentry/tracing": "^6.2.0"
   }
 }
