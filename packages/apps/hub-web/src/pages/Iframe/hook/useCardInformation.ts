@@ -9,7 +9,7 @@ import createSlug from '@hub/common/utils/createSlug'
 
 import history from '~/services/history'
 
-import { getCardBySlug } from './getCardBySlug'
+import { getCardBySlug } from '../services/getCardBySlug'
 
 interface IframePropsRouter {
   solution: string
