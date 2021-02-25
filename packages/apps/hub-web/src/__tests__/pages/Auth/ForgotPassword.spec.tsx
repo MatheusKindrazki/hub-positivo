@@ -32,6 +32,10 @@ jest.mock('react-redux', () => {
     useSelector: jest.fn()
   }
 })
+jest.mock('~/services/history', () => ({
+  push: jest.fn(),
+  goBack: jest.fn()
+}))
 
 describe('Forgot Password page should work properly', () => {
   it('should display instructions about password recovery', async () => {
