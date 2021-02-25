@@ -9,6 +9,8 @@ import postMessage from '~/middlewares/postMessage'
 import { IframeContainer } from './styles'
 import getCardInformation from './hook/useCardInformation'
 import LoadingFrame from './components/Loading'
+import DynamicIframe from './components/Iframe'
+
 const Iframe: React.FC = () => {
   postMessage()
 
@@ -34,7 +36,7 @@ const Iframe: React.FC = () => {
   return (
     <IframeContainer>
       <LoadingFrame loading={loading} />
-      <iframe
+      <DynamicIframe
         id="hub-solution-iframe"
         loading="lazy"
         onLoad={() => setLoading(false)}
