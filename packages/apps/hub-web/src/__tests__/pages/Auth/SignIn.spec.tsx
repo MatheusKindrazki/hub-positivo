@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { useHistory } from 'react-router-dom'
-import { renderHook } from '@testing-library/react-hooks'
+import * as reactDom from 'react-router-dom'
 
 import * as redux from 'react-redux'
 
@@ -36,12 +35,7 @@ jest.mock('react-router-dom', () => {
         get: (redirect: string) => redirect
       }
     }),
-    useHistory: () => ({
-      location: {
-        pathname: '/login'
-      },
-      push: jest.fn()
-    })
+    useHistory: jest.fn()
   }
 })
 
@@ -66,21 +60,7 @@ jest.mock('~/utils/reCaptcha', () => ({
 //   validate: jest.fn()
 // }))
 
-// const renderWithContext = (children: ReactElement) => {
-//   return render(
-//     <Provider store={store}>
-//       <PersistGate persistor={persistor}>{children}</PersistGate>
-//     </Provider>
-//   )
-// }
-
 describe('Testing that the Login page works correctly', () => {
-  const dispatch = jest.fn()
-  const spyValidate = jest.spyOn(signInValidator, 'validate')
-  jest.spyOn(redux, 'useDispatch').mockReturnValue(dispatch)
-
-  const queryConfig = { exact: false }
-
   beforeAll(() => {
     process.env = Object.assign(process.env, {
       REACT_APP_RECAPTCHA_SITE_KEY: '6LeT8ioaAAAAAIicz2pY2Q-opHa-MV45qsA9vZUX'
@@ -90,17 +70,46 @@ describe('Testing that the Login page works correctly', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })
-  it('', () => {
-    // spyUseHistory.mockReturnValue({ push })
-    // const {
-    //   result: { current }
-    // } = renderHook(() => useHistory())
-    // const { getByText } = render(<SignIn />)
-    // const forgotPasswordButton = getByText('Esqueci minha senha', queryConfig)
-    // const spyCurrent = jest.spyOn(current, 'push')
-    // fireEvent.click(forgotPasswordButton)
-    // expect(spyCurrent).toHaveBeenCalledWith('/forgot-password')
+
+  const dispatch = jest.fn()
+  const push = jest.fn()
+  const history = {
+    location: {
+      pathname: '/login'
+    },
+    push
+  }
+
+  const spyValidate = jest.spyOn(signInValidator, 'validate')
+  jest.spyOn(redux, 'useDispatch').mockReturnValue(dispatch)
+  jest.spyOn(reactDom, 'useHistory').mockReturnValue(history as any)
+
+  const queryConfig = { exact: false }
+
+  it('should redirect the user to /forgot-password when click on `Esqueci minha senha`', () => {
+    const { getByText } = render(<SignIn />)
+    const forgotPasswordButton = getByText('Esqueci minha senha', queryConfig)
+    fireEvent.click(forgotPasswordButton)
+    expect(push).toHaveBeenCalledWith('/forgot-password')
   })
+
+  it('should open help modal when click on `Precido de ajuda`', async () => {
+    const { getByText } = render(<SignIn />)
+    const helpButton = getByText('Preciso de ajuda', queryConfig)
+    fireEvent.click(helpButton)
+    expect(helpButton).toBeInTheDocument()
+  })
+
+  it('should change password input type when view icon is clicked', async () => {
+    const { getByTestId } = render(<SignIn />)
+    const viewIcon = getByTestId('view-button')
+    const passwordInput = getByTestId('password')
+
+    expect(passwordInput).toHaveProperty('type', 'password')
+    fireEvent.click(viewIcon)
+    expect(passwordInput).toHaveProperty('type', 'text')
+  })
+
   it('Should render the elements of the Login page', () => {
     const { queryAllByText, queryByText, queryByPlaceholderText } = render(
       <SignIn />
@@ -110,8 +119,14 @@ describe('Testing that the Login page works correctly', () => {
       'Insira seus dados de acesso para começar',
       queryConfig
     )
-    const emailPlaceholder = queryByPlaceholderText('Digite seu usuário')
-    const passwordPlaceholder = queryByPlaceholderText('Digite sua senha')
+    const emailPlaceholder = queryByPlaceholderText(
+      'Digite seu usuário',
+      queryConfig
+    )
+    const passwordPlaceholder = queryByPlaceholderText(
+      'Digite sua senha',
+      queryConfig
+    )
 
     expect(signIn.length).toBe(2)
     expect(welcomeMessage).toBeInTheDocument()
@@ -154,7 +169,7 @@ describe('Testing that the Login page works correctly', () => {
     })
   })
 
-  it('should throw a error when username and password input are empty', async () => {
+  it('should throw a validation error when username and password input are empty', async () => {
     const wrapper = render(<SignIn />)
     const { getByTestId, findByText } = wrapper
 
@@ -169,20 +184,38 @@ describe('Testing that the Login page works correctly', () => {
     expect(passwordError).toBeInTheDocument()
   })
 
-  it('should call handleCaptcha when signInStrike is true and type button is not submit', async () => {
-    // jest.spyOn(redux, 'useSelector').mockReturnValueOnce({
-    //   loading: false,
-    //   signInStrike: true
-    // })
-    // const spyHandleCaptcha = jest.spyOn(ReCAPTCHA, 'handleCaptcha')
-    // jest.spyOn(ReCAPTCHA, 'checkForStrikes').mockImplementation(() => true)
-    // spyHandleCaptcha.mockResolvedValue(true)
-    // const wrapper = render(<SignIn />)
-    // const { getByTestId } = wrapper
-    // const button = getByTestId('submit-button')
-    // expect(button).toHaveProperty('type', 'button')
-    // await waitFor(() => fireEvent.click(button))
-    // wrapper.debug()
-    // expect(spyHandleCaptcha).toHaveBeenCalled()
+  it('should throw new error when username or password input are incorrect', async () => {
+    spyValidate.mockImplementation(() => {
+      throw new Error()
+    })
+    const wrapper = render(<SignIn />)
+    const { getByTestId, findByText } = wrapper
+
+    const form = getByTestId('submit-button')
+
+    await waitFor(() => fireEvent.click(form))
+    const errorMessage = await findByText(
+      'Algo deu errado, Verifique seus dados e tente novamente!',
+      queryConfig
+    )
+    expect(errorMessage).toBeInTheDocument()
+  })
+
+  it('should call handle Captcha when signInStrike is true and button type is not submit button', async () => {
+    jest.spyOn(redux, 'useSelector').mockReturnValueOnce({
+      loading: false,
+      signInStrike: true
+    })
+    const spyHandleCaptcha = jest.spyOn(ReCAPTCHA, 'handleCaptcha')
+
+    jest.spyOn(ReCAPTCHA, 'checkForStrikes').mockImplementation(() => true)
+    spyHandleCaptcha.mockResolvedValue(true)
+
+    const wrapper = render(<SignIn />)
+    const { getByTestId } = wrapper
+    const button = getByTestId('submit-button')
+
+    expect(button).toHaveProperty('type', 'button')
+    await waitFor(() => fireEvent.click(button))
   })
 })

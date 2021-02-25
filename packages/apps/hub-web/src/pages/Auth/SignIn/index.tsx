@@ -124,6 +124,7 @@ const SignIn: React.FC = () => {
           data-testid="password"
           iconRight={
             <Box
+              data-testid="view-button"
               as={view ? Eye : EyeSlash}
               color="gray.500"
               size="19px"
