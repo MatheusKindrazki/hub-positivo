@@ -45,7 +45,7 @@ const SignIn: React.FC = () => {
   const redirectTo = search.get('redirect') || undefined
 
   const { onOpen } = useContext(ModalSupportContext)
-
+  /* istanbul ignore next */
   const { loading, signInStrike } = useSelector(
     (state: Store.State) => state.auth
   )
@@ -85,7 +85,7 @@ const SignIn: React.FC = () => {
     },
     [dispatch, redirectTo]
   )
-
+  /* istanbul ignore next */
   const handleRecaptchaSubmit = useCallback(async token => {
     const validate = await handleCaptcha(token)
 

@@ -201,20 +201,17 @@ describe('Testing that the Login page works correctly', () => {
     expect(errorMessage).toBeInTheDocument()
   })
 
-  it('should call handle Captcha when signInStrike is true and button type is not submit button', async () => {
+  it('should change the type of the submit button to button type when sign-in strike is true', async () => {
     jest.spyOn(redux, 'useSelector').mockReturnValueOnce({
       loading: false,
       signInStrike: true
     })
     const spyHandleCaptcha = jest.spyOn(ReCAPTCHA, 'handleCaptcha')
-
     jest.spyOn(ReCAPTCHA, 'checkForStrikes').mockImplementation(() => true)
     spyHandleCaptcha.mockResolvedValue(true)
-
     const wrapper = render(<SignIn />)
     const { getByTestId } = wrapper
     const button = getByTestId('submit-button')
-
     expect(button).toHaveProperty('type', 'button')
     await waitFor(() => fireEvent.click(button))
   })
