@@ -1,7 +1,5 @@
 import { useParams } from 'react-router-dom'
 
-import { useDispatch } from 'react-redux'
-
 import { preAuth } from '~/store/modules/authProduct/actions'
 import { store } from '~/store'
 
@@ -17,8 +15,6 @@ interface IframePropsRouter {
 }
 
 export default async function useCardInformation(): Promise<void> {
-  const dispatch = useDispatch()
-
   const { solution, subpath } = useParams<IframePropsRouter>()
 
   const { guid } = store.getState().profile
@@ -39,7 +35,7 @@ export default async function useCardInformation(): Promise<void> {
     path = `${subpath}${queryParams ? `?${queryParams}` : ''}`
   }
 
-  dispatch(
+  store.dispatch(
     preAuth({
       name: card.nome,
       url: card.link || '',

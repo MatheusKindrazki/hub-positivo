@@ -24,14 +24,16 @@ const Iframe: React.FC = () => {
   )
 
   useEffect(() => {
-    if (!frameUrl) {
-      getCardInformation()
-      return
-    }
+    documentTitle(frameName || 'Soluções')
 
-    documentTitle(frameName || 'Hub')
-    return setUrl(frameUrl || '')
+    if (frameUrl) {
+      setUrl(frameUrl)
+    }
   }, [dispatch, frameName, frameUrl])
+
+  if (!frameUrl) {
+    getCardInformation()
+  }
 
   return (
     <IframeContainer>
