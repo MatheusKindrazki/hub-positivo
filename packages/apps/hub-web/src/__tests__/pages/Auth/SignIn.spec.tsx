@@ -11,9 +11,7 @@ import * as ReCAPTCHA from '~/utils/reCaptcha'
 import SignIn from '~/pages/Auth/SignIn'
 
 import signInValidator from '~/validators/auth/signIn'
-
 import '@testing-library/jest-dom'
-// import { ValidationError, getValidationErrors } from '~/validators'
 
 jest.mock('react', () => {
   const ui = jest.requireActual('react')
@@ -55,10 +53,6 @@ jest.mock('~/utils/reCaptcha', () => ({
   handleCaptcha: jest.fn(),
   checkForStrikes: jest.fn()
 }))
-
-// jest.mock('~/validators/auth/signIn', () => ({
-//   validate: jest.fn()
-// }))
 
 describe('Testing that the Login page works correctly', () => {
   beforeAll(() => {
@@ -141,8 +135,7 @@ describe('Testing that the Login page works correctly', () => {
     }
 
     const { username, password } = userMock
-    const wrapper = render(<SignIn />)
-    const { getByTestId } = wrapper
+    const { getByTestId } = render(<SignIn />)
 
     const usernameInput = getByTestId('email')
     const passwordInput = getByTestId('password')
@@ -170,8 +163,7 @@ describe('Testing that the Login page works correctly', () => {
   })
 
   it('should throw a validation error when username and password input are empty', async () => {
-    const wrapper = render(<SignIn />)
-    const { getByTestId, findByText } = wrapper
+    const { getByTestId, findByText } = render(<SignIn />)
 
     const form = getByTestId('submit-button')
 
@@ -188,8 +180,7 @@ describe('Testing that the Login page works correctly', () => {
     spyValidate.mockImplementation(() => {
       throw new Error()
     })
-    const wrapper = render(<SignIn />)
-    const { getByTestId, findByText } = wrapper
+    const { getByTestId, findByText } = render(<SignIn />)
 
     const form = getByTestId('submit-button')
 
@@ -206,12 +197,12 @@ describe('Testing that the Login page works correctly', () => {
       loading: false,
       signInStrike: true
     })
-    const spyHandleCaptcha = jest.spyOn(ReCAPTCHA, 'handleCaptcha')
+    jest.spyOn(ReCAPTCHA, 'handleCaptcha').mockResolvedValue(true)
     jest.spyOn(ReCAPTCHA, 'checkForStrikes').mockImplementation(() => true)
-    spyHandleCaptcha.mockResolvedValue(true)
-    const wrapper = render(<SignIn />)
-    const { getByTestId } = wrapper
+
+    const { getByTestId } = render(<SignIn />)
     const button = getByTestId('submit-button')
+
     expect(button).toHaveProperty('type', 'button')
     await waitFor(() => fireEvent.click(button))
   })
