@@ -80,11 +80,11 @@ describe('Testing that the Login page works correctly', () => {
 
   const queryConfig = { exact: false }
 
-  it('should redirect the user to /forgot-password when click on `Esqueci minha senha`', () => {
+  it('should redirect the user to /esqueci-minha-senha when click on `Esqueci minha senha`', () => {
     const { getByText } = render(<SignIn />)
     const forgotPasswordButton = getByText('Esqueci minha senha', queryConfig)
     fireEvent.click(forgotPasswordButton)
-    expect(push).toHaveBeenCalledWith('/forgot-password')
+    expect(push).toHaveBeenCalledWith('/esqueci-minha-senha')
   })
 
   it('should open help modal when click on `Precido de ajuda`', async () => {
