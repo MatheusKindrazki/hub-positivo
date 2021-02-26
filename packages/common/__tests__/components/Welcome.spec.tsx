@@ -13,7 +13,8 @@ const undefinedProps: WelcomeProps = {
   option: undefined,
   profile: undefined,
   schoolName: undefined,
-  size: undefined
+  size: undefined,
+  educational_stage: undefined
 }
 
 describe('Welcome renders with correct props', () => {
@@ -28,17 +29,20 @@ describe('Welcome renders with correct props', () => {
         profile="Administrador"
         schoolName="Positivo"
         size="2em"
+        educational_stage="educational_stage_teste"
       />
     )
     const welcomeMessage = getByText(/Olá,/i)
     const userText = getByText(/Name/i)
     const role = getByText(/Administrador/i)
     const schoolName = getByText(/Positivo/i)
+    const educationalStage = getByText(/educational_stage_teste/i)
 
     expect(userText).toBeInTheDocument()
     expect(welcomeMessage).toBeInTheDocument()
     expect(schoolName).toBeInTheDocument()
     expect(role).toBeInTheDocument()
+    expect(educationalStage).toBeInTheDocument()
   })
 
   it('should render with welcome message despite undefined props', () => {
