@@ -15,6 +15,7 @@ export interface ModalProps extends Omit<Props, 'children'> {
   footerContent?: React.ReactNode
   title: string
   maxW?: string
+  className?: string
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -22,12 +23,13 @@ const Modal: React.FC<ModalProps> = ({
   footerContent,
   title,
   maxW = '26rem',
+  className,
   ...rest
 }) => {
   return (
     <ModalChakra {...rest}>
       <ModalOverlay />
-      <ModalContent maxW={maxW}>
+      <ModalContent maxW={maxW} className={className}>
         <ModalHeader fontWeight="500" fontSize="1.125rem">
           {title}
         </ModalHeader>

@@ -12,6 +12,7 @@ export interface WelcomeProps {
   avatar?: string
   profile?: string
   schoolName?: string
+  educational_stage?: string
 }
 
 const Welcome: React.FC<WelcomeProps> = ({
@@ -22,6 +23,7 @@ const Welcome: React.FC<WelcomeProps> = ({
   name,
   avatar,
   schoolName,
+  educational_stage,
   profile
 }) => {
   return (
@@ -60,6 +62,7 @@ const Welcome: React.FC<WelcomeProps> = ({
               {capitalizeFirstLetter(
                 schoolName?.toLocaleLowerCase() || 'Escola'
               )}
+              {educational_stage && ` - ${educational_stage}`}
             </Heading>
           </>
         )}

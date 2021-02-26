@@ -17,7 +17,7 @@ const ExpiredToken: React.FC = () => {
   if (!validateViewPin) history.push('/')
 
   const handleSubmit = () => {
-    history.push('/forgot-password')
+    history.push('/esqueci-minha-senha')
   }
 
   const handleLoginRedirect = () => history.push('/login')

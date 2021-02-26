@@ -67,7 +67,9 @@ export function* signIn({ payload }: SignInPayload): Generator {
   const { data, ok } = response as ApiResponse<AuthApi>
 
   if (!ok) {
-    toast.error('Algo deu errado, verifique seus dados e tente novamente!')
+    toast.error(
+      'Usuário ou senha inválidos, verifique seus dados e tente novamente!'
+    )
 
     storeStrike()
 
@@ -97,11 +99,11 @@ export function* signIn({ payload }: SignInPayload): Generator {
   )
 
   if (redirectTo) {
-    history.push(`/profile?redirect=${redirectTo}`)
+    history.push(`/perfil?redirect=${redirectTo}`)
     return
   }
 
-  history.push('/profile')
+  history.push('/perfil')
 }
 
 /*

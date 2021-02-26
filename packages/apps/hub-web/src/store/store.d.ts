@@ -2,6 +2,7 @@ import { UserReducer } from './modules/user/types'
 import { TourReducer } from './modules/tour/types'
 import { ProfileReducer } from './modules/profile/types'
 import { ProductReducer } from './modules/products/types'
+import { ClassesReducer } from './modules/myClasses/types'
 import { GlobalReducer } from './modules/global/types'
 import { ForgotPasswordReducer } from './modules/forgotPassword/types'
 import { EducationReducer } from './modules/educationalStage/types'
@@ -17,6 +18,7 @@ interface ApplicationState {
   educationalStage: EducationReducer
   authProduct: AuthProductReducer
   tour: TourReducer
+  myClasses: ClassesReducer
   forgotPassword: ForgotPasswordReducer
 }
 declare global {
