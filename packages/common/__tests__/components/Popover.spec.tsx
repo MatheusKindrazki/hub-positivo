@@ -2,7 +2,7 @@ import React from 'react'
 
 import '@testing-library/jest-dom'
 
-import { fireEvent, render } from '@hub/test-utils'
+import { fireEvent, render, act } from '@hub/test-utils'
 
 import Popover, {
   PopoverTrigger,
@@ -26,19 +26,21 @@ const PopoverComponent = () => {
 }
 
 describe('Popover component should work properly', () => {
-  it('Should render with correcly content', () => {
+  it('Should render with correctly content', () => {
     const { getByText } = render(<PopoverComponent />)
     const content = getByText(phrase)
 
     expect(content).toBeInTheDocument()
   })
 
-  it('Should close visibility of the Popover when close button is clicked', () => {
+  it('Should close visibility of the Popover when close button is clicked', async () => {
     const { getByText, getByRole } = render(<PopoverComponent />)
     const button = getByRole('button', { name: /trigger/i })
     const content = getByText(phrase)
 
-    fireEvent.click(button)
+    await act(async () => {
+      await fireEvent.click(button)
+    })
 
     expect(content).not.toBeVisible()
   })
