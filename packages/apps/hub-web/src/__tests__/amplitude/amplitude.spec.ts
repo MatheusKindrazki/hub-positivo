@@ -1,5 +1,5 @@
 import amplitude from 'amplitude-js'
-import { renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react-hooks'
 
 import { store } from '~/store'
 
@@ -24,6 +24,9 @@ const mockState = {
   },
   educationalStage: {
     level: 'Fake level'
+  },
+  auth: {
+    signed: true
   }
 }
 
@@ -89,6 +92,6 @@ describe('testing amplitude functions', () => {
   it('useAmplitudePageView should log event', () => {
     renderHook(() => useAmplitudePageView())
     expect(logEvent).toHaveBeenCalled()
-    expect(store.getState).toHaveBeenCalledTimes(3)
+    expect(store.getState).toHaveBeenCalledTimes(4)
   })
 })
