@@ -45,7 +45,8 @@ function* getEducationStage(): Generator {
   return yield put(
     setEducationalLevels({
       levels: unionBy(levels, 'value'),
-      level: selected
+      level: selected,
+      class: data?.conteudo[0].serie.nome || undefined
     })
   )
 }
