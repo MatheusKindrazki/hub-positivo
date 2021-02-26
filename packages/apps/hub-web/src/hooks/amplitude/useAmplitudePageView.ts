@@ -17,6 +17,7 @@ interface PageViewed {
 
 export const useAmplitudePageView = (): void => {
   const { pathname } = useLocation()
+  const { signed } = store.getState().auth
   const { school } = store.getState().user
   const { level: educational_stage } = store.getState().educationalStage
   const { name: role } = store.getState().profile
@@ -32,6 +33,15 @@ export const useAmplitudePageView = (): void => {
       user_role: role,
       user_school: school?.value
     }
-    amplitude.getInstance().logEvent(pageViewedEvent, eventProperties)
-  }, [pageViewedEvent, educational_stage, pathname, role, school?.value])
+    if (signed) {
+      amplitude.getInstance().logEvent(pageViewedEvent, eventProperties)
+    }
+  }, [
+    pageViewedEvent,
+    signed,
+    educational_stage,
+    pathname,
+    role,
+    school?.value
+  ])
 }
