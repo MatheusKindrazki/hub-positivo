@@ -16,6 +16,6 @@ export const useAmplitudeSetProperties = (): void => {
       role,
       educational_stage
     })
-    amplitude.getInstance().setUserId(schoolObject?.user_id as string | null)
+    amplitude.getInstance().setUserId(user?.guid as string | null)
   }, [user, schoolObject, educational_stage, role])
 }

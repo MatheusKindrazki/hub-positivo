@@ -41,7 +41,7 @@ const Home: React.FC = () => {
   const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
   )
-  const { level: educational_stage } = useSelector(
+  const { level: educational_stage, class: userClass } = useSelector(
     (state: Store.State) => state.educationalStage
   )
   const { data: cards, loading: load } = useSelector(
@@ -111,6 +111,7 @@ const Home: React.FC = () => {
             avatar={avatar}
             profile={nameProfile || ''}
             schoolName={useSchool?.label || ''}
+            educational_stage={nameProfile === 'Aluno' ? userClass : undefined}
           />
 
           <Box

@@ -4,8 +4,7 @@ import { render, RenderResult } from '@testing-library/react'
 import { RenderOptions } from '@testing-library/react'
 
 import ThemeProviderHub from '@hub/common/layout/Provider'
-
-const Providers: FC = ({ children }) => {
+export const Providers: FC = ({ children }) => {
   return <ThemeProviderHub>{children}</ThemeProviderHub>
 }
 

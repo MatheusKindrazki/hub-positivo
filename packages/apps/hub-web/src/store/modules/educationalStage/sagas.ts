@@ -42,10 +42,13 @@ function* getEducationStage(): Generator {
 
   const { levels, selected } = prepareEducational(data?.conteudo)
 
+  const userSingleClass = data?.conteudo.find(e => e.ativo)?.serie.nome
+
   return yield put(
     setEducationalLevels({
       levels: unionBy(levels, 'value'),
-      level: selected
+      level: selected,
+      class: userSingleClass
     })
   )
 }

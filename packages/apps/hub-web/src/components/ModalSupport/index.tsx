@@ -54,29 +54,11 @@ const ModalSupport: React.FC = () => {
         >
           ACESSAR FAQ
         </Button>
-        <Text mt=".4rem" fontSize="14px" lineHeight="20px">
-          Não encontrou sua dúvida no link acima? Entre em contato com a gente
-          para te ajudarmos:
-        </Text>
 
-        <SimpleGrid
-          templateColumns={'repeat(1, 1fr)'}
-          spacing={3}
-          my="1.1875rem"
-        >
-          <Box d="flex" justifyContent={'center'}>
-            <Box as={Phone} color="blue.500" size={19} mr="5px" />
-            <Text fontSize="14px" lineHeight="20px">
-              0800 591 1510
-            </Text>
-          </Box>
-          <Box d="flex">
-            <Box as={EnvelopeSimple} color="blue.500" size={19} mr="5px" />
-            <Text fontSize="14px" lineHeight="20px">
-              atendimento@sistemapositivo.com.br
-            </Text>
-          </Box>
-        </SimpleGrid>
+        <Text mb="1rem" fontSize="14px" lineHeight="20px">
+          Caso não encontre a sua dúvida nesse portal, você poderá entrar em
+          contato direto com a sua escola.
+        </Text>
       </Box>
     </Modal>
   )

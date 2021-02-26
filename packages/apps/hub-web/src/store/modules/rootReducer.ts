@@ -10,6 +10,7 @@ import user from './user/reducer'
 import tour from './tour/reducer'
 import profile from './profile/reducer'
 import products from './products/reducer'
+import myClasses from './myClasses/reducer'
 import global from './global/reducer'
 import forgotPassword from './forgotPassword/reducer'
 import educationalStage from './educationalStage/reducer'
@@ -27,6 +28,7 @@ export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
     tour,
     authProduct,
     forgotPassword,
+    myClasses,
     router: connectRouter(history)
   })
 }
