@@ -30,5 +30,7 @@ yarn-debug.log*
 yarn-error.log*
 debug.log
 
+yarn.lock
+
 .eslintcache
 
