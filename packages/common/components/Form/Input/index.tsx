@@ -55,6 +55,7 @@ const Input: React.FC<InputAddIcons> = ({
           <InputLeftElement children={iconLeft} width="3rem" height="3rem" />
         )}
         <ChakraInput
+          data-testid="form-input"
           ref={inputRef}
           rounded="md"
           height="3rem"
@@ -83,7 +84,11 @@ const Input: React.FC<InputAddIcons> = ({
           <InputRightElement children={iconRight} width="3rem" height="3rem" />
         )}
       </InputGroup>
-      {!!error && <FormHelperText color="red.300">{error}</FormHelperText>}
+      {!!error && (
+        <FormHelperText data-testid="input-error" color="red.300">
+          {error}
+        </FormHelperText>
+      )}
     </FormControl>
   )
 }

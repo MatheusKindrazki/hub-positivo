@@ -1,17 +1,18 @@
 import React from 'react'
 
-import capitalizeFirstLetter from '../../utils/capitalize'
 import { Avatar, Box, Heading } from '../index'
+import capitalizeFirstLetter from '../../utils/capitalize'
 
 export interface WelcomeProps {
   size?: string
   fontSize?: string
   option?: 'name' | 'welcome'
   fontWeight?: string
-  name: string
+  name?: string
   avatar?: string
   profile?: string
   schoolName?: string
+  educational_stage?: string
 }
 
 const Welcome: React.FC<WelcomeProps> = ({
@@ -22,6 +23,7 @@ const Welcome: React.FC<WelcomeProps> = ({
   name,
   avatar,
   schoolName,
+  educational_stage,
   profile
 }) => {
   return (
@@ -60,6 +62,7 @@ const Welcome: React.FC<WelcomeProps> = ({
               {capitalizeFirstLetter(
                 schoolName?.toLocaleLowerCase() || 'Escola'
               )}
+              {educational_stage && ` - ${educational_stage}`}
             </Heading>
           </>
         )}

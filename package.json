@@ -46,6 +46,7 @@
     "jest-sonar-reporter": "^2.0.0",
     "jest-svg-transformer": "^1.0.0",
     "lint-staged": "^10.5.4",
+    "react-select-event": "^5.2.0",
     "semantic-release": "^17.3.8",
     "semantic-release-monorepo": "^7.0.4",
     "svg-png-converter": "^0.0.9",
@@ -54,6 +55,6 @@
   },
   "dependencies": {
     "@sentry/react": "^6.1.0",
-    "@sentry/tracing": "^6.1.0"
+    "@sentry/tracing": "^6.2.0"
   }
 }

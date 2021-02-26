@@ -5,7 +5,9 @@ import { RenderOptions } from '@testing-library/react'
 
 import ThemeProviderHub from '@hub/common/layout/Provider'
 
-const Providers: FC = ({ children }) => {
+import '@testing-library/jest-dom'
+
+export const Providers: FC = ({ children }) => {
   return <ThemeProviderHub>{children}</ThemeProviderHub>
 }
 

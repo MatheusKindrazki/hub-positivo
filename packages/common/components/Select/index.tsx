@@ -67,8 +67,9 @@ const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
 
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isSelected && colors.blue[500],
-      color: state.isSelected && 'white',
+      backgroundColor: state.isSelected ? colors.blue[500] : 'transparent',
+
+      color: state.isSelected ? 'white' : 'black',
 
       '&:active': {
         backgroundColor: colors.blue[600],

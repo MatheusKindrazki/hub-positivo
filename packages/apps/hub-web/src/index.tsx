@@ -20,7 +20,7 @@ if (enableTracking.includes(process.env.REACT_APP_NODE_ENV as string)) {
     dsn: process.env.REACT_APP_SENTRY,
     integrations: [new Integrations.BrowserTracing()],
 
-    tracesSampleRate: 0.1,
+    tracesSampleRate: 0.03,
     release: '@hub:' + process.env.REACT_APP_VERSION
   })
 }
