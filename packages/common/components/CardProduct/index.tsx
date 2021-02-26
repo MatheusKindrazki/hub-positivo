@@ -17,7 +17,7 @@ export interface CardProps {
   link?: string
 }
 
-interface CardProductProps {
+export interface CardProductProps {
   handlePush: (url: string) => void
   cor: string
   card: CardProps
@@ -39,6 +39,7 @@ const CardProduct: React.FC<CardProductProps> = ({
 
   return (
     <Container
+      data-testid="card-container"
       data-categoria={`${category}`}
       data-solucao={`${nome}`}
       className={classNames({

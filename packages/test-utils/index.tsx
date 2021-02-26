@@ -14,12 +14,14 @@ import ThemeProviderHub from '@hub/common/layout/Provider'
 import { ApplicationState } from '../apps/hub-web/src/store/store'
 import { store } from '../apps/hub-web/src/store'
 import history from '../apps/hub-web/src/services/history'
+import '@testing-library/jest-dom'
 
 const sagaMiddleware = createSagaMiddleware()
 const middlewares = [sagaMiddleware, routerMiddleware(history)]
 
 const mockStore = configureStore(middlewares)
-const Providers: FC = ({ children }) => {
+
+export const Providers: FC = ({ children }) => {
   return <ThemeProviderHub>{children}</ThemeProviderHub>
 }
 type KeyProps<T extends { [key: string]: any }> = {
