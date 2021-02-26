@@ -112,7 +112,9 @@ const Home: React.FC = () => {
             profile={nameProfile || ''}
             schoolName={useSchool?.label || ''}
             educational_stage={
-              levels?.find(e => e.value === educational_stage)?.label
+              nameProfile === 'Aluno'
+                ? levels?.find(e => e.value === educational_stage)?.label
+                : undefined
             }
           />
 
