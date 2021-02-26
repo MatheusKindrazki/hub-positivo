@@ -32,12 +32,12 @@ interface CustomRenderOptions extends RenderOptions {
   states?: States[]
 }
 
-export const getSpecificStates = (states: States[]): any => {
-  return states.reduce((finalState: any, element: States) => {
-    const current = store.getState()[element]
-    return { [element]: current, ...finalState }
-  }, {})
-}
+// export const getSpecificStates = (states: States[]): ApplicationState => {
+//   return states.reduce((finalState: any, element: States) => {
+//     const current = store.getState()[element]
+//     return { [element]: current, ...finalState }
+//   }, {})
+// }
 
 function customRender(
   ui: ReactElement,
@@ -46,7 +46,7 @@ function customRender(
   let CustomProviders: FC = Providers
   if (options?.states) {
     console.log('ENTREI')
-    const allStates = getSpecificStates(options.states)
+    const allStates = {}
     CustomProviders = ({ children }) => (
       <Provider store={mockStore(allStates)}>
         <Providers>{children}</Providers>
