@@ -68,6 +68,7 @@ const Collapse: React.FC<CollapseProps> = ({
           </Heading>
           {!disable && (
             <Box
+              data-testid="collapse-box"
               as={CaretDown}
               color="blue.500"
               size="1.25rem"
@@ -84,6 +85,7 @@ const Collapse: React.FC<CollapseProps> = ({
         >
           {grid ? (
             <SimpleGrid
+              data-testid="simple-grid"
               columns={gridColumns || [1, 1, 2, responsiveGrid]}
               spacing={4}
               mt="4"

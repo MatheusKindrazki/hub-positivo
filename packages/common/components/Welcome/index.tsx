@@ -8,7 +8,7 @@ export interface WelcomeProps {
   fontSize?: string
   option?: 'name' | 'welcome'
   fontWeight?: string
-  name: string
+  name?: string
   avatar?: string
   profile?: string
   schoolName?: string
