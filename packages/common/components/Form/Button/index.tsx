@@ -9,6 +9,7 @@ interface ButtonParams extends ButtonProps {
 const Button: React.FC<ButtonParams> = ({ children, ...rest }) => {
   return (
     <BtnChakra
+      data-testid="form-button"
       mt="2rem"
       type="submit"
       color="white"
