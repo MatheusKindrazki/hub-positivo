@@ -1,5 +1,7 @@
 import React from 'react'
 
+import '@testing-library/jest-dom'
+
 import { fireEvent, render, act } from '@hub/test-utils'
 
 import Popover, {
