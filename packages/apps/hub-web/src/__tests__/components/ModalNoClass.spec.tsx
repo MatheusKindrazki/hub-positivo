@@ -5,7 +5,6 @@ import * as redux from 'react-redux'
 import { render, fireEvent } from '@hub/test-utils'
 
 import ModalNoClass from '~/components/ModalNoClass'
-
 jest.mock('react-redux', () => ({
   useDispatch: jest.fn().mockReturnValue(() => jest.fn()),
   useSelector: jest.fn().mockImplementation(() => ({
@@ -30,8 +29,19 @@ describe('ModalNoClass component', () => {
       type: '@auth/SIGN_OUT'
     })
   })
+
   it('Must render the component on screen correctly', () => {
     const wrapper = render(<ModalNoClass />)
+
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  it('Render the component in the Desktop version', async () => {
+    const wrapper = render(<ModalNoClass />)
+
+    const button = wrapper.getByTestId('modal-button-closed')
+
+    await fireEvent.click(button)
 
     expect(wrapper).toMatchSnapshot()
   })

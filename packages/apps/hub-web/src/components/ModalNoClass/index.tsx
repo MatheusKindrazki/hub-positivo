@@ -1,5 +1,7 @@
 import React, { useEffect, useCallback } from 'react'
 
+import { object } from 'yup/lib/locale'
+
 import { useSelector, useDispatch } from 'react-redux'
 
 import { signOut } from '~/store/modules/auth/actions'
@@ -16,7 +18,7 @@ const ModalNoClass: React.FC = () => {
 
   const { withoutAccess } = useSelector((state: Store.State) => state.auth)
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen } = useDisclosure()
 
   useEffect(() => {
     if (withoutAccess) {
