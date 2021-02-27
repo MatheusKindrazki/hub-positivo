@@ -1,3 +1,30 @@
+# [1.5.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.4.0...v1.5.0) (2021-02-27)
+
+
+### Bug Fixes
+
+* ajuste no teste do Popover ([52892bf](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/52892bfaa7f8e59e005103f0e6cd6edd63296df4))
+* atualizando nome dos alunos ([244afe8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/244afe816848829c97d22a70b287e02ce4a9ffc9))
+* fixed amplitude setUserId call with wrong properties ([040a56e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/040a56ec46dd2606c113440705119b812c380a01))
+* forçando alteração do iframe ([1251fa0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1251fa0565b9e8ccf01c3764974a8397b3ece617))
+* mostrando ensino apenas no aluno ([00f7d7a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/00f7d7a722d6590528688623d80f66c81f78cc11))
+* validação de turmas não encontradas ([a440b4f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/a440b4fea3ca5b78a909727a8b0083c2f37402f6))
+
+
+### Features
+
+* aplicando filtro de alunos na turma ([3bc9f48](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3bc9f48166e3394ffbe5a9b82157980a2a1f6ba8))
+* buscando dados de turma ([bb88d86](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/bb88d86c898cc2cef23edfca7ed6ed7fdddb0ed7))
+* mostrando botão minhas turmas apenas para professor ([d9426c6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d9426c6baf7147f5a94adbae5736d0534593495f))
+* mostrando rota de turmas apenas para professor ([feda2e8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/feda2e8f96f60df256161fb4235cc08c88ee871c))
+* mostrar card soluções por escola ([84ab701](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/84ab701c686ed7e440849f1e57a8af35b797f340))
+
+
+### Reverts
+
+* removendo snapshots ([65a2867](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/65a2867399e0d5d8207c138b9cd141d30345309b))
+* voltando com frozenfile ([eff7c87](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/eff7c87bf0997b7cec75342190502517b2a632a6))
+
 # [1.4.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.3.0...v1.4.0) (2021-02-19)
 
 
