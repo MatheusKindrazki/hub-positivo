@@ -38,7 +38,7 @@ function formatState(
     const reducerName = current[0] as Reducers
     const initialState = states[reducerName]
     return {
-      [current[0]]: { ...initialState, ...customState[reducerName] },
+      [reducerName]: { ...initialState, ...customState[reducerName] },
       ...acumulator
     }
   }, {})
