@@ -6,8 +6,12 @@ import * as redux from 'react-redux'
 
 import { store } from '~/store'
 
-import { CustomRenderOptions } from '@hub/test-utils/types'
-import { render, fireEvent, waitFor } from '@hub/test-utils'
+import {
+  render,
+  fireEvent,
+  waitFor,
+  CustomRenderOptions
+} from '@hub/test-utils'
 
 import * as ReCAPTCHA from '~/utils/reCaptcha'
 
