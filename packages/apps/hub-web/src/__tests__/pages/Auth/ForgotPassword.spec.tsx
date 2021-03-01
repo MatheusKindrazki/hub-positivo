@@ -14,22 +14,12 @@ import ForgotPassword from '~/pages/Auth/ForgotPassword'
 
 import validator from '~/validators/auth/forgotPassword'
 
-import '@testing-library/jest-dom'
-
-const renderWithContext = (children: ReactElement) => {
-  return render(
-    <redux.Provider store={store}>
-      <PersistGate persistor={persistor}>{children}</PersistGate>
-    </redux.Provider>
-  )
-}
-
 jest.mock('react-redux', () => {
   const ui = jest.requireActual('react-redux')
   return {
     ...ui,
-    useDispatch: jest.fn(),
-    useSelector: jest.fn()
+    useDispatch: jest.fn()
+    // useSelector: jest.fn()
   }
 })
 jest.mock('~/services/history', () => ({
@@ -38,24 +28,28 @@ jest.mock('~/services/history', () => ({
 }))
 
 describe('Forgot Password page should work properly', () => {
+  const CUSTOM_STATE = {
+    forgotPassword: {
+      loading: false,
+      validatePin: false,
+      validateViewPin: false,
+      sendViewToken: false
+    }
+  }
   it('should display instructions about password recovery', async () => {
-    // utilizando a store original neste teste para obter coverage sobre
-    // funcoes anonimas passadas ao useSelector
-    jest
-      .spyOn(redux, 'useSelector')
-      .mockImplementation(state =>
-        jest.requireActual('react-redux').useSelector(state)
-      )
-    const { getByText } = renderWithContext(<ForgotPassword />)
+    const { getByText } = render(<ForgotPassword />, {
+      states: ['forgotPassword'],
+      CUSTOM_STATE
+    })
     const instructionMessage = getByText(/Insira seu nome de usuário/i)
     expect(instructionMessage).toBeInTheDocument()
   })
 
   it('Should display an error toast if submit with empty input', async () => {
-    jest.spyOn(redux, 'useSelector').mockImplementation(() => {
-      return { loading: false, sendViewToken: false }
+    const { getByText, findByText } = render(<ForgotPassword />, {
+      states: ['forgotPassword'],
+      CUSTOM_STATE
     })
-    const { getByText, findByText } = render(<ForgotPassword />)
     const forgotPwdButton = getByText('Solicitar Link')
 
     // gerando erro ao clicar submeter form sem valor no input
@@ -69,7 +63,10 @@ describe('Forgot Password page should work properly', () => {
     jest.spyOn(validator, 'validate').mockImplementationOnce(() => {
       throw new Error()
     })
-    const { getByText, findByText } = render(<ForgotPassword />)
+    const { getByText, findByText } = render(<ForgotPassword />, {
+      states: ['forgotPassword'],
+      CUSTOM_STATE
+    })
 
     const forgotPwdButton = getByText('Solicitar Link')
     fireEvent.click(forgotPwdButton)
@@ -81,21 +78,22 @@ describe('Forgot Password page should work properly', () => {
 
   it('Should redirect client to login page if sendViewToken is true', () => {
     const pushSpy = jest.spyOn(history, 'push')
-    jest.spyOn(redux, 'useSelector').mockImplementation(() => {
-      return { sendViewToken: true }
-    })
 
-    render(<ForgotPassword />)
+    CUSTOM_STATE.forgotPassword.sendViewToken = true
+    render(<ForgotPassword />, {
+      states: ['forgotPassword'],
+      CUSTOM_STATE
+    })
     expect(pushSpy).toHaveBeenCalledWith('/')
   })
 
   it('should go back when GoBack is clicked', () => {
     const goBackSpy = jest.spyOn(history, 'goBack')
-    jest.spyOn(redux, 'useSelector').mockImplementation(() => {
-      return { sendViewToken: false }
-    })
 
-    const { getByTestId } = render(<ForgotPassword />)
+    const { getByTestId } = render(<ForgotPassword />, {
+      states: ['forgotPassword'],
+      CUSTOM_STATE
+    })
     const goBack = getByTestId('go-back')
     fireEvent.click(goBack)
     expect(goBackSpy).toHaveBeenCalled()
@@ -108,11 +106,11 @@ describe('Forgot Password page should work properly', () => {
     }
     const dispatch = jest.fn()
     jest.spyOn(redux, 'useDispatch').mockReturnValue(dispatch)
-    jest
-      .spyOn(redux, 'useSelector')
-      .mockReturnValue({ sendViewToken: false, loading: false })
 
-    const { getByText, getByPlaceholderText } = render(<ForgotPassword />)
+    const { getByText, getByPlaceholderText } = render(<ForgotPassword />, {
+      states: ['forgotPassword'],
+      CUSTOM_STATE
+    })
 
     const forgotPwdInput = getByPlaceholderText('Usuário, E-mail ou CPF')
     const forgotPwdButton = getByText('Solicitar Link')

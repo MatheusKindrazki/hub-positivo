@@ -11,7 +11,6 @@ import configureStore from 'redux-mock-store'
 
 import ThemeProviderHub from '@hub/common/layout/Provider'
 
-import { ApplicationState } from '../apps/hub-web/src/store/store'
 import { store } from '../apps/hub-web/src/store'
 import history from '../apps/hub-web/src/services/history'
 import '@testing-library/jest-dom'
@@ -24,20 +23,23 @@ const mockStore = configureStore(middlewares)
 export const Providers: FC = ({ children }) => {
   return <ThemeProviderHub>{children}</ThemeProviderHub>
 }
+
 type KeyProps<T extends { [key: string]: any }> = {
   [P in keyof T]: any
 }
-type States = keyof KeyProps<ApplicationState>
+
+type States = keyof KeyProps<Store.State>
 interface CustomRenderOptions extends RenderOptions {
   states?: States[]
+  CUSTOM_STATE?: Partial<Store.State>
 }
 
-// export const getSpecificStates = (states: States[]): ApplicationState => {
-//   return states.reduce((finalState: any, element: States) => {
-//     const current = store.getState()[element]
-//     return { [element]: current, ...finalState }
-//   }, {})
-// }
+export const getSpecificStates = (states: States[]): Store.State => {
+  return states.reduce((finalState, element: States) => {
+    const current = store.getState()[element]
+    return { [element]: current, ...finalState }
+  }, {} as Store.State)
+}
 
 function customRender(
   ui: ReactElement,
@@ -45,10 +47,11 @@ function customRender(
 ): RenderResult {
   let CustomProviders: FC = Providers
   if (options?.states) {
-    console.log('ENTREI')
-    const allStates = {}
+    const { states, CUSTOM_STATE } = options
+    const allStates = getSpecificStates(states)
+
     CustomProviders = ({ children }) => (
-      <Provider store={mockStore(allStates)}>
+      <Provider store={mockStore({ ...allStates, ...CUSTOM_STATE })}>
         <Providers>{children}</Providers>
       </Provider>
     )
