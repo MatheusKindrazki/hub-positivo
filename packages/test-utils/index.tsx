@@ -39,7 +39,7 @@ function customRender<T extends Store>(
   let CustomProviders: FC = Providers
   if (options?.states) {
     const { store, states, CUSTOM_STATE } = options
-    const allStates = getSpecificStates<T>(store, states)
+    const allStates = getSpecificStates(store, states)
 
     CustomProviders = ({ children }) => (
       <Provider store={mockStore({ ...allStates, ...CUSTOM_STATE })}>
