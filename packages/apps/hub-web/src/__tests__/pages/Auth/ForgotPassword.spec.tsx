@@ -1,10 +1,8 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import * as redux from 'react-redux'
 
-import { PersistGate } from 'redux-persist/integration/react'
-
-import { store, persistor } from '~/store'
+import { store } from '~/store'
 
 import { fireEvent, render, waitFor } from '@hub/test-utils'
 
@@ -39,7 +37,8 @@ describe('Forgot Password page should work properly', () => {
   it('should display instructions about password recovery', async () => {
     const { getByText } = render(<ForgotPassword />, {
       states: ['forgotPassword'],
-      CUSTOM_STATE
+      CUSTOM_STATE,
+      store
     })
     const instructionMessage = getByText(/Insira seu nome de usuário/i)
     expect(instructionMessage).toBeInTheDocument()
@@ -48,7 +47,8 @@ describe('Forgot Password page should work properly', () => {
   it('Should display an error toast if submit with empty input', async () => {
     const { getByText, findByText } = render(<ForgotPassword />, {
       states: ['forgotPassword'],
-      CUSTOM_STATE
+      CUSTOM_STATE,
+      store
     })
     const forgotPwdButton = getByText('Solicitar Link')
 
@@ -65,7 +65,8 @@ describe('Forgot Password page should work properly', () => {
     })
     const { getByText, findByText } = render(<ForgotPassword />, {
       states: ['forgotPassword'],
-      CUSTOM_STATE
+      CUSTOM_STATE,
+      store
     })
 
     const forgotPwdButton = getByText('Solicitar Link')
@@ -82,7 +83,8 @@ describe('Forgot Password page should work properly', () => {
     CUSTOM_STATE.forgotPassword.sendViewToken = true
     render(<ForgotPassword />, {
       states: ['forgotPassword'],
-      CUSTOM_STATE
+      CUSTOM_STATE,
+      store
     })
     expect(pushSpy).toHaveBeenCalledWith('/')
   })
@@ -92,7 +94,8 @@ describe('Forgot Password page should work properly', () => {
 
     const { getByTestId } = render(<ForgotPassword />, {
       states: ['forgotPassword'],
-      CUSTOM_STATE
+      CUSTOM_STATE,
+      store
     })
     const goBack = getByTestId('go-back')
     fireEvent.click(goBack)
@@ -109,7 +112,8 @@ describe('Forgot Password page should work properly', () => {
 
     const { getByText, getByPlaceholderText } = render(<ForgotPassword />, {
       states: ['forgotPassword'],
-      CUSTOM_STATE
+      CUSTOM_STATE,
+      store
     })
 
     const forgotPwdInput = getByPlaceholderText('Usuário, E-mail ou CPF')
