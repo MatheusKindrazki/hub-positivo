@@ -4,6 +4,7 @@ import * as redux from 'react-redux'
 
 import { store } from '~/store'
 
+import { CustomState } from '@hub/test-utils/types'
 import { fireEvent, render, waitFor } from '@hub/test-utils'
 
 import history from '~/services/history'
@@ -26,18 +27,9 @@ jest.mock('~/services/history', () => ({
 }))
 
 describe('Forgot Password page should work properly', () => {
-  const CUSTOM_STATE = {
-    forgotPassword: {
-      loading: false,
-      validatePin: false,
-      validateViewPin: false,
-      sendViewToken: false
-    }
-  }
   it('should display instructions about password recovery', async () => {
     const { getByText } = render(<ForgotPassword />, {
-      states: ['forgotPassword'],
-      CUSTOM_STATE,
+      reducers: ['forgotPassword'],
       store
     })
     const instructionMessage = getByText(/Insira seu nome de usuário/i)
@@ -46,8 +38,7 @@ describe('Forgot Password page should work properly', () => {
 
   it('Should display an error toast if submit with empty input', async () => {
     const { getByText, findByText } = render(<ForgotPassword />, {
-      states: ['forgotPassword'],
-      CUSTOM_STATE,
+      reducers: ['forgotPassword'],
       store
     })
     const forgotPwdButton = getByText('Solicitar Link')
@@ -64,8 +55,7 @@ describe('Forgot Password page should work properly', () => {
       throw new Error()
     })
     const { getByText, findByText } = render(<ForgotPassword />, {
-      states: ['forgotPassword'],
-      CUSTOM_STATE,
+      reducers: ['forgotPassword'],
       store
     })
 
@@ -78,11 +68,15 @@ describe('Forgot Password page should work properly', () => {
   })
 
   it('Should redirect client to login page if sendViewToken is true', () => {
+    const CUSTOM_STATE: CustomState = {
+      forgotPassword: {
+        sendViewToken: true
+      }
+    }
     const pushSpy = jest.spyOn(history, 'push')
 
-    CUSTOM_STATE.forgotPassword.sendViewToken = true
     render(<ForgotPassword />, {
-      states: ['forgotPassword'],
+      reducers: ['forgotPassword'],
       CUSTOM_STATE,
       store
     })
@@ -93,8 +87,7 @@ describe('Forgot Password page should work properly', () => {
     const goBackSpy = jest.spyOn(history, 'goBack')
 
     const { getByTestId } = render(<ForgotPassword />, {
-      states: ['forgotPassword'],
-      CUSTOM_STATE,
+      reducers: ['forgotPassword'],
       store
     })
     const goBack = getByTestId('go-back')
@@ -111,8 +104,7 @@ describe('Forgot Password page should work properly', () => {
     jest.spyOn(redux, 'useDispatch').mockReturnValue(dispatch)
 
     const { getByText, getByPlaceholderText } = render(<ForgotPassword />, {
-      states: ['forgotPassword'],
-      CUSTOM_STATE,
+      reducers: ['forgotPassword'],
       store
     })
 

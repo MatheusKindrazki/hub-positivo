@@ -4,6 +4,9 @@ import * as reactDom from 'react-router-dom'
 
 import * as redux from 'react-redux'
 
+import { store } from '~/store'
+
+import { CustomRenderOptions } from '@hub/test-utils/types'
 import { render, fireEvent, waitFor } from '@hub/test-utils'
 
 import * as ReCAPTCHA from '~/utils/reCaptcha'
@@ -41,11 +44,7 @@ jest.mock('react-redux', () => {
   const rest = jest.requireActual('react-redux')
   return {
     ...rest,
-    useDispatch: jest.fn().mockReturnValue(() => jest.fn()),
-    useSelector: jest.fn(() => ({
-      loading: false,
-      signInStrike: false
-    }))
+    useDispatch: jest.fn().mockReturnValue(() => jest.fn())
   }
 })
 
@@ -80,22 +79,27 @@ describe('Testing that the Login page works correctly', () => {
 
   const queryConfig = { exact: false }
 
+  const contextConfig: CustomRenderOptions = {
+    store,
+    reducers: ['auth']
+  }
+
   it('should redirect the user to /esqueci-minha-senha when click on `Esqueci minha senha`', () => {
-    const { getByText } = render(<SignIn />)
+    const { getByText } = render(<SignIn />, contextConfig)
     const forgotPasswordButton = getByText('Esqueci minha senha', queryConfig)
     fireEvent.click(forgotPasswordButton)
     expect(push).toHaveBeenCalledWith('/esqueci-minha-senha')
   })
 
   it('should open help modal when click on `Precido de ajuda`', async () => {
-    const { getByText } = render(<SignIn />)
+    const { getByText } = render(<SignIn />, contextConfig)
     const helpButton = getByText('Preciso de ajuda', queryConfig)
     fireEvent.click(helpButton)
     expect(helpButton).toBeInTheDocument()
   })
 
   it('should change password input type when view icon is clicked', async () => {
-    const { getByTestId } = render(<SignIn />)
+    const { getByTestId } = render(<SignIn />, contextConfig)
     const viewIcon = getByTestId('view-button')
     const passwordInput = getByTestId('password')
 
@@ -106,7 +110,8 @@ describe('Testing that the Login page works correctly', () => {
 
   it('Should render the elements of the Login page', () => {
     const { queryAllByText, queryByText, queryByPlaceholderText } = render(
-      <SignIn />
+      <SignIn />,
+      contextConfig
     )
     const signIn = queryAllByText('entrar', queryConfig)
     const welcomeMessage = queryByText(
@@ -135,7 +140,7 @@ describe('Testing that the Login page works correctly', () => {
     }
 
     const { username, password } = userMock
-    const { getByTestId } = render(<SignIn />)
+    const { getByTestId } = render(<SignIn />, contextConfig)
 
     const usernameInput = getByTestId('email')
     const passwordInput = getByTestId('password')
@@ -163,7 +168,7 @@ describe('Testing that the Login page works correctly', () => {
   })
 
   it('should throw a validation error when username and password input are empty', async () => {
-    const { getByTestId, findByText } = render(<SignIn />)
+    const { getByTestId, findByText } = render(<SignIn />, contextConfig)
 
     const form = getByTestId('submit-button')
 
@@ -180,7 +185,7 @@ describe('Testing that the Login page works correctly', () => {
     spyValidate.mockImplementation(() => {
       throw new Error()
     })
-    const { getByTestId, findByText } = render(<SignIn />)
+    const { getByTestId, findByText } = render(<SignIn />, contextConfig)
 
     const form = getByTestId('submit-button')
 
@@ -193,14 +198,19 @@ describe('Testing that the Login page works correctly', () => {
   })
 
   it('should change the type of the submit button to button type when sign-in strike is true', async () => {
-    jest.spyOn(redux, 'useSelector').mockReturnValueOnce({
-      loading: false,
-      signInStrike: true
-    })
+    const CUSTOM_STATE = {
+      auth: {
+        signInStrike: true
+      }
+    }
     jest.spyOn(ReCAPTCHA, 'handleCaptcha').mockResolvedValue(true)
     jest.spyOn(ReCAPTCHA, 'checkForStrikes').mockImplementation(() => true)
 
-    const { getByTestId } = render(<SignIn />)
+    const { getByTestId } = render(<SignIn />, {
+      store,
+      reducers: ['auth'],
+      CUSTOM_STATE
+    })
     const button = getByTestId('submit-button')
 
     expect(button).toHaveProperty('type', 'button')

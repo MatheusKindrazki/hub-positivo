@@ -45,7 +45,6 @@ const SignIn: React.FC = () => {
   const redirectTo = search.get('redirect') || undefined
 
   const { onOpen } = useContext(ModalSupportContext)
-  /* istanbul ignore next */
   const { loading, signInStrike } = useSelector(
     (state: Store.State) => state.auth
   )

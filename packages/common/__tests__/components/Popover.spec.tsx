@@ -36,10 +36,10 @@ describe('Popover component should work properly', () => {
     const button = getByRole('button', { name: /trigger/i })
     const content = getByText(phrase)
 
-    await waitFor(() => {
-      fireEvent.click(button)
-    })
+    fireEvent.click(button)
 
-    // expect(content).not.toBeVisible()
+    await waitFor(() => {
+      expect(content).not.toBeVisible()
+    })
   })
 })
