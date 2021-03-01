@@ -63,5 +63,6 @@ function customRender(
   return render(ui, { wrapper: CustomProviders, ...options })
 }
 
+export * from './types'
 export * from '@testing-library/react'
 export { customRender as render }
