@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react'
 
 import { routerMiddleware } from 'connected-react-router'
-import { render, RenderResult } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 import { Provider } from 'react-redux'
 
@@ -19,7 +19,7 @@ import {
 } from './types'
 import history from '../apps/hub-web/src/services/history'
 import '@testing-library/jest-dom'
-import { store } from '../apps/hub-web/src/store'
+
 const sagaMiddleware = createSagaMiddleware()
 const middlewares = [sagaMiddleware, routerMiddleware(history)]
 

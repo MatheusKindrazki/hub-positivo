@@ -19,7 +19,7 @@ export interface CustomRenderOptions extends RenderOptions {
   CUSTOM_STATE?: CustomState
 }
 
-interface StoreUtils {
+export interface StoreUtils {
   getActions: () => any[]
   clearActions: () => void
 }
