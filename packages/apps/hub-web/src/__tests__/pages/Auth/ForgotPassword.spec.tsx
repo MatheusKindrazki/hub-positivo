@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store'
 
 import { store } from '~/store'
 
-import { CustomState, Store } from '@hub/test-utils/types'
+import { CustomState, StoreUtils } from '@hub/test-utils/types'
 import { fireEvent, render, waitFor } from '@hub/test-utils'
 
 import history from '~/services/history'
@@ -95,7 +95,7 @@ describe('Forgot Password page should work properly', () => {
       type: '@auth/PWD_TOKEN_REQUEST'
     }
 
-    const { getByText, getByPlaceholderText, getActions } = render(
+    const { getByText, getByPlaceholderText, storeUtils } = render(
       <ForgotPassword />,
       {
         reducers: ['forgotPassword'],
@@ -110,7 +110,7 @@ describe('Forgot Password page should work properly', () => {
       target: { value: 'teste@testmail.com' }
     })
     fireEvent.click(forgotPwdButton)
-
+    const { getActions } = storeUtils as StoreUtils
     const actions = getActions()
 
     await waitFor(() => expect(actions[0]).toStrictEqual(mockedData))
