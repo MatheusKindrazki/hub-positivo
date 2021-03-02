@@ -1,4 +1,4 @@
-import { RenderOptions } from '@testing-library/react'
+import { RenderOptions, RenderResult } from '@testing-library/react'
 
 import { Store as ReduxStore } from 'redux'
 
@@ -17,4 +17,13 @@ export interface CustomRenderOptions extends RenderOptions {
   store?: Store
   reducers?: Reducers[]
   CUSTOM_STATE?: CustomState
+}
+
+interface StoreUtils {
+  getActions: () => any[]
+  clearActions: () => void
+}
+
+export interface CustomRenderResult extends RenderResult {
+  storeUtils?: StoreUtils
 }

@@ -2,9 +2,11 @@ import React from 'react'
 
 import * as redux from 'react-redux'
 
+import configureStore from 'redux-mock-store'
+
 import { store } from '~/store'
 
-import { CustomState } from '@hub/test-utils/types'
+import { CustomState, Store } from '@hub/test-utils/types'
 import { fireEvent, render, waitFor } from '@hub/test-utils'
 
 import history from '~/services/history'
@@ -13,14 +15,6 @@ import ForgotPassword from '~/pages/Auth/ForgotPassword'
 
 import validator from '~/validators/auth/forgotPassword'
 
-jest.mock('react-redux', () => {
-  const ui = jest.requireActual('react-redux')
-  return {
-    ...ui,
-    useDispatch: jest.fn()
-    // useSelector: jest.fn()
-  }
-})
 jest.mock('~/services/history', () => ({
   push: jest.fn(),
   goBack: jest.fn()
@@ -100,13 +94,14 @@ describe('Forgot Password page should work properly', () => {
       payload: { userInfo: 'teste@testmail.com' },
       type: '@auth/PWD_TOKEN_REQUEST'
     }
-    const dispatch = jest.fn()
-    jest.spyOn(redux, 'useDispatch').mockReturnValue(dispatch)
 
-    const { getByText, getByPlaceholderText } = render(<ForgotPassword />, {
-      reducers: ['forgotPassword'],
-      store
-    })
+    const { getByText, getByPlaceholderText, getActions } = render(
+      <ForgotPassword />,
+      {
+        reducers: ['forgotPassword'],
+        store
+      }
+    )
 
     const forgotPwdInput = getByPlaceholderText('Usuário, E-mail ou CPF')
     const forgotPwdButton = getByText('Solicitar Link')
@@ -116,6 +111,8 @@ describe('Forgot Password page should work properly', () => {
     })
     fireEvent.click(forgotPwdButton)
 
-    await waitFor(() => expect(dispatch).toHaveBeenCalledWith(mockedData))
+    const actions = getActions()
+
+    await waitFor(() => expect(actions[0]).toStrictEqual(mockedData))
   })
 })

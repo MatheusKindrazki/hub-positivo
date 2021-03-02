@@ -10,9 +10,16 @@ import configureStore from 'redux-mock-store'
 
 import ThemeProviderHub from '@hub/common/layout/Provider'
 
-import { CustomRenderOptions, Reducers, Store, CustomState } from './types'
+import {
+  CustomRenderOptions,
+  Reducers,
+  Store,
+  CustomState,
+  CustomRenderResult
+} from './types'
 import history from '../apps/hub-web/src/services/history'
 import '@testing-library/jest-dom'
+import { store } from '../apps/hub-web/src/store'
 const sagaMiddleware = createSagaMiddleware()
 const middlewares = [sagaMiddleware, routerMiddleware(history)]
 
@@ -48,19 +55,26 @@ function formatState(
 function customRender(
   ui: ReactElement,
   options?: Omit<CustomRenderOptions, 'queries'>
-): RenderResult {
+): CustomRenderResult {
   let CustomProviders: FC = Providers
+  let storeUtils
   if (options?.store && options?.reducers) {
     const { store, reducers, CUSTOM_STATE } = options
     const allStates = getStatesFromStore(store, reducers)
     const mockedState = formatState(allStates, CUSTOM_STATE as CustomState)
+    const mockedStore = mockStore(mockedState)
+    const { getActions, clearActions } = mockedStore
+    storeUtils = { getActions, clearActions }
     CustomProviders = ({ children }) => (
-      <Provider store={mockStore(mockedState)}>
+      <Provider store={mockedStore}>
         <Providers>{children}</Providers>
       </Provider>
     )
   }
-  return render(ui, { wrapper: CustomProviders, ...options })
+  return {
+    ...render(ui, { wrapper: CustomProviders, ...options }),
+    storeUtils
+  } as CustomRenderResult
 }
 
 export * from './types'
