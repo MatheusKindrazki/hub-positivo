@@ -41,7 +41,7 @@ function formatState(
   states: CustomState,
   customState: CustomState
 ): CustomState {
-  if (!Object.keys(customState).length) return states
+  if (!customState || !Object.keys(customState).length) return states
   const finalState = Object.entries(states).reduce((acumulator, current) => {
     const reducerName = current[0] as Reducers
     const initialState = states[reducerName]
