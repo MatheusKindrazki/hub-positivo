@@ -70,7 +70,7 @@ describe('Expired Token page should work properly', () => {
     expect(spyPush).toHaveBeenCalledWith('/esqueci-minha-senha')
   })
 
-  it('Should redirect to `/login` when `O link expirou` is clicked', () => {
+  it('Should redirect to `/login` when `GoBack` is clicked', () => {
     const wrapper = render(<ExpiredToken />, {
       store,
       reducers: ['forgotPassword'],

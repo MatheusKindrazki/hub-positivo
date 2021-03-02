@@ -57,6 +57,13 @@ jest.mock('~/utils/reCaptcha', () => ({
   checkForStrikes: jest.fn()
 }))
 
+interface HistoryReturn {
+  push: () => void
+  location: {
+    pathname: string
+  }
+}
+
 describe('Testing that the Login page works correctly', () => {
   beforeAll(() => {
     process.env = Object.assign(process.env, {
@@ -70,7 +77,7 @@ describe('Testing that the Login page works correctly', () => {
 
   const dispatch = jest.fn()
   const push = jest.fn()
-  const history = {
+  const history: HistoryReturn = {
     location: {
       pathname: '/login'
     },
