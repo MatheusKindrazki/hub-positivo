@@ -5,10 +5,6 @@ import { render, fireEvent } from '@hub/test-utils'
 import CardBox from '~/pages/Auth/Profile/Components/CardBox'
 
 describe('CardBox Component should work properly', () => {
-  afterEach(() => {
-    jest.clearAllMocks()
-  })
-
   it('Should render icon with correct titles', () => {
     const role = 'professor'
 
