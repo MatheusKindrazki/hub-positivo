@@ -23,8 +23,9 @@ export const Providers: FC = ({ children }) => {
 }
 
 function getStatesFromStore(store: Store, reducers: Reducers[]): CustomState {
+  const applicationState = store.getState()
   return reducers.reduce((acumulator, current) => {
-    const initialState = store.getState()[current]
+    const initialState = applicationState[current]
     return { [current]: initialState, ...acumulator }
   }, {})
 }
