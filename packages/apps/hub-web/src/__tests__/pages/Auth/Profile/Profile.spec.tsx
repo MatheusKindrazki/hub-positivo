@@ -8,22 +8,12 @@ import { render, fireEvent, CustomState } from '@hub/test-utils'
 
 import Profile from '~/pages/Auth/Profile'
 
-jest.mock('react', () => {
-  const ui = jest.requireActual('react')
-  return {
-    ...ui,
-    useQuery: jest.fn(() => ({
-      get: jest.fn()
-    }))
-  }
-})
-
 jest.mock('react-router-dom', () => {
   const rest = jest.requireActual('react-router-dom')
   return {
     ...rest,
     useLocation: () => ({
-      pathname: '/login',
+      pathname: '/',
       search: {
         get: (redirect: string) => redirect
       }

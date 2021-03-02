@@ -18,17 +18,6 @@ import * as ReCAPTCHA from '~/utils/reCaptcha'
 import SignIn from '~/pages/Auth/SignIn'
 
 import signInValidator from '~/validators/auth/signIn'
-import '@testing-library/jest-dom'
-
-jest.mock('react', () => {
-  const ui = jest.requireActual('react')
-  return {
-    ...ui,
-    useQuery: jest.fn(() => ({
-      get: jest.fn()
-    }))
-  }
-})
 
 jest.mock('react-router-dom', () => {
   const rest = jest.requireActual('react-router-dom')
