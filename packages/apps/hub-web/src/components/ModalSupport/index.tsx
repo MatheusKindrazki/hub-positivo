@@ -54,6 +54,11 @@ const ModalSupport: React.FC = () => {
         >
           ACESSAR FAQ
         </Button>
+
+        <Text mb="1rem" fontSize="14px" lineHeight="20px">
+          Caso não encontre a sua dúvida nesse portal, você poderá entrar em
+          contato direto com a sua escola.
+        </Text>
       </Box>
     </Modal>
   )

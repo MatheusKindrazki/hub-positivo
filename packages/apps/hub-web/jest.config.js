@@ -16,6 +16,6 @@ module.exports = {
     '<rootDir>/src/middlewares/**/.ts',
     '<rootDir>/src/store/modules/**/.ts',
     '<rootDir>/src/utils/**/.ts',
-    '<rootDir>/src/hooks/**/.{ts,tsx}'
+    '<rootDir>/src/hooks/**/.{ts,tsx}',
   ]
 }
