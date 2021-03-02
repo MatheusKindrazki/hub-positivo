@@ -1,8 +1,5 @@
 import React from 'react'
 
-// import * as reactDom from 'react-router-dom'
-
-// import * as redux from 'react-redux'
 import selectEvent from 'react-select-event'
 
 import { store } from '~/store'
