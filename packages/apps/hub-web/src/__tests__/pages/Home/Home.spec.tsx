@@ -7,67 +7,7 @@ import createSlug from '@hub/common/utils/createSlug'
 
 import Home from '~/pages/Home'
 
-const user = {
-  user: {
-    name: 'Firstname Lastname'
-  },
-  school: {
-    label: 'Escola Positivo ON SPE 18-005'
-  }
-}
-
-const profile = {
-  name: 'Administrador'
-}
-
-const products = {
-  loading: false,
-  data: [
-    {
-      ordem: 1,
-      ativo: true,
-      cor: 'blue',
-      nome: 'Avaliação',
-      solucoes: [
-        {
-          ativo: true,
-          nome: 'Provas',
-          descricao: 'Crie e aplique suas provas',
-          link: 'psd.provas.com'
-        },
-        {
-          ativo: true,
-          nome: 'Redação',
-          descricao: 'Inclua redações em suas avaliações'
-        }
-      ]
-    },
-    {
-      ordem: 2,
-      ativo: true,
-      cor: 'blue',
-      nome: 'Recursos',
-      solucoes: [
-        {
-          ativo: true,
-          nome: 'Salas virtuais',
-          descricao: 'Visualize e acesse suas aulas virtuais',
-          link: 'psd.salas.com'
-        },
-        {
-          ativo: true,
-          nome: 'Playground',
-          descricao: 'Jogos e objetos educacionais'
-        }
-      ]
-    }
-  ]
-}
-
-const educationalStage = {
-  class: 'Class Name',
-  level: 'Level Educational Stage'
-}
+import { user, profile, products, educationalStage } from './mockState.json'
 
 describe('Testing that the Home page works correctly', () => {
   const defaultItemsInState: CustomState = {

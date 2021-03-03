@@ -1,165 +1,229 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/SpinnerLoader.spec.tsx">
-    <testCase name="SpinnerLoader renders without crashing SpinnerLoader matches snapshot" duration="227"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Popover.spec.tsx">
+    <testCase name="Popover component should work properly Should render with correctly content" duration="268"/>
+    <testCase name="Popover component should work properly Should close visibility of the Popover when close button is clicked" duration="588"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/layout/styles.spec.tsx">
-    <testCase name="Testing chacka`s styles hooks useTheme shouldn`t return void theme when encapsulated by a theme provider" duration="199"/>
-    <testCase name="Testing chacka`s styles hooks useColorMode should  gives you access to the current color mode, and a function to toggle the color mode." duration="128"/>
-    <testCase name="Testing chacka`s styles hooks useColorModeValue returns current color mode: by default return light mode color" duration="111"/>
-    <testCase name="Testing chacka`s styles hooks useMediaQuery should returns an array of booleans, indicating whether the given query matches or queries match" duration="6"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/layout/provider.spec.tsx">
-    <testCase name="Testing Theme Provider should change theme when profile changes" duration="444"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Skeleton.spec.tsx">
-    <testCase name="Skeleton renders without crashing Stack matches snapshot" duration="269"/>
-    <testCase name="Skeleton renders without crashing Skeleton matches snapshot" duration="174"/>
-    <testCase name="Skeleton renders without crashing SkeletonCircle matches snapshot" duration="108"/>
-    <testCase name="Skeleton renders without crashing SkeletonText matches snapshot" duration="92"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Form.spec.tsx">
-    <testCase name="Form works properly input should render icons correctly and change style when focused" duration="318"/>
-    <testCase name="Form works properly input should display an error if useField returns error as truthy" duration="192"/>
-    <testCase name="Form works properly Form calls submit with correct values" duration="120"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Collapse.spec.tsx">
-    <testCase name="Collapse component should work properly Collapse doesnt render collapse-box when disable is true" duration="253"/>
-    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is true" duration="163"/>
-    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is false" duration="147"/>
-    <testCase name="Collapse component should work properly Collapse render name inside Heading" duration="133"/>
-    <testCase name="Collapse component should work properly Collapse with false grid doesnt render SimpleGrid" duration="80"/>
-    <testCase name="Collapse component should work properly Collapse uses SimpleGrid in large screens" duration="119"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Popover.spec.tsx">
-    <testCase name="Popover component should work properly Should render with correctly content" duration="288"/>
-    <testCase name="Popover component should work properly Should close visibility of the Popover when close button is clicked" duration="782"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Select.spec.tsx">
-    <testCase name="Select renders without crashing Select normal variant render all options" duration="670"/>
-    <testCase name="Select renders without crashing Select blue-transparent variant render options" duration="367"/>
-    <testCase name="Select renders without crashing Select displays error message when no options are provided" duration="220"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Modal.spec.tsx">
-    <testCase name="Modal component should work properly Should render the children on screen with correctly props" duration="31"/>
-    <testCase name="Modal component should work properly Shoudn`t render the component when prop open is false (closed Model)" duration="133"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Accordion.spec.tsx">
-    <testCase name="Accordion an UnmountClosed components Accordion being rendered on canvas" duration="130"/>
-    <testCase name="Accordion an UnmountClosed components UnmountClosed being rendered on canvas" duration="93"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/CardBox.spec.tsx">
-    <testCase name="CardBox renders without crashing CardBox has children" duration="9"/>
-    <testCase name="CardBox renders without crashing CardBox matches snapshot" duration="3"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Tour.spec.tsx">
-    <testCase name="Testing Tour component and your functionalities Should render Tour component with first step" duration="25"/>
-    <testCase name="Testing Tour component and your functionalities should close the tour when closeButton is clicked" duration="647"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/BarLoader.spec.tsx">
-    <testCase name="BarLoader renders without crashing BarLoader matches snapshot" duration="166"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Drawer.spec.tsx">
-    <testCase name="Testing if Drawer component render correctly should render open, as well must render Drawer Header, Body and Footer" duration="950"/>
-    <testCase name="Testing if Drawer component render correctly Drawer matches snapshot" duration="558"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Drawer.spec.tsx">
+    <testCase name="Testing if Drawer component render correctly should render open, as well must render Drawer Header, Body and Footer" duration="849"/>
+    <testCase name="Testing if Drawer component render correctly Drawer matches snapshot" duration="569"/>
     <testCase name="testing useDesclosure should returns the correct values" duration="3"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Avatar.spec.tsx">
-    <testCase name="Avatar renders without crashing Avatar matches snapshot" duration="141"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/CardProduct.spec.tsx">
+    <testCase name="CardProduct component should work properly Card redirects to the correct link" duration="264"/>
+    <testCase name="CardProduct component should work properly Card shows correct notification" duration="145"/>
+    <testCase name="CardProduct component should work properly Card has &quot;hub&quot; category when no category is received" duration="119"/>
+    <testCase name="CardProduct component should work properly Card shows &quot;Em breve&quot; text when doesnt receive a link" duration="127"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Search.spec.tsx">
-    <testCase name="Search component should work properly Input should call onChange with correct value" duration="178"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Collapse.spec.tsx">
+    <testCase name="Collapse component should work properly Collapse doesnt render collapse-box when disable is true" duration="186"/>
+    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is true" duration="186"/>
+    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is false" duration="133"/>
+    <testCase name="Collapse component should work properly Collapse render name inside Heading" duration="136"/>
+    <testCase name="Collapse component should work properly Collapse with false grid doesnt render SimpleGrid" duration="169"/>
+    <testCase name="Collapse component should work properly Collapse uses SimpleGrid in large screens" duration="217"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/SimpleGrid.spec.tsx">
-    <testCase name="SimpleGrid renders without crashing SimpleGrid matches snapshot" duration="154"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/layout/styles.spec.tsx">
+    <testCase name="Testing chacka`s styles hooks useTheme shouldn`t return void theme when encapsulated by a theme provider" duration="195"/>
+    <testCase name="Testing chacka`s styles hooks useColorMode should  gives you access to the current color mode, and a function to toggle the color mode." duration="155"/>
+    <testCase name="Testing chacka`s styles hooks useColorModeValue returns current color mode: by default return light mode color" duration="156"/>
+    <testCase name="Testing chacka`s styles hooks useMediaQuery should returns an array of booleans, indicating whether the given query matches or queries match" duration="6"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Flex.spec.tsx">
-    <testCase name="Flex renders without crashing Flex has children" duration="16"/>
-    <testCase name="Flex renders without crashing Flex matches snapshot" duration="6"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ForgotFail.spec.tsx">
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `sendViewToken` doesn`t exist or it`s false" duration="395"/>
+    <testCase name="Expired Token page should work properly Should render the correcly elements on screen" duration="261"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `Voltar para o login` is clicked" duration="205"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `GoBack` is clicked" duration="180"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Button.spec.tsx">
-    <testCase name="Button renders without crashing Button matches snapshot" duration="116"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ExpiredToken.spec.tsx">
+    <testCase name="Expired Token page should work properly Should redirect to `/` when `validateViewPin` doesn`t exist or it`s false" duration="484"/>
+    <testCase name="Expired Token page should work properly Should render the correcly elements on screen" duration="229"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/esqueci-minha-senha` when `Solicitar novo link` is clicked" duration="209"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `GoBack` is clicked" duration="166"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Welcome.spec.tsx">
-    <testCase name="Welcome renders with correct props should render Welcome message correctly" duration="191"/>
-    <testCase name="Welcome renders with correct props should render with welcome message despite undefined props" duration="156"/>
-    <testCase name="Welcome renders with correct props should render user name as `Usuário` when option is `name` and prop name is undefined" duration="93"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/Profile/Profile.spec.tsx">
+    <testCase name="Profile page should work properly Should render the correct elements on the screen" duration="677"/>
+    <testCase name="Profile page should work properly The component `Select` should work correctly when the user interacts with it" duration="534"/>
+    <testCase name="Profile page should work properly The `Profile` component should dispatch `@auth/FIRST_ACCESS` when the user chooses an option" duration="511"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Input.spec.tsx">
-    <testCase name="Input renders without crashing Input matches snapshot" duration="167"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/SignIn.spec.tsx">
+    <testCase name="Testing that the Login page works correctly should redirect the user to /esqueci-minha-senha when click on `Esqueci minha senha`" duration="493"/>
+    <testCase name="Testing that the Login page works correctly should open help modal when click on `Precido de ajuda`" duration="206"/>
+    <testCase name="Testing that the Login page works correctly should change password input type when view icon is clicked" duration="299"/>
+    <testCase name="Testing that the Login page works correctly Should render the elements of the Login page" duration="286"/>
+    <testCase name="Testing that the Login page works correctly should dispatch @auth/SIGN_IN REQUEST with the right payload if the user data format is correct" duration="306"/>
+    <testCase name="Testing that the Login page works correctly should throw a validation error when username and password input are empty" duration="283"/>
+    <testCase name="Testing that the Login page works correctly should throw new error when username or password input are incorrect" duration="276"/>
+    <testCase name="Testing that the Login page works correctly should change the type of the submit button to button type when sign-in strike is true" duration="197"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Box.spec.tsx">
-    <testCase name="Box renders without crashing Box has children" duration="9"/>
-    <testCase name="Box renders without crashing Box matches snapshot" duration="2"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Box.spec.tsx">
+    <testCase name="Box renders without crashing Box has children" duration="24"/>
+    <testCase name="Box renders without crashing Box matches snapshot" duration="10"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/CardProduct.spec.tsx">
-    <testCase name="CardProduct component should work properly Card redirects to the correct link" duration="259"/>
-    <testCase name="CardProduct component should work properly Card shows correct notification" duration="132"/>
-    <testCase name="CardProduct component should work properly Card has &quot;hub&quot; category when no category is received" duration="146"/>
-    <testCase name="CardProduct component should work properly Card shows &quot;Em breve&quot; text when doesnt receive a link" duration="118"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/index.spec.tsx">
+    <testCase name="Root import components I hope these components are called" duration="8"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Text.spec.tsx">
-    <testCase name="Text renders without crashing Text matches snapshot" duration="140"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Accordion.spec.tsx">
+    <testCase name="Accordion an UnmountClosed components Accordion being rendered on canvas" duration="143"/>
+    <testCase name="Accordion an UnmountClosed components UnmountClosed being rendered on canvas" duration="121"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/index.spec.tsx">
-    <testCase name="Root import components I hope these components are called" duration="5"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Skeleton.spec.tsx">
+    <testCase name="Skeleton renders without crashing Stack matches snapshot" duration="180"/>
+    <testCase name="Skeleton renders without crashing Skeleton matches snapshot" duration="164"/>
+    <testCase name="Skeleton renders without crashing SkeletonCircle matches snapshot" duration="162"/>
+    <testCase name="Skeleton renders without crashing SkeletonText matches snapshot" duration="166"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/isMobile.spec.ts">
-    <testCase name="Check device origin Should return if the device is not mobile" duration="1"/>
-    <testCase name="Check device origin Should return if the device is  mobile" duration="0"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/layout/provider.spec.tsx">
+    <testCase name="Testing Theme Provider should change theme when profile changes" duration="323"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Tooltip.spec.tsx">
-    <testCase name="Tooltip renders without crashing Tooltip has children" duration="36"/>
-    <testCase name="Tooltip renders without crashing Tooltip matches snapshot" duration="3"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Welcome.spec.tsx">
+    <testCase name="Welcome renders with correct props should render Welcome message correctly" duration="254"/>
+    <testCase name="Welcome renders with correct props should render with welcome message despite undefined props" duration="240"/>
+    <testCase name="Welcome renders with correct props should render user name as `Usuário` when option is `name` and prop name is undefined" duration="161"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/prepareSchoolAndRoles.spec.ts">
-    <testCase name="Adjust school structure and profiles Should return data structure of schools" duration="1"/>
-    <testCase name="Adjust school structure and profiles Should return data structure of Roles" duration="1"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Select.spec.tsx">
+    <testCase name="Select renders without crashing Select normal variant render all options" duration="916"/>
+    <testCase name="Select renders without crashing Select blue-transparent variant render options" duration="530"/>
+    <testCase name="Select renders without crashing Select displays error message when no options are provided" duration="369"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/amplitude.spec.ts">
-    <testCase name="testing amplitude functions Amplitude should initialize on amplitudeInit" duration="1"/>
-    <testCase name="testing amplitude functions amplitudeToolOpened send event with correct properties" duration="2"/>
-    <testCase name="testing amplitude functions useAmplitudeSetProperties must call setUserProperties and setUserId" duration="7"/>
-    <testCase name="testing amplitude functions useAmplitudePageView should log event" duration="5"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Tour.spec.tsx">
+    <testCase name="Testing Tour component and your functionalities Should render Tour component with first step" duration="17"/>
+    <testCase name="Testing Tour component and your functionalities should close the tour when closeButton is clicked" duration="851"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Heading.spec.tsx">
-    <testCase name="Heading renders without crashing Heading has children" duration="8"/>
-    <testCase name="Heading renders without crashing Heading matches snapshot" duration="6"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Form.spec.tsx">
+    <testCase name="Form works properly input should render icons correctly and change style when focused" duration="322"/>
+    <testCase name="Form works properly input should display an error if useField returns error as truthy" duration="160"/>
+    <testCase name="Form works properly Form calls submit with correct values" duration="190"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Stack.spec.tsx">
-    <testCase name="Stack renders without crashing Stack matches snapshot" duration="154"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Modal.spec.tsx">
+    <testCase name="Modal component should work properly Should render the children on screen with correctly props" duration="22"/>
+    <testCase name="Modal component should work properly Shoudn`t render the component when prop open is false (closed Model)" duration="115"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/hasJsonStructure.spec.ts">
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/Home.spec.tsx">
+    <testCase name="Testing that the Home page works correctly Should render the correct elements on the screen" duration="523"/>
+    <testCase name="Testing that the Home page works correctly Should not show any card when an unknown card is searched on filter" duration="368"/>
+    <testCase name="Testing that the Home page works correctly Should dispatch `@auth/AUTH_PRODUCT_REQUEST` when a card is clicked" duration="388"/>
+    <testCase name="Testing that the Home page works correctly Should not render any cards when the products are loading" duration="475"/>
+    <testCase name="Testing that the Home page works correctly Should render a message when the products have already loaded, but they are empty []" duration="174"/>
+    <testCase name="Testing that the Home page works correctly Should render with default Welcome titles" duration="240"/>
+    <testCase name="Testing that the Home page works correctly Should render `userClass` and `Profile` when profile name is `Aluno`" duration="235"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/Profile/CardBox.spec.tsx">
+    <testCase name="CardBox Component should work properly Should render icon with correct titles" duration="187"/>
+    <testCase name="CardBox Component should work properly Should call onClick when user choises an role" duration="142"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/SpinnerLoader.spec.tsx">
+    <testCase name="SpinnerLoader renders without crashing SpinnerLoader matches snapshot" duration="215"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Button.spec.tsx">
+    <testCase name="Button renders without crashing Button matches snapshot" duration="174"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/BarLoader.spec.tsx">
+    <testCase name="BarLoader renders without crashing BarLoader matches snapshot" duration="285"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Avatar.spec.tsx">
+    <testCase name="Avatar renders without crashing Avatar matches snapshot" duration="181"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Text.spec.tsx">
+    <testCase name="Text renders without crashing Text matches snapshot" duration="133"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Heading.spec.tsx">
+    <testCase name="Heading renders without crashing Heading has children" duration="12"/>
+    <testCase name="Heading renders without crashing Heading matches snapshot" duration="10"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Search.spec.tsx">
+    <testCase name="Search component should work properly Input should call onChange with correct value" duration="224"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Badge.spec.tsx">
+    <testCase name="Badge renders without crashing Badge matches snapshot" duration="244"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/CardBox.spec.tsx">
+    <testCase name="CardBox renders without crashing CardBox has children" duration="12"/>
+    <testCase name="CardBox renders without crashing CardBox matches snapshot" duration="13"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Tooltip.spec.tsx">
+    <testCase name="Tooltip renders without crashing Tooltip has children" duration="37"/>
+    <testCase name="Tooltip renders without crashing Tooltip matches snapshot" duration="4"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Image.spec.tsx">
+    <testCase name="Image renders without crashing Should render image with correct alt text" duration="14"/>
+    <testCase name="Image renders without crashing Image matches snapshot" duration="4"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Input.spec.tsx">
+    <testCase name="Input renders without crashing Input matches snapshot" duration="169"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Stack.spec.tsx">
+    <testCase name="Stack renders without crashing Stack matches snapshot" duration="150"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/SimpleGrid.spec.tsx">
+    <testCase name="SimpleGrid renders without crashing SimpleGrid matches snapshot" duration="167"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/prepareSchoolAndRoles.spec.ts">
+    <testCase name="Adjust school structure and profiles Should return data structure of schools" duration="2"/>
+    <testCase name="Adjust school structure and profiles Should return data structure of Roles" duration="2"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ForgotPassword.spec.tsx">
+    <testCase name="Forgot Password page should work properly should display instructions about password recovery" duration="218"/>
+    <testCase name="Forgot Password page should work properly Should display an error toast if submit with empty input" duration="247"/>
+    <testCase name="Forgot Password page should work properly Should display an error toast if validator throws a generic error" duration="306"/>
+    <testCase name="Forgot Password page should work properly Should redirect client to login page if sendViewToken is true" duration="178"/>
+    <testCase name="Forgot Password page should work properly should go back when GoBack is clicked" duration="141"/>
+    <testCase name="Forgot Password page should work properly Should dispatch an action with correct payload" duration="212"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Icon.spec.tsx">
+    <testCase name="Root import icons I hope these components are called" duration="150"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Flex.spec.tsx">
+    <testCase name="Flex renders without crashing Flex has children" duration="13"/>
+    <testCase name="Flex renders without crashing Flex matches snapshot" duration="5"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/FakeCollapse.spec.tsx">
+    <testCase name="FakeCollapse renders without crashing should have children" duration="192"/>
+    <testCase name="FakeCollapse renders without crashing Collapse with false grid doesnt render SimpleGrid" duration="118"/>
+    <testCase name="FakeCollapse renders without crashing renders without crashing on larger screens" duration="135"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/amplitude.spec.ts">
+    <testCase name="testing amplitude functions Amplitude should initialize on amplitudeInit" duration="2"/>
+    <testCase name="testing amplitude functions amplitudeToolOpened send event with correct properties" duration="1"/>
+    <testCase name="testing amplitude functions useAmplitudeSetProperties must call setUserProperties and setUserId" duration="10"/>
+    <testCase name="testing amplitude functions useAmplitudePageView should log event" duration="6"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/FakeLoading.spec.tsx">
+    <testCase name="testing fakeLoading should render without  crashing" duration="246"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/isMobile.spec.ts">
+    <testCase name="Check device origin Should return if the device is not mobile" duration="2"/>
+    <testCase name="Check device origin Should return if the device is  mobile" duration="1"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/utils/createSlug.spec.ts">
+    <testCase name="expect createSlug to work correctly should convert string into slug" duration="3"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/transpileProfile.spec.ts">
+    <testCase name="Profile structure Must return the correct structure following a pre-defined string" duration="2"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/hasJsonStructure.spec.ts">
     <testCase name="json-type structure Should be check if string has a json structure" duration="1"/>
-    <testCase name="json-type structure Must return that the structure sent is not of the JSON type" duration="0"/>
+    <testCase name="json-type structure Must return that the structure sent is not of the JSON type" duration="1"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/transpileProfile.spec.ts">
-    <testCase name="Profile structure Must return the correct structure following a pre-defined string" duration="1"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/utils/documentTitle.spec.ts">
+    <testCase name="expect documentTitle to work correctly should return documentTitle styled string" duration="3"/>
+    <testCase name="expect documentTitle to work correctly should return default string when theres no env title" duration="1"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/utils/documentTitle.spec.ts">
-    <testCase name="expect documentTitle to work correctly should return documentTitle styled string" duration="2"/>
-    <testCase name="expect documentTitle to work correctly should return default string when theres no env title" duration="0"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/utils/capitalize.spec.ts">
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/utils/capitalize.spec.ts">
     <testCase name="expect capitalize to work correctly should return capitalized string" duration="1"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/utils/createSlug.spec.ts">
-    <testCase name="expect createSlug to work correctly should convert string into slug" duration="1"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Badge.spec.tsx">
-    <testCase name="Badge renders without crashing Badge matches snapshot" duration="99"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Image.spec.tsx">
-    <testCase name="Image renders without crashing Should render image with correct alt text" duration="5"/>
-    <testCase name="Image renders without crashing Image matches snapshot" duration="2"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/reCaptcha.spec.ts">
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/reCaptcha.spec.ts">
     <testCase name="Captcha for Login Should trigger the lib that removes the captcha cache" duration="1"/>
     <testCase name="Captcha for Login Must validate quantity of stored items and return a Bool" duration="1"/>
-    <testCase name="Captcha for Login Save to set login attempts in cache" duration="1"/>
+    <testCase name="Captcha for Login Save to set login attempts in cache" duration="2"/>
     <testCase name="Captcha for Login You must validate the captcha token and remove the cache if ok" duration="0"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Icon.spec.tsx">
-    <testCase name="Root import icons I hope these components are called" duration="91"/>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ChangePassword.spec.tsx">
+    <testCase name="Change Password page should work properly should change input type if view changes" duration="133"/>
+    <testCase name="Change Password page should work properly should redirect user if no token was provided" duration="71"/>
+    <testCase name="Change Password page should work properly should return user to previous page when goBack is clicked" duration="70"/>
+    <testCase name="Change Password page should work properly should display an error when validation fails" duration="101"/>
+    <testCase name="Change Password page should work properly should display a generic error when validation throws it" duration="84"/>
+    <testCase name="Change Password page should work properly Should dispatch actions with correct payloads" duration="74"/>
   </file>
 </testExecutions>
