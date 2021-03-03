@@ -22,67 +22,62 @@ jest.mock('~/hooks/useQuery', () => {
   }
 })
 
+const setup = () => {
+  const utils = render(<ChangePassword />, {
+    reducers: ['user', 'forgotPassword'],
+    store
+  })
+  const pwdInput = utils.getByPlaceholderText('Nova senha')
+  const confirmPwdInput = utils.getByPlaceholderText('Confirmar nova senha')
+  const showPwdButton = utils.getAllByTestId('display-pwd-btn')
+  const submitButton = utils.getByText('Salvar nova senha')
+  const goBackButton = utils.getByTestId('go-back')
+  return {
+    pwdInput,
+    confirmPwdInput,
+    showPwdButton,
+    submitButton,
+    goBackButton,
+    ...utils
+  }
+}
+
 describe('Forgot Password page should work properly', () => {
   it('should change input type if view changes', async () => {
-    const { getByPlaceholderText, getAllByTestId } = render(
-      <ChangePassword />,
-      {
-        reducers: ['user', 'forgotPassword'],
-        store
-      }
-    )
+    const { showPwdButton, pwdInput, confirmPwdInput } = setup()
 
-    const displayPwdBtns = getAllByTestId('display-pwd-btn')
-    const pwdInput = getByPlaceholderText('Nova senha')
-    const pwdCheckInput = getByPlaceholderText('Confirmar nova senha')
+    await waitFor(() => showPwdButton.map(button => fireEvent.click(button)))
 
-    await waitFor(() => displayPwdBtns.map(button => fireEvent.click(button)))
     expect(pwdInput).toHaveAttribute('type', 'text')
-    expect(pwdCheckInput).toHaveAttribute('type', 'text')
+    expect(confirmPwdInput).toHaveAttribute('type', 'text')
   })
 
   it('should redirect user if no token was provided', async () => {
     mockedGet.mockImplementationOnce(() => false)
     const pushSpy = jest.spyOn(history, 'push')
-    render(<ChangePassword />, {
-      reducers: ['user', 'forgotPassword'],
-      store
-    })
+
+    setup()
 
     expect(pushSpy).toHaveBeenCalledWith('/login')
   })
 
   it('should return user to previous page when goBack is clicked', async () => {
-    mockedGet.mockImplementationOnce(() => false)
     const pushSpy = jest.spyOn(history, 'push')
-    const { getByTestId } = render(<ChangePassword />, {
-      reducers: ['user', 'forgotPassword'],
-      store
-    })
 
-    const goBack = getByTestId('go-back')
+    const { goBackButton } = setup()
 
-    fireEvent.click(goBack)
+    fireEvent.click(goBackButton)
 
     expect(pushSpy).toHaveBeenCalledWith('/login')
   })
 
   it('should display an error when validation fails', async () => {
-    const { getByText, findByText, getByPlaceholderText } = render(
-      <ChangePassword />,
-      {
-        reducers: ['user', 'forgotPassword'],
-        store
-      }
-    )
-    const pwdInput = getByPlaceholderText('Nova senha')
-    const pwdCheckInput = getByPlaceholderText('Confirmar nova senha')
-    const formButton = getByText('Salvar nova senha')
+    const { pwdInput, confirmPwdInput, submitButton, findByText } = setup()
 
     // clicando no submit button com uma senha curta demais para causar erro
     fireEvent.change(pwdInput, { target: { value: '123' } })
-    fireEvent.change(pwdCheckInput, { target: { value: '123' } })
-    fireEvent.click(formButton)
+    fireEvent.change(confirmPwdInput, { target: { value: '123' } })
+    fireEvent.click(submitButton)
 
     const errorMessage = await findByText(/senha deve ter no mínimo/i)
 
@@ -94,14 +89,10 @@ describe('Forgot Password page should work properly', () => {
     jest.spyOn(passValidation, 'validate').mockImplementation(() => {
       throw new Error()
     })
-    const { getByText, findByText } = render(<ChangePassword />, {
-      reducers: ['user', 'forgotPassword'],
-      store
-    })
 
-    const formButton = getByText('Salvar nova senha')
+    const { submitButton, findByText } = setup()
 
-    fireEvent.click(formButton)
+    fireEvent.click(submitButton)
 
     const errorMessage = await findByText(/Algo deu errado/i)
 
@@ -116,25 +107,15 @@ describe('Forgot Password page should work properly', () => {
       pin: { token: 'this is a test token' }
     }
 
-    const { storeUtils, getByPlaceholderText, getByText } = render(
-      <ChangePassword />,
-      {
-        reducers: ['user', 'forgotPassword'],
-        store
-      }
-    )
-
-    const pwdInput = getByPlaceholderText('Nova senha')
-    const pwdCheckInput = getByPlaceholderText('Confirmar nova senha')
-    const formButton = getByText('Salvar nova senha')
+    const { storeUtils, pwdInput, confirmPwdInput, submitButton } = setup()
     const { getActions } = storeUtils as StoreUtils
     const actions = getActions()
 
     fireEvent.change(pwdInput, { target: { value: 'teste123' } })
 
-    fireEvent.change(pwdCheckInput, { target: { value: 'teste123' } })
+    fireEvent.change(confirmPwdInput, { target: { value: 'teste123' } })
 
-    fireEvent.click(formButton)
+    fireEvent.click(submitButton)
 
     await waitFor(() =>
       expect(actions[0].payload).toStrictEqual(mockedTokenPayload)
