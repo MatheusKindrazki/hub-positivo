@@ -2,13 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import {
-  render,
-  fireEvent,
-  act,
-  CustomRenderOptions,
-  CustomState
-} from '@hub/test-utils'
+import { render, fireEvent, act, CustomState } from '@hub/test-utils'
 import createSlug from '@hub/common/utils/createSlug'
 
 import Home from '~/pages/Home'
@@ -58,7 +52,7 @@ const products = {
           ativo: true,
           nome: 'Salas virtuais',
           descricao: 'Visualize e acesse suas aulas virtuais',
-          link: 'psd.provas.com'
+          link: 'psd.salas.com'
         },
         {
           ativo: true,
@@ -68,6 +62,11 @@ const products = {
       ]
     }
   ]
+}
+
+const educationalStage = {
+  class: 'Class Name',
+  level: 'Level Educational Stage'
 }
 
 describe('Testing that the Home page works correctly', () => {
@@ -88,31 +87,23 @@ describe('Testing that the Home page works correctly', () => {
     return { searchInput, ...utils }
   }
 
-  // beforeEach(() => jest.useFakeTimers())
-
   const queryConfig = {
     exact: false
   }
 
   it('Should render the correct elements on the screen', () => {
-    const { getByText, getAllByText, searchInput } = setup()
+    const { getByText, getAllByText } = setup()
 
     const { name } = user.user
-    const { label } = user.school
     const { data } = products
 
     const fragmentedName = name.split(' ')
 
     const nameInitals = getByText(fragmentedName[0][0] + fragmentedName[1][0])
-    const nameElement = getByText(fragmentedName[0], queryConfig)
-    const schoolName = getByText(label, queryConfig)
     const soonBagde = getAllByText('Em breve', queryConfig)
 
     expect(soonBagde.length).toBe(2)
     expect(nameInitals).toBeInTheDocument()
-    expect(nameElement).toBeInTheDocument()
-    expect(schoolName).toBeInTheDocument()
-    expect(searchInput).toBeInTheDocument()
 
     // Busca cada grupo de soluções e verifica se todos os cards estão na tela
     data.forEach(({ nome, solucoes }) => {
@@ -131,29 +122,18 @@ describe('Testing that the Home page works correctly', () => {
 
   it('Should not show any card when an unknown card is searched on filter', async () => {
     jest.useFakeTimers()
-    const { queryByText, searchInput, getAllByTestId } = setup()
-    const { data } = products
+    const { searchInput, getAllByTestId, queryAllByTestId } = setup()
 
     let value = 'card inexistente'
+    let cards: HTMLElement[]
 
     act(() => {
       fireEvent.change(searchInput, { target: { value } })
       jest.runAllTimers()
     })
 
-    // verifica se após o filtro não há nenhum card em tela
-    data.forEach(({ nome, solucoes }) => {
-      const groupOfSolutionTitle = queryByText(nome)
-      expect(groupOfSolutionTitle).toBeNull()
-
-      solucoes.forEach(({ nome: solutionName, descricao }) => {
-        const cardName = queryByText(solutionName)
-        const cardDescription = queryByText(descricao)
-
-        expect(cardName).toBeNull()
-        expect(cardDescription).toBeNull()
-      })
-    })
+    cards = queryAllByTestId('card-container')
+    expect(cards.length).toBe(0)
 
     value = 'Provas'
     act(() => {
@@ -161,7 +141,7 @@ describe('Testing that the Home page works correctly', () => {
       jest.runAllTimers()
     })
 
-    const cards = getAllByTestId('card-container')
+    cards = getAllByTestId('card-container')
 
     expect(cards.length).toBe(1)
   })
@@ -170,7 +150,9 @@ describe('Testing that the Home page works correctly', () => {
     const { getByText, storeUtils } = setup()
 
     const card = getByText('Provas')
+
     fireEvent.click(card)
+
     const action = storeUtils?.getActions()[0]
     const { type, payload } = action
     const { data } = products
@@ -185,7 +167,7 @@ describe('Testing that the Home page works correctly', () => {
     })
   })
 
-  it('Should not render any card when product`s loading  is true', async () => {
+  it('Should not render any cards when the products are loading', async () => {
     const { queryAllByTestId } = setup({
       products: { data: [], loading: true }
     })
@@ -195,9 +177,44 @@ describe('Testing that the Home page works correctly', () => {
 
   it('Should render a message when the products have already loaded, but they are empty []', async () => {
     const { queryByText } = setup({
-      products: { data: [], loading: false }
+      products: { data: undefined, loading: false }
     })
     const emptyMessage = queryByText('Nenhum produto encontrado!', queryConfig)
     expect(emptyMessage).toBeInTheDocument()
+  })
+
+  it('Should render with default Welcome titles', async () => {
+    const emptyContextValues: CustomState = {
+      user: {},
+      profile: {
+        name: undefined
+      },
+      educationalStage: {}
+    }
+    const { queryByText } = setup(emptyContextValues)
+
+    const defaultRole = queryByText('Perfil', queryConfig)
+    const defaultUser = queryByText('Usuário', queryConfig)
+    expect(defaultRole).toBeInTheDocument()
+    expect(defaultUser).toBeInTheDocument()
+  })
+
+  it('Should render `userClass` and `Profile` when profile name is `Aluno`', async () => {
+    const student = 'Aluno'
+    const className = educationalStage.class
+
+    const studentProfile: CustomState = {
+      profile: {
+        name: student
+      },
+      educationalStage
+    }
+    const { queryByText } = setup(studentProfile)
+
+    const studentTitle = queryByText(student, queryConfig)
+    const userClass = queryByText(className, queryConfig)
+
+    expect(studentTitle).toBeInTheDocument()
+    expect(userClass).toBeInTheDocument()
   })
 })
