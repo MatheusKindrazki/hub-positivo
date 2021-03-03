@@ -1,9 +1,5 @@
 import React from 'react'
 
-import * as redux from 'react-redux'
-
-import configureStore from 'redux-mock-store'
-
 import { store } from '~/store'
 
 import { CustomState, StoreUtils } from '@hub/test-utils/types'

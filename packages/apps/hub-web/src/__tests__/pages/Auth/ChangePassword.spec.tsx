@@ -42,7 +42,7 @@ const setup = () => {
   }
 }
 
-describe('Forgot Password page should work properly', () => {
+describe('Change Password page should work properly', () => {
   it('should change input type if view changes', async () => {
     const { showPwdButton, pwdInput, confirmPwdInput } = setup()
 
