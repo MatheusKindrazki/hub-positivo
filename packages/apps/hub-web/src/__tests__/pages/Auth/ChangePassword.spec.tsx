@@ -1,55 +1,127 @@
 import React from 'react'
 
-import * as redux from 'react-redux'
+import { store } from '~/store'
 
-import { fireEvent, render, waitFor } from '@hub/test-utils'
+import { fireEvent, render, StoreUtils, waitFor } from '@hub/test-utils'
+
+import history from '~/services/history'
 
 import ChangePassword from '~/pages/Auth/ChangePassword'
 
-import '@testing-library/jest-dom'
+import passValidation from '~/validators/auth/createNewPassword'
 
-const setView = jest.fn()
-const view = true
-const token = 'this is a test token'
-
-const mockedUseState = [view, setView, token]
-
-jest.mock('react-redux', () => {
-  const ui = jest.requireActual('react-redux')
-  return {
-    ...ui,
-    useDispatch: jest.fn(),
-    useSelector: jest.fn(() => {
-      return {
-        loading: false
-      }
-    })
-  }
+// mockando useQuery para retornar token mockado
+const mockedGet = jest.fn((): any => {
+  return { token: 'this is a test token' }
 })
-jest.mock('react-router-dom', () => {
-  const ui = jest.requireActual('react-router-dom')
-  return {
-    ...ui,
-    useLocation: () => ({
-      pathname: '/alterar-senha',
-      search: {
-        get: () => {
-          return { token: 'this is a test token' }
-        }
-      }
-    })
+jest.mock('~/hooks/useQuery', () => {
+  return () => {
+    return {
+      get: mockedGet
+    }
   }
 })
 
-describe('Forgot Password page should work properly', () => {
-  it('Should dispatch an action with correct payload', async () => {
-    // const mockedData = {
-    //   payload: { userInfo: 'teste@testmail.com' },
-    //   type: '@auth/PWD_TOKEN_REQUEST'
-    // }
-    // const dispatch = jest.fn()
-    // jest.spyOn(redux, 'useDispatch').mockReturnValue(dispatch)
-    // render(<ChangePassword />)
-    // await waitFor(() => expect(dispatch).toHaveBeenCalledWith(mockedData))
+const setup = () => {
+  const utils = render(<ChangePassword />, {
+    reducers: ['user', 'forgotPassword'],
+    store
+  })
+  const pwdInput = utils.getByPlaceholderText('Nova senha')
+  const confirmPwdInput = utils.getByPlaceholderText('Confirmar nova senha')
+  const showPwdButton = utils.getAllByTestId('display-pwd-btn')
+  const submitButton = utils.getByText('Salvar nova senha')
+  const goBackButton = utils.getByTestId('go-back')
+  return {
+    pwdInput,
+    confirmPwdInput,
+    showPwdButton,
+    submitButton,
+    goBackButton,
+    ...utils
+  }
+}
+
+describe('Change Password page should work properly', () => {
+  it('should change input type if view changes', async () => {
+    const { showPwdButton, pwdInput, confirmPwdInput } = setup()
+
+    await waitFor(() => showPwdButton.map(button => fireEvent.click(button)))
+
+    expect(pwdInput).toHaveAttribute('type', 'text')
+    expect(confirmPwdInput).toHaveAttribute('type', 'text')
+  })
+
+  it('should redirect user if no token was provided', async () => {
+    mockedGet.mockImplementationOnce(() => false)
+    const pushSpy = jest.spyOn(history, 'push')
+
+    setup()
+
+    expect(pushSpy).toHaveBeenCalledWith('/login')
+  })
+
+  it('should return user to previous page when goBack is clicked', async () => {
+    const pushSpy = jest.spyOn(history, 'push')
+
+    const { goBackButton } = setup()
+
+    fireEvent.click(goBackButton)
+
+    expect(pushSpy).toHaveBeenCalledWith('/login')
+  })
+
+  it('should display an error when validation fails', async () => {
+    const { pwdInput, confirmPwdInput, submitButton, findByText } = setup()
+
+    // clicando no submit button com uma senha curta demais para causar erro
+    fireEvent.change(pwdInput, { target: { value: '123' } })
+    fireEvent.change(confirmPwdInput, { target: { value: '123' } })
+    fireEvent.click(submitButton)
+
+    const errorMessage = await findByText(/senha deve ter no mínimo/i)
+
+    await waitFor(() => expect(errorMessage).toBeInTheDocument())
+  })
+
+  it('should display a generic error when validation throws it', async () => {
+    // mockando validator para retornar erro generico
+    jest.spyOn(passValidation, 'validate').mockImplementation(() => {
+      throw new Error()
+    })
+
+    const { submitButton, findByText } = setup()
+
+    fireEvent.click(submitButton)
+
+    const errorMessage = await findByText(/Algo deu errado/i)
+
+    await waitFor(() => expect(errorMessage).toBeInTheDocument())
+  })
+
+  it('Should dispatch actions with correct payloads', async () => {
+    jest.spyOn(passValidation, 'validate').mockImplementation()
+    const mockedTokenPayload = { pin: { token: 'this is a test token' } }
+    const mockedPwdPayload = {
+      newPassword: 'teste123',
+      pin: { token: 'this is a test token' }
+    }
+
+    const { storeUtils, pwdInput, confirmPwdInput, submitButton } = setup()
+    const { getActions } = storeUtils as StoreUtils
+    const actions = getActions()
+
+    fireEvent.change(pwdInput, { target: { value: 'teste123' } })
+
+    fireEvent.change(confirmPwdInput, { target: { value: 'teste123' } })
+
+    fireEvent.click(submitButton)
+
+    await waitFor(() =>
+      expect(actions[0].payload).toStrictEqual(mockedTokenPayload)
+    )
+    await waitFor(() =>
+      expect(actions[1].payload).toStrictEqual(mockedPwdPayload)
+    )
   })
 })
