@@ -5,17 +5,24 @@ import amplitude from 'amplitude-js'
 import { store } from '~/store'
 
 export const useAmplitudeSetProperties = (): void => {
-  const { name: role } = store.getState().profile
-  const { user, school: schoolObject } = store.getState().user
-  const { level: educational_stage } = store.getState().educationalStage
+  const { profiles: roles, name: selectedRole } = store.getState().profile
+  const { user, school } = store.getState().user
+  const { levels: educational_stages } = store.getState().educationalStage
+
+  const formatedRoles = roles?.map(role => role.name)
+
+  const formatedEducationalStages = educational_stages?.map(
+    level => `${level.label} (${level.value})`
+  )
 
   useEffect(() => {
     amplitude.getInstance().setUserProperties({
       user,
-      school: schoolObject?.value,
-      role,
-      educational_stage
+      school,
+      selectedRole,
+      roles: formatedRoles,
+      educational_stages: formatedEducationalStages
     })
     amplitude.getInstance().setUserId(user?.guid as string | null)
-  }, [user, schoolObject, educational_stage, role])
+  }, [user, school, selectedRole, formatedEducationalStages, formatedRoles])
 }

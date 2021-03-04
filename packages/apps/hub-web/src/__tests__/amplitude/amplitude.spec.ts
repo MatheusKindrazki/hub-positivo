@@ -12,7 +12,8 @@ import { useAmplitudeSetProperties } from '../../hooks/amplitude/useAmplitudeSet
 
 const mockState = {
   profile: {
-    name: 'Fake name'
+    name: 'Fake name',
+    profiles: [{ name: 'fakeRole' }, { name: 'fakeRole' }]
   },
   user: {
     school: {
@@ -23,14 +24,18 @@ const mockState = {
     }
   },
   educationalStage: {
-    level: 'Fake level'
+    levels: [
+      { label: 'Fake level', value: 'fake value' },
+      { label: 'Fake level', value: 'fake value' }
+    ]
   }
 }
 
 const mockParamsSetProperties = {
-  educational_stage: mockState.educationalStage.level,
-  role: mockState.profile.name,
-  school: mockState.user.school.value,
+  educational_stages: ['Fake level (fake value)', 'Fake level (fake value)'],
+  roles: ['fakeRole', 'fakeRole'],
+  selectedRole: mockState.profile.name,
+  school: mockState.user.school,
   user: mockState.user.user
 }
 
