@@ -5,6 +5,8 @@ import { store } from '~/store'
 import { render, fireEvent, act, CustomState } from '@hub/test-utils'
 import createSlug from '@hub/common/utils/createSlug'
 
+import * as amplitude from '~/services/amplitude'
+
 import Home from '~/pages/Home'
 
 const mockState = {
@@ -67,6 +69,10 @@ const mockState = {
     level: 'Level Educational Stage'
   }
 }
+
+jest.mock('~/services/amplitude', () => ({
+  amplitudeToolOpened: jest.fn()
+}))
 
 describe('Testing that the Home page works correctly', () => {
   const { user, profile, products, educationalStage } = mockState
@@ -149,6 +155,8 @@ describe('Testing that the Home page works correctly', () => {
   it('Should dispatch `@auth/AUTH_PRODUCT_REQUEST` when a card is clicked', async () => {
     const { getByText, storeUtils } = setup()
 
+    const spyAmplitudeToolOpened = jest.spyOn(amplitude, 'amplitudeToolOpened')
+
     const card = getByText('Provas')
 
     fireEvent.click(card)
@@ -164,6 +172,14 @@ describe('Testing that the Home page works correctly', () => {
       product: createSlug('provas'),
       tipoRenderizacao: undefined,
       url: provasSolution.link
+    })
+    expect(spyAmplitudeToolOpened).toHaveBeenCalledTimes(1)
+    expect(spyAmplitudeToolOpened).toHaveBeenCalledWith({
+      category: undefined,
+      educational_stage: '',
+      tool: 'Provas',
+      user_role: 'Administrador',
+      user_school: undefined
     })
   })
 
