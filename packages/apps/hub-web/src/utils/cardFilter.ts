@@ -16,7 +16,7 @@ export type KeyProps<T extends { [key: string]: any }> = {
 
 function cardFilter<T extends Partial<CardGroup>>(attributes: {
   data: T[]
-  search: string
+  search: string | null
   typeCard: 'solucoes' | 'alunos'
 }): T[] {
   const { data, search, typeCard } = attributes
