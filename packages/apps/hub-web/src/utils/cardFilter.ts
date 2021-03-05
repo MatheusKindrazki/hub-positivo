@@ -10,10 +10,6 @@ interface CardGroup extends CardProductWithoutId, ClassesAPIWithoutId {
   id: string | number
 }
 
-export type KeyProps<T extends { [key: string]: any }> = {
-  [P in keyof T]: any
-}
-
 function cardFilter<T extends Partial<CardGroup>>(attributes: {
   data: T[]
   search: string | null
