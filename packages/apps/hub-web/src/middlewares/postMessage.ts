@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import { useHistory, useLocation, useParams } from 'react-router-dom'
 
-import hasJsonStructure from '~/utils/hasJsonStructure'
+import { hasJsonStructure } from '~/utils/hasJsonStructure'
 
 interface MessageProps {
   event: 'history-change' | undefined
@@ -28,7 +28,7 @@ const usePostMessage = (): void => {
 
         const parseData = (JSON.parse(event.data) as MessageProps) || undefined
 
-        if (parseData.event === 'history-change') {
+        if (parseData?.event === 'history-change') {
           let alterURL = parseData.data
 
           regexAccept.forEach(e => {
