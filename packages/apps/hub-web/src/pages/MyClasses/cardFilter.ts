@@ -24,7 +24,8 @@ const cardFilter = (attributes: CardFilterProps): ClassesAPI[] => {
             alunos: [card]
           })
         } else {
-          const index = newcards.findIndex(newCard => newCard.id === i.id)
+          let index = newcards.findIndex(newCard => newCard.id === i.id)
+          index = index === -1 ? newcards.length : index
 
           const cardsNew = newcards[index]?.alunos || []
 
