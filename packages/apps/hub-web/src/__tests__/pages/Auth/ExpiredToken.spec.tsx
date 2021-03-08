@@ -25,22 +25,24 @@ describe('Expired Token page should work properly', () => {
 
   const spyPush = jest.spyOn(history, 'push')
 
-  it('Should redirect to `/` when `validateViewPin` doesn`t exist or it`s false', () => {
-    render(<ExpiredToken />, {
+  const setup = (rest: CustomState | object) => {
+    const utils = render(<ExpiredToken />, {
       store,
-      reducers: ['forgotPassword']
+      reducers: ['forgotPassword'],
+      CUSTOM_STATE: rest
     })
+    return { ...utils }
+  }
+
+  it('Should redirect to `/` when `validateViewPin` doesn`t exist or it`s false', () => {
+    setup({})
 
     expect(spyPush).toHaveBeenCalledTimes(1)
     expect(spyPush).toHaveBeenCalledWith('/')
   })
 
   it('Should render the correcly elements on screen', () => {
-    const { queryByText } = render(<ExpiredToken />, {
-      store,
-      reducers: ['forgotPassword'],
-      CUSTOM_STATE
-    })
+    const { queryByText } = setup(CUSTOM_STATE)
 
     const message = queryByText(
       /Solicite um novo link para redefinir sua senha./i
@@ -54,12 +56,7 @@ describe('Expired Token page should work properly', () => {
   })
 
   it('Should redirect to `/esqueci-minha-senha` when `Solicitar novo link` is clicked', () => {
-    const wrapper = render(<ExpiredToken />, {
-      store,
-      reducers: ['forgotPassword'],
-      CUSTOM_STATE
-    })
-    const { getByText } = wrapper
+    const { getByText } = setup(CUSTOM_STATE)
     const newLinkButton = getByText(/Solicitar novo link/i)
 
     expect(newLinkButton).toBeInTheDocument()
@@ -71,12 +68,7 @@ describe('Expired Token page should work properly', () => {
   })
 
   it('Should redirect to `/login` when `GoBack` is clicked', () => {
-    const wrapper = render(<ExpiredToken />, {
-      store,
-      reducers: ['forgotPassword'],
-      CUSTOM_STATE
-    })
-    const { getByTestId } = wrapper
+    const { getByTestId } = setup(CUSTOM_STATE)
     const goBackButton = getByTestId('go-back')
 
     expect(goBackButton).toBeInTheDocument()
