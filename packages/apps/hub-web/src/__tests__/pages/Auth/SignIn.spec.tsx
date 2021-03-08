@@ -6,12 +6,7 @@ import * as redux from 'react-redux'
 
 import { store } from '~/store'
 
-import {
-  render,
-  fireEvent,
-  waitFor,
-  CustomRenderOptions
-} from '@hub/test-utils'
+import { render, fireEvent, waitFor, CustomState } from '@hub/test-utils'
 
 import * as ReCAPTCHA from '~/utils/reCaptcha'
 
@@ -79,27 +74,31 @@ describe('Testing that the Login page works correctly', () => {
 
   const queryConfig = { exact: false }
 
-  const contextConfig: CustomRenderOptions = {
-    store,
-    reducers: ['auth']
+  const setup = (rest: CustomState | object) => {
+    const utils = render(<SignIn />, {
+      store,
+      reducers: ['auth'],
+      CUSTOM_STATE: rest
+    })
+    return { ...utils }
   }
 
   it('should redirect the user to /esqueci-minha-senha when click on `Esqueci minha senha`', () => {
-    const { getByText } = render(<SignIn />, contextConfig)
+    const { getByText } = setup({})
     const forgotPasswordButton = getByText('Esqueci minha senha', queryConfig)
     fireEvent.click(forgotPasswordButton)
     expect(push).toHaveBeenCalledWith('/esqueci-minha-senha')
   })
 
   it('should open help modal when click on `Precido de ajuda`', async () => {
-    const { getByText } = render(<SignIn />, contextConfig)
+    const { getByText } = setup({})
     const helpButton = getByText('Preciso de ajuda', queryConfig)
     fireEvent.click(helpButton)
     expect(helpButton).toBeInTheDocument()
   })
 
   it('should change password input type when view icon is clicked', async () => {
-    const { getByTestId } = render(<SignIn />, contextConfig)
+    const { getByTestId } = setup({})
     const viewIcon = getByTestId('view-button')
     const passwordInput = getByTestId('password')
 
@@ -109,10 +108,7 @@ describe('Testing that the Login page works correctly', () => {
   })
 
   it('Should render the elements of the Login page', () => {
-    const { queryAllByText, queryByText, queryByPlaceholderText } = render(
-      <SignIn />,
-      contextConfig
-    )
+    const { queryAllByText, queryByText, queryByPlaceholderText } = setup({})
     const signIn = queryAllByText('entrar', queryConfig)
     const welcomeMessage = queryByText(
       'Insira seus dados de acesso para começar',
@@ -140,7 +136,7 @@ describe('Testing that the Login page works correctly', () => {
     }
 
     const { username, password } = userMock
-    const { getByTestId } = render(<SignIn />, contextConfig)
+    const { getByTestId } = setup({})
 
     const usernameInput = getByTestId('email')
     const passwordInput = getByTestId('password')
@@ -168,7 +164,7 @@ describe('Testing that the Login page works correctly', () => {
   })
 
   it('should throw a validation error when username and password input are empty', async () => {
-    const { getByTestId, findByText } = render(<SignIn />, contextConfig)
+    const { getByTestId, findByText } = setup({})
 
     const form = getByTestId('submit-button')
 
@@ -185,7 +181,7 @@ describe('Testing that the Login page works correctly', () => {
     spyValidate.mockImplementation(() => {
       throw new Error()
     })
-    const { getByTestId, findByText } = render(<SignIn />, contextConfig)
+    const { getByTestId, findByText } = setup({})
 
     const form = getByTestId('submit-button')
 
@@ -206,11 +202,7 @@ describe('Testing that the Login page works correctly', () => {
     jest.spyOn(ReCAPTCHA, 'handleCaptcha').mockResolvedValue(true)
     jest.spyOn(ReCAPTCHA, 'checkForStrikes').mockImplementation(() => true)
 
-    const { getByTestId } = render(<SignIn />, {
-      store,
-      reducers: ['auth'],
-      CUSTOM_STATE
-    })
+    const { getByTestId } = setup(CUSTOM_STATE)
     const button = getByTestId('submit-button')
 
     expect(button).toHaveProperty('type', 'button')
