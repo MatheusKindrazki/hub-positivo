@@ -10,12 +10,12 @@ export const useAmplitudeSetProperties = (): void => {
   const { level: educational_stage } = store.getState().educationalStage
 
   useEffect(() => {
+    amplitude.getInstance().setUserId(user?.guid as string | null)
     amplitude.getInstance().setUserProperties({
       user,
       school: schoolObject?.value,
       role,
       educational_stage
     })
-    amplitude.getInstance().setUserId(user?.guid as string | null)
   }, [user, schoolObject, educational_stage, role])
 }
