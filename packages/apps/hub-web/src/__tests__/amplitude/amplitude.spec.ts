@@ -28,6 +28,9 @@ const mockState = {
       { label: 'Fake level', value: 'fake value' },
       { label: 'Fake level', value: 'fake value' }
     ]
+  },
+  auth: {
+    signed: true
   }
 }
 
