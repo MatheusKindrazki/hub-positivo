@@ -9,7 +9,7 @@ interface PageViewed {
 }
 interface AmplitudeUserProps {
   user_id: string
-  user_login: string
+  user_login?: string
   user_name: string
 }
 
@@ -37,7 +37,7 @@ interface AmplitudeProps
   roles_list: string[]
   selected_school_id: string
   selected_school_name: string
-  selected_school_sge: string
+  selected_school_sge?: string
   school_list: string[]
   selected_class: string
   grade_level: string | '1º ano' | '2º ano' | '3º ano'
