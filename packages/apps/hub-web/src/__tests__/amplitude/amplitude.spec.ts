@@ -99,4 +99,10 @@ describe('testing amplitude functions', () => {
     expect(logEvent).toHaveBeenCalled()
     expect(store.getState).toHaveBeenCalledTimes(4)
   })
+
+  it('useAmplitudePageView shouldn`t log event when signed is false', () => {
+    mockState.auth.signed = false
+    renderHook(() => useAmplitudePageView())
+    expect(logEvent).not.toHaveBeenCalled()
+  })
 })
