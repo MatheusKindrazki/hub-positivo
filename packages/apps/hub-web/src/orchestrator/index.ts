@@ -35,3 +35,4 @@ const loadScripts = async (data: DataScripts): Promise<ReturnScripts> => {
 }
 
 export { loadScripts }
+export type { DataScripts, ReturnScripts }
