@@ -14,11 +14,10 @@ interface AmplitudeUserProps {
 }
 
 interface AmplitudeEducationalStageProps {
-  educational_stage_EI: boolean
-  educational_stage_EF1: boolean
-  educational_stage_EF2: boolean
-  educational_stage_EM: boolean
-  educational_stage_stage: boolean
+  educational_stage_EI: boolean | undefined
+  educational_stage_EF1: boolean | undefined
+  educational_stage_EF2: boolean | undefined
+  educational_stage_EM: boolean | undefined
 }
 
 interface AmplitudeProfileProps {
@@ -41,6 +40,17 @@ interface AmplitudeProps
   school_list: string[]
   selected_class: string
   grade_level: string | '1º ano' | '2º ano' | '3º ano'
+  educational_stage_stage: boolean
 }
 
-export type { AmplitudeProps, PageViewed }
+interface School {
+  value: string
+  label: string
+}
+
+export type {
+  AmplitudeProps,
+  PageViewed,
+  AmplitudeEducationalStageProps,
+  School
+}
