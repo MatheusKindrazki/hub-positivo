@@ -5,15 +5,7 @@ import amplitude from 'amplitude-js'
 
 import { store } from '~/store'
 
-interface PageViewed {
-  page_path: string
-  page_title: string
-  page_location: string
-  page_url: string
-  user_educational_stage: string
-  user_role: string
-  user_school: string | undefined
-}
+import { PageViewed } from './types'
 
 export const useAmplitudePageView = (): void => {
   const { pathname } = useLocation()
