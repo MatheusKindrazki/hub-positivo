@@ -218,7 +218,7 @@ function verifyTypeScriptSetup() {
   if (appTsConfig.compilerOptions == null) {
     appTsConfig.compilerOptions = {};
     firstTimeSetup = true;
-  } 
+  }
 
   for (const option of Object.keys(compilerOptions)) {
     const { parsedValue, value, suggested, reason } = compilerOptions[option];
@@ -243,8 +243,8 @@ function verifyTypeScriptSetup() {
       });
       messages.push(
         `${coloredOption} ${chalk.bold(
-          valueToCheck == null ? 'must not' : 'must'
-        )} be ${valueToCheck == null ? 'set' : chalk.cyan.bold(value)}` +
+          valueToCheck == null ? 'Não deve' : 'deve'
+        )} estar ${valueToCheck == null ? 'definido' : chalk.cyan.bold(value)}` +
           (reason != null ? ` (${reason})` : '')
       );
     }
@@ -273,9 +273,9 @@ function verifyTypeScriptSetup() {
     } else {
       console.warn(
         chalk.bold(
-          'The following changes are being made to your',
+          'Atenção: As seguintes alterações estão sendo feitas em seu arquivo',
           chalk.cyan('tsconfig.json'),
-          'file:'
+          ':'
         )
       );
       messages.forEach(message => {
