@@ -10,7 +10,7 @@ import App from './App'
 
 const enableTracking = ['homolog', 'production']
 
-if (enableTracking.includes(process.env.REACT_APP_NODE_ENV as string)) {
+if (enableTracking.includes(process.env.REACT_APP_NODE_ENV || '')) {
   console.error = function () {} //eslint-disable-line
   console.warn = function () {} //eslint-disable-line
 
