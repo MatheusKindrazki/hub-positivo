@@ -679,6 +679,7 @@ module.exports = function (webpackEnv) {
 
           return {
             files: manifestFiles,
+            element_id: process.env.ELEMENT_ID
           };
         },
       }),
