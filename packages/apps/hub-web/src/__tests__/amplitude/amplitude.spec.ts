@@ -1,9 +1,14 @@
 import amplitude from 'amplitude-js'
 import { renderHook } from '@testing-library/react-hooks'
 
+import * as redux from 'react-redux'
+
 import { store } from '~/store'
 
-import { amplitudeToolOpened } from '~/services/amplitude/amplitudeToolOpened'
+import {
+  amplitudeToolOpened,
+  EventData
+} from '~/services/amplitude/amplitudeToolOpened'
 import { amplitudeInit } from '~/services/amplitude/amplitudeInit'
 
 import { useAmplitudePageView } from '~/hooks/amplitude/useAmplitudePageView'
@@ -28,6 +33,9 @@ const mockState = {
       { label: 'Fake level', value: 'fake value' },
       { label: 'Fake level', value: 'fake value' }
     ]
+  },
+  auth: {
+    signed: true
   }
 }
 
@@ -39,12 +47,9 @@ const mockParamsSetProperties = {
   user: mockState.user.user
 }
 
-const mockedEventProperties = {
-  category: 'teste',
-  tool: 'teste',
-  educational_stage: 'teste',
-  user_role: 'teste',
-  user_school: 'teste'
+const mockedEventProperties: EventData = {
+  card_name: 'teste',
+  location: 'dashboard'
 }
 
 jest.mock('amplitude-js', () => ({
@@ -84,16 +89,14 @@ describe('testing amplitude functions', () => {
     expect(logEvent).toHaveBeenCalledWith('Tool Opened', mockedEventProperties)
   })
 
-  it('useAmplitudeSetProperties must call setUserProperties and setUserId', () => {
-    renderHook(() => useAmplitudeSetProperties())
-    expect(store.getState).toHaveBeenCalledTimes(3)
-    expect(setUserProperties).toHaveBeenCalledWith(mockParamsSetProperties)
-    expect(setUserId).toHaveBeenCalledWith(mockState.user.user.guid)
-  })
-
   it('useAmplitudePageView should log event', () => {
     renderHook(() => useAmplitudePageView())
     expect(logEvent).toHaveBeenCalled()
-    expect(store.getState).toHaveBeenCalledTimes(3)
+  })
+
+  it('useAmplitudePageView shouldn`t log event when signed is false', () => {
+    mockState.auth.signed = false
+    renderHook(() => useAmplitudePageView())
+    expect(logEvent).not.toHaveBeenCalled()
   })
 })

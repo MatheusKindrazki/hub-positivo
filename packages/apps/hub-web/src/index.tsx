@@ -10,6 +10,8 @@ import App from './App'
 
 const enableTracking = ['homolog', 'production']
 
+amplitudeInit()
+
 if (enableTracking.includes(process.env.REACT_APP_NODE_ENV as string)) {
   console.error = function () {} //eslint-disable-line
   console.warn = function () {} //eslint-disable-line

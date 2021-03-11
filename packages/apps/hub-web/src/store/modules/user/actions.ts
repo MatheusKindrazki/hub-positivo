@@ -17,7 +17,8 @@ export const Actions = {
 
   SIGN_IN_SUCCESS: '@auth/SIGN_IN_SUCCESS',
 
-  SET_SCHOOL: '@user/SET_SCHOOL'
+  SET_SCHOOL: '@user/SET_SCHOOL',
+  SIGN_OUT: '@auth/SIGN_OUT'
 }
 
 /* Prepara informações do usuário logado */

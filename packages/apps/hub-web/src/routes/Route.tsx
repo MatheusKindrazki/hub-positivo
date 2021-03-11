@@ -24,8 +24,9 @@ const Route: React.FC<RouteProps> = ({
   component,
   ...rest
 }) => {
-  useAmplitudePageView()
   const { pathname } = useLocation()
+
+  useAmplitudePageView()
 
   Sentry.configureScope(scope => scope.setTransactionName(pathname))
 

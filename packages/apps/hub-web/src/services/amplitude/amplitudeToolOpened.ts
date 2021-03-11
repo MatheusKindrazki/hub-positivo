@@ -1,14 +1,11 @@
 import amplitude from 'amplitude-js'
 
-interface eventData {
-  category: string
-  tool: string
-  educational_stage: string
-  user_role: string
-  user_school: string | undefined
+export interface EventData {
+  card_name: string
+  location: 'dashboard' | 'header'
 }
 
-export const amplitudeToolOpened = (data: eventData): void => {
+export const amplitudeToolOpened = (data: EventData): void => {
   const clickEvent = 'Tool Opened'
 
   amplitude.getInstance().logEvent(clickEvent, { ...data })

@@ -41,7 +41,7 @@ const Home: React.FC = () => {
   const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
   )
-  const { level: educational_stage, class: userClass } = useSelector(
+  const { class: userClass } = useSelector(
     (state: Store.State) => state.educationalStage
   )
   const { data: cards, loading: load } = useSelector(
@@ -65,11 +65,8 @@ const Home: React.FC = () => {
     data => {
       const slug = createSlug(data.nome)
       amplitudeToolOpened({
-        category: data.category,
-        tool: data.nome,
-        educational_stage,
-        user_role: nameProfile,
-        user_school: useSchool?.value
+        card_name: data.nome,
+        location: 'dashboard'
       })
       dispatch(
         preAuth({
@@ -80,7 +77,7 @@ const Home: React.FC = () => {
         })
       )
     },
-    [dispatch, educational_stage, nameProfile, useSchool]
+    [dispatch]
   )
 
   const filterCards = useMemo(
