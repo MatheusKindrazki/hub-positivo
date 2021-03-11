@@ -1,3 +1,5 @@
+import { Schools, User } from '~/store/modules/user/types'
+
 interface PageViewed {
   page_path: string
   page_title: string
@@ -8,9 +10,9 @@ interface PageViewed {
   user_school: string | undefined
 }
 interface AmplitudeUserProps {
-  user_id: string
+  user_id?: string
   user_login?: string
-  user_name: string
+  user_name: string | null
 }
 
 interface AmplitudeEducationalStageProps {
@@ -21,26 +23,26 @@ interface AmplitudeEducationalStageProps {
 }
 
 interface AmplitudeProfileProps {
-  is_teacher: boolean
-  is_student: boolean
-  is_coordinator: boolean
-  is_admin: boolean
-  is_family: boolean
+  is_teacher: boolean | undefined
+  is_student: boolean | undefined
+  is_coordinator: boolean | undefined
+  is_admin: boolean | undefined
+  is_family: boolean | undefined
 }
 
 interface AmplitudeProps
   extends AmplitudeUserProps,
     AmplitudeEducationalStageProps,
     AmplitudeProfileProps {
-  selected_role: string
-  roles_list: string[]
+  selectedRole: string
+  roles_list?: string[]
   selected_school_id: string
   selected_school_name: string
-  selected_school_sge?: string
-  school_list: string[]
-  selected_class: string
-  grade_level: string | '1º ano' | '2º ano' | '3º ano'
-  educational_stage_stage: boolean
+  selected_school_sge: string | null
+  schools_list?: Schools[]
+  selected_class?: string
+  // level: string | '1º ano' | '2º ano' | '3º ano'
+  selected_educational_stage: string
 }
 
 interface School {
@@ -52,5 +54,6 @@ export type {
   AmplitudeProps,
   PageViewed,
   AmplitudeEducationalStageProps,
-  School
+  School,
+  User
 }

@@ -4,10 +4,14 @@ import amplitude from 'amplitude-js'
 
 import { useSelector } from 'react-redux'
 
-import { User } from '~/store/modules/user/types'
 import { store } from '~/store'
 
-import { AmplitudeEducationalStageProps, School } from './types'
+import {
+  AmplitudeEducationalStageProps,
+  School,
+  AmplitudeProps,
+  User
+} from './types'
 
 export const useAmplitudeSetProperties = (): void => {
   const { profiles, name: selectedRole } = store.getState().profile
@@ -49,8 +53,7 @@ export const useAmplitudeSetProperties = (): void => {
   }, [formatedEducationalStages])
 
   useEffect(() => {
-    amplitude.getInstance().setUserId(user?.guid as string | null)
-    amplitude.getInstance().setUserProperties({
+    const amplitudeProps: AmplitudeProps = {
       user_id: guid,
       user_login: username,
       user_name: name,
@@ -64,7 +67,9 @@ export const useAmplitudeSetProperties = (): void => {
       selected_class,
       selected_educational_stage: level,
       ...booleanEducationalStages()
-    })
+    }
+    amplitude.getInstance().setUserId(user?.guid as string | null)
+    amplitude.getInstance().setUserProperties(amplitudeProps)
   }, [
     user,
     school,
