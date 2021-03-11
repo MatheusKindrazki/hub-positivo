@@ -1,10 +1,8 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 
 import amplitude from 'amplitude-js'
 
 import { useSelector } from 'react-redux'
-
-import { store } from '~/store'
 
 import {
   AmplitudeEducationalStageProps,
@@ -14,13 +12,13 @@ import {
 } from './types'
 
 export const useAmplitudeSetProperties = (): void => {
-  const { profiles, name: selectedRole } = store.getState().profile
   const { user, school } = useSelector((state: Store.State) => state.user)
-  const {
-    levels,
-    class: selected_class,
-    level
-  } = store.getState().educationalStage
+  const { profiles, name: selectedRole } = useSelector(
+    (state: Store.State) => state.profile
+  )
+  const { levels, class: selected_class, level } = useSelector(
+    (state: Store.State) => state.educationalStage
+  )
 
   const { guid, username, name, schools } = user as User
 
@@ -52,9 +50,10 @@ export const useAmplitudeSetProperties = (): void => {
     return booleanStages
   }, [formatedEducationalStages])
 
-  useEffect(() => {
-    console.log('chamando setProperties...')
-    const amplitudeProps: AmplitudeProps = {
+  const formatSchoolsList = schools?.map((school: any) => school?.label)
+
+  const eventProperties: AmplitudeProps = useMemo(() => {
+    const props = {
       user_id: guid,
       user_login: username,
       user_name: name,
@@ -64,28 +63,29 @@ export const useAmplitudeSetProperties = (): void => {
       selected_school_id,
       selected_school_name,
       selected_school_sge: null,
-      schools_list: schools,
+      schools_list: formatSchoolsList,
       selected_class,
       selected_educational_stage: level,
       ...booleanEducationalStages()
     }
-    amplitude.getInstance().setUserId(user?.guid as string | null)
-    amplitude.getInstance().setUserProperties(amplitudeProps)
+    return props
   }, [
-    user,
-    school,
-    selectedRole,
-    formatedEducationalStages,
-    formatedRoles,
-    booleanRoles,
-    selected_class,
-    level,
-    booleanEducationalStages,
     guid,
     username,
     name,
-    schools,
+    selectedRole,
+    formatedRoles,
+    booleanRoles,
     selected_school_id,
-    selected_school_name
+    selected_school_name,
+    formatSchoolsList,
+    selected_class,
+    level,
+    booleanEducationalStages
   ])
+
+  useEffect(() => {
+    amplitude.getInstance().setUserId(guid as string | null)
+    amplitude.getInstance().setUserProperties(eventProperties)
+  }, [eventProperties, guid])
 }

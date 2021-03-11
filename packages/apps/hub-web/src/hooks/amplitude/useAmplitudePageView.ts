@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+import { useLocation } from 'react-router-dom'
 import amplitude from 'amplitude-js'
 
 import { store } from '~/store'
@@ -7,25 +8,22 @@ import { store } from '~/store'
 import { PageViewed } from './types'
 
 export const useAmplitudePageView = (): void => {
+  const { pathname } = useLocation()
   const { signed } = store.getState().auth
   const { school } = store.getState().user
-  const {
-    level: educational_stage,
-    class: class_name = ''
-  } = store.getState().educationalStage
   const { name: role } = store.getState().profile
   const pageViewedEvent = 'Page Viewed'
 
   useEffect(() => {
-    const eventProperties = {
-      role,
-      school: school?.label,
-      educational_stage,
-      grade_level: class_name
+    const eventProperties: PageViewed = {
+      page_path: pathname,
+      page_title: document.title,
+      page_url: document.URL,
+      user_role: role,
+      user_school: school?.label
     }
-
     if (signed) {
       amplitude.getInstance().logEvent(pageViewedEvent, eventProperties)
     }
-  }, [signed, educational_stage, role, school?.label, class_name])
+  }, [signed, pathname, role, school?.label])
 }

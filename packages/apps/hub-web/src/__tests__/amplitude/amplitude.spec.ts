@@ -1,9 +1,14 @@
 import amplitude from 'amplitude-js'
 import { renderHook } from '@testing-library/react-hooks'
 
+import * as redux from 'react-redux'
+
 import { store } from '~/store'
 
-import { amplitudeToolOpened } from '~/services/amplitude/amplitudeToolOpened'
+import {
+  amplitudeToolOpened,
+  EventData
+} from '~/services/amplitude/amplitudeToolOpened'
 import { amplitudeInit } from '~/services/amplitude/amplitudeInit'
 
 import { useAmplitudePageView } from '~/hooks/amplitude/useAmplitudePageView'
@@ -42,7 +47,7 @@ const mockParamsSetProperties = {
   user: mockState.user.user
 }
 
-const mockedEventProperties = {
+const mockedEventProperties: EventData = {
   card_name: 'teste',
   location: 'dashboard'
 }
@@ -74,30 +79,22 @@ describe('testing amplitude functions', () => {
     jest.clearAllMocks()
   })
 
-  it.skip('Amplitude should initialize on amplitudeInit', () => {
+  it('Amplitude should initialize on amplitudeInit', () => {
     amplitudeInit()
     expect(init).toHaveBeenCalledTimes(1)
   })
 
-  it.skip('amplitudeToolOpened send event with correct properties', () => {
-    // amplitudeToolOpened(mockedEventProperties)
+  it('amplitudeToolOpened send event with correct properties', () => {
+    amplitudeToolOpened(mockedEventProperties)
     expect(logEvent).toHaveBeenCalledWith('Tool Opened', mockedEventProperties)
   })
 
-  it.skip('useAmplitudeSetProperties must call setUserProperties and setUserId', () => {
-    renderHook(() => useAmplitudeSetProperties())
-    expect(store.getState).toHaveBeenCalledTimes(3)
-    expect(setUserProperties).toHaveBeenCalledWith(mockParamsSetProperties)
-    expect(setUserId).toHaveBeenCalledWith(mockState.user.user.guid)
-  })
-
-  it.skip('useAmplitudePageView should log event', () => {
+  it('useAmplitudePageView should log event', () => {
     renderHook(() => useAmplitudePageView())
     expect(logEvent).toHaveBeenCalled()
-    expect(store.getState).toHaveBeenCalledTimes(4)
   })
 
-  it.skip('useAmplitudePageView shouldn`t log event when signed is false', () => {
+  it('useAmplitudePageView shouldn`t log event when signed is false', () => {
     mockState.auth.signed = false
     renderHook(() => useAmplitudePageView())
     expect(logEvent).not.toHaveBeenCalled()
