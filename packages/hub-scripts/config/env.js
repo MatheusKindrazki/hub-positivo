@@ -59,6 +59,7 @@ function getClientEnvironment(publicUrl) {
         WDS_SOCKET_PATH: process.env.WDS_SOCKET_PATH,
         WDS_SOCKET_PORT: process.env.WDS_SOCKET_PORT,
         FAST_REFRESH: process.env.FAST_REFRESH !== 'false',
+        INCLUDE_HTML_BUILD: process.env.INCLUDE_HTML_BUILD || false,
       }
   );
 
