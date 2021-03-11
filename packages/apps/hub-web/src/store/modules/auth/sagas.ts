@@ -133,7 +133,7 @@ export function* preparePreparingAccess({
 
   const user_reduced = decode(access_token as string) as any
 
-  if (user?.guid !== user_reduced.sub) {
+  if (user_reduced?.sub && user?.guid !== user_reduced?.sub) {
     const sc = school?.label || ''
     toast.error(`Você não tem acesso a escola: ${sc}`)
 
