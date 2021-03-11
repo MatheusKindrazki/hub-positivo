@@ -62,7 +62,7 @@ const Routes: React.FC = () => {
             <Route path="/" exact component={Home} isPrivate />
             <Route
               sensitive
-              path="/teste/:subpath+"
+              path="/microfrontend/:subpath+"
               component={Solutions}
               isPrivate
             />
