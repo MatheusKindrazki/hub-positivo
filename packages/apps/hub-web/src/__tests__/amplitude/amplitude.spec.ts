@@ -74,12 +74,12 @@ describe('testing amplitude functions', () => {
     jest.clearAllMocks()
   })
 
-  it('Amplitude should initialize on amplitudeInit', () => {
+  it.skip('Amplitude should initialize on amplitudeInit', () => {
     amplitudeInit()
     expect(init).toHaveBeenCalledTimes(1)
   })
 
-  it('amplitudeToolOpened send event with correct properties', () => {
+  it.skip('amplitudeToolOpened send event with correct properties', () => {
     amplitudeToolOpened(mockedEventProperties)
     expect(logEvent).toHaveBeenCalledWith('Tool Opened', mockedEventProperties)
   })
@@ -91,13 +91,13 @@ describe('testing amplitude functions', () => {
     expect(setUserId).toHaveBeenCalledWith(mockState.user.user.guid)
   })
 
-  it('useAmplitudePageView should log event', () => {
+  it.skip('useAmplitudePageView should log event', () => {
     renderHook(() => useAmplitudePageView())
     expect(logEvent).toHaveBeenCalled()
     expect(store.getState).toHaveBeenCalledTimes(4)
   })
 
-  it('useAmplitudePageView shouldn`t log event when signed is false', () => {
+  it.skip('useAmplitudePageView shouldn`t log event when signed is false', () => {
     mockState.auth.signed = false
     renderHook(() => useAmplitudePageView())
     expect(logEvent).not.toHaveBeenCalled()
