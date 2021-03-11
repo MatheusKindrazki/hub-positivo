@@ -43,11 +43,8 @@ const mockParamsSetProperties = {
 }
 
 const mockedEventProperties = {
-  category: 'teste',
-  tool: 'teste',
-  educational_stage: 'teste',
-  user_role: 'teste',
-  user_school: 'teste'
+  card_name: 'teste',
+  location: 'dashboard'
 }
 
 jest.mock('amplitude-js', () => ({

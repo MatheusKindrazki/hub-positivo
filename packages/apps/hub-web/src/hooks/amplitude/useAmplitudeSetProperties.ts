@@ -53,6 +53,7 @@ export const useAmplitudeSetProperties = (): void => {
   }, [formatedEducationalStages])
 
   useEffect(() => {
+    console.log('chamando setProperties...')
     const amplitudeProps: AmplitudeProps = {
       user_id: guid,
       user_login: username,

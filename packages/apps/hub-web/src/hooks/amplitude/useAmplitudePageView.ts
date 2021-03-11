@@ -11,20 +11,22 @@ export const useAmplitudePageView = (): void => {
   const { pathname } = useLocation()
   const { signed } = store.getState().auth
   const { school } = store.getState().user
-  const { level: educational_stage } = store.getState().educationalStage
+  const {
+    level: educational_stage,
+    class: class_name
+  } = store.getState().educationalStage
   const { name: role } = store.getState().profile
   const pageViewedEvent = 'Page Viewed'
 
   useEffect(() => {
-    const eventProperties: PageViewed = {
-      page_path: pathname,
-      page_title: document.title,
-      page_location: document.location.href,
-      page_url: document.URL,
-      user_educational_stage: educational_stage,
-      user_role: role,
-      user_school: school?.value
+    const eventProperties = {
+      role,
+      school: school?.label,
+      educational_stage,
+      grade_level: class_name
     }
+
+    console.log(eventProperties)
     if (signed) {
       amplitude.getInstance().logEvent(pageViewedEvent, eventProperties)
     }
@@ -34,6 +36,7 @@ export const useAmplitudePageView = (): void => {
     educational_stage,
     pathname,
     role,
-    school?.value
+    school?.label,
+    class_name
   ])
 }
