@@ -16,9 +16,8 @@ const Solutions: React.FC = () => {
   useEffect(() => {
     async function getMCF() {
       const resMcf = await loadScripts({
-        manifest: 'http://127.0.0.1:5500/hub-manifest.json'
+        manifest: 'https://run.mocky.io/v3/a96f4f1e-2bee-4082-b543-6bd493d83571'
       })
-      // manifest: 'https://run.mocky.io/v3/a96f4f1e-2bee-4082-b543-6bd493d83571'
 
       setMcf({
         scripts: resMcf.scripts,

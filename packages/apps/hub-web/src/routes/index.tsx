@@ -61,7 +61,6 @@ const Routes: React.FC = () => {
 
             <Route path="/" exact component={Home} isPrivate />
             <Route
-              sensitive
               path="/microfrontend/:subpath+"
               component={Solutions}
               isPrivate

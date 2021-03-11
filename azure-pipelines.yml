@@ -38,7 +38,7 @@ jobs:
       extraProperties: |
         sonar.sources=packages/apps/hub-web/src/components,packages/apps/hub-web/src/pages,packages/apps/hub-web/src/services,packages/apps/hub-web/src/store/modules,packages/apps/hub-web/src/utils,packages/apps/hub-web/src/validators,packages/apps/hub-web/src/middlewares,packages/apps/hub-web/src/hooks,packages/common/components
         sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,
-        sonar.coverage.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,
+        sonar.coverage.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,**/*.js
         sonar.javascript.lcov.reportPaths=coverage/lcov.info
         sonar.testExecutionReportPaths=test-report.xml
         sonar.test.inclusions=packages/apps/hub-web/src/**/*.spec.tsx,packages/apps/hub-web/src/**/*.spec.ts,packages/common/**/*.spec.tsx,packages/apps/common/**/*.spec.ts

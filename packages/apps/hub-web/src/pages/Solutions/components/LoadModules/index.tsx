@@ -17,7 +17,7 @@ const LoadModules: React.FC<ModulesProps> = ({ type, url }) => {
     )
   }
 
-  return <Script url={url} attributes={{ defer: true }} />
+  return <Script url={url} />
 }
 
 export default LoadModules
