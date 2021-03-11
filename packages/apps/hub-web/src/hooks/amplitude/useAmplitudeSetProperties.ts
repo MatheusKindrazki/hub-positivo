@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 
 import amplitude from 'amplitude-js'
 
@@ -12,6 +12,15 @@ import {
 } from './types'
 
 export const useAmplitudeSetProperties = (): void => {
+  const amplitudeRef = useRef({
+    value: false
+  })
+  useEffect(() => {
+    setTimeout(() => {
+      amplitudeRef.current.value = true
+    }, 1000)
+  }, [])
+
   const { user, school } = useSelector((state: Store.State) => state.user)
   const { profiles, name: selectedRole } = useSelector(
     (state: Store.State) => state.profile
@@ -85,7 +94,9 @@ export const useAmplitudeSetProperties = (): void => {
   ])
 
   useEffect(() => {
-    amplitude.getInstance().setUserId(guid as string | null)
-    amplitude.getInstance().setUserProperties(eventProperties)
+    if (amplitudeRef.current.value) {
+      amplitude.getInstance().setUserId(guid as string | null)
+      amplitude.getInstance().setUserProperties(eventProperties)
+    }
   }, [eventProperties, guid])
 }
