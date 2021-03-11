@@ -3,9 +3,7 @@ import { Schools, User } from '~/store/modules/user/types'
 interface PageViewed {
   page_path: string
   page_title: string
-  page_location: string
   page_url: string
-  user_educational_stage: string
   user_role: string
   user_school: string | undefined
 }
