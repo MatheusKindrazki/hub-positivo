@@ -15,9 +15,9 @@ import {
   SimpleGrid
 } from '@hub/common/components'
 
-import { cardFilter } from '~/utils/cardFilter'
-
 import { amplitudeToolOpened } from '~/services/amplitude'
+
+import { cardFilter } from '~/utils/cardFilter'
 
 import GlobalStyle from './stylesMobile'
 import { HeaderProps } from './index'
