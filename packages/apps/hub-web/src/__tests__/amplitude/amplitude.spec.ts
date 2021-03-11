@@ -80,7 +80,7 @@ describe('testing amplitude functions', () => {
   })
 
   it.skip('amplitudeToolOpened send event with correct properties', () => {
-    amplitudeToolOpened(mockedEventProperties)
+    // amplitudeToolOpened(mockedEventProperties)
     expect(logEvent).toHaveBeenCalledWith('Tool Opened', mockedEventProperties)
   })
 
