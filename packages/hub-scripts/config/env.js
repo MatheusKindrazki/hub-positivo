@@ -52,6 +52,7 @@ function getClientEnvironment(publicUrl) {
 
         NODE_ENV: process.env.NODE_ENV || 'development',
         ELEMENT_ID: process.env.ELEMENT_ID  || 'root',
+        SINGLE_BUNDLE: process.env.SINGLE_BUNDLE || false,
 
         PUBLIC_URL: publicUrl,
         BASENAME: process.env.BASENAME || '/',

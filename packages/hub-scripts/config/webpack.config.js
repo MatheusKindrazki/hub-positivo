@@ -14,8 +14,6 @@ const webpack = require('webpack');
 const resolve = require('resolve');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -204,7 +202,7 @@ module.exports = function (webpackEnv) {
             // changing JS code would still trigger a refresh.
           ]
         : paths.appIndexJs,
-    output: {
+    output: process.env.SINGLE_BUNDLE ? {
       // The build folder.
       path: isEnvProduction ? paths.appBuild : undefined,
       // Add /* filename */ comments to generated require()s in the output.
@@ -212,6 +210,34 @@ module.exports = function (webpackEnv) {
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
       filename: "static/js/[hash]-bundle.min.js",
+      // TODO: remove this when upgrading to webpack 5
+      futureEmitAssets: true,
+      publicPath: paths.publicUrlOrPath,
+      // Point sourcemap entries to original disk location (format as URL on Windows)
+      devtoolModuleFilenameTemplate: isEnvProduction
+        ? info =>
+            path
+              .relative(paths.appSrc, info.absoluteResourcePath)
+              .replace(/\\/g, '/')
+        : isEnvDevelopment &&
+          (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
+      // Prevents conflicts when multiple webpack runtimes (from different apps)
+      // are used on the same page.
+      jsonpFunction: `webpackJsonp${appPackageJson.name}`,
+      // this defaults to 'window', but by setting it to 'this' then
+      // module chunks which are built will work in web workers as well.
+      globalObject: 'this',
+    } : {
+      // The build folder.
+      path: isEnvProduction ? paths.appBuild : undefined,
+      // Add /* filename */ comments to generated require()s in the output.
+      pathinfo: isEnvDevelopment,
+      // There will be one main bundle, and one file per asynchronous chunk.
+      // In development, it does not produce real files.
+      filename: 'static/js/[name].[contenthash:8].js',
+      // There are also additional JS chunk files if you use code splitting.
+
+      chunkFilename: 'static/js/[name].[contenthash:8].chunk.js',
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
       publicPath: paths.publicUrlOrPath,
@@ -294,12 +320,14 @@ module.exports = function (webpackEnv) {
           },
         }),
       ],
-      // splitChunks: {
-      //   chunks: 'all',
-      //   name: isEnvDevelopment,
-      // },
+      splitChunks: process.env.SINGLE_BUNDLE ? false : {
+        chunks: 'all',
+        name: isEnvDevelopment,
+      },
 
-      runtimeChunk:  false
+      runtimeChunk: process.env.SINGLE_BUNDLE ? false : {
+        name: entrypoint => `runtime-${entrypoint.name}`,
+      },
     },
     resolve: {
       // This allows you to set a fallback for where webpack should look for modules.
