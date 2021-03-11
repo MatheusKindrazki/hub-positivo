@@ -8,7 +8,6 @@ import { store } from '~/store'
 import { PageViewed } from './types'
 
 export const useAmplitudePageView = (): void => {
-  const { pathname } = useLocation()
   const { signed } = store.getState().auth
   const { school } = store.getState().user
   const {
@@ -34,7 +33,6 @@ export const useAmplitudePageView = (): void => {
     pageViewedEvent,
     signed,
     educational_stage,
-    pathname,
     role,
     school?.label,
     class_name
