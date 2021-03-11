@@ -8,7 +8,7 @@ export interface ClassesAPI {
   alunos: Alunos[]
 }
 
-interface Alunos {
+export interface Alunos {
   ativo: boolean
   nome: string
   idUsuarioUnico: string

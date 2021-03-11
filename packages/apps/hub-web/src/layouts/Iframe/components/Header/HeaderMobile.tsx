@@ -15,9 +15,12 @@ import {
   SimpleGrid
 } from '@hub/common/components'
 
+import { cardFilter } from '~/utils/cardFilter'
+
+import { amplitudeToolOpened } from '~/services/amplitude'
+
 import GlobalStyle from './stylesMobile'
 import { HeaderProps } from './index'
-import { cardFilter } from './cardFilter'
 import Search from '../Search'
 import Card from '../Card'
 
@@ -28,7 +31,8 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const filterCards = useMemo(
-    () => cardFilter({ data: cards || [], search: search }),
+    () =>
+      cardFilter({ data: cards || [], search: search, typeCard: 'solucoes' }),
     [cards, search]
   )
 
@@ -111,6 +115,10 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                         key={Math.random()}
                         card={{ ...solucao, cor: card.cor }}
                         onClick={e => {
+                          amplitudeToolOpened({
+                            card_name: solucao.nome,
+                            location: 'header'
+                          })
                           handlePush(e)
                           setShow(false)
                         }}
