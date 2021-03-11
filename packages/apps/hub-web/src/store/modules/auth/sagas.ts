@@ -49,7 +49,6 @@ type SignInPayload = Payload<SignInRequest>
 
 export function* signIn({ payload }: SignInPayload): Generator {
   const redirectTo = payload.redirect
-
   delete payload.redirect
 
   yield put(signInRequestLoading())
@@ -129,6 +128,19 @@ export function* preparePreparingAccess({
   })
 
   const { access_token } = response as ApiChange
+
+  const { user, school } = store.getState().user
+
+  const user_reduced = decode(access_token as string) as any
+
+  if (user?.guid !== user_reduced.sub) {
+    const sc = school?.label || ''
+    toast.error(`Você não tem acesso a escola: ${sc}`)
+
+    yield put(loading(false))
+
+    return yield put(signOut())
+  }
 
   yield put(reducedTokenEEM(access_token))
 
