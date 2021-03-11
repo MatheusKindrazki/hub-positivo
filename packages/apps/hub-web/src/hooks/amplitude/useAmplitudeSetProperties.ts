@@ -50,7 +50,7 @@ export const useAmplitudeSetProperties = (): void => {
     return booleanStages
   }, [formatedEducationalStages])
 
-  const formatSchoolsList = schools?.map((school: any) => school?.label)
+  const formatSchoolsList = schools?.map((school: any) => school.name)
 
   const eventProperties: AmplitudeProps = useMemo(() => {
     const props = {
