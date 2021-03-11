@@ -21,12 +21,13 @@ import {
 
 import { amplitudeToolOpened } from '~/services/amplitude'
 
+import { cardFilter } from '~/utils/cardFilter'
+
 import { Container } from './styles'
 import Filter from './components/Filter'
 import FakeLoadingCard from './components/FakeLoading'
 import mockFakeLoading from './components/FakeCollapse/mock'
 import FakeCollapse from './components/FakeCollapse'
-import { cardFilter } from './cardFilter'
 
 const Home: React.FC = () => {
   documentTitle('Home')
@@ -84,9 +85,11 @@ const Home: React.FC = () => {
   )
 
   const filterCards = useMemo(
-    () => cardFilter({ data: cards || [], search: search }),
+    () =>
+      cardFilter({ data: cards || [], search: search, typeCard: 'solucoes' }),
     [cards, search]
   )
+  console.log(filterCards)
 
   return (
     <>

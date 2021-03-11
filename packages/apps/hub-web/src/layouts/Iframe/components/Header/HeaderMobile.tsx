@@ -15,9 +15,10 @@ import {
   SimpleGrid
 } from '@hub/common/components'
 
+import { cardFilter } from '~/utils/cardFilter'
+
 import GlobalStyle from './stylesMobile'
 import { HeaderProps } from './index'
-import { cardFilter } from './cardFilter'
 import Search from '../Search'
 import Card from '../Card'
 
@@ -28,7 +29,8 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const filterCards = useMemo(
-    () => cardFilter({ data: cards || [], search: search }),
+    () =>
+      cardFilter({ data: cards || [], search: search, typeCard: 'solucoes' }),
     [cards, search]
   )
 
