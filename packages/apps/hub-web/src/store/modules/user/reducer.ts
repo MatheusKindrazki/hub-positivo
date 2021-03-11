@@ -56,7 +56,11 @@ const user: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.loading = false
         break
       }
-
+      case Actions.SIGN_OUT: {
+        draft.user = undefined
+        draft.school = undefined
+        break
+      }
       default:
     }
   })

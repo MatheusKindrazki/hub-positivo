@@ -17,6 +17,8 @@ import {
 
 import { cardFilter } from '~/utils/cardFilter'
 
+import { amplitudeToolOpened } from '~/services/amplitude'
+
 import GlobalStyle from './stylesMobile'
 import { HeaderProps } from './index'
 import Search from '../Search'
@@ -113,6 +115,10 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                         key={Math.random()}
                         card={{ ...solucao, cor: card.cor }}
                         onClick={e => {
+                          amplitudeToolOpened({
+                            card_name: solucao.nome,
+                            location: 'header'
+                          })
                           handlePush(e)
                           setShow(false)
                         }}

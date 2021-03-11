@@ -11,7 +11,11 @@ import {
   SimpleGrid
 } from '@hub/common/components'
 
+
 import { cardFilter } from '~/utils/cardFilter'
+
+import { amplitudeToolOpened } from '~/services/amplitude'
+
 
 import GlobalStyle from './styles'
 import { HeaderProps } from './index'
@@ -99,6 +103,10 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                       key={Math.random()}
                       card={{ ...solucao, cor: card.cor }}
                       onClick={e => {
+                        amplitudeToolOpened({
+                          card_name: solucao.nome,
+                          location: 'header'
+                        })
                         handlePush(e)
                         setShow(false)
                       }}
