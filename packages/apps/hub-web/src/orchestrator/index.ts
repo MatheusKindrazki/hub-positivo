@@ -15,21 +15,23 @@ const loadScripts = async (data: DataScripts): Promise<ReturnScripts> => {
     files: any
     element_id: string
   }
+  const scripts: ReturnScripts['scripts'] = []
 
-  const files = {} as ReturnScripts
-
-  Object.keys(resFiles).forEach(e => {
+  Object.keys(resFiles).map(e => {
     const extension = e.split('.')
 
     if (acceptExtensions.includes(extension[extension.length - 1])) {
-      files.scripts.push({
+      scripts.push({
         type: extension[extension.length - 1],
         url: resFiles[e]
       })
     }
   })
 
-  files.element_id = element_id
+  const files: ReturnScripts = {
+    element_id,
+    scripts
+  }
 
   return files
 }

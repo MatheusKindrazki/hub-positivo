@@ -1,6 +1,6 @@
-import { Infos } from './types'
+// import { Infos } from './types'
 
-const createEvent = (data: Infos): CustomEvent => {
+const createEvent = (data: { userName: string }): CustomEvent => {
   const event = new CustomEvent('hub-infos', {
     detail: data
   })
@@ -9,7 +9,9 @@ const createEvent = (data: Infos): CustomEvent => {
 }
 
 const dispatchEvent = (event: CustomEvent): void => {
-  document.dispatchEvent(event)
+  setTimeout(() => {
+    document.dispatchEvent(event)
+  }, 2000)
 }
 
 export { createEvent, dispatchEvent }
