@@ -1,5 +1,6 @@
 import { decode } from 'jsonwebtoken'
 import { ApiResponse } from 'apisauce'
+import amplitude from 'amplitude-js'
 
 import { all, call, delay, takeLatest, Payload, put } from 'redux-saga/effects'
 
@@ -264,9 +265,15 @@ export function* refreshToken(): Generator {
   return yield put(productRequest({}))
 }
 
+export function* amplitudeEndSession(): Generator {
+  amplitude.getInstance().setUserId(null)
+  amplitude.getInstance().regenerateDeviceId()
+}
+
 export default all([
   takeLatest(Actions.SIGN_IN_REQUEST, signIn),
   takeLatest(Actions.REHYDRATE, checkingExpiringToken),
   takeLatest(Actions.FIRST_ACCESS, preparePreparingAccess),
-  takeLatest(Actions.REFRESH_TOKEN_REQUEST, refreshToken)
+  takeLatest(Actions.REFRESH_TOKEN_REQUEST, refreshToken),
+  takeLatest(Actions.SIGN_OUT, amplitudeEndSession)
 ])
