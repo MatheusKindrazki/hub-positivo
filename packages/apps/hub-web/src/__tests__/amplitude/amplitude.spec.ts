@@ -90,13 +90,13 @@ describe('testing amplitude functions', () => {
   })
 
   it('useAmplitudePageView should log event', () => {
-    renderHook(() => useAmplitudePageView())
+    renderHook(() => useAmplitudePageView({ isPrivate: true }))
     expect(logEvent).toHaveBeenCalled()
   })
 
   it('useAmplitudePageView shouldn`t log event when signed is false', () => {
     mockState.auth.signed = false
-    renderHook(() => useAmplitudePageView())
+    renderHook(() => useAmplitudePageView({ isPrivate: true }))
     expect(logEvent).not.toHaveBeenCalled()
   })
 })

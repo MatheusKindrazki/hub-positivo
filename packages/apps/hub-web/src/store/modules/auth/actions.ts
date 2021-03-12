@@ -1,5 +1,7 @@
 import { Action } from 'redux'
 
+import clearAmplitudeSession from '~/hooks/amplitude/clearAll'
+
 import { SignInRequest, SignInSuccess, RefreshToken, AccessData } from './types'
 
 export const Actions = {
@@ -111,6 +113,7 @@ export function reducedTokenEEM(token: string): Action {
   Des-loga o usuário
 */
 export function signOut(): Action {
+  clearAmplitudeSession()
   return {
     type: Actions.SIGN_OUT
   }

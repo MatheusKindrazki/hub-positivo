@@ -1,6 +1,5 @@
 import { decode } from 'jsonwebtoken'
 import { ApiResponse } from 'apisauce'
-import amplitude from 'amplitude-js'
 
 import { all, call, delay, takeLatest, Payload, put } from 'redux-saga/effects'
 
@@ -28,6 +27,7 @@ import { EEMConnectPost } from '~/services/eemConnect'
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
 
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
+import amplitudeIdentifyUser from '~/hooks/amplitude/identifyUser'
 
 import {
   SignInRequest,
@@ -81,6 +81,9 @@ export function* signIn({ payload }: SignInPayload): Generator {
   api.setHeaders({
     Authorization: `Bearer ${data?.access_token || ''}`
   })
+
+  // ? Identifica o usuário no amplitude
+  amplitudeIdentifyUser({ guid: user?.sub as string })
 
   clearStrikes()
 
@@ -175,11 +178,13 @@ export function* checkingExpiringToken({
 }: ExpiringRehydrate): Generator {
   if (!payload) return
 
-  if (!payload.auth.signed) {
+  if (!payload.auth.signed && payload?.auth?.token) {
     return yield put(signOut())
   }
 
   const { exp, reduced_token, token } = payload.auth
+
+  const { user } = payload.user
 
   if (!exp || exp === 0) return
 
@@ -196,6 +201,9 @@ export function* checkingExpiringToken({
   api.setHeaders({
     Authorization: `Bearer ${token || ''}`
   })
+
+  // ? Identifica o usuário no amplitude
+  amplitudeIdentifyUser({ guid: user.guid })
 
   yield put(reducedTokenEEM(reduced_token))
 
@@ -231,7 +239,7 @@ export function* refreshToken(): Generator {
 
     yield put(signOut())
 
-    history.push('/login')
+    setTimeout(() => history.push('/login'), 500)
   }
 
   api.setHeaders({
@@ -265,15 +273,9 @@ export function* refreshToken(): Generator {
   return yield put(productRequest({}))
 }
 
-export function* amplitudeEndSession(): Generator {
-  amplitude.getInstance().setUserId(null)
-  amplitude.getInstance().regenerateDeviceId()
-}
-
 export default all([
   takeLatest(Actions.SIGN_IN_REQUEST, signIn),
   takeLatest(Actions.REHYDRATE, checkingExpiringToken),
   takeLatest(Actions.FIRST_ACCESS, preparePreparingAccess),
-  takeLatest(Actions.REFRESH_TOKEN_REQUEST, refreshToken),
-  takeLatest(Actions.SIGN_OUT, amplitudeEndSession)
+  takeLatest(Actions.REFRESH_TOKEN_REQUEST, refreshToken)
 ])

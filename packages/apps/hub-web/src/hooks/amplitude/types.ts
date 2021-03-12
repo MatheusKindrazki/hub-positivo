@@ -4,8 +4,6 @@ interface PageViewed {
   page_path: string
   page_title: string
   page_url: string
-  user_role: string
-  user_school: string | undefined
 }
 interface AmplitudeUserProps {
   user_id?: string
