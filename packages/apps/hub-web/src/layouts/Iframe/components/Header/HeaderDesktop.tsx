@@ -13,9 +13,10 @@ import {
 
 import { amplitudeToolOpened } from '~/services/amplitude'
 
+import { cardFilter } from '~/utils/cardFilter'
+
 import GlobalStyle from './styles'
 import { HeaderProps } from './index'
-import { cardFilter } from './cardFilter'
 import Search from '../Search'
 import Card from '../Card'
 
@@ -24,7 +25,8 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const [show, setShow] = useState(false)
 
   const filterCards = useMemo(
-    () => cardFilter({ data: cards || [], search: search }),
+    () =>
+      cardFilter({ data: cards || [], search: search, typeCard: 'solucoes' }),
     [cards, search]
   )
   return (

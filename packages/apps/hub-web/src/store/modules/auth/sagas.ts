@@ -27,6 +27,7 @@ import { EEMConnectPost } from '~/services/eemConnect'
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
 
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
+import amplitudeIdentifyUser from '~/hooks/amplitude/identifyUser'
 
 import {
   SignInRequest,
@@ -49,7 +50,6 @@ type SignInPayload = Payload<SignInRequest>
 
 export function* signIn({ payload }: SignInPayload): Generator {
   const redirectTo = payload.redirect
-
   delete payload.redirect
 
   yield put(signInRequestLoading())
@@ -81,6 +81,9 @@ export function* signIn({ payload }: SignInPayload): Generator {
   api.setHeaders({
     Authorization: `Bearer ${data?.access_token || ''}`
   })
+
+  // ? Identifica o usuário no amplitude
+  amplitudeIdentifyUser({ guid: user?.sub as string })
 
   clearStrikes()
 
@@ -130,6 +133,19 @@ export function* preparePreparingAccess({
 
   const { access_token } = response as ApiChange
 
+  const { user, school } = store.getState().user
+
+  const user_reduced = decode(access_token as string) as any
+
+  if (user_reduced?.sub && user?.guid !== user_reduced?.sub) {
+    const sc = school?.label || ''
+    toast.error(`Você não tem acesso a escola: ${sc}`)
+
+    yield put(loading(false))
+
+    return yield put(signOut())
+  }
+
   yield put(reducedTokenEEM(access_token))
 
   yield put(
@@ -162,11 +178,13 @@ export function* checkingExpiringToken({
 }: ExpiringRehydrate): Generator {
   if (!payload) return
 
-  if (!payload.auth.signed) {
+  if (!payload.auth.signed && payload?.auth?.token) {
     return yield put(signOut())
   }
 
   const { exp, reduced_token, token } = payload.auth
+
+  const { user } = payload.user
 
   if (!exp || exp === 0) return
 
@@ -183,6 +201,9 @@ export function* checkingExpiringToken({
   api.setHeaders({
     Authorization: `Bearer ${token || ''}`
   })
+
+  // ? Identifica o usuário no amplitude
+  amplitudeIdentifyUser({ guid: user.guid })
 
   yield put(reducedTokenEEM(reduced_token))
 
@@ -218,7 +239,7 @@ export function* refreshToken(): Generator {
 
     yield put(signOut())
 
-    history.push('/login')
+    setTimeout(() => history.push('/login'), 500)
   }
 
   api.setHeaders({

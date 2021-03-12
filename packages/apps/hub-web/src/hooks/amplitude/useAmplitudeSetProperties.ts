@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 
 import amplitude from 'amplitude-js'
 
@@ -12,15 +12,6 @@ import {
 } from './types'
 
 export const useAmplitudeSetProperties = (): void => {
-  const amplitudeRef = useRef({
-    value: false
-  })
-  useEffect(() => {
-    setTimeout(() => {
-      amplitudeRef.current.value = true
-    }, 1000)
-  }, [])
-
   const { user, school } = useSelector((state: Store.State) => state.user)
   const { profiles, name: selectedRole } = useSelector(
     (state: Store.State) => state.profile
@@ -40,7 +31,7 @@ export const useAmplitudeSetProperties = (): void => {
   const booleanRoles = useCallback(() => {
     const booleanStages = {
       is_teacher: formatedRoles?.includes('Professor'),
-      is_student: formatedRoles?.includes('Estudante'),
+      is_student: formatedRoles?.includes('Aluno'),
       is_coordinator: formatedRoles?.includes('Coordenador'),
       is_admin: formatedRoles?.includes('Administrador'),
       is_family: formatedRoles?.includes('Família')
@@ -94,9 +85,6 @@ export const useAmplitudeSetProperties = (): void => {
   ])
 
   useEffect(() => {
-    if (amplitudeRef.current.value) {
-      amplitude.getInstance().setUserId(guid as string | null)
-      amplitude.getInstance().setUserProperties(eventProperties)
-    }
+    amplitude.getInstance().setUserProperties(eventProperties)
   }, [eventProperties, guid])
 }

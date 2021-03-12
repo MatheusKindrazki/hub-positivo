@@ -11,11 +11,12 @@ import { documentTitle } from '@hub/common/utils'
 import SearchInput from '@hub/common/components/Search'
 import { Heading, Box, Collapse } from '@hub/common/components'
 
+import { cardFilter } from '~/utils/cardFilter'
+
 import FakeLoadingCard from './components/FakeLoading'
 import mockFakeLoading from './components/FakeCollapse/mock'
 import FakeCollapse from './components/FakeCollapse'
 import CardAlunos from './components/CardAlunos'
-import { cardFilter } from './cardFilter'
 
 const MyClasses: React.FC = () => {
   documentTitle('Minhas Turmas')
@@ -38,7 +39,8 @@ const MyClasses: React.FC = () => {
   }, 550)
 
   const filterCards = useMemo(
-    () => cardFilter({ data: classes || [], search: search }),
+    () =>
+      cardFilter({ data: classes || [], search: search, typeCard: 'alunos' }),
     [classes, search]
   )
   return (
