@@ -2,30 +2,41 @@ import amplitude from 'amplitude-js'
 
 import history from '~/services/history'
 
-import { PageViewed } from './types'
+import { PageViewed, CustomEvent } from './types'
 
 const pageViewedEvent = 'Page Viewed'
 
-window.onload = function () {
-  const replacePath = document.location.hash.replace('#', '')
+let oldTitle = document.title
 
-  const eventProperties: PageViewed = {
-    page_path: replacePath,
-    page_title: document.title,
-    page_url: document.URL
-  }
-  dispatchPage(eventProperties)
+let pathname = '/'
+
+window.onload = function () {
+  pathname = document.location.hash.replace('#', '')
+
+  document.addEventListener('@hub:title', listenerHubTitle)
 }
 
-history.listen(e => {
+history.listen(() => {
+  document.addEventListener('@hub:title', listenerHubTitle)
+})
+
+const listenerHubTitle = (custom: CustomEvent) => {
+  if (oldTitle === custom?.detail) return
+
+  pathname = document.location.hash.replace('#', '')
+
   const eventProperties: PageViewed = {
-    page_path: e.pathname,
-    page_title: document.title,
+    page_path: pathname,
+    page_title: custom?.detail || '',
     page_url: document.URL
   }
 
+  oldTitle = custom?.detail || ''
+
   dispatchPage(eventProperties)
-})
+
+  document.removeEventListener('@hub:title', listenerHubTitle)
+}
 
 function dispatchPage(data: PageViewed): void {
   amplitude.getInstance().logEvent(pageViewedEvent, data)

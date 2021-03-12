@@ -1,5 +1,9 @@
 import { Schools, User } from '~/store/modules/user/types'
 
+export type CustomEvent = Event & {
+  detail?: string
+}
+
 interface PageViewed {
   page_path: string
   page_title: string
