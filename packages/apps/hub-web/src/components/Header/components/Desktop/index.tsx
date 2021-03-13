@@ -39,7 +39,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
 
   const handleSignOut = useCallback(async () => {
     dispatch(signOut())
-    history.push('/login')
+    setTimeout(() => history.push('/login'), 500)
   }, [dispatch])
 
   const handleOpenTour = useCallback(() => {
