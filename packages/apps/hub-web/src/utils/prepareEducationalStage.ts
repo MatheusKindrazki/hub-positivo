@@ -41,8 +41,8 @@ export default function prepareStaged(data?: ContentResponse[]): Response {
       }
 
       ciclos.push({
-        label: educationalValue[e.serie.ciclo.nome],
-        value: e.serie.ciclo.nome
+        label: educationalValue[e.serie?.ciclo?.nome],
+        value: e.serie?.ciclo?.nome
       })
     }
   })

@@ -6,6 +6,7 @@ import { store } from '~/store'
 
 import hubApi from '@hub/api'
 
+import history from '~/services/history'
 import * as api from '~/services/eemConnect'
 
 import refreshToken from '~/middlewares/refreshToken'
@@ -131,6 +132,7 @@ describe('RefreshToken should work properly', () => {
     const spyDispatch = jest.spyOn(store, 'dispatch')
 
     jest.spyOn(api, 'EEMConnectPost').mockResolvedValue(mockedErrorApiResponse)
+    const spyPush = jest.spyOn(history, 'push')
 
     const spySetHeaders = jest.spyOn(hubApi, 'setHeaders')
 
@@ -139,6 +141,7 @@ describe('RefreshToken should work properly', () => {
     await waitFor(() => {
       expect(spyDispatch).toHaveBeenNthCalledWith(1, refreshTokenAction)
       expect(spyDispatch).toHaveBeenNthCalledWith(2, refreshTokenFailureAction)
+      expect(spyPush).toHaveBeenCalledWith('/login')
       expect(spySetHeaders).toHaveBeenCalledWith({
         Authorization: 'Bearer '
       })
