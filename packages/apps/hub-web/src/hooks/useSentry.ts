@@ -14,8 +14,6 @@ const useSentry = (): void => {
 
   useEffect(() => {
     // ? Captura de bugs para o Sentry
-    console.log(process.env.REACT_APP_NODE_ENV)
-
     if (process.env.REACT_APP_NODE_ENV === 'production') {
       Sentry.setUser({
         username: user?.username as string,

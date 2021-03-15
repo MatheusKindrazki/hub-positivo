@@ -13,21 +13,12 @@ describe('useSentry hook should work properly', () => {
   const setUser = jest.fn()
   const setContext = jest.fn()
 
-  // beforeEach(() => {
-  //   jest.resetModules()
-  // })
-
-  it('If environment is not `production`, this hook shouldn`t call its methods', () => {
-    process.env.REACT_APP_NODE_ENV = 'develop'
-
-    renderHook(() => useSentry())
-    expect(setUser).not.toHaveBeenCalled()
-    expect(setContext).not.toHaveBeenCalled()
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
   it('If environment is `production`, this hook should call its methods correctly', () => {
     process.env.REACT_APP_NODE_ENV = 'production'
-
     const user = {
       guid: 'guid',
       username: 'username',
@@ -64,5 +55,11 @@ describe('useSentry hook should work properly', () => {
       school: school.label,
       username: user.username
     })
+  })
+  it('If environment is not `production`, this hook shouldn`t call its methods', () => {
+    process.env.REACT_APP_NODE_ENV = 'develop'
+    renderHook(() => useSentry())
+    expect(setUser).not.toHaveBeenCalled()
+    expect(setContext).not.toHaveBeenCalled()
   })
 })
