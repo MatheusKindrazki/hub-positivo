@@ -12,6 +12,8 @@ import ModalSupport from '~/components/ModalSupport'
 
 import Routes from '~/routes'
 
+import '~/hooks/amplitude/amplitudePageView'
+
 const App: React.FC = () => {
   return (
     <ThemeProvider>

@@ -73,6 +73,8 @@ describe('Expired Token page should work properly', () => {
   })
 
   it('Should redirect to `/login` when `Voltar para o login` is clicked', () => {
+    jest.useFakeTimers()
+
     const { getByText } = setup(CUSTOM_STATE)
 
     const goBackToLogin = getByText(/Voltar para o login/i)
@@ -80,6 +82,7 @@ describe('Expired Token page should work properly', () => {
     expect(goBackToLogin).toBeInTheDocument()
 
     fireEvent.click(goBackToLogin)
+    jest.runAllTimers()
 
     expect(push).toHaveBeenCalledTimes(1)
     expect(push).toHaveBeenCalledWith('/login')

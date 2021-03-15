@@ -175,11 +175,8 @@ describe('Testing that the Home page works correctly', () => {
     })
     expect(spyAmplitudeToolOpened).toHaveBeenCalledTimes(1)
     expect(spyAmplitudeToolOpened).toHaveBeenCalledWith({
-      category: undefined,
-      educational_stage: '',
-      tool: 'Provas',
-      user_role: 'Administrador',
-      user_school: undefined
+      card_name: provasSolution.nome,
+      location: 'dashboard'
     })
   })
 

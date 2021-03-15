@@ -34,7 +34,7 @@ const ForgotPasswordFail: React.FC = () => {
         <Button
           colorScheme="blue"
           size="lg"
-          onClick={() => history.push('/login')}
+          onClick={() => setTimeout(() => history.push('/login'), 500)}
         >
           Voltar para o login
         </Button>

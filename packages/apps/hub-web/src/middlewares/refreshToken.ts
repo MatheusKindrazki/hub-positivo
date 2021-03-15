@@ -45,7 +45,7 @@ export default async (): Promise<boolean> => {
         'Desculpe sua sessão expirou, realiza o login novamente para continuar!'
       )
 
-      history.push('/login')
+      setTimeout(() => history.push('/login'), 500)
     }
 
     api.setHeaders({

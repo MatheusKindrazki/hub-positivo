@@ -27,6 +27,7 @@ const setup = () => {
     reducers: ['user', 'forgotPassword'],
     store
   })
+
   const pwdInput = utils.getByPlaceholderText('Nova senha')
   const confirmPwdInput = utils.getByPlaceholderText('Confirmar nova senha')
   const showPwdButton = utils.getAllByTestId('display-pwd-btn')
@@ -43,6 +44,9 @@ const setup = () => {
 }
 
 describe('Change Password page should work properly', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
   it('should change input type if view changes', async () => {
     const { showPwdButton, pwdInput, confirmPwdInput } = setup()
 
@@ -57,6 +61,7 @@ describe('Change Password page should work properly', () => {
     const pushSpy = jest.spyOn(history, 'push')
 
     setup()
+    jest.runAllTimers()
 
     expect(pushSpy).toHaveBeenCalledWith('/login')
   })
@@ -67,6 +72,7 @@ describe('Change Password page should work properly', () => {
     const { goBackButton } = setup()
 
     fireEvent.click(goBackButton)
+    jest.runAllTimers()
 
     expect(pushSpy).toHaveBeenCalledWith('/login')
   })
