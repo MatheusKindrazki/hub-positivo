@@ -86,7 +86,6 @@ const Home: React.FC = () => {
       cardFilter({ data: cards || [], search: search, typeCard: 'solucoes' }),
     [cards, search]
   )
-  // console.log(filterCards)
 
   return (
     <>
