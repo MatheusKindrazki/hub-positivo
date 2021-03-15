@@ -13,15 +13,18 @@ describe('useSentry hook should work properly', () => {
   const setUser = jest.fn()
   const setContext = jest.fn()
 
-  afterEach(() => {
-    jest.clearAllMocks()
-  })
+  // beforeEach(() => {
+  //   jest.resetModules()
+  // })
 
   it('If environment is not `production`, this hook shouldn`t call its methods', () => {
+    process.env.REACT_APP_NODE_ENV = 'develop'
+
     renderHook(() => useSentry())
     expect(setUser).not.toHaveBeenCalled()
     expect(setContext).not.toHaveBeenCalled()
   })
+
   it('If environment is `production`, this hook should call its methods correctly', () => {
     process.env.REACT_APP_NODE_ENV = 'production'
 
