@@ -56,6 +56,7 @@ describe('useSentry hook should work properly', () => {
       username: user.username
     })
   })
+
   it('If environment is not `production`, this hook shouldn`t call its methods', () => {
     process.env.REACT_APP_NODE_ENV = 'develop'
     renderHook(() => useSentry())
