@@ -7,10 +7,12 @@ import { render } from '@hub/test-utils'
 import Auth from '~/layouts/Auth'
 
 describe('Auth`s layout should render without crashing', () => {
+  beforeAll(() => {
+    process.env.REACT_APP_VERSION = '1.0'
+  })
   it('Auth`s layout should encapsulate correctly the children', () => {
     const element = 'children'
-    process.env.REACT_APP_VERSION = '1.0'
-    const { getByText, debug } = render(<Auth>{element}</Auth>, {
+    const { getByText } = render(<Auth>{element}</Auth>, {
       store,
       reducers: ['global']
     })
@@ -19,6 +21,5 @@ describe('Auth`s layout should render without crashing', () => {
 
     expect(children).toBeInTheDocument()
     expect(version).toBeInTheDocument()
-    debug()
   })
 })
