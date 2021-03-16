@@ -49,9 +49,7 @@ const ForgotPassword: React.FC = () => {
         return dispatch(pwdTokenRequest(data))
       } catch (err) {
         if (err instanceof ValidationError) {
-          console.log(err)
           const errors = getValidationErrors(err)
-
           formRef?.current?.setErrors(errors)
         }
         return toast.error(
