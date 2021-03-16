@@ -47,7 +47,7 @@ export function* forgotPassword({ payload }: AlterPasswordPayload): Generator {
   }
   toast.success('Senha Alterada com sucesso!')
 
-  history.push('/login')
+  setTimeout(() => history.push('/login'), 500)
 
   return yield put(forgotPasswordSuccess())
 }

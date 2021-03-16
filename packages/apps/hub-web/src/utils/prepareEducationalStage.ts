@@ -13,6 +13,7 @@ export interface Ciclos {
 export interface ContentResponse {
   ativo: boolean
   serie: {
+    nome?: string
     ciclo: {
       nome: 'EM' | 'EF2' | 'EF1' | 'EI'
     }
@@ -40,8 +41,8 @@ export default function prepareStaged(data?: ContentResponse[]): Response {
       }
 
       ciclos.push({
-        label: educationalValue[e.serie.ciclo.nome],
-        value: e.serie.ciclo.nome
+        label: educationalValue[e.serie?.ciclo?.nome],
+        value: e.serie?.ciclo?.nome
       })
     }
   })

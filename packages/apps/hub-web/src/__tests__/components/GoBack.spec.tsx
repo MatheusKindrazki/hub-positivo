@@ -12,7 +12,7 @@ describe('Goback component', () => {
 
     const { getByTestId } = wrapper
 
-    const button = getByTestId('goback-button')
+    const button = getByTestId('go-back')
 
     await fireEvent.click(button)
     expect(wrapper).toMatchSnapshot()

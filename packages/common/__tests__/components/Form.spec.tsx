@@ -1,5 +1,4 @@
 import React from 'react'
-import '@testing-library/jest-dom'
 
 import * as unform from '@unform/core'
 

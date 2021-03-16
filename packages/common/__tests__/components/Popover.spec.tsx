@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { fireEvent, render, act } from '@hub/test-utils'
+import { fireEvent, render, waitFor } from '@hub/test-utils'
 
 import Popover, {
   PopoverTrigger,
@@ -36,10 +36,10 @@ describe('Popover component should work properly', () => {
     const button = getByRole('button', { name: /trigger/i })
     const content = getByText(phrase)
 
-    await act(async () => {
-      await fireEvent.click(button)
-    })
+    fireEvent.click(button)
 
-    expect(content).not.toBeVisible()
+    await waitFor(() => {
+      expect(content).not.toBeVisible()
+    })
   })
 })

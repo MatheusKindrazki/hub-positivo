@@ -21,12 +21,13 @@ import {
 
 import { amplitudeToolOpened } from '~/services/amplitude'
 
+import { cardFilter } from '~/utils/cardFilter'
+
 import { Container } from './styles'
 import Filter from './components/Filter'
 import FakeLoadingCard from './components/FakeLoading'
 import mockFakeLoading from './components/FakeCollapse/mock'
 import FakeCollapse from './components/FakeCollapse'
-import { cardFilter } from './cardFilter'
 
 const Home: React.FC = () => {
   documentTitle('Home')
@@ -41,7 +42,7 @@ const Home: React.FC = () => {
   const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
   )
-  const { level: educational_stage, levels } = useSelector(
+  const { class: userClass } = useSelector(
     (state: Store.State) => state.educationalStage
   )
   const { data: cards, loading: load } = useSelector(
@@ -65,11 +66,8 @@ const Home: React.FC = () => {
     data => {
       const slug = createSlug(data.nome)
       amplitudeToolOpened({
-        category: data.category,
-        tool: data.nome,
-        educational_stage,
-        user_role: nameProfile,
-        user_school: useSchool?.value
+        card_name: data.nome,
+        location: 'dashboard'
       })
       dispatch(
         preAuth({
@@ -80,11 +78,12 @@ const Home: React.FC = () => {
         })
       )
     },
-    [dispatch, educational_stage, nameProfile, useSchool]
+    [dispatch]
   )
 
   const filterCards = useMemo(
-    () => cardFilter({ data: cards || [], search: search }),
+    () =>
+      cardFilter({ data: cards || [], search: search, typeCard: 'solucoes' }),
     [cards, search]
   )
 
@@ -111,11 +110,7 @@ const Home: React.FC = () => {
             avatar={avatar}
             profile={nameProfile || ''}
             schoolName={useSchool?.label || ''}
-            educational_stage={
-              nameProfile === 'Aluno'
-                ? levels?.find(e => e.value === educational_stage)?.label
-                : undefined
-            }
+            educational_stage={nameProfile === 'Aluno' ? userClass : undefined}
           />
 
           <Box

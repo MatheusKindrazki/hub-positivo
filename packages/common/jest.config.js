@@ -5,10 +5,10 @@ module.exports = {
   name,
   preset: 'ts-jest',
   moduleNameMapper: {
-    "~(.*)$": "<rootDir>/src/$1"
+    '~(.*)$': '<rootDir>/src/$1'
   },
   collectCoverageFrom: [
     '<rootDir>/components/**/.tsx',
     '<rootDir>/utils/**/.ts',
-  ],
-};
+  ]
+}

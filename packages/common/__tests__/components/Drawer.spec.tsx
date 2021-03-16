@@ -1,7 +1,5 @@
 import React from 'react'
 
-import '@testing-library/jest-dom'
-
 import { renderHook } from '@testing-library/react-hooks'
 
 import { render } from '@hub/test-utils'

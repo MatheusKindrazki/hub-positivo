@@ -73,4 +73,9 @@ export interface RehydrateAuth {
     signed: boolean
     reduced_token: string
   }
+  user: {
+    user: {
+      guid: string
+    }
+  }
 }
