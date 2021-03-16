@@ -1,7 +1,5 @@
 import React from 'react'
 
-import '@testing-library/jest-dom'
-
 import { fireEvent, render, waitFor } from '@hub/test-utils'
 
 import Popover, {
@@ -40,6 +38,8 @@ describe('Popover component should work properly', () => {
 
     fireEvent.click(button)
 
-    await waitFor(() => expect(content).not.toBeVisible())
+    await waitFor(() => {
+      expect(content).not.toBeVisible()
+    })
   })
 })
