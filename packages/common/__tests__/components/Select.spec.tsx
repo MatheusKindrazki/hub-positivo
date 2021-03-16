@@ -6,7 +6,6 @@ import { renderHook } from '@testing-library/react-hooks'
 import { fireEvent, render } from '@hub/test-utils'
 
 import { useTheme } from '../../layout'
-import '@testing-library/jest-dom'
 import Select, { PropsSelect } from '../../components/Select'
 
 jest.mock('../../layout', () => ({

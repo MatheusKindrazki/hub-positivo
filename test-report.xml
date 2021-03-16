@@ -158,6 +158,7 @@
   <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/transpileProfile.spec.ts">
     <testCase name="Profile structure Must return the correct structure following a pre-defined string" duration="1"/>
   </file>
+<<<<<<< HEAD
   <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/isMobile.spec.ts">
     <testCase name="Check device origin Should return if the device is not mobile" duration="2"/>
     <testCase name="Check device origin Should return if the device is  mobile" duration="1"/>
@@ -178,5 +179,41 @@
   </file>
   <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/utils/capitalize.spec.ts">
     <testCase name="expect capitalize to work correctly should return capitalized string" duration="2"/>
+=======
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/utils/capitalize.spec.ts">
+    <testCase name="expect capitalize to work correctly should return capitalized string" duration="1"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/prepareSchoolAndRoles.spec.ts">
+    <testCase name="Adjust school structure and profiles Should return data structure of schools" duration="3"/>
+    <testCase name="Adjust school structure and profiles Should return data structure of Roles" duration="2"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/amplitude.spec.ts">
+    <testCase name="testing amplitude functions Amplitude should initialize on amplitudeInit" duration="1"/>
+    <testCase name="testing amplitude functions amplitudeToolOpened send event with correct properties" duration="1"/>
+    <testCase name="testing amplitude functions useAmplitudePageView should log event" duration="0"/>
+    <testCase name="testing amplitude functions useAmplitudePageView shouldn`t log event when signed is false" duration="0"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/layout/styles.spec.tsx">
+    <testCase name="Testing chacka`s styles hooks useTheme shouldn`t return void theme when encapsulated by a theme provider" duration="155"/>
+    <testCase name="Testing chacka`s styles hooks useColorMode should  gives you access to the current color mode, and a function to toggle the color mode." duration="150"/>
+    <testCase name="Testing chacka`s styles hooks useColorModeValue returns current color mode: by default return light mode color" duration="124"/>
+    <testCase name="Testing chacka`s styles hooks useMediaQuery should returns an array of booleans, indicating whether the given query matches or queries match" duration="6"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/isMobile.spec.ts">
+    <testCase name="Check device origin Should return if the device is not mobile" duration="1"/>
+    <testCase name="Check device origin Should return if the device is  mobile" duration="2"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/layout/provider.spec.tsx">
+    <testCase name="Testing Theme Provider should change theme when profile changes" duration="456"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/Home.spec.tsx">
+    <testCase name="Testing that the Home page works correctly Should render the correct elements on the screen" duration="539"/>
+    <testCase name="Testing that the Home page works correctly Should not show any card when an unknown card is searched on filter" duration="235"/>
+    <testCase name="Testing that the Home page works correctly Should dispatch `@auth/AUTH_PRODUCT_REQUEST` when a card is clicked" duration="202"/>
+    <testCase name="Testing that the Home page works correctly Should not render any cards when the products are loading" duration="321"/>
+    <testCase name="Testing that the Home page works correctly Should render a message when the products have already loaded, but they are empty []" duration="143"/>
+    <testCase name="Testing that the Home page works correctly Should render with default Welcome titles" duration="227"/>
+    <testCase name="Testing that the Home page works correctly Should render `userClass` and `Profile` when profile name is `Aluno`" duration="199"/>
+>>>>>>> feature/tests-HubWeb-pages
   </file>
 </testExecutions>

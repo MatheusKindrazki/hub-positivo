@@ -3,7 +3,6 @@ import React from 'react'
 import { render, fireEvent } from '@hub/test-utils'
 
 import Tour, { TourProps } from '../../components/Tour'
-import '@testing-library/jest-dom'
 
 const tourProps: TourProps = {
   steps: [{ selector: '#seletor', content: 'content' }],
