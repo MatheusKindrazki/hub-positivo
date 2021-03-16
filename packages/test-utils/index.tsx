@@ -31,9 +31,9 @@ export const Providers: FC = ({ children }) => {
 
 function getStatesFromStore(store: Store, reducers: Reducers[]): CustomState {
   const applicationState = store.getState()
-  return reducers.reduce((acumulator, current) => {
+  return reducers.reduce((accumulator, current) => {
     const initialState = applicationState[current]
-    return { [current]: initialState, ...acumulator }
+    return { [current]: initialState, ...accumulator }
   }, {})
 }
 
@@ -42,12 +42,12 @@ function formatState(
   customState: CustomState
 ): CustomState {
   if (!customState || !Object.keys(customState).length) return states
-  const finalState = Object.entries(states).reduce((acumulator, current) => {
+  const finalState = Object.entries(states).reduce((accumulator, current) => {
     const reducerName = current[0] as Reducers
     const initialState = states[reducerName]
     return {
       [reducerName]: { ...initialState, ...customState[reducerName] },
-      ...acumulator
+      ...accumulator
     }
   }, {})
   return finalState

@@ -1,7 +1,5 @@
 import React, { useEffect, useCallback } from 'react'
 
-import { object } from 'yup/lib/locale'
-
 import { useSelector, useDispatch } from 'react-redux'
 
 import { signOut } from '~/store/modules/auth/actions'
