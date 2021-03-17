@@ -136,7 +136,7 @@ const Home: React.FC = () => {
           {!load && !globalLoading && filterCards ? (
             filterCards.map((card, i) => (
               <Collapse
-                key={Math.random()}
+                key={card.id}
                 disable
                 cor={card.cor}
                 id={card.id}
@@ -147,7 +147,7 @@ const Home: React.FC = () => {
               >
                 {card.solucoes?.map(item => (
                   <CardProduct
-                    key={Math.random()}
+                    key={item.id}
                     handlePush={url =>
                       handlePushProduct({
                         url,
