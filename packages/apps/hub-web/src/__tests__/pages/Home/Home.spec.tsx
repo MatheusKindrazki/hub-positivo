@@ -132,7 +132,7 @@ describe('Testing that the Home page works correctly', () => {
     expect(payload).toStrictEqual({
       name: provasSolution.nome,
       product: createSlug('provas'),
-      tipoRenderizacao: undefined,
+      tipoRenderizacao: provasSolution.tipoRenderizacao,
       url: provasSolution.link
     })
     expect(spyAmplitudeToolOpened).toHaveBeenCalledTimes(1)
