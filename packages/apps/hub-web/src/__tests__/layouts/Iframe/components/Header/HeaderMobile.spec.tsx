@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { debug } from 'node:console'
 import { renderHook } from '@testing-library/react-hooks'
 
 import { CardProduct } from '~/store/modules/products/types'
@@ -14,9 +13,10 @@ import * as amplitude from '~/services/amplitude'
 import HeaderMobile from '~/layouts/Iframe/components/Header/HeaderMobile'
 import cardsMock from '~/../../../test-utils/__mocks__/cards.mock'
 
-describe('getting started', () => {
+describe('Mobile Header`s layout should work properly', () => {
   afterEach(() => {
     jest.clearAllMocks()
+    jest.restoreAllMocks()
   })
 
   const setup = (cards: CardProduct[] | undefined) => {
