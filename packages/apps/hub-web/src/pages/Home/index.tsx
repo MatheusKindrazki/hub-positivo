@@ -26,8 +26,8 @@ import { cardFilter } from '~/utils/cardFilter'
 import { Container } from './styles'
 import Filter from './components/Filter'
 import FakeLoadingCard from './components/FakeLoading'
-import mockFakeLoading from './components/FakeCollapse/mock'
-import FakeCollapse from './components/FakeCollapse'
+import mockFakeLoading from './components/FakeCollapseHome/mock'
+import FakeCollapse from './components/FakeCollapseHome'
 
 const Home: React.FC = () => {
   documentTitle('Home')
