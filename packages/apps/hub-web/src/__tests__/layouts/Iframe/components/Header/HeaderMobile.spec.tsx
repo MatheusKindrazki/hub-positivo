@@ -15,7 +15,7 @@ describe('getting started', () => {
     )
     return { ...wrapper, handlePush }
   }
-  it('it', () => {
+  it('should work', () => {
     const { debug } = setup()
     debug()
   })
