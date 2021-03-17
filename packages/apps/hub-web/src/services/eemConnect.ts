@@ -3,7 +3,7 @@ import { ApiResponse } from 'apisauce'
 
 import { apiEEMAuth, apiEEMInfos } from '@hub/api'
 
-interface EEMProps {
+export interface EEMProps {
   endpoint: string
   data: {
     grant_type: 'change_school' | 'password' | 'refresh_token'
@@ -15,7 +15,7 @@ interface EEMProps {
   }
 }
 
-interface EEMPropsInfo<T> {
+export interface EEMPropsInfo<T> {
   endpoint: string
   token: string
   data: T
