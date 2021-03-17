@@ -14,8 +14,8 @@ import { Heading, Box, Collapse } from '@hub/common/components'
 import { cardFilter } from '~/utils/cardFilter'
 
 import FakeLoadingCard from './components/FakeLoading'
-import mockFakeLoading from './components/FakeCollapse/mock'
-import FakeCollapse from './components/FakeCollapse'
+import mockFakeLoading from './components/FakeCollapseClasses/mock'
+import FakeCollapse from './components/FakeCollapseClasses'
 import CardAlunos from './components/CardAlunos'
 
 const MyClasses: React.FC = () => {
