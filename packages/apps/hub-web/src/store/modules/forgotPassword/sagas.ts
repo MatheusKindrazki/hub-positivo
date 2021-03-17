@@ -30,8 +30,7 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
       },
       {
         headers: {
-          'content-type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*'
+          'content-type': 'application/json;charset=UTF-8'
         }
       }
     )
@@ -70,8 +69,7 @@ export function* validatePIN({ payload }: ValidatePINtPayload): Generator {
       },
       {
         headers: {
-          'content-type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*'
+          'content-type': 'application/json;charset=UTF-8'
         }
       }
     )
