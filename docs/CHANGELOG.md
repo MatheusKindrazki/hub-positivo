@@ -1,3 +1,67 @@
+# [1.6.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.5.0...v1.6.0) (2021-03-13)
+
+
+### Bug Fixes
+
+* **~/pages/home/cardfilter.ts:** reparar filtro ([9dc6651](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9dc6651f0d4c82fa0131e5e92ff40b5f21270c33))
+* **adicionando nao obrigatoriedade na tipagem do amplitudeprops:** bug fix ([8d3c2ed](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/8d3c2ed9fd4904163020a14004db6fdca1fd5359))
+* **adicionar corpo da tipagem das propriedades setadas no amplitude:** bug fix ([a842399](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/a8423994d85093a55a43a324dc18d249c1a2c4e5))
+* **adicionar tipagem nas propriedades do setprop do amplitude:** bug fix ([b3e3bb7](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b3e3bb75d205ceb80b2ecc92bc123e70ebe2f2df))
+* **amplitude:** corrigido disparo inicial setProperties com informacoes faltando ([9fef4e7](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9fef4e7d372f6daf85185e583d112ff1725b7d5f))
+* **amplitude:** corrigido erro na funcao de formatacao da lista de escolas ([847ce86](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/847ce86ae5bd6c09efbcd6c42bc384265a465ccb))
+* **amplitude -> tool opened, set user props e page view:** bug fix ([bc67ebd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/bc67ebd5dd6b4733b04e8cb88d963bba087001cf))
+* **amplitude setproperties:** modificadas propriedades do usuario ([3273181](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3273181bb363da5d2dd06e3e3d0633ccbd262e3f))
+* **configurando chamada do amplitude page view:** bug fix ([554b8bd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/554b8bd98f41fbbca390958ea1acb7498c93a740))
+* **criando mocks para testar a funcao cardfilter:** mocks ([21dd427](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/21dd427b80079bffff159b88963023ac969e2887))
+* **fix no teste do componente commom do popover/inicializar testes do cardfilter de utils:** fix ([1e8ed9e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1e8ed9ec81ef5d4a67877e766ff78d999708086b))
+* **mover tipagem do amplitude para ./types:** bug fix ([3c7c396](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3c7c396d0d7a06de6d9476c41736bba93b4f0ddc))
+* **refatorar função responsavel por filtrar os cards do hub e as turmas das classes:** refatoração ([bfac5b6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/bfac5b69565f752e851332b276656ceda08068d9))
+* **removendo cardfilter dos headers dos iframes:** refatoração ([df956e5](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/df956e5094e7ec7b3dee3050149cc089e5ccb703))
+* **removendo types não utilizados:** remoção de linhas ([fb547bf](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/fb547bf3a98b0738940d3fe4800ba8454d505039))
+* **remover cardfilter/home e cardfilter/classes:** remover duplicação de arquivo ([2977851](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/297785124528e78cdaadb0a36639d77dcfddbed3))
+* **testar branch faltando no amplitude page view (se signed é falso):** bug fix ([f33c2d3](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/f33c2d3900de71685e4647aba9e26b6ee331b2d6))
+* **tipagem dos elementos enviados ao amplitude:** bug fix ([640c5a3](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/640c5a38bffe09031e3c63c7990620661ecc5e71))
+* adequando teste do amplitude as modificacoes feitas ([7f3f413](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/7f3f4130641dcea631d15ad137989c2be11acdc2))
+* adequando testes do amplitude com a condicional de signed ([d6f30ca](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d6f30ca2a6eab629e2ec7586272011de1be4cf50))
+* corrigida ordem dos disparos de eventos no identify do amplitude ([755a9ef](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/755a9efabdd6bf22af6fcf5a1f34f42773cb3770))
+* **testes da funçao cardfilter/utils finalizados:** testar refatoração ([c38305a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/c38305a4c6b39a5d24457676116cf02c48ded73f))
+* corrigido bug de pageview ser disparado antes do login do usuario ([ae007db](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ae007dbae6cf267222f46da599d6b2ec696baabe))
+* removendo informacoes do usuario apos sign out ([eff995e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/eff995e5d031ba7175d9cf84cd7907205a011a0b))
+
+
+### Features
+
+* criando evento customizado para captura do titulo da aplicação ([0073a83](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/0073a83d0b6306ffbf4dbd29e7661228ff3ed711))
+* validando id token e reduced token ([2da6572](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2da6572d1fa11d65a9bc2afdb18d705ab006df8b))
+* **amplitude:** incluindo disparos de tool opened nos menus header e mobile ([aa30c3b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/aa30c3b896c0ccc20fee983866b8ad2f5ab4eee0))
+
+# [1.5.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.4.0...v1.5.0) (2021-02-27)
+
+
+### Bug Fixes
+
+* ajuste no teste do Popover ([52892bf](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/52892bfaa7f8e59e005103f0e6cd6edd63296df4))
+* atualizando nome dos alunos ([244afe8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/244afe816848829c97d22a70b287e02ce4a9ffc9))
+* fixed amplitude setUserId call with wrong properties ([040a56e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/040a56ec46dd2606c113440705119b812c380a01))
+* forçando alteração do iframe ([1251fa0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1251fa0565b9e8ccf01c3764974a8397b3ece617))
+* mostrando ensino apenas no aluno ([00f7d7a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/00f7d7a722d6590528688623d80f66c81f78cc11))
+* validação de turmas não encontradas ([a440b4f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/a440b4fea3ca5b78a909727a8b0083c2f37402f6))
+
+
+### Features
+
+* aplicando filtro de alunos na turma ([3bc9f48](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3bc9f48166e3394ffbe5a9b82157980a2a1f6ba8))
+* buscando dados de turma ([bb88d86](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/bb88d86c898cc2cef23edfca7ed6ed7fdddb0ed7))
+* mostrando botão minhas turmas apenas para professor ([d9426c6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d9426c6baf7147f5a94adbae5736d0534593495f))
+* mostrando rota de turmas apenas para professor ([feda2e8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/feda2e8f96f60df256161fb4235cc08c88ee871c))
+* mostrar card soluções por escola ([84ab701](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/84ab701c686ed7e440849f1e57a8af35b797f340))
+
+
+### Reverts
+
+* removendo snapshots ([65a2867](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/65a2867399e0d5d8207c138b9cd141d30345309b))
+* voltando com frozenfile ([eff7c87](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/eff7c87bf0997b7cec75342190502517b2a632a6))
+
 # [1.4.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.3.0...v1.4.0) (2021-02-19)
 
 

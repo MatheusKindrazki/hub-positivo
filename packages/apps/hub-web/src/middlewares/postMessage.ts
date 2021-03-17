@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 
 import { useHistory, useLocation, useParams } from 'react-router-dom'
+import amplitude from 'amplitude-js'
 
-import hasJsonStructure from '~/utils/hasJsonStructure'
+import { hasJsonStructure } from '~/utils/hasJsonStructure'
 
 interface MessageProps {
   event: 'history-change' | undefined
@@ -11,6 +12,11 @@ interface MessageProps {
 
 interface ParamsProps {
   solution: string
+}
+interface PageViewed {
+  page_path: string
+  page_title: string
+  page_url: string
 }
 
 const regexAccept = ['/#!/', '/#/']
@@ -28,7 +34,7 @@ const usePostMessage = (): void => {
 
         const parseData = (JSON.parse(event.data) as MessageProps) || undefined
 
-        if (parseData.event === 'history-change') {
+        if (parseData?.event === 'history-change') {
           let alterURL = parseData.data
 
           regexAccept.forEach(e => {
@@ -44,6 +50,14 @@ const usePostMessage = (): void => {
           const mountURL = mergeLocation + newURL.pathname
 
           if (mountURL === location.pathname) return
+
+          const eventProperties: PageViewed = {
+            page_path: mountURL,
+            page_title: document.title,
+            page_url: document.URL
+          }
+
+          amplitude.getInstance().logEvent('Page Viewed', eventProperties)
 
           history.push(mountURL)
         }

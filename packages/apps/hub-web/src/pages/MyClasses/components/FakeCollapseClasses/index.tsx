@@ -9,25 +9,25 @@ import { Box, Heading, SimpleGrid } from '@hub/common/components'
 
 import CollapseGlobal from './styles'
 
-export interface CollapseProps {
+export interface ClassesCollapseProps {
   id: string
   gridColumns?: number | number[]
   className?: string
   grid?: boolean
 }
 
-const Collapse: React.FC<CollapseProps> = ({
+const ClassesCollapse: React.FC<ClassesCollapseProps> = ({
   id,
   children,
   gridColumns,
   grid = true,
   className
 }) => {
-  const [isLargerThan1280] = useMediaQuery('(min-width: 1300px)')
+  const [isDesktopClassesLarge] = useMediaQuery('(min-width: 1300px)')
 
-  const responsiveGrid = useMemo(() => {
-    return isLargerThan1280 ? 4 : 3
-  }, [isLargerThan1280])
+  const responsiveGridClasses = useMemo(() => {
+    return isDesktopClassesLarge ? 4 : 3
+  }, [isDesktopClassesLarge])
 
   return (
     <>
@@ -62,7 +62,7 @@ const Collapse: React.FC<CollapseProps> = ({
         <CollapseUI isOpened style={{ padding: '10px 0' }}>
           {grid ? (
             <SimpleGrid
-              columns={gridColumns || [1, 1, 2, responsiveGrid]}
+              columns={gridColumns || [1, 1, 2, responsiveGridClasses]}
               spacing={4}
               mt="4"
             >
@@ -78,4 +78,4 @@ const Collapse: React.FC<CollapseProps> = ({
   )
 }
 
-export default Collapse
+export default ClassesCollapse

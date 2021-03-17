@@ -119,6 +119,7 @@ const ChangePassword: React.FC = () => {
           iconRight={
             <Box
               as={view ? Eye : EyeSlash}
+              data-testid="display-pwd-btn"
               color="gray.500"
               size="19px"
               onClick={() => setView(!view)}
@@ -134,6 +135,7 @@ const ChangePassword: React.FC = () => {
           iconRight={
             <Box
               as={view ? Eye : EyeSlash}
+              data-testid="display-pwd-btn"
               color="gray.500"
               size="19px"
               onClick={() => setView(!view)}

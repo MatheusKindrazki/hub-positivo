@@ -49,7 +49,6 @@ const ForgotPassword: React.FC = () => {
         return dispatch(pwdTokenRequest(data))
       } catch (err) {
         if (err instanceof ValidationError) {
-          console.log(err)
           const errors = getValidationErrors(err)
 
           formRef?.current?.setErrors(errors)
@@ -64,7 +63,7 @@ const ForgotPassword: React.FC = () => {
 
   return (
     <Box p="6">
-      <GoBack colorScheme="blue" onClick={handleGoBack}>
+      <GoBack colorScheme="blue" onClick={handleGoBack} data-testid="go-back">
         Nova senha
       </GoBack>
       <Text fontSize="md" color="gray.500" mb="6">
