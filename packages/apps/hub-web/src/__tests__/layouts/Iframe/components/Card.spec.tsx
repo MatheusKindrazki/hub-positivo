@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { render } from '@hub/test-utils'
+import { fireEvent, render } from '@hub/test-utils'
 
 import Card, { CardProps } from '~/layouts/Iframe/components/Card'
 
-describe('getting started', () => {
+describe('Card`s layout should work properly', () => {
   let card: CardProps
 
   beforeAll(() => {
@@ -20,13 +20,36 @@ describe('getting started', () => {
       tipoRenderizacao: 'iframe'
     }
   })
-  const setup = (card = {} as CardProps) => {
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
+  const setup = (card: CardProps) => {
     const onClick = jest.fn()
     const wrapper = render(<Card card={card} onClick={onClick} />)
-    return { ...wrapper, onClick }
+    const cardName = wrapper.getByText(card.nome)
+
+    return { ...wrapper, onClick, cardName }
   }
-  it('it', () => {
-    const { debug } = setup(card)
-    debug()
+
+  it('Should render card`s elements on screen', () => {
+    const { cardName } = setup(card)
+
+    expect(cardName).toBeInTheDocument()
+  })
+
+  it('Should call onClick function when card box is clicked', () => {
+    card.link = undefined
+    const { cardName, onClick } = setup(card)
+
+    fireEvent.click(cardName)
+
+    const { nome, tipoRenderizacao, link } = card
+    expect(onClick).toHaveBeenCalledWith({
+      nome,
+      tipoRenderizacao,
+      url: link || ''
+    })
   })
 })
