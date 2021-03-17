@@ -4,14 +4,20 @@ node_modules
 .pnp.js
 .vscode
 remote-profile
+
+test-report.xml
+*/test-report.xml
+
 # testing
 coverage
 # production
 build
 bundle.js*
+
 __snapshots__
 **/__snapshots__
 ./**/__snapshots__
+
 # misc
 .DS_Store
 .env
@@ -22,5 +28,7 @@ __snapshots__
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
 debug.log
 .eslintcache
