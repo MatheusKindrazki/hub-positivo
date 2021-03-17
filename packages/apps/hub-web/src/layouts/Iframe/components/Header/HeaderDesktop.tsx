@@ -50,6 +50,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
         classNames="hub-menu"
       >
         <Box
+          data-testid="hub-header-menu"
           borderRadius="4px"
           boxShadow="dark-lg"
           border="1px solid #DADADA"
@@ -98,6 +99,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                 <SimpleGrid templateColumns="repeat(3, 1fr)" spacing={3}>
                   {card.solucoes?.map(solucao => (
                     <Card
+                      data-testid="hub-card"
                       key={Math.random()}
                       card={{ ...solucao, cor: card.cor }}
                       onClick={e => {
