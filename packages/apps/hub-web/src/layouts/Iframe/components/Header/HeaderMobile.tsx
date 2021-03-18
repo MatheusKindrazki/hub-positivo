@@ -59,7 +59,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
       >
         <Box as={DotsNine} size={24} />
       </Button>
-      <Drawer isOpen={isOpen} placement="right" onClose={() => onClose()}>
+      <Drawer isOpen={isOpen} placement="right" onClose={() => toggleMenu()}>
         <DrawerContent
           mt={['41px', '41px']}
           position="relative"

@@ -17,6 +17,7 @@ describe('Mobile Header`s layout should work properly', () => {
   afterEach(() => {
     jest.clearAllMocks()
     jest.restoreAllMocks()
+    jest.resetAllMocks()
   })
 
   const setup = (cards: CardProduct[] | undefined) => {
@@ -80,12 +81,34 @@ describe('Mobile Header`s layout should work properly', () => {
     const spyOnOpen = jest.spyOn(current, 'onOpen')
     const spyOnClose = jest.spyOn(current, 'onClose')
 
-    const { menuButton } = setup(cardsMock)
+    const { menuButton } = setup(undefined)
 
     fireEvent.click(menuButton)
-    expect(spyOnOpen).toHaveBeenCalled()
+    expect(spyOnOpen).toHaveBeenCalledTimes(1)
 
     fireEvent.click(menuButton)
-    expect(spyOnClose).toHaveBeenCalled()
+    expect(spyOnClose).toHaveBeenCalledTimes(1)
+  })
+
+  it('Should close Drawer when `Escape` (Esc) key is down', () => {
+    const {
+      result: { current }
+    } = renderHook(() => drawer.useDisclosure())
+
+    jest
+      .spyOn(drawer, 'useDisclosure')
+      .mockReturnValue({ ...current, isOpen: true })
+    const spyOnClose = jest.spyOn(current, 'onClose')
+    const { getByPlaceholderText } = setup(cardsMock)
+
+    const input = getByPlaceholderText('Buscar soluções', { exact: false })
+
+    // focando no search input para ter referência de escape
+    fireEvent.click(input)
+
+    // clicando em `Esc` para fechar o
+    fireEvent.keyDown(input, { key: 'Esc', code: 27 })
+
+    expect(spyOnClose).toHaveBeenCalledTimes(1)
   })
 })
