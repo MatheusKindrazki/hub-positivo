@@ -99,8 +99,7 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                 <SimpleGrid templateColumns="repeat(3, 1fr)" spacing={3}>
                   {card.solucoes?.map(solucao => (
                     <Card
-                      data-testid="hub-card"
-                      key={Math.random()}
+                      key={solucao.id}
                       card={{ ...solucao, cor: card.cor }}
                       onClick={e => {
                         amplitudeToolOpened({
