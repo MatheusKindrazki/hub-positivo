@@ -42,6 +42,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
     } else {
       onOpen()
     }
+    setSearch('')
     setShow(!show)
   }
 
@@ -59,7 +60,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
       >
         <Box as={DotsNine} size={24} />
       </Button>
-      <Drawer isOpen={isOpen} placement="right" onClose={() => toggleMenu()}>
+      <Drawer isOpen={isOpen} placement="right" onClose={() => onClose()}>
         <DrawerContent
           mt={['41px', '41px']}
           position="relative"
@@ -120,7 +121,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                             location: 'header'
                           })
                           handlePush(e)
-                          setShow(false)
+                          toggleMenu()
                         }}
                       />
                     ))}
