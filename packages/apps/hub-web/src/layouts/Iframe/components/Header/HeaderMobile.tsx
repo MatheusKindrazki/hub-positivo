@@ -42,7 +42,6 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
     } else {
       onOpen()
     }
-    setSearch('')
     setShow(!show)
   }
 
@@ -121,7 +120,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                             location: 'header'
                           })
                           handlePush(e)
-                          toggleMenu()
+                          setShow(false)
                         }}
                       />
                     ))}
