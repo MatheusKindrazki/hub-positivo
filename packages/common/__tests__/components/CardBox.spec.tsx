@@ -1,5 +1,4 @@
 import React from 'react'
-import '@testing-library/jest-dom'
 
 import { render } from '@hub/test-utils'
 

@@ -5,13 +5,13 @@ module.exports = {
   preset: 'ts-jest',
   projects: ['<rootDir>/packages/**/jest.config.js'],
   testMatch: ['**/__tests__/**/*.ts?(x)'],
-  coverageReporters: ['text', 'lcov', 'json-summary'],
+  coverageReporters: ['text', 'html', 'lcov', 'json-summary'],
   coverageThreshold: {
     global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80
+      branches: 50,
+      functions: 50,
+      lines: 50,
+      statements: 50
     }
   },
   globals: {
@@ -20,6 +20,7 @@ module.exports = {
     }
   },
   transform: {
-    '^.+\\.tsx?$': 'babel-jest'
+    '^.+\\.tsx?$': 'babel-jest',
+    '^.+\\.svg$': 'jest-svg-transformer'
   }
 }

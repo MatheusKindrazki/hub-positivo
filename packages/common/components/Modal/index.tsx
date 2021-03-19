@@ -33,7 +33,7 @@ const Modal: React.FC<ModalProps> = ({
         <ModalHeader fontWeight="500" fontSize="1.125rem">
           {title}
         </ModalHeader>
-        <ModalCloseButton />
+        <ModalCloseButton data-testid="modal-button-closed" />
         <ModalBody>{children}</ModalBody>
         {footerContent && <ModalFooter>{footerContent}</ModalFooter>}
       </ModalContent>

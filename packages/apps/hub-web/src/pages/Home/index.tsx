@@ -26,8 +26,8 @@ import { cardFilter } from '~/utils/cardFilter'
 import { Container } from './styles'
 import Filter from './components/Filter'
 import FakeLoadingCard from './components/FakeLoading'
-import mockFakeLoading from './components/FakeCollapse/mock'
-import FakeCollapse from './components/FakeCollapse'
+import mockFakeLoading from './components/FakeCollapseHome/mock'
+import FakeCollapse from './components/FakeCollapseHome'
 
 const Home: React.FC = () => {
   documentTitle('Home')
@@ -136,7 +136,7 @@ const Home: React.FC = () => {
           {!load && !globalLoading && filterCards ? (
             filterCards.map((card, i) => (
               <Collapse
-                key={Math.random()}
+                key={card.id}
                 disable
                 cor={card.cor}
                 id={card.id}
@@ -147,7 +147,7 @@ const Home: React.FC = () => {
               >
                 {card.solucoes?.map(item => (
                   <CardProduct
-                    key={Math.random()}
+                    key={item.id}
                     handlePush={url =>
                       handlePushProduct({
                         url,

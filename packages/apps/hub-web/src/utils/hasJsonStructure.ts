@@ -1,4 +1,4 @@
-function hasJsonStructure(str?: string): boolean {
+export function hasJsonStructure(str?: string): boolean {
   if (typeof str !== 'string') {
     return false
   }
@@ -11,5 +11,3 @@ function hasJsonStructure(str?: string): boolean {
     return false
   }
 }
-
-export default hasJsonStructure

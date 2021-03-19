@@ -2,7 +2,6 @@ import React from 'react'
 
 import { render } from '@hub/test-utils'
 
-import '@testing-library/jest-dom'
 import Image from '../../components/Image'
 
 describe('Image renders without crashing', () => {
