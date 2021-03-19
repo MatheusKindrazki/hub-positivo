@@ -3,7 +3,7 @@ import {
   authProductRequest,
   authProductSuccess,
   authProductFailure,
-  Actions as types
+  Actions
 } from '~/store/modules/authProduct/actions'
 
 describe('authProduct action creators should work properly', () => {
@@ -16,7 +16,7 @@ describe('authProduct action creators should work properly', () => {
       subpath: 'string'
     }
     const expectedAction = {
-      type: types.AUTH_PRODUCT_REQUEST,
+      type: Actions.AUTH_PRODUCT_REQUEST,
       payload
     }
     expect(preAuth(payload)).toEqual(expectedAction)
@@ -31,7 +31,7 @@ describe('authProduct action creators should work properly', () => {
       subpath: 'string'
     }
     const expectedAction = {
-      type: types.AUTH_PRODUCT_EEM_REQUEST,
+      type: Actions.AUTH_PRODUCT_EEM_REQUEST,
       payload
     }
     expect(authProductRequest(payload, 'AUTH_PRODUCT_EEM_REQUEST')).toEqual(
@@ -40,12 +40,12 @@ describe('authProduct action creators should work properly', () => {
   })
 
   it('should create an success action on authProductSuccess', () => {
-    const expectedAction = { type: types.AUTH_PRODUCT_SUCCESS }
+    const expectedAction = { type: Actions.AUTH_PRODUCT_SUCCESS }
     expect(authProductSuccess()).toEqual(expectedAction)
   })
 
   it('should create an failure action on authProductFailure', () => {
-    const expectedAction = { type: types.AUTH_PRODUCT_FAILURE }
+    const expectedAction = { type: Actions.AUTH_PRODUCT_FAILURE }
     expect(authProductFailure()).toEqual(expectedAction)
   })
 })
