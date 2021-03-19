@@ -4,7 +4,7 @@ import { render } from '@hub/test-utils'
 
 import * as chakra from '@chakra-ui/react'
 
-import FakeCollapse from '~/pages/Home/components/FakeCollapse'
+import FakeCollapse from '~/pages/Home/components/FakeCollapseHome'
 
 const childrenValue = 'testing children'
 
@@ -26,7 +26,7 @@ describe('FakeCollapse renders without crashing', () => {
     expect(children).toBeInTheDocument()
   })
 
-  it('Collapse with false grid doesnt render SimpleGrid', () => {
+  it("Collapse with false grid doesn't render SimpleGrid", () => {
     const { queryByTestId } = setup({ grid: false })
 
     const collapseBox = queryByTestId('simple-grid')
