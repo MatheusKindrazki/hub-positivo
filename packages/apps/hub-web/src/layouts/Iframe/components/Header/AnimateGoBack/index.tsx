@@ -25,7 +25,7 @@ const AnimateGoBack: React.FC<AnimateGoBackProps> = ({ onClick, width }) => {
       >
         <Box as={ArrowLeft} size={24} color="blue.500" />
       </Button>
-      <Box className="hub-svg-logo" data-testid="hub-logo-testid">
+      <Box className="hub-svg-logo">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width={width || '60'}
