@@ -1,5 +1,7 @@
 import React from 'react'
 
+import amplitude from 'amplitude-js'
+
 import { store } from '~/store'
 
 import cards from '@hub/test-utils/__mocks__/cards.mock'
@@ -14,35 +16,40 @@ const props = {
   handlePush: mockedPush
 }
 
+jest.mock('amplitude-js', () => ({
+  getInstance: jest.fn().mockReturnValue({
+    logEvent: jest.fn()
+  })
+}))
+
 describe('HeaderDesktop should work properly', () => {
-  it.skip('Products menu should should display all solutions when clicked', async () => {
+  it('Products menu should should display all solutions when clicked', async () => {
     const { getByText, queryAllByText, getByTestId } = render(
       <HeaderDesktop {...props} />,
-      {
-        store
-      }
-    )
 
-    const getAllSolutions = () =>
-      queryAllByText(
-        /Avaliação|Provas|Redação|Recursos|Salas virtuais|Playground/
-      )
+      { store }
+    )
 
     fireEvent.click(getByText('Produtos'))
 
-    const solutions = getAllSolutions()
+    const solutions = queryAllByText(
+      /Avaliação|Provas|Redação|Recursos|Salas virtuais|Playground/
+    )
 
     fireEvent.mouseLeave(getByTestId('hub-header-menu'))
 
     expect(solutions.length).toBe(6)
 
+    // checking if menu closes on mouseLeave
     await waitFor(() => {
-      const solutionsAfterMouseLeave = getAllSolutions()
+      const solutionsAfterMouseLeave = queryAllByText(
+        /Avaliação|Provas|Redação|Recursos|Salas virtuais|Playground/
+      )
       expect(solutionsAfterMouseLeave.length).toBe(0)
     })
   })
-  it.skip('shouldnt display any card when no cards are provided', () => {
-    const { getByText, queryAllByText, queryAllByTestId } = render(
+  it('shouldnt display any card when no cards are provided', () => {
+    const { getByText, queryAllByText } = render(
       <HeaderDesktop handlePush={props.handlePush} />,
       {
         store
@@ -54,38 +61,30 @@ describe('HeaderDesktop should work properly', () => {
     const solutions = queryAllByText(
       /Avaliação|Provas|Redação|Recursos|Salas virtuais|Playground/
     )
-    const cards = queryAllByTestId('hub-card')
 
     expect(solutions.length).toBe(0)
-    expect(cards.length).toBe(0)
-  })
-  it.skip('shouldnt display any card when no cards are provided', () => {
-    const { getByText, queryAllByText, queryAllByTestId } = render(
-      <HeaderDesktop handlePush={props.handlePush} />,
-      {
-        store
-      }
-    )
-
-    fireEvent.click(getByText('Produtos'))
-
-    const solutions = queryAllByText(
-      /Avaliação|Provas|Redação|Recursos|Salas virtuais|Playground/
-    )
-    const cards = queryAllByTestId('hub-card')
-
-    expect(solutions.length).toBe(0)
-    expect(cards.length).toBe(0)
   })
   it('card should handle push and log amplitude event when clicked', () => {
-    const { getByTestId } = render(<HeaderDesktop {...props} />, {
+    const mockedSolution = {
+      nome: 'Provas',
+      tipoRenderizacao: 'provas-iframe',
+      url: 'psd.provas.com'
+    }
+    const eventName = 'Tool Opened'
+    const eventProperties = { card_name: 'Provas', location: 'header' }
+    const instance = amplitude.getInstance()
+    const { logEvent } = instance
+    const { getByText } = render(<HeaderDesktop {...props} />, {
       store
     })
 
-    const card = getByTestId('hub-card')
+    fireEvent.click(getByText('Produtos'))
 
-    fireEvent.click(card)
+    const solution = getByText('Provas')
 
-    expect(mockedPush).toHaveBeenCalledWith('')
+    fireEvent.click(solution)
+
+    expect(mockedPush).toHaveBeenCalledWith(mockedSolution)
+    expect(logEvent).toHaveBeenCalledWith(eventName, eventProperties)
   })
 })
