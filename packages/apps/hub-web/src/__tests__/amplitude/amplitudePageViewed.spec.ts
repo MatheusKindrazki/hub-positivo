@@ -9,7 +9,7 @@ jest.mock('amplitude-js', () => ({
   })
 }))
 
-describe('testing amplitude functions', () => {
+describe('testing if amplitude page viewed functions work properly', () => {
   const pageViewedEvent = 'Page Viewed'
 
   const instance = amplitude.getInstance()
