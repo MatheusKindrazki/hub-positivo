@@ -8,8 +8,7 @@ import {
 
 describe('authProduct reducer', () => {
   it('returns the initial state when an action type is not passed', () => {
-    const result = authProduct(undefined, {} as any)
-
+    const result = authProduct(undefined, { type: null })
     expect(result).toEqual(initialState)
   })
 
@@ -26,13 +25,11 @@ describe('authProduct reducer', () => {
 
   it('loading is set to false on success action', () => {
     const result = authProduct(initialState, authProductSuccess())
-
     expect(result).toEqual({ loading: false })
   })
 
   it('loading is set to false on failure action', () => {
     const result = authProduct(initialState, authProductFailure())
-
     expect(result).toEqual({ loading: false })
   })
 })
