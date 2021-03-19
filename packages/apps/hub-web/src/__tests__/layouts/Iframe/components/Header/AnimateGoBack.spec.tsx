@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { fireEvent, render, waitFor } from '@hub/test-utils'
+import { fireEvent, render } from '@hub/test-utils'
 
 import AnimateGoBack from '~/layouts/Iframe/components/Header/AnimateGoBack'
 
-describe('getting started', () => {
+describe('AnimateGoBack should work properly', () => {
   const setup = (width: number | undefined) => {
     const onClick = jest.fn()
     const wrapper = render(<AnimateGoBack onClick={onClick} width={width} />)
