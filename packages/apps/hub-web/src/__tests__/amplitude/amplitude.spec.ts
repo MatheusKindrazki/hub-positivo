@@ -1,5 +1,9 @@
 import amplitude from 'amplitude-js'
 
+import {
+  amplitudeToolOpened,
+  EventData
+} from '~/services/amplitude/amplitudeToolOpened'
 import { amplitudeInit } from '~/services/amplitude/amplitudeInit'
 
 const mockState = {
@@ -26,6 +30,11 @@ const mockState = {
   }
 }
 
+const mockedEventProperties: EventData = {
+  card_name: 'teste',
+  location: 'dashboard'
+}
+
 jest.mock('amplitude-js', () => ({
   getInstance: jest.fn().mockReturnValue({
     init: jest.fn(),
@@ -47,7 +56,7 @@ jest.mock('react-router-dom', () => ({
 
 describe('testing amplitude functions', () => {
   const instance = amplitude.getInstance()
-  const { init } = instance
+  const { init, logEvent } = instance
 
   afterEach(() => {
     jest.clearAllMocks()
@@ -56,5 +65,10 @@ describe('testing amplitude functions', () => {
   it('Amplitude should initialize on amplitudeInit', () => {
     amplitudeInit()
     expect(init).toHaveBeenCalledTimes(1)
+  })
+
+  it('amplitudeToolOpened send event with correct properties', () => {
+    amplitudeToolOpened(mockedEventProperties)
+    expect(logEvent).toHaveBeenCalledWith('Tool Opened', mockedEventProperties)
   })
 })
