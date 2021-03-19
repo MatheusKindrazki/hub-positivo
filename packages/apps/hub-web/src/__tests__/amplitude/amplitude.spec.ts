@@ -1,10 +1,19 @@
 import amplitude from 'amplitude-js'
+import { renderHook } from '@testing-library/react-hooks'
+
+import * as redux from 'react-redux'
+
+import { store } from '~/store'
 
 import {
   amplitudeToolOpened,
   EventData
 } from '~/services/amplitude/amplitudeToolOpened'
 import { amplitudeInit } from '~/services/amplitude/amplitudeInit'
+
+import '~/hooks/amplitude/amplitudePageView'
+
+// import { useAmplitudeSetProperties } from '../../hooks/amplitude/useAmplitudeSetProperties'
 
 const mockState = {
   profile: {
@@ -28,6 +37,14 @@ const mockState = {
   auth: {
     signed: true
   }
+}
+
+const mockParamsSetProperties = {
+  educational_stages: ['Fake level (fake value)', 'Fake level (fake value)'],
+  roles: ['fakeRole', 'fakeRole'],
+  selectedRole: mockState.profile.name,
+  school: mockState.user.school,
+  user: mockState.user.user
 }
 
 const mockedEventProperties: EventData = {
@@ -56,7 +73,7 @@ jest.mock('react-router-dom', () => ({
 
 describe('testing amplitude functions', () => {
   const instance = amplitude.getInstance()
-  const { init, logEvent } = instance
+  const { init, logEvent, setUserId, setUserProperties } = instance
 
   afterEach(() => {
     jest.clearAllMocks()
@@ -71,4 +88,22 @@ describe('testing amplitude functions', () => {
     amplitudeToolOpened(mockedEventProperties)
     expect(logEvent).toHaveBeenCalledWith('Tool Opened', mockedEventProperties)
   })
+
+  it('useAmplitudePageView should log event', () => {
+    const onLoadEvent = new Event('load')
+    const changedHubTitleEvent = new CustomEvent('@hub:title', {
+      detail: 'title'
+    })
+    window.dispatchEvent(onLoadEvent)
+
+    document.dispatchEvent(changedHubTitleEvent)
+
+    // expect(logEvent).toHaveBeenCalled()
+  })
+
+  // it('useAmplitudePageView shouldn`t log event when signed is false', () => {
+  //   mockState.auth.signed = false
+  //   // renderHook(() => useAmplitudePageView({ isPrivate: true }))
+  //   // expect(logEvent).not.toHaveBeenCalled()
+  // })
 })
