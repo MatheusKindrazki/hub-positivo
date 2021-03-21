@@ -1,6 +1,10 @@
 import * as authActions from '~/store/modules/auth/actions'
 
-describe('Actions auth store', () => {
+import clearAmplitudeSession from '~/hooks/amplitude/clearAll'
+
+jest.mock('~/hooks/amplitude/clearAll')
+
+describe('Action of authentication history', () => {
   it('hope the preparingUserData calls the correct action and receive the value within payload', () => {
     const spy = jest.spyOn(authActions, 'preparingUserData')
 
@@ -128,7 +132,7 @@ describe('Actions auth store', () => {
     expect(resolved).toEqual({ ...mockedType, payload: mockedPayload })
   })
 
-  it('hope signOut is called', () => {
+  it('I hope the signOut is called and the amplitude states are clean', () => {
     const spy = jest.spyOn(authActions, 'signOut')
 
     const mockedType = {
@@ -138,6 +142,8 @@ describe('Actions auth store', () => {
     const resolved = authActions.signOut()
 
     expect(spy).toBeCalled()
+
+    expect(clearAmplitudeSession).toBeCalled()
 
     expect(resolved).toEqual(mockedType)
   })
