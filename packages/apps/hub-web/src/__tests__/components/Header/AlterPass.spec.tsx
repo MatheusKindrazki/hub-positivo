@@ -16,10 +16,27 @@ describe('get started', () => {
       reducers: ['user'],
       CUSTOM_STATE
     })
-    return { ...wrapper, onClose }
+
+    const queryConfig = { exact: false }
+
+    const inputs = wrapper.getAllByRole('input')
+    return { ...wrapper, onClose, inputs, queryConfig }
   }
-  it('it', () => {
-    const { debug } = setup()
-    debug()
+  it('Should render the correct elements on screen', () => {
+    const { inputs, getByText, queryConfig } = setup()
+
+    const title = 'Alterar Senha'
+    const cancel = 'Cancelar'
+    const alter = 'Alterar'
+
+    const titleElement = getByText(title, queryConfig)
+    const cancelButton = getByText(cancel, queryConfig)
+    const alterButton = getByText(alter, queryConfig)
+
+    expect(inputs.length).toBe(3)
+    expect(titleElement).toBeInTheDocument()
+    expect(cancelButton).toBeInTheDocument()
+
+    expect(alterButton).toBeInTheDocument()
   })
 })
