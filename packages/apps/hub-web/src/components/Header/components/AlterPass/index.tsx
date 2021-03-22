@@ -59,7 +59,7 @@ const AlterPass: React.FC<AlterPassProps> = ({ onClose }) => {
           type={viewPass ? 'text' : 'password'}
           iconRight={
             <Box
-              data-testid="view-pass"
+              data-testid="view-password"
               cursor="pointer"
               as={viewPass ? Eye : EyeSlash}
               color="gray.500"
@@ -90,7 +90,7 @@ const AlterPass: React.FC<AlterPassProps> = ({ onClose }) => {
           type={viewNewPass ? 'text' : 'password'}
           iconRight={
             <Box
-              data-testid="view-new-password"
+              data-testid="view-confirm-password"
               cursor="pointer"
               as={viewNewPass ? Eye : EyeSlash}
               color="gray.500"

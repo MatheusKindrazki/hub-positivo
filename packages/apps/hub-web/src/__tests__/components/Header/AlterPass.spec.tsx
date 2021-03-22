@@ -106,10 +106,25 @@ describe('get started', () => {
   })
 
   it('Should convert input`s type to text when viewPass and viewNewPass are true', () => {
-    const { inputs } = setup()
+    const { inputs, getByTestId } = setup()
 
     inputs.forEach(input => {
       expect(input).toHaveAttribute('type', 'password')
     })
+
+    const passwordView = getByTestId('view-password')
+    const newPasswordsView = getByTestId('view-new-password')
+
+    fireEvent.click(passwordView)
+    fireEvent.click(newPasswordsView)
+
+    inputs.forEach(input => {
+      expect(input).toHaveAttribute('type', 'text')
+    })
+
+    const confirmPasswordView = getByTestId('view-confirm-password')
+    fireEvent.click(confirmPasswordView)
+
+    expect(inputs[2]).toHaveAttribute('type', 'password')
   })
 })
