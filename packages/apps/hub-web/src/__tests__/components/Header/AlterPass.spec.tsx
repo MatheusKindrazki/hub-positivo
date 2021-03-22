@@ -2,7 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent, act } from '@hub/test-utils'
+import { render, CustomState, fireEvent, waitFor } from '@hub/test-utils'
 
 import AlterPass from '~/components/Header/components/AlterPass'
 
@@ -39,17 +39,10 @@ describe('get started', () => {
     }
   }
 
-  it('Should render the correct elements on screen', () => {
-    const { inputs, alterButton, cancelButton } = setup()
-
-    expect(inputs.length).toBe(3)
-    expect(cancelButton).toBeInTheDocument()
-    expect(alterButton).toBeInTheDocument()
-  })
-
   it('Should throw a `validation` error if the form was submitted without any information', async () => {
     const { alterButton, findByText } = setup()
 
+    expect(alterButton).toBeInTheDocument()
     fireEvent.click(alterButton)
 
     const passwordError = await findByText(/Campo obrigatório/i)
@@ -78,10 +71,45 @@ describe('get started', () => {
     expect(error).toBeInTheDocument()
   })
 
-  it('Should call onClose function when `CANCELAR` is clicked', () => {
-    const { inputs, alterButton } = setup()
+  it('Should call `onClose` function when `CANCELAR` is clicked', () => {
+    const { cancelButton, onClose } = setup()
+
+    expect(cancelButton).toBeInTheDocument()
+
+    fireEvent.click(cancelButton)
+
+    expect(onClose).toHaveBeenCalledTimes(1)
   })
-  it('Should dispatch an action if the form has been submitted with correct data', () => {
-    const { inputs, alterButton } = setup()
+  it('Should dispatch an `@user/USER_PASSWORD_PANEL_REQUEST` action if the form has been submitted with correct data', async () => {
+    const { inputs, alterButton, storeUtils } = setup()
+
+    expect(inputs.length).toBe(3)
+
+    const password = 'password'
+
+    inputs.forEach(input => {
+      fireEvent.change(input, { target: { value: password } })
+    })
+    await waitFor(() => fireEvent.click(alterButton))
+
+    const action = storeUtils?.getActions()
+    expect(action).toStrictEqual([
+      {
+        payload: {
+          confirmNewPassword: password,
+          newPassword: password,
+          oldPassword: password
+        },
+        type: '@user/ USER_PASSWORD_PANEL_REQUEST'
+      }
+    ])
+  })
+
+  it('Should convert input`s type to text when viewPass and viewNewPass are true', () => {
+    const { inputs } = setup()
+
+    inputs.forEach(input => {
+      expect(input).toHaveAttribute('type', 'password')
+    })
   })
 })
