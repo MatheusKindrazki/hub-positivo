@@ -1,27 +1,21 @@
 import amplitude from 'amplitude-js'
 
-import {
-  amplitudeToolOpened,
-  EventData
-} from '~/services/amplitude/amplitudeToolOpened'
-
-const mockedEventProperties: EventData = {
-  card_name: 'teste',
-  location: 'dashboard'
-}
+import setUserIdAmplitude from '~/hooks/amplitude/identifyUser'
 
 jest.mock('amplitude-js', () => ({
   getInstance: jest.fn().mockReturnValue({
-    logEvent: jest.fn()
+    setUserId: jest.fn()
   })
 }))
 
-describe('testing if amplitude tool opened function work properly', () => {
+describe('testing if amplitude Set Id function work properly', () => {
   const instance = amplitude.getInstance()
-  const { logEvent } = instance
+  const { setUserId } = instance
 
-  it('amplitudeToolOpened send event with correct properties', () => {
-    amplitudeToolOpened(mockedEventProperties)
-    expect(logEvent).toHaveBeenCalledWith('Tool Opened', mockedEventProperties)
+  it('amplitudeSetId should send event with correct id', () => {
+    const id = 'userId'
+    setUserIdAmplitude({ guid: id })
+
+    expect(setUserId).toHaveBeenCalledWith(id)
   })
 })
