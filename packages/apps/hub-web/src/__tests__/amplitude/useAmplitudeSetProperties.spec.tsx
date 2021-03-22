@@ -24,7 +24,7 @@ const state = {
       {
         id: 'user_school_id',
         name: 'user_school_name',
-        roles: ['Administrador']
+        roles: ['role']
       }
     ]
   },
@@ -33,7 +33,7 @@ const state = {
     label: 'school_label',
     user_id: 'school_user_id',
     integration_id: 'school_integradion_id',
-    roles: ['Professor', 'Administrador']
+    roles: ['school_role', 'school_role']
   },
   profiles: [
     {
@@ -66,6 +66,7 @@ describe('testing if amplitude set properties functions work properly', () => {
   const { setUserProperties } = instance
 
   it('Should call setUserProperties with the correct informations', async () => {
+    const { profiles, user, name, class: selected_class, level, school } = state
     renderHook(() => useAmplitudeSetProperties(), { wrapper })
 
     expect(setUserProperties).toHaveBeenCalledWith({
@@ -78,17 +79,17 @@ describe('testing if amplitude set properties functions work properly', () => {
       is_family: false,
       is_student: false,
       is_teacher: false,
-      roles_list: ['profile_name'],
-      schools_list: ['user_school_name'],
-      selectedRole: 'selected_role',
-      selected_class: 'selected_class',
-      selected_educational_stage: 'level',
-      selected_school_id: 'school_value',
-      selected_school_name: 'school_label',
+      roles_list: [profiles[0].name],
+      schools_list: [user.schools[0].name],
+      selectedRole: name,
+      selected_class,
+      selected_educational_stage: level,
+      selected_school_id: school.value,
+      selected_school_name: school.label,
       selected_school_sge: null,
-      user_id: 'guid',
-      user_login: 'username',
-      user_name: 'name'
+      user_id: user.guid,
+      user_login: user.username,
+      user_name: user.name
     })
   })
 })
