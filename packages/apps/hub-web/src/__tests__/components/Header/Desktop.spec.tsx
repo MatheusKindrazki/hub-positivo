@@ -2,7 +2,14 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent, waitFor } from '@hub/test-utils'
+import {
+  render,
+  CustomState,
+  fireEvent,
+  waitFor,
+  getByRole
+} from '@hub/test-utils'
+import * as components from '@hub/common/components'
 
 import { ContextHeaderProps } from '~/components/Header/context/types'
 import * as header from '~/components/Header/context'
@@ -43,6 +50,7 @@ jest.mock('~/components/Header/context', () => {
     } as ContextHeaderProps)
   }
 })
+
 describe('get started', () => {
   const spyUseHeader = jest.spyOn(header, 'useHeader')
 
@@ -57,7 +65,7 @@ describe('get started', () => {
     wrapper.storeUtils?.clearActions()
     return { ...wrapper }
   }
-  it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button in clicked', () => {
+  it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked', () => {
     const { getByText, storeUtils } = setup({
       tour: {
         steps: [
@@ -83,7 +91,27 @@ describe('get started', () => {
     ])
   })
 
-  it('should call `onOpen` function when `Estou com uma dúvida` is clicked', () => {
+  it.only('Should open popover when header`s avatar is clicked', () => {
+    const { getByText, debug } = setup({
+      user: {
+        user: {
+          name: 'Testes Automatizados'
+        }
+      }
+    })
+
+    const avatar = getByText(/TA/i)
+    expect(avatar).toBeInTheDocument()
+
+    fireEvent.click(avatar)
+    debug()
+  })
+
+  it.skip('should call `onOpen` function when `Estou com uma dúvida` is clicked', () => {
+    const onClick = jest.fn()
+    jest
+      .spyOn(components, 'Button')
+      .mockImplementation(() => <button onClick={onClick}>TESTE</button>)
     const { getByText, debug } = setup()
     const help = getByText(/Estou com uma dúvida/i)
 
