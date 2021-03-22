@@ -2,12 +2,17 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent } from '@hub/test-utils'
+import { render, CustomState, fireEvent, act } from '@hub/test-utils'
 
 import AlterPass from '~/components/Header/components/AlterPass'
 
+import alterPasswordValidate from '~/validators/user/alterPassword'
+
 describe('get started', () => {
-  afterEach(() => jest.clearAllMocks())
+  afterEach(() => {
+    jest.clearAllMocks()
+    jest.restoreAllMocks()
+  })
 
   const setup = (CUSTOM_STATE = {} as CustomState) => {
     const onClose = jest.fn()
@@ -39,11 +44,10 @@ describe('get started', () => {
 
     expect(inputs.length).toBe(3)
     expect(cancelButton).toBeInTheDocument()
-
     expect(alterButton).toBeInTheDocument()
   })
 
-  it('You should throw a `validation` error if the form was submitted without any information', async () => {
+  it('Should throw a `validation` error if the form was submitted without any information', async () => {
     const { alterButton, findByText } = setup()
 
     fireEvent.click(alterButton)
@@ -56,5 +60,21 @@ describe('get started', () => {
     expect(passwordError).toBeInTheDocument()
     expect(newPasswordError).toBeInTheDocument()
     expect(confirmNewPasswordError).toBeInTheDocument()
+  })
+
+  it('Should throw a `generic` error if an error other than` validation` has been thrown', async () => {
+    const { alterButton, findByText, queryConfig } = setup()
+
+    jest.spyOn(alterPasswordValidate, 'validate').mockImplementation(() => {
+      throw new Error()
+    })
+    fireEvent.click(alterButton)
+
+    const error = await findByText(
+      'Algo deu errado, Verifique seus dados e tente novamente!',
+      queryConfig
+    )
+
+    expect(error).toBeInTheDocument()
   })
 })
