@@ -77,4 +77,11 @@ describe('get started', () => {
 
     expect(error).toBeInTheDocument()
   })
+
+  it('Should call onClose function when `CANCELAR` is clicked', () => {
+    const { inputs, alterButton } = setup()
+  })
+  it('Should dispatch an action if the form has been submitted with correct data', () => {
+    const { inputs, alterButton } = setup()
+  })
 })
