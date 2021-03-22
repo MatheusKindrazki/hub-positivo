@@ -83,9 +83,6 @@ describe('ModalNoClass component', () => {
         }
       }
     })
-
-    wrapper.debug()
-
     expect(wrapper).toBeDefined()
   })
 })
