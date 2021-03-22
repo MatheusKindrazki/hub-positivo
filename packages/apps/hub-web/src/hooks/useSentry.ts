@@ -5,8 +5,11 @@ import * as Sentry from '@sentry/react'
 import { useSelector } from 'react-redux'
 
 const useSentry = (): void => {
+  /* istanbul ignore next */
   const { user, school } = useSelector((state: Store.State) => state.user)
+  /* istanbul ignore next */
   const { name } = useSelector((state: Store.State) => state.profile)
+  /* istanbul ignore next */
   const { level } = useSelector((state: Store.State) => state.educationalStage)
 
   useEffect(() => {
