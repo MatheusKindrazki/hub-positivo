@@ -16,7 +16,7 @@ jest.mock('amplitude-js', () => ({
   })
 }))
 
-describe('testing if amplitude tool opened function work properly', () => {
+describe('testing if `amplitude tool opened` function work properly', () => {
   const instance = amplitude.getInstance()
   const { logEvent } = instance
 

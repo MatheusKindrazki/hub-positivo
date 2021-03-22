@@ -8,7 +8,7 @@ jest.mock('amplitude-js', () => ({
   })
 }))
 
-describe('testing amplitude functions', () => {
+describe('testing if `amplitude init` function work properly', () => {
   const instance = amplitude.getInstance()
   const { init } = instance
   it('Amplitude should initialize on amplitudeInit', () => {
