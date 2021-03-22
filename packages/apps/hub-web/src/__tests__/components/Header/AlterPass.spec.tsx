@@ -2,7 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { render, CustomState } from '@hub/test-utils'
+import { render, CustomState, fireEvent } from '@hub/test-utils'
 
 import AlterPass from '~/components/Header/components/AlterPass'
 
@@ -18,25 +18,43 @@ describe('get started', () => {
     })
 
     const queryConfig = { exact: false }
-
-    const inputs = wrapper.getAllByRole('input')
-    return { ...wrapper, onClose, inputs, queryConfig }
-  }
-  it('Should render the correct elements on screen', () => {
-    const { inputs, getByText, queryConfig } = setup()
-
-    const title = 'Alterar Senha'
     const cancel = 'Cancelar'
     const alter = 'Alterar'
 
-    const titleElement = getByText(title, queryConfig)
-    const cancelButton = getByText(cancel, queryConfig)
-    const alterButton = getByText(alter, queryConfig)
+    const cancelButton = wrapper.getByText(cancel, queryConfig)
+    const alterButton = wrapper.getByText(alter, queryConfig)
+    const inputs = wrapper.getAllByTestId('form-input')
+    return {
+      ...wrapper,
+      onClose,
+      inputs,
+      cancelButton,
+      alterButton,
+      queryConfig
+    }
+  }
+
+  it('Should render the correct elements on screen', () => {
+    const { inputs, alterButton, cancelButton } = setup()
 
     expect(inputs.length).toBe(3)
-    expect(titleElement).toBeInTheDocument()
     expect(cancelButton).toBeInTheDocument()
 
     expect(alterButton).toBeInTheDocument()
+  })
+
+  it('You should throw a `validation` error if the form was submitted without any information', async () => {
+    const { alterButton, findByText } = setup()
+
+    fireEvent.click(alterButton)
+
+    const passwordError = await findByText(/Campo obrigatório/i)
+    const newPasswordError = await findByText(/Senha Obrigatória/i)
+    const confirmNewPasswordError = await findByText(
+      /Confirmação da senha é obrigatória/i
+    )
+    expect(passwordError).toBeInTheDocument()
+    expect(newPasswordError).toBeInTheDocument()
+    expect(confirmNewPasswordError).toBeInTheDocument()
   })
 })
