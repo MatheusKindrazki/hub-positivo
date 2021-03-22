@@ -2,9 +2,16 @@ import {
   preAuth,
   authProductRequest,
   authProductSuccess,
-  authProductFailure,
-  Actions
+  authProductFailure
 } from '~/store/modules/authProduct/actions'
+
+const mockedTypes = {
+  AUTH_PRODUCT_REQUEST: '@auth/AUTH_PRODUCT_REQUEST',
+  AUTH_PRODUCT_SUCCESS: '@auth/AUTH_PRODUCT_SUCCESS',
+  AUTH_PRODUCT_FAILURE: '@auth/AUTH_PRODUCT_FAILURE',
+  AUTH_PRODUCT_GUID_REQUEST: '@auth/AUTH_PRODUCT_GUID_REQUEST',
+  AUTH_PRODUCT_EEM_REQUEST: '@auth/AUTH_PRODUCT_EEM_REQUEST'
+}
 
 describe('authProduct action creators should work properly', () => {
   it('should create an request action on preAuth', () => {
@@ -16,7 +23,7 @@ describe('authProduct action creators should work properly', () => {
       subpath: 'string'
     }
     const expectedAction = {
-      type: Actions.AUTH_PRODUCT_REQUEST,
+      type: mockedTypes.AUTH_PRODUCT_REQUEST,
       payload
     }
     expect(preAuth(payload)).toEqual(expectedAction)
@@ -31,7 +38,7 @@ describe('authProduct action creators should work properly', () => {
       subpath: 'string'
     }
     const expectedAction = {
-      type: Actions.AUTH_PRODUCT_EEM_REQUEST,
+      type: mockedTypes.AUTH_PRODUCT_EEM_REQUEST,
       payload
     }
     expect(authProductRequest(payload, 'AUTH_PRODUCT_EEM_REQUEST')).toEqual(
@@ -40,12 +47,12 @@ describe('authProduct action creators should work properly', () => {
   })
 
   it('should create an success action on authProductSuccess', () => {
-    const expectedAction = { type: Actions.AUTH_PRODUCT_SUCCESS }
+    const expectedAction = { type: mockedTypes.AUTH_PRODUCT_SUCCESS }
     expect(authProductSuccess()).toEqual(expectedAction)
   })
 
   it('should create an failure action on authProductFailure', () => {
-    const expectedAction = { type: Actions.AUTH_PRODUCT_FAILURE }
+    const expectedAction = { type: mockedTypes.AUTH_PRODUCT_FAILURE }
     expect(authProductFailure()).toEqual(expectedAction)
   })
 })
