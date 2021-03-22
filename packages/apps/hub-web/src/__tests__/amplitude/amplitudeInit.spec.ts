@@ -1,6 +1,6 @@
 import amplitude from 'amplitude-js'
 
-import { amplitudeInit } from '~/services/amplitude/amplitudeInit'
+import { amplitudeInit } from '~/services/amplitude'
 
 jest.mock('amplitude-js', () => ({
   getInstance: jest.fn().mockReturnValue({
