@@ -43,7 +43,6 @@ jest.mock('~/components/Header/context', () => {
     } as ContextHeaderProps)
   }
 })
-
 describe('get started', () => {
   const spyUseHeader = jest.spyOn(header, 'useHeader')
 
@@ -58,7 +57,7 @@ describe('get started', () => {
     wrapper.storeUtils?.clearActions()
     return { ...wrapper }
   }
-  it('Shoud dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button in clicked', async () => {
+  it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button in clicked', () => {
     const { getByText, storeUtils } = setup({
       tour: {
         steps: [
@@ -84,10 +83,11 @@ describe('get started', () => {
     ])
   })
 
-  it('should dispatch an ` test ` action when `Estou com uma dúvida` is clicked', () => {
-    const { getByText } = setup()
+  it('should call `onOpen` function when `Estou com uma dúvida` is clicked', () => {
+    const { getByText, debug } = setup()
     const help = getByText(/Estou com uma dúvida/i)
 
     fireEvent.click(help)
+    debug()
   })
 })
