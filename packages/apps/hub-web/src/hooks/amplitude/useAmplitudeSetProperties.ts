@@ -12,16 +12,18 @@ import {
 } from './types'
 
 export const useAmplitudeSetProperties = (): void => {
+  /* istanbul ignore next */
   const { user, school } = useSelector((state: Store.State) => state.user)
   const { profiles, name: selectedRole } = useSelector(
+    /* istanbul ignore next */
     (state: Store.State) => state.profile
   )
   const { levels, class: selected_class, level } = useSelector(
+    /* istanbul ignore next */
     (state: Store.State) => state.educationalStage
   )
 
   const { guid, username, name, schools } = user as User
-
   const {
     value: selected_school_id,
     label: selected_school_name
