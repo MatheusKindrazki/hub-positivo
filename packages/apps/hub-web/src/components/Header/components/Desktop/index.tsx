@@ -32,6 +32,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
   const [enableBlur, setEnableBlur] = useState(true)
 
   const { schoolList, roleList, ...func } = useHeader()
+
   const { steps } = useSelector((state: Store.State) => state.tour)
 
   const { user } = useSelector((state: Store.State) => state.user)
@@ -85,6 +86,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
         Estou com uma dúvida
       </Button>
       <Popover
+        data-testid="popover"
         onClose={handleClosed}
         onOpen={menuOpen}
         isOpen={isOpen}
@@ -136,8 +138,8 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
               className="height-md"
               value={defaultValue.school}
               options={schoolList}
-              onFocus={() => console.log(false)}
-              onBlur={() => console.log(true)}
+              onFocus={() => setEnableBlur(false)}
+              onBlur={() => setEnableBlur(true)}
               onChange={e => {
                 setSchool(e as any)
               }}
