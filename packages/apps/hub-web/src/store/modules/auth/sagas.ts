@@ -79,14 +79,13 @@ export function* signIn({ payload }: SignInPayload): Generator {
   const user = decode(data?.access_token as string) as any
 
   api.setHeaders({
-    Authorization: `Bearer ${data?.access_token || ''}`
+    Authorization: `Bearer ${data?.access_token}`
   })
 
   // ? Identifica o usuário no amplitude
   amplitudeIdentifyUser({ guid: user?.sub as string })
 
   clearStrikes()
-
   yield put(
     signInSuccess({
       token: data?.access_token,
@@ -114,9 +113,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
   !e também no processo de alteração de escola/perfil
 */
 type PreparingAccessPayload = Payload<AccessData>
-export function* preparePreparingAccess({
-  payload
-}: PreparingAccessPayload): Generator {
+export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
   const { profiles, selected_profile, selected_school, redirect } = payload
 
   yield put(loading(true))
@@ -138,7 +135,7 @@ export function* preparePreparingAccess({
   const user_reduced = decode(access_token as string) as any
 
   if (user_reduced?.sub && user?.guid !== user_reduced?.sub) {
-    const sc = school?.label || ''
+    const sc = school?.label as string
     toast.error(`Você não tem acesso a escola: ${sc}`)
 
     yield put(loading(false))
@@ -276,6 +273,6 @@ export function* refreshToken(): Generator {
 export default all([
   takeLatest(Actions.SIGN_IN_REQUEST, signIn),
   takeLatest(Actions.REHYDRATE, checkingExpiringToken),
-  takeLatest(Actions.FIRST_ACCESS, preparePreparingAccess),
+  takeLatest(Actions.FIRST_ACCESS, prepareAccess),
   takeLatest(Actions.REFRESH_TOKEN_REQUEST, refreshToken)
 ])
