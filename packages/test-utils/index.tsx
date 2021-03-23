@@ -8,6 +8,8 @@ import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import configureStore from 'redux-mock-store'
 
+import './setup'
+
 import ThemeProviderHub from '@hub/common/layout/Provider'
 
 import {
