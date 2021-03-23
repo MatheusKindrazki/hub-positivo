@@ -15,13 +15,13 @@ jest.mock('~/services/eemConnect')
 jest.mock('~/hooks/amplitude/identifyUser')
 jest.mock('@hub/common/utils/capitalize')
 
-describe('Sagas of authentication history', () => {
-  it('hope the user authenticate with valid login and password and pass is redirected to choice', async () => {
-    const userMock = {
-      username: 'johndoe',
-      password: '123456'
-    }
+const userMock = {
+  username: 'johndoe',
+  password: '123456'
+}
 
+describe('Sagas of authentication history', () => {
+  it('Should the user authenticate with valid login and password and pass is redirected to choice', async () => {
     const returnedMock = {
       ok: true,
       originalError: null,
@@ -68,5 +68,35 @@ describe('Sagas of authentication history', () => {
     })
 
     expect(historyMock).toBeCalledWith('/perfil')
+  })
+
+  it('If the Return of the API is flawed for some reason, the user is warned and the login will be rejected', async () => {
+    const returnedMock = {
+      ok: false,
+      originalError: null,
+      problem: null,
+      data: {}
+    }
+
+    const mockedAction = authActions.signInRequest({
+      ...userMock,
+      redirect: undefined
+    }) as Payload<SignInRequest>
+
+    jest
+      .spyOn(eem, 'EEMConnectPost')
+      .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
+
+    await runSaga(fakeStore, signIn, mockedAction)
+
+    await expect(eem.EEMConnectPost).toBeCalledWith({
+      data: {
+        grant_type: 'password',
+        ...userMock
+      },
+      endpoint: 'connect/token'
+    })
+    // Verifica chamada do loading
+    expect(dispatchedActions).toContainObject(authActions.signInFailure())
   })
 })
