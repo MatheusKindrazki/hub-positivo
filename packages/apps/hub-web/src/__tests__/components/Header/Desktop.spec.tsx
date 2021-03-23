@@ -81,7 +81,7 @@ const user = {
   }
 }
 
-describe('get started', () => {
+describe('Desktop Header component', () => {
   afterEach(() => {
     jest.clearAllMocks()
     jest.restoreAllMocks()
@@ -166,16 +166,11 @@ describe('get started', () => {
     await waitFor(() => expect(popOverContent).toBeVisible())
   })
 
-  it.skip('should call `onOpen` function when `Estou com uma dúvida` is clicked', () => {
-    const onClick = jest.fn()
-    // jest
-    //   .spyOn('components', 'Button')
-    //   .mockImplementation(() => <button onClick={onClick}>TESTE</button>)
-    const { getByText, debug } = setup()
-    const help = getByText(/Estou com uma dúvida/i)
+  it('Should have a button called `Estou com uma dúvida`', () => {
+    const { getByText } = setup()
+    const helpButton = getByText(/Estou com uma dúvida/i)
 
-    fireEvent.click(help)
-    debug()
+    expect(helpButton).toBeInTheDocument()
   })
 
   it('Should dispatch an `@auth/SIGN_OUT` action when `Sair` is clicked', async () => {
@@ -218,9 +213,10 @@ describe('get started', () => {
     const schoolLabel = defaultValue.school?.label as string
     const school = await findByText(schoolLabel)
 
+    fireEvent.mouseDown(school)
+
     expect(school).toBeInTheDocument()
     reactEvent.openMenu(school)
-
     const otherSchool = getByText(schoolList[0].label)
     expect(otherSchool).toBeInTheDocument()
 
@@ -240,6 +236,7 @@ describe('get started', () => {
 
     const roleLabel = defaultValue.role?.label as string
     const selectedRole = await findByText(roleLabel)
+    fireEvent.mouseDown(selectedRole)
 
     expect(selectedRole).toBeInTheDocument()
     reactEvent.openMenu(selectedRole)
