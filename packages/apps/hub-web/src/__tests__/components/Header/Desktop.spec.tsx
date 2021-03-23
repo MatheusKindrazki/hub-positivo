@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { debug } from 'node:console'
+
 import { store } from '~/store'
 
 import { render, CustomState, fireEvent, waitFor } from '@hub/test-utils'
@@ -63,20 +65,17 @@ const useHeaderReturn = {
   resetInfo: jest.fn()
 } as ContextHeaderProps
 
-describe('get started', () => {
-  jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
-
-  // const { defaultValue } = useHeaderReturn
-
-  const name = 'Fake Name'
-  const user = {
+const name = 'Fake Name'
+const user = {
+  user: {
     user: {
-      user: {
-        name
-      }
+      name
     }
   }
+}
 
+describe('get started', () => {
+  jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
   const setup = (CUSTOM_STATE = { ...user } as CustomState) => {
     const openModalPass = jest.fn()
     const wrapper = render(<Desktop openModalPass={openModalPass} />, {
@@ -90,6 +89,7 @@ describe('get started', () => {
     wrapper.storeUtils?.clearActions()
     return { ...wrapper, popOverTrigger, popOverContent }
   }
+
   it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked', () => {
     const { getByText, storeUtils } = setup({
       tour: {
@@ -128,9 +128,9 @@ describe('get started', () => {
 
   it.skip('should call `onOpen` function when `Estou com uma dúvida` is clicked', () => {
     const onClick = jest.fn()
-    jest
-      .spyOn('components', 'Button')
-      .mockImplementation(() => <button onClick={onClick}>TESTE</button>)
+    // jest
+    //   .spyOn('components', 'Button')
+    //   .mockImplementation(() => <button onClick={onClick}>TESTE</button>)
     const { getByText, debug } = setup()
     const help = getByText(/Estou com uma dúvida/i)
 
@@ -171,5 +171,13 @@ describe('get started', () => {
     await waitFor(() =>
       expect(popOverContent).toHaveStyle('visibility: hidden')
     )
+  })
+
+  it('Should show schools options when the schools selection is triggered', async () => {
+    const { popOverTrigger } = setup()
+
+    fireEvent.click(popOverTrigger)
+
+    await waitFor(() => debug())
   })
 })
