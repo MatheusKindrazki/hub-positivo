@@ -31,7 +31,6 @@ const useHeaderReturn = {
       label: 'Escola Editora Positivo - Positivo ON SPE',
       value: 'ef6f00c9-bd31-47e4-be51-bbbbbb'
     },
-
     {
       roles: [
         'PAIS_E_RESPONSAVEIS',
@@ -51,6 +50,14 @@ const useHeaderReturn = {
       id: 'ADMINISTRADOR',
       label: 'Administrador',
       value: 'administrador'
+    },
+    {
+      name: 'Coordenador',
+      icon: 'coordenador',
+      colorProfile: 'coordenador',
+      id: 'COORDENADOR',
+      label: 'Coordenador',
+      value: 'coordenador'
     }
   ],
   defaultValue: {
@@ -100,7 +107,14 @@ describe('get started', () => {
     return { ...wrapper, popOverTrigger, popOverContent, blurEffect }
   }
 
-  const { defaultValue, resetInfo, schoolList } = useHeaderReturn
+  const {
+    defaultValue,
+    resetInfo,
+    schoolList,
+    roleList,
+    setSchool,
+    setRole
+  } = useHeaderReturn
 
   it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked', () => {
     const { getByText, storeUtils } = setup({
@@ -196,7 +210,7 @@ describe('get started', () => {
     )
   })
 
-  it('Should change the school on selector when other school is triggered', async () => {
+  it('Should change the `school` on selector when other `school` is triggered', async () => {
     const { popOverTrigger, getByText, findByText } = setup()
 
     fireEvent.click(popOverTrigger)
@@ -211,5 +225,32 @@ describe('get started', () => {
     expect(otherSchool).toBeInTheDocument()
 
     fireEvent.click(otherSchool)
+
+    expect(setSchool).toHaveBeenLastCalledWith({
+      label: schoolList[0].label,
+      roles: schoolList[0].roles,
+      value: schoolList[0].value
+    })
+  })
+
+  it('Should change the `role` on selector when other `role` is triggered', async () => {
+    const { popOverTrigger, getByText, findByText } = setup()
+
+    fireEvent.click(popOverTrigger)
+
+    const roleLabel = defaultValue.role?.label as string
+    const selectedRole = await findByText(roleLabel)
+
+    expect(selectedRole).toBeInTheDocument()
+    reactEvent.openMenu(selectedRole)
+
+    const coordenador = roleList[1]
+
+    const otherRole = getByText(coordenador.name)
+    expect(otherRole).toBeInTheDocument()
+
+    fireEvent.click(otherRole)
+
+    expect(setRole).toHaveBeenLastCalledWith(coordenador)
   })
 })
