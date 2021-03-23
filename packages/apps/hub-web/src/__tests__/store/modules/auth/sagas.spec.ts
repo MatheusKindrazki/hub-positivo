@@ -181,5 +181,68 @@ describe('Sagas of authentication history', () => {
         globalActions.enableRefreshTokenMiddleware(true)
       )
     })
+
+    it('Should signOut the user if the ID from the reduced token is different from the user ID', async () => {
+      const returnedMock = fakeResponse
+
+      const mockedAction = authActions.preparingUserData({
+        profiles: prepareAccessProfileMock.profiles,
+        selected_profile: prepareAccessProfileMock.selected_profile,
+        selected_school: prepareAccessProfileMock.selected_school,
+        redirect: undefined
+      }) as Payload<AccessData>
+
+      jest
+        .spyOn(eemIntegration, 'changeSchool')
+        .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
+
+      mockState.user = {
+        ...mockState.user,
+        school: userMock.school,
+        user: {
+          ...userMock.user,
+          guid: 'not-valid-id'
+        }
+      }
+
+      const messageMock = jest.spyOn(toast, 'error')
+
+      await runSaga(store, prepareAccess, mockedAction).toPromise()
+
+      expect(dispatchedActions).toContainObject(authActions.signOut())
+      expect(messageMock).toBeCalledWith(
+        'Você não tem acesso a escola: Escola Positivo'
+      )
+    })
+
+    it('Should set the user as authenticated when receiving the redirect parameter', async () => {
+      const returnedMock = fakeResponse
+
+      const mockedAction = authActions.preparingUserData({
+        profiles: prepareAccessProfileMock.profiles,
+        selected_profile: prepareAccessProfileMock.selected_profile,
+        selected_school: prepareAccessProfileMock.selected_school,
+        redirect: '/solucao/teste-mock'
+      }) as Payload<AccessData>
+
+      jest
+        .spyOn(eemIntegration, 'changeSchool')
+        .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
+
+      mockState.user = {
+        ...mockState.user,
+        school: userMock.school,
+        user: {
+          ...userMock.user
+        }
+      }
+
+      const historyMock = jest.spyOn(history, 'push')
+
+      await runSaga(store, prepareAccess, mockedAction).toPromise()
+
+      expect(dispatchedActions).toContainObject(authActions.setSigned())
+      expect(historyMock).toBeCalledWith('/solucao/teste-mock')
+    })
   })
 })

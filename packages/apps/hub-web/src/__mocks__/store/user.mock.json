@@ -22,7 +22,7 @@
     "value": "21694ec0-88be-4231-ac2a-392dbf845518",
     "label": "Escola Positivo",
     "user_id": "123",
-    "integration_id": null,
+    "integration_id": "",
     "roles": [
       "PAIS_E_RESPONSAVEIS",
       "COORDENADOR",
