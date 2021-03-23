@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { debug } from 'node:console'
+import reactEvent from 'react-select-event'
 
 import { store } from '~/store'
 
@@ -58,14 +58,14 @@ const useHeaderReturn = {
       label: 'Escola Positivo ON SPE 18-005',
       value: '21694ec0-88be-4231-ac2a-392dbf835518'
     },
-    role: { label: 'Administrador', value: 'administrador' }
+    role: { label: 'Administrador', value: 'Administrador' }
   },
   setRole: jest.fn(),
   setSchool: jest.fn(),
   resetInfo: jest.fn()
 } as ContextHeaderProps
 
-const name = 'Fake Name'
+const name = 'FirstName, LastName'
 const user = {
   user: {
     user: {
@@ -75,7 +75,13 @@ const user = {
 }
 
 describe('get started', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+    jest.restoreAllMocks()
+  })
   jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
+  const spyPush = jest.spyOn(history, 'push')
+
   const setup = (CUSTOM_STATE = { ...user } as CustomState) => {
     const openModalPass = jest.fn()
     const wrapper = render(<Desktop openModalPass={openModalPass} />, {
@@ -83,12 +89,18 @@ describe('get started', () => {
       store,
       CUSTOM_STATE
     })
+
     const popOverContent = wrapper.getByTestId('popover-content')
     const popOverTrigger = wrapper.getByTestId('popover-trigger')
 
+    const blurEffect = (element: HTMLElement): boolean =>
+      fireEvent.keyDown(element, { key: 'Esc', code: 27 })
+
     wrapper.storeUtils?.clearActions()
-    return { ...wrapper, popOverTrigger, popOverContent }
+    return { ...wrapper, popOverTrigger, popOverContent, blurEffect }
   }
+
+  const { defaultValue, resetInfo, schoolList } = useHeaderReturn
 
   it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked', () => {
     const { getByText, storeUtils } = setup({
@@ -116,7 +128,21 @@ describe('get started', () => {
     ])
   })
 
-  it('Popover should be visible when header`s avatar is clicked ', async () => {
+  it('Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked', async () => {
+    const { popOverTrigger, findByText } = setup({
+      profile: { guid: 'PROFESSOR' }
+    })
+
+    fireEvent.click(popOverTrigger)
+
+    const classes = await findByText(/Minhas turmas/i)
+    expect(classes).toBeInTheDocument()
+
+    fireEvent.click(classes)
+    expect(spyPush).toHaveBeenCalledWith('/minhas-turmas')
+  })
+
+  it('Popover should be visible when header`s avatar is clicked', async () => {
     const { popOverTrigger, popOverContent } = setup()
 
     expect(popOverContent).not.toBeVisible()
@@ -140,7 +166,6 @@ describe('get started', () => {
 
   it('Should dispatch an `@auth/SIGN_OUT` action when `Sair` is clicked', async () => {
     jest.useFakeTimers()
-    const spyPush = jest.spyOn(history, 'push')
     const { findByText, storeUtils, popOverTrigger } = setup()
 
     fireEvent.click(popOverTrigger)
@@ -155,9 +180,7 @@ describe('get started', () => {
   })
 
   it('Should close Popover when component is on blur or escape (ESC)', async () => {
-    const { resetInfo } = useHeaderReturn
-
-    const { popOverTrigger, popOverContent } = setup()
+    const { popOverTrigger, popOverContent, blurEffect } = setup()
 
     fireEvent.click(popOverTrigger)
 
@@ -165,7 +188,7 @@ describe('get started', () => {
       expect(popOverContent).toHaveStyle('visibility: visible')
     )
 
-    fireEvent.keyDown(popOverContent, { key: 'Esc', code: 27 })
+    blurEffect(popOverContent)
 
     expect(resetInfo).toHaveBeenCalledTimes(1)
     await waitFor(() =>
@@ -173,11 +196,20 @@ describe('get started', () => {
     )
   })
 
-  it('Should show schools options when the schools selection is triggered', async () => {
-    const { popOverTrigger } = setup()
+  it('Should change the school on selector when other school is triggered', async () => {
+    const { popOverTrigger, getByText, findByText } = setup()
 
     fireEvent.click(popOverTrigger)
 
-    await waitFor(() => debug())
+    const schoolLabel = defaultValue.school?.label as string
+    const school = await findByText(schoolLabel)
+
+    expect(school).toBeInTheDocument()
+    reactEvent.openMenu(school)
+
+    const otherSchool = getByText(schoolList[0].label)
+    expect(otherSchool).toBeInTheDocument()
+
+    fireEvent.click(otherSchool)
   })
 })

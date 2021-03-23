@@ -136,8 +136,8 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
               className="height-md"
               value={defaultValue.school}
               options={schoolList}
-              onFocus={() => setEnableBlur(false)}
-              onBlur={() => setEnableBlur(true)}
+              onFocus={() => console.log(false)}
+              onBlur={() => console.log(true)}
               onChange={e => {
                 setSchool(e as any)
               }}
