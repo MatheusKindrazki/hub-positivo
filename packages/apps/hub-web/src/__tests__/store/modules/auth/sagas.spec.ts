@@ -132,14 +132,14 @@ describe('Sagas of authentication history', () => {
   })
 
   describe('prepare Access', () => {
-    it('Should prepare all data for the first user access', async () => {
+    const setup = async (data: { guid?: string; redirect?: string }) => {
       const returnedMock = fakeResponse
 
       const mockedAction = authActions.preparingUserData({
         profiles: prepareAccessProfileMock.profiles,
         selected_profile: prepareAccessProfileMock.selected_profile,
         selected_school: prepareAccessProfileMock.selected_school,
-        redirect: undefined
+        redirect: data.redirect
       }) as Payload<AccessData>
 
       jest
@@ -148,13 +148,22 @@ describe('Sagas of authentication history', () => {
 
       mockState.user = {
         ...mockState.user,
-        user: userMock.user
+        user: {
+          ...userMock.user,
+          guid: data.guid || userMock.user.guid
+        }
       }
 
-      // const historyMock = jest.spyOn(history, 'push')
-      // const messageMock = jest.spyOn(toast, 'error')
+      const historyMock = jest.spyOn(history, 'push')
+      const messageMock = jest.spyOn(toast, 'error')
 
       await runSaga(store, prepareAccess, mockedAction).toPromise()
+
+      return { historyMock, messageMock }
+    }
+
+    it('Should prepare all data for the first user access', async () => {
+      await setup({})
 
       // Verifica se token reduzindo foi gerado
       expect(dispatchedActions).toContainObject(
@@ -183,31 +192,7 @@ describe('Sagas of authentication history', () => {
     })
 
     it('Should signOut the user if the ID from the reduced token is different from the user ID', async () => {
-      const returnedMock = fakeResponse
-
-      const mockedAction = authActions.preparingUserData({
-        profiles: prepareAccessProfileMock.profiles,
-        selected_profile: prepareAccessProfileMock.selected_profile,
-        selected_school: prepareAccessProfileMock.selected_school,
-        redirect: undefined
-      }) as Payload<AccessData>
-
-      jest
-        .spyOn(eemIntegration, 'changeSchool')
-        .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
-
-      mockState.user = {
-        ...mockState.user,
-        school: userMock.school,
-        user: {
-          ...userMock.user,
-          guid: 'not-valid-id'
-        }
-      }
-
-      const messageMock = jest.spyOn(toast, 'error')
-
-      await runSaga(store, prepareAccess, mockedAction).toPromise()
+      const { messageMock } = await setup({ guid: 'invalid-guid' })
 
       expect(dispatchedActions).toContainObject(authActions.signOut())
       expect(messageMock).toBeCalledWith(
@@ -216,30 +201,7 @@ describe('Sagas of authentication history', () => {
     })
 
     it('Should set the user as authenticated when receiving the redirect parameter', async () => {
-      const returnedMock = fakeResponse
-
-      const mockedAction = authActions.preparingUserData({
-        profiles: prepareAccessProfileMock.profiles,
-        selected_profile: prepareAccessProfileMock.selected_profile,
-        selected_school: prepareAccessProfileMock.selected_school,
-        redirect: '/solucao/teste-mock'
-      }) as Payload<AccessData>
-
-      jest
-        .spyOn(eemIntegration, 'changeSchool')
-        .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
-
-      mockState.user = {
-        ...mockState.user,
-        school: userMock.school,
-        user: {
-          ...userMock.user
-        }
-      }
-
-      const historyMock = jest.spyOn(history, 'push')
-
-      await runSaga(store, prepareAccess, mockedAction).toPromise()
+      const { historyMock } = await setup({ redirect: '/solucao/teste-mock' })
 
       expect(dispatchedActions).toContainObject(authActions.setSigned())
       expect(historyMock).toBeCalledWith('/solucao/teste-mock')
