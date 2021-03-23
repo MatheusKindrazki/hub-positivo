@@ -25,37 +25,48 @@ jest.mock('~/components/Header/context', () => {
 const useHeaderReturn = {
   schoolList: [
     {
-      label: 'school_list_label',
-      value: 'school_list_value',
-      roles: ['school_list_roles']
+      roles: ['PROFESSOR'],
+      label: 'Escola Editora Positivo - Positivo ON SPE',
+      value: 'ef6f00c9-bd31-47e4-be51-bbbbbb'
+    },
+
+    {
+      roles: [
+        'PAIS_E_RESPONSAVEIS',
+        'COORDENADOR',
+        'PROFESSOR',
+        'ADMINISTRADOR'
+      ],
+      label: 'Escola Positivo ON SPE 18-005',
+      value: '21694ec0-88be-4231-ac2a-392dbf835518'
     }
   ],
   roleList: [
     {
-      name: 'role_name',
-      icon: 'role_icon',
-      colorProfile: 'role_color_profile',
-      id: 'role_id',
-      label: 'role_label',
-      value: 'role_value'
+      name: 'Administrador',
+      icon: 'administrador',
+      colorProfile: 'administrador',
+      id: 'ADMINISTRADOR',
+      label: 'Administrador',
+      value: 'administrador'
     }
   ],
-  setSchool: jest.fn(),
-  setRole: jest.fn(),
-  resetInfo: jest.fn(),
   defaultValue: {
     school: {
-      value: 'default_school_value',
-      label: 'default_school_label'
+      label: 'Escola Positivo ON SPE 18-005',
+      value: '21694ec0-88be-4231-ac2a-392dbf835518'
     },
-    role: { value: 'default_role_value', label: 'default_role_label' }
-  }
+    role: { label: 'Administrador', value: 'administrador' }
+  },
+  setRole: jest.fn(),
+  setSchool: jest.fn(),
+  resetInfo: jest.fn()
 } as ContextHeaderProps
 
 describe('get started', () => {
   jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
 
-  const { defaultValue } = useHeaderReturn
+  // const { defaultValue } = useHeaderReturn
 
   const name = 'Fake Name'
   const user = {
@@ -73,10 +84,11 @@ describe('get started', () => {
       store,
       CUSTOM_STATE
     })
-
+    const popOverContent = wrapper.getByTestId('popover-content')
     const popOverTrigger = wrapper.getByTestId('popover-trigger')
+
     wrapper.storeUtils?.clearActions()
-    return { ...wrapper, popOverTrigger }
+    return { ...wrapper, popOverTrigger, popOverContent }
   }
   it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked', () => {
     const { getByText, storeUtils } = setup({
@@ -105,8 +117,7 @@ describe('get started', () => {
   })
 
   it('Popover should be visible when header`s avatar is clicked ', async () => {
-    const { getByTestId, popOverTrigger } = setup()
-    const popOverContent = getByTestId('popover-content')
+    const { popOverTrigger, popOverContent } = setup()
 
     expect(popOverContent).not.toBeVisible()
     expect(popOverTrigger).toBeInTheDocument()
@@ -127,9 +138,9 @@ describe('get started', () => {
     debug()
   })
 
-  it('should dispatch an `@auth/SIGN_OUT` action when `Sair` is clicked', async () => {
-    const spyPush = jest.spyOn(history, 'push')
+  it('Should dispatch an `@auth/SIGN_OUT` action when `Sair` is clicked', async () => {
     jest.useFakeTimers()
+    const spyPush = jest.spyOn(history, 'push')
     const { findByText, storeUtils, popOverTrigger } = setup()
 
     fireEvent.click(popOverTrigger)
@@ -141,5 +152,24 @@ describe('get started', () => {
     const action = storeUtils?.getActions()
     expect(action).toStrictEqual([{ type: '@auth/SIGN_OUT' }])
     expect(spyPush).toHaveBeenCalledWith('/login')
+  })
+
+  it('Should close Popover when component is on blur or escape (ESC)', async () => {
+    const { resetInfo } = useHeaderReturn
+
+    const { popOverTrigger, popOverContent } = setup()
+
+    fireEvent.click(popOverTrigger)
+
+    await waitFor(() =>
+      expect(popOverContent).toHaveStyle('visibility: visible')
+    )
+
+    fireEvent.keyDown(popOverContent, { key: 'Esc', code: 27 })
+
+    expect(resetInfo).toHaveBeenCalledTimes(1)
+    await waitFor(() =>
+      expect(popOverContent).toHaveStyle('visibility: hidden')
+    )
   })
 })

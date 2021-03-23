@@ -85,6 +85,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
         Estou com uma dúvida
       </Button>
       <Popover
+        data-testid="popover"
         onClose={handleClosed}
         onOpen={menuOpen}
         isOpen={isOpen}
