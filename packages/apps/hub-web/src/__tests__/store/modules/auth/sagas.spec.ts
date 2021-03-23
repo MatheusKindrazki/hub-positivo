@@ -4,7 +4,6 @@ import { runSaga } from 'redux-saga'
 import { AccessData, SignInRequest } from '~/store/modules/auth/types'
 import { signIn, prepareAccess } from '~/store/modules/auth/sagas'
 import * as authActions from '~/store/modules/auth/actions'
-import { store as trueStore } from '~/store'
 
 import { toast } from '@hub/common/utils'
 
@@ -12,27 +11,28 @@ import history from '~/services/history'
 import * as eemIntegration from '~/services/eemIntegration'
 import * as eem from '~/services/eemConnect'
 
-import store from '~/__mocks__/fakeStore.mock'
+import store, { mockState } from '~/__mocks__/fakeStore.mock'
 import fakeResponse from '~/__mocks__/fakeEemResponse.json'
 
-jest.mock('~/store')
 jest.mock('~/services/eemConnect')
 jest.mock('~/services/eemIntegration')
 jest.mock('~/middlewares/refreshToken')
 jest.mock('~/hooks/amplitude/identifyUser')
 jest.mock('@hub/common/utils/capitalize')
 
+let dispatchedActions = store.getActions()
+
 const userMock = {
   username: 'johndoe',
   password: '123456'
 }
 
-let dispatchedActions = store.getActions()
 describe('Sagas of authentication history', () => {
   beforeEach(() => {
     jest.clearAllMocks()
     jest.clearAllTimers()
     store.clearActions()
+
     dispatchedActions = store.getActions()
   })
 
@@ -128,54 +128,61 @@ describe('Sagas of authentication history', () => {
     })
   })
 
-  // describe('prepare Access', () => {
-  //   it('Should prepare all data for the first user access', async () => {
-  //     const returnedMock = fakeResponse
+  describe('prepare Access', () => {
+    it.skip('Should prepare all data for the first user access', async () => {
+      const returnedMock = fakeResponse
 
-  //     const mockedAction = authActions.preparingUserData({
-  //       selected_school: {
-  //         id: 'fake-guid-id',
-  //         user_id: undefined,
-  //         integration_id: undefined,
-  //         time_zone: undefined,
-  //         name: 'Positivo Soluções',
-  //         roles: ['Admin', 'Prof'],
-  //         label: 'PSD',
-  //         value: 'psd'
-  //       },
-  //       selected_profile: {
-  //         id: 'fake-guid-id',
-  //         name: 'Administrator',
-  //         icon: 'admin',
-  //         colorProfile: 'green'
-  //       },
-  //       profiles: [
-  //         {
-  //           id: 'fake-guid-id',
-  //           name: 'Administrator',
-  //           icon: 'admin',
-  //           colorProfile: 'green'
-  //         }
-  //       ],
-  //       redirect: undefined
-  //     }) as Payload<AccessData>
+      const mockedAction = authActions.preparingUserData({
+        selected_school: {
+          id: 'fake-guid-id',
+          user_id: undefined,
+          integration_id: undefined,
+          time_zone: undefined,
+          name: 'Positivo Soluções',
+          roles: ['Admin', 'Prof'],
+          label: 'PSD',
+          value: 'psd'
+        },
+        selected_profile: {
+          id: 'fake-guid-id',
+          name: 'Administrator',
+          icon: 'admin',
+          colorProfile: 'green'
+        },
+        profiles: [
+          {
+            id: 'fake-guid-id',
+            name: 'Administrator',
+            icon: 'admin',
+            colorProfile: 'green'
+          }
+        ],
+        redirect: undefined
+      }) as Payload<AccessData>
 
-  //     jest
-  //       .spyOn(eemIntegration, 'changeSchool')
-  //       .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
+      jest
+        .spyOn(eemIntegration, 'changeSchool')
+        .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
 
-  //     const historyMock = jest.spyOn(history, 'push')
-  //     const messageMock = jest.spyOn(toast, 'error')
+      mockState.user = {
+        ...mockState.user,
+        user: {
+          name: 'Mandela',
+          email: 'asd@gmail.com',
+          username: 'asd',
+          guid: '123'
+        }
+      }
 
-  //     await runSaga(store, prepareAccess, mockedAction).toPromise()
+      const historyMock = jest.spyOn(history, 'push')
+      const messageMock = jest.spyOn(toast, 'error')
 
-  //     expect(dispatchedActions).toContainObject(authActions.signOut())
+      await runSaga(store, prepareAccess, mockedAction).toPromise()
 
-  //     expect(messageMock).toBeCalledWith(
-  //       'Você não tem acesso a escola: Positivo Soluções'
-  //     )
-
-  //     console.log(dispatchedActions)
-  //   })
-  // })
+      expect(dispatchedActions).toContainObject(authActions.signOut())
+      // expect(messageMock).toBeCalledWith(
+      //   'Você não tem acesso a escola: Positivo Soluções'
+      // )
+    })
+  })
 })
