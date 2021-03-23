@@ -93,6 +93,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
       >
         <PopoverTrigger>
           <Avatar
+            data-testid="popover-trigger"
             cursor="pointer"
             width="2.6rem"
             color="#3C3C3C"
@@ -103,6 +104,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
           />
         </PopoverTrigger>
         <PopoverContent
+          data-testid="popover-content"
           outline="none"
           minW="310px"
           borderRadius="md"

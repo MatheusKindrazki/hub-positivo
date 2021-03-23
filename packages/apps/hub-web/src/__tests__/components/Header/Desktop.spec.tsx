@@ -2,13 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import {
-  render,
-  CustomState,
-  fireEvent,
-  waitFor,
-  getByRole
-} from '@hub/test-utils'
+import { render, CustomState, fireEvent, waitFor } from '@hub/test-utils'
 import * as components from '@hub/common/components'
 
 import { ContextHeaderProps } from '~/components/Header/context/types'
@@ -52,7 +46,40 @@ jest.mock('~/components/Header/context', () => {
 })
 
 describe('get started', () => {
-  const spyUseHeader = jest.spyOn(header, 'useHeader')
+  const useHeaderReturn = {
+    schoolList: [
+      {
+        label: 'school_list_label',
+        value: 'school_list_value',
+        roles: ['school_list_roles']
+      }
+    ],
+    roleList: [
+      {
+        name: 'role_name',
+        icon: 'role_icon',
+        colorProfile: 'role_color_profile',
+        id: 'role_id',
+        label: 'role_label',
+        value: 'role_value'
+      }
+    ],
+    setSchool: jest.fn(),
+    setRole: jest.fn(),
+    resetInfo: jest.fn(),
+    defaultValue: {
+      school: {
+        value: 'default_school_value',
+        label: 'default_school_label'
+      },
+      role: { value: 'default_role_value', label: 'default_role_label' }
+    }
+  } as ContextHeaderProps
+
+  const { defaultValue } = useHeaderReturn
+  const spyUseHeader = jest
+    .spyOn(header, 'useHeader')
+    .mockReturnValue(useHeaderReturn)
 
   const setup = (CUSTOM_STATE = {} as CustomState) => {
     const openModalPass = jest.fn()
@@ -91,20 +118,28 @@ describe('get started', () => {
     ])
   })
 
-  it.only('Should open popover when header`s avatar is clicked', () => {
-    const { getByText, debug } = setup({
+  it.only('Should open popover when header`s avatar is clicked ', async () => {
+    jest.useFakeTimers()
+    const name = 'Fake Name'
+    const { getByText, getByTestId, debug } = setup({
       user: {
         user: {
-          name: 'Testes Automatizados'
+          name
         }
       }
     })
+    const popOverTrigger = getByTestId('popover-trigger')
+    const popOverContent = getByTestId('popover-content')
 
-    const avatar = getByText(/TA/i)
-    expect(avatar).toBeInTheDocument()
+    expect(popOverContent).not.toBeVisible()
 
-    fireEvent.click(avatar)
+    expect(popOverTrigger).toBeInTheDocument()
+    await waitFor(() => fireEvent.click(popOverTrigger))
+    jest.runAllTimers()
+
     debug()
+
+    expect(popOverContent).toBeVisible()
   })
 
   it.skip('should call `onOpen` function when `Estou com uma dúvida` is clicked', () => {
