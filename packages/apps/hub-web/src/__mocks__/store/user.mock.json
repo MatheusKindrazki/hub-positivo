@@ -1,0 +1,33 @@
+{
+  "user": {
+    "name": "John Doe",
+    "integration_id": "1122" ,
+    "id": "",
+    "guid": "6d45f4f8-3326-4856-a29d-36216b2e4e2c",
+    "username":"john.doe",
+    "email": "johndoe@teste.com",
+    "schools": [{
+      "id": "21694ec0-88be-4231-ac2a-392dbf845518",
+      "name": "Escola Positivo",
+      "roles": [
+        "PAIS_E_RESPONSAVEIS",
+        "COORDENADOR",
+        "PROFESSOR",
+        "ADMINISTRADOR"
+      ]
+    }]
+  },
+  "avatar": "",
+  "school": {
+    "value": "21694ec0-88be-4231-ac2a-392dbf845518",
+    "label": "Escola Positivo",
+    "user_id": "123",
+    "integration_id": null,
+    "roles": [
+      "PAIS_E_RESPONSAVEIS",
+      "COORDENADOR",
+      "PROFESSOR",
+      "ADMINISTRADOR"
+    ]
+  }
+}

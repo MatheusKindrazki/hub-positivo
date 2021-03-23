@@ -1,6 +1,8 @@
 import { Payload } from 'redux-saga/effects'
 import { runSaga } from 'redux-saga'
 
+import * as profileActions from '~/store/modules/profile/actions'
+import * as globalActions from '~/store/modules/global/actions'
 import { AccessData, SignInRequest } from '~/store/modules/auth/types'
 import { signIn, prepareAccess } from '~/store/modules/auth/sagas'
 import * as authActions from '~/store/modules/auth/actions'
@@ -11,6 +13,7 @@ import history from '~/services/history'
 import * as eemIntegration from '~/services/eemIntegration'
 import * as eem from '~/services/eemConnect'
 
+import { userMock, prepareAccessProfileMock, authMock } from '~/__mocks__/store'
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 import fakeResponse from '~/__mocks__/fakeEemResponse.json'
 
@@ -22,7 +25,7 @@ jest.mock('@hub/common/utils/capitalize')
 
 let dispatchedActions = store.getActions()
 
-const userMock = {
+const userMockSignIn = {
   username: 'johndoe',
   password: '123456'
 }
@@ -55,7 +58,7 @@ describe('Sagas of authentication history', () => {
       }
 
       const mockedAction = authActions.signInRequest({
-        ...userMock,
+        ...userMockSignIn,
         redirect: from
       }) as Payload<SignInRequest>
 
@@ -77,7 +80,7 @@ describe('Sagas of authentication history', () => {
       await expect(eem.EEMConnectPost).toBeCalledWith({
         data: {
           grant_type: 'password',
-          ...userMock
+          ...userMockSignIn
         },
         endpoint: 'connect/token'
       })
@@ -108,7 +111,7 @@ describe('Sagas of authentication history', () => {
       await expect(eem.EEMConnectPost).toBeCalledWith({
         data: {
           grant_type: 'password',
-          ...userMock
+          ...userMockSignIn
         },
         endpoint: 'connect/token'
       })
@@ -129,34 +132,13 @@ describe('Sagas of authentication history', () => {
   })
 
   describe('prepare Access', () => {
-    it.skip('Should prepare all data for the first user access', async () => {
+    it('Should prepare all data for the first user access', async () => {
       const returnedMock = fakeResponse
 
       const mockedAction = authActions.preparingUserData({
-        selected_school: {
-          id: 'fake-guid-id',
-          user_id: undefined,
-          integration_id: undefined,
-          time_zone: undefined,
-          name: 'Positivo Soluções',
-          roles: ['Admin', 'Prof'],
-          label: 'PSD',
-          value: 'psd'
-        },
-        selected_profile: {
-          id: 'fake-guid-id',
-          name: 'Administrator',
-          icon: 'admin',
-          colorProfile: 'green'
-        },
-        profiles: [
-          {
-            id: 'fake-guid-id',
-            name: 'Administrator',
-            icon: 'admin',
-            colorProfile: 'green'
-          }
-        ],
+        profiles: prepareAccessProfileMock.profiles,
+        selected_profile: prepareAccessProfileMock.selected_profile,
+        selected_school: prepareAccessProfileMock.selected_school,
         redirect: undefined
       }) as Payload<AccessData>
 
@@ -166,23 +148,38 @@ describe('Sagas of authentication history', () => {
 
       mockState.user = {
         ...mockState.user,
-        user: {
-          name: 'Mandela',
-          email: 'asd@gmail.com',
-          username: 'asd',
-          guid: '123'
-        }
+        user: userMock.user
       }
 
-      const historyMock = jest.spyOn(history, 'push')
-      const messageMock = jest.spyOn(toast, 'error')
+      // const historyMock = jest.spyOn(history, 'push')
+      // const messageMock = jest.spyOn(toast, 'error')
 
       await runSaga(store, prepareAccess, mockedAction).toPromise()
 
-      expect(dispatchedActions).toContainObject(authActions.signOut())
-      // expect(messageMock).toBeCalledWith(
-      //   'Você não tem acesso a escola: Positivo Soluções'
-      // )
+      // Verifica se token reduzindo foi gerado
+      expect(dispatchedActions).toContainObject(
+        authActions.reducedTokenEEM(authMock.reduced_token)
+      )
+
+      // Verifica se perfil de admin foi selecionado
+      expect(dispatchedActions).toContainObject(
+        profileActions.setProfile({
+          guid: 'ADMINISTRADOR',
+          name: 'Administrador',
+          profile: 'admin',
+          colorProfile: 'green'
+        })
+      )
+
+      // Verifica se os demais perfis foram salvos
+      expect(dispatchedActions).toContainObject(
+        profileActions.profiles(prepareAccessProfileMock.profiles)
+      )
+
+      // Verifica se refresh token da aplicação é ativado
+      expect(dispatchedActions).toContainObject(
+        globalActions.enableRefreshTokenMiddleware(true)
+      )
     })
   })
 })
