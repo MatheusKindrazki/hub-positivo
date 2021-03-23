@@ -20,7 +20,6 @@ import {
   CustomRenderResult
 } from './types'
 import history from '../apps/hub-web/src/services/history'
-import '@testing-library/jest-dom'
 
 const sagaMiddleware = createSagaMiddleware()
 const middlewares = [sagaMiddleware, routerMiddleware(history)]

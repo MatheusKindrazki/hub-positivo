@@ -1,15 +1,18 @@
-import { store } from '~/store'
+import { routerMiddleware } from 'connected-react-router'
 
-type MockStore = typeof store
+import createSagaMiddleware from 'redux-saga'
+// import { MockStore } from 'redux-mock-store'
+import configureStore from 'redux-mock-store'
 
-interface ReturnPayload {
-  type: string
-  payload?: any
-}
+import { reducerArray } from '~/store/modules/rootReducer'
 
-export const dispatchedActions: ReturnPayload[] = []
+import history from '~/services/history'
 
-export const fakeStore: MockStore = {
-  ...store,
-  dispatch: (action: ReturnPayload) => dispatchedActions.push(action) as any
-}
+const sagaMiddleware = createSagaMiddleware()
+const middlewares = [sagaMiddleware, routerMiddleware(history)]
+
+const mockStore = configureStore(middlewares)
+
+const store = mockStore(reducerArray)
+
+export default store
