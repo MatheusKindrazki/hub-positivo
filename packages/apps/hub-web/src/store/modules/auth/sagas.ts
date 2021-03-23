@@ -79,7 +79,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
   const user = decode(data?.access_token as string) as any
 
   api.setHeaders({
-    Authorization: `Bearer ${data?.access_token || ''}`
+    Authorization: `Bearer ${data?.access_token}`
   })
 
   // ? Identifica o usuário no amplitude
