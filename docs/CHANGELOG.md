@@ -1,3 +1,23 @@
+# [1.7.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.6.0...v1.7.0) (2021-03-19)
+
+
+### Bug Fixes
+
+* fixed history.push warning ([7016bd8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/7016bd85aa091d7023dd12734662095dc8ad1ef8))
+* removendo debug() ([d31119e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d31119eed647c279f6e044efd65ab03b1923f9e6))
+* removendo testes de changePassword ([0146c8c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/0146c8c2e5f7cc26e1b6b47be2b9b2a37540a425))
+
+
+### Features
+
+* adicionando redux-mock-store no yarn.lock ([b2382ad](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b2382ada9189109e2b70a1fa538560f77768e22d))
+
+
+### Performance Improvements
+
+* removendo nomenclaturas duplicadas ([d34a783](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d34a783437f2daee051421bf297dce2036f3064c))
+* **finalizar testes da pagina de profile:** testes automatizados ([35cde83](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/35cde83549c73a7394ee914dc52095411f1bf66f))
+
 # [1.6.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.5.0...v1.6.0) (2021-03-13)
 
 

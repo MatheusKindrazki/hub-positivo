@@ -12,7 +12,9 @@ import ModalNoClass from '~/components/ModalNoClass'
 
 jest.unmock('@hub/common/hooks')
 
-describe('ModalNoClass component', () => {
+jest.mock('~/components/ModalNoClass/turma.svg', () => <>Turma svg</>)
+
+describe('ModalNoClass component should work properly', () => {
   it('should trigger the logout action by clicking the exit button', async () => {
     const dispatch = jest.fn()
 
@@ -83,9 +85,6 @@ describe('ModalNoClass component', () => {
         }
       }
     })
-
-    wrapper.debug()
-
     expect(wrapper).toBeDefined()
   })
 })
