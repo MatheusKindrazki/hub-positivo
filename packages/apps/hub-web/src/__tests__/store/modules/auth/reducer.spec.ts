@@ -13,7 +13,7 @@ const mockedSignIn = {
 }
 
 describe('Reducer of authentication history', () => {
-  it('hope at the shooting of Action Reducers steps are triggered by setting the default information', () => {
+  it('Should at the shooting of Action Reducers steps are triggered by setting the default information', () => {
     const action = authActions.signInRequest({
       password: '1234',
       redirect: undefined,
@@ -27,7 +27,7 @@ describe('Reducer of authentication history', () => {
     expect(state.withoutAccess).toEqual(false)
   })
 
-  it('hope that in login failure, the information returns to the initial state', () => {
+  it('Should that in login failure, the information returns to the initial state', () => {
     const action = authActions.signInFailure()
 
     const state = AuthReducer(mockedSignIn, action)
@@ -35,7 +35,7 @@ describe('Reducer of authentication history', () => {
     expect(state).toEqual({ ...mockedSignIn, signInStrike: true })
   })
 
-  it('hope that in the success of the login, the token is received beyond the other infos for access to the platform', () => {
+  it('Should that in the success of the login, the token is received beyond the other infos for access to the platform', () => {
     const mockedUser = {
       name: 'John Doe',
       integration_id: null,
@@ -59,7 +59,7 @@ describe('Reducer of authentication history', () => {
     expect(state.refresh_token).toEqual('mocked-refresh-token')
   })
 
-  it('hope the loading is fired while the check action happens', () => {
+  it('Should the loading is fired while the check action happens', () => {
     const action = authActions.signInRequestLoading()
 
     const state = AuthReducer(mockedSignIn, action)
@@ -67,7 +67,7 @@ describe('Reducer of authentication history', () => {
     expect(state.loading).toBeTruthy()
   })
 
-  it('hope that in the absence of an initial status defined, the default state is triggered', () => {
+  it('Should that in the absence of an initial status defined, the default state is triggered', () => {
     const action = authActions.signInRequestLoading()
 
     const state = AuthReducer(undefined, action)
@@ -75,7 +75,7 @@ describe('Reducer of authentication history', () => {
     expect(state.loading).toBeTruthy()
   })
 
-  it('hope that being true all login treatives, the user is released for access to the system', () => {
+  it('Should that being true all login treatives, the user is released for access to the system', () => {
     const action = authActions.setSigned()
 
     const state = AuthReducer(undefined, action)
@@ -84,7 +84,7 @@ describe('Reducer of authentication history', () => {
     expect(state.withoutAccess).not.toBeTruthy()
   })
 
-  it('hope that in the absence of education level, the user is blocked for access to platform', () => {
+  it('Should that in the absence of education level, the user is blocked for access to platform', () => {
     const action = authActions.withoutAccess()
 
     const state = AuthReducer(undefined, action)
@@ -92,7 +92,7 @@ describe('Reducer of authentication history', () => {
     expect(state.withoutAccess).toBeTruthy()
   })
 
-  it('hope the reduced token is received and past for storage', () => {
+  it('Should the reduced token is received and past for storage', () => {
     const action = authActions.reducedTokenEEM('my-reduced-token')
 
     const state = AuthReducer(undefined, action)
@@ -100,7 +100,7 @@ describe('Reducer of authentication history', () => {
     expect(state.reduced_token).toBe('my-reduced-token')
   })
 
-  it('hope in the success generation of a new token, a refresh token and an expiration date is received', () => {
+  it('Should in the success generation of a new token, a refresh token and an expiration date is received', () => {
     const mocked = {
       exp: 99,
       refresh_token: 'my-refresh-token',
@@ -116,7 +116,7 @@ describe('Reducer of authentication history', () => {
     expect(state.exp).toBe(99)
   })
 
-  it("hope that in the user's exit, all states are resetted", () => {
+  it("Should that in the user's exit, all states are resetted", () => {
     const action = authActions.signOut()
 
     const state = AuthReducer(undefined, action)
@@ -124,7 +124,7 @@ describe('Reducer of authentication history', () => {
     expect(state).toEqual(mockedSignIn)
   })
 
-  it('hope if an unexpected exception is received, the same will have no effect on the application states', () => {
+  it('Should if an unexpected exception is received, the same will have no effect on the application states', () => {
     const state = AuthReducer(undefined, { type: 'non-expected-action' })
 
     expect(state).toEqual(mockedSignIn)
