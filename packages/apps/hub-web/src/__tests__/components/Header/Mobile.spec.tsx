@@ -62,6 +62,16 @@ describe('Mobile Header component', () => {
     })
   }
 
+  const useDisclosureFunctions = {
+    onClose: jest.fn(),
+    onOpen: jest.fn(),
+    isOpen: true
+  }
+
+  beforeEach(() => {
+    spyUseDisclosure(useDisclosureFunctions)
+  })
+
   const setup = (CUSTOM_STATE = { ...userState } as CustomState) => {
     const {
       result: { current: ref }
@@ -108,27 +118,46 @@ describe('Mobile Header component', () => {
   })
 
   it('openMenu should call onClose when isOpen is true', () => {
-    const onClose = jest.fn()
-
-    spyUseDisclosure({ onClose, isOpen: true })
-
     const { handleMenuClick, menuButton } = setup()
 
     fireEvent.click(menuButton)
 
     expect(handleMenuClick).toHaveBeenCalledTimes(1)
-    expect(onClose).toHaveBeenCalledTimes(1)
+    expect(useDisclosureFunctions.onClose).toHaveBeenCalledTimes(1)
   })
 
-  it('Should redirect to `/` when `Sair` button is clicked', async () => {
-    const { menuButton, findByText } = setup()
+  it('Should redirect to `/` when `Sair` button is clicked', () => {
+    const { getByText } = setup()
 
-    fireEvent.click(menuButton)
-    const exitButton = await findByText(/Sair/i)
+    const exitButton = getByText(/Sair/i)
     expect(exitButton).toBeInTheDocument()
 
     fireEvent.click(exitButton)
 
     expect(spyPush).toHaveBeenCalledWith('/')
+  })
+
+  it('Should open a Tour (dispatch a `@tour/OPEN_TOUR` action) when /Fazer tour/ button is clicked', () => {
+    const { getByText, storeUtils } = setup({
+      tour: {
+        steps: [
+          { content: 'content', position: 'right', selector: '#selector' }
+        ]
+      }
+    })
+    const tourButton = getByText(/Fazer tour/i)
+    fireEvent.click(tourButton)
+
+    const action = storeUtils?.getActions()
+
+    expect(useDisclosureFunctions.onClose).toHaveBeenCalledTimes(1)
+    expect(action).toStrictEqual([
+      {
+        payload: {
+          open: true
+        },
+        type: '@tour/OPEN_TOUR'
+      }
+    ])
   })
 })
