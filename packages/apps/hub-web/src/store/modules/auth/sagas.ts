@@ -175,7 +175,7 @@ export function* checkingExpiringToken({
 }: ExpiringRehydrate): Generator {
   if (!payload) return
 
-  if (!payload.auth.signed && payload?.auth?.token) {
+  if (!payload.auth.signed) {
     return yield put(signOut())
   }
 
@@ -183,7 +183,7 @@ export function* checkingExpiringToken({
 
   const { user } = payload.user
 
-  if (!exp || exp === 0) return
+  if (exp === 0) return
 
   const date = new Date().getTime()
 
@@ -196,7 +196,7 @@ export function* checkingExpiringToken({
   yield put(loading(true))
 
   api.setHeaders({
-    Authorization: `Bearer ${token || ''}`
+    Authorization: `Bearer ${token}`
   })
 
   // ? Identifica o usuário no amplitude
@@ -236,11 +236,11 @@ export function* refreshToken(): Generator {
 
     yield put(signOut())
 
-    setTimeout(() => history.push('/login'), 500)
+    return history.push('/login')
   }
 
   api.setHeaders({
-    Authorization: `Bearer ${data?.access_token || ''}`
+    Authorization: `Bearer ${data?.access_token}`
   })
 
   const res = yield call(async () => {
