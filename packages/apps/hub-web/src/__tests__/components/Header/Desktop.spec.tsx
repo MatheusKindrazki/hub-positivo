@@ -11,7 +11,7 @@ import history from '~/services/history'
 import * as header from '~/components/Header/context'
 import Desktop from '~/components/Header/components/Desktop'
 
-import { useHeaderReturn } from '~/__mocks__/HeaderContext'
+import { useHeaderReturn, userState } from '~/__mocks__/HeaderContext'
 
 jest.mock('~/services/history', () => ({
   push: jest.fn()
@@ -25,15 +25,6 @@ jest.mock('~/components/Header/context', () => {
   }
 })
 
-const name = 'FirstName, LastName'
-const user = {
-  user: {
-    user: {
-      name
-    }
-  }
-}
-
 describe('Desktop Header component', () => {
   afterEach(() => {
     jest.clearAllMocks()
@@ -42,7 +33,7 @@ describe('Desktop Header component', () => {
   jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
   const spyPush = jest.spyOn(history, 'push')
 
-  const setup = (CUSTOM_STATE = { ...user } as CustomState) => {
+  const setup = (CUSTOM_STATE = { ...userState } as CustomState) => {
     const openModalPass = jest.fn()
     const wrapper = render(<Desktop openModalPass={openModalPass} />, {
       reducers: ['tour', 'user', 'profile'],

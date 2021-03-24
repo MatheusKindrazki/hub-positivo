@@ -47,3 +47,13 @@ export const useHeaderReturn = {
   setSchool: jest.fn(),
   resetInfo: jest.fn()
 } as ContextHeaderProps
+
+export const name = 'FirstName LastName'
+
+export const userState = {
+  user: {
+    user: {
+      name
+    }
+  }
+}
