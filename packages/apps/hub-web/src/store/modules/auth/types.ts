@@ -1,5 +1,4 @@
 import { Profiles } from '../profile/types'
-
 export interface SignInRequest {
   username: string
   password: string

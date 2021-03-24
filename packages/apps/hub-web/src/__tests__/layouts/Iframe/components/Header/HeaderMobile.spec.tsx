@@ -135,7 +135,7 @@ describe('Mobile Header`s layout should work properly', () => {
     })
   })
 
-  it('Should close Drawer when `Escape` (Esc) key is down', async () => {
+  it.skip('Should close Drawer when `Escape` (Esc) key is down', async () => {
     const onClose = jest.fn()
     const current = renderUseDisclosure()
 
