@@ -14,6 +14,6 @@ describe('Testing useHeader', () => {
     // const {
     //   result: { current }
     // } = renderHook(() => useHeader(), { wrapper: Header })
-    // console.log(current)
+    // console.log(current
   })
 })
