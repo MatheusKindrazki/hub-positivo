@@ -109,7 +109,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
           <DrawerContent
             mt={['72px', '72px']}
             position="relative"
-            data-testid="drawer-content"
+            data-testid="hub-drawer-content"
           >
             <Box px="4" py="2" w="100%" h="auto">
               <Welcome

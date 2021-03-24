@@ -163,7 +163,7 @@ describe('Mobile Header component', () => {
 
   it('Should call  useDisclosure`s onClose function when key of escape is pressed (ESC)', () => {
     const { getByTestId } = setup()
-    const drawerContent = getByTestId('drawer-content')
+    const drawerContent = getByTestId('hub-drawer-content')
 
     fireEvent.keyDown(drawerContent, { key: 'Esc', code: 27 })
 

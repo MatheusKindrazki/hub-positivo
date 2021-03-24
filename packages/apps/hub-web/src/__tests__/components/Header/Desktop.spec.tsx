@@ -41,8 +41,8 @@ describe('Desktop Header component', () => {
       CUSTOM_STATE
     })
 
-    const popOverContent = wrapper.getByTestId('popover-content')
-    const popOverTrigger = wrapper.getByTestId('popover-trigger')
+    const popOverContent = wrapper.getByTestId('hub-popover-content')
+    const popOverTrigger = wrapper.getByTestId('hub-popover-trigger')
 
     const blurEffect = (element: HTMLElement): boolean =>
       fireEvent.keyDown(element, { key: 'Esc', code: 27 })
