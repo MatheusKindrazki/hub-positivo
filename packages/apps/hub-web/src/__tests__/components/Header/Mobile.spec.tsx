@@ -6,8 +6,7 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent, act, Providers } from '@hub/test-utils'
-import { useTheme } from '@hub/common/layout/styles'
+import { render, CustomState, fireEvent, act } from '@hub/test-utils'
 import * as drawer from '@hub/common/components/Drawer'
 
 import { UseDisclosureProps } from '@chakra-ui/react'
@@ -20,7 +19,11 @@ import MobileMenu, {
   MenuButton
 } from '~/components/Header/components/Mobile'
 
-import { useHeaderReturn, userState } from '~/__mocks__/HeaderContext'
+import {
+  useHeaderReturn,
+  userState,
+  profileState
+} from '~/__mocks__/HeaderContext'
 
 jest.mock('~/services/history', () => ({
   push: jest.fn()
@@ -65,12 +68,6 @@ describe('Mobile Header component', () => {
       ...alterations
     })
   }
-
-  const {
-    result: {
-      current: { colors }
-    }
-  } = renderHook(() => useTheme(), { wrapper: Providers })
 
   const useDisclosureFunctions = {
     onClose: jest.fn(),
@@ -185,18 +182,10 @@ describe('Mobile Header component', () => {
   })
 
   it('Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked', () => {
-    const { getByText } = setup({
-      profile: { guid: 'PROFESSOR' }
-    })
+    const { getByText } = setup(profileState)
     const classesButton = getByText(/Minhas turmas/i)
-    const homeButton = getByText(/Home/i)
 
     expect(classesButton).toBeInTheDocument()
-
-    console.log(colors.blue[500])
-
-    // expect(homeButton).toHaveStyle(`color: ${colors.blue[500]}`)
-    // expect(classesButton).toHaveStyle(`color: ${colors.gray[500]}`)
 
     fireEvent.click(classesButton)
     expect(spyPush).toHaveBeenCalledWith('/minhas-turmas')
@@ -262,20 +251,29 @@ describe('Mobile Header component', () => {
     expect(setRole).toHaveBeenLastCalledWith(coordenador)
   })
 
-  it('Should change `Home` and `Minhas turmas` buttons styles when location is /minhas-turmas', async () => {
+  it('Should change `Home` button color when pathname is /minhas-turmas', async () => {
     jest.spyOn(reactRouter, 'useHistory').mockReturnValue({
       location: {
         pathname: '/minhas-turmas'
       }
     } as any)
-    const { getByText } = setup({
-      profile: { guid: 'PROFESSOR' }
-    })
+    const { getByText } = setup(profileState)
 
     const homeButton = getByText(/Home/i)
+
+    expect(homeButton).toHaveStyle('color: rgb(122, 122, 122)')
+  })
+
+  it('Should change `Minhas turmas` button color when pathname is `/`', () => {
+    jest.spyOn(reactRouter, 'useHistory').mockReturnValue({
+      location: {
+        pathname: '/'
+      }
+    } as any)
+
+    const { getByText } = setup(profileState)
     const classesButton = getByText(/Minhas turmas/i)
 
-    // expect(homeButton).toHaveStyle(`color: ${colors.gray[500]}`)
-    // expect(classesButton).toHaveStyle(`color: ${colors.blue[500]}`)
+    expect(classesButton).toHaveStyle('color: rgb(122, 122, 122)')
   })
 })

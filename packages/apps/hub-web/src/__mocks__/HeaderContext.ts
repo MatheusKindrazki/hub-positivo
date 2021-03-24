@@ -57,3 +57,7 @@ export const userState = {
     }
   }
 }
+
+export const profileState = {
+  profile: { guid: 'PROFESSOR' }
+}
