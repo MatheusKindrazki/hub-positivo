@@ -1,0 +1,52 @@
+[
+  {
+    "ativo": true,
+    "cor": "red",
+    "id": "conteudoId",
+    "nome": "Conteúdo",
+    "solucoes": [
+      {
+        "arquivo": "gestao-file",
+        "ativo": true,
+        "descricao": "Lorem",
+        "id": "gestaoId",
+        "link": "http://mock.com.br",
+        "nome": "Gestão escolar",
+        "notificacao": "gestao-notificacao",
+        "slug": "gestao-escolar-mhund",
+        "tipoRenderizacao": "gestao-iframe"
+      },
+      {
+        "arquivo": "https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-cont-arvore.svg",
+        "ativo": true,
+        "descricao": "Biblioteca de livros paradidáticos e romances",
+        "id": "c4b76a4b-b4bd-4c1e-8ffb-daeb22310277",
+        "idCategoria": "1dd900fa-f2b4-4ce3-ae36-0504b07e5d2c",
+        "link": "http://mock.com.br",
+        "nome": "Árvore Livros",
+        "ordem": 99,
+        "slug": "arvore-livros",
+        "tipoRenderizacao": "targetblank"
+      }
+    ]
+  },
+  {
+    "ativo": true,
+    "cor": "red",
+    "id": "loremId",
+    "nome": "Outro card",
+    "solucoes": [
+      {
+        "arquivo": "lorem-file",
+        "ativo": true,
+        "descricao": "Lorem",
+        "id": "loremId",
+        "link": "psd.lorem.com",
+        "nome": "lorem",
+        "notificacao": "lorem-notificacao",
+        "slug": "lorem",
+        "tipoRenderizacao": "lorem-iframe"
+      }
+    ]
+  }
+]
