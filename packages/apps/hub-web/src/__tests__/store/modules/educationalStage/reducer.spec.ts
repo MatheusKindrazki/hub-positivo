@@ -52,4 +52,10 @@ describe('Reducer of authentication history', () => {
     expect(state.levels).toBeUndefined()
     expect(state.class).toBeUndefined()
   })
+
+  it('Should return the unchanged state if it does not contain any action', () => {
+    const state = EducationalReducer(undefined, { type: 'non-valid-type' })
+
+    expect(state).toEqual(INITIAL_STATE)
+  })
 })
