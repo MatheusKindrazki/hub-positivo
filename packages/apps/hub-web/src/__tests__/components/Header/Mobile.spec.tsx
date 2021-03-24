@@ -90,16 +90,16 @@ describe('Mobile Header component', () => {
     const blurEffect = (element: HTMLElement): boolean =>
       fireEvent.keyDown(element, { key: 'Esc', code: 27 })
 
+    const [menuButton] = wrapper.getAllByRole('button')
     wrapper.storeUtils?.clearActions()
-    return { ...wrapper, blurEffect, handleMenuClick, ref }
+    return { ...wrapper, blurEffect, handleMenuClick, ref, menuButton }
   }
 
   it('openMenu should call onOpen when isOpen is false', () => {
     const onOpen = jest.fn()
     spyUseDisclosure({ onOpen, isOpen: false })
 
-    const { handleMenuClick, getByRole } = setup()
-    const menuButton = getByRole('button')
+    const { handleMenuClick, menuButton } = setup()
 
     fireEvent.click(menuButton)
 
@@ -112,12 +112,23 @@ describe('Mobile Header component', () => {
 
     spyUseDisclosure({ onClose, isOpen: true })
 
-    const { handleMenuClick, getAllByRole } = setup()
-    const [menuButton] = getAllByRole('button')
+    const { handleMenuClick, menuButton } = setup()
 
     fireEvent.click(menuButton)
 
     expect(handleMenuClick).toHaveBeenCalledTimes(1)
     expect(onClose).toHaveBeenCalledTimes(1)
+  })
+
+  it('Should redirect to `/` when `Sair` button is clicked', async () => {
+    const { menuButton, findByText } = setup()
+
+    fireEvent.click(menuButton)
+    const exitButton = await findByText(/Sair/i)
+    expect(exitButton).toBeInTheDocument()
+
+    fireEvent.click(exitButton)
+
+    expect(spyPush).toHaveBeenCalledWith('/')
   })
 })
