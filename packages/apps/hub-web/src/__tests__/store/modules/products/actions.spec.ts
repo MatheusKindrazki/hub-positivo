@@ -17,8 +17,8 @@ const mockedTypes = {
   REHYDRATE: 'persist/REHYDRATE'
 }
 
-describe('authProduct action creators should work properly', () => {
-  it('should create an request action on preAuth', () => {
+describe('products action creators should work properly', () => {
+  it('should create an request action with productRequest', () => {
     const payload = { search: 'Provas' }
     const expectedAction = {
       type: mockedTypes.PRODUCT_REQUEST,
@@ -27,7 +27,7 @@ describe('authProduct action creators should work properly', () => {
     expect(productRequest(payload)).toEqual(expectedAction)
   })
 
-  it('should create an specific request action on authProductRequest', () => {
+  it('should create an success action with productSuccess', () => {
     const payload = {
       frameUrl: 'http://produto/teste.com',
       frameName: 'Produto'
@@ -39,7 +39,7 @@ describe('authProduct action creators should work properly', () => {
     expect(productSuccess(payload)).toEqual(expectedAction)
   })
 
-  it('should create an success action on authProductSuccess', () => {
+  it('should create a productIntegration action on productIntegration', () => {
     const payload = [
       {
         id: '',
@@ -66,12 +66,12 @@ describe('authProduct action creators should work properly', () => {
     expect(productIntegration(payload)).toEqual(expectedAction)
   })
 
-  it('should create an failure action on authProductFailure', () => {
+  it('should create an failure action on productFailure', () => {
     const expectedAction = { type: mockedTypes.PRODUCT_FAILURE }
     expect(productFailure()).toEqual(expectedAction)
   })
 
-  it('should create an success action on authProductSuccess', () => {
+  it('should create an frame url action on setFrameURL', () => {
     const payload = {
       url: 'http://produto/teste.com',
       name: 'Produto'
