@@ -23,7 +23,7 @@ const HeaderContext = createContext({} as ContextHeaderProps)
 const HeaderProvider: React.FC = ({ children }) => {
   const dispatch = useDispatch()
 
-  const { user, school: userSchool } = store.getState().user
+  const { info: user, school: userSchool } = store.getState().user
   const { name, profile } = store.getState().profile
 
   const [roles, setRoles] = useState(userSchool?.roles)
@@ -58,21 +58,6 @@ const HeaderProvider: React.FC = ({ children }) => {
     setRoles(userSchool?.roles)
   }, [name, profile, userSchool])
 
-  const setRoleAndDispatchRequest = useCallback(
-    data => {
-      setRole(data)
-
-      dispatch(
-        preparingUserData({
-          selected_profile: data,
-          profiles: (roles as unknown) as AccessData['profiles'],
-          selected_school: school as AccessData['selected_school']
-        })
-      )
-    },
-    [dispatch, roles, school]
-  )
-
   // ? Lista de escolas e perfis
   const schoolList = useMemo(() => {
     const schools = prepareSchool(user?.schools)
@@ -85,6 +70,21 @@ const HeaderProvider: React.FC = ({ children }) => {
 
     return orderBy(profiles, 'label', 'asc')
   }, [roles])
+
+  const setRoleAndDispatchRequest = useCallback(
+    data => {
+      setRole(data)
+
+      dispatch(
+        preparingUserData({
+          selected_profile: data,
+          profiles: roleList,
+          selected_school: school as AccessData['selected_school']
+        })
+      )
+    },
+    [dispatch, roleList, school]
+  )
 
   return (
     <HeaderContext.Provider

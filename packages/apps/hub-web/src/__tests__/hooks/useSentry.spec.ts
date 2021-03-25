@@ -19,7 +19,7 @@ describe('useSentry hook should work properly', () => {
 
   it('If environment is `production`, this hook should call its methods correctly', () => {
     process.env.REACT_APP_NODE_ENV = 'production'
-    const user = {
+    const info = {
       guid: 'guid',
       username: 'username',
       email: 'email'
@@ -34,7 +34,7 @@ describe('useSentry hook should work properly', () => {
     jest.spyOn(Sentry, 'setUser').mockImplementation(setUser)
     jest.spyOn(Sentry, 'setContext').mockImplementation(setContext)
     jest.spyOn(redux, 'useSelector').mockReturnValue({
-      user,
+      info,
       school,
       name,
       level
@@ -43,17 +43,17 @@ describe('useSentry hook should work properly', () => {
     renderHook(() => useSentry())
 
     expect(setUser).toHaveBeenCalledWith({
-      email: user.email,
-      id: user.guid,
-      username: user.username
+      email: info.email,
+      id: info.guid,
+      username: info.username
     })
     expect(setContext).toHaveBeenCalledWith('user_info', {
       educational_stage: level,
-      email: user.email,
-      id: user.guid,
+      email: info.email,
+      id: info.guid,
       role: name,
       school: school.label,
-      username: user.username
+      username: info.username
     })
   })
 

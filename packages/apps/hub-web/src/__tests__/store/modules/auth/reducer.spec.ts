@@ -1,6 +1,9 @@
 import AuthReducer from '~/store/modules/auth/reducer'
 import * as authActions from '~/store/modules/auth/actions'
 
+jest.mock('~/services/mixpanel/clearAll')
+jest.mock('~/hooks/amplitude/clearAll')
+
 const mockedSignIn = {
   exp: 0,
   token: null,
@@ -50,7 +53,7 @@ describe('Reducer of authentication history', () => {
       token: 'mocked-token',
       refresh_token: 'mocked-refresh-token',
       exp: 10,
-      user: mockedUser
+      info: mockedUser
     })
 
     const state = AuthReducer(mockedSignIn, action)

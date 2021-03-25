@@ -16,7 +16,7 @@ jest.mock('amplitude-js', () => ({
 }))
 
 const state = {
-  user: {
+  info: {
     guid: 'guid',
     username: 'username',
     name: 'name',
@@ -65,8 +65,8 @@ describe('testing if amplitude set properties functions work properly', () => {
   const instance = amplitude.getInstance()
   const { setUserProperties } = instance
 
-  it('Should call setUserProperties with the correct informations', async () => {
-    const { profiles, user, name, class: selected_class, level, school } = state
+  it('Should call setUserProperties with the correct information', async () => {
+    const { profiles, info, name, class: selected_class, level, school } = state
     renderHook(() => useAmplitudeSetProperties(), { wrapper })
 
     expect(setUserProperties).toHaveBeenCalledWith({
@@ -80,16 +80,16 @@ describe('testing if amplitude set properties functions work properly', () => {
       is_student: false,
       is_teacher: false,
       roles_list: [profiles[0].name],
-      schools_list: [user.schools[0].name],
+      schools_list: [info.schools[0].name],
       selectedRole: name,
       selected_class,
       selected_educational_stage: level,
       selected_school_id: school.value,
       selected_school_name: school.label,
       selected_school_sge: null,
-      user_id: user.guid,
-      user_login: user.username,
-      user_name: user.name
+      user_id: info.guid,
+      user_login: info.username,
+      user_name: info.name
     })
   })
 })

@@ -30,7 +30,7 @@ describe('Profile page should work properly', () => {
 
   const CUSTOM_STATE: CustomState = {
     user: {
-      user: {
+      info: {
         schools: [school]
       }
     }

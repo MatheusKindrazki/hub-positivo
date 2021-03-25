@@ -57,9 +57,6 @@ export function* getEducationalByPerson({
   payload
 }: Payload<Profile>): Generator {
   const { profile } = payload
-
-  console.log(profile)
-
   if (!searchLevels.includes(profile)) {
     yield put(resetProfileLevels())
 
