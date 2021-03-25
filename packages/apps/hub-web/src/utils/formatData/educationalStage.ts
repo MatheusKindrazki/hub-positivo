@@ -27,7 +27,7 @@ export default (): EducationalProps => {
 
   // Criar um objeto de níveis de ensino ativos
   const activeStages: any = {}
-  Object.keys(stageTypes).map(p => {
+  Object.keys(stageTypes).forEach(p => {
     const types = stageTypes[p as StageTypesProps]
 
     let length = stageNames?.length || 0
