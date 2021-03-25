@@ -21,7 +21,7 @@ const user: ReturnReducer = (state = INITIAL_STATE, action) => {
         delete action.payload.iat
         delete action.payload.auth_time
 
-        draft.user = action.payload.user
+        draft.info = action.payload.info
         draft.loading = false
         break
       }
@@ -57,7 +57,7 @@ const user: ReturnReducer = (state = INITIAL_STATE, action) => {
         break
       }
       case Actions.SIGN_OUT: {
-        draft.user = undefined
+        draft.info = undefined
         draft.school = undefined
         break
       }

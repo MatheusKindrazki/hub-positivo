@@ -1,5 +1,4 @@
 import { Profiles } from '../profile/types'
-
 export interface SignInRequest {
   username: string
   password: string
@@ -35,7 +34,7 @@ export interface SignInSuccess {
   token: string | undefined
   refresh_token: string | undefined
   exp: number | null
-  user?: {
+  info?: {
     name: string
     integration_id: string | null
     id: string | null
@@ -74,7 +73,7 @@ export interface RehydrateAuth {
     reduced_token: string
   }
   user: {
-    user: {
+    info: {
       guid: string
     }
   }

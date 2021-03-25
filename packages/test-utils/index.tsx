@@ -8,6 +8,8 @@ import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import configureStore from 'redux-mock-store'
 
+import './setup'
+
 import ThemeProviderHub from '@hub/common/layout/Provider'
 
 import {
@@ -18,7 +20,6 @@ import {
   CustomRenderResult
 } from './types'
 import history from '../apps/hub-web/src/services/history'
-import '@testing-library/jest-dom'
 
 const sagaMiddleware = createSagaMiddleware()
 const middlewares = [sagaMiddleware, routerMiddleware(history)]

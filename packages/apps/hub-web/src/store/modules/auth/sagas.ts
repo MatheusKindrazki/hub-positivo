@@ -20,6 +20,7 @@ import capitalize from '@hub/common/utils/capitalize'
 import { toast } from '@hub/common/utils'
 import api from '@hub/api'
 
+import mixpanelIdentifyUser from '~/services/mixpanel/identifyUser'
 import history from '~/services/history'
 import { changeSchool, ApiChange } from '~/services/eemIntegration'
 import { EEMConnectPost } from '~/services/eemConnect'
@@ -79,20 +80,20 @@ export function* signIn({ payload }: SignInPayload): Generator {
   const user = decode(data?.access_token as string) as any
 
   api.setHeaders({
-    Authorization: `Bearer ${data?.access_token || ''}`
+    Authorization: `Bearer ${data?.access_token}`
   })
 
   // ? Identifica o usuário no amplitude
   amplitudeIdentifyUser({ guid: user?.sub as string })
+  mixpanelIdentifyUser({ guid: user?.sub as string })
 
   clearStrikes()
-
   yield put(
     signInSuccess({
       token: data?.access_token,
       refresh_token: data?.refresh_token,
       exp: user?.exp,
-      user: {
+      info: {
         ...user,
         guid: user?.sub,
         username: user?.username,
@@ -114,9 +115,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
   !e também no processo de alteração de escola/perfil
 */
 type PreparingAccessPayload = Payload<AccessData>
-export function* preparePreparingAccess({
-  payload
-}: PreparingAccessPayload): Generator {
+export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
   const { profiles, selected_profile, selected_school, redirect } = payload
 
   yield put(loading(true))
@@ -133,12 +132,12 @@ export function* preparePreparingAccess({
 
   const { access_token } = response as ApiChange
 
-  const { user, school } = store.getState().user
+  const { info: user, school } = store.getState().user
 
   const user_reduced = decode(access_token as string) as any
 
   if (user_reduced?.sub && user?.guid !== user_reduced?.sub) {
-    const sc = school?.label || ''
+    const sc = school?.label as string
     toast.error(`Você não tem acesso a escola: ${sc}`)
 
     yield put(loading(false))
@@ -178,15 +177,15 @@ export function* checkingExpiringToken({
 }: ExpiringRehydrate): Generator {
   if (!payload) return
 
-  if (!payload.auth.signed && payload?.auth?.token) {
+  if (!payload.auth.signed) {
     return yield put(signOut())
   }
 
   const { exp, reduced_token, token } = payload.auth
 
-  const { user } = payload.user
+  const { info: user } = payload.user
 
-  if (!exp || exp === 0) return
+  if (exp === 0) return
 
   const date = new Date().getTime()
 
@@ -199,11 +198,12 @@ export function* checkingExpiringToken({
   yield put(loading(true))
 
   api.setHeaders({
-    Authorization: `Bearer ${token || ''}`
+    Authorization: `Bearer ${token}`
   })
 
   // ? Identifica o usuário no amplitude
   amplitudeIdentifyUser({ guid: user.guid })
+  mixpanelIdentifyUser({ guid: user.guid })
 
   yield put(reducedTokenEEM(reduced_token))
 
@@ -239,11 +239,11 @@ export function* refreshToken(): Generator {
 
     yield put(signOut())
 
-    setTimeout(() => history.push('/login'), 500)
+    return history.push('/login')
   }
 
   api.setHeaders({
-    Authorization: `Bearer ${data?.access_token || ''}`
+    Authorization: `Bearer ${data?.access_token}`
   })
 
   const res = yield call(async () => {
@@ -276,6 +276,6 @@ export function* refreshToken(): Generator {
 export default all([
   takeLatest(Actions.SIGN_IN_REQUEST, signIn),
   takeLatest(Actions.REHYDRATE, checkingExpiringToken),
-  takeLatest(Actions.FIRST_ACCESS, preparePreparingAccess),
+  takeLatest(Actions.FIRST_ACCESS, prepareAccess),
   takeLatest(Actions.REFRESH_TOKEN_REQUEST, refreshToken)
 ])

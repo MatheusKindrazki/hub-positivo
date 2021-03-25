@@ -57,7 +57,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
 
     const { onOpen: openModalSupport } = useContext(ModalSupportContext)
 
-    const { user } = useSelector((state: Store.State) => state.user)
+    const { info: user } = useSelector((state: Store.State) => state.user)
     const { guid } = useSelector((state: Store.State) => state.profile)
 
     const { isOpen, onClose, onOpen } = useDisclosure()

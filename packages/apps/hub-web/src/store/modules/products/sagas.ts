@@ -19,7 +19,7 @@ export function* getProducts(): Generator {
   const { guid } = store.getState().profile
   const { level } = store.getState().educationalStage
 
-  const { user, school } = store.getState().user
+  const { info: user, school } = store.getState().user
 
   if (!user && !school) return
 

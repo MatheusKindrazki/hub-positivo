@@ -50,7 +50,6 @@ const ForgotPassword: React.FC = () => {
       } catch (err) {
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)
-
           formRef?.current?.setErrors(errors)
         }
         return toast.error(

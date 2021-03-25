@@ -56,7 +56,7 @@ type AlterPasswordPanelPayload = Payload<UserAlterPassPanel>
 export function* alterPasswordPanel({
   payload
 }: AlterPasswordPanelPayload): Generator {
-  const { user } = store.getState().user
+  const { info: user } = store.getState().user
   const { token } = store.getState().auth
 
   const guid = user?.guid || '000'
