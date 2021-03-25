@@ -21,7 +21,7 @@ import * as eem from '~/services/eemConnect'
 
 import { userMock, prepareAccessProfileMock, authMock } from '~/__mocks__/store'
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
-import fakeResponse from '~/__mocks__/fakeEemResponse.json'
+import fakeResponse from '~/__mocks__/api/fakeEemResponse.json'
 
 jest.mock('~/services/eemConnect')
 jest.mock('~/services/eemIntegration')
