@@ -35,7 +35,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
 
   const { steps } = useSelector((state: Store.State) => state.tour)
 
-  const { user } = useSelector((state: Store.State) => state.user)
+  const { info: user } = useSelector((state: Store.State) => state.user)
   const { guid } = useSelector((state: Store.State) => state.profile)
 
   const handleSignOut = useCallback(async () => {

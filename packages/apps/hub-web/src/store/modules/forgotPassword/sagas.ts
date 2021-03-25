@@ -56,7 +56,7 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
     'Um link para recuperação de senha foi enviado para seu email ou celular'
   )
 
-  setTimeout(() => history.push('/login'), 1000)
+  history.push('/login')
 }
 type ValidatePINtPayload = Payload<ValidatePin>
 

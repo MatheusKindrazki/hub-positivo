@@ -17,22 +17,18 @@ import educationalStage from './educationalStage/reducer'
 import authProduct from './authProduct/reducer'
 import auth from './auth/reducer'
 
-export const reducerArray = {
-  auth,
-  user,
-  profile,
-  products,
-  global,
-  educationalStage,
-  tour,
-  authProduct,
-  forgotPassword,
-  myClasses
-}
-
 export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
   return combineReducers({
-    ...reducerArray,
+    auth,
+    user,
+    profile,
+    products,
+    global,
+    educationalStage,
+    tour,
+    authProduct,
+    forgotPassword,
+    myClasses,
     router: connectRouter(history)
   })
 }

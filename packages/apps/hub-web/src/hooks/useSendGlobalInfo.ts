@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 const useSendGlobalInfo = (): void => {
   /* istanbul ignore next */
-  const { user, school } = useSelector((state: Store.State) => state.user)
+  const { info: user, school } = useSelector((state: Store.State) => state.user)
   /* istanbul ignore next */
   const { name } = useSelector((state: Store.State) => state.profile)
   /* istanbul ignore next */

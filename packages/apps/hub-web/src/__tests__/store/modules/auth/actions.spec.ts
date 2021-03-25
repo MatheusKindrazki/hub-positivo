@@ -1,11 +1,12 @@
 import * as authActions from '~/store/modules/auth/actions'
 
-import clearAmplitudeSession from '~/hooks/amplitude/clearAll'
+import clearAmplitudeSession from '~/services/mixpanel/clearAll'
 
 jest.mock('~/hooks/amplitude/clearAll')
+jest.mock('~/services/mixpanel/clearAll')
 
 describe('Action of authentication history', () => {
-  it('hope the preparingUserData calls the correct action and receive the value within payload', () => {
+  it('Should the preparingUserData calls the correct action and receive the value within payload', () => {
     const spy = jest.spyOn(authActions, 'preparingUserData')
 
     const mockedPayload = {
@@ -47,7 +48,7 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual({ ...mockedType, payload: mockedPayload })
   })
 
-  it('hope the signInRequest calls the correct action and receive the value within payload', () => {
+  it('Should the signInRequest calls the correct action and receive the value within payload', () => {
     const spy = jest.spyOn(authActions, 'signInRequest')
 
     const mockedPayload = {
@@ -67,7 +68,7 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual({ ...mockedType, payload: mockedPayload })
   })
 
-  it('hope the signInSuccess calls the correct action and receive the value within payload', () => {
+  it('Should the signInSuccess calls the correct action and receive the value within payload', () => {
     const spy = jest.spyOn(authActions, 'signInSuccess')
 
     const mockedPayload = {
@@ -96,7 +97,7 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual({ ...mockedType, payload: mockedPayload })
   })
 
-  it('hope the refreshTokenSuccess calls the correct action and receive the value within payload', () => {
+  it('Should the refreshTokenSuccess calls the correct action and receive the value within payload', () => {
     const spy = jest.spyOn(authActions, 'refreshTokenSuccess')
 
     const mockedPayload = {
@@ -116,7 +117,7 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual({ ...mockedType, payload: mockedPayload })
   })
 
-  it('hope the reducedTokenEEM calls the correct action and receive the value within payload', () => {
+  it('Should the reducedTokenEEM calls the correct action and receive the value within payload', () => {
     const spy = jest.spyOn(authActions, 'reducedTokenEEM')
 
     const mockedPayload = 'string-token'
@@ -132,7 +133,7 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual({ ...mockedType, payload: mockedPayload })
   })
 
-  it('I hope the signOut is called and the amplitude states are clean', () => {
+  it('I Should the signOut is called and the amplitude states are clean', () => {
     const spy = jest.spyOn(authActions, 'signOut')
 
     const mockedType = {
@@ -148,7 +149,7 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual(mockedType)
   })
 
-  it('hope refreshTokenRequest is called', () => {
+  it('Should refreshTokenRequest is called', () => {
     const spy = jest.spyOn(authActions, 'refreshTokenRequest')
 
     const mockedType = {
@@ -162,7 +163,7 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual(mockedType)
   })
 
-  it('hope signInRequestLoading is called', () => {
+  it('Should signInRequestLoading is called', () => {
     const spy = jest.spyOn(authActions, 'signInRequestLoading')
 
     const mockedType = {
@@ -176,7 +177,7 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual(mockedType)
   })
 
-  it('hope signInFailure is called', () => {
+  it('Should signInFailure is called', () => {
     const spy = jest.spyOn(authActions, 'signInFailure')
 
     const mockedType = {
@@ -190,7 +191,7 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual(mockedType)
   })
 
-  it('hope withoutAccess is called', () => {
+  it('Should withoutAccess is called', () => {
     const spy = jest.spyOn(authActions, 'withoutAccess')
 
     const mockedType = {
@@ -204,7 +205,7 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual(mockedType)
   })
 
-  it('hope setSigned is called', () => {
+  it('Should setSigned is called', () => {
     const spy = jest.spyOn(authActions, 'setSigned')
 
     const mockedType = {

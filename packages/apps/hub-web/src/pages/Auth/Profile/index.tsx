@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
 
   const [school, setSchool] = useState<SelectItem>()
 
-  const { user } = useSelector((state: Store.State) => state.user)
+  const { info: user } = useSelector((state: Store.State) => state.user)
 
   const renderSchools = useMemo(
     () => orderBy(prepareSchool(user?.schools), 'label', 'asc'),

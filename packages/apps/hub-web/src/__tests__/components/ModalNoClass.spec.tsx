@@ -11,6 +11,7 @@ import { render, fireEvent } from '@hub/test-utils'
 import ModalNoClass from '~/components/ModalNoClass'
 
 jest.unmock('@hub/common/hooks')
+jest.mock('~/services/mixpanel/clearAll')
 
 jest.mock('~/components/ModalNoClass/turma.svg', () => <>Turma svg</>)
 
