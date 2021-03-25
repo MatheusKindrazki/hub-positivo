@@ -19,6 +19,7 @@ import {
   CardProduct
 } from '@hub/common/components'
 
+import { toolOpened } from '~/services/mixpanel/toolOpened'
 import { amplitudeToolOpened } from '~/services/amplitude'
 
 import { cardFilter } from '~/utils/cardFilter'
@@ -65,10 +66,17 @@ const Home: React.FC = () => {
   const handlePushProduct = useCallback(
     data => {
       const slug = createSlug(data.nome)
+
+      toolOpened({
+        card_name: data.nome,
+        location: 'dashboard'
+      })
+
       amplitudeToolOpened({
         card_name: data.nome,
         location: 'dashboard'
       })
+
       dispatch(
         preAuth({
           product: slug,

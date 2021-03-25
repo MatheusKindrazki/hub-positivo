@@ -20,6 +20,7 @@ import capitalize from '@hub/common/utils/capitalize'
 import { toast } from '@hub/common/utils'
 import api from '@hub/api'
 
+import mixpanelIdentifyUser from '~/services/mixpanel/identifyUser'
 import history from '~/services/history'
 import { changeSchool, ApiChange } from '~/services/eemIntegration'
 import { EEMConnectPost } from '~/services/eemConnect'
@@ -84,6 +85,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
   // ? Identifica o usuário no amplitude
   amplitudeIdentifyUser({ guid: user?.sub as string })
+  mixpanelIdentifyUser({ guid: user?.sub as string })
 
   clearStrikes()
   yield put(
@@ -201,6 +203,7 @@ export function* checkingExpiringToken({
 
   // ? Identifica o usuário no amplitude
   amplitudeIdentifyUser({ guid: user.guid })
+  mixpanelIdentifyUser({ guid: user.guid })
 
   yield put(reducedTokenEEM(reduced_token))
 
