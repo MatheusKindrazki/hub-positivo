@@ -25,6 +25,8 @@ import {
   profileState
 } from '~/__mocks__/HeaderContext'
 
+jest.mock('mixpanel-browser')
+
 jest.mock('~/services/history', () => ({
   push: jest.fn()
 }))
@@ -49,10 +51,10 @@ jest.mock('react-router', () => {
   }
 })
 
-describe('Mobile Header component', () => {
+describe('Mobile Header component ', () => {
   afterEach(() => {
     jest.clearAllMocks()
-    jest.restoreAllMocks()
+    // jest.restoreAllMocks()
   })
 
   jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
@@ -147,12 +149,20 @@ describe('Mobile Header component', () => {
   })
 
   it('Should redirect to `/` when `Sair` button is clicked', () => {
-    const { getByText } = setup()
+    const { getByText, storeUtils } = setup()
 
     const exitButton = getByText(/Sair/i)
     expect(exitButton).toBeInTheDocument()
 
     fireEvent.click(exitButton)
+
+    const action = storeUtils?.getActions()
+
+    expect(action).toStrictEqual([
+      {
+        type: '@auth/SIGN_OUT'
+      }
+    ])
 
     expect(spyPush).toHaveBeenCalledWith('/')
   })
