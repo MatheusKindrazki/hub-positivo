@@ -4,7 +4,7 @@ import MatchMediaMock from 'jest-matchmedia-mock'
 
 import { store } from '~/store'
 
-import { fireEvent, render } from '@hub/test-utils'
+import { fireEvent, render, waitFor } from '@hub/test-utils'
 import * as drawer from '@hub/common/components/Drawer'
 
 import history from '~/services/history'
@@ -23,7 +23,7 @@ jest.mock('react-router', () => {
   }
 })
 
-describe('get started', () => {
+describe('Header component', () => {
   const onClose = jest.fn()
   const onOpen = jest.fn()
   jest.spyOn(drawer, 'useDisclosure').mockReturnValue({
@@ -31,9 +31,6 @@ describe('get started', () => {
     onClose,
     onOpen
   } as any)
-
-  const spyPush = jest.spyOn(history, 'push')
-
   const setup = () => {
     const wrapper = render(<Header />, {
       store,
@@ -83,6 +80,8 @@ describe('get started', () => {
   })
 
   it('Should redirect to `/` when hub logo is clicked', () => {
+    const spyPush = jest.spyOn(history, 'push')
+
     const { getAllByRole } = setup()
     const [, hubLogoButton] = getAllByRole('button')
 
@@ -91,12 +90,13 @@ describe('get started', () => {
     expect(spyPush).toHaveBeenCalledWith('/')
   })
 
-  it('should call openModalPass when `Alterar minha senha` is clicked', () => {
+  it('should call openModalPass when `Alterar minha senha` is clicked', async () => {
     const { getByText } = setup()
     const alterPass = getByText(/Alterar minha senha/i)
 
     fireEvent.click(alterPass)
 
-    // expect(onOpen).toHaveBeenCalledTimes(1)
+    // onClose é chamado quando isOpen é true, através da ref.
+    await waitFor(() => expect(onClose).toHaveBeenCalledTimes(1))
   })
 })
