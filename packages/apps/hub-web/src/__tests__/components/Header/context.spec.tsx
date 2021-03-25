@@ -1,20 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { renderHook } from '@testing-library/react-hooks'
 
 import { Provider } from 'react-redux'
 
-import { store } from '~/store'
+import { act } from '@hub/test-utils'
 
-import { act, render } from '@hub/test-utils'
+import { useHeader, HeaderProvider } from '~/components/Header/context'
 
-import {
-  useHeader,
-  HeaderProvider,
-  HeaderContext
-} from '~/components/Header/context'
-
-import { useHeaderReturn } from '~/__mocks__/HeaderContext'
 import fakeStore from '~/__mocks__/fakeStore.mock'
 
 const Context: React.FC = ({ children }) => {
@@ -61,6 +54,7 @@ describe('Testing HeaderContext', () => {
 
   afterEach(() => {
     fakeStore.clearActions()
+    jest.restoreAllMocks()
   })
 
   it('Should dispatch an `@auth/FIRST_ACCESS` action when setRole is triggered', () => {
@@ -68,7 +62,6 @@ describe('Testing HeaderContext', () => {
       result: { current }
     } = renderHook(() => useHeader(), { wrapper: Context })
     act(() => {
-      // current.setSchool({ label: 'teste', roles: ['teste'], value: 'teste' })
       current.setRole(role)
     })
     const actions = fakeStore.getActions()
@@ -87,16 +80,49 @@ describe('Testing HeaderContext', () => {
       }
     ])
   })
+  it('Should call useState`s handle function when setSchool is triggered', async () => {
+    const setState = jest.fn()
+    jest
+      .spyOn(React, 'useState')
+      .mockImplementation(() => [[{}], setState] as any)
 
-  it.skip('', () => {
     const {
       result: { current }
     } = renderHook(() => useHeader(), { wrapper: Context })
-    act(() => {
-      current.setSchool({ label: 'teste', roles: ['teste'], value: 'teste' })
-    })
-    const actions = fakeStore.getActions()
 
-    expect(actions).toStrictEqual(['teste'])
+    act(() => {
+      current.setSchool({ label: 'label', roles: ['roles'], value: 'value' })
+    })
+
+    expect(setState).toHaveBeenCalledWith({
+      label: 'label',
+      roles: ['roles'],
+      value: 'value'
+    })
+  })
+
+  it('Should call useState`s handle function when resetInfo is triggered', () => {
+    const setState = jest.fn()
+    jest
+      .spyOn(React, 'useState')
+      .mockImplementation(() => [[], setState] as any)
+
+    const {
+      result: { current }
+    } = renderHook(() => useHeader(), { wrapper: Context })
+
+    act(() => {
+      current.resetInfo()
+    })
+
+    expect(setState).toHaveBeenCalledWith({
+      label: undefined,
+      value: undefined
+    })
+    expect(setState).toHaveBeenCalledWith({
+      label: 'Default',
+      value: 'default'
+    })
+    expect(setState).toHaveBeenCalledWith(undefined)
   })
 })

@@ -115,4 +115,4 @@ function useHeader(): ContextHeaderProps {
   return context
 }
 
-export { useHeader, HeaderProvider, HeaderContext }
+export { useHeader, HeaderProvider }
