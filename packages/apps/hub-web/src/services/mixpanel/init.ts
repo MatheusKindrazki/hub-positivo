@@ -1,9 +1,9 @@
 import mixpanel from 'mixpanel-browser'
 
 export default function init(): void {
-  mixpanel.init('0bb3ee9ebb217d5d18c5337546291ec8', {
-    verbose: true,
-    batch_requests: true,
+  const key = process.env.REACT_APP_MIXPANEL_KEY as string
+
+  mixpanel.init(key, {
     track_pageview: true
   })
 }
