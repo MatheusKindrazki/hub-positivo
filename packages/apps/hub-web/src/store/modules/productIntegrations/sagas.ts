@@ -26,7 +26,7 @@ export function* mhundArvoreIntegration(): Generator {
 
   const productData = products.data as IntegrationCardProps[]
 
-  if (!productData || !productData?.length) return
+  if (!productData?.length) return
 
   const authTheProduct = {
     product: 'gestao-escolar-mhund',
@@ -49,7 +49,6 @@ export function* mhundArvoreIntegration(): Generator {
       apiMHUND.post('checkuser', authTheProduct)
     ])
   })
-
   const [livro, mhund] = response as ApiResponse<{ redirects_to: string }>[]
 
   let cardFilter = productData.map(c => {
@@ -59,7 +58,7 @@ export function* mhundArvoreIntegration(): Generator {
         if (solucao.slug === 'gestao-escolar-mhund') {
           return {
             ...solucao,
-            link: mhund.data?.redirects_to || ''
+            link: mhund.data?.redirects_to
           }
         }
         return solucao
