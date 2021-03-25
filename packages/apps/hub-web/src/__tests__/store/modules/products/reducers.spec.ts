@@ -9,6 +9,8 @@ import {
 } from '~/store/modules/products/actions'
 import { signOut, withoutAccess } from '~/store/modules/auth/actions'
 
+jest.mock('~/services/mixpanel/clearAll')
+
 describe('authProduct reducer', () => {
   it('returns the initial state when an action type is not passed', () => {
     const result = products(undefined, { type: null })
