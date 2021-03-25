@@ -175,7 +175,7 @@ describe('testing authProductGUID saga flow', () => {
           class: mockState.educationalStage.level
         },
         profile: mockState.profile.guid,
-        user_id: mockState.user.user?.integration_id
+        user_id: mockState.user.info?.integration_id
       },
       expire_in: mockState.auth.exp
     }

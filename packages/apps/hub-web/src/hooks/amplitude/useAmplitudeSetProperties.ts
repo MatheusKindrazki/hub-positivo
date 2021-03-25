@@ -13,7 +13,7 @@ import {
 
 export const useAmplitudeSetProperties = (): void => {
   /* istanbul ignore next */
-  const { user, school } = useSelector((state: Store.State) => state.user)
+  const { info: user, school } = useSelector((state: Store.State) => state.user)
   const { profiles, name: selectedRole } = useSelector(
     /* istanbul ignore next */
     (state: Store.State) => state.profile

@@ -19,6 +19,7 @@ import {
   CardProduct
 } from '@hub/common/components'
 
+import { toolOpened } from '~/services/mixpanel/toolOpened'
 import { amplitudeToolOpened } from '~/services/amplitude'
 
 import { cardFilter } from '~/utils/cardFilter'
@@ -36,7 +37,7 @@ const Home: React.FC = () => {
 
   const [search, setSearchValue] = useState('')
 
-  const { user, avatar, school: useSchool } = useSelector(
+  const { info: user, avatar, school: useSchool } = useSelector(
     (state: Store.State) => state.user
   )
   const { name: nameProfile } = useSelector(
@@ -65,10 +66,17 @@ const Home: React.FC = () => {
   const handlePushProduct = useCallback(
     data => {
       const slug = createSlug(data.nome)
+
+      toolOpened({
+        card_name: data.nome,
+        location: 'dashboard'
+      })
+
       amplitudeToolOpened({
         card_name: data.nome,
         location: 'dashboard'
       })
+
       dispatch(
         preAuth({
           product: slug,

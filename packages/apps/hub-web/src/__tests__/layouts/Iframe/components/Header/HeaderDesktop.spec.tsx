@@ -22,6 +22,8 @@ jest.mock('amplitude-js', () => ({
   })
 }))
 
+jest.mock('~/services/mixpanel/toolOpened')
+
 describe('HeaderDesktop should work properly', () => {
   it('Products menu should should display all solutions when clicked', async () => {
     const { getByText, queryAllByText, getByTestId } = render(

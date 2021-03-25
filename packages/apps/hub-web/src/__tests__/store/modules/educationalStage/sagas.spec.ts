@@ -39,7 +39,7 @@ describe('Sagas of educationalStage history', () => {
 
       mockState.user = {
         ...mockState.user,
-        user: userMock.user
+        info: userMock.user
       }
 
       const returnedMock = {
@@ -81,7 +81,7 @@ describe('Sagas of educationalStage history', () => {
 
       mockState.user = {
         ...mockState.user,
-        user: userMock.user
+        info: userMock.user
       }
 
       const returnedMock = {
@@ -110,7 +110,7 @@ describe('Sagas of educationalStage history', () => {
 
       mockState.user = {
         ...mockState.user,
-        user: userMock.user
+        info: userMock.user
       }
 
       const returnedMock = {

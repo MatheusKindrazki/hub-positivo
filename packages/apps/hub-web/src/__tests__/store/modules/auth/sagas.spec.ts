@@ -26,7 +26,10 @@ import fakeResponse from '~/__mocks__/api/fakeEemResponse.json'
 jest.mock('~/services/eemConnect')
 jest.mock('~/services/eemIntegration')
 jest.mock('~/middlewares/refreshToken')
+jest.mock('~/hooks/amplitude/clearAll')
 jest.mock('~/hooks/amplitude/identifyUser')
+jest.mock('~/services/mixpanel/identifyUser')
+jest.mock('~/services/mixpanel/clearAll')
 jest.mock('@hub/common/utils/capitalize')
 
 let dispatchedActions = store.getActions()
@@ -102,8 +105,7 @@ describe('Sagas of authentication history', () => {
       expect(dispatchedActions).toContainObject(
         authActions.signInSuccess(payloadReturn)
       )
-
-      expect([payloadReturn.user]).toContainObject({
+      expect([payloadReturn.info]).toContainObject({
         username: 'john.doe',
         email: 'johndoe@teste.com'
       })
@@ -155,7 +157,7 @@ describe('Sagas of authentication history', () => {
       mockState.user = {
         ...mockState.user,
         school: userMock.school,
-        user: {
+        info: {
           ...userMock.user,
           guid: data.guid || userMock.user.guid
         }
@@ -256,7 +258,7 @@ describe('Sagas of authentication history', () => {
             reduced_token: 'fake-reduced-token'
           },
           user: {
-            user: {
+            info: {
               guid: 'fake-id'
             }
           }
@@ -284,7 +286,7 @@ describe('Sagas of authentication history', () => {
             reduced_token: 'fake-reduced-token'
           },
           user: {
-            user: {
+            info: {
               guid: 'fake-id'
             }
           }
@@ -316,7 +318,7 @@ describe('Sagas of authentication history', () => {
             reduced_token: 'fake-reduced-token'
           },
           user: {
-            user: {
+            info: {
               guid: 'fake-id'
             }
           }

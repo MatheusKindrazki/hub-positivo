@@ -13,6 +13,8 @@ import * as amplitude from '~/services/amplitude'
 import HeaderMobile from '~/layouts/Iframe/components/Header/HeaderMobile'
 import cardsMock from '~/../../../test-utils/__mocks__/cards.mock'
 
+jest.mock('~/services/mixpanel/toolOpened')
+
 describe('Mobile Header`s layout should work properly', () => {
   afterEach(() => {
     jest.clearAllMocks()
@@ -64,9 +66,9 @@ describe('Mobile Header`s layout should work properly', () => {
     fireEvent.click(menuButton)
 
     const firstCard = cardsMock[0].solucoes[0]
-    const soluction = getByText(firstCard.nome)
+    const solution = getByText(firstCard.nome)
 
-    fireEvent.click(soluction)
+    fireEvent.click(solution)
     expect(handlePush).toHaveBeenCalledWith({
       nome: firstCard.nome,
       tipoRenderizacao: firstCard.tipoRenderizacao,
@@ -106,9 +108,7 @@ describe('Mobile Header`s layout should work properly', () => {
   it('Should filter the cards correctly', async () => {
     jest.useFakeTimers()
 
-    const { menuButton, getByPlaceholderText, getByText, queryByText } = setup(
-      cardsMock
-    )
+    const { menuButton, getByPlaceholderText, queryByText } = setup(cardsMock)
     fireEvent.click(menuButton)
 
     const input = getByPlaceholderText('Buscar soluções', { exact: false })
