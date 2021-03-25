@@ -1,19 +1,18 @@
 import React from 'react'
 
-import { act } from 'react-dom/test-utils'
 import { renderHook } from '@testing-library/react-hooks'
 
 import { Provider } from 'react-redux'
 
-import { store } from '~/store'
+import { act } from '@hub/test-utils'
 
 import { useHeader, HeaderProvider } from '~/components/Header/context'
 
-import { useHeaderReturn } from '~/__mocks__/HeaderContext'
+import fakeStore from '~/__mocks__/fakeStore.mock'
 
 const Context: React.FC = ({ children }) => {
   return (
-    <Provider store={store}>
+    <Provider store={fakeStore}>
       <HeaderProvider>{children}</HeaderProvider>
     </Provider>
   )
@@ -44,14 +43,86 @@ describe('Testing useHeader', () => {
 })
 
 describe('Testing HeaderContext', () => {
-  it.skip('Should change role infos when setRole is called', () => {
+  const role = {
+    colorProfile: 'blue',
+    icon: 'icon',
+    id: 'id',
+    label: 'label',
+    name: 'name',
+    value: 'value'
+  }
+
+  afterEach(() => {
+    fakeStore.clearActions()
+    jest.restoreAllMocks()
+  })
+
+  it('Should dispatch an `@auth/FIRST_ACCESS` action when setRole is triggered', () => {
     const {
-      result: { current: context }
+      result: { current }
     } = renderHook(() => useHeader(), { wrapper: Context })
     act(() => {
-      // context.setSchool(useHeaderReturn.roleList[0])
-      // context.setSchool({} as any)
+      current.setRole(role)
     })
-    // expect(context).toStrictEqual('')
+    const actions = fakeStore.getActions()
+
+    expect(actions).toStrictEqual([
+      {
+        type: '@auth/FIRST_ACCESS',
+        payload: {
+          profiles: [],
+          selected_profile: role,
+          selected_school: {
+            label: undefined,
+            value: undefined
+          }
+        }
+      }
+    ])
+  })
+  it('Should call useState`s handle function when setSchool is triggered', async () => {
+    const setState = jest.fn()
+    jest
+      .spyOn(React, 'useState')
+      .mockImplementation(() => [[{}], setState] as any)
+
+    const {
+      result: { current }
+    } = renderHook(() => useHeader(), { wrapper: Context })
+
+    act(() => {
+      current.setSchool({ label: 'label', roles: ['roles'], value: 'value' })
+    })
+
+    expect(setState).toHaveBeenCalledWith({
+      label: 'label',
+      roles: ['roles'],
+      value: 'value'
+    })
+  })
+
+  it('Should call useState`s handle function when resetInfo is triggered', () => {
+    const setState = jest.fn()
+    jest
+      .spyOn(React, 'useState')
+      .mockImplementation(() => [[], setState] as any)
+
+    const {
+      result: { current }
+    } = renderHook(() => useHeader(), { wrapper: Context })
+
+    act(() => {
+      current.resetInfo()
+    })
+
+    expect(setState).toHaveBeenCalledWith({
+      label: undefined,
+      value: undefined
+    })
+    expect(setState).toHaveBeenCalledWith({
+      label: 'Default',
+      value: 'default'
+    })
+    expect(setState).toHaveBeenCalledWith(undefined)
   })
 })

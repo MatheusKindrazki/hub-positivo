@@ -135,22 +135,29 @@ describe('Mobile Header`s layout should work properly', () => {
     })
   })
 
-  it.skip('Should close Drawer when `Escape` (Esc) key is down', async () => {
+  it('Should call Drawer onOpen if show is false  or onClose if show is true when `Escape` (Esc) key is down', async () => {
+    const onOpen = jest.fn()
     const onClose = jest.fn()
-    const current = renderUseDisclosure()
 
+    const esc = (component: HTMLElement) => {
+      fireEvent.keyDown(component, { key: 'Esc', code: 27 })
+    }
+
+    const current = renderUseDisclosure()
     jest
       .spyOn(drawer, 'useDisclosure')
-      .mockReturnValue({ ...current, isOpen: true, onClose })
+      .mockReturnValue({ ...current, isOpen: true, onOpen, onClose })
 
     const { getByPlaceholderText } = setup(cardsMock)
     const input = getByPlaceholderText('Buscar soluções', { exact: false })
-
-    // focando no search input para ter referência de escape
+    // ? focando no search input para ter referência de escape
     fireEvent.click(input)
 
-    // clicando em `Esc` para fechar o Drawer
-    fireEvent.keyDown(input, { key: 'Esc', code: 27 })
+    // ? testando se toggleMenu chama onClose e onOpen
+    esc(input)
+    expect(onOpen).toHaveBeenCalledTimes(1)
+
+    esc(input)
     expect(onClose).toHaveBeenCalledTimes(1)
   })
 })
