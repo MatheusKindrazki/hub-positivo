@@ -1,0 +1,9 @@
+{
+  "level": "EF1",
+  "levels": [
+    { "label": "Ensino Fundamental Anos Iniciais", "value": "EF1" },
+    { "label": "Ensino Médio", "value": "EM" },
+    { "label": "Ensino Fundamental Anos Finais", "value": "EF2" }
+  ],
+  "class": "1º ano"
+}

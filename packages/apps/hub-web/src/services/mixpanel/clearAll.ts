@@ -1,5 +1,9 @@
 import mixpanel from 'mixpanel-browser'
 
 export default (): void => {
-  mixpanel.reset()
+  try {
+    mixpanel.reset()
+  } catch (error) {
+    console.error('Erro ao resetar infos no mixpanel')
+  }
 }

@@ -5,11 +5,11 @@ import { store } from '~/store'
 import profiles from '~/utils/formatData/profile'
 import educationalStage from '~/utils/formatData/educationalStage'
 
-const { info: user, school } = store.getState().user
-
-const schools_list = user?.schools?.map(s => s.name)
-
 const setUserProperties = (): void => {
+  const { info: user, school } = store.getState().user
+
+  const schools_list = user?.schools?.map(s => s.name)
+
   const { activeProfiles, profile, profileNames } = profiles()
 
   const {
@@ -45,7 +45,7 @@ const setUserProperties = (): void => {
 
     mixpanel.identify(user?.guid)
   } catch (error) {
-    console.log('Erro ao identificar usuário via mixpanel')
+    console.error('Erro ao identificar usuário via mixpanel')
   }
 }
 

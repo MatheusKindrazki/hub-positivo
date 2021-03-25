@@ -12,4 +12,20 @@ describe('Mixpanel Services', () => {
 
     expect(mockMixPanel).toBeCalledWith('user-id')
   })
+
+  it('Show an error in the console if MixPanel is not instantiated', () => {
+    const mockLog = jest.fn()
+
+    Object.assign(console, {
+      error: mockLog
+    })
+
+    jest.spyOn(mixpanel, 'identify').mockImplementation(() => {
+      throw new Error('Erro')
+    })
+
+    mixPanelIdentifyUser({ guid: {} as string })
+
+    expect(mockLog).toBeCalledWith('Erro ao identificar o usuário')
+  })
 })

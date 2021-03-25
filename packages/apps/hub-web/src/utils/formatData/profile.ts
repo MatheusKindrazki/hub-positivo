@@ -33,7 +33,7 @@ export default (): ProfileProps => {
 
   // Criar um objeto de perfis ativos
   const activeProfiles: any = {}
-  Object.keys(profileTypes).map(p => {
+  Object.keys(profileTypes).forEach(p => {
     const types = profileTypes[p as ProfileTypesProps]
 
     let length = profileNames?.length || 0

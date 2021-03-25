@@ -19,4 +19,20 @@ describe('testing if `mixpanel tool opened` function work properly', () => {
     toolOpened(mockedEventProperties)
     expect(track).toHaveBeenCalledWith('Tool Opened', mockedEventProperties)
   })
+
+  it('Show an error in the console if MixPanel is not instantiated', () => {
+    const mockLog = jest.fn()
+
+    Object.assign(console, {
+      error: mockLog
+    })
+
+    jest.spyOn(mixpanel, 'track').mockImplementation(() => {
+      throw new Error('Erro')
+    })
+
+    toolOpened(mockedEventProperties)
+
+    expect(mockLog).toBeCalledWith('Erro ao capturar abertura de card mixpanel')
+  })
 })
