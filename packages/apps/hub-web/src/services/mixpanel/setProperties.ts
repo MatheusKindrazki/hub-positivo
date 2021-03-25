@@ -40,6 +40,8 @@ const setUserProperties = (): void => {
 
   if (!signed) return
 
+  console.log(sendProps)
+
   try {
     mixpanel.people.set(sendProps)
 
