@@ -1,4 +1,5 @@
 import mixpanel from 'mixpanel-browser'
+import amplitude from 'amplitude-js'
 
 import history from '~/services/history'
 
@@ -40,4 +41,5 @@ const listenerHubTitle = (custom: CustomEvent) => {
 
 function dispatchPage(data: PageViewed): void {
   mixpanel.track(pageViewedEvent, data)
+  amplitude.getInstance().logEvent(pageViewedEvent, data)
 }
