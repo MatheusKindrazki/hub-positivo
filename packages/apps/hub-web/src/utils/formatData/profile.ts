@@ -2,38 +2,54 @@ import { store } from '~/store'
 
 import { ProfileTypesProps } from './types'
 
-const {
-  profile: { profiles, ...profile }
-} = store.getState()
-
-const profileNames = profiles?.map(p => p.name)
-
-const profileTypes = {
-  is_teacher: 'Professor',
-  is_student: 'Aluno',
-  is_coordinator: 'Coordenador',
-  is_admin: 'Administrador',
-  is_family: 'Família'
+interface ProfileProps {
+  activeProfiles: {
+    [key: string]: boolean
+  }
+  profile: {
+    guid: string
+    profile: unknown
+    name: string
+    icon?: string
+    colorProfile?: string
+  }
+  profileNames?: string[]
 }
 
-// Criar um objeto de perfis ativos
-const activeProfiles: any = {}
-Object.keys(profileTypes).map(p => {
-  const types = profileTypes[p as ProfileTypesProps]
+export default (): ProfileProps => {
+  const {
+    profile: { profiles, ...profile }
+  } = store.getState()
 
-  let length = profileNames?.length || 0
-  profileNames?.forEach((n, i) => {
-    if (n === types) {
-      activeProfiles[p] = true
+  const profileNames = profiles?.map(p => p.name)
 
-      length = 999
-      return
-    }
+  const profileTypes = {
+    is_teacher: 'Professor',
+    is_student: 'Aluno',
+    is_coordinator: 'Coordenador',
+    is_admin: 'Administrador',
+    is_family: 'Família'
+  }
 
-    if (length - 1 === i) {
-      activeProfiles[p] = false
-    }
+  // Criar um objeto de perfis ativos
+  const activeProfiles: any = {}
+  Object.keys(profileTypes).map(p => {
+    const types = profileTypes[p as ProfileTypesProps]
+
+    let length = profileNames?.length || 0
+    profileNames?.forEach((n, i) => {
+      if (n === types) {
+        activeProfiles[p] = true
+
+        length = 999
+        return
+      }
+
+      if (length - 1 === i) {
+        activeProfiles[p] = false
+      }
+    })
   })
-})
 
-export { profile, profileNames, activeProfiles }
+  return { profile, profileNames, activeProfiles }
+}

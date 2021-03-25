@@ -2,21 +2,22 @@ import mixpanel from 'mixpanel-browser'
 
 import { store } from '~/store'
 
-import {
-  activeProfiles,
-  profile,
-  profileNames
-} from '~/utils/formatData/profile'
-import {
-  activeStages,
-  selected_class,
-  selected_educational_stage
-} from '~/utils/formatData/educationalStage'
+import profiles from '~/utils/formatData/profile'
+import educationalStage from '~/utils/formatData/educationalStage'
 
 const { user, school } = store.getState().user
 
 const schools_list = user?.schools?.map(s => s.name)
+
 const setUserProperties = (): void => {
+  const { activeProfiles, profile, profileNames } = profiles()
+
+  const {
+    activeStages,
+    selected_class,
+    selected_educational_stage
+  } = educationalStage()
+
   const sendProps = {
     ...activeProfiles,
     ...activeStages,
@@ -38,6 +39,7 @@ const setUserProperties = (): void => {
   const { signed } = store.getState().auth
 
   if (!signed) return
+
   try {
     mixpanel.people.set(sendProps)
 
