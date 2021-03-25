@@ -21,7 +21,7 @@ export default (): ProfileProps => {
     profile: { profiles, ...profile }
   } = store.getState()
 
-  const profileNames = profiles?.map(p => p.name)
+  const profileNames = profiles?.map((p: any) => p)
 
   const profileTypes = {
     is_teacher: 'Professor',
