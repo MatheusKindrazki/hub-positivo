@@ -12,6 +12,16 @@ import history from '~/services/history'
 
 import Header from '~/components/Header'
 
+// jest.mock('@hub/common/hooks', () => {
+//   const rest = jest.requireActual('@hub/common/hooks')
+//   return { ...rest, useDisclosure: jest.fn(() => ({ isOpen: true })) }
+// })
+
+// jest.mock('@hub/common/components/Drawer', () => {
+//   const rest = jest.requireActual('@hub/common/components/Drawer')
+//   return { ...rest, useDisclosure: jest.fn() }
+// })
+
 jest.mock('react-router', () => {
   const rest = jest.requireActual('react-router')
   return {
@@ -24,24 +34,34 @@ jest.mock('react-router', () => {
   }
 })
 
-describe('Header component', () => {
-  const hookOnClose = jest.fn()
-  const hookOnOpen = jest.fn()
-  const drawerOnClose = jest.fn()
-  const drawerOnOpen = jest.fn()
+describe('Header component ', () => {
+  const spyDrawerDisclosure = () => {
+    const drawerOnClose = jest.fn()
+    const drawerOnOpen = jest.fn()
+    jest.spyOn(drawer, 'useDisclosure').mockReturnValue({
+      isOpen: true,
+      onClose: drawerOnClose,
+      onOpen: drawerOnOpen
+    } as any)
 
-  beforeEach(() => {
+    return { drawerOnClose, drawerOnOpen }
+  }
+
+  const spyHookDisclosure = () => {
+    const hookOnClose = jest.fn()
+    const hookOnOpen = jest.fn()
+
     jest.spyOn(hooks, 'useDisclosure').mockReturnValue({
       isOpen: true,
       onClose: hookOnClose,
       onOpen: hookOnOpen
     } as any)
 
-    jest.spyOn(drawer, 'useDisclosure').mockReturnValue({
-      isOpen: true,
-      onClose: drawerOnClose,
-      onOpen: drawerOnOpen
-    } as any)
+    return { hookOnClose, hookOnOpen }
+  }
+  beforeAll(() => {
+    spyDrawerDisclosure()
+    spyHookDisclosure()
   })
 
   const setup = () => {
@@ -55,13 +75,12 @@ describe('Header component', () => {
 
   afterEach(() => {
     jest.clearAllMocks()
-    jest.restoreAllMocks()
   })
 
   const useMediaMock = (match: 'mobile' | 'desktop') => {
     const matchmedia = new MatchMediaMock()
     return matchmedia.useMediaQuery(
-      match === 'mobile' ? '(min-width: 479px)' : '(min-width: 480px)'
+      match === 'mobile' ? '(min-width: 470px)' : '(min-width: 480px)'
     )
   }
 
@@ -84,6 +103,7 @@ describe('Header component', () => {
 
   it('Should call handleClick when MenuButton is clicked', () => {
     useMediaMock('mobile')
+    const { drawerOnClose } = spyDrawerDisclosure()
 
     const { getAllByRole } = setup()
     const [MenuButton] = getAllByRole('button')
@@ -91,7 +111,7 @@ describe('Header component', () => {
     fireEvent.click(MenuButton)
 
     // função referenciada no ref.openMenu chama a onClose() se o drawer estiver aberto
-    expect(hookOnClose).toHaveBeenCalledTimes(1)
+    expect(drawerOnClose).toHaveBeenCalledTimes(1)
   })
 
   it('Should redirect to `/` when hub logo is clicked', () => {
@@ -106,6 +126,8 @@ describe('Header component', () => {
   })
 
   it('Should call openModalPass when `Alterar minha senha` is clicked', async () => {
+    const { hookOnOpen } = spyHookDisclosure()
+
     const { getByText } = setup()
     const alterPass = getByText(/Alterar minha senha/i)
 
