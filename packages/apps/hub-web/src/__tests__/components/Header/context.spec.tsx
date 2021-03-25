@@ -1,19 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-import { act } from 'react-dom/test-utils'
 import { renderHook } from '@testing-library/react-hooks'
 
 import { Provider } from 'react-redux'
 
 import { store } from '~/store'
 
-import { useHeader, HeaderProvider } from '~/components/Header/context'
+import { act, render } from '@hub/test-utils'
+
+import {
+  useHeader,
+  HeaderProvider,
+  HeaderContext
+} from '~/components/Header/context'
 
 import { useHeaderReturn } from '~/__mocks__/HeaderContext'
+import fakeStore from '~/__mocks__/fakeStore.mock'
 
 const Context: React.FC = ({ children }) => {
   return (
-    <Provider store={store}>
+    <Provider store={fakeStore}>
       <HeaderProvider>{children}</HeaderProvider>
     </Provider>
   )
@@ -44,14 +50,53 @@ describe('Testing useHeader', () => {
 })
 
 describe('Testing HeaderContext', () => {
-  it.skip('Should change role infos when setRole is called', () => {
+  const role = {
+    colorProfile: 'blue',
+    icon: 'icon',
+    id: 'id',
+    label: 'label',
+    name: 'name',
+    value: 'value'
+  }
+
+  afterEach(() => {
+    fakeStore.clearActions()
+  })
+
+  it('Should dispatch an `@auth/FIRST_ACCESS` action when setRole is triggered', () => {
     const {
-      result: { current: context }
+      result: { current }
     } = renderHook(() => useHeader(), { wrapper: Context })
     act(() => {
-      // context.setSchool(useHeaderReturn.roleList[0])
-      // context.setSchool({} as any)
+      // current.setSchool({ label: 'teste', roles: ['teste'], value: 'teste' })
+      current.setRole(role)
     })
-    // expect(context).toStrictEqual('')
+    const actions = fakeStore.getActions()
+
+    expect(actions).toStrictEqual([
+      {
+        type: '@auth/FIRST_ACCESS',
+        payload: {
+          profiles: [],
+          selected_profile: role,
+          selected_school: {
+            label: undefined,
+            value: undefined
+          }
+        }
+      }
+    ])
+  })
+
+  it.skip('', () => {
+    const {
+      result: { current }
+    } = renderHook(() => useHeader(), { wrapper: Context })
+    act(() => {
+      current.setSchool({ label: 'teste', roles: ['teste'], value: 'teste' })
+    })
+    const actions = fakeStore.getActions()
+
+    expect(actions).toStrictEqual(['teste'])
   })
 })
