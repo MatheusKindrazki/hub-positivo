@@ -8,5 +8,9 @@ export interface EventData {
 export const toolOpened = (data: EventData): void => {
   const clickEvent = 'Tool Opened'
 
-  mixpanel.track(clickEvent, { ...data })
+  try {
+    mixpanel.track(clickEvent, { ...data })
+  } catch (error) {
+    console.error('Erro ao capturar abertura de card mixpanel')
+  }
 }

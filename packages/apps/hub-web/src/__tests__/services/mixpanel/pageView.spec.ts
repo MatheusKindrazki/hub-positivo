@@ -45,7 +45,7 @@ describe('testing if mixpanel page viewed functions work properly', () => {
     jest.clearAllMocks()
   })
 
-  it('AmplitudePageView should dispatch Page Viewd event when aplication is loaded', () => {
+  it('AmplitudePageView should dispatch Page Viewed event when application is loaded', () => {
     const {
       changedHubTitleEvent,
       loadWindow,
@@ -63,7 +63,7 @@ describe('testing if mixpanel page viewed functions work properly', () => {
     )
   })
 
-  it('AmplitudePageView should dispatch Page Viewd event when history href is changed', () => {
+  it('AmplitudePageView should dispatch Page Viewed event when history href is changed', () => {
     const {
       changedHubTitleEvent,
       changeHistory,
@@ -82,7 +82,7 @@ describe('testing if mixpanel page viewed functions work properly', () => {
     )
   })
 
-  it('AmplitudePageView should not dispatch a Page Viewd event when oldTitle is the same that current title', () => {
+  it('AmplitudePageView should not dispatch a Page Viewed event when oldTitle is the same that current title', () => {
     const { changedHubTitleEvent, loadWindow } = pageViewedTestUtils()
     loadWindow()
 
@@ -90,5 +90,27 @@ describe('testing if mixpanel page viewed functions work properly', () => {
     document.dispatchEvent(changedHubTitleEvent(oldTitle))
 
     expect(track).not.toHaveBeenCalled()
+  })
+
+  it('Show an error in the console if MixPanel is not instantiated', () => {
+    const { changedHubTitleEvent, loadWindow } = pageViewedTestUtils()
+
+    const mockLog = jest.fn()
+
+    Object.assign(console, {
+      error: mockLog
+    })
+
+    jest.spyOn(mixpanel, 'track').mockImplementation(() => {
+      throw new Error('Erro')
+    })
+
+    loadWindow()
+
+    const title = 'first title'
+
+    document.dispatchEvent(changedHubTitleEvent(title))
+
+    expect(mockLog).toBeCalledWith('Erro ao capturar page view no mixpanel')
   })
 })
