@@ -1,6 +1,5 @@
 import React from 'react'
 
-import mixpanelMock from 'mixpanel-mock'
 import mixpanel from 'mixpanel-browser'
 import { renderHook } from '@testing-library/react-hooks'
 
