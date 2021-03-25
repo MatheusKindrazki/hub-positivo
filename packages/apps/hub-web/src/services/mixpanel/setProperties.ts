@@ -4,12 +4,11 @@ import { store } from '~/store'
 
 import profiles from '~/utils/formatData/profile'
 import educationalStage from '~/utils/formatData/educationalStage'
-
-const { info: user, school } = store.getState().user
-
-const schools_list = user?.schools?.map(s => s.name)
-
 const setUserProperties = (): void => {
+  const { info: user, school } = store.getState().user
+
+  const schools_list = user?.schools?.map(s => s.name)
+
   const { activeProfiles, profile, profileNames } = profiles()
 
   const {
@@ -39,8 +38,6 @@ const setUserProperties = (): void => {
   const { signed } = store.getState().auth
 
   if (!signed) return
-
-  console.log(sendProps)
 
   try {
     mixpanel.people.set(sendProps)
