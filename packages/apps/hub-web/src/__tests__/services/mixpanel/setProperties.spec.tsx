@@ -1,5 +1,6 @@
 import React from 'react'
 
+import mixpanelMock from 'mixpanel-mock'
 import mixpanel from 'mixpanel-browser'
 import { renderHook } from '@testing-library/react-hooks'
 
@@ -10,12 +11,7 @@ import setProperties from '~/services/mixpanel/setProperties'
 import { userMock, profilesMock, educationalStageMock } from '~/__mocks__/store'
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 
-jest.mock('mixpanel-browser', () => ({
-  people: jest.fn().mockReturnValue({
-    set: jest.fn()
-  }),
-  identify: jest.fn()
-}))
+jest.mock('mixpanel-browser', () => mixpanelMock)
 
 const wrapper: React.FC = ({ children }) => {
   return <Provider store={store}>{children}</Provider>
@@ -51,10 +47,10 @@ describe('Mixpanel Services', () => {
       loading: false
     }
 
-    const { set } = mixpanel.people
+    const teste = jest.spyOn(mixpanelMock.people, 'set')
 
     renderHook(() => setProperties(), { wrapper })
 
-    expect(set).toBeCalledWith('brasil')
+    expect(teste).toBeCalledWith('brasil')
   })
 })
