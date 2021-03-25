@@ -16,4 +16,20 @@ describe('Mixpanel Services', () => {
       track_pageview: true
     })
   })
+
+  it('Show an error in the console if MixPanel is not instantiated', () => {
+    const mockLog = jest.fn()
+
+    Object.assign(console, {
+      error: mockLog
+    })
+
+    jest.spyOn(mixpanel, 'init').mockImplementation(() => {
+      throw new Error('Erro')
+    })
+
+    mixPanelInit()
+
+    expect(mockLog).toBeCalledWith('Erro ao inicializar mix panel')
+  })
 })

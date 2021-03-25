@@ -10,14 +10,19 @@ import setProperties from '~/services/mixpanel/setProperties'
 import { userMock, profilesMock, educationalStageMock } from '~/__mocks__/store'
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 
-jest.mock('mixpanel-browser', () => mixpanelMock)
+jest.mock('mixpanel-browser', () => ({
+  people: {
+    set: jest.fn()
+  },
+  identify: jest.fn()
+}))
 
 const wrapper: React.FC = ({ children }) => {
   return <Provider store={store}>{children}</Provider>
 }
 
 describe('Mixpanel Services', () => {
-  it('Should return undefined if the user is not logged in', () => {
+  it('Should return false if the user is not logged in', () => {
     let resolved: any
 
     renderHook(() => (resolved = setProperties()), { wrapper })
@@ -25,7 +30,7 @@ describe('Mixpanel Services', () => {
     expect(resolved).toBeUndefined()
   })
 
-  it.skip('teste', () => {
+  it('Should prepare user information for sending MixPanel', () => {
     mockState.auth = {
       ...mockState.auth,
       signed: true
@@ -46,10 +51,47 @@ describe('Mixpanel Services', () => {
       loading: false
     }
 
-    const teste = jest.spyOn(mixpanelMock.people, 'set')
+    const mockSetPeople = jest.spyOn(mixpanel.people, 'set')
 
     renderHook(() => setProperties(), { wrapper })
 
-    expect(teste).toBeCalledWith('brasil')
+    expect(mockSetPeople).toBeCalledWith({
+      is_teacher: true,
+      is_student: false,
+      is_coordinator: true,
+      is_admin: true,
+      is_family: true,
+      educational_stage_EI: false,
+      educational_stage_EF1: true,
+      educational_stage_EF2: true,
+      educational_stage_EM: true,
+      selected_class: '1º ano',
+      selected_educational_stage: 'EF1',
+      user_id: '6d45f4f8-3326-4856-a29d-36216b2e4e2c',
+      user_login: 'john.doe',
+      user_name: 'John Doe',
+      user_mail: 'johndoe@teste.com',
+      selected_role: 'Professor',
+      roles_list: ['Administrador', 'Coordenador', 'Família', 'Professor'],
+      selected_school_id: '21694ec0-88be-4231-ac2a-392dbf845518',
+      selected_school_name: 'Escola Positivo',
+      schools_list: ['Escola Positivo']
+    })
+  })
+
+  it('Show an error in the console if MixPanel is not instantiated', () => {
+    const mockLog = jest.fn()
+
+    Object.assign(console, {
+      error: mockLog
+    })
+
+    jest.spyOn(mixpanel.people, 'set').mockImplementation(() => {
+      throw new Error('Erro')
+    })
+
+    renderHook(() => setProperties(), { wrapper })
+
+    expect(mockLog).toBeCalledWith('Erro ao identificar usuário via mixpanel')
   })
 })
