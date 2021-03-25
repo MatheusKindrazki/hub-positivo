@@ -1,0 +1,40 @@
+{
+  "profile": "professor",
+  "name": "Professor",
+  "guid": "PROFESSOR",
+  "colorProfile": "professor",
+  "profiles": [
+    {
+      "name": "Administrador",
+      "icon": "administrador",
+      "colorProfile": "administrador",
+      "id": "ADMINISTRADOR",
+      "label": "Administrador",
+      "value": "administrador"
+    },
+    {
+      "name": "Coordenador",
+      "icon": "coordenador",
+      "colorProfile": "coordenador",
+      "id": "COORDENADOR",
+      "label": "Coordenador",
+      "value": "coordenador"
+    },
+    {
+      "name": "Família",
+      "icon": "família",
+      "colorProfile": "família",
+      "id": "PAIS_E_RESPONSAVEIS",
+      "label": "Família",
+      "value": "família"
+    },
+    {
+      "name": "Professor",
+      "icon": "professor",
+      "colorProfile": "professor",
+      "id": "PROFESSOR",
+      "label": "Professor",
+      "value": "professor"
+    }
+  ]
+}
