@@ -23,7 +23,7 @@ const HeaderContext = createContext({} as ContextHeaderProps)
 const HeaderProvider: React.FC = ({ children }) => {
   const dispatch = useDispatch()
 
-  const { user, school: userSchool } = store.getState().user
+  const { info: user, school: userSchool } = store.getState().user
   const { name, profile } = store.getState().profile
 
   const [roles, setRoles] = useState(userSchool?.roles)

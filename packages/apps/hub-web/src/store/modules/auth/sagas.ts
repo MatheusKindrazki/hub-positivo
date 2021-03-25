@@ -93,7 +93,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
       token: data?.access_token,
       refresh_token: data?.refresh_token,
       exp: user?.exp,
-      user: {
+      info: {
         ...user,
         guid: user?.sub,
         username: user?.username,
@@ -132,7 +132,7 @@ export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
 
   const { access_token } = response as ApiChange
 
-  const { user, school } = store.getState().user
+  const { info: user, school } = store.getState().user
 
   const user_reduced = decode(access_token as string) as any
 
@@ -183,7 +183,7 @@ export function* checkingExpiringToken({
 
   const { exp, reduced_token, token } = payload.auth
 
-  const { user } = payload.user
+  const { info: user } = payload.user
 
   if (exp === 0) return
 

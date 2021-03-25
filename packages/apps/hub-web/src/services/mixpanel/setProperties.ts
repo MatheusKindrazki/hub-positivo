@@ -5,7 +5,7 @@ import { store } from '~/store'
 import profiles from '~/utils/formatData/profile'
 import educationalStage from '~/utils/formatData/educationalStage'
 
-const { user, school } = store.getState().user
+const { info: user, school } = store.getState().user
 
 const schools_list = user?.schools?.map(s => s.name)
 

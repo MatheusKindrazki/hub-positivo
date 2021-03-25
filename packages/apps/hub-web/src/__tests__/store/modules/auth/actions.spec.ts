@@ -1,8 +1,9 @@
 import * as authActions from '~/store/modules/auth/actions'
 
-import clearAmplitudeSession from '~/hooks/amplitude/clearAll'
+import clearAmplitudeSession from '~/services/mixpanel/clearAll'
 
 jest.mock('~/hooks/amplitude/clearAll')
+jest.mock('~/services/mixpanel/clearAll')
 
 describe('Action of authentication history', () => {
   it('Should the preparingUserData calls the correct action and receive the value within payload', () => {

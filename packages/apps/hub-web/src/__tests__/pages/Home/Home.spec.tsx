@@ -12,7 +12,7 @@ import Home from '~/pages/Home'
 
 const mockState = {
   user: {
-    user: {
+    info: {
       name: 'Firstname Lastname',
       school: {
         label: 'Escola Positivo ON SPE 18-005'
@@ -62,7 +62,7 @@ describe('Testing that the Home page works correctly', () => {
   it('Should render the correct elements on the screen', () => {
     const { getByText, getAllByText } = setup()
 
-    const { name } = user.user
+    const { name } = user.info
     const { data } = products
 
     const fragmentedName = name.split(' ')
