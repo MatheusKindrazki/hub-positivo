@@ -9,6 +9,10 @@ import * as hooks from '@hub/common/hooks'
 import context from '~/components/ModalSupport/context'
 import ModalSupport from '~/components/ModalSupport'
 
+jest.mock('~/components/ModalSupport/cerebro.svg', () =>
+  jest.fn(() => <>Cerebro</>)
+)
+
 describe('ModalSupport component testing', () => {
   const setup = () => {
     const wrapper = render(<ModalSupport />)
@@ -52,7 +56,7 @@ describe('ModalSupport component testing', () => {
     expect(onClose).toHaveBeenCalledTimes(1)
   })
 
-  it('', () => {
+  it('Context`s onClose and onOpen should call useDisclosure`s functions', () => {
     const onClose = jest.fn()
     const onOpen = jest.fn()
     jest.spyOn(hooks, 'useDisclosure').mockReturnValue({

@@ -5,6 +5,7 @@ import MatchMediaMock from 'jest-matchmedia-mock'
 import { store } from '~/store'
 
 import { fireEvent, render, waitFor } from '@hub/test-utils'
+import * as hooks from '@hub/common/hooks'
 import * as drawer from '@hub/common/components/Drawer'
 
 import history from '~/services/history'
@@ -24,13 +25,25 @@ jest.mock('react-router', () => {
 })
 
 describe('Header component', () => {
-  const onClose = jest.fn()
-  const onOpen = jest.fn()
-  jest.spyOn(drawer, 'useDisclosure').mockReturnValue({
-    isOpen: true,
-    onClose,
-    onOpen
-  } as any)
+  const hookOnClose = jest.fn()
+  const hookOnOpen = jest.fn()
+  const drawerOnClose = jest.fn()
+  const drawerOnOpen = jest.fn()
+
+  beforeEach(() => {
+    jest.spyOn(hooks, 'useDisclosure').mockReturnValue({
+      isOpen: true,
+      onClose: hookOnClose,
+      onOpen: hookOnOpen
+    } as any)
+
+    jest.spyOn(drawer, 'useDisclosure').mockReturnValue({
+      isOpen: true,
+      onClose: drawerOnClose,
+      onOpen: drawerOnOpen
+    } as any)
+  })
+
   const setup = () => {
     const wrapper = render(<Header />, {
       store,
@@ -42,11 +55,12 @@ describe('Header component', () => {
 
   afterEach(() => {
     jest.clearAllMocks()
+    jest.restoreAllMocks()
   })
 
   const useMediaMock = (match: 'mobile' | 'desktop') => {
     const matchmedia = new MatchMediaMock()
-    matchmedia.useMediaQuery(
+    return matchmedia.useMediaQuery(
       match === 'mobile' ? '(min-width: 479px)' : '(min-width: 480px)'
     )
   }
@@ -63,20 +77,21 @@ describe('Header component', () => {
     useMediaMock('mobile')
 
     const { getByTestId } = setup()
-
     const drawerContent = getByTestId('hub-drawer-content')
 
     expect(drawerContent).toBeInTheDocument()
   })
 
   it('Should call handleClick when MenuButton is clicked', () => {
+    useMediaMock('mobile')
+
     const { getAllByRole } = setup()
     const [MenuButton] = getAllByRole('button')
 
     fireEvent.click(MenuButton)
 
     // função referenciada no ref.openMenu chama a onClose() se o drawer estiver aberto
-    expect(onClose).toHaveBeenCalledTimes(1)
+    expect(hookOnClose).toHaveBeenCalledTimes(1)
   })
 
   it('Should redirect to `/` when hub logo is clicked', () => {
@@ -90,13 +105,12 @@ describe('Header component', () => {
     expect(spyPush).toHaveBeenCalledWith('/')
   })
 
-  it('should call openModalPass when `Alterar minha senha` is clicked', async () => {
+  it('Should call openModalPass when `Alterar minha senha` is clicked', async () => {
     const { getByText } = setup()
     const alterPass = getByText(/Alterar minha senha/i)
 
     fireEvent.click(alterPass)
 
-    // onClose é chamado quando isOpen é true, através da ref.
-    await waitFor(() => expect(onClose).toHaveBeenCalledTimes(1))
+    await waitFor(() => expect(hookOnOpen).toHaveBeenCalledTimes(1))
   })
 })
