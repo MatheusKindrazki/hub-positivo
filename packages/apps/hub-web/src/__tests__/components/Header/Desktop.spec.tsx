@@ -25,13 +25,13 @@ jest.mock('~/components/Header/context', () => {
   }
 })
 
+jest.mock('mixpanel-browser')
+
 describe('Desktop Header component', () => {
   afterEach(() => {
     jest.clearAllMocks()
-    jest.restoreAllMocks()
   })
   jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
-  const spyPush = jest.spyOn(history, 'push')
 
   const setup = (CUSTOM_STATE = { ...userState } as CustomState) => {
     const openModalPass = jest.fn()
@@ -87,6 +87,8 @@ describe('Desktop Header component', () => {
   })
 
   it('Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked', async () => {
+    const spyPush = jest.spyOn(history, 'push')
+
     const { popOverTrigger, findByText } = setup({
       profile: { guid: 'PROFESSOR' }
     })
@@ -118,6 +120,8 @@ describe('Desktop Header component', () => {
   })
 
   it('Should dispatch an `@auth/SIGN_OUT` action when `Sair` is clicked', async () => {
+    const spyPush = jest.spyOn(history, 'push')
+
     jest.useFakeTimers()
     const { findByText, storeUtils, popOverTrigger } = setup()
 

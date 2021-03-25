@@ -54,7 +54,6 @@ jest.mock('react-router', () => {
 describe('Mobile Header component ', () => {
   afterEach(() => {
     jest.clearAllMocks()
-    // jest.restoreAllMocks()
   })
 
   jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
