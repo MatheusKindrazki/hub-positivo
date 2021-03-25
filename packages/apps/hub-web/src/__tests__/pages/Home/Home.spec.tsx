@@ -35,6 +35,7 @@ const mockState = {
 jest.mock('~/services/amplitude', () => ({
   amplitudeToolOpened: jest.fn()
 }))
+jest.mock('~/services/mixpanel/toolOpened')
 
 describe('Testing that the Home page works correctly', () => {
   const { user, profile, products, educationalStage } = mockState
