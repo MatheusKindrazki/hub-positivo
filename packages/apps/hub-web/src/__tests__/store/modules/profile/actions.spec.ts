@@ -7,8 +7,8 @@ const mockedTypes = {
   PROFILES: '@profiles/PROFILES'
 }
 
-describe('authProduct action creators should work properly', () => {
-  it('should create an success action on authProductSuccess', () => {
+describe('profile module action creators should work properly', () => {
+  it('should set profile with the correct payload', () => {
     const expectedAction = {
       type: mockedTypes.SET_PROFILE,
       payload: mockedProfiles
@@ -16,7 +16,7 @@ describe('authProduct action creators should work properly', () => {
     expect(setProfile(mockedProfiles)).toEqual(expectedAction)
   })
 
-  it('should create an failure action on authProductFailure', () => {
+  it('should set profiles with the correct payload', () => {
     const expectedAction = {
       type: mockedTypes.PROFILES,
       payload: mockedProfiles.profiles
