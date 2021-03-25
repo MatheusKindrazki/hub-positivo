@@ -32,6 +32,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
   const [enableBlur, setEnableBlur] = useState(true)
 
   const { schoolList, roleList, ...func } = useHeader()
+
   const { steps } = useSelector((state: Store.State) => state.tour)
 
   const { info: user } = useSelector((state: Store.State) => state.user)
@@ -93,6 +94,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
       >
         <PopoverTrigger>
           <Avatar
+            data-testid="hub-popover-trigger"
             cursor="pointer"
             width="2.6rem"
             color="#3C3C3C"
@@ -103,6 +105,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
           />
         </PopoverTrigger>
         <PopoverContent
+          data-testid="hub-popover-content"
           outline="none"
           minW="310px"
           borderRadius="md"

@@ -492,4 +492,18 @@
   <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Stack.spec.tsx">
     <testCase name="Stack renders without crashing Stack matches snapshot" duration="63"/>
   </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Header/Mobile.spec.tsx">
+    <testCase name="Mobile Header component Should have a button called `Estou com uma dúvida`" duration="2740"/>
+    <testCase name="Mobile Header component openMenu should call onOpen when isOpen is false" duration="278"/>
+    <testCase name="Mobile Header component openMenu should call onClose when isOpen is true" duration="1905"/>
+    <testCase name="Mobile Header component Should redirect to `/` when `Sair` button is clicked" duration="2425"/>
+    <testCase name="Mobile Header component Should open a Tour (dispatch a `@tour/OPEN_TOUR` action) when /Fazer tour/ button is clicked" duration="3069"/>
+    <testCase name="Mobile Header component Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked" duration="3047"/>
+    <testCase name="Mobile Header component Should call useDisclosure`s onClose function when ´Home` button is clicked" duration="2988"/>
+    <testCase name="Mobile Header component Should call useDisclosure`s onClose function when key of escape is pressed (ESC)" duration="3546"/>
+    <testCase name="Mobile Header component Should change the `school` on selector when other `school` is triggered" duration="38431"/>
+    <testCase name="Mobile Header component Should change the `role` on selector when other `role` is triggered" duration="9017"/>
+    <testCase name="Mobile Header component Should change `Home` button color when pathname is /minhas-turmas" duration="2356"/>
+    <testCase name="Mobile Header component Should change `Minhas turmas` button color when pathname is `/`" duration="2490"/>
+  </file>
 </testExecutions>
