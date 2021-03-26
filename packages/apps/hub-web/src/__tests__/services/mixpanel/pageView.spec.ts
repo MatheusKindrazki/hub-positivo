@@ -82,16 +82,6 @@ describe('testing if mixpanel page viewed functions work properly', () => {
     )
   })
 
-  it('AmplitudePageView should not dispatch a Page Viewed event when oldTitle is the same that current title', () => {
-    const { changedHubTitleEvent, loadWindow } = pageViewedTestUtils()
-    loadWindow()
-
-    const oldTitle = ''
-    document.dispatchEvent(changedHubTitleEvent(oldTitle))
-
-    expect(track).not.toHaveBeenCalled()
-  })
-
   it('Show an error in the console if MixPanel is not instantiated', () => {
     const { changedHubTitleEvent, loadWindow } = pageViewedTestUtils()
 
