@@ -46,6 +46,67 @@ describe('Reducer of user history', () => {
     expect(state).not.toEqual(manipulatedState)
   })
 
+  it('Should Set Loading How false On The Action Shooting of alterPasswordSuccess', () => {
+    const action = userActions.forgotPasswordRequest({
+      newPassword: '123',
+      pin: '1234'
+    })
+
+    const state = UserReducer(undefined, action)
+
+    expect(state.loading).toBe(true)
+  })
+
+  it('Should Set Loading How false On The Action Shooting of forgotPasswordSuccess', () => {
+    const action = userActions.forgotPasswordSuccess()
+
+    const state = UserReducer(undefined, action)
+
+    expect(state.loading).toBe(false)
+  })
+
+  it('Should Set Loading How false On The Action Shooting of forgotPasswordFailure', () => {
+    const action = userActions.forgotPasswordFailure()
+
+    const state = UserReducer(undefined, action)
+
+    expect(state.loading).toBe(false)
+  })
+
+  it('Should set the state with the selected school', () => {
+    const action = userActions.setSchool({
+      id: '123',
+      name: 'FAKE_SCHOOL',
+      roles: ['fake-role']
+    })
+
+    const state = UserReducer(undefined, action)
+
+    expect(state.school).toEqual({
+      id: '123',
+      name: 'FAKE_SCHOOL',
+      roles: ['fake-role']
+    })
+  })
+
+  it('Should set all user information in the initial state', () => {
+    const info = {
+      name: 'John Doe'
+    }
+
+    const state = UserReducer(undefined, {
+      type: '@auth/SIGN_IN_SUCCESS',
+      payload: {
+        info
+      }
+    })
+
+    expect(state).toEqual({
+      ...INITIAL_STATE,
+      info
+    })
+  })
+
   it('Should return the unchanged state if it does not contain any action', () => {
     const state = UserReducer(undefined, { type: 'non-valid-type' })
 
