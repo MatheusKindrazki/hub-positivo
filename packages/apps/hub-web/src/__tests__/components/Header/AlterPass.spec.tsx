@@ -100,7 +100,7 @@ describe('get started', () => {
           newPassword: password,
           oldPassword: password
         },
-        type: '@user/ USER_PASSWORD_PANEL_REQUEST'
+        type: '@user/USER_PASSWORD_PANEL_REQUEST'
       }
     ])
   })
