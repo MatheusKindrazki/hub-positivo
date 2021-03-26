@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import documentTitle from '@hub/common/utils/documentTitle'
 
-import postMessage from '~/middlewares/postMessage'
+import usePostMessage from '~/hooks/usePostMessage'
 
 import { IframeContainer } from './styles'
 import getCardInformation from './hook/useCardInformation'
@@ -12,7 +12,7 @@ import LoadingFrame from './components/Loading'
 import DynamicIframe from './components/Iframe'
 
 const Iframe: React.FC = () => {
-  postMessage()
+  usePostMessage()
 
   const dispatch = useDispatch()
 
