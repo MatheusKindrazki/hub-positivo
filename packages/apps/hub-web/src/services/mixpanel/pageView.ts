@@ -20,6 +20,8 @@ window.onload = function () {
     page_url: document.URL
   }
 
+  oldTitle = document.title
+
   dispatchPage(eventProperties)
 
   document.addEventListener('@hub:title', listenerHubTitle)
