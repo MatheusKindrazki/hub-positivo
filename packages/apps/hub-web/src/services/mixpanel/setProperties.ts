@@ -26,7 +26,9 @@ const setUserProperties = (): void => {
 
     user_id: user?.guid,
     user_login: user?.username,
-    name: user?.name,
+    //? palavra reservada mixpanel
+    '$name': user?.name,
+
     user_name: user?.name,
     user_mail: user?.email,
 
