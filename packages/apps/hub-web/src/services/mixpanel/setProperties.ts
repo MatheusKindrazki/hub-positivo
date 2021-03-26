@@ -1,3 +1,7 @@
+/* eslint-disable quotes */
+/* eslint-disable quote-props */
+/* eslint-disable prettier/prettier */
+
 import mixpanel from 'mixpanel-browser'
 
 import { store } from '~/store'
@@ -26,9 +30,8 @@ const setUserProperties = (): void => {
 
     user_id: user?.guid,
     user_login: user?.username,
-    //? palavra reservada mixpanel
-    '$name': user?.name,
-
+    // ? palavra reservada mixpanel
+    $name: user?.name,
     user_name: user?.name,
     user_mail: user?.email,
 

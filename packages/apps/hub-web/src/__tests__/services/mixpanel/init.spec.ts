@@ -12,9 +12,7 @@ describe('Mixpanel Services', () => {
 
     mixPanelInit()
 
-    expect(mockMixPanel).toBeCalledWith('mix-panel-mock-key', {
-      track_pageview: true
-    })
+    expect(mockMixPanel).toBeCalledWith('mix-panel-mock-key')
   })
 
   it('Show an error in the console if MixPanel is not instantiated', () => {

@@ -1,3 +1,6 @@
+/* eslint-disable quotes */
+/* eslint-disable quote-props */
+/* eslint-disable prettier/prettier */
 import React from 'react'
 
 import mixpanel from 'mixpanel-browser'
@@ -69,6 +72,7 @@ describe('Mixpanel Services', () => {
       selected_educational_stage: 'EF1',
       user_id: '6d45f4f8-3326-4856-a29d-36216b2e4e2c',
       user_login: 'john.doe',
+      $name: 'John Doe',
       user_name: 'John Doe',
       user_mail: 'johndoe@teste.com',
       selected_role: 'Professor',
