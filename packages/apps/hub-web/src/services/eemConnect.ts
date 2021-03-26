@@ -38,7 +38,7 @@ async function EEMConnectPost<T>(attributes: EEMProps): ReturnConnect<T> {
     accept: '*/*'
   })
 
-  return await apiEEMAuth.post(endpoint, qs.stringify(sendInfo))
+  return apiEEMAuth.post(endpoint, qs.stringify(sendInfo))
 }
 
 async function EEMConnectGET<T, A = unknown>(
@@ -46,7 +46,7 @@ async function EEMConnectGET<T, A = unknown>(
 ): Promise<ApiResponse<A>> {
   const { data, endpoint, token } = attributes
 
-  return await apiEEMInfos.get(endpoint, data, {
+  return apiEEMInfos.get(endpoint, data, {
     headers: { Authorization: token }
   })
 }
