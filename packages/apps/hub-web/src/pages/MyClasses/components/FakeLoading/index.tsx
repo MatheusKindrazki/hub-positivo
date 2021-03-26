@@ -3,7 +3,7 @@ import React from 'react'
 import classNames from 'classnames'
 
 import Skeleton from '@hub/common/components/Skeleton'
-import { Box, Text, Avatar } from '@hub/common/components'
+import { Text, Avatar } from '@hub/common/components'
 
 import { Container } from './styles'
 const FakeLoadingCard: React.FC = () => {

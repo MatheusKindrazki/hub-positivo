@@ -45,7 +45,7 @@ export function* productSorting({ payload }: AuthPayload): Generator {
   if (!auth && !profile && !user) return
 
   yield call(async () => {
-    return await refreshTokenMiddleware()
+    return refreshTokenMiddleware()
   })
 
   const { tipoRenderizacao, url, product } = payload

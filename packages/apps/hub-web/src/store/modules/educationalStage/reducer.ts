@@ -28,14 +28,7 @@ const educationalStage: ReturnReducer = (state = INITIAL_STATE, action) => {
         break
       }
 
-      case Actions.SIGN_OUT: {
-        draft.loading = false
-        draft.level = ''
-        draft.levels = undefined
-        draft.class = undefined
-        break
-      }
-
+      case Actions.SIGN_OUT:
       case Actions.RESET_LEVEL: {
         draft.loading = false
         draft.level = ''

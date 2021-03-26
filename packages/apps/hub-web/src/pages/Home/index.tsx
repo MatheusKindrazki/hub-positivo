@@ -24,12 +24,12 @@ import { amplitudeToolOpened } from '~/services/amplitude'
 
 import { cardFilter } from '~/utils/cardFilter'
 
+import mockFakeLoading from '~/components/FakeCollapse/mock'
+import FakeCollapse from '~/components/FakeCollapse'
+
 import { Container } from './styles'
 import Filter from './components/Filter'
 import FakeLoadingCard from './components/FakeLoading'
-import mockFakeLoading from './components/FakeCollapseHome/mock'
-import FakeCollapse from './components/FakeCollapseHome'
-
 const Home: React.FC = () => {
   documentTitle('Home')
 
@@ -175,7 +175,7 @@ const Home: React.FC = () => {
             <>
               {mockFakeLoading.map((item, index) => (
                 <FakeCollapse key={index} id={String(index)}>
-                  {item.cardMock.map((card, i) => (
+                  {item.cardMock.map((_, i) => (
                     <FakeLoadingCard key={i} />
                   ))}
                 </FakeCollapse>

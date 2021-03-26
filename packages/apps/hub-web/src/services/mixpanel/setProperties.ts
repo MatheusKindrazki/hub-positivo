@@ -9,7 +9,7 @@ import { store } from '~/store'
 import profiles from '~/utils/formatData/profile'
 import educationalStage from '~/utils/formatData/educationalStage'
 
-const setUserProperties = (): void => {
+const setProperties = (): void => {
   const { info: user, school } = store.getState().user
 
   const schools_list = user?.schools?.map(s => s.name)
@@ -54,4 +54,4 @@ const setUserProperties = (): void => {
   }
 }
 
-export default setUserProperties
+export default setProperties

@@ -7,8 +7,12 @@ import { apiEEMAuth } from '@hub/api'
 
 import history from '~/services/history'
 
-import { PwdTokenApi, ValidatePin, ValidatePinAPI } from './types'
-import { PwdTokenRequest } from './types'
+import {
+  PwdTokenApi,
+  ValidatePin,
+  ValidatePinAPI,
+  PwdTokenRequest
+} from './types'
 import {
   Actions,
   pwdTokenSuccess,

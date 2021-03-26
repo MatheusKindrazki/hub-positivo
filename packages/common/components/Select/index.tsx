@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Props } from 'react-select'
-import Select from 'react-select'
+import Select, { Props } from 'react-select'
 import classNames from 'classnames'
 
 import GlobalSelectStyle from './styles'

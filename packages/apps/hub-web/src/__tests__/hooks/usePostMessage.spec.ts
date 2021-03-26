@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import * as utils from '~/utils/hasJsonStructure'
 
-import usePostMessage from '~/middlewares/postMessage'
+import usePostMessage from '~/hooks/usePostMessage'
 
 interface Data {
   event: string
