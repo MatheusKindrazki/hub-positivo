@@ -1,4 +1,4 @@
-const mobile = {
+const isMobile = {
   Android: (): boolean => !!navigator.userAgent.match(/Android/i),
   BlackBerry: (): boolean => !!navigator.userAgent.match(/BlackBerry/i),
   iOS: (): boolean => !!navigator.userAgent.match(/iPhone|iPad|iPod/i),
@@ -11,13 +11,13 @@ const mobile = {
   },
   any: (): boolean => {
     return (
-      mobile.Android() ||
-      mobile.BlackBerry() ||
-      mobile.iOS() ||
-      mobile.Opera() ||
-      mobile.Windows()
+      isMobile.Android() ||
+      isMobile.BlackBerry() ||
+      isMobile.iOS() ||
+      isMobile.Opera() ||
+      isMobile.Windows()
     )
   }
 }
 
-export default mobile
+export default isMobile
