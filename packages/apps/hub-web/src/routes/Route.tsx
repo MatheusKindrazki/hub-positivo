@@ -10,6 +10,8 @@ import * as Sentry from '@sentry/react'
 
 import { store } from '~/store'
 
+import setUserProperties from '~/services/mixpanel/setProperties'
+
 import searchQuery from '~/hooks/useQuery'
 
 const Auth = React.lazy(() => import('~/layouts/Auth'))
@@ -24,6 +26,9 @@ const Route: React.FC<RouteProps> = ({
   ...rest
 }) => {
   const { pathname } = useLocation()
+
+  setUserProperties()
+
   Sentry.configureScope(scope => scope.setTransactionName(pathname))
 
   const { signed } = store.getState().auth

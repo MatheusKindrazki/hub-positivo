@@ -1,0 +1,46 @@
+{
+  "ok": true,
+  "status": 200,
+  "data": [
+    {
+      "id": "fakeProductId",
+      "ativo": true,
+      "nome": "Fake Product",
+      "cor": "fakeColor",
+      "solucoes": [
+        {
+          "id": "fakeSolutionId",
+          "nome": "Fake Solution",
+          "descricao": "this is a fake solution",
+          "arquivo": "arquivo fake",
+          "tipoRenderizacao": "iframeblank",
+          "ativo": true
+        },
+        {
+          "id": "fakeNonActiveSolutionId",
+          "nome": "Fake Non Activated Solution",
+          "descricao": "this is a fake non activated solution",
+          "arquivo": "arquivo fake",
+          "tipoRenderizacao": "iframeblank",
+          "ativo": false
+        }
+      ]
+    },
+    {
+      "id": "fakeNonActiveProductId",
+      "ativo": false,
+      "nome": "Fake Non Activated Product",
+      "cor": "fakeColor",
+      "solucoes": [
+        {
+          "id": "fakeSolutionId",
+          "nome": "Fake Solution",
+          "descricao": "this is a fake solution",
+          "arquivo": "arquivo fake",
+          "tipoRenderizacao": "iframeblank",
+          "ativo": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 export interface UserReducer {
   loading: boolean
-  user?: User
+  info?: User
   avatar: string
   school?: {
     value: string

@@ -12,16 +12,18 @@ import {
 } from './types'
 
 export const useAmplitudeSetProperties = (): void => {
-  const { user, school } = useSelector((state: Store.State) => state.user)
+  /* istanbul ignore next */
+  const { info: user, school } = useSelector((state: Store.State) => state.user)
   const { profiles, name: selectedRole } = useSelector(
+    /* istanbul ignore next */
     (state: Store.State) => state.profile
   )
   const { levels, class: selected_class, level } = useSelector(
+    /* istanbul ignore next */
     (state: Store.State) => state.educationalStage
   )
 
   const { guid, username, name, schools } = user as User
-
   const {
     value: selected_school_id,
     label: selected_school_name
@@ -39,7 +41,9 @@ export const useAmplitudeSetProperties = (): void => {
     return booleanStages
   }, [formatedRoles])
 
-  const formatedEducationalStages = levels?.map(level => level.value)
+  const formatedEducationalStages = levels?.map(
+    levelSelectOption => levelSelectOption.value
+  )
   const booleanEducationalStages = useCallback(() => {
     const booleanStages: AmplitudeEducationalStageProps = {
       educational_stage_EI: formatedEducationalStages?.includes('EI'),

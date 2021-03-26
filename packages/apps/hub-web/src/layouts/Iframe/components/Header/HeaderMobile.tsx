@@ -15,6 +15,7 @@ import {
   SimpleGrid
 } from '@hub/common/components'
 
+import { toolOpened } from '~/services/mixpanel/toolOpened'
 import { amplitudeToolOpened } from '~/services/amplitude'
 
 import { cardFilter } from '~/utils/cardFilter'
@@ -42,6 +43,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
     } else {
       onOpen()
     }
+    setSearch('')
     setShow(!show)
   }
 
@@ -59,7 +61,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
       >
         <Box as={DotsNine} size={24} />
       </Button>
-      <Drawer isOpen={isOpen} placement="right" onClose={() => onClose()}>
+      <Drawer isOpen={isOpen} placement="right" onClose={() => toggleMenu()}>
         <DrawerContent
           mt={['41px', '41px']}
           position="relative"
@@ -119,8 +121,12 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                             card_name: solucao.nome,
                             location: 'header'
                           })
+                          toolOpened({
+                            card_name: solucao.nome,
+                            location: 'header'
+                          })
                           handlePush(e)
-                          setShow(false)
+                          toggleMenu()
                         }}
                       />
                     ))}

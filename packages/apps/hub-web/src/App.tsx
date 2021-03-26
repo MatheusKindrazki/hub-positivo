@@ -12,7 +12,7 @@ import ModalSupport from '~/components/ModalSupport'
 
 import Routes from '~/routes'
 
-import '~/hooks/amplitude/amplitudePageView'
+import '~/services/mixpanel/pageView'
 
 const App: React.FC = () => {
   return (

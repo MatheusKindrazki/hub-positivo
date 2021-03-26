@@ -1,5 +1,7 @@
 import { Action } from 'redux'
 
+import clearMixPanelSession from '~/services/mixpanel/clearAll'
+
 import clearAmplitudeSession from '~/hooks/amplitude/clearAll'
 
 import { SignInRequest, SignInSuccess, RefreshToken, AccessData } from './types'
@@ -114,6 +116,7 @@ export function reducedTokenEEM(token: string): Action {
 */
 export function signOut(): Action {
   clearAmplitudeSession()
+  clearMixPanelSession()
   return {
     type: Actions.SIGN_OUT
   }

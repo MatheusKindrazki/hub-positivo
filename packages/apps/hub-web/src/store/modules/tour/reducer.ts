@@ -5,7 +5,7 @@ import { Reducer } from 'redux'
 import { TourReducer } from './types'
 import { Actions } from './actions'
 
-const INITIAL_STATE: TourReducer = {
+export const INITIAL_STATE: TourReducer = {
   loading: false,
   open: false,
   viewed: false,

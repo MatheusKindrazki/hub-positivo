@@ -27,6 +27,7 @@ jobs:
   steps:
 
   - task: SonarCloudPrepare@1
+    condition: eq(variables['Build.SourceBranchName'], 'skip-sonar')
     inputs:
       SonarCloud: 'hub-sonarcloud'
       organization: 'editorati'
@@ -79,6 +80,7 @@ jobs:
       arguments: test:coverage
 
   - task: SonarCloudAnalyze@1
+    condition: eq(variables['Build.SourceBranchName'], 'skip-sonar')
 
   - script: |
       export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release

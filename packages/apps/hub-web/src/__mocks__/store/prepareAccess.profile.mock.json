@@ -1,0 +1,49 @@
+{
+  "selected_school": {
+    "id": "21694ec0-88be-4231-ac2a-392dbf845518",
+    "name": "Escola Positivo",
+    "user_id": "123",
+    "integration_id": "",
+    "time_zone": "HORÁRIO DE BRASILIA",
+    "roles": [
+      "PAIS_E_RESPONSAVEIS",
+      "COORDENADOR",
+      "PROFESSOR",
+      "ADMINISTRADOR"
+    ],
+    "value": "21694ec0-88be-4231-ac2a-392dbf845518",
+    "label": "Escola Positivo"
+  },
+  "selected_profile": {
+    "id": "ADMINISTRADOR",
+    "name": "Administrador",
+    "icon": "admin",
+    "colorProfile": "green"
+  },
+  "profiles": [
+    {
+      "id": "PAIS_E_RESPONSAVEIS",
+      "name": "Família",
+      "icon": "familia",
+      "colorProfile": "blue"
+    },
+    {
+      "id": "COORDENADOR",
+      "name": "Coordenador",
+      "icon": "coordenador",
+      "colorProfile": "pink"
+    },
+    {
+      "id": "ADMINISTRADOR",
+      "name": "Administrator",
+      "icon": "admin",
+      "colorProfile": "green"
+    },
+    {
+      "id": "PROFESSOR",
+      "name": "Professor",
+      "icon": "professor",
+      "colorProfile": "red"
+    }
+  ]
+}

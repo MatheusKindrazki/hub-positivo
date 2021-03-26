@@ -1,0 +1,936 @@
+{
+  "conteudo": [
+    {
+      "id": 1,
+      "ativo": true,
+      "nome": "6_ANO_A_F2_SEDE",
+      "apelido": "6_ANO_A_F2_SEDE",
+      "descricao": "6_ANO_A_F2_SEDE",
+      "turno": "MANHA",
+      "dataInicio": "2021-01-01T00:00:00",
+      "dataFim": "2021-12-31T00:00:00",
+      "idIntegracao": null,
+      "serie": {
+        "id": 10,
+        "ativo": true,
+        "nome": "6º ano",
+        "descricao": "6º ano",
+        "idIntegracao": null,
+        "disciplinas": [
+          {
+            "id": 1,
+            "ativo": true,
+            "nome": "Português"
+          },
+          {
+            "id": 2,
+            "ativo": true,
+            "nome": "Matemática"
+          },
+          {
+            "id": 3,
+            "ativo": true,
+            "nome": "Geografia"
+          },
+          {
+            "id": 4,
+            "ativo": true,
+            "nome": "História"
+          },
+          {
+            "id": 5,
+            "ativo": true,
+            "nome": "Ciências"
+          },
+          {
+            "id": 6,
+            "ativo": true,
+            "nome": "Inglês"
+          },
+          {
+            "id": 7,
+            "ativo": true,
+            "nome": "Educação Física"
+          },
+          {
+            "id": 9,
+            "ativo": true,
+            "nome": "Filosofia"
+          },
+          {
+            "id": 11,
+            "ativo": true,
+            "nome": "Artes"
+          },
+          {
+            "id": 16,
+            "ativo": true,
+            "nome": "Redação"
+          },
+          {
+            "id": 17,
+            "ativo": true,
+            "nome": "Escola da Inteligência"
+          }
+        ],
+        "ciclo": {
+          "id": 3,
+          "ativo": true,
+          "nome": "EF2",
+          "descricao": "Ensino fundamental 2",
+          "idIntegracao": "2"
+        }
+      },
+      "alunos": [
+        {
+          "id": 2,
+          "ativo": true,
+          "nome": "ALAN HENRIQUE DIAS SILVA COSTA",
+          "nomeCurto": "ALAN HENRIQUE DIAS S",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE01",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "958428d5-dcd6-4c6b-926e-5b1cc4091477"
+        },
+        {
+          "id": 3,
+          "ativo": true,
+          "nome": "ARTHUR RIKELMY SILVA DOS SANTOS",
+          "nomeCurto": "ARTHUR RIKELMY SILVA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE02",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "c5e11fa4-5220-4247-859c-f3d75384ce9b"
+        },
+        {
+          "id": 4,
+          "ativo": true,
+          "nome": "BEATRIZ OLIVEIRA SANTOS",
+          "nomeCurto": "BEATRIZ OLIVEIRA SAN",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE03",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "5581d300-ef5f-4066-bf79-c35d90d05831"
+        },
+        {
+          "id": 5,
+          "ativo": true,
+          "nome": "DAVI CAFE BELO",
+          "nomeCurto": "DAVI CAFE BELO",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE04",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "c7d9295a-be5e-41b6-88a7-9b4e687d0c31"
+        },
+        {
+          "id": 6,
+          "ativo": true,
+          "nome": "DIOGO COPPIETERS DANTAS FILHO",
+          "nomeCurto": "DIOGO COPPIETERS DAN",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE05",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "6820a587-402b-4c0b-bcbc-99f2645f1fdc"
+        },
+        {
+          "id": 7,
+          "ativo": true,
+          "nome": "ENZO DE JESUS CARNEIRO",
+          "nomeCurto": "ENZO DE JESUS CARNEI",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE06",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "b0e1bdd9-e424-425f-88c2-43b31a6449d3"
+        },
+        {
+          "id": 8,
+          "ativo": true,
+          "nome": "GABRIELLE DA SILVA RODRIGUES",
+          "nomeCurto": "GABRIELLE DA SILVA R",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE07",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "257a8ca8-0ab9-429c-ba59-0f21f11e9fb1"
+        },
+        {
+          "id": 9,
+          "ativo": true,
+          "nome": "GUILHERME DE SANTANA ARAUJO",
+          "nomeCurto": "GUILHERME DE SANTANA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE08",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "031b2c29-5db7-4adb-82ab-d494e4f03d31"
+        },
+        {
+          "id": 10,
+          "ativo": true,
+          "nome": "GUILHERME VICTOR VIANA PEREIRA",
+          "nomeCurto": "GUILHERME VICTOR VIA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE09",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "12b7611d-f5c8-489d-9d3f-cf94e41dafd7"
+        },
+        {
+          "id": 11,
+          "ativo": true,
+          "nome": "GUSTAVO FERNANDO MOTA DOS SANTOS",
+          "nomeCurto": "GUSTAVO FERNANDO MOT",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE10",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "97408c07-d994-4e06-9422-c5339a38d46e"
+        },
+        {
+          "id": 12,
+          "ativo": true,
+          "nome": "JESSICA CERQUEIRA DA COSTA SILVA",
+          "nomeCurto": "JESSICA CERQUEIRA DA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE11",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "3630375e-8f59-4ecb-abbd-c61d054f0324"
+        },
+        {
+          "id": 13,
+          "ativo": true,
+          "nome": "LARA REIS PEREIRA",
+          "nomeCurto": "LARA REIS PEREIRA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE12",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "4cb7f2fd-575c-4774-adaa-4c509cfd22e6"
+        },
+        {
+          "id": 14,
+          "ativo": true,
+          "nome": "LEVI BRANDAO LIMA FREITAS",
+          "nomeCurto": "LEVI BRANDAO LIMA FR",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE13",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "53406937-7c44-44a4-906d-4ab224b67736"
+        },
+        {
+          "id": 15,
+          "ativo": true,
+          "nome": "LUIZA BRITO SILVA",
+          "nomeCurto": "LUIZA BRITO SILVA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE14",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "8905642c-d5f8-4571-968d-d69c5f29fdb7"
+        },
+        {
+          "id": 16,
+          "ativo": true,
+          "nome": "MATEUS SOUZA COSTA",
+          "nomeCurto": "MATEUS SOUZA COSTA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE15",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "1c2f4610-541a-441a-b991-cd79581aa299"
+        },
+        {
+          "id": 17,
+          "ativo": true,
+          "nome": "NICOLLE NASCIMENTO SANTANA",
+          "nomeCurto": "NICOLLE NASCIMENTO S",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE16",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "76139096-3e13-419f-b94b-6e4ad53c4d1e"
+        },
+        {
+          "id": 18,
+          "ativo": true,
+          "nome": "PEDRO VITOR DA SILVA DOS SANTOS PIMENTEL",
+          "nomeCurto": "PEDRO VITOR DA SILVA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE17",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "59e21aab-f981-4310-8d07-4d7233ab76c2"
+        },
+        {
+          "id": 19,
+          "ativo": true,
+          "nome": "RYAN ALMEIDA DE SOUZA",
+          "nomeCurto": "RYAN ALMEIDA DE SOUZ",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE18",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "2788755b-e8f8-48b7-8d35-12c818d285aa"
+        },
+        {
+          "id": 20,
+          "ativo": true,
+          "nome": "SUELEN MALAQUIAS SALES",
+          "nomeCurto": "SUELEN MALAQUIAS SAL",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE19",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "a98f6663-2886-44dd-a20a-eefd27804df7"
+        },
+        {
+          "id": 21,
+          "ativo": true,
+          "nome": "SUELLEN BORGES DO NASCIMENTO",
+          "nomeCurto": "SUELLEN BORGES DO NA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE20",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "02f17916-4f77-4314-a589-fe22a8738660"
+        },
+        {
+          "id": 22,
+          "ativo": true,
+          "nome": "THIAGO HENRIQUE FARIAS DE ALCANTARA",
+          "nomeCurto": "THIAGO HENRIQUE FARI",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE21",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "adb170f2-5dd8-46cb-abaf-378fd84d6b1d"
+        },
+        {
+          "id": 23,
+          "ativo": true,
+          "nome": "YASMIN DE OLIVEIRA PORTO",
+          "nomeCurto": "YASMIN DE OLIVEIRA P",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE22",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "ea361dfb-c94d-4adf-9ebd-6f82c4d0c09b"
+        },
+        {
+          "id": 497,
+          "ativo": true,
+          "nome": "DEISIELLEN TEODORO DA SILVA",
+          "nomeCurto": "DEISIELLEN TEODORO D",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE23",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "0d9bdbaf-6b1b-4784-8f5b-117d29d7ad70"
+        },
+        {
+          "id": 498,
+          "ativo": true,
+          "nome": "HEBERT SILVA COSTA",
+          "nomeCurto": "HEBERT SILVA COSTA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE24",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "a06550e0-50cf-443c-97f2-277f7edc20af"
+        },
+        {
+          "id": 499,
+          "ativo": true,
+          "nome": "HELENA VALENTINA SOUZA LIMA",
+          "nomeCurto": "HELENA VALENTINA SOU",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE25",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "382182ae-b118-4137-9c1e-f1b45c9caff1"
+        },
+        {
+          "id": 500,
+          "ativo": true,
+          "nome": "ISADORA DE ANDRADE BIZARRIA",
+          "nomeCurto": "ISADORA DE ANDRADE B",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE26",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "c4c62d85-13f4-4e3f-9c7d-19307f23b174"
+        },
+        {
+          "id": 501,
+          "ativo": true,
+          "nome": "IZABELLA MONIQUE DA SILVA FERREIRA",
+          "nomeCurto": "IZABELLA MONIQUE DA ",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE27",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "fb05af1c-2345-4d20-bc02-8b358d0d4050"
+        },
+        {
+          "id": 502,
+          "ativo": true,
+          "nome": "LETICIA ISABELLE DE OLIVEIRA CLEMENTE",
+          "nomeCurto": "LETICIA ISABELLE DE ",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE28",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "d9250e77-b6e4-41c2-b122-ea2d78da9820"
+        },
+        {
+          "id": 503,
+          "ativo": true,
+          "nome": "LUIZ EDUARDO CARDOSO DOS SANTOS",
+          "nomeCurto": "LUIZ EDUARDO CARDOSO",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE29",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "e829c97a-f301-4dbf-95f2-7d7cf866b57d"
+        },
+        {
+          "id": 504,
+          "ativo": true,
+          "nome": "MIGUEL ACCIOLY ALMEIDA LINS",
+          "nomeCurto": "MIGUEL ACCIOLY ALMEI",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE30",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "19242cb6-51f1-4d9b-ac8a-9eab04e597e1"
+        },
+        {
+          "id": 505,
+          "ativo": true,
+          "nome": "MOSIAS DE SOUZA FARIAS",
+          "nomeCurto": "MOSIAS DE SOUZA FARI",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE31",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "7e6e0a47-c39f-48d8-9eac-f8c9f76eb81e"
+        },
+        {
+          "id": 506,
+          "ativo": true,
+          "nome": "MURILO BASTOS SOUSA TEIXEIRA",
+          "nomeCurto": "MURILO BASTOS SOUSA ",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE32",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "20ab24f7-13dd-4584-a340-13db754ac4fc"
+        },
+        {
+          "id": 507,
+          "ativo": true,
+          "nome": "RAFAEL ALMEIDA MANZAN",
+          "nomeCurto": "RAFAEL ALMEIDA MANZA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE33",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "d503fee1-3720-41e5-90b1-d10e4619be96"
+        },
+        {
+          "id": 508,
+          "ativo": true,
+          "nome": "RICHARD CARLOS SILVA PINTO",
+          "nomeCurto": "RICHARD CARLOS SILVA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE34",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "4192b988-31a7-416c-8d28-bb285f6d1de2"
+        },
+        {
+          "id": 509,
+          "ativo": true,
+          "nome": "SAMARA ALVAREZ ROSENO",
+          "nomeCurto": "SAMARA ALVAREZ ROSEN",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE35",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "691dc356-a087-4a39-a2e3-b430efa6c8bf"
+        },
+        {
+          "id": 510,
+          "ativo": true,
+          "nome": "SOFIA RIBEIRO CASTRO MOURA",
+          "nomeCurto": "SOFIA RIBEIRO CASTRO",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD6ANOSEDE36",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "1dbfdf2f-9b20-4773-8ca1-1dbee52a5f9b"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "ativo": true,
+      "nome": "7_ANO_A_F2_SEDE",
+      "apelido": "7_ANO_A_F2_SEDE",
+      "descricao": "7_ANO_A_F2_SEDE",
+      "turno": "MANHA",
+      "dataInicio": "2021-01-01T00:00:00",
+      "dataFim": "2021-12-31T00:00:00",
+      "idIntegracao": null,
+      "serie": {
+        "id": 11,
+        "ativo": true,
+        "nome": "7º ano",
+        "descricao": "7º ano",
+        "idIntegracao": null,
+        "disciplinas": [
+          {
+            "id": 1,
+            "ativo": true,
+            "nome": "Português"
+          },
+          {
+            "id": 2,
+            "ativo": true,
+            "nome": "Matemática"
+          },
+          {
+            "id": 3,
+            "ativo": true,
+            "nome": "Geografia"
+          },
+          {
+            "id": 4,
+            "ativo": true,
+            "nome": "História"
+          },
+          {
+            "id": 5,
+            "ativo": true,
+            "nome": "Ciências"
+          },
+          {
+            "id": 6,
+            "ativo": true,
+            "nome": "Inglês"
+          },
+          {
+            "id": 7,
+            "ativo": true,
+            "nome": "Educação Física"
+          },
+          {
+            "id": 9,
+            "ativo": true,
+            "nome": "Filosofia"
+          },
+          {
+            "id": 11,
+            "ativo": true,
+            "nome": "Artes"
+          },
+          {
+            "id": 16,
+            "ativo": true,
+            "nome": "Redação"
+          },
+          {
+            "id": 17,
+            "ativo": true,
+            "nome": "Escola da Inteligência"
+          }
+        ],
+        "ciclo": {
+          "id": 3,
+          "ativo": true,
+          "nome": "EF2",
+          "descricao": "Ensino fundamental 2",
+          "idIntegracao": "2"
+        }
+      },
+      "alunos": [
+        {
+          "id": 24,
+          "ativo": true,
+          "nome": "AMANDA OLIVEIRA DE MELO MARQUES",
+          "nomeCurto": "AMANDA OLIVEIRA DE M",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE01",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "372c0408-1479-443b-94f5-598e3de29ad0"
+        },
+        {
+          "id": 109,
+          "ativo": true,
+          "nome": "ANA LUIZA NUNES BATISTA",
+          "nomeCurto": "ANA LUIZA NUNES BATI",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE02",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "54eaa5aa-024c-4596-9d0a-9f373c858faa"
+        },
+        {
+          "id": 110,
+          "ativo": true,
+          "nome": "CLARA MENEZES ALVES",
+          "nomeCurto": "CLARA MENEZES ALVES",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE03",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "159afa8c-8958-421e-bae4-efc2cbb4530c"
+        },
+        {
+          "id": 111,
+          "ativo": true,
+          "nome": "DAVY PORTELA MENDES",
+          "nomeCurto": "DAVY PORTELA MENDES",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE04",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "800d9eed-bf82-4a42-9f77-7b096982fb62"
+        },
+        {
+          "id": 112,
+          "ativo": true,
+          "nome": "HELENA SILVA LIMA",
+          "nomeCurto": "HELENA SILVA LIMA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE05",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "eefe31e6-64f7-47b6-b465-32a78a23aaa6"
+        },
+        {
+          "id": 113,
+          "ativo": true,
+          "nome": "ICARO DE OLIVEIRA GOMES",
+          "nomeCurto": "ICARO DE OLIVEIRA GO",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE06",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "13d5d743-9d14-4c74-91e8-b40b1fb2ef91"
+        },
+        {
+          "id": 114,
+          "ativo": true,
+          "nome": "ISABELA ANDRADE DE JESUS",
+          "nomeCurto": "ISABELA ANDRADE DE J",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE07",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "c7d411eb-6f58-4bcc-902f-fdade7ff5305"
+        },
+        {
+          "id": 115,
+          "ativo": true,
+          "nome": "JONATHAS MACHADO BRITO",
+          "nomeCurto": "JONATHAS MACHADO BRI",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE08",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "eea81478-5d50-4931-a518-6d36810566ce"
+        },
+        {
+          "id": 116,
+          "ativo": true,
+          "nome": "LARA FERREIRA SILVA",
+          "nomeCurto": "LARA FERREIRA SILVA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE09",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "7a82539d-acc2-4375-a881-6f4fb858763d"
+        },
+        {
+          "id": 117,
+          "ativo": true,
+          "nome": "LORRAN SANTOS SILVA",
+          "nomeCurto": "LORRAN SANTOS SILVA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE10",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "0c0de4a5-e05d-4713-bb97-e8e2cf82f9f3"
+        },
+        {
+          "id": 118,
+          "ativo": true,
+          "nome": "MARIA EDUARDA CHAVES PEREIRA OLIVEIRA",
+          "nomeCurto": "MARIA EDUARDA CHAVES",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE11",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "0fff8e6e-16a6-46ce-8a82-7a8ee6efdfc8"
+        },
+        {
+          "id": 119,
+          "ativo": true,
+          "nome": "MARIA EDUARDA DOS SANTOS CARDOSO",
+          "nomeCurto": "MARIA EDUARDA DOS SA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE12",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "fc732715-6d51-4a11-b08f-9dc64193b157"
+        },
+        {
+          "id": 120,
+          "ativo": true,
+          "nome": "MILLENA RODRIGUES BARBOZA",
+          "nomeCurto": "MILLENA RODRIGUES BA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE13",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "31703783-ca33-4c6c-95d5-cdc7e3581782"
+        },
+        {
+          "id": 121,
+          "ativo": true,
+          "nome": "NAIANE DA CRUZ PEREIRA",
+          "nomeCurto": "NAIANE DA CRUZ PEREI",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE14",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "fea8a343-0871-4b8a-afa4-46f58bb7b711"
+        },
+        {
+          "id": 511,
+          "ativo": true,
+          "nome": "BIANCA BARRETO DE OLIVEIRA",
+          "nomeCurto": "BIANCA BARRETO DE OL",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE15",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "293a820a-9664-451d-9c5d-b7881d5f7b22"
+        },
+        {
+          "id": 512,
+          "ativo": true,
+          "nome": "FRANCINE LEVI DE MELO GOMES DOS SANTOS",
+          "nomeCurto": "FRANCINE LEVI DE MEL",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE16",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "85070e63-997f-4a8d-b25a-38c4d05031dd"
+        },
+        {
+          "id": 513,
+          "ativo": true,
+          "nome": "GABRIELA SOARES PORTO",
+          "nomeCurto": "GABRIELA SOARES PORT",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE17",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "c51e2b4b-934a-4ca1-a43d-7f87e142ff6e"
+        },
+        {
+          "id": 514,
+          "ativo": true,
+          "nome": "GALBERTO DE JESUS TRINDADE",
+          "nomeCurto": "GALBERTO DE JESUS TR",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE18",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "7de58b51-7225-41b5-b5e2-dee412a4b25c"
+        },
+        {
+          "id": 515,
+          "ativo": true,
+          "nome": "JOAO PEDRO LIMA FERNANDES",
+          "nomeCurto": "JOAO PEDRO LIMA FERN",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE19",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "f0994f71-ff4f-44ff-8f71-a74944f1a92d"
+        },
+        {
+          "id": 516,
+          "ativo": true,
+          "nome": "KAIK SILVA SANTOS LIMA",
+          "nomeCurto": "KAIK SILVA SANTOS LI",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE20",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "33103b40-5a36-4815-a6b2-50972db5d286"
+        },
+        {
+          "id": 517,
+          "ativo": true,
+          "nome": "LUCAS AUGUSTO FONTES ANTUNES",
+          "nomeCurto": "LUCAS AUGUSTO FONTES",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE21",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "2c143698-9149-4e27-802a-ebbda1adf017"
+        },
+        {
+          "id": 518,
+          "ativo": true,
+          "nome": "LUIS GUSTAVO MASCARENHAS BRANDAO",
+          "nomeCurto": "LUIS GUSTAVO MASCARE",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE22",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "5dd99634-2c65-4642-ac1b-2b737e54c909"
+        },
+        {
+          "id": 519,
+          "ativo": true,
+          "nome": "PEDRO LUIZ DE JESUS MOURA",
+          "nomeCurto": "PEDRO LUIZ DE JESUS ",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE23",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "32e3b461-a020-4fec-b9d0-de8c9a376810"
+        },
+        {
+          "id": 520,
+          "ativo": true,
+          "nome": "SHEYLA DE BRITO ROSA",
+          "nomeCurto": "SHEYLA DE BRITO ROSA",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE24",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "2479df95-f0ca-4d2f-9eb2-0ac0535d240b"
+        },
+        {
+          "id": 521,
+          "ativo": true,
+          "nome": "SOPHIA BATISTA LIMEIRA DO NASCIMENTO",
+          "nomeCurto": "SOPHIA BATISTA LIMEI",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE25",
+          "sexo": "FEMININO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "6d8f6456-e2bf-484b-ae01-d6893c38981f"
+        },
+        {
+          "id": 522,
+          "ativo": true,
+          "nome": "THIERRY PACHECO DA SILVA DOS SANTOS",
+          "nomeCurto": "THIERRY PACHECO DA S",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE26",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "61b19dc1-b95b-401b-b951-c96210857624"
+        },
+        {
+          "id": 523,
+          "ativo": true,
+          "nome": "VINICIUS MOURA DOS SANTOS MACHADO",
+          "nomeCurto": "VINICIUS MOURA DOS S",
+          "dataNascimento": "2000-10-10T00:00:00",
+          "registroAcademico": "CD7ANOSEDE27",
+          "sexo": "MASCULINO",
+          "urlPublicaFoto": null,
+          "idIntegracao": null,
+          "idUsuarioUnico": "59f6534a-c426-4478-bd25-308b83ce5dc6"
+        }
+      ]
+    }
+
+  ],
+  "mensagemRetorno": null,
+  "excecao": null,
+  "status": 0,
+  "erros": null,
+  "__eem": true,
+  "sucesso": true,
+  "targetUrl": null
+}

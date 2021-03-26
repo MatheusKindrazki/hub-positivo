@@ -2,6 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
+import { cards as mockedCards } from '@hub/test-utils/__mocks__'
 import { render, fireEvent, act, CustomState } from '@hub/test-utils'
 import createSlug from '@hub/common/utils/createSlug'
 
@@ -11,7 +12,7 @@ import Home from '~/pages/Home'
 
 const mockState = {
   user: {
-    user: {
+    info: {
       name: 'Firstname Lastname',
       school: {
         label: 'Escola Positivo ON SPE 18-005'
@@ -23,46 +24,7 @@ const mockState = {
   },
   products: {
     loading: false,
-    data: [
-      {
-        ordem: 1,
-        ativo: true,
-        cor: 'blue',
-        nome: 'Avaliação',
-        solucoes: [
-          {
-            ativo: true,
-            nome: 'Provas',
-            descricao: 'Crie e aplique suas provas',
-            link: 'psd.provas.com'
-          },
-          {
-            ativo: true,
-            nome: 'Redação',
-            descricao: 'Inclua redações em suas avaliações'
-          }
-        ]
-      },
-      {
-        ordem: 2,
-        ativo: true,
-        cor: 'blue',
-        nome: 'Recursos',
-        solucoes: [
-          {
-            ativo: true,
-            nome: 'Salas virtuais',
-            descricao: 'Visualize e acesse suas aulas virtuais',
-            link: 'psd.salas.com'
-          },
-          {
-            ativo: true,
-            nome: 'Playground',
-            descricao: 'Jogos e objetos educacionais'
-          }
-        ]
-      }
-    ]
+    data: mockedCards
   },
   educationalStage: {
     class: 'Class Name',
@@ -73,6 +35,7 @@ const mockState = {
 jest.mock('~/services/amplitude', () => ({
   amplitudeToolOpened: jest.fn()
 }))
+jest.mock('~/services/mixpanel/toolOpened')
 
 describe('Testing that the Home page works correctly', () => {
   const { user, profile, products, educationalStage } = mockState
@@ -100,7 +63,7 @@ describe('Testing that the Home page works correctly', () => {
   it('Should render the correct elements on the screen', () => {
     const { getByText, getAllByText } = setup()
 
-    const { name } = user.user
+    const { name } = user.info
     const { data } = products
 
     const fragmentedName = name.split(' ')
@@ -170,7 +133,7 @@ describe('Testing that the Home page works correctly', () => {
     expect(payload).toStrictEqual({
       name: provasSolution.nome,
       product: createSlug('provas'),
-      tipoRenderizacao: undefined,
+      tipoRenderizacao: provasSolution.tipoRenderizacao,
       url: provasSolution.link
     })
     expect(spyAmplitudeToolOpened).toHaveBeenCalledTimes(1)
