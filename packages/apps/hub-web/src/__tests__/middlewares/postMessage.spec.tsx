@@ -19,6 +19,8 @@ const mockedPathname = 'test/mock/path/'
 
 const mockedParams = 'fake-parameter'
 
+jest.mock('mixpanel-browser')
+
 jest.mock('react-router-dom', () => {
   const ui = jest.requireActual('react-router-dom')
   return {
