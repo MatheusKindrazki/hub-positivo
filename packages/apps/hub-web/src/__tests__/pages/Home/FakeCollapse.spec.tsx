@@ -4,7 +4,7 @@ import { render } from '@hub/test-utils'
 
 import * as chakra from '@chakra-ui/react'
 
-import FakeCollapse from '~/pages/Home/components/FakeCollapseHome'
+import FakeCollapse from '~/components/FakeCollapse'
 
 const childrenValue = 'testing children'
 
