@@ -15,6 +15,7 @@ type ReturnReducer = Reducer<ProductReducer>
 const products: ReturnReducer = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
+      case Actions.WITHOUT_ACCESS:
       case Actions.PRODUCT_REQUEST: {
         draft.loading = true
         draft.data = []
@@ -34,12 +35,6 @@ const products: ReturnReducer = (state = INITIAL_STATE, action) => {
 
       case Actions.PRODUCT_FAILURE: {
         draft.loading = false
-        draft.data = []
-        break
-      }
-
-      case Actions.WITHOUT_ACCESS: {
-        draft.loading = true
         draft.data = []
         break
       }

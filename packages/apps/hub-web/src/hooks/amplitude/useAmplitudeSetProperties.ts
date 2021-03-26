@@ -41,7 +41,9 @@ export const useAmplitudeSetProperties = (): void => {
     return booleanStages
   }, [formatedRoles])
 
-  const formatedEducationalStages = levels?.map(level => level.value)
+  const formatedEducationalStages = levels?.map(
+    levelSelectOption => levelSelectOption.value
+  )
   const booleanEducationalStages = useCallback(() => {
     const booleanStages: AmplitudeEducationalStageProps = {
       educational_stage_EI: formatedEducationalStages?.includes('EI'),

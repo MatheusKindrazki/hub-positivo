@@ -121,13 +121,13 @@ export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
   yield put(loading(true))
 
   yield call(async () => {
-    return await refreshTokenMiddleware()
+    return refreshTokenMiddleware()
   })
 
   yield put(setSchool(selected_school))
 
   const response = yield call(async () => {
-    return await changeSchool()
+    return changeSchool()
   })
 
   const { access_token } = response as ApiChange
@@ -247,7 +247,7 @@ export function* refreshToken(): Generator {
   })
 
   const res = yield call(async () => {
-    return await changeSchool({
+    return changeSchool({
       token: data?.access_token
     })
   })

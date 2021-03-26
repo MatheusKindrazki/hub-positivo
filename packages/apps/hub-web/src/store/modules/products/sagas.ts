@@ -33,7 +33,7 @@ export function* getProducts(): Generator {
   }
 
   const response = yield call(async () => {
-    return await api.get(`Categoria/Solucoes/Perfil/${guid}`, {
+    return api.get(`Categoria/Solucoes/Perfil/${guid}`, {
       NivelEnsino: level,
       IdEscola: school?.value
     })

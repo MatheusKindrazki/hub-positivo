@@ -63,11 +63,6 @@ const mockedErrorApiResponse: ApiErrorResponse<RefreshTokenApi> = {
 
 jest.mock('~/store', () => ({
   store: {
-    getState: jest.fn().mockImplementation(() => mockedState)
-  }
-}))
-jest.mock('~/store', () => ({
-  store: {
     getState: jest
       .fn()
       .mockImplementationOnce(() => mockedStateExpiredToken)
@@ -103,7 +98,7 @@ describe('RefreshToken should work properly', () => {
       payload: false,
       type: '@global/ENABLE_REFRESH_TOKEN'
     }
-    const refreshTokenSucessAction = {
+    const refreshTokenSuccessAction = {
       payload: {
         exp: undefined,
         refresh_token: 'test-refresh-token',
@@ -119,7 +114,7 @@ describe('RefreshToken should work properly', () => {
 
     await waitFor(() => {
       expect(spyDispatch).toHaveBeenNthCalledWith(1, refreshTokenAction)
-      expect(spyDispatch).toHaveBeenNthCalledWith(2, refreshTokenSucessAction)
+      expect(spyDispatch).toHaveBeenNthCalledWith(2, refreshTokenSuccessAction)
     })
   })
 
