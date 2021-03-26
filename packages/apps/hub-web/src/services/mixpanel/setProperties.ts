@@ -26,6 +26,9 @@ const setUserProperties = (): void => {
 
     user_id: user?.guid,
     user_login: user?.username,
+    //? palavra reservada mixpanel
+    '$name': user?.name,
+
     user_name: user?.name,
     user_mail: user?.email,
 
@@ -42,7 +45,6 @@ const setUserProperties = (): void => {
 
   try {
     mixpanel.people.set(sendProps)
-
     mixpanel.identify(user?.guid)
   } catch (error) {
     console.error('Erro ao identificar usuário via mixpanel')

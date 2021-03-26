@@ -201,15 +201,15 @@ export function* checkingExpiringToken({
     Authorization: `Bearer ${token}`
   })
 
-  // ? Identifica o usuário no amplitude
-  amplitudeIdentifyUser({ guid: user.guid })
-  mixpanelIdentifyUser({ guid: user.guid })
-
   yield put(reducedTokenEEM(reduced_token))
 
   yield put(enableRefreshTokenMiddleware(true))
 
   yield delay(1500)
+
+  // ? Identifica o usuário no amplitude
+  amplitudeIdentifyUser({ guid: user.guid })
+  mixpanelIdentifyUser({ guid: user.guid })
 
   return yield put(productRequest({}))
 }

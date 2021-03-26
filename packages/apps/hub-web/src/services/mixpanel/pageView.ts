@@ -14,6 +14,16 @@ let pathname = '/'
 window.onload = function () {
   pathname = document.location.hash.replace('#', '')
 
+  const eventProperties: PageViewed = {
+    page_path: pathname,
+    page_title: document.title,
+    page_url: document.URL
+  }
+
+  oldTitle = document.title
+
+  dispatchPage(eventProperties)
+
   document.addEventListener('@hub:title', listenerHubTitle)
 }
 
