@@ -32,6 +32,9 @@ history.listen(() => {
 })
 
 const listenerHubTitle = (custom: CustomEvent) => {
+  console.log('oldTitle', oldTitle)
+  console.log('custom?.detail', custom?.detail)
+
   if (oldTitle === custom?.detail) return
 
   pathname = document.location.hash.replace('#', '')
