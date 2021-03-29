@@ -1,6 +1,6 @@
 # Começando com os testes
 
-![react-testing-library](../../docs/tests/images/testing-library.png)
+![react-testing-library](./images/testing-library.png)
 
 ## Testes automatizados
 
@@ -52,7 +52,7 @@ Com teste comando sendo executado, começa-se a se gerar um arquivo de Coverage 
 
 Esta imagem demonstra [o ultimo ponto citado acima]().
 
-![Comec%CC%A7ando%20com%20os%20testes%205795471dae43407bbfbf463129fb31b9/Untitled.png](Comec%CC%A7ando%20com%20os%20testes%205795471dae43407bbfbf463129fb31b9/Untitled.png)
+![coverage](./images/coverage.png)
 
 _Comando executado: `yarn test:coverage`_
 

@@ -350,38 +350,13 @@ O projeto conta com padronização de estilo própria. É necessário estar de a
 
 # Testes
 
-Atualmente o projeto conta com um coverage de testes de 75%. Os testes são aplicados às páginas, layouts, hooks e componentes predominantemente com o uso de [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), assim como os middlewares, validadores, módulos da store e funções utilitárias são testadas unitariamente com [Jest](https://jestjs.io/docs/en/getting-started).
+Os testes são aplicados nas páginas, layouts, hooks e componentes predominantemente com o uso de [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), assim como os middlewares, validadores, módulos da store e funções utilitárias são testadas unitariamente com [Jest](https://jestjs.io/docs/en/getting-started).
 
-Ressaltamos que para correta execução dos testes se faz necessário, no mínimo, o uso do [Node](https://nodejs.org/en/) v14.15.4.
+Os testes também possuem uma documentação própria dentro do Hub que é divida nas seguintes três partes:
 
-No trecho de código 5 pode-se observar um caso simples de teste que utiliza React Testing Library, que testa os componentes Accordion e UnmountClosed.
-
-**Trecho de código 5:**
-
-```jsx
-import React from 'react'
-
-import { render } from '@hub/test-utils'
-
-import { Accordion, UnmountClosed } from '../../components/Accordion'
-
-describe('Accordion an UnmountClosed components', () => {
-  it('Accordion being rendered on canvas', () => {
-    const wrapper = render(<Accordion isOpened>hub</Accordion>)
-    expect(wrapper).toMatchSnapshot()
-  })
-
-  it('UnmountClosed being rendered on canvas', () => {
-    const wrapper = render(<UnmountClosed isOpened>hub</UnmountClosed>)
-
-    expect(wrapper).toMatchSnapshot()
-  })
-})
-```
-
-_Código disponível em`packages/common/__tests__/components/Accordion.spec.tsx`_
-
-No primeiro teste (_it_) se renderiza o componente Accordion com o "hub" inserido como children, espera-se que ele tenha sido renderizado corretamente.
+1. [Começando com os testes](./docs/tests/COMECANDO_COM_OS_TESTES.md)
+2. [Utilitários para testes](./docs/tests/UTILITARIOS_PARA_TESTES.md)
+3. [Modelos de teste](./docs/tests/MODELOS_DE_TESTE.md)
 
 # Como contribuir
 
