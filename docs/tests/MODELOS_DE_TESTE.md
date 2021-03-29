@@ -1,6 +1,6 @@
 # Modelos de teste
 
-![Modelos%20de%20teste%20a000c0d420064129a34c328546b06ed7/Cpia_de_Cpia_de_Sem_nome_(1).png](Modelos%20de%20teste%20a000c0d420064129a34c328546b06ed7/Cpia_de_Cpia_de_Sem_nome_(1).png)
+![models](./docs/tests/images/models.png)
 
 Neste capítulo traremos instruções com um direcionamento específico, com o objetivo de explicar diferentes modalidades de teste encontradas no Hub, traremos exemplos de situações reais dos testes da aplicação com uma descrição do que foi feito, como foi feito, e por que foi feito.
 
@@ -14,7 +14,7 @@ Neste capítulo traremos instruções com um direcionamento específico, com o o
 
 [2.1.2 - Testes que simulam a interação do usuário]()
 
-[2.2 -  Hub Web]()
+[2.2 - Hub Web]()
 
 [3 - Testes das páginas]()
 
@@ -79,13 +79,13 @@ Destaca-se o uso do jest.mock atribuindo funções mockadas aos métodos do reac
 
 ## 2. Testes de Componentes
 
-Com diversos componentes e páginas, o hub utiliza de testes unitários e end-to-end para a cobertura de código do projeto. 
+Com diversos componentes e páginas, o hub utiliza de testes unitários e end-to-end para a cobertura de código do projeto.
 
 ### 2.1 Common
 
-Nos **commons**, módulo da aplicação que disponibiliza utilitários comuns entre a aplicação, estão a grande maioria dos componentes importados pelo Chakra-ui. Utiliza-se [snapshots](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2) para o teste de componentes mais simples  —  como é o caso de um Button  —  e, para casos mais complexos, que possuem lógica mais presente, utiliza-se da [simulação do comportamento do usuário](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2). 
+Nos **commons**, módulo da aplicação que disponibiliza utilitários comuns entre a aplicação, estão a grande maioria dos componentes importados pelo Chakra-ui. Utiliza-se [snapshots](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2) para o teste de componentes mais simples — como é o caso de um Button — e, para casos mais complexos, que possuem lógica mais presente, utiliza-se da [simulação do comportamento do usuário](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2).
 
-**2.1.1** **Teste com snapshot** 
+**2.1.1** **Teste com snapshot**
 
 ```jsx
 it('Button matches snapshot', () => {
@@ -94,7 +94,7 @@ it('Button matches snapshot', () => {
 })
 ```
 
-*Disponível em packages/common/__tests__/components/Button.spec.tsx*
+_Disponível em packages/common/**tests**/components/Button.spec.tsx_
 
 Caso o resultado renderizado pelo componente Button seja alterado, os testes apontarão essa mudança através da comparação com o snapshot antigo, informando para a pessoa desenvolvedora que seja feita a atualização do snapshot.
 
@@ -114,48 +114,48 @@ it('Input should call onChange with correct value', () => {
 }
 ```
 
-*Disponível em packages/common/__tests__/components/Search.spec.tsx*
+_Disponível em packages/common/**tests**/components/Search.spec.tsx_
 
 Este modelo de teste são utilizados em componentes que utilizam alguma lógica para funcionar. Como por exemplo, o componente (Search) que precisa chamar uma função (onChange) que lida com a alteração do valor digitado pelo usuário no input.
 
-### 2.2  Hub Web
+### 2.2 Hub Web
 
 Os componentes presentes no Hub não fogem muito do escopo dos [commons](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2), mas alguns diretórios utilizam de diversas funções e módulos disponíveis no repositório, fazendo com que seus testes sejam mais complexos. A partir daqui, sugere-se que a seção de **mocks** e **setup de testes** esteja bem compreendida.
 
 ```jsx
 it('Should dispatch an `@user/USER_PASSWORD_PANEL_REQUEST` action if the form has been submitted with correct data', async () => {
-    const { inputs, alterButton, storeUtils } = setup()
+  const { inputs, alterButton, storeUtils } = setup()
 
-    expect(inputs.length).toBe(3)
+  expect(inputs.length).toBe(3)
 
-    const password = 'password'
+  const password = 'password'
 
-    inputs.forEach(input => {
-      fireEvent.change(input, { target: { value: password } })
-    })
-    await waitFor(() => fireEvent.click(alterButton))
-
-    const action = storeUtils?.getActions()
-    expect(action).toStrictEqual([
-      {
-        payload: {
-          confirmNewPassword: password,
-          newPassword: password,
-          oldPassword: password
-        },
-        type: '@user/ USER_PASSWORD_PANEL_REQUEST'
-      }
-    ])
+  inputs.forEach(input => {
+    fireEvent.change(input, { target: { value: password } })
   })
+  await waitFor(() => fireEvent.click(alterButton))
+
+  const action = storeUtils?.getActions()
+  expect(action).toStrictEqual([
+    {
+      payload: {
+        confirmNewPassword: password,
+        newPassword: password,
+        oldPassword: password
+      },
+      type: '@user/ USER_PASSWORD_PANEL_REQUEST'
+    }
+  ])
+})
 ```
 
-*Disponível em packages/apps/src/__tests__/components/Header/AlterPass.spec.tsx*
+_Disponível em packages/apps/src/**tests**/components/Header/AlterPass.spec.tsx_
 
-Este teste passa pelo componente de alteração de senha, que está presente no Header do Hub, inserindo um `password` válido genérico para a tentativa de trocar a senha. 
+Este teste passa pelo componente de alteração de senha, que está presente no Header do Hub, inserindo um `password` válido genérico para a tentativa de trocar a senha.
 
-Manobrando as assincronicidade do componente, testa-se se uma ação é disparada através do redux quando todos os dados inseridos nos inputs são válidos e foram submetidos. 
+Manobrando as assincronicidade do componente, testa-se se uma ação é disparada através do redux quando todos os dados inseridos nos inputs são válidos e foram submetidos.
 
-Ou seja, basicamente verificamos se o componente renderiza 3 inputs, e após isso, inserimos o mesmo value em todos.  Clicamos no botão "Alterar senha" e esperamos que haja sucesso na asserção já explicada.
+Ou seja, basicamente verificamos se o componente renderiza 3 inputs, e após isso, inserimos o mesmo value em todos. Clicamos no botão "Alterar senha" e esperamos que haja sucesso na asserção já explicada.
 
 ## 3. Testes das páginas
 
@@ -166,52 +166,52 @@ As páginas do Hub são as responsáveis por unir grande parte dos componentes e
 ```jsx
 // etc
 it('should dispatch @auth/SIGN_IN REQUEST with the right payload if the user data format is correct', async () => {
-    const userMock = {
-      username: 'teste',
-      password: 'passwordteste'
-    }
+  const userMock = {
+    username: 'teste',
+    password: 'passwordteste'
+  }
 
-    const { username, password } = userMock
-    const { getByTestId } = setup({})
+  const { username, password } = userMock
+  const { getByTestId } = setup({})
 
-    const usernameInput = getByTestId('email')
-    const passwordInput = getByTestId('password')
-    const submitButton = getByTestId('submit-button')
-    const form = getByTestId('submit-form')
+  const usernameInput = getByTestId('email')
+  const passwordInput = getByTestId('password')
+  const submitButton = getByTestId('submit-button')
+  const form = getByTestId('submit-form')
 
-    fireEvent.change(usernameInput, { target: { value: username } })
-    fireEvent.change(passwordInput, {
-      target: { value: password }
-    })
-
-    expect(submitButton).toHaveProperty('type', 'submit')
-    expect(usernameInput).toHaveValue(username)
-    expect(passwordInput).toHaveValue(password)
-
-    await waitFor(() => fireEvent.submit(form))
-    expect(spyValidate).toHaveBeenCalled()
-    expect(dispatch).toHaveBeenCalledWith({
-      payload: {
-        ...userMock,
-        redirect: undefined
-      },
-      type: '@auth/SIGN_IN_REQUEST'
-    })
+  fireEvent.change(usernameInput, { target: { value: username } })
+  fireEvent.change(passwordInput, {
+    target: { value: password }
   })
+
+  expect(submitButton).toHaveProperty('type', 'submit')
+  expect(usernameInput).toHaveValue(username)
+  expect(passwordInput).toHaveValue(password)
+
+  await waitFor(() => fireEvent.submit(form))
+  expect(spyValidate).toHaveBeenCalled()
+  expect(dispatch).toHaveBeenCalledWith({
+    payload: {
+      ...userMock,
+      redirect: undefined
+    },
+    type: '@auth/SIGN_IN_REQUEST'
+  })
+})
 /// ...continua
 ```
 
-*Disponível em:* *packages/apps/src/__tests__/pages/Auth/Profile/SignIn.spec.tsx*
+_Disponível em:_ _packages/apps/src/**tests**/pages/Auth/Profile/SignIn.spec.tsx_
 
 Como é possível observar, inicia-se os testes chamando os mocks de usuário e logo em seguida busca-se pelos elementos em tela.
 
-Em grande parte dos casos utilizamos o **getBy[Algo*]** para buscar os elementos em tela. Neste exemplo, o getByTestId busca através dos data-testid's anteriormente inseridos nas páginas para o suporte dos testes. Em caso de buscas assíncronas, recomenda-se a utilização do **findBy[Algo*]**, e caso seja algo que talvez possa não estar na tela, utiliza-se o **queryBy[Algo*]**  —  ****que não para a execução dos testes com uma falha, porém retorna `null` caso o objeto de busca não seja encontrado, diferentemente das outras soluções.
+Em grande parte dos casos utilizamos o **getBy[Algo*]** para buscar os elementos em tela. Neste exemplo, o getByTestId busca através dos data-testid's anteriormente inseridos nas páginas para o suporte dos testes. Em caso de buscas assíncronas, recomenda-se a utilização do **findBy[Algo*]**, e caso seja algo que talvez possa não estar na tela, utiliza-se o **queryBy[Algo*]** — \*\*\*\*que não para a execução dos testes com uma falha, porém retorna `null` caso o objeto de busca não seja encontrado, diferentemente das outras soluções.
 
-**[Algo*]: *Este alias indica que podemos chamar qualquer método de busca do react testing library com os prefixos citados a sua frente. Por exemplo: getByTestId, getByText, getByPlaceholder, etc.***
+**[Algo*]: _Este alias indica que podemos chamar qualquer método de busca do react testing library com os prefixos citados a sua frente. Por exemplo: getByTestId, getByText, getByPlaceholder, etc._**
 
-Após encontrar os elementos em tela, simula-se uma tentativa de login e espera-se que a action certa tenha sido disparada com o payload correto, neste caso a *@auth/SIGN_IN REQUEST*. 
+Após encontrar os elementos em tela, simula-se uma tentativa de login e espera-se que a action certa tenha sido disparada com o payload correto, neste caso a _@auth/SIGN_IN REQUEST_.
 
-No geral, os testes de todas as páginas funcionam desta mesma maneira: simula-se a interação do usuário e espera-se que o correto aconteça. 
+No geral, os testes de todas as páginas funcionam desta mesma maneira: simula-se a interação do usuário e espera-se que o correto aconteça.
 
 ## 4. Testes de módulos da store
 
@@ -222,20 +222,20 @@ Para os testes das actions e reducers, seguimos as diretrizes trazidas pela [doc
 
 ### 4.1 Actions
 
-Como aqui tratamos de funções puras criadoras de actions, os testes são muito simples, criados com uma aproximação simples e direta das funções que serão testadas, abaixo segue um exemplo: 
+Como aqui tratamos de funções puras criadoras de actions, os testes são muito simples, criados com uma aproximação simples e direta das funções que serão testadas, abaixo segue um exemplo:
 
 ```jsx
- it('should create an success action with productSuccess', () => {
-   const payload = {
-     frameUrl: 'http://produto/teste.com',
-     frameName: 'Produto'
-   }
-   const expectedAction = {
-     type: mockedTypes.PRODUCT_SUCCESS,
-     payload
-   }
-   expect(productSuccess(payload)).toEqual(expectedAction)
- })
+it('should create an success action with productSuccess', () => {
+  const payload = {
+    frameUrl: 'http://produto/teste.com',
+    frameName: 'Produto'
+  }
+  const expectedAction = {
+    type: mockedTypes.PRODUCT_SUCCESS,
+    payload
+  }
+  expect(productSuccess(payload)).toEqual(expectedAction)
+})
 ```
 
 Nota-se na prática a simplicidade do testes de funções puras, os testes são claros e diretos, sem a necessidade de mockar fatores externos, uma vez que eles não estarão presentes em funções puras criadoras de actions.
@@ -246,34 +246,34 @@ Assim como nas actions, aqui também trataremos de funções puras, seguindo as 
 
 ```jsx
 it('should set loading to false and reset data on product failure action', () => {
-    expect(products(initialState, productFailure())).toEqual({
-      loading: false,
-      data: []
-    })
+  expect(products(initialState, productFailure())).toEqual({
+    loading: false,
+    data: []
   })
+})
 
-  it('should set loading to true and reset data on without access action', () => {
-    expect(products(initialState, withoutAccess())).toEqual({
-      loading: true,
-      data: []
-    })
+it('should set loading to true and reset data on without access action', () => {
+  expect(products(initialState, withoutAccess())).toEqual({
+    loading: true,
+    data: []
   })
+})
 
-  it('should set frameURL and frame name on frame URL action', () => {
-    const payload = {
-      url: 'http://produto/teste.com',
-      name: 'Produto'
-    }
-    expect(products(initialState, setFrameURL(payload))).toEqual({
-      frameName: 'Produto',
-      frameUrl: 'http://produto/teste.com',
-      loading: true,
-      data: []
-    })
+it('should set frameURL and frame name on frame URL action', () => {
+  const payload = {
+    url: 'http://produto/teste.com',
+    name: 'Produto'
+  }
+  expect(products(initialState, setFrameURL(payload))).toEqual({
+    frameName: 'Produto',
+    frameUrl: 'http://produto/teste.com',
+    loading: true,
+    data: []
   })
+})
 ```
 
-Ressalta-se a ideia de que não existem efeitos colaterais nas funções puras, sendo assim os testes sao feitos com asserções baseadas na lógica de que os mesmos *inputs* sempre retornarão os mesmos *outputs*.
+Ressalta-se a ideia de que não existem efeitos colaterais nas funções puras, sendo assim os testes sao feitos com asserções baseadas na lógica de que os mesmos _inputs_ sempre retornarão os mesmos _outputs_.
 
 ### 4.3 Sagas
 
@@ -318,15 +318,15 @@ describe('testing getProducts saga flow', () => {
 })
 ```
 
-Primeiramente destaca-se o setup utilizado no inicio do describe, que define através da variável *mockState* os estados que serão utilizados durante o teste, vale lembrar que o mockState é um objeto estático, e as mudanças feitas dentro de um describe permanecerão mesmo depois de finalizada a execução deste.
+Primeiramente destaca-se o setup utilizado no inicio do describe, que define através da variável _mockState_ os estados que serão utilizados durante o teste, vale lembrar que o mockState é um objeto estático, e as mudanças feitas dentro de um describe permanecerão mesmo depois de finalizada a execução deste.
 
-Vale ressaltar também a utilização do método de asserção *toContainObject*, que não é uma ferramenta nativa do Jest. Trata-se de uma funcionalidade criada dentro do do Hub com a finalidade de fazer asserções mais curtas e diretas sobre as actions disparadas durante a execução das sagas.  
+Vale ressaltar também a utilização do método de asserção _toContainObject_, que não é uma ferramenta nativa do Jest. Trata-se de uma funcionalidade criada dentro do do Hub com a finalidade de fazer asserções mais curtas e diretas sobre as actions disparadas durante a execução das sagas.
 
 É notável a ideia de isolamento de dependencias no teste das sagas, primeiramente é feito o mock da chamada a api que será realizada, e das demais dependencias a serem utilizadas. Logo após será realizada a execução da saga com o método run saga, que percorrerá o percurso da saga recebida como parametro. Finalmente, passamos a realizar asserções a respeito da execução, como despacho de ações, chamadas a api ou outras dependencias.
 
 ## 5. Hooks customizados
 
-Os testes de Hooks Customizados, assemelham-se a testes funcionais, uma vez que o foco se dará nas regras de negocio do Hook a ser testado. Como a execução de um Hook depende de varios fatores externos a ele, como o contexto, o estado atual da aplicação e a chamada de outras dependencias o setup feito deverá ser completo ao mockar e configurar os aspectos alheios ao Hook, como podemos ver no exemplo a seguir: 
+Os testes de Hooks Customizados, assemelham-se a testes funcionais, uma vez que o foco se dará nas regras de negocio do Hook a ser testado. Como a execução de um Hook depende de varios fatores externos a ele, como o contexto, o estado atual da aplicação e a chamada de outras dependencias o setup feito deverá ser completo ao mockar e configurar os aspectos alheios ao Hook, como podemos ver no exemplo a seguir:
 
 ```jsx
 describe('useSentry hook should work properly', () => {
@@ -380,4 +380,4 @@ describe('useSentry hook should work properly', () => {
 
 É visível o nível de complexidade do setup utilizado para testar determinados Hooks customizados do React. A maior parte do teste acima destina-se a preparar o ambiente em que o Hook será executado, somente após os mocks serem configurados, e o ambiente estiver pronto para a execução do Hook, será feita a chamada da função renderHook, e somente então serão realizadas as asserções a respeito do Hook que está sendo testado.
 
-Importante lembrar que a função **[renderHook](https://react-hooks-testing-library.com/usage/basic-hooks) é uma feature nativa da biblioteca do *React Testing Library*, e realiza muito mais do que só executar um Hook customizado com finalidades de teste. Esta função poderá prover um retorno para asserções diretas sobre o retorno do *Hook* e também lhe permite realizar alterações de estado entre as renderizações.
+Importante lembrar que a função \**[renderHook](https://react-hooks-testing-library.com/usage/basic-hooks) é uma feature nativa da biblioteca do *React Testing Library*, e realiza muito mais do que só executar um Hook customizado com finalidades de teste. Esta função poderá prover um retorno para asserções diretas sobre o retorno do *Hook\* e também lhe permite realizar alterações de estado entre as renderizações.

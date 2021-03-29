@@ -1,35 +1,35 @@
 # Utilitários para testes
 
-![Utilita%CC%81rios%20para%20testes%20ed3ec42a306c49e1b832eeab849021c3/Cpia_de_Cpia_de_Sem_nome_(2).png](Utilita%CC%81rios%20para%20testes%20ed3ec42a306c49e1b832eeab849021c3/Cpia_de_Cpia_de_Sem_nome_(2).png)
+![utils](./docs/tests/images/utils.png)
 
 1. [Mocks]()
 2. [Fake Store]()
 3. [Renderização com contexto]()
 
-    3.1. [Parâmetros da função render modificada.]()
+   3.1. [Parâmetros da função render modificada.]()
 
 4. [Padronizações]()
 
-    4.1. [Funcionalidades nativas]()
+   4.1. [Funcionalidades nativas]()
 
-    4.2. [Idioma]()
+   4.2. [Idioma]()
 
-    4.3. [Suite]()
+   4.3. [Suite]()
 
-    4.4.0. [Setup de testes]()
+   4.4.0. [Setup de testes]()
 
-    4.4.1. [Estado inicial padrão]()
+   4.4.1. [Estado inicial padrão]()
 
-    4.4.2 [Setup]()
+   4.4.2 [Setup]()
 
 5. [Onde escrever os testes e como nomeá-los]()
 6. [Quando criar mocks]()
 
 ### 1. Mocks
 
-Com diretório disponível em *packages/apps/hub-web/src/__mocks__*, os mocks são arquivos gerados para auxiliar no teste de funções e componentes que necessitam de informações específicas para serem testados. 
+Com diretório disponível em _packages/apps/hub-web/src/**mocks**_, os mocks são arquivos gerados para auxiliar no teste de funções e componentes que necessitam de informações específicas para serem testados.
 
-Em alguns casos, por exemplo, precisa-se renderizar uma página com informações pré-definidas (como informações de usuário, escolas, etc.), e esses mocks servem como uma forma de centralizar essas informações em um só lugar, evitando duplicação de código e, dessa forma, deixando os testes mais legíveis e limpos. 
+Em alguns casos, por exemplo, precisa-se renderizar uma página com informações pré-definidas (como informações de usuário, escolas, etc.), e esses mocks servem como uma forma de centralizar essas informações em um só lugar, evitando duplicação de código e, dessa forma, deixando os testes mais legíveis e limpos.
 
 **Veja abaixo um trecho de código que demonstra um formato bastante comum de um mock presente no Hub:**
 
@@ -54,7 +54,7 @@ Em alguns casos, por exemplo, precisa-se renderizar uma página com informaçõe
 }
 ```
 
-*Trecho disponível em: packages/apps/hub-web/src/__mocks__/store/user.mock.json*
+_Trecho disponível em: packages/apps/hub-web/src/**mocks**/store/user.mock.json_
 
 Através desse **mock**, poupamos que seja escrito um `[json](https://www.json.org/json-en.html)` que simula as informações de usuário em diversas funções e componentes que precisam dessas informações bem definidas. **É só importar e usar!**
 
@@ -66,34 +66,33 @@ No mesmo diretório de mocks, existe também uma `store` totalmente fake (falsa)
 - Também pode-se utilizar o `clearActions()`, este é responsável por limpar o `array` de Actions que é disponibilizado pelo método `getActions()`;
 - Disponibiliza um [spyOn](https://jestjs.io/docs/jest-object#jestspyonobject-methodname) dos métodos `dispatch()` e `getState()`.
 
-Além de várias outras utilidades que podem ser exploradas na documentação oficial do `[redux-mock-store](https://github.com/reduxjs/redux-mock-store)` — pacote utilizado para a criação da store falsa. 
+Além de várias outras utilidades que podem ser exploradas na documentação oficial do `[redux-mock-store](https://github.com/reduxjs/redux-mock-store)` — pacote utilizado para a criação da store falsa.
 
 ### 3. Renderização com contexto
 
-Se pudéssemos definir essa funcionalidade em uma frase, com certeza seria: **utilitário mais importante para os testes de componentes e páginas React que precisam utilizar a store!** 
+Se pudéssemos definir essa funcionalidade em uma frase, com certeza seria: **utilitário mais importante para os testes de componentes e páginas React que precisam utilizar a store!**
 
 O "Render com contexto" — nomenclatura utilizada por convenção pela comunidade React — é uma função responsável por renderizar uma página ou componente React com o contexto da aplicação, ou seja, todas as informações que é minimamente necessária para gerar uma renderização específica!
 
-Com o intuito de não deixar as coisas muito complexas, demonstraremos apenas como funciona sua utilização, porém, sua implementação está disponível em *packages/test-utils/index.tsx.*
+Com o intuito de não deixar as coisas muito complexas, demonstraremos apenas como funciona sua utilização, porém, sua implementação está disponível em _packages/test-utils/index.tsx._
 
 **Veja abaixo como renderizar uma página que necessita de um contexto previamente definido:**
 
 ```jsx
 render(<Home />, {
-	  store,
-	  reducers: ['user', 'profile', 'educationalStage', 'products', 'global'],
-	  CUSTOM_STATE: { ...defaultItemsInState, ...contextConfig }
-	}
-)
+  store,
+  reducers: ['user', 'profile', 'educationalStage', 'products', 'global'],
+  CUSTOM_STATE: { ...defaultItemsInState, ...contextConfig }
+})
 ```
 
-*Trecho disponível em packages/apps/hub-web/__tests__/pages/Home.spec.tsx*
+_Trecho disponível em packages/apps/hub-web/**tests**/pages/Home.spec.tsx_
 
 ### 3.1 Parâmetros da função render modificada.
 
 A função é importada do pacote `test-utils` com o nome `render` e sua utilização pode ser feita utilizando dois argumentos:
 
-**Ui (Obrigatório)**: Primeiro argumento, deve ser o componente ou página que será renderizada, neste exemplo é a `<Home />` 
+**Ui (Obrigatório)**: Primeiro argumento, deve ser o componente ou página que será renderizada, neste exemplo é a `<Home />`
 
 **Opções (Opcional)**: Um objeto que recebe todas as opções já aceitas pelo [render](https://testing-library.com/docs/react-testing-library/api/#render) do React testing library, mas com alguns adicionais:
 
@@ -101,7 +100,7 @@ A função é importada do pacote `test-utils` com o nome `render` e sua utiliza
 - **reducers**: nesta chave deve ser passada um `array` de `string` onde cada elemento deve ser, **obrigatoriamente**, o nome de um reducer da store. Neste exemplo, a página home utiliza 5 reducers, e todos estão inseridos dentro do array. **A ordem é irrelevante**.
 - **CUSTOM_STATE**: Estado customizado para inicialização da store.
 
-    Este tópico ficará melhor entendido no próximo tópico, em [setup de testes](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2). Mas basicamente é uma chave que recebe o estado inicial da aplicação, **não sendo obrigatório**, pois a store já tem por padrão um estado inicial programado.
+  Este tópico ficará melhor entendido no próximo tópico, em [setup de testes](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2). Mas basicamente é uma chave que recebe o estado inicial da aplicação, **não sendo obrigatório**, pois a store já tem por padrão um estado inicial programado.
 
 Caso uma store seja definida nas opções, é **obrigatório** a definição dos reducers que esta store utiliza na página/componente.
 
@@ -115,11 +114,11 @@ Neste tópico será abordado algumas padronizações e convenções adotadas pel
 
 ### 4.1 Funcionalidades nativas
 
-É preferível que sempre utilizemos ferramentas nativas ou já instaladas no projeto para a criação dos testes. Ou seja, é estritamente contra nossos padrões fazer a instalação de bibliotecas desnecessárias. Sempre opte pelo já existente. Em casos mais específicos, recomendamos a utilização de *libs* normalmente sugeridas na documentação oficial do Jest e React testing library. 
+É preferível que sempre utilizemos ferramentas nativas ou já instaladas no projeto para a criação dos testes. Ou seja, é estritamente contra nossos padrões fazer a instalação de bibliotecas desnecessárias. Sempre opte pelo já existente. Em casos mais específicos, recomendamos a utilização de _libs_ normalmente sugeridas na documentação oficial do Jest e React testing library.
 
 ### 4.2 Idioma
 
-Todos os testes devem ser escritos em inglês. É preferível que todas as variáveis criadas nos testes utilizem do mesmo parâmetro. 
+Todos os testes devem ser escritos em inglês. É preferível que todas as variáveis criadas nos testes utilizem do mesmo parâmetro.
 
 ### 4.3 Suite
 
@@ -127,15 +126,15 @@ Todos os testes que possuem mais de um `it/test` devem, obrigatoriamente, possui
 
 ### 4.4 Setup de testes
 
-**O setup de testes que falaremos aqui não é o setup do jest**. É uma convenção utilizada nos testes para inibir duplicação de código, além de deixar os testes mais funcionais e legíveis. 
+**O setup de testes que falaremos aqui não é o setup do jest**. É uma convenção utilizada nos testes para inibir duplicação de código, além de deixar os testes mais funcionais e legíveis.
 
-Ainda utilizando o [exemplo visto em render com contexto](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2), demonstraremos uma visão mais ampla de como utilizamos esta convenção: 
+Ainda utilizando o [exemplo visto em render com contexto](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2), demonstraremos uma visão mais ampla de como utilizamos esta convenção:
 
 4.4.1 **Estado inicial padrão**
 
 ```jsx
 const defaultItemsInState: CustomState = {
- user: {
+  user: {
     info: {
       name: 'Firstname Lastname',
       school: {
@@ -149,11 +148,11 @@ const defaultItemsInState: CustomState = {
   products: {
     loading: false,
     data: mockedCards
-  },
+  }
 }
 ```
 
-*Trecho disponível em packages/apps/hub-web/__tests__/pages/Home.spec.tsx (Remodulado para fins didáticos)*
+_Trecho disponível em packages/apps/hub-web/**tests**/pages/Home.spec.tsx (Remodulado para fins didáticos)_
 
 Neste trecho criamos um objeto para organizar o estado que se repete em toda renderização, inserimos um estado inicial para user, profile e products (reducers) dentro do objeto para ser utilizado dentro do setup.
 
@@ -175,15 +174,15 @@ const setup = (contextConfig: CustomState = {}) => {
 }
 ```
 
-*Trecho disponível em packages/apps/hub-web/__tests__/pages/Home.spec.tsx*
+_Trecho disponível em packages/apps/hub-web/**tests**/pages/Home.spec.tsx_
 
 Este setup é criado antes de qualquer teste. Por convenção, colocamos tudo que se repete entre os testes, além de receber por parâmetro algo que pode ser customizado em cada chamada, neste caso somente o estado inicial que será inserido do `CUSTOM_STATE`, ficando a critério de quem chama o setup inserir algo nesta chave.
 
-Como o searchInput é algo que é utilizado em praticamente todos os testes dessa página, optamos por buscar por este item antes do retorno da função, para disponibilizar o elemento sempre que a função é instanciada. Evitando, novamente, duplicação de código, uma vez que não será necessário declarar a variável searchInput em todos os testes que a utiliza. 
+Como o searchInput é algo que é utilizado em praticamente todos os testes dessa página, optamos por buscar por este item antes do retorno da função, para disponibilizar o elemento sempre que a função é instanciada. Evitando, novamente, duplicação de código, uma vez que não será necessário declarar a variável searchInput em todos os testes que a utiliza.
 
-4.4.3 **E como utilizar este setup?** 
+4.4.3 **E como utilizar este setup?**
 
-Resposta: **Depende**! Esta função é criada conforme a necessidade dos testes. Ou seja: provavelmente mudará de teste para teste. Então fica sob responsabilidade de casa setup ter seu próprio tipo de funcionalidade e retorno. Por isso frisamos novamente aqui: **ISSO É UMA CONVENÇÃO DA EQUIPE.** 
+Resposta: **Depende**! Esta função é criada conforme a necessidade dos testes. Ou seja: provavelmente mudará de teste para teste. Então fica sob responsabilidade de casa setup ter seu próprio tipo de funcionalidade e retorno. Por isso frisamos novamente aqui: **ISSO É UMA CONVENÇÃO DA EQUIPE.**
 
 No exemplo utilizado acima, poderíamos chamar da seguinte forma:
 
@@ -195,17 +194,17 @@ const { getByText, getAllByText, searchInput } = setup({ // AQUI O ESTADO INICIA
 
 ### 5. Onde escrever os testes e como nomeá-los
 
-Para localizar os testes utilizamos a estrutura padrão adotada pelo próprio React testing library. Em cada pacote onde há a necessidade de escrita de testes, possivelmente haverá um diretório chamado `__tests__` que possuirá uma estrutura de pastas bem semelhante com o que está sendo testado. Recomendamos fortemente a criação deste diretório caso haja a necessidade da criação de testes em pacotes nunca testados. 
+Para localizar os testes utilizamos a estrutura padrão adotada pelo próprio React testing library. Em cada pacote onde há a necessidade de escrita de testes, possivelmente haverá um diretório chamado `__tests__` que possuirá uma estrutura de pastas bem semelhante com o que está sendo testado. Recomendamos fortemente a criação deste diretório caso haja a necessidade da criação de testes em pacotes nunca testados.
 
 O nome do arquivo de teste sempre deverá ser IGUAL ao nome do arquivo testado, com o adicional de `.spec` na extensão do mesmo. Veja o exemplo:
 
-Ao testar o arquivo `Home.tsx`, o arquivo de teste deve se chamar `Home.spec.tsx`, indicando que o teste se refere à Home. 
+Ao testar o arquivo `Home.tsx`, o arquivo de teste deve se chamar `Home.spec.tsx`, indicando que o teste se refere à Home.
 
 ### 6. Quando criar mocks
 
-Costumamos ser simples e grossos a respeito disso: **Não é o foco do teste? Mocka!** 
+Costumamos ser simples e grossos a respeito disso: **Não é o foco do teste? Mocka!**
 
-Se estamos testando determinada funcionalidade que possui dependências, mas que não são o nosso foco, certamente iremos mocká-la. Um exemplo bem simples disso é quando estamos testando páginas mais complexas, onde há o uso de hooks e funções externas. 
+Se estamos testando determinada funcionalidade que possui dependências, mas que não são o nosso foco, certamente iremos mocká-la. Um exemplo bem simples disso é quando estamos testando páginas mais complexas, onde há o uso de hooks e funções externas.
 
 **Veja o exemplo abaixo:**
 
@@ -219,6 +218,6 @@ jest.mock('~/hooks/useQuery', () => {
 })
 ```
 
-*Trecho disponível em packages/apps/hub-web/__tests__/pages/Auth/ChangePassword.spec.tsx*
+_Trecho disponível em packages/apps/hub-web/**tests**/pages/Auth/ChangePassword.spec.tsx_
 
 Aqui estamos substituindo o método `get` retornado pelo hook `useQuery` por uma função mockada, fazendo com que possamos fazer asserções em cima dela e impedindo que o escopo de teste vaze para contextos não desejados.

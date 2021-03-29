@@ -1,6 +1,6 @@
 # Começando com os testes
 
-![Comec%CC%A7ando%20com%20os%20testes%205795471dae43407bbfbf463129fb31b9/Cpia_de_Cpia_de_Sem_nome.png](Comec%CC%A7ando%20com%20os%20testes%205795471dae43407bbfbf463129fb31b9/Cpia_de_Cpia_de_Sem_nome.png)
+![react-testing-library](./docs/tests/images/testing-library.png)
 
 ## Testes automatizados
 
@@ -36,7 +36,7 @@ $ yarn test
 $ yarn test:watch
 ```
 
-Este comando não para a execução dos testes enquanto não solicitada. Ele monitora os arquivos que estão sendo alterados e executa os testes que impactam naquela modificação, além de disponibilizar relatório de coverage ao fim da execução. 
+Este comando não para a execução dos testes enquanto não solicitada. Ele monitora os arquivos que estão sendo alterados e executa os testes que impactam naquela modificação, além de disponibilizar relatório de coverage ao fim da execução.
 
 **Para obter relatórios completos**
 
@@ -50,11 +50,11 @@ Com teste comando sendo executado, começa-se a se gerar um arquivo de Coverage 
 - Ramificações (if, else, lógicas, etc.) não testadas;
 - Cobertura total do código.
 
-Esta imagem demonstra [o ultimo ponto citado acima](). 
+Esta imagem demonstra [o ultimo ponto citado acima]().
 
 ![Comec%CC%A7ando%20com%20os%20testes%205795471dae43407bbfbf463129fb31b9/Untitled.png](Comec%CC%A7ando%20com%20os%20testes%205795471dae43407bbfbf463129fb31b9/Untitled.png)
 
-*Comando executado: `yarn test:coverage`*
+_Comando executado: `yarn test:coverage`_
 
 **IMPORTANTE:**
 
