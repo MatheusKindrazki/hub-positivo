@@ -4,29 +4,29 @@
 
 Neste capítulo traremos instruções com um direcionamento específico, com o objetivo de explicar diferentes modalidades de teste encontradas no Hub, traremos exemplos de situações reais dos testes da aplicação com uma descrição do que foi feito, como foi feito, e por que foi feito.
 
-[1 - Testes de utilitários]()
+**[Testes de utilitários](#1.-Testes-de-utilitários)**
 
-[2 - Testes de Componentes]()
+**[Testes de Componentes](#2.-Testes-de-componentes)**
 
-[2.1 - Common]()
+**[2.1 - Common](#2.1-common)**
 
-[2.1.1 - Teste com snapshot]()
+**[2.1.1 - Teste com snapshot](#2.1.1-Teste-com-snapshot)**
 
-[2.1.2 - Testes que simulam a interação do usuário]()
+**[2.1.2 - Testes que simulam a interação do usuário](#2.1.2-Testes-que-simulam-a-interação-do-usuário)**
 
-[2.2 -  Hub Web]()
+**[2.2 -  Hub Web](#2.2-Hub-Web)**
 
-[3 - Testes das páginas]()
+**[3 - Testes das páginas](#3-Testes-das-páginas)**
 
-[4 - Testes de módulos da store]()
+**[4 - Testes de módulos da store](#4-Testes-de-módulos-da-store)**
 
-[4.1 - Actions]()
+**[4.1 - Actions](#4.1-Actions)**
 
-[4.2 - Reducers]()
+**[4.2 - Reducers](#4.2-Reducers)**
 
-[4.3 - Sagas]()
+**[4.3 - Sagas](#4.3-Sagas)**
 
-[5 - Hooks Customizados]()
+**[5 - Hooks customizados](#5-Hooks-customizados)**
 
 ## 1. Testes de utilitários
 
@@ -85,7 +85,7 @@ Com diversos componentes e páginas, o hub utiliza de testes unitários e end-to
 
 Nos **commons**, módulo da aplicação que disponibiliza utilitários comuns entre a aplicação, estão a grande maioria dos componentes importados pelo Chakra-ui. Utiliza-se [snapshots](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2) para o teste de componentes mais simples  —  como é o caso de um Button  —  e, para casos mais complexos, que possuem lógica mais presente, utiliza-se da [simulação do comportamento do usuário](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2). 
 
-**2.1.1** **Teste com snapshot** 
+#### 2.1.1 Teste com snapshot
 
 ```jsx
 it('Button matches snapshot', () => {
@@ -100,7 +100,7 @@ Caso o resultado renderizado pelo componente Button seja alterado, os testes apo
 
 **NOTA: A atualização do snapshot acontece automaticamente ao rodar os testes, a não ser que seja configurado previamente que eles falhem antes do [snapshot update](https://jestjs.io/docs/snapshot-testing#updating-snapshots).**
 
-**2.1.2** **Testes que simulam a interação do usuário**
+#### 2.1.2 Testes que simulam a interação do usuário
 
 ```jsx
 it('Input should call onChange with correct value', () => {
