@@ -3,15 +3,15 @@
 ![utils](../../docs/tests/images/utils.png)
 
 1. **[Mocks](#começando-com-os-mocks)**
-2. **[Fake Store](#Fake-Store)**
-3. **[Renderização com contexto](#Renderização-com-contexto)**
-   3.1. **[Parâmetros da função render modificada.](#Parâmetros-da-função-render-modificada)**
-4. **[Padronizações](#Padronizações)**
-   4.1. **[Funcionalidades nativas](#Funcionalidades-nativas)**
-   4.2. **[Idioma](#Idioma)**
-   4.3. **[Suite](#Suite)**
-   4.4. **[Setup de testes](#Setup-de-testes)**
-5. **[Onde escrever os testes e como nomeá-los](#Onde-escrever-os-testes-e-como-nomeá-los)**
+2. **[Fake Store](#fake-store)**
+3. **[Renderização com contexto](#renderização-com-contexto)**<br />
+   3.1. **[Parâmetros da função render modificada.](#parâmetros-da-função-render-modificada)**
+4. **[Padronizações](#padronizações)**<br />
+   4.1. **[Funcionalidades nativas](#funcionalidades-nativas)**<br />
+   4.2. **[Idioma](#idioma)**<br />
+   4.3. **[Suite](#suite)**<br />
+   4.4. **[Setup de testes](#setup-de-testes)**
+5. **[Onde escrever os testes e como nomeá-los](#onde-escrever-os-testes-e-como-nomeá-los)**
 6. **[Quando criar mocks](#quando-criar-mocks)**
 
 # Começando com os Mocks
