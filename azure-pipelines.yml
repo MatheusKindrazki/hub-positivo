@@ -27,7 +27,6 @@ jobs:
   steps:
 
   - task: SonarCloudPrepare@1
-    condition: eq(variables['Build.SourceBranchName'], 'skip-sonar')
     inputs:
       SonarCloud: 'hub-sonarcloud'
       organization: 'editorati'
@@ -80,30 +79,3 @@ jobs:
       arguments: test:coverage
 
   - task: SonarCloudAnalyze@1
-    condition: eq(variables['Build.SourceBranchName'], 'skip-sonar')
-
-  - script: |
-      export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release
-    displayName: Semantic Release ( generate changelog and build tag )
-    condition: eq(variables['Build.SourceBranchName'], 'master')
-
-  - script: |
-      node ./scripts/update-version.js
-    displayName: Updating production version
-
-  - task: Yarn@3
-    displayName: Build the project
-    inputs:
-      arguments: build:web
-
-  - task: ArchiveFiles@2
-    displayName: Archive files
-    inputs:
-      rootFolderOrFile: $(System.DefaultWorkingDirectory)/packages/apps/hub-web/build
-      includeRootFolder: false
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish artifacts: hub'
-    inputs:
-      ArtifactName: devhubdigital
-      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
