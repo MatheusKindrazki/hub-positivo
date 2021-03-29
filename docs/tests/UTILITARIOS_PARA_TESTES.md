@@ -3,15 +3,15 @@
 ![utils](../../docs/tests/images/utils.png)
 
 1. **[Mocks](#começando-com-os-mocks)**
-2. **[Fake Store](#Fake-Store)**
-3. **[Renderização com contexto](#Renderização-com-contexto)**
-   3.1. **[Parâmetros da função render modificada.](#Parâmetros-da-função-render-modificada)**
-4. **[Padronizações](#Padronizações)**
-   4.1. **[Funcionalidades nativas](#Funcionalidades-nativas)**
-   4.2. **[Idioma](#Idioma)**
-   4.3. **[Suite](#Suite)**
-   4.4. **[Setup de testes](#Setup-de-testes)**
-5. **[Onde escrever os testes e como nomeá-los](#Onde-escrever-os-testes-e-como-nomeá-los)**
+2. **[Fake Store](#fake-store)**
+3. **[Renderização com contexto](#renderização-com-contexto)**<br />
+   3.1. **[Parâmetros da função render modificada.](#parâmetros-da-função-render-modificada)**
+4. **[Padronizações](#padronizações)**<br />
+   4.1. **[Funcionalidades nativas](#funcionalidades-nativas)**<br />
+   4.2. **[Idioma](#idioma)**<br />
+   4.3. **[Suite](#suite)**<br />
+   4.4. **[Setup de testes](#setup-de-testes)**
+5. **[Onde escrever os testes e como nomeá-los](#onde-escrever-os-testes-e-como-nomeá-los)**
 6. **[Quando criar mocks](#quando-criar-mocks)**
 
 # Começando com os Mocks
@@ -85,17 +85,17 @@ A função é importada do pacote `test-utils` com o nome `render` e sua utiliza
 
 **Opções (Opcional)**: Um objeto que recebe todas as opções já aceitas pelo [render](https://testing-library.com/docs/react-testing-library/api/#render) do React testing library, mas com alguns adicionais:
 
-- **store**: recebe uma store, podendo ser a original da aplicação ou até mesmo uma falsa, como a já citada no tópico de [store falsa](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2), em mocks.
+- **store**: recebe uma store, podendo ser a original da aplicação ou até mesmo uma falsa, como a já citada no tópico de [store falsa](#fake-store), em mocks.
 - **reducers**: nesta chave deve ser passada um `array` de `string` onde cada elemento deve ser, **obrigatoriamente**, o nome de um reducer da store. Neste exemplo, a página home utiliza 5 reducers, e todos estão inseridos dentro do array. **A ordem é irrelevante**.
 - **CUSTOM_STATE**: Estado customizado para inicialização da store.
 
-  Este tópico ficará melhor entendido no próximo tópico, em [setup de testes](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2). Mas basicamente é uma chave que recebe o estado inicial da aplicação, **não sendo obrigatório**, pois a store já tem por padrão um estado inicial programado.
+  Este tópico ficará melhor entendido no próximo tópico, em [setup de testes](#setup-de-testes). Mas basicamente é uma chave que recebe o estado inicial da aplicação, **não sendo obrigatório**, pois a store já tem por padrão um estado inicial programado.
 
 Caso uma store seja definida nas opções, é **obrigatório** a definição dos reducers que esta store utiliza na página/componente.
 
 3.1.1 **Retorno da função:**
 
-A função `render` retorna todos os métodos já devolvidos pelo render do react testing library e, além disso, um objeto chamado `storeUtils` que contém os dois métodos citados no tópico de [mocks](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2): `getActions` e `clearActions`.
+A função `render` retorna todos os métodos já devolvidos pelo render do react testing library e, além disso, um objeto chamado `storeUtils` que contém os dois métodos citados no tópico de [Fake Store](#fake-store): `getActions` e `clearActions`.
 
 ## Padronizações
 
@@ -117,7 +117,7 @@ Todos os testes que possuem mais de um `it/test` devem, obrigatoriamente, possui
 
 **O setup de testes que falaremos aqui não é o setup do jest**. É uma convenção utilizada nos testes para inibir duplicação de código, além de deixar os testes mais funcionais e legíveis.
 
-Ainda utilizando o [exemplo visto em render com contexto](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2), demonstraremos uma visão mais ampla de como utilizamos esta convenção:
+Ainda utilizando o [exemplo visto em render com contexto](#renderização-com-contexto), demonstraremos uma visão mais ampla de como utilizamos esta convenção:
 
 4.4.1 **Estado inicial padrão**
 
