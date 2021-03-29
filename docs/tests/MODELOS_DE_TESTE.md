@@ -4,29 +4,18 @@
 
 Neste capítulo traremos instruções com um direcionamento específico, com o objetivo de explicar diferentes modalidades de teste encontradas no Hub, traremos exemplos de situações reais dos testes da aplicação com uma descrição do que foi feito, como foi feito, e por que foi feito.
 
-**[Testes de utilitários](#testes-de-utilitários)**<br/>
-
-**[Testes de Componentes](#testes-de-componentes)**<br/>
-
-**[Common](#common)**<br/>
-
-**[Teste com snapshot](#teste-com-snapshot)**<br/>
-
-**[Testes que simulam a interação do usuário](#testes-que-simulam-a-interação-do-usuário)**<br/>
-
-**[Hub Web](#hub-Web)**<br/>
-
-**[Testes das páginas](#estes-das-páginas)**<br/>
-
-**[Testes de módulos da store](#estes-de-módulos-da-store)**<br/>
-
-**[Actions](#actions)**<br/>
-
-**[Reducers](#reducers)**<br/>
-
-**[Sagas](#sagas)**<br/>
-
-**[Hooks customizados](#hooks-customizados)**<br/>
+1. **[Testes de utilitários](#testes-de-utilitários)**<br/>
+2. **[Testes de Componentes](#testes-de-componentes)**<br/>
+   2.1. **[Common](#common)**<br/>
+   2.2. **[Teste com snapshot](#teste-com-snapshot)**<br/>
+   2.3. **[Testes que simulam a interação do usuário](#testes-que-simulam-a-interação-do-usuário)**<br/>
+   2.4. **[Hub Web](#hub-Web)**<br/>
+3. **[Testes das páginas](#estes-das-páginas)**<br/>
+4. **[Testes de módulos da store](#estes-de-módulos-da-store)**<br/>
+   4.1. **[Actions](#actions)**<br/>
+   4.2. **[Reducers](#reducers)**<br/>
+   4.3. **[Sagas](#sagas)**<br/>
+5. **[Hooks customizados](#hooks-customizados)**<br/>
 
 ## Testes de utilitários
 
