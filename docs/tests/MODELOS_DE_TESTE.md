@@ -4,29 +4,29 @@
 
 Neste capítulo traremos instruções com um direcionamento específico, com o objetivo de explicar diferentes modalidades de teste encontradas no Hub, traremos exemplos de situações reais dos testes da aplicação com uma descrição do que foi feito, como foi feito, e por que foi feito.
 
-**[1 - Testes de utilitários](#1.-testes-de-utilitários)**
+**[1 - Testes de utilitários](#testes-de-utilitários)**<br/>
 
-**[2 - Testes de Componentes](#2.-testes-de-componentes)**
+**[2 - Testes de Componentes](#testes-de-componentes)**<br/>
 
-**[2.1 - Common](#2.1-common)**
+**[2.1 - Common](#common)**<br/>
 
-**[2.1.1 - Teste com snapshot](#2.1.1-teste-com-snapshot)**
+**[2.1.1 - Teste com snapshot](#teste-com-snapshot)**<br/>
 
-**[2.1.2 - Testes que simulam a interação do usuário](#2.1.2-testes-que-simulam-a-interação-do-usuário)**
+**[2.1.2 - Testes que simulam a interação do usuário](#testes-que-simulam-a-interação-do-usuário)**<br/>
 
-**[2.2 -  Hub Web](#2.2-hub-Web)**
+**[2.2 -  Hub Web](#hub-Web)**<br/>
 
-**[3 - Testes das páginas](#3-testes-das-páginas)**
+**[3 - Testes das páginas](#estes-das-páginas)**<br/>
 
-**[4 - Testes de módulos da store](#4-testes-de-módulos-da-store)**
+**[4 - Testes de módulos da store](#estes-de-módulos-da-store)**<br/>
 
-**[4.1 - Actions](#4.1-actions)**
+**[4.1 - Actions](#actions)**<br/>
 
-**[4.2 - Reducers](#4.2-reducers)**
+**[4.2 - Reducers](#reducers)**<br/>
 
-**[4.3 - Sagas](#4.3-sagas)**
+**[4.3 - Sagas](#sagas)**<br/>
 
-**[5 - Hooks customizados](#5-hooks-customizados)**
+**[5 - Hooks customizados](#hooks-customizados)**<br/>
 
 ## 1. Testes de utilitários
 
