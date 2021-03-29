@@ -2,30 +2,19 @@
 
 ![utils](./docs/tests/images/utils.png)
 
-1. [Mocks]()
-2. [Fake Store]()
-3. [Renderização com contexto]()
+1. **[Mocks](#1-começando-com-os-mocks)**
+2. **[Fake Store](#2-Fake-Store)**
+3. **[Renderização com contexto](#3-Renderização-com-contexto)**
+   3.1. **[Parâmetros da função render modificada.](#3.1-Parâmetros-da-função-render-modificada)**
+4. **[Padronizações](#4.-Padronizações)**
+   4.1. **[Funcionalidades nativas](#4.1-Funcionalidades-nativas)**
+   4.2. **[Idioma](#4.2-Idioma)**
+   4.3. **[Suite](#4.3-Suite)**
+   4.4. **[Setup de testes](#4.4-Setup-de-testes)**
+5. **[Onde escrever os testes e como nomeá-los](#5-Onde-escrever-os-testes-e-como-nomeá-los)**
+6. **[Quando criar mocks](#6-quando-criar-mocks)**
 
-   3.1. [Parâmetros da função render modificada.]()
-
-4. [Padronizações]()
-
-   4.1. [Funcionalidades nativas]()
-
-   4.2. [Idioma]()
-
-   4.3. [Suite]()
-
-   4.4.0. [Setup de testes]()
-
-   4.4.1. [Estado inicial padrão]()
-
-   4.4.2 [Setup]()
-
-5. [Onde escrever os testes e como nomeá-los]()
-6. [Quando criar mocks]()
-
-### 1. Mocks
+# 1. Começando com os Mocks
 
 Com diretório disponível em _packages/apps/hub-web/src/**mocks**_, os mocks são arquivos gerados para auxiliar no teste de funções e componentes que necessitam de informações específicas para serem testados.
 
@@ -88,7 +77,7 @@ render(<Home />, {
 
 _Trecho disponível em packages/apps/hub-web/**tests**/pages/Home.spec.tsx_
 
-### 3.1 Parâmetros da função render modificada.
+### 3.1 Parâmetros da função render modificada
 
 A função é importada do pacote `test-utils` com o nome `render` e sua utilização pode ser feita utilizando dois argumentos:
 
