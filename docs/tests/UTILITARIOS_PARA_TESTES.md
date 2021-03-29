@@ -1,6 +1,6 @@
 # Utilitários para testes
 
-![utils](../../docs/tests/images/utils.png)
+![utils](./images/utils.png)
 
 1. **[Mocks](#começando-com-os-mocks)**
 2. **[Fake Store](#fake-store)**

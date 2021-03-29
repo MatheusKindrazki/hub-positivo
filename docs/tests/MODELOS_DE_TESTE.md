@@ -1,6 +1,6 @@
 # Modelos de teste
 
-![models](../../docs/tests/images/models.png)
+![models](./images/models.png)
 
 Neste capítulo traremos instruções com um direcionamento específico, com o objetivo de explicar diferentes modalidades de teste encontradas no Hub, traremos exemplos de situações reais dos testes da aplicação com uma descrição do que foi feito, como foi feito, e por que foi feito.
 
