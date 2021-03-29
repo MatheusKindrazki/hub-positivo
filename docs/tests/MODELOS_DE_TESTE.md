@@ -28,7 +28,7 @@ Neste capítulo traremos instruções com um direcionamento específico, com o o
 
 **[Hooks customizados](#hooks-customizados)**<br/>
 
-## 1. Testes de utilitários
+## Testes de utilitários
 
 No hub os utilitários são testados de forma isolada a partir da criação de mocks, criados com o propósito de cobrir todas as linhas de código, funções e possíveis caminhos da funcionalidade que será testada.
 Abaixo segue um exemplo de teste de utilitário no Hub:
@@ -77,15 +77,15 @@ describe('postMessage should work properly', () => {
 
 Destaca-se o uso do jest.mock atribuindo funções mockadas aos métodos do react-router-dom, isolando a funcionalidade a ser testada das bibliotecas externas utilizadas pelo código.
 
-## 2. Testes de Componentes
+## Testes de Componentes
 
 Com diversos componentes e páginas, o hub utiliza de testes unitários e end-to-end para a cobertura de código do projeto.
 
-### 2.1 Common
+### Common
 
 Nos **commons**, módulo da aplicação que disponibiliza utilitários comuns entre a aplicação, estão a grande maioria dos componentes importados pelo Chakra-ui. Utiliza-se [snapshots](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2) para o teste de componentes mais simples — como é o caso de um Button — e, para casos mais complexos, que possuem lógica mais presente, utiliza-se da [simulação do comportamento do usuário](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2).
 
-#### 2.1.1 Teste com snapshot
+#### Teste com snapshot
 
 ```jsx
 it('Button matches snapshot', () => {
@@ -100,7 +100,7 @@ Caso o resultado renderizado pelo componente Button seja alterado, os testes apo
 
 **NOTA: A atualização do snapshot acontece automaticamente ao rodar os testes, a não ser que seja configurado previamente que eles falhem antes do [snapshot update](https://jestjs.io/docs/snapshot-testing#updating-snapshots).**
 
-#### 2.1.2 Testes que simulam a interação do usuário
+#### Testes que simulam a interação do usuário
 
 ```jsx
 it('Input should call onChange with correct value', () => {
@@ -118,7 +118,7 @@ _Disponível em packages/common/**tests**/components/Search.spec.tsx_
 
 Este modelo de teste são utilizados em componentes que utilizam alguma lógica para funcionar. Como por exemplo, o componente (Search) que precisa chamar uma função (onChange) que lida com a alteração do valor digitado pelo usuário no input.
 
-### 2.2 Hub Web
+### Hub Web
 
 Os componentes presentes no Hub não fogem muito do escopo dos [commons](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2), mas alguns diretórios utilizam de diversas funções e módulos disponíveis no repositório, fazendo com que seus testes sejam mais complexos. A partir daqui, sugere-se que a seção de **mocks** e **setup de testes** esteja bem compreendida.
 
@@ -157,7 +157,7 @@ Manobrando as assincronicidade do componente, testa-se se uma ação é disparad
 
 Ou seja, basicamente verificamos se o componente renderiza 3 inputs, e após isso, inserimos o mesmo value em todos. Clicamos no botão "Alterar senha" e esperamos que haja sucesso na asserção já explicada.
 
-## 3. Testes das páginas
+## Testes das páginas
 
 As páginas do Hub são as responsáveis por unir grande parte dos componentes e funcionalidades presentes nos pacotes **(packages)**. Em sua maioria, elas são responsáveis por disparar ações (de forma indireta) para o gerenciador de estado, e também por renderizar em tela a interface que o usuário está prestes a interagir. Tendo isso em vista, com testes end-to-end simula-se o comportamento do usuário com esses componentes React, movendo cada peça da forma que a pessoa usuária faria. Espera-se que as páginas se comportem como deveriam, e isso é confirmado através dos **testes das páginas**.
 
@@ -213,14 +213,14 @@ Após encontrar os elementos em tela, simula-se uma tentativa de login e espera-
 
 No geral, os testes de todas as páginas funcionam desta mesma maneira: simula-se a interação do usuário e espera-se que o correto aconteça.
 
-## 4. Testes de módulos da store
+## Testes de módulos da store
 
 Estes buscam testar as actions, os reducers e as sagas que compõem os módulos da Redux Store que armazena os estados do projeto, vide [documentação do hub](https://www.notion.so/README-md-3469b6b8dc4842b490cc6897c9bae0cf).
 A estrutura de pastas dos testes da store respeita a organização proposta nos arquivos do hub, dividindo os testes em módulos e cada módulo com seus testes de actions, reducers e sagas.
 
 Para os testes das actions e reducers, seguimos as diretrizes trazidas pela [documentação do Redux](https://redux.js.org/recipes/writing-tests#action-creators).
 
-### 4.1 Actions
+### Actions
 
 Como aqui tratamos de funções puras criadoras de actions, os testes são muito simples, criados com uma aproximação simples e direta das funções que serão testadas, abaixo segue um exemplo:
 
@@ -240,7 +240,7 @@ it('should create an success action with productSuccess', () => {
 
 Nota-se na prática a simplicidade do testes de funções puras, os testes são claros e diretos, sem a necessidade de mockar fatores externos, uma vez que eles não estarão presentes em funções puras criadoras de actions.
 
-### 4.2 Reducers
+### Reducers
 
 Assim como nas actions, aqui também trataremos de funções puras, seguindo as mesmas orientações apontadas no subcapítulo anterior, a aproximação dos testes se dará de maneira simples e direta, como se pode constatar no snippet abaixo:
 
@@ -275,7 +275,7 @@ it('should set frameURL and frame name on frame URL action', () => {
 
 Ressalta-se a ideia de que não existem efeitos colaterais nas funções puras, sendo assim os testes sao feitos com asserções baseadas na lógica de que os mesmos _inputs_ sempre retornarão os mesmos _outputs_.
 
-### 4.3 Sagas
+### Sagas
 
 Aqui concentra-se a lógica assíncrona presente dos módulos da store, como estamos utilizando um middleware que opera a partir de funções geradores, a execução das funcionalidades se dá através de um método nativo do Redux Saga a [Run Saga](https://redux-saga.js.org/docs/api/#middlewarerunsaga-args).
 Os testes das sagas do Hub buscam cobrir todo o fluxo bem como todas as possibilidades que existem dentro da função geradora, como denota o exemplo abaixo, extraído de parte do teste de uma saga:
@@ -324,7 +324,7 @@ Vale ressaltar também a utilização do método de asserção _toContainObject_
 
 É notável a ideia de isolamento de dependencias no teste das sagas, primeiramente é feito o mock da chamada a api que será realizada, e das demais dependencias a serem utilizadas. Logo após será realizada a execução da saga com o método run saga, que percorrerá o percurso da saga recebida como parametro. Finalmente, passamos a realizar asserções a respeito da execução, como despacho de ações, chamadas a api ou outras dependencias.
 
-## 5. Hooks customizados
+## Hooks customizados
 
 Os testes de Hooks Customizados, assemelham-se a testes funcionais, uma vez que o foco se dará nas regras de negocio do Hook a ser testado. Como a execução de um Hook depende de varios fatores externos a ele, como o contexto, o estado atual da aplicação e a chamada de outras dependencias o setup feito deverá ser completo ao mockar e configurar os aspectos alheios ao Hook, como podemos ver no exemplo a seguir:
 
