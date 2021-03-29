@@ -1,20 +1,20 @@
 # Utilitários para testes
 
-![utils](./docs/tests/images/utils.png)
+![utils](../../docs/tests/images/utils.png)
 
-1. **[Mocks](#1-começando-com-os-mocks)**
-2. **[Fake Store](#2-Fake-Store)**
-3. **[Renderização com contexto](#3-Renderização-com-contexto)**
-   3.1. **[Parâmetros da função render modificada.](#3.1-Parâmetros-da-função-render-modificada)**
-4. **[Padronizações](#4.-Padronizações)**
-   4.1. **[Funcionalidades nativas](#4.1-Funcionalidades-nativas)**
-   4.2. **[Idioma](#4.2-Idioma)**
-   4.3. **[Suite](#4.3-Suite)**
-   4.4. **[Setup de testes](#4.4-Setup-de-testes)**
-5. **[Onde escrever os testes e como nomeá-los](#5-Onde-escrever-os-testes-e-como-nomeá-los)**
-6. **[Quando criar mocks](#6-quando-criar-mocks)**
+1. **[Mocks](#começando-com-os-mocks)**
+2. **[Fake Store](#Fake-Store)**
+3. **[Renderização com contexto](#Renderização-com-contexto)**
+   3.1. **[Parâmetros da função render modificada.](#Parâmetros-da-função-render-modificada)**
+4. **[Padronizações](#Padronizações)**
+   4.1. **[Funcionalidades nativas](#Funcionalidades-nativas)**
+   4.2. **[Idioma](#Idioma)**
+   4.3. **[Suite](#Suite)**
+   4.4. **[Setup de testes](#Setup-de-testes)**
+5. **[Onde escrever os testes e como nomeá-los](#Onde-escrever-os-testes-e-como-nomeá-los)**
+6. **[Quando criar mocks](#quando-criar-mocks)**
 
-# 1. Começando com os Mocks
+# Começando com os Mocks
 
 Com diretório disponível em _packages/apps/hub-web/src/**mocks**_, os mocks são arquivos gerados para auxiliar no teste de funções e componentes que necessitam de informações específicas para serem testados.
 
@@ -47,7 +47,7 @@ _Trecho disponível em: packages/apps/hub-web/src/**mocks**/store/user.mock.json
 
 Através desse **mock**, poupamos que seja escrito um `[json](https://www.json.org/json-en.html)` que simula as informações de usuário em diversas funções e componentes que precisam dessas informações bem definidas. **É só importar e usar!**
 
-### 2. Fake Store
+### Fake Store
 
 No mesmo diretório de mocks, existe também uma `store` totalmente fake (falsa)! Essa Store foi criada com o intuito de auxiliar nos testes que há a necessidade da utilização de uma Store. Ela funciona basicamente como a Store original, mas com alguns detalhes que fazem toda a diferença na hora de criar os testes:
 
@@ -57,7 +57,7 @@ No mesmo diretório de mocks, existe também uma `store` totalmente fake (falsa)
 
 Além de várias outras utilidades que podem ser exploradas na documentação oficial do `[redux-mock-store](https://github.com/reduxjs/redux-mock-store)` — pacote utilizado para a criação da store falsa.
 
-### 3. Renderização com contexto
+### Renderização com contexto
 
 Se pudéssemos definir essa funcionalidade em uma frase, com certeza seria: **utilitário mais importante para os testes de componentes e páginas React que precisam utilizar a store!**
 
@@ -77,7 +77,7 @@ render(<Home />, {
 
 _Trecho disponível em packages/apps/hub-web/**tests**/pages/Home.spec.tsx_
 
-### 3.1 Parâmetros da função render modificada
+### Parâmetros da função render modificada
 
 A função é importada do pacote `test-utils` com o nome `render` e sua utilização pode ser feita utilizando dois argumentos:
 
@@ -97,23 +97,23 @@ Caso uma store seja definida nas opções, é **obrigatório** a definição dos
 
 A função `render` retorna todos os métodos já devolvidos pelo render do react testing library e, além disso, um objeto chamado `storeUtils` que contém os dois métodos citados no tópico de [mocks](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2): `getActions` e `clearActions`.
 
-## 4. Padronizações
+## Padronizações
 
 Neste tópico será abordado algumas padronizações e convenções adotadas pela equipe que são fortemente recomendadas seguir na hora de escrever novos testes (ou até refatorar testes existentes).
 
-### 4.1 Funcionalidades nativas
+### Funcionalidades nativas
 
 É preferível que sempre utilizemos ferramentas nativas ou já instaladas no projeto para a criação dos testes. Ou seja, é estritamente contra nossos padrões fazer a instalação de bibliotecas desnecessárias. Sempre opte pelo já existente. Em casos mais específicos, recomendamos a utilização de _libs_ normalmente sugeridas na documentação oficial do Jest e React testing library.
 
-### 4.2 Idioma
+### Idioma
 
 Todos os testes devem ser escritos em inglês. É preferível que todas as variáveis criadas nos testes utilizem do mesmo parâmetro.
 
-### 4.3 Suite
+### Suite
 
 Todos os testes que possuem mais de um `it/test` devem, obrigatoriamente, possuir uma suite de teste, ou seja, um `describe` englobando os mesmos.
 
-### 4.4 Setup de testes
+### Setup de testes
 
 **O setup de testes que falaremos aqui não é o setup do jest**. É uma convenção utilizada nos testes para inibir duplicação de código, além de deixar os testes mais funcionais e legíveis.
 
@@ -181,7 +181,7 @@ const { getByText, getAllByText, searchInput } = setup({ // AQUI O ESTADO INICIA
 
 **NOTA: Esta convenção é adotada na documentação do React testing library.**
 
-### 5. Onde escrever os testes e como nomeá-los
+### Onde escrever os testes e como nomeá-los
 
 Para localizar os testes utilizamos a estrutura padrão adotada pelo próprio React testing library. Em cada pacote onde há a necessidade de escrita de testes, possivelmente haverá um diretório chamado `__tests__` que possuirá uma estrutura de pastas bem semelhante com o que está sendo testado. Recomendamos fortemente a criação deste diretório caso haja a necessidade da criação de testes em pacotes nunca testados.
 
@@ -189,7 +189,7 @@ O nome do arquivo de teste sempre deverá ser IGUAL ao nome do arquivo testado, 
 
 Ao testar o arquivo `Home.tsx`, o arquivo de teste deve se chamar `Home.spec.tsx`, indicando que o teste se refere à Home.
 
-### 6. Quando criar mocks
+### Quando criar mocks
 
 Costumamos ser simples e grossos a respeito disso: **Não é o foco do teste? Mocka!**
 

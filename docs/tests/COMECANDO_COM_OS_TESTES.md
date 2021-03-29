@@ -1,6 +1,6 @@
 # Começando com os testes
 
-![react-testing-library](./docs/tests/images/testing-library.png)
+![react-testing-library](../../docs/tests/images/testing-library.png)
 
 ## Testes automatizados
 
