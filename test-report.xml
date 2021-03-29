@@ -1,509 +1,692 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/middlewares/refreshToken.spec.tsx">
-    <testCase name="RefreshToken should work properly should dispatch no action when token is expired" duration="7"/>
-    <testCase name="RefreshToken should work properly should dispatch success action when api returns ok true" duration="53"/>
-    <testCase name="RefreshToken should work properly should dispatch failure action when api returns ok false" duration="513"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/auth/sagas.spec.ts">
+    <testCase name="Sagas of authentication history sign in Should the user authenticate with valid login and password and pass is redirected to choice" duration="23"/>
+    <testCase name="Sagas of authentication history sign in If the Return of the API is flawed for some reason, the user is warned and the login will be rejected" duration="3"/>
+    <testCase name="Sagas of authentication history sign in Should generate with a redirect query in the URL when passing the Redirect parameter in the login" duration="1"/>
+    <testCase name="Sagas of authentication history prepare Access Should prepare all data for the first user access" duration="3"/>
+    <testCase name="Sagas of authentication history prepare Access Should signOut the user if the ID from the reduced token is different from the user ID" duration="1"/>
+    <testCase name="Sagas of authentication history prepare Access Should set the user as authenticated when receiving the redirect parameter" duration="2"/>
+    <testCase name="Sagas of authentication history checking Expiring Token You should pause running if payload comes empty" duration="1"/>
+    <testCase name="Sagas of authentication history checking Expiring Token Should not log the user if it does not have the active login flag" duration="7"/>
+    <testCase name="Sagas of authentication history checking Expiring Token Should return if the expiration date is not defined" duration="1"/>
+    <testCase name="Sagas of authentication history checking Expiring Token Should be set, in the reload of the application, the token in the Header of the API if the user is logged in" duration="1503"/>
+    <testCase name="Sagas of authentication history checking Expiring Token should refresh the user if the Token expiration date is less than the current date" duration="1"/>
+    <testCase name="Sagas of authentication history refresh Token Should generate a new user authentication token for the user" duration="2003"/>
+    <testCase name="Sagas of authentication history refresh Token You should discharge the user if something fails in the return of API" duration="1"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/LogoOn.spec.tsx">
-    <testCase name="LogoOn component Must render the component on screen correctly" duration="241"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Collapse.spec.tsx">
+    <testCase name="Collapse component should work properly Collapse doesnt render collapse-box when disable is true" duration="217"/>
+    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is true" duration="121"/>
+    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is false" duration="157"/>
+    <testCase name="Collapse component should work properly Collapse render name inside Heading" duration="134"/>
+    <testCase name="Collapse component should work properly Collapse with false grid doesnt render SimpleGrid" duration="86"/>
+    <testCase name="Collapse component should work properly Collapse uses SimpleGrid in large screens" duration="120"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Home/Home.spec.tsx">
+    <testCase name="Testing that the Home page works correctly Should render the correct elements on the screen" duration="558"/>
+    <testCase name="Testing that the Home page works correctly Should not show any card when an unknown card is searched on filter" duration="197"/>
+    <testCase name="Testing that the Home page works correctly Should dispatch `@auth/AUTH_PRODUCT_REQUEST` when a card is clicked" duration="173"/>
+    <testCase name="Testing that the Home page works correctly Should not render any cards when the products are loading" duration="430"/>
+    <testCase name="Testing that the Home page works correctly Should render a message when the products have already loaded, but they are empty []" duration="144"/>
+    <testCase name="Testing that the Home page works correctly Should render with default Welcome titles" duration="168"/>
+    <testCase name="Testing that the Home page works correctly Should render `userClass` and `Profile` when profile name is `Aluno`" duration="175"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/ModalNoClass.spec.tsx">
+    <testCase name="ModalNoClass component should work properly should trigger the logout action by clicking the exit button" duration="1292"/>
+    <testCase name="ModalNoClass component should work properly Must render the component on screen correctly" duration="642"/>
+    <testCase name="ModalNoClass component should work properly Render the component in the Desktop version" duration="630"/>
+    <testCase name="ModalNoClass component should work properly The component should not be on screen" duration="91"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Logged/Dashboard.spec.tsx">
+    <testCase name="Logged`s layout should render without crashing Should call render children on screen" duration="196"/>
+    <testCase name="Logged`s layout should render without crashing Shouldn`t call steps if `open` is false" duration="111"/>
+    <testCase name="Logged`s layout should render without crashing Steps should work properly on Dashboard when `open` and `viewed` are true" duration="1396"/>
+    <testCase name="Logged`s layout should render without crashing Steps should work properly on Dashboard when `open` is true and `viewed` is false" duration="950"/>
+    <testCase name="Logged`s layout should render without crashing Should call that hooks: useSentry, useSendGlobalInfo and useAmplitudeSetProperties" duration="100"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/ChangePassword.spec.tsx">
+    <testCase name="Change Password page should work properly should change input type if view changes" duration="364"/>
+    <testCase name="Change Password page should work properly should redirect user if no token was provided" duration="156"/>
+    <testCase name="Change Password page should work properly should return user to previous page when goBack is clicked" duration="184"/>
+    <testCase name="Change Password page should work properly should display an error when validation fails" duration="245"/>
+    <testCase name="Change Password page should work properly should display a generic error when validation throws it" duration="207"/>
+    <testCase name="Change Password page should work properly Should dispatch actions with correct payloads" duration="178"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/ModalSupport.spec.tsx">
+    <testCase name="ModalSupport component testing Should redirect to FAQ when `ACESSAR FAQ` button is clicked" duration="1088"/>
+    <testCase name="ModalSupport component testing Context onClose when ModalSupport`s close button is triggered" duration="889"/>
+    <testCase name="ModalSupport component testing Context`s onClose and onOpen should call useDisclosure`s functions" duration="826"/>
+    <testCase name="ModalSupport component testing Should toMatchSnapShot" duration="108"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/HeaderDesktop.spec.tsx">
+    <testCase name="HeaderDesktop should work properly Products menu should should display all solutions when clicked" duration="700"/>
+    <testCase name="HeaderDesktop should work properly shouldnt display any card when no cards are provided" duration="171"/>
+    <testCase name="HeaderDesktop should work properly card should handle push and log amplitude event when clicked" duration="190"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Auth/Auth.spec.tsx">
+    <testCase name="Auth`s layout should render without crashing Auth`s layout should encapsulate correctly the children" duration="99"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/Header/Desktop.spec.tsx">
+    <testCase name="Desktop Header component Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked" duration="429"/>
+    <testCase name="Desktop Header component Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked" duration="656"/>
+    <testCase name="Desktop Header component Popover should be visible when header`s avatar is clicked" duration="467"/>
+    <testCase name="Desktop Header component Should have a button called `Estou com uma dúvida`" duration="132"/>
+    <testCase name="Desktop Header component Should dispatch an `@auth/SIGN_OUT` action when `Sair` is clicked" duration="511"/>
+    <testCase name="Desktop Header component Should close Popover when component is on blur or escape (ESC)" duration="680"/>
+    <testCase name="Desktop Header component Should change the `school` on selector when other `school` is triggered" duration="665"/>
+    <testCase name="Desktop Header component Should change the `role` on selector when other `role` is triggered" duration="735"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Tour.spec.tsx">
+    <testCase name="Testing Tour component and your functionalities Should render Tour component with first step" duration="25"/>
+    <testCase name="Testing Tour component and your functionalities should close the tour when closeButton is clicked" duration="508"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/SignIn.spec.tsx">
+    <testCase name="Testing that the Login page works correctly should redirect the user to /esqueci-minha-senha when click on `Esqueci minha senha`" duration="239"/>
+    <testCase name="Testing that the Login page works correctly should open help modal when click on `Precido de ajuda`" duration="137"/>
+    <testCase name="Testing that the Login page works correctly should change password input type when view icon is clicked" duration="173"/>
+    <testCase name="Testing that the Login page works correctly Should render the elements of the Login page" duration="165"/>
+    <testCase name="Testing that the Login page works correctly should dispatch @auth/SIGN_IN REQUEST with the right payload if the user data format is correct" duration="157"/>
+    <testCase name="Testing that the Login page works correctly should throw a validation error when username and password input are empty" duration="131"/>
+    <testCase name="Testing that the Login page works correctly should throw new error when username or password input are incorrect" duration="111"/>
+    <testCase name="Testing that the Login page works correctly should change the type of the submit button to button type when sign-in strike is true" duration="137"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/products/sagas.spec.ts">
+    <testCase name="testing getProducts saga flow should set loadings, call api, dispatch success action, call mhunArvoreIntegration, get tour and enable refresh token middleware" duration="2011"/>
+    <testCase name="testing getProducts saga flow should call toast error when api returns with an error" duration="1"/>
+    <testCase name="testing getProducts saga flow should dispatch a withoutAccess action and early return a user without the correct level" duration="2"/>
+    <testCase name="testing getProducts saga flow should early return when theres no user or school info" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/Header/AlterPass.spec.tsx">
+    <testCase name="get started Should throw a `validation` error if the form was submitted without any information" duration="320"/>
+    <testCase name="get started Should throw a `generic` error if an error other than` validation` has been thrown" duration="245"/>
+    <testCase name="get started Should call `onClose` function when `CANCELAR` is clicked" duration="143"/>
+    <testCase name="get started Should dispatch an `@user/USER_PASSWORD_PANEL_REQUEST` action if the form has been submitted with correct data" duration="127"/>
+    <testCase name="get started Should convert input`s type to text when viewPass and viewNewPass are true" duration="173"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/Profile/Profile.spec.tsx">
+    <testCase name="Profile page should work properly Should render the correct elements on the screen" duration="340"/>
+    <testCase name="Profile page should work properly The component `Select` should work correctly when the user interacts with it" duration="335"/>
+    <testCase name="Profile page should work properly The `Profile` component should dispatch `@auth/FIRST_ACCESS` when the user chooses an option" duration="399"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/ExpiredToken.spec.tsx">
+    <testCase name="Expired Token page should work properly Should redirect to `/` when `validateViewPin` doesn`t exist or it`s false" duration="203"/>
+    <testCase name="Expired Token page should work properly Should render the correcly elements on screen" duration="110"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/esqueci-minha-senha` when `Solicitar novo link` is clicked" duration="120"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `GoBack` is clicked" duration="95"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Home/Filter.spec.tsx">
+    <testCase name="Filter Component (by Welcome) should work properly The component `Filter` shouldn`t render any level options when profile is not `professor`" duration="173"/>
+    <testCase name="Filter Component (by Welcome) should work properly The component `Filter` should render level options when trigged" duration="452"/>
+    <testCase name="Filter Component (by Welcome) should work properly The `Filter` component should show only the chosen option" duration="356"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/HeaderMobile.spec.tsx">
+    <testCase name="Mobile Header`s layout should work properly Should render correct infos on screen when menu is open" duration="1178"/>
+    <testCase name="Mobile Header`s layout should work properly Should call handlePush function when a card is clicked" duration="790"/>
+    <testCase name="Mobile Header`s layout should work properly Should call useDisclosure`s functions handlers when Drawer is triggered" duration="151"/>
+    <testCase name="Mobile Header`s layout should work properly Should render without crashing even when cards were not provided" duration="1025"/>
+    <testCase name="Mobile Header`s layout should work properly Should filter the cards correctly" duration="1422"/>
+    <testCase name="Mobile Header`s layout should work properly Should call Drawer onOpen if show is false  or onClose if show is true when `Escape` (Esc) key is down" duration="1134"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/ForgotPassword.spec.tsx">
+    <testCase name="Forgot Password page should work properly should display instructions about password recovery" duration="168"/>
+    <testCase name="Forgot Password page should work properly Should display an error toast if submit with empty input" duration="156"/>
+    <testCase name="Forgot Password page should work properly Should display an error toast if validator throws a generic error" duration="117"/>
+    <testCase name="Forgot Password page should work properly Should redirect client to login page if sendViewToken is true" duration="81"/>
+    <testCase name="Forgot Password page should work properly should go back when GoBack is clicked" duration="77"/>
+    <testCase name="Forgot Password page should work properly Should dispatch an action with correct payload" duration="182"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/ForgotFail.spec.tsx">
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `sendViewToken` doesn`t exist or it`s false" duration="147"/>
+    <testCase name="Expired Token page should work properly Should render the correcly elements on screen" duration="139"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `Voltar para o login` is clicked" duration="158"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `GoBack` is clicked" duration="115"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Modal.spec.tsx">
+    <testCase name="Modal component should work properly Should render the children on screen with correctly props" duration="21"/>
+    <testCase name="Modal component should work properly Shoudn`t render the component when prop open is false (closed Model)" duration="91"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Image.spec.tsx">
+    <testCase name="Image renders without crashing Should render image with correct alt text" duration="7"/>
+    <testCase name="Image renders without crashing Image matches snapshot" duration="5"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/Header.spec.tsx">
+    <testCase name="Header`s layout should work properly Header should render Mobile Header when useMediaQuery returns [false]" duration="156"/>
+    <testCase name="Header`s layout should work properly Header should render Desktop Header when useMediaQuery returns [true]" duration="104"/>
+    <testCase name="Header`s layout should work properly Should call the go back handler when a GoBack is clicked" duration="188"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Avatar.spec.tsx">
+    <testCase name="Avatar renders without crashing Avatar matches snapshot" duration="227"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/layout/styles.spec.tsx">
+    <testCase name="Testing chacka`s styles hooks useTheme shouldn`t return void theme when encapsulated by a theme provider" duration="213"/>
+    <testCase name="Testing chacka`s styles hooks useColorMode should  gives you access to the current color mode, and a function to toggle the color mode." duration="105"/>
+    <testCase name="Testing chacka`s styles hooks useColorModeValue returns current color mode: by default return light mode color" duration="114"/>
+    <testCase name="Testing chacka`s styles hooks useMediaQuery should returns an array of booleans, indicating whether the given query matches or queries match" duration="4"/>
   </file>
   <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Search.spec.tsx">
-    <testCase name="should work properly Should render an input on screen" duration="279"/>
-    <testCase name="should work properly Should call onChange handler when a value is triggered on input" duration="128"/>
-    <testCase name="should work properly Should render without crashing" duration="159"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/forgotPassword/sagas.spec.ts">
-    <testCase name="Sagas of forgotPassword history pwd Token Should show a message to the user and redirect it to login to API success" duration="5"/>
-    <testCase name="Sagas of forgotPassword history pwd Token Should send the user to the failure page if the return of the API is flawed" duration="1"/>
-    <testCase name="Sagas of forgotPassword history pwd Token Show an error message for the user if the API returns an exception" duration="1"/>
-    <testCase name="Sagas of forgotPassword history validate PIN Should Validate User PIN via API" duration="1"/>
-    <testCase name="Sagas of forgotPassword history validate PIN Show for the user that the token is expired or invalid" duration="1"/>
-    <testCase name="Sagas of forgotPassword history validate PIN Show an error message for the user if the API returns an exception" duration="1"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Card.spec.tsx">
-    <testCase name="Card`s layout should work properly Should render card`s elements on screen" duration="316"/>
-    <testCase name="Card`s layout should work properly Should call onClick function when card box is clicked" duration="187"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/reCaptcha.spec.ts">
-    <testCase name="Captcha for Login Should trigger the lib that removes the captcha cache" duration="3"/>
-    <testCase name="Captcha for Login Must validate quantity of stored items and return a Bool" duration="1"/>
-    <testCase name="Captcha for Login Save to set login attempts in cache" duration="3"/>
-    <testCase name="Captcha for Login You must validate the captcha token and remove the cache if ok" duration="6"/>
+    <testCase name="should work properly Should render an input on screen" duration="127"/>
+    <testCase name="should work properly Should call onChange handler when a value is triggered on input" duration="74"/>
+    <testCase name="should work properly Should render without crashing" duration="119"/>
   </file>
   <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/AnimateGoBack.spec.tsx">
-    <testCase name="AnimateGoBack should work properly Shoud call onClick when arrow left is clicked" duration="444"/>
-    <testCase name="AnimateGoBack should work properly Should render without crashing when width was not provided" duration="212"/>
+    <testCase name="AnimateGoBack should work properly Shoud call onClick when arrow left is clicked" duration="393"/>
+    <testCase name="AnimateGoBack should work properly Should render without crashing when width was not provided" duration="203"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/eemConnect.spec.ts">
-    <testCase name="EEMConnectPost should work properly EEMConnectPost should set headers then send a post request" duration="96"/>
-    <testCase name="EEMConnectPost should work properly EEMConnectGET should send a get request" duration="32"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Home/FakeLoading.spec.tsx">
+    <testCase name="testing fakeLoading should render without  crashing" duration="165"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Home/FakeCollapse.spec.tsx">
+    <testCase name="FakeCollapse renders without crashing should have children" duration="103"/>
+    <testCase name="FakeCollapse renders without crashing Collapse with false grid doesn&apos;t render SimpleGrid" duration="166"/>
+    <testCase name="FakeCollapse renders without crashing renders without crashing on larger screens" duration="72"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/user/sagas.spec.ts">
+    <testCase name="Sagas of user history Forgot Password Should shoot a message to the user and redirect it to login to API success" duration="581"/>
+    <testCase name="Sagas of user history Forgot Password Should shoot an error message for user if the API returns some exception" duration="19"/>
+    <testCase name="Sagas of user history Forgot Password Should return a custom error message if the password or PIN PASSE INVALIDS" duration="1"/>
+    <testCase name="Sagas of user history Forgot Password Should return the default error message if the invalid password or password PIN and the API does not contain a response" duration="1"/>
+    <testCase name="Sagas of user history Alter Password Should shoot a successful message for user in the return of API" duration="2"/>
+    <testCase name="Sagas of user history Alter Password Should shoot an error message for user if the API returns some exception" duration="16"/>
+    <testCase name="Sagas of user history Alter Password Should return a custom error message if the password or PIN PASSE INVALIDS" duration="1"/>
+    <testCase name="Sagas of user history Alter Password Should return the default error message if the invalid password the API does not contain a response" duration="2"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/Profile/CardBox.spec.tsx">
+    <testCase name="CardBox Component should work properly Should render icon with correct titles" duration="123"/>
+    <testCase name="CardBox Component should work properly Should call onClick when user choises an role" duration="100"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Heading.spec.tsx">
+    <testCase name="Heading renders without crashing Heading has children" duration="29"/>
+    <testCase name="Heading renders without crashing Heading matches snapshot" duration="10"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/CardProduct.spec.tsx">
+    <testCase name="CardProduct component should work properly Card redirects to the correct link" duration="386"/>
+    <testCase name="CardProduct component should work properly Card shows correct notification" duration="336"/>
+    <testCase name="CardProduct component should work properly Card has &quot;hub&quot; category when no category is received" duration="344"/>
+    <testCase name="CardProduct component should work properly Card shows &quot;Em breve&quot; text when doesnt receive a link" duration="234"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/middlewares/refreshToken.spec.ts">
+    <testCase name="RefreshToken should work properly should dispatch no action when token is expired" duration="2"/>
+    <testCase name="RefreshToken should work properly should dispatch success action when api returns ok true" duration="52"/>
+    <testCase name="RefreshToken should work properly should dispatch failure action when api returns ok false" duration="519"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Card.spec.tsx">
+    <testCase name="Card`s layout should work properly Should render card`s elements on screen" duration="183"/>
+    <testCase name="Card`s layout should work properly Should call onClick function when card box is clicked" duration="197"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Stack.spec.tsx">
+    <testCase name="Stack renders without crashing Stack matches snapshot" duration="121"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/index.spec.tsx">
+    <testCase name="Root import components I hope these components are called" duration="5"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/GoBack.spec.tsx">
+    <testCase name="Goback component should render on screen and when clicking trigger an event" duration="127"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/BarLoader.spec.tsx">
+    <testCase name="BarLoader renders without crashing BarLoader matches snapshot" duration="285"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Welcome.spec.tsx">
+    <testCase name="Welcome renders with correct props should render Welcome message correctly" duration="197"/>
+    <testCase name="Welcome renders with correct props should render with welcome message despite undefined props" duration="109"/>
+    <testCase name="Welcome renders with correct props should render user name as `Usuário` when option is `name` and prop name is undefined" duration="90"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/authProduct/sagas.spec.ts">
+    <testCase name="Testing productSorting saga flow productSorting should call refresh token then dispatch a request action" duration="14"/>
+    <testCase name="Testing productSorting saga flow productSorting should redirect user when tipoRenderizacao is `iframenoauth`" duration="3"/>
+    <testCase name="Testing productSorting saga flow productSorting should open a new page when tipoRenderizacao is `targetblank`" duration="2"/>
+    <testCase name="Testing productSorting saga flow productSorting should dispatch request action when tipoRenderizacao is `iframe`" duration="2"/>
+    <testCase name="Testing productSorting saga flow productSorting should early return when no auth, profile or user info is available" duration="1"/>
+    <testCase name="testing authProductGUID saga flow should set loading, make a post request, redirect user, set iframe and dispatch success action" duration="4"/>
+    <testCase name="testing authProductGUID saga flow should redirect user to correct path when payload has a subpath" duration="1"/>
+    <testCase name="testing authProductGUID saga flow should send a tost and dispatch failure action when post response has a error" duration="6"/>
+    <testCase name="testing authProductGUID saga flow productSorting should early return when no auth, profile or user info is available" duration="2"/>
+    <testCase name="testing authProductEEM saga flow should set loading, set iframe url and then dispatch success action" duration="2"/>
+    <testCase name="testing authProductEEM saga flow should open a new window when tipoRenderizacao is `iframeblank` and the device is IOS" duration="10"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Drawer.spec.tsx">
+    <testCase name="Testing if Drawer component render correctly should render open, as well must render Drawer Header, Body and Footer" duration="914"/>
+    <testCase name="Testing if Drawer component render correctly Drawer matches snapshot" duration="703"/>
+    <testCase name="testing useDesclosure should returns the correct values" duration="3"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Accordion.spec.tsx">
+    <testCase name="Accordion an UnmountClosed components Accordion being rendered on canvas" duration="153"/>
+    <testCase name="Accordion an UnmountClosed components UnmountClosed being rendered on canvas" duration="111"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Input.spec.tsx">
+    <testCase name="Input renders without crashing Input matches snapshot" duration="138"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Flex.spec.tsx">
+    <testCase name="Flex renders without crashing Flex has children" duration="15"/>
+    <testCase name="Flex renders without crashing Flex matches snapshot" duration="10"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Text.spec.tsx">
+    <testCase name="Text renders without crashing Text matches snapshot" duration="199"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/Header/context.spec.tsx">
+    <testCase name="Testing useHeader Should return define a Header Context" duration="8"/>
+    <testCase name="Testing useHeader Should throw an error when context is not provided" duration="71"/>
+    <testCase name="Testing HeaderContext Should dispatch an `@auth/FIRST_ACCESS` action when setRole is triggered" duration="7"/>
+    <testCase name="Testing HeaderContext Should call useState`s handle function when setSchool is triggered" duration="5"/>
+    <testCase name="Testing HeaderContext Should call useState`s handle function when resetInfo is triggered" duration="5"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Badge.spec.tsx">
+    <testCase name="Badge renders without crashing Badge matches snapshot" duration="118"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/LogoOn.spec.tsx">
+    <testCase name="LogoOn component Must render the component on screen correctly" duration="137"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Tooltip.spec.tsx">
+    <testCase name="Tooltip renders without crashing Tooltip has children" duration="10"/>
+    <testCase name="Tooltip renders without crashing Tooltip matches snapshot" duration="3"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/layout/provider.spec.tsx">
+    <testCase name="Testing Theme Provider should change theme when profile changes" duration="307"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/SpinnerLoader.spec.tsx">
+    <testCase name="SpinnerLoader renders without crashing SpinnerLoader matches snapshot" duration="238"/>
   </file>
   <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/educationalStage/sagas.spec.ts">
-    <testCase name="Sagas of educationalStage history get Education Stage Should generate a new user authentication token for the user" duration="3"/>
+    <testCase name="Sagas of educationalStage history get Education Stage Should generate a new user authentication token for the user" duration="4"/>
     <testCase name="Sagas of educationalStage history get Education Stage Should return empty if the API returns an error" duration="1"/>
-    <testCase name="Sagas of educationalStage history get Educational By Person Should shoot the saga to seek the levels of teaching" duration="4"/>
-    <testCase name="Sagas of educationalStage history get Educational By Person Should reset the profile selection if the selected profile is different from expected" duration="2"/>
+    <testCase name="Sagas of educationalStage history get Educational By Person Should shoot the saga to seek the levels of teaching" duration="7"/>
+    <testCase name="Sagas of educationalStage history get Educational By Person Should reset the profile selection if the selected profile is different from expected" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Form.spec.tsx">
+    <testCase name="Form works properly input should render icons correctly and change style when focused" duration="171"/>
+    <testCase name="Form works properly input should display an error if useField returns error as truthy" duration="111"/>
+    <testCase name="Form works properly Form calls submit with correct values" duration="125"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/CardBox.spec.tsx">
+    <testCase name="CardBox renders without crashing CardBox has children" duration="19"/>
+    <testCase name="CardBox renders without crashing CardBox matches snapshot" duration="3"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/Logo.spec.tsx">
+    <testCase name="Logo component Must render the component on screen correctly" duration="129"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Search.spec.tsx">
+    <testCase name="Search component should work properly Input should call onChange with correct value" duration="131"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Popover.spec.tsx">
+    <testCase name="Popover component should work properly Should render with correctly content" duration="208"/>
+    <testCase name="Popover component should work properly Should close visibility of the Popover when close button is clicked" duration="479"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Skeleton.spec.tsx">
+    <testCase name="Skeleton renders without crashing Stack matches snapshot" duration="152"/>
+    <testCase name="Skeleton renders without crashing Skeleton matches snapshot" duration="213"/>
+    <testCase name="Skeleton renders without crashing SkeletonCircle matches snapshot" duration="128"/>
+    <testCase name="Skeleton renders without crashing SkeletonText matches snapshot" duration="92"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/productIntegrations/sagas.spec.ts">
+    <testCase name="Sagas of productIntegrations history Should return the MHUND and tree cards with the appropriate application links" duration="4"/>
+    <testCase name="Sagas of productIntegrations history Should return undefined case if you do not have cards loaded" duration="1"/>
+    <testCase name="Sagas of productIntegrations history Should return the MHUND card and not the arvore card" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/SimpleGrid.spec.tsx">
+    <testCase name="SimpleGrid renders without crashing SimpleGrid matches snapshot" duration="89"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Button.spec.tsx">
+    <testCase name="Button renders without crashing Button matches snapshot" duration="124"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Box.spec.tsx">
+    <testCase name="Box renders without crashing Box has children" duration="24"/>
+    <testCase name="Box renders without crashing Box matches snapshot" duration="6"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/tour/sagas.spec.ts">
+    <testCase name="testing getProducts saga flow should dispatch tour request action, make get request do tour api and dispatch success action" duration="3"/>
+    <testCase name="testing getProducts saga flow should not include educational level on tour request if user is not PROFESSOR or ALUNO" duration="2"/>
+    <testCase name="testing getProducts saga flow should log error and dispatch failure action when api returns with an error" duration="1"/>
+    <testCase name="testing getViewed saga flow should request for info on tour viewed and dispatch a success action" duration="1"/>
+    <testCase name="testing getViewed saga flow should log error and dispatch failure action on api error" duration="2"/>
+    <testCase name="testing getProducts saga flow should dispatch tour request action, make get request do tour api and dispatch success action" duration="1"/>
+    <testCase name="testing getProducts saga flow should not include educational level on tour request if user is not PROFESSOR or ALUNO" duration="1"/>
+    <testCase name="testing getProducts saga flow should log error and dispatch failure action when api returns with an error" duration="2"/>
+    <testCase name="testing post tour saga flow should set open tour to false and post tour info" duration="5"/>
+    <testCase name="testing post tour saga flow should log error and dispatch failure action on api error" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/eemIntegration.spec.ts">
+    <testCase name="eemIntegration should work properly eemIntegration should use store data when no args are received" duration="2"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/mixpanel/setProperties.spec.tsx">
+    <testCase name="Mixpanel Services Should return false if the user is not logged in" duration="12"/>
+    <testCase name="Mixpanel Services Should prepare user information for sending MixPanel" duration="5"/>
+    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="4"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/auth/actions.spec.ts">
+    <testCase name="Action of authentication history Should the preparingUserData calls the correct action and receive the value within payload" duration="1"/>
+    <testCase name="Action of authentication history Should the signInRequest calls the correct action and receive the value within payload" duration="1"/>
+    <testCase name="Action of authentication history Should the signInSuccess calls the correct action and receive the value within payload" duration="1"/>
+    <testCase name="Action of authentication history Should the refreshTokenSuccess calls the correct action and receive the value within payload" duration="1"/>
+    <testCase name="Action of authentication history Should the reducedTokenEEM calls the correct action and receive the value within payload" duration="0"/>
+    <testCase name="Action of authentication history I Should the signOut is called and the amplitude states are clean" duration="1"/>
+    <testCase name="Action of authentication history Should refreshTokenRequest is called" duration="0"/>
+    <testCase name="Action of authentication history Should signInRequestLoading is called" duration="1"/>
+    <testCase name="Action of authentication history Should signInFailure is called" duration="2"/>
+    <testCase name="Action of authentication history Should withoutAccess is called" duration="1"/>
+    <testCase name="Action of authentication history Should setSigned is called" duration="0"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/myClasses/sagas.spec.ts">
+    <testCase name="Sagas of myClasses history Should seek the list of students of a class and return only the assets" duration="8"/>
+    <testCase name="Sagas of myClasses history Should show an error for the user if the search for the list of students returned an exception" duration="2"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/reCaptcha.spec.ts">
+    <testCase name="Captcha for Login Should trigger the lib that removes the captcha cache" duration="1"/>
+    <testCase name="Captcha for Login Must validate quantity of stored items and return a Bool" duration="21"/>
+    <testCase name="Captcha for Login Save to set login attempts in cache" duration="3"/>
+    <testCase name="Captcha for Login You must validate the captcha token and remove the cache if ok" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/useAmplitudeSetProperties.spec.tsx">
+    <testCase name="testing if amplitude set properties functions work properly Should call setUserProperties with the correct information" duration="5"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/forgotPassword/sagas.spec.ts">
+    <testCase name="Sagas of forgotPassword history pwd Token Should show a message to the user and redirect it to login to API success" duration="3"/>
+    <testCase name="Sagas of forgotPassword history pwd Token Should send the user to the failure page if the return of the API is flawed" duration="1"/>
+    <testCase name="Sagas of forgotPassword history pwd Token Show an error message for the user if the API returns an exception" duration="2"/>
+    <testCase name="Sagas of forgotPassword history validate PIN Should Validate User PIN via API" duration="1"/>
+    <testCase name="Sagas of forgotPassword history validate PIN Show for the user that the token is expired or invalid" duration="2"/>
+    <testCase name="Sagas of forgotPassword history validate PIN Show an error message for the user if the API returns an exception" duration="2"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/tour/reducer.spec.ts">
+    <testCase name="tour reducer should work properly returns the initial state when an action type is not passed" duration="1"/>
+    <testCase name="tour reducer should work properly loading is set to true on get tour viewed action" duration="1"/>
+    <testCase name="tour reducer should work properly should set loading and tour info on getTourViewedSuccess action" duration="1"/>
+    <testCase name="tour reducer should work properly loading is set to false on getTourViewedFailure action" duration="0"/>
+    <testCase name="tour reducer should work properly should set open to true on openTour action with truthy payload" duration="0"/>
+    <testCase name="tour reducer should work properly should reset tour info on sign out" duration="118"/>
+    <testCase name="tour reducer should work properly should set tour info on successful getTour action" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/validators/user/alterPassword.spec.ts">
+    <testCase name="alterPassword must check the format of the new password Should return a `min characters` error if new password is smaller than 5 characters" duration="5"/>
+    <testCase name="alterPassword must check the format of the new password Should return an error if newPassword is different of confirmNewPassword" duration="1"/>
+    <testCase name="alterPassword must check the format of the new password Should return a `missing confirmNewPassword` error if confirmNewPassword was not provided" duration="1"/>
+    <testCase name="alterPassword must check the format of the new password Should return a `missing oldPassword` error if oldPassword was not provided" duration="0"/>
+    <testCase name="alterPassword must check the format of the new password Should return the `shape` if `password`, `confirm-password` and `oldPassword` is correct" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/eemConnect.spec.ts">
+    <testCase name="EEMConnectPost should work properly EEMConnectPost should set headers then send a post request" duration="80"/>
+    <testCase name="EEMConnectPost should work properly EEMConnectGET should send a get request" duration="22"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/auth/reducer.spec.ts">
+    <testCase name="Reducer of authentication history Should at the shooting of Action Reducers steps are triggered by setting the default information" duration="2"/>
+    <testCase name="Reducer of authentication history Should that in login failure, the information returns to the initial state" duration="1"/>
+    <testCase name="Reducer of authentication history Should that in the success of the login, the token is received beyond the other infos for access to the platform" duration="1"/>
+    <testCase name="Reducer of authentication history Should the loading is fired while the check action happens" duration="1"/>
+    <testCase name="Reducer of authentication history Should that in the absence of an initial status defined, the default state is triggered" duration="0"/>
+    <testCase name="Reducer of authentication history Should that being true all login treatives, the user is released for access to the system" duration="1"/>
+    <testCase name="Reducer of authentication history Should that in the absence of education level, the user is blocked for access to platform" duration="1"/>
+    <testCase name="Reducer of authentication history Should the reduced token is received and past for storage" duration="0"/>
+    <testCase name="Reducer of authentication history Should in the success generation of a new token, a refresh token and an expiration date is received" duration="1"/>
+    <testCase name="Reducer of authentication history Should that in the user&apos;s exit, all states are resetted" duration="1"/>
+    <testCase name="Reducer of authentication history Should if an unexpected exception is received, the same will have no effect on the application states" duration="1"/>
   </file>
   <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/hooks/useSendGlobalInfo.spec.ts">
     <testCase name="useSendGlobalInfo hook should work properly Global Variable `window.__HUB_USER_INFO__` should be undefined before initialization of useSendGlobalInfo hook" duration="1"/>
-    <testCase name="useSendGlobalInfo hook should work properly Global Variable `window.__HUB_USER_INFO__` should be defined after initialization of useSendGlobalInfo hook" duration="8"/>
+    <testCase name="useSendGlobalInfo hook should work properly Global Variable `window.__HUB_USER_INFO__` should be defined after initialization of useSendGlobalInfo hook" duration="5"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/Header.spec.tsx">
-    <testCase name="Header`s layout should work properly Header should render Mobile Header when useMediaQuery returns [false]" duration="308"/>
-    <testCase name="Header`s layout should work properly Header should render Desktop Header when useMediaQuery returns [true]" duration="159"/>
-    <testCase name="Header`s layout should work properly Should call the go back handler when a GoBack is clicked" duration="290"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/middlewares/postMessage.spec.tsx">
-    <testCase name="postMessage should work properly shouldnt redirect when mounted URL is equal current pathname" duration="9"/>
-    <testCase name="postMessage should work properly should call push on history-change event" duration="63"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/hooks/usePostMessage.spec.ts">
+    <testCase name="postMessage should work properly shouldnt redirect when mounted URL is equal current pathname" duration="7"/>
+    <testCase name="postMessage should work properly should call push on history-change event" duration="54"/>
     <testCase name="postMessage should work properly shouldnt redirect when receives non stringfied data" duration="4"/>
-    <testCase name="postMessage should work properly shouldnt redirect when data hasnt json structure" duration="6"/>
-    <testCase name="postMessage should work properly shouldnt redirect when event type isnt history-change" duration="4"/>
-    <testCase name="postMessage should work properly shouldnt redirect when data isnt parseable" duration="5"/>
+    <testCase name="postMessage should work properly shouldnt redirect when data hasnt json structure" duration="4"/>
+    <testCase name="postMessage should work properly shouldnt redirect when event type isnt history-change" duration="3"/>
+    <testCase name="postMessage should work properly shouldnt redirect when data isnt parseable" duration="4"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Auth/Auth.spec.tsx">
-    <testCase name="Auth`s layout should render without crashing Auth`s layout should encapsulate correctly the children" duration="325"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/authProduct/actions.spec.ts">
+    <testCase name="authProduct action creators should work properly should create an request action on preAuth" duration="1"/>
+    <testCase name="authProduct action creators should work properly should create an specific request action on authProductRequest" duration="0"/>
+    <testCase name="authProduct action creators should work properly should create an success action on authProductSuccess" duration="1"/>
+    <testCase name="authProduct action creators should work properly should create an failure action on authProductFailure" duration="1"/>
   </file>
   <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/cardFilter.spec.ts">
     <testCase name="testing cardFilter funcionalities Should return only the `product cards` that matches with text search" duration="2"/>
     <testCase name="testing cardFilter funcionalities Should return only the `classes cards` that matches with text search without crashing when findIndex returns -1" duration="1"/>
-    <testCase name="testing cardFilter funcionalities Should return an empty array when search text wasn`t matches with any card" duration="0"/>
-    <testCase name="testing cardFilter funcionalities Should return data without  changes when search text was not provided" duration="0"/>
+    <testCase name="testing cardFilter funcionalities Should return an empty array when search text wasn`t matches with any card" duration="1"/>
+    <testCase name="testing cardFilter funcionalities Should return data without  changes when search text was not provided" duration="1"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/hooks/useSentry.spec.ts">
-    <testCase name="useSentry hook should work properly If environment is `production`, this hook should call its methods correctly" duration="32"/>
-    <testCase name="useSentry hook should work properly If environment is not `production`, this hook shouldn`t call its methods" duration="5"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/products/reducers.spec.ts">
+    <testCase name="authProduct reducer returns the initial state when an action type is not passed" duration="1"/>
+    <testCase name="authProduct reducer should change loading to true when a product is requested" duration="1"/>
+    <testCase name="authProduct reducer loading is set to false on success action" duration="1"/>
+    <testCase name="authProduct reducer should set data on product integration action" duration="1"/>
+    <testCase name="authProduct reducer should set loading to false and reset data on product failure action" duration="0"/>
+    <testCase name="authProduct reducer should set loading to true and reset data on without access action" duration="1"/>
+    <testCase name="authProduct reducer should set frameURL and frame name on frame URL action" duration="1"/>
+    <testCase name="authProduct reducer should set loading to true and reset data on sign out action" duration="114"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/useAmplitudeSetProperties.spec.tsx">
-    <testCase name="testing if amplitude set properties functions work properly Should call setUserProperties with the correct informations" duration="11"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/validators/auth/createNewPassword.spec.ts">
+    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return a `min characters` error if password is smaller than 5 characters" duration="4"/>
+    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return error if password is different of confirm-password" duration="1"/>
+    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return a `missing confirm-password` error if confirm-password was not provided" duration="1"/>
+    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return the `shape` if `password` and `confirm-password` is correct" duration="1"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/validators/auth/forgotPassword.spec.ts">
-    <testCase name="forgotPasswordSchema must check if the format of `email` is correct Should return a `missing email` error if email was not provided" duration="4"/>
-    <testCase name="forgotPasswordSchema must check if the format of `email` is correct Should return `shape` if email`s formart is correct" duration="1"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/hooks/useQuery.spec.ts">
+    <testCase name="useQuery hook should work properly Should return the value of the query provided by the get method" duration="21"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/auth/reducer.spec.ts">
-    <testCase name="Reducer of authentication history Should at the shooting of Action Reducers steps are triggered by setting the default information" duration="3"/>
-    <testCase name="Reducer of authentication history Should that in login failure, the information returns to the initial state" duration="1"/>
-    <testCase name="Reducer of authentication history Should that in the success of the login, the token is received beyond the other infos for access to the platform" duration="1"/>
-    <testCase name="Reducer of authentication history Should the loading is fired while the check action happens" duration="1"/>
-    <testCase name="Reducer of authentication history Should that in the absence of an initial status defined, the default state is triggered" duration="1"/>
-    <testCase name="Reducer of authentication history Should that being true all login treatives, the user is released for access to the system" duration="1"/>
-    <testCase name="Reducer of authentication history Should that in the absence of education level, the user is blocked for access to platform" duration="0"/>
-    <testCase name="Reducer of authentication history Should the reduced token is received and past for storage" duration="1"/>
-    <testCase name="Reducer of authentication history Should in the success generation of a new token, a refresh token and an expiration date is received" duration="1"/>
-    <testCase name="Reducer of authentication history Should that in the user&apos;s exit, all states are resetted" duration="26"/>
-    <testCase name="Reducer of authentication history Should if an unexpected exception is received, the same will have no effect on the application states" duration="0"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/prepareEducationalStage.spec.ts">
+    <testCase name="prepareEducationalStage should work properly should return object with correct keys and values" duration="1"/>
+    <testCase name="prepareEducationalStage should work properly should return empty object if data.serie.ciclo is undefined" duration="1"/>
+    <testCase name="prepareEducationalStage should work properly should return empty object if ativo is false" duration="1"/>
+    <testCase name="prepareEducationalStage should work properly should return empty object if no data is received" duration="0"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/eemIntegration.spec.ts">
-    <testCase name="eemIntegration should work properly eemIntegration should use store data when no args are received" duration="4"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/validators/validators.spec.ts">
+    <testCase name="ValidationError should work properly ValidationError should return the correct error data" duration="9"/>
+    <testCase name="getValidationErrors should work properly getValidationErrors should give errors triggered by ValidationError" duration="1"/>
+    <testCase name="getValidationErrors should work properly getValidationErrors should give errors triggered by ValidationError even when field name is not provided, replacing the fild with ` `" duration="0"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/amplitudePageViewed.spec.ts">
-    <testCase name="testing if amplitude page viewed functions work properly AmplitudePageView should dispatch Page Viewd event when aplication is loaded" duration="2"/>
-    <testCase name="testing if amplitude page viewed functions work properly AmplitudePageView should dispatch Page Viewd event when history href is changed" duration="1"/>
-    <testCase name="testing if amplitude page viewed functions work properly AmplitudePageView should not dispatch a Page Viewd event when oldTitle is the same that current title" duration="1"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/user/actions.spec.ts">
+    <testCase name="Action of user history Should shoot the action of UserRequest" duration="1"/>
+    <testCase name="Action of user history Should shoot the action of UserSuccess" duration="1"/>
+    <testCase name="Action of user history Should shoot the action of UserFailure" duration="16"/>
+    <testCase name="Action of user history Should shoot setSchool action with payload containing the infos" duration="1"/>
+    <testCase name="Action of user history Should shoot forgotPasswordRequest action with payload containing the infos" duration="0"/>
+    <testCase name="Action of user history Should shoot the action of forgotPasswordSuccess" duration="1"/>
+    <testCase name="Action of user history Should shoot the action of forgotPasswordFailure" duration="1"/>
+    <testCase name="Action of user history Should shoot alterPasswordRequest action with payload containing the infos" duration="1"/>
+    <testCase name="Action of user history Should shoot the action of alterPasswordSuccess" duration="0"/>
+    <testCase name="Action of user history Should shoot the action of alterPasswordFailure" duration="2"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/auth/actions.spec.ts">
-    <testCase name="Action of authentication history Should the preparingUserData calls the correct action and receive the value within payload" duration="4"/>
-    <testCase name="Action of authentication history Should the signInRequest calls the correct action and receive the value within payload" duration="1"/>
-    <testCase name="Action of authentication history Should the signInSuccess calls the correct action and receive the value within payload" duration="1"/>
-    <testCase name="Action of authentication history Should the refreshTokenSuccess calls the correct action and receive the value within payload" duration="1"/>
-    <testCase name="Action of authentication history Should the reducedTokenEEM calls the correct action and receive the value within payload" duration="1"/>
-    <testCase name="Action of authentication history I Should the signOut is called and the amplitude states are clean" duration="1"/>
-    <testCase name="Action of authentication history Should refreshTokenRequest is called" duration="1"/>
-    <testCase name="Action of authentication history Should signInRequestLoading is called" duration="1"/>
-    <testCase name="Action of authentication history Should signInFailure is called" duration="7"/>
-    <testCase name="Action of authentication history Should withoutAccess is called" duration="1"/>
-    <testCase name="Action of authentication history Should setSigned is called" duration="1"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/profile/reducer.spec.ts">
+    <testCase name="authProduct reducer returns the initial state when an action type is not passed" duration="2"/>
+    <testCase name="authProduct reducer loading is set to false on failure action" duration="0"/>
+    <testCase name="authProduct reducer loading is set to false on failure action" duration="2"/>
+    <testCase name="authProduct reducer loading is set to false on failure action" duration="24"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/products/actions.spec.ts">
+    <testCase name="products action creators should work properly should create an request action with productRequest" duration="1"/>
+    <testCase name="products action creators should work properly should create an success action with productSuccess" duration="1"/>
+    <testCase name="products action creators should work properly should create a productIntegration action on productIntegration" duration="2"/>
+    <testCase name="products action creators should work properly should create an failure action on productFailure" duration="0"/>
+    <testCase name="products action creators should work properly should create an frame url action on setFrameURL" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/profile/actions.spec.ts">
+    <testCase name="profile module action creators should work properly should set profile with the correct payload" duration="1"/>
+    <testCase name="profile module action creators should work properly should set profiles with the correct payload" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/user/reducer.spec.ts">
+    <testCase name="Reducer of user history Should Set Loading How True On The Action Shooting of AlterPasswordRequest" duration="1"/>
+    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of alterPasswordSuccess" duration="1"/>
+    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of alterPasswordFailure" duration="0"/>
+    <testCase name="Reducer of user history Should reset the information in the user logout" duration="1"/>
+    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of alterPasswordSuccess" duration="2"/>
+    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of forgotPasswordSuccess" duration="0"/>
+    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of forgotPasswordFailure" duration="1"/>
+    <testCase name="Reducer of user history Should set the state with the selected school" duration="1"/>
+    <testCase name="Reducer of user history Should set all user information in the initial state" duration="1"/>
+    <testCase name="Reducer of user history Should return the unchanged state if it does not contain any action" duration="0"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/hasJsonStructure.spec.ts">
+    <testCase name="json-type structure Should be check if string has a json structure" duration="1"/>
+    <testCase name="json-type structure Must return that the structure sent is not of the JSON type" duration="1"/>
+    <testCase name="json-type structure Should return false when receives non string data" duration="0"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/authProduct/reducer.spec.ts">
+    <testCase name="authProduct reducer returns the initial state when an action type is not passed" duration="1"/>
+    <testCase name="authProduct reducer should return change loading to true when a product is requested" duration="0"/>
+    <testCase name="authProduct reducer loading is set to false on success action" duration="1"/>
+    <testCase name="authProduct reducer loading is set to false on failure action" duration="0"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/forgotPassword/reducer.spec.ts">
+    <testCase name="Reducer of authentication history Should change the state of load in the firing of the request of Request" duration="3"/>
+    <testCase name="Reducer of authentication history Should set the loading as false if the call fails" duration="2"/>
+    <testCase name="Reducer of authentication history Should set the View Token to True in application success" duration="2"/>
+    <testCase name="Reducer of authentication history Should Set Loading How to True Call for PIN Validation" duration="7"/>
+    <testCase name="Reducer of authentication history Should Set Loading How to False Call for PIN Validation" duration="2"/>
+    <testCase name="Reducer of authentication history Should Save the Pin Payload Case Success" duration="0"/>
+    <testCase name="Reducer of authentication history Should return the unchanged state if it does not contain any action" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/amplitudeToolOpened.spec.ts">
+    <testCase name="testing if `amplitude tool opened` function work properly amplitudeToolOpened send event with correct properties" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/myClasses/reducer.spec.ts">
+    <testCase name="Reducer of authentication history Should set Loading to True When Request Action is Triggered" duration="2"/>
+    <testCase name="Reducer of authentication history Should set Loading to false and classes to return api When Success Action is Triggered" duration="1"/>
+    <testCase name="Reducer of authentication history Should set Loading to false and classes to undefined When Failure Action is Triggered" duration="1"/>
+    <testCase name="Reducer of authentication history Should return the unchanged state if it does not contain any action" duration="0"/>
   </file>
   <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/validators/auth/signIn.spec.ts">
     <testCase name="signInSchema must check if the format of `shape` is correctly Should return a `missing username` error if username was not provided" duration="4"/>
     <testCase name="signInSchema must check if the format of `shape` is correctly Should return a `missing password` error if password was not provided" duration="1"/>
-    <testCase name="signInSchema must check if the format of `shape` is correctly Should return the `shape` if all data is correct" duration="1"/>
+    <testCase name="signInSchema must check if the format of `shape` is correctly Should return the `shape` if all data is correct" duration="5"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/hooks/useQuery.spec.ts">
-    <testCase name="useQuery hook should work properly Should return the value of the query provided by the get method" duration="10"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/hotjar/hotjarInit.spec.ts">
+    <testCase name="Should start Hotjar correctly" duration="1"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/clearAll.spec.tsx">
-    <testCase name="testing if `amplitude clear all` function work properly clearAll should clear all properties of amplitude`s session" duration="3"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/validators/auth/createNewPassword.spec.ts">
-    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return a `min characters` error if password is smaller than 5 characters" duration="5"/>
-    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return error if password is different of confirm-password" duration="1"/>
-    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return a `missing confirm-password` error if confirm-password was not provided" duration="8"/>
-    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return the `shape` if `password` and `confirm-password` is correct" duration="1"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/HeaderDesktop.spec.tsx">
-    <testCase name="HeaderDesktop should work properly Products menu should should display all solutions when clicked" duration="877"/>
-    <testCase name="HeaderDesktop should work properly shouldnt display any card when no cards are provided" duration="237"/>
-    <testCase name="HeaderDesktop should work properly card should handle push and log amplitude event when clicked" duration="338"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/forgotPassword/reducer.spec.ts">
-    <testCase name="Reducer of authentication history Should change the state of load in the firing of the request of Request" duration="2"/>
-    <testCase name="Reducer of authentication history Should set the loading as false if the call fails" duration="1"/>
-    <testCase name="Reducer of authentication history Should set the View Token to True in application success" duration="0"/>
-    <testCase name="Reducer of authentication history Should Set Loading How to True Call for PIN Validation" duration="1"/>
-    <testCase name="Reducer of authentication history Should Set Loading How to False Call for PIN Validation" duration="0"/>
-    <testCase name="Reducer of authentication history Should Save the Pin Payload Case Success" duration="1"/>
-    <testCase name="Reducer of authentication history Should return the unchanged state if it does not contain any action" duration="1"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/global/actions.spec.ts">
+    <testCase name="Action of global history Should call the loading action correctly and receive the value within payload" duration="1"/>
+    <testCase name="Action of global history Should call the enableRefreshTokenMiddleware action correctly and receive the value within payload" duration="0"/>
   </file>
   <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/forgotPassword/actions.spec.ts">
     <testCase name="Action of forgotPassword history Should the validatePinRequest calls the correct action and receive the value within payload" duration="1"/>
     <testCase name="Action of forgotPassword history Should the pwdTokenSuccess calls the correct action and receive the value within payload" duration="1"/>
-    <testCase name="Action of forgotPassword history Should the validatePinFailure" duration="1"/>
-    <testCase name="Action of forgotPassword history Should the pwdTokenRequest calls the correct action and receive the value within payload" duration="2"/>
-    <testCase name="Action of forgotPassword history Should the pwdTokenSuccess calls the correct action" duration="1"/>
-    <testCase name="Action of forgotPassword history Should the pwdTokenFailure calls the correct action" duration="19"/>
+    <testCase name="Action of forgotPassword history Should the validatePinFailure" duration="0"/>
+    <testCase name="Action of forgotPassword history Should the pwdTokenRequest calls the correct action and receive the value within payload" duration="1"/>
+    <testCase name="Action of forgotPassword history Should the pwdTokenSuccess calls the correct action" duration="0"/>
+    <testCase name="Action of forgotPassword history Should the pwdTokenFailure calls the correct action" duration="0"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/global/reducer.spec.ts">
-    <testCase name="Reducer of authentication history Should set the loading for the chosen" duration="1"/>
-    <testCase name="Reducer of authentication history Should set the enableRefreshTokenMiddleware for the chosen" duration="1"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/mixpanel/pageView.spec.ts">
+    <testCase name="testing if mixpanel page viewed functions work properly AmplitudePageView should dispatch Page Viewed event when application is loaded" duration="3"/>
+    <testCase name="testing if mixpanel page viewed functions work properly AmplitudePageView should dispatch Page Viewed event when history href is changed" duration="5"/>
+    <testCase name="testing if mixpanel page viewed functions work properly AmplitudePageView should not dispatch a Page Viewed event when oldTitle is the same that current title" duration="3"/>
+    <testCase name="testing if mixpanel page viewed functions work properly Show an error in the console if MixPanel is not instantiated" duration="1"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/global/actions.spec.ts">
-    <testCase name="Action of global history Should call the loading action correctly and receive the value within payload" duration="10"/>
-    <testCase name="Action of global history Should call the enableRefreshTokenMiddleware action correctly and receive the value within payload" duration="1"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/auth/sagas.spec.ts">
-    <testCase name="Sagas of authentication history sign in Should the user authenticate with valid login and password and pass is redirected to choice" duration="10"/>
-    <testCase name="Sagas of authentication history sign in If the Return of the API is flawed for some reason, the user is warned and the login will be rejected" duration="4"/>
-    <testCase name="Sagas of authentication history sign in Should generate with a redirect query in the URL when passing the Redirect parameter in the login" duration="2"/>
-    <testCase name="Sagas of authentication history prepare Access Should prepare all data for the first user access" duration="3"/>
-    <testCase name="Sagas of authentication history prepare Access Should signOut the user if the ID from the reduced token is different from the user ID" duration="171"/>
-    <testCase name="Sagas of authentication history prepare Access Should set the user as authenticated when receiving the redirect parameter" duration="2"/>
-    <testCase name="Sagas of authentication history checking Expiring Token You should pause running if payload comes empty" duration="1"/>
-    <testCase name="Sagas of authentication history checking Expiring Token Should not log the user if it does not have the active login flag" duration="5"/>
-    <testCase name="Sagas of authentication history checking Expiring Token Should return if the expiration date is not defined" duration="0"/>
-    <testCase name="Sagas of authentication history checking Expiring Token Should be set, in the reload of the application, the token in the Header of the API if the user is logged in" duration="1512"/>
-    <testCase name="Sagas of authentication history checking Expiring Token should refresh the user if the Token expiration date is less than the current date" duration="1"/>
-    <testCase name="Sagas of authentication history refresh Token Should generate a new user authentication token for the user" duration="2003"/>
-    <testCase name="Sagas of authentication history refresh Token You should discharge the user if something fails in the return of API" duration="4"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Logged/Dashboard.spec.tsx">
-    <testCase name="Logged`s layout should render without crashing Should call render children on screen" duration="288"/>
-    <testCase name="Logged`s layout should render without crashing Shouldn`t call steps if `open` is false" duration="162"/>
-    <testCase name="Logged`s layout should render without crashing Steps should work properly on Dashboard when `open` and `viewed` are true" duration="1216"/>
-    <testCase name="Logged`s layout should render without crashing Steps should work properly on Dashboard when `open` is true and `viewed` is false" duration="988"/>
-    <testCase name="Logged`s layout should render without crashing Should call that hooks: useSentry, useSendGlobalInfo and useAmplitudeSetProperties" duration="123"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/ChangePassword.spec.tsx">
-    <testCase name="Change Password page should work properly should change input type if view changes" duration="272"/>
-    <testCase name="Change Password page should work properly should redirect user if no token was provided" duration="143"/>
-    <testCase name="Change Password page should work properly should return user to previous page when goBack is clicked" duration="142"/>
-    <testCase name="Change Password page should work properly should display an error when validation fails" duration="219"/>
-    <testCase name="Change Password page should work properly should display a generic error when validation throws it" duration="151"/>
-    <testCase name="Change Password page should work properly Should dispatch actions with correct payloads" duration="134"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/HeaderMobile.spec.tsx">
-    <testCase name="Mobile Header`s layout should work properly Should render correct infos on screen when menu is open" duration="1551"/>
-    <testCase name="Mobile Header`s layout should work properly Should call handlePush function when a card is clicked" duration="1015"/>
-    <testCase name="Mobile Header`s layout should work properly Should call useDisclosure`s functions handlers when Drawer is triggered" duration="179"/>
-    <testCase name="Mobile Header`s layout should work properly Should render without crashing even when cards were not provided" duration="959"/>
-    <testCase name="Mobile Header`s layout should work properly Should filter the cards correctly" duration="1011"/>
-    <testCase name="Mobile Header`s layout should work properly Should close Drawer when `Escape` (Esc) key is down" duration="0"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/ModalNoClass.spec.tsx">
-    <testCase name="ModalNoClass component should work properly should trigger the logout action by clicking the exit button" duration="1235"/>
-    <testCase name="ModalNoClass component should work properly Must render the component on screen correctly" duration="530"/>
-    <testCase name="ModalNoClass component should work properly Render the component in the Desktop version" duration="460"/>
-    <testCase name="ModalNoClass component should work properly The component should not be on screen" duration="65"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Home/Home.spec.tsx">
-    <testCase name="Testing that the Home page works correctly Should render the correct elements on the screen" duration="440"/>
-    <testCase name="Testing that the Home page works correctly Should not show any card when an unknown card is searched on filter" duration="193"/>
-    <testCase name="Testing that the Home page works correctly Should dispatch `@auth/AUTH_PRODUCT_REQUEST` when a card is clicked" duration="167"/>
-    <testCase name="Testing that the Home page works correctly Should not render any cards when the products are loading" duration="178"/>
-    <testCase name="Testing that the Home page works correctly Should render a message when the products have already loaded, but they are empty []" duration="100"/>
-    <testCase name="Testing that the Home page works correctly Should render with default Welcome titles" duration="133"/>
-    <testCase name="Testing that the Home page works correctly Should render `userClass` and `Profile` when profile name is `Aluno`" duration="140"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/authProduct/reducer.spec.ts">
-    <testCase name="authProduct reducer returns the initial state when an action type is not passed" duration="1"/>
-    <testCase name="authProduct reducer should return change loading to true when a product is requested" duration="4"/>
-    <testCase name="authProduct reducer loading is set to false on success action" duration="1"/>
-    <testCase name="authProduct reducer loading is set to false on failure action" duration="0"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/ForgotPassword.spec.tsx">
-    <testCase name="Forgot Password page should work properly should display instructions about password recovery" duration="261"/>
-    <testCase name="Forgot Password page should work properly Should display an error toast if submit with empty input" duration="202"/>
-    <testCase name="Forgot Password page should work properly Should display an error toast if validator throws a generic error" duration="140"/>
-    <testCase name="Forgot Password page should work properly Should redirect client to login page if sendViewToken is true" duration="148"/>
-    <testCase name="Forgot Password page should work properly should go back when GoBack is clicked" duration="111"/>
-    <testCase name="Forgot Password page should work properly Should dispatch an action with correct payload" duration="152"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/layout/styles.spec.tsx">
-    <testCase name="Testing chacka`s styles hooks useTheme shouldn`t return void theme when encapsulated by a theme provider" duration="159"/>
-    <testCase name="Testing chacka`s styles hooks useColorMode should  gives you access to the current color mode, and a function to toggle the color mode." duration="225"/>
-    <testCase name="Testing chacka`s styles hooks useColorModeValue returns current color mode: by default return light mode color" duration="143"/>
-    <testCase name="Testing chacka`s styles hooks useMediaQuery should returns an array of booleans, indicating whether the given query matches or queries match" duration="45"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/authProduct/actions.spec.ts">
-    <testCase name="authProduct action creators should work properly should create an request action on preAuth" duration="1"/>
-    <testCase name="authProduct action creators should work properly should create an specific request action on authProductRequest" duration="1"/>
-    <testCase name="authProduct action creators should work properly should create an success action on authProductSuccess" duration="0"/>
-    <testCase name="authProduct action creators should work properly should create an failure action on authProductFailure" duration="1"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/Profile/Profile.spec.tsx">
-    <testCase name="Profile page should work properly Should render the correct elements on the screen" duration="322"/>
-    <testCase name="Profile page should work properly The component `Select` should work correctly when the user interacts with it" duration="339"/>
-    <testCase name="Profile page should work properly The `Profile` component should dispatch `@auth/FIRST_ACCESS` when the user chooses an option" duration="524"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/CardProduct.spec.tsx">
-    <testCase name="CardProduct component should work properly Card redirects to the correct link" duration="242"/>
-    <testCase name="CardProduct component should work properly Card shows correct notification" duration="130"/>
-    <testCase name="CardProduct component should work properly Card has &quot;hub&quot; category when no category is received" duration="171"/>
-    <testCase name="CardProduct component should work properly Card shows &quot;Em breve&quot; text when doesnt receive a link" duration="92"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Home/Filter.spec.tsx">
-    <testCase name="Filter Component (by Welcome) should work properly The component `Filter` shouldn`t render any level options when profile is not `professor`" duration="176"/>
-    <testCase name="Filter Component (by Welcome) should work properly The component `Filter` should render level options when trigged" duration="429"/>
-    <testCase name="Filter Component (by Welcome) should work properly The `Filter` component should show only the chosen option" duration="336"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/SignIn.spec.tsx">
-    <testCase name="Testing that the Login page works correctly should redirect the user to /esqueci-minha-senha when click on `Esqueci minha senha`" duration="423"/>
-    <testCase name="Testing that the Login page works correctly should open help modal when click on `Precido de ajuda`" duration="184"/>
-    <testCase name="Testing that the Login page works correctly should change password input type when view icon is clicked" duration="219"/>
-    <testCase name="Testing that the Login page works correctly Should render the elements of the Login page" duration="122"/>
-    <testCase name="Testing that the Login page works correctly should dispatch @auth/SIGN_IN REQUEST with the right payload if the user data format is correct" duration="246"/>
-    <testCase name="Testing that the Login page works correctly should throw a validation error when username and password input are empty" duration="179"/>
-    <testCase name="Testing that the Login page works correctly should throw new error when username or password input are incorrect" duration="149"/>
-    <testCase name="Testing that the Login page works correctly should change the type of the submit button to button type when sign-in strike is true" duration="157"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Drawer.spec.tsx">
-    <testCase name="Testing if Drawer component render correctly should render open, as well must render Drawer Header, Body and Footer" duration="713"/>
-    <testCase name="Testing if Drawer component render correctly Drawer matches snapshot" duration="688"/>
-    <testCase name="testing useDesclosure should returns the correct values" duration="2"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Welcome.spec.tsx">
-    <testCase name="Welcome renders with correct props should render Welcome message correctly" duration="334"/>
-    <testCase name="Welcome renders with correct props should render with welcome message despite undefined props" duration="124"/>
-    <testCase name="Welcome renders with correct props should render user name as `Usuário` when option is `name` and prop name is undefined" duration="141"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Home/FakeLoading.spec.tsx">
-    <testCase name="testing fakeLoading should render without  crashing" duration="359"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Collapse.spec.tsx">
-    <testCase name="Collapse component should work properly Collapse doesnt render collapse-box when disable is true" duration="217"/>
-    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is true" duration="125"/>
-    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is false" duration="195"/>
-    <testCase name="Collapse component should work properly Collapse render name inside Heading" duration="92"/>
-    <testCase name="Collapse component should work properly Collapse with false grid doesnt render SimpleGrid" duration="123"/>
-    <testCase name="Collapse component should work properly Collapse uses SimpleGrid in large screens" duration="121"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Heading.spec.tsx">
-    <testCase name="Heading renders without crashing Heading has children" duration="6"/>
-    <testCase name="Heading renders without crashing Heading matches snapshot" duration="10"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/ExpiredToken.spec.tsx">
-    <testCase name="Expired Token page should work properly Should redirect to `/` when `validateViewPin` doesn`t exist or it`s false" duration="141"/>
-    <testCase name="Expired Token page should work properly Should render the correcly elements on screen" duration="114"/>
-    <testCase name="Expired Token page should work properly Should redirect to `/esqueci-minha-senha` when `Solicitar novo link` is clicked" duration="115"/>
-    <testCase name="Expired Token page should work properly Should redirect to `/login` when `GoBack` is clicked" duration="105"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Popover.spec.tsx">
-    <testCase name="Popover component should work properly Should render with correctly content" duration="184"/>
-    <testCase name="Popover component should work properly Should close visibility of the Popover when close button is clicked" duration="442"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/SimpleGrid.spec.tsx">
-    <testCase name="SimpleGrid renders without crashing SimpleGrid matches snapshot" duration="123"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Select.spec.tsx">
-    <testCase name="Select renders without crashing Select normal variant render all options" duration="747"/>
-    <testCase name="Select renders without crashing Select blue-transparent variant render options" duration="404"/>
-    <testCase name="Select renders without crashing Select displays error message when no options are provided" duration="177"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Home/FakeCollapse.spec.tsx">
-    <testCase name="FakeCollapse renders without crashing should have children" duration="145"/>
-    <testCase name="FakeCollapse renders without crashing Collapse with false grid doesn&apos;t render SimpleGrid" duration="93"/>
-    <testCase name="FakeCollapse renders without crashing renders without crashing on larger screens" duration="125"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Modal.spec.tsx">
-    <testCase name="Modal component should work properly Should render the children on screen with correctly props" duration="16"/>
-    <testCase name="Modal component should work properly Shoudn`t render the component when prop open is false (closed Model)" duration="97"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/authProduct/sagas.spec.ts">
-    <testCase name="Testing productSorting saga flow productSorting should call refresh token then dispatch a request action" duration="6"/>
-    <testCase name="Testing productSorting saga flow productSorting should redirect user when tipoRenderizacao is `iframenoauth`" duration="4"/>
-    <testCase name="Testing productSorting saga flow productSorting should open a new page when tipoRenderizacao is `targetblank`" duration="1"/>
-    <testCase name="Testing productSorting saga flow productSorting should dispatch request action when tipoRenderizacao is `iframe`" duration="1"/>
-    <testCase name="Testing productSorting saga flow productSorting should early return when no auth, profile or user info is available" duration="1"/>
-    <testCase name="testing authProductGUID saga flow should set loading, make a post request, redirect user, set iframe and dispatch success action" duration="5"/>
-    <testCase name="testing authProductGUID saga flow should redirect user to correct path when payload has a subpath" duration="3"/>
-    <testCase name="testing authProductGUID saga flow should send a tost and dispatch failure action when post response has a error" duration="15"/>
-    <testCase name="testing authProductGUID saga flow productSorting should early return when no auth, profile or user info is available" duration="0"/>
-    <testCase name="testing authProductEEM saga flow should set loading, set iframe url and then dispatch success action" duration="2"/>
-    <testCase name="testing authProductEEM saga flow should open a new window when tipoRenderizacao is `iframeblank` and the device is IOS" duration="1"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Form.spec.tsx">
-    <testCase name="Form works properly input should render icons correctly and change style when focused" duration="232"/>
-    <testCase name="Form works properly input should display an error if useField returns error as truthy" duration="108"/>
-    <testCase name="Form works properly Form calls submit with correct values" duration="53"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Tour.spec.tsx">
-    <testCase name="Testing Tour component and your functionalities Should render Tour component with first step" duration="23"/>
-    <testCase name="Testing Tour component and your functionalities should close the tour when closeButton is clicked" duration="663"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/SpinnerLoader.spec.tsx">
-    <testCase name="SpinnerLoader renders without crashing SpinnerLoader matches snapshot" duration="159"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Accordion.spec.tsx">
-    <testCase name="Accordion an UnmountClosed components Accordion being rendered on canvas" duration="111"/>
-    <testCase name="Accordion an UnmountClosed components UnmountClosed being rendered on canvas" duration="102"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Tooltip.spec.tsx">
-    <testCase name="Tooltip renders without crashing Tooltip has children" duration="8"/>
-    <testCase name="Tooltip renders without crashing Tooltip matches snapshot" duration="3"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/GoBack.spec.tsx">
-    <testCase name="Goback component should render on screen and when clicking trigger an event" duration="112"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Button.spec.tsx">
-    <testCase name="Button renders without crashing Button matches snapshot" duration="142"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/BarLoader.spec.tsx">
-    <testCase name="BarLoader renders without crashing BarLoader matches snapshot" duration="206"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/Logo.spec.tsx">
-    <testCase name="Logo component Must render the component on screen correctly" duration="246"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/layout/provider.spec.tsx">
-    <testCase name="Testing Theme Provider should change theme when profile changes" duration="362"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Skeleton.spec.tsx">
-    <testCase name="Skeleton renders without crashing Stack matches snapshot" duration="103"/>
-    <testCase name="Skeleton renders without crashing Skeleton matches snapshot" duration="175"/>
-    <testCase name="Skeleton renders without crashing SkeletonCircle matches snapshot" duration="100"/>
-    <testCase name="Skeleton renders without crashing SkeletonText matches snapshot" duration="129"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Box.spec.tsx">
-    <testCase name="Box renders without crashing Box has children" duration="10"/>
-    <testCase name="Box renders without crashing Box matches snapshot" duration="8"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Flex.spec.tsx">
-    <testCase name="Flex renders without crashing Flex has children" duration="8"/>
-    <testCase name="Flex renders without crashing Flex matches snapshot" duration="2"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/ForgotFail.spec.tsx">
-    <testCase name="Expired Token page should work properly Should redirect to `/login` when `sendViewToken` doesn`t exist or it`s false" duration="180"/>
-    <testCase name="Expired Token page should work properly Should render the correcly elements on screen" duration="155"/>
-    <testCase name="Expired Token page should work properly Should redirect to `/login` when `Voltar para o login` is clicked" duration="204"/>
-    <testCase name="Expired Token page should work properly Should redirect to `/login` when `GoBack` is clicked" duration="116"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Input.spec.tsx">
-    <testCase name="Input renders without crashing Input matches snapshot" duration="78"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Search.spec.tsx">
-    <testCase name="Search component should work properly Input should call onChange with correct value" duration="159"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/CardBox.spec.tsx">
-    <testCase name="CardBox renders without crashing CardBox has children" duration="19"/>
-    <testCase name="CardBox renders without crashing CardBox matches snapshot" duration="2"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Avatar.spec.tsx">
-    <testCase name="Avatar renders without crashing Avatar matches snapshot" duration="129"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Text.spec.tsx">
-    <testCase name="Text renders without crashing Text matches snapshot" duration="91"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Image.spec.tsx">
-    <testCase name="Image renders without crashing Should render image with correct alt text" duration="7"/>
-    <testCase name="Image renders without crashing Image matches snapshot" duration="4"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/pages/Auth/Profile/CardBox.spec.tsx">
-    <testCase name="CardBox Component should work properly Should render icon with correct titles" duration="74"/>
-    <testCase name="CardBox Component should work properly Should call onClick when user choises an role" duration="60"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/isMobile.spec.ts">
-    <testCase name="Check device origin Should return if the device is not mobile" duration="1"/>
-    <testCase name="Check device origin Should return if the device is  mobile" duration="0"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/amplitudeInit.spec.ts">
-    <testCase name="testing if `amplitude init` function work properly Amplitude should initialize on amplitudeInit" duration="2"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/validators/user/alterPassword.spec.ts">
-    <testCase name="alterPassword must check the format of the new password Should return a `min characters` error if new password is smaller than 5 characters" duration="3"/>
-    <testCase name="alterPassword must check the format of the new password Should return an error if newPassword is different of confirmNewPassword" duration="1"/>
-    <testCase name="alterPassword must check the format of the new password Should return a `missing confirmNewPassword` error if confirmNewPassword was not provided" duration="1"/>
-    <testCase name="alterPassword must check the format of the new password Should return a `missing oldPassword` error if oldPassword was not provided" duration="1"/>
-    <testCase name="alterPassword must check the format of the new password Should return the `shape` if `password`, `confirm-password` and `oldPassword` is correct" duration="0"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/transpileProfile.spec.ts">
-    <testCase name="Profile structure Must return the correct structure following a pre-defined string" duration="1"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/identifyUser.spec.ts">
-    <testCase name="testing if amplitude Set Id function work properly amplitudeSetId should send event with correct id" duration="1"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Icon.spec.tsx">
+    <testCase name="Root import icons I hope these components are called" duration="131"/>
   </file>
   <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/prepareSchoolAndRoles.spec.ts">
     <testCase name="Adjust school structure and profiles Should return data structure of schools" duration="2"/>
-    <testCase name="Adjust school structure and profiles Should return data structure of Roles" duration="22"/>
+    <testCase name="Adjust school structure and profiles Should return data structure of Roles" duration="1"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/history.spec.ts">
-    <testCase name="history service should work properly should be defined" duration="0"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/clearAll.spec.tsx">
+    <testCase name="testing if `amplitude clear all` function work properly clearAll should clear all properties of amplitude`s session" duration="1"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/validators/validators.spec.ts">
-    <testCase name="ValidationError should work properly ValidationError should return the correct error data" duration="1"/>
-    <testCase name="getValidationErrors should work properly getValidationErrors should give errors triggered by ValidationError" duration="1"/>
-    <testCase name="getValidationErrors should work properly getValidationErrors should give errors triggered by ValidationError even when field name is not provided, replacing the fild with ` `" duration="0"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/mixpanel/toolOpened.spec.ts">
+    <testCase name="testing if `mixpanel tool opened` function work properly mixpanelToolOpened send event with correct properties" duration="1"/>
+    <testCase name="testing if `mixpanel tool opened` function work properly Show an error in the console if MixPanel is not instantiated" duration="0"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/amplitudeInit.spec.ts">
+    <testCase name="testing if `amplitude init` function work properly Amplitude should initialize on amplitudeInit" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/mixpanel/identifyUser.spec.ts">
+    <testCase name="Mixpanel Services Should shoot the MixPanel reset function" duration="1"/>
+    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/mixpanel/init.spec.ts">
+    <testCase name="Mixpanel Services Should properly boot MixPanel" duration="1"/>
+    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="0"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/validators/auth/forgotPassword.spec.ts">
+    <testCase name="forgotPasswordSchema must check if the format of `email` is correct Should return a `missing email` error if email was not provided" duration="2"/>
+    <testCase name="forgotPasswordSchema must check if the format of `email` is correct Should return `shape` if email`s formart is correct" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/productIntegrations/actions.spec.ts">
+    <testCase name="Action of global history Should call the loading action correctly and receive the value within payload" duration="3"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/identifyUser.spec.ts">
+    <testCase name="testing if amplitude Set Id function work properly amplitudeSetId should send event with correct id" duration="2"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/isMobile.spec.ts">
+    <testCase name="Check device origin Should return if the device is not mobile" duration="16"/>
+    <testCase name="Check device origin Should return if the device is  mobile" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/educationalStage/reducer.spec.ts">
+    <testCase name="Reducer of authentication history Should set the Educational Stage for the chosen" duration="1"/>
+    <testCase name="Reducer of authentication history Should set the Educational Stage Default with the array of that the user has access to" duration="1"/>
+    <testCase name="Reducer of authentication history Should reset all states" duration="2"/>
+    <testCase name="Reducer of authentication history Should set Loading as True and Clean User Infos" duration="2"/>
+    <testCase name="Reducer of authentication history Should return the unchanged state if it does not contain any action" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/global/reducer.spec.ts">
+    <testCase name="Reducer of authentication history Should set the loading for the chosen" duration="27"/>
+    <testCase name="Reducer of authentication history Should set the enableRefreshTokenMiddleware for the chosen" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/educationalStage/actions.spec.ts">
+    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="3"/>
+    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="0"/>
+    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="1"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/tour/actions.spec.ts">
+    <testCase name="tour module action creators should work properly should get tour request with correct action type" duration="1"/>
+    <testCase name="tour module action creators should work properly should dispatch tour success action with correct type and payload" duration="1"/>
+    <testCase name="tour module action creators should work properly should dispatch tour failure action with correct type" duration="1"/>
+    <testCase name="tour module action creators should work properly should request if user has already seen the tour with correct action type" duration="0"/>
+    <testCase name="tour module action creators should work properly should dispatch success action with correct payload on getTourViewedSuccess" duration="1"/>
+    <testCase name="tour module action creators should work properly should dispatch failure action with correct payload on getTourViewedFailure" duration="0"/>
+    <testCase name="tour module action creators should work properly should dispatch openTour action with correct payload and action type" duration="1"/>
+    <testCase name="tour module action creators should work properly should dispatch postTour action with correct type" duration="0"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/utils/createSlug.spec.ts">
+    <testCase name="expect createSlug to work correctly should convert string into slug" duration="6"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Select.spec.tsx">
+    <testCase name="Select renders without crashing Select normal variant render all options" duration="672"/>
+    <testCase name="Select renders without crashing Select blue-transparent variant render options" duration="4396"/>
+    <testCase name="Select renders without crashing Select displays error message when no options are provided" duration="259"/>
   </file>
   <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/utils/documentTitle.spec.ts">
     <testCase name="expect documentTitle to work correctly should return documentTitle styled string" duration="5"/>
     <testCase name="expect documentTitle to work correctly should return default string when theres no env title" duration="1"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Icon.spec.tsx">
-    <testCase name="Root import icons I hope these components are called" duration="106"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/educationalStage/reducer.spec.ts">
-    <testCase name="Reducer of authentication history Should set the Educational Stage for the chosen" duration="1"/>
-    <testCase name="Reducer of authentication history Should set the Educational Stage Default with the array of that the user has access to" duration="1"/>
-    <testCase name="Reducer of authentication history Should reset all states" duration="1"/>
-    <testCase name="Reducer of authentication history Should set Loading as True and Clean User Infos" duration="2"/>
-    <testCase name="Reducer of authentication history Should return the unchanged state if it does not contain any action" duration="0"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/amplitude/amplitudeToolOpened.spec.ts">
-    <testCase name="testing if `amplitude tool opened` function work properly amplitudeToolOpened send event with correct properties" duration="1"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/educationalStage/actions.spec.ts">
-    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="1"/>
-    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="1"/>
-    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="1"/>
-  </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/hasJsonStructure.spec.ts">
-    <testCase name="json-type structure Should be check if string has a json structure" duration="1"/>
-    <testCase name="json-type structure Must return that the structure sent is not of the JSON type" duration="1"/>
-    <testCase name="json-type structure Should return false when receives non string data" duration="1"/>
-  </file>
   <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/utils/capitalize.spec.ts">
-    <testCase name="expect capitalize to work correctly should return capitalized string" duration="0"/>
+    <testCase name="expect capitalize to work correctly should return capitalized string" duration="2"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/prepareEducationalStage.spec.ts">
-    <testCase name="prepareEducationalStage should work properly should return object with correct keys and values" duration="5"/>
-    <testCase name="prepareEducationalStage should work properly should return empty object if data.serie.ciclo is undefined" duration="2"/>
-    <testCase name="prepareEducationalStage should work properly should return empty object if ativo is false" duration="1"/>
-    <testCase name="prepareEducationalStage should work properly should return empty object if no data is received" duration="0"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/utils/transpileProfile.spec.ts">
+    <testCase name="Profile structure Must return the correct structure following a pre-defined string" duration="7"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Badge.spec.tsx">
-    <testCase name="Badge renders without crashing Badge matches snapshot" duration="125"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/store/modules/myClasses/actions.spec.ts">
+    <testCase name="Action of global history Should call the classesRequest action correctly and receive the value within payload" duration="81"/>
+    <testCase name="Action of global history Should call the classesSuccess action correctly and receive the value within payload" duration="17"/>
+    <testCase name="Action of global history Should call the classesFailure action correctly and receive the value within payload" duration="2"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/index.spec.tsx">
-    <testCase name="Root import components I hope these components are called" duration="5"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/history.spec.ts">
+    <testCase name="history service should work properly should be defined" duration="21"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/utils/createSlug.spec.ts">
-    <testCase name="expect createSlug to work correctly should convert string into slug" duration="1"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/services/mixpanel/clearAll.spec.ts">
+    <testCase name="Mixpanel Services Should shoot the MixPanel reset function" duration="7"/>
+    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="5"/>
   </file>
-  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/common/__tests__/components/Stack.spec.tsx">
-    <testCase name="Stack renders without crashing Stack matches snapshot" duration="63"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/hooks/useSentry.spec.ts">
+    <testCase name="useSentry hook should work properly If environment is `production`, this hook should call its methods correctly" duration="10"/>
+    <testCase name="useSentry hook should work properly If environment is not `production`, this hook shouldn`t call its methods" duration="5"/>
   </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Header/Mobile.spec.tsx">
-    <testCase name="Mobile Header component Should have a button called `Estou com uma dúvida`" duration="2740"/>
-    <testCase name="Mobile Header component openMenu should call onOpen when isOpen is false" duration="278"/>
-    <testCase name="Mobile Header component openMenu should call onClose when isOpen is true" duration="1905"/>
-    <testCase name="Mobile Header component Should redirect to `/` when `Sair` button is clicked" duration="2425"/>
-    <testCase name="Mobile Header component Should open a Tour (dispatch a `@tour/OPEN_TOUR` action) when /Fazer tour/ button is clicked" duration="3069"/>
-    <testCase name="Mobile Header component Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked" duration="3047"/>
-    <testCase name="Mobile Header component Should call useDisclosure`s onClose function when ´Home` button is clicked" duration="2988"/>
-    <testCase name="Mobile Header component Should call useDisclosure`s onClose function when key of escape is pressed (ESC)" duration="3546"/>
-    <testCase name="Mobile Header component Should change the `school` on selector when other `school` is triggered" duration="38431"/>
-    <testCase name="Mobile Header component Should change the `role` on selector when other `role` is triggered" duration="9017"/>
-    <testCase name="Mobile Header component Should change `Home` button color when pathname is /minhas-turmas" duration="2356"/>
-    <testCase name="Mobile Header component Should change `Minhas turmas` button color when pathname is `/`" duration="2490"/>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/Header/Mobile.spec.tsx">
+    <testCase name="Mobile Header component  Should have a button called `Estou com uma dúvida`" duration="1856"/>
+    <testCase name="Mobile Header component  openMenu should call onOpen when isOpen is false" duration="160"/>
+    <testCase name="Mobile Header component  openMenu should call onClose when isOpen is true" duration="1452"/>
+    <testCase name="Mobile Header component  Should redirect to `/` when `Sair` button is clicked" duration="1595"/>
+    <testCase name="Mobile Header component  Should open a Tour (dispatch a `@tour/OPEN_TOUR` action) when /Fazer tour/ button is clicked" duration="1805"/>
+    <testCase name="Mobile Header component  Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked" duration="2159"/>
+    <testCase name="Mobile Header component  Should call useDisclosure`s onClose function when ´Home` button is clicked" duration="3451"/>
+    <testCase name="Mobile Header component  Should call useDisclosure`s onClose function when key of escape is pressed (ESC)" duration="3405"/>
+    <testCase name="Mobile Header component  Should change the `school` on selector when other `school` is triggered" duration="58016"/>
+    <testCase name="Mobile Header component  Should change the `role` on selector when other `role` is triggered" duration="6835"/>
+    <testCase name="Mobile Header component  Should change `Home` button color when pathname is /minhas-turmas" duration="1299"/>
+    <testCase name="Mobile Header component  Should change `Minhas turmas` button color when pathname is `/`" duration="1269"/>
+  </file>
+  <file path="/home/matheuskindrazki/development/positivo/hub-digital/packages/apps/hub-web/src/__tests__/components/Header/Header.spec.tsx">
+    <testCase name="Header component  Should render Desktop Header when min-width is 480px" duration="5953"/>
+    <testCase name="Header component  Should render Mobile Header when min-width is 479px" duration="12325"/>
+    <testCase name="Header component  Should call handleClick when MenuButton is clicked" duration="39270"/>
+    <testCase name="Header component  Should redirect to `/` when hub logo is clicked" duration="15397"/>
+    <testCase name="Header component  Should call openModalPass when `Alterar minha senha` is clicked" duration="21751"/>
   </file>
 </testExecutions>
