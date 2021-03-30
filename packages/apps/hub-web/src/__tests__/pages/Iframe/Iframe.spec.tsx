@@ -1,5 +1,10 @@
 import React from 'react'
 
-it('', () => {
-  expect(1).toBe(1)
+import { render } from '@hub/test-utils'
+
+import Iframe from '~/pages/Iframe/components/Iframe'
+
+it('iframe should work as expected', () => {
+  const wrapper = render(<Iframe />)
+  expect(wrapper).toMatchSnapshot()
 })
