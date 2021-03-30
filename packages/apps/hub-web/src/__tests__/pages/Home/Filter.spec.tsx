@@ -1,12 +1,12 @@
 import React from 'react'
 
-import selectEvent from 'react-select-event'
+import { openMenu } from 'react-select-event'
+import MatchMediaMock from 'jest-matchmedia-mock'
 
 import { store } from '~/store'
 
 import { render, fireEvent } from '@hub/test-utils'
-
-import * as chakra from '@chakra-ui/react'
+import * as styles from '@hub/common/layout/styles'
 
 import Filter from '~/pages/Home/components/Filter'
 
@@ -21,6 +21,11 @@ describe('Filter Component (by Welcome) should work properly', () => {
         { label: 'Ensino Médio', value: 'EM' }
       ]
     }
+  }
+
+  const useMedia = (size: number) => {
+    const matchmedia = new MatchMediaMock()
+    return matchmedia.useMediaQuery(`(min-width: ${size})`)
   }
 
   const { educationalStage } = CUSTOM_STATE
@@ -44,13 +49,11 @@ describe('Filter Component (by Welcome) should work properly', () => {
   })
 
   it('The component `Filter` should render level options when trigged', () => {
-    jest.spyOn(chakra, 'useMediaQuery').mockReturnValue([false])
-
     const { queryAllByText, getByText } = setup({ profileName: 'Professor' })
 
     const select = getByText(/Ensino Infantil/i)
 
-    selectEvent.openMenu(select)
+    openMenu(select)
     const levels = queryAllByText(/Ensino/i)
 
     // deve haver 4 ensinos em tela, além do ensino escolhido
@@ -58,8 +61,6 @@ describe('Filter Component (by Welcome) should work properly', () => {
   })
 
   it('The `Filter` component should show only the chosen option', async () => {
-    jest.spyOn(chakra, 'useMediaQuery').mockReturnValue([true])
-
     const { findAllByText, getByText, queryAllByText, storeUtils } = setup({
       profileName: 'Professor'
     })
@@ -67,7 +68,7 @@ describe('Filter Component (by Welcome) should work properly', () => {
 
     const select = getByText(/Ensino Infantil/i)
 
-    selectEvent.openMenu(select)
+    openMenu(select)
 
     const level = await findAllByText(choice)
     fireEvent.click(level[1])
@@ -79,5 +80,21 @@ describe('Filter Component (by Welcome) should work properly', () => {
       { payload: 'EI', type: '@education/SET_LEVEL' },
       { payload: {}, type: '@products/PRODUCT_REQUEST' }
     ])
+  })
+
+  it('Filter`s Box should have 1.25rem on margin-bottom when mediaQuery returns [true]', () => {
+    jest.spyOn(styles, 'useMediaQuery').mockReturnValue([true])
+    const { getByTestId } = setup({ profileName: 'Professor' })
+
+    const box = getByTestId('filter-box')
+    expect(box).toHaveStyle('margin-bottom: 1.25rem')
+  })
+
+  it('Filter`s Box should have 0px on margin-bottom when mediaQuery returns [false]', () => {
+    jest.spyOn(styles, 'useMediaQuery').mockReturnValue([false])
+
+    const { getByTestId } = setup({ profileName: 'Professor' })
+    const box = getByTestId('filter-box')
+    expect(box).toHaveStyle('margin-bottom: 0px')
   })
 })
