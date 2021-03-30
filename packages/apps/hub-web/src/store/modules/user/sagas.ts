@@ -1,6 +1,6 @@
 import { ApiResponse } from 'apisauce'
 
-import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
+import { all, call, delay, takeLatest, Payload, put } from 'redux-saga/effects'
 
 import { store } from '~/store'
 
@@ -24,8 +24,7 @@ export function* forgotPassword({ payload }: AlterPasswordPayload): Generator {
   const response = yield call(() => {
     return apiEEMAuth.put('/api/v1/users/reset-password', payload, {
       headers: {
-        'content-type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*'
+        'content-type': 'application/json;charset=UTF-8'
       }
     })
   })
@@ -47,6 +46,8 @@ export function* forgotPassword({ payload }: AlterPasswordPayload): Generator {
   }
   toast.success('Senha Alterada com sucesso!')
 
+  yield delay(500)
+
   history.push('/login')
 
   return yield put(forgotPasswordSuccess())
@@ -57,16 +58,15 @@ type AlterPasswordPanelPayload = Payload<UserAlterPassPanel>
 export function* alterPasswordPanel({
   payload
 }: AlterPasswordPanelPayload): Generator {
-  const { user } = store.getState().user
+  const { info: user } = store.getState().user
   const { token } = store.getState().auth
 
-  const guid = user?.guid || '000'
+  const guid = user?.guid
 
   const response = yield call(() => {
     return apiEEMAuth.put(`/api/v1/users/${guid}/change-password`, payload, {
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
         Authorization: token
       }
     })

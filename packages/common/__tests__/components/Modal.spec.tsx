@@ -1,6 +1,5 @@
 import React from 'react'
 
-import '@testing-library/jest-dom'
 import { render } from '@hub/test-utils'
 
 import Modal from '../../components/Modal'

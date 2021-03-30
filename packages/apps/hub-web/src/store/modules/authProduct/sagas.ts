@@ -45,7 +45,7 @@ export function* productSorting({ payload }: AuthPayload): Generator {
   if (!auth && !profile && !user) return
 
   yield call(async () => {
-    return await refreshTokenMiddleware()
+    return refreshTokenMiddleware()
   })
 
   const { tipoRenderizacao, url, product } = payload
@@ -93,7 +93,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
         class: level
       },
       profile: profile.guid,
-      user_id: user.user?.integration_id || user.user?.id
+      user_id: user.info?.integration_id || user.info?.id
     },
     expire_in: auth.exp
   }
@@ -120,9 +120,18 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   const subpath = payload.subpath !== undefined ? payload.subpath : ''
 
   history.push(`/solucao/${payload.product}/${subpath}`)
+
+  let urlAuth = `${payload.url}/${data}/${subpath}`
+
+  if (payload.tipoRenderizacao === 'wordpress') {
+    const guid = (data as unknown) as string
+
+    urlAuth = payload.url.replace('{guid}', guid)
+  }
+
   yield put(
     setFrameURL({
-      url: `${payload.url}/${data}/${subpath}`,
+      url: urlAuth,
       name: payload.name
     })
   )

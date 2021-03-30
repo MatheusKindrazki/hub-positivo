@@ -19,15 +19,17 @@ import {
   CardProduct
 } from '@hub/common/components'
 
+import { toolOpened } from '~/services/mixpanel/toolOpened'
 import { amplitudeToolOpened } from '~/services/amplitude'
+
+import { cardFilter } from '~/utils/cardFilter'
+
+import mockFakeLoading from '~/components/FakeCollapse/mock'
+import FakeCollapse from '~/components/FakeCollapse'
 
 import { Container } from './styles'
 import Filter from './components/Filter'
 import FakeLoadingCard from './components/FakeLoading'
-import mockFakeLoading from './components/FakeCollapse/mock'
-import FakeCollapse from './components/FakeCollapse'
-import { cardFilter } from './cardFilter'
-
 const Home: React.FC = () => {
   documentTitle('Home')
 
@@ -35,13 +37,13 @@ const Home: React.FC = () => {
 
   const [search, setSearchValue] = useState('')
 
-  const { user, avatar, school: useSchool } = useSelector(
+  const { info: user, avatar, school: useSchool } = useSelector(
     (state: Store.State) => state.user
   )
   const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
   )
-  const { level: educational_stage, class: userClass } = useSelector(
+  const { class: userClass } = useSelector(
     (state: Store.State) => state.educationalStage
   )
   const { data: cards, loading: load } = useSelector(
@@ -64,13 +66,17 @@ const Home: React.FC = () => {
   const handlePushProduct = useCallback(
     data => {
       const slug = createSlug(data.nome)
-      amplitudeToolOpened({
-        category: data.category,
-        tool: data.nome,
-        educational_stage,
-        user_role: nameProfile,
-        user_school: useSchool?.value
+
+      toolOpened({
+        card_name: data.nome,
+        location: 'dashboard'
       })
+
+      amplitudeToolOpened({
+        card_name: data.nome,
+        location: 'dashboard'
+      })
+
       dispatch(
         preAuth({
           product: slug,
@@ -80,11 +86,12 @@ const Home: React.FC = () => {
         })
       )
     },
-    [dispatch, educational_stage, nameProfile, useSchool]
+    [dispatch]
   )
 
   const filterCards = useMemo(
-    () => cardFilter({ data: cards || [], search: search }),
+    () =>
+      cardFilter({ data: cards || [], search: search, typeCard: 'solucoes' }),
     [cards, search]
   )
 
@@ -125,6 +132,7 @@ const Home: React.FC = () => {
       </Box>
       <Box as={Container} p="4" maxW="1400px" margin="0 auto">
         <SearchInput
+          placeholder="Buscar soluções"
           backgroundColor="white!important"
           onChange={handleSearch}
         />
@@ -137,7 +145,7 @@ const Home: React.FC = () => {
           {!load && !globalLoading && filterCards ? (
             filterCards.map((card, i) => (
               <Collapse
-                key={Math.random()}
+                key={card.id}
                 disable
                 cor={card.cor}
                 id={card.id}
@@ -148,7 +156,7 @@ const Home: React.FC = () => {
               >
                 {card.solucoes?.map(item => (
                   <CardProduct
-                    key={Math.random()}
+                    key={item.id}
                     handlePush={url =>
                       handlePushProduct({
                         url,
@@ -168,7 +176,7 @@ const Home: React.FC = () => {
             <>
               {mockFakeLoading.map((item, index) => (
                 <FakeCollapse key={index} id={String(index)}>
-                  {item.cardMock.map((card, i) => (
+                  {item.cardMock.map((_, i) => (
                     <FakeLoadingCard key={i} />
                   ))}
                 </FakeCollapse>

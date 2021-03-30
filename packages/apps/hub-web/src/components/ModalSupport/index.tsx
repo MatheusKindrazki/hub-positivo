@@ -2,8 +2,7 @@ import React, { useContext } from 'react'
 
 import { useDisclosure, useMediaQuery } from '@hub/common/hooks'
 import Modal from '@hub/common/components/Modal'
-import { Phone, EnvelopeSimple } from '@hub/common/components/Icons'
-import { Box, Button, Image, SimpleGrid, Text } from '@hub/common/components'
+import { Box, Button, Image, Text } from '@hub/common/components'
 
 import ModalContext from './context'
 import cerebro from './cerebro.svg'

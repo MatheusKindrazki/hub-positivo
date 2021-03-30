@@ -2,8 +2,7 @@ import React, { useCallback } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { openTour } from '~/store/modules/tour/actions'
-import { postTourViewed } from '~/store/modules/tour/actions'
+import { openTour, postTourViewed } from '~/store/modules/tour/actions'
 
 import Tour from '@hub/common/components/Tour'
 import { BarLoader } from '@hub/common/components'
@@ -41,7 +40,7 @@ const Dashboard: React.FC = ({ children }) => {
       <ModalNoClass />
       <BarLoader width="100%" height="4px" loading={loading} />
       {steps?.length && (
-        <Tour onClosed={handleClosedTour} open={open} steps={steps || []} />
+        <Tour onClosed={handleClosedTour} open={open} steps={steps} />
       )}
       <Header />
       {children}

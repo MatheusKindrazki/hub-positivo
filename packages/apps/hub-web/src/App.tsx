@@ -12,6 +12,8 @@ import ModalSupport from '~/components/ModalSupport'
 
 import Routes from '~/routes'
 
+import '~/services/mixpanel/pageView'
+
 const App: React.FC = () => {
   return (
     <ThemeProvider>

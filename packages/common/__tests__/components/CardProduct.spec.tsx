@@ -1,14 +1,12 @@
 import React from 'react'
-import '@testing-library/jest-dom'
 
 import { render, fireEvent } from '@hub/test-utils'
 
-import CardProduct from '../../components/CardProduct'
-import { CardProductProps as propTypes } from '../../components/CardProduct'
+import CardProduct, { CardProductProps } from '../../components/CardProduct'
 
 const handlePush = jest.fn()
 
-const CardProductProps: propTypes = {
+const cardProduct: CardProductProps = {
   handlePush,
   cor: 'test',
   category: 'teste',
@@ -24,8 +22,8 @@ const CardProductProps: propTypes = {
 describe('CardProduct component should work properly', () => {
   it('Card redirects to the correct link', () => {
     const linkValue = 'this link is a test'
-    CardProductProps.card.link = linkValue
-    const { getByTestId } = render(<CardProduct {...CardProductProps} />)
+    cardProduct.card.link = linkValue
+    const { getByTestId } = render(<CardProduct {...cardProduct} />)
 
     const cardSolucaoHub = getByTestId('card-container')
     fireEvent.click(cardSolucaoHub)
@@ -34,26 +32,26 @@ describe('CardProduct component should work properly', () => {
 
   it('Card shows correct notification', () => {
     const notificationText = 'this string is a test notification'
-    CardProductProps.card.notificacao = notificationText
-    const { getByText } = render(<CardProduct {...CardProductProps} />)
+    cardProduct.card.notificacao = notificationText
+    const { getByText } = render(<CardProduct {...cardProduct} />)
 
     const notification = getByText(notificationText)
     expect(notification).toBeInTheDocument()
   })
 
   it('Card has "hub" category when no category is received', () => {
-    CardProductProps.category = undefined
-    const { getByTestId } = render(<CardProduct {...CardProductProps} />)
+    cardProduct.category = undefined
+    const { getByTestId } = render(<CardProduct {...cardProduct} />)
     const cardSolucaoHub = getByTestId('card-container')
 
     expect(cardSolucaoHub.id).toContain('hub')
   })
 
-  it('Card shows "Em breve" text when doesnt receive a link', () => {
-    CardProductProps.card.link = undefined
-    const { getByText } = render(<CardProduct {...CardProductProps} />)
-    const textoDeEmbreve = getByText('Em Breve')
+  it("Card shows 'Em breve' text when doesn't receive a link", () => {
+    cardProduct.card.link = undefined
+    const { getByText } = render(<CardProduct {...cardProduct} />)
+    const textoDeEmBreve = getByText('Em Breve')
 
-    expect(textoDeEmbreve).toBeInTheDocument()
+    expect(textoDeEmBreve).toBeInTheDocument()
   })
 })

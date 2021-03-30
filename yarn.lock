@@ -3119,13 +3119,6 @@
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^7.28.1"
 
-"@testing-library/user-event@^12.6.3":
-  version "12.7.3"
-  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-12.7.3.tgz#ef674ccb91794e52123b3532c336485d16f453b3"
-  integrity sha512-IdSHkWfbeSSJRFlldvHDWfVX0U18TbXIvLSGII+JbqkJrsflFr4OWlQIua0TvcVVJNna3BNrNvRSvpQ0yvSXlA==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
-
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
@@ -3311,6 +3304,11 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
+"@types/mixpanel-browser@^2.35.6":
+  version "2.35.6"
+  resolved "https://registry.yarnpkg.com/@types/mixpanel-browser/-/mixpanel-browser-2.35.6.tgz#6a2c98471f3cf4473625a4345a4abd37d30dec84"
+  integrity sha512-wYzQ6nIr7HjPgpkyaO0nxXa3GIbm1I7kgJHuTJWxFGS+4/TFfOIy739a/GoDM2PczeSEX5v4FplLbOdzgxjttg==
+
 "@types/node@*", "@types/node@^14.14.25":
   version "14.14.31"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.31.tgz#72286bd33d137aa0d152d47ec7c1762563d34055"
@@ -3456,6 +3454,13 @@
   integrity sha512-gb9KzKkG0kmgE+A5eBfDa4ldGOr9b6jb1A0Xp1J7rh6toHG1/eb5u7kVcdmKuG33S4ZGXZCpx/rkz330R19tLg==
   dependencies:
     "@types/react" "*"
+
+"@types/redux-mock-store@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/redux-mock-store/-/redux-mock-store-1.0.2.tgz#c27d5deadfb29d8514bdb0fc2cadae6feea1922d"
+  integrity sha512-6LBtAQBN34i7SI5X+Qs4zpTEZO1tTDZ6sZ9fzFjYwTl3nLQXaBtwYdoV44CzNnyKu438xJ1lSIYyw0YMvunESw==
+  dependencies:
+    redux "^4.0.5"
 
 "@types/resolve@0.0.8":
   version "0.0.8"
@@ -9850,6 +9855,11 @@ jest-matcher-utils@^26.6.0, jest-matcher-utils@^26.6.2:
     jest-get-type "^26.3.0"
     pretty-format "^26.6.2"
 
+jest-matchmedia-mock@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/jest-matchmedia-mock/-/jest-matchmedia-mock-1.1.0.tgz#eaae8c5d1dee4e4f7c59f8cb1b38b5d7ea842552"
+  integrity sha512-REnJRsOSCMpGAlkxmvVTqEBpregyFVi9MPEH3N83W1yLKzDdNehtCkcdDZduXq74PLtfI+11NyM4zKCK5ynV9g==
+
 jest-message-util@^26.6.0, jest-message-util@^26.6.2:
   version "26.6.2"
   resolved "https://registry.yarnpkg.com/jest-message-util/-/jest-message-util-26.6.2.tgz#58173744ad6fc0506b5d21150b9be56ef001ca07"
@@ -10015,6 +10025,11 @@ jest-sonar-reporter@^2.0.0:
   integrity sha512-ZervDCgEX5gdUbdtWsjdipLN3bKJwpxbvhkYNXTAYvAckCihobSLr9OT/IuyNIRT1EZMDDwR6DroWtrq+IL64w==
   dependencies:
     xml "^1.0.1"
+
+jest-svg-transformer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jest-svg-transformer/-/jest-svg-transformer-1.0.0.tgz#e38884ca4cd8b2295cdfa2a0b24667920c3a8a6d"
+  integrity sha1-44iEykzYsilc36KgskZnkgw6im0=
 
 jest-util@^26.1.0, jest-util@^26.6.0, jest-util@^26.6.2:
   version "26.6.2"
@@ -11390,6 +11405,11 @@ mixin-deep@^1.2.0:
   dependencies:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
+
+mixpanel-browser@^2.41.0:
+  version "2.41.0"
+  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.41.0.tgz#d49753b4e4a7e6ddd18c126be4a917fff4ce3039"
+  integrity sha512-IEuc9cH44hba9a3KEyulXINLn+gpFqluBDo7xiTk1h3j111dmmsctaE6tUzZYxgGLVqeNhTpsccdliOeX24Wlw==
 
 mkdirp@0.5.1:
   version "0.5.1"
@@ -14381,6 +14401,13 @@ redux-devtools-extension@^2.13.8:
   version "2.13.8"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"
   integrity sha512-8qlpooP2QqPtZHQZRhx3x3OP5skEV1py/zUdMY28WNAocbafxdG2tRD1MWE7sp8obGMNYuLWanhhQ7EQvT1FBg==
+
+redux-mock-store@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.5.4.tgz#90d02495fd918ddbaa96b83aef626287c9ab5872"
+  integrity sha512-xmcA0O/tjCLXhh9Fuiq6pMrJCwFRaouA8436zcikdIpYWWCjU76CRk+i2bHx8EeiSiMGnB85/lZdU3wIJVXHTA==
+  dependencies:
+    lodash.isplainobject "^4.0.6"
 
 redux-persist-transform-encrypt@^3.0.1:
   version "3.0.1"

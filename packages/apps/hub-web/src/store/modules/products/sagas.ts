@@ -19,7 +19,7 @@ export function* getProducts(): Generator {
   const { guid } = store.getState().profile
   const { level } = store.getState().educationalStage
 
-  const { user, school } = store.getState().user
+  const { info: user, school } = store.getState().user
 
   if (!user && !school) return
 
@@ -33,7 +33,7 @@ export function* getProducts(): Generator {
   }
 
   const response = yield call(async () => {
-    return await api.get(`Categoria/Solucoes/Perfil/${guid}`, {
+    return api.get(`Categoria/Solucoes/Perfil/${guid}`, {
       NivelEnsino: level,
       IdEscola: school?.value
     })

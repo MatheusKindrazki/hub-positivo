@@ -10,8 +10,9 @@ import * as Sentry from '@sentry/react'
 
 import { store } from '~/store'
 
+import setUserProperties from '~/services/mixpanel/setProperties'
+
 import searchQuery from '~/hooks/useQuery'
-import { useAmplitudePageView } from '~/hooks/amplitude/useAmplitudePageView'
 
 const Auth = React.lazy(() => import('~/layouts/Auth'))
 const Iframe = React.lazy(() => import('~/layouts/Iframe'))
@@ -24,8 +25,9 @@ const Route: React.FC<RouteProps> = ({
   component,
   ...rest
 }) => {
-  useAmplitudePageView()
   const { pathname } = useLocation()
+
+  setUserProperties()
 
   Sentry.configureScope(scope => scope.setTransactionName(pathname))
 

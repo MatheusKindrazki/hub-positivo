@@ -22,7 +22,7 @@ interface SendInfo {
   usuarioId: string
 }
 
-function* getEducationStage(): Generator {
+export function* getEducationStage(): Generator {
   const { school } = store.getState().user
   const { reduced_token } = store.getState().auth
 
@@ -57,7 +57,6 @@ export function* getEducationalByPerson({
   payload
 }: Payload<Profile>): Generator {
   const { profile } = payload
-
   if (!searchLevels.includes(profile)) {
     yield put(resetProfileLevels())
 

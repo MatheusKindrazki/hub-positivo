@@ -1,8 +1,6 @@
 import React from 'react'
 
-import '@testing-library/jest-dom'
-
-import { fireEvent, render } from '@hub/test-utils'
+import { fireEvent, render, waitFor } from '@hub/test-utils'
 
 import Popover, {
   PopoverTrigger,
@@ -38,8 +36,10 @@ describe('Popover component should work properly', () => {
     const button = getByRole('button', { name: /trigger/i })
     const content = getByText(phrase)
 
-    await fireEvent.click(button)
+    fireEvent.click(button)
 
-    expect(content).not.toBeVisible()
+    await waitFor(() => {
+      expect(content).not.toBeVisible()
+    })
   })
 })

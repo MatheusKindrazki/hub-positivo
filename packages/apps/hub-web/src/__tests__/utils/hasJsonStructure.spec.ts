@@ -1,4 +1,4 @@
-import hasJsonStructure from '~/utils/hasJsonStructure'
+import { hasJsonStructure } from '~/utils/hasJsonStructure'
 
 describe('json-type structure', () => {
   it('Should be check if string has a json structure', () => {
@@ -17,5 +17,11 @@ describe('json-type structure', () => {
     expect(hasJsonStructure(notJSON)).toBe(false)
     expect(hasJsonStructure(array)).toBe(true)
     expect(hasJsonStructure()).toBe(false)
+  })
+
+  it('Should return false when receives non string data', () => {
+    const nonString = undefined
+
+    expect(hasJsonStructure(nonString)).toBe(false)
   })
 })
