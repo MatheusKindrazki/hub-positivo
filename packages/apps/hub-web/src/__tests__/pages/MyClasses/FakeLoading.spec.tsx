@@ -1,5 +1,12 @@
 import React from 'react'
 
-it('', () => {
-  expect(1).toBe(1)
+import { render } from '@hub/test-utils'
+
+import FakeLoading from '~/pages/MyClasses/components/FakeLoading'
+
+describe('FakeLoading should render properly', () => {
+  it('FakeLoading matches snapshot', () => {
+    const wrapper = render(<FakeLoading />)
+    expect(wrapper).toMatchSnapshot()
+  })
 })
