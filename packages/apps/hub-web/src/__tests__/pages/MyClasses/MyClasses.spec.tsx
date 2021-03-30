@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
-
-import { renderHook } from '@testing-library/react-hooks'
+import React from 'react'
 
 import { render, CustomState, fireEvent, act } from '@hub/test-utils'
 
