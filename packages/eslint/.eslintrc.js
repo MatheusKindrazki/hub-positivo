@@ -39,7 +39,8 @@ module.exports = {
     '@typescript-eslint/no-empty-interface': 'off',
     'import/extensions': 'off',
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", {
+    "@typescript-eslint/no-duplicate-imports": ["error"],
+    "@typescript-eslint/no-unused-vars": ["error", {
       "argsIgnorePattern": "_"
     }],
     'import-helpers/order-imports': [
