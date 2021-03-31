@@ -47,7 +47,7 @@
 1. **[Clonando o repositório](#clonando-o-repositório)**
 2. **[Instalando dependências](#instalando-dependências)**
 3. **[Removendo dependências](#removendo-dependências)**
-4. **[Configurando as variáveis de ambiente](#configurando-as-variáveis-de-ambiente)**
+4. **[Configurando as variáveis de ambiente](#configurando-variáveis-de-ambiente)**
 5. **[Inicializando](#inicializando)**
 6. **[Estrutura monorepo](#estrutura-monorepo)**
 7. **[Principais dependências](#principais-dependências)**
@@ -82,8 +82,7 @@ Haverá a necessidade de autenticar-se através do terminal, como mostra a image
 
 Após inserir o Username e Password (credenciais **PESSOAIS** geradas através do Azure devOps) o projeto estará disponível localmente.
 
-*Clonar o repositório utilizando chave SSH não requer a geração de credenciais para autenticação, sendo necessário apenas que a chave esteja cadastrada em seu perfil da Azure Devops.*
-
+_Clonar o repositório utilizando chave SSH não requer a geração de credenciais para autenticação, sendo necessário apenas que a chave esteja cadastrada em seu perfil da Azure Devops._
 
 # Instalando dependências
 
@@ -93,7 +92,7 @@ O **segundo passo** é fazer a instalação das dependências, utilizando Yarn.
 yarn install
 ```
 
-*Se finalizado sem erros, todas as dependências foram instaladas com sucesso.*
+_Se finalizado sem erros, todas as dependências foram instaladas com sucesso._
 
 ### 2.1. Instalando as dependências individuais no hub-web
 
@@ -113,7 +112,7 @@ yarn workspace @hub/web remove NOME_DA_DEPENDÊNCIA
 
 # Configurando variáveis de ambiente
 
-Antes de inicializar, precisa-se que as [**variáveis de ambiente](https://dev.to/guiselair/utilizando-variaveis-de-ambiente-com-create-react-app-5ckc)**  sejam configuradas no repositório. Elas, por padrão, não vêm configuradas na clonagem do repositório remoto.
+Antes de inicializar, precisa-se que as [\*\*variáveis de ambiente](https://dev.to/guiselair/utilizando-variaveis-de-ambiente-com-create-react-app-5ckc)\*\* sejam configuradas no repositório. Elas, por padrão, não vêm configuradas na clonagem do repositório remoto.
 
 No diretório `packages/apps/hub-web/src` existe um arquivo nomeado `.env.exemple` . Nele há um exemplo das variáveis de ambientes necessárias para que o projeto funcione. **Preencha todas as variáveis.**
 
@@ -133,7 +132,7 @@ Neste momento já é possível inicializar o projeto localmente. Na raiz do proj
 yarn workspace @hub/web start
 ```
 
-*Espera-se que o navegador abra na porta padrão do React (3000) com o projeto inicializado na tela de Login do Hub.*
+_Espera-se que o navegador abra na porta padrão do React (3000) com o projeto inicializado na tela de Login do Hub._
 
 # Estrutura Monorepo
 
@@ -170,11 +169,11 @@ packages
     └── eslint
 ```
 
-Na composição das pastas podemos identificar pontos importantes a serem ressaltados. A pasta *common* guarda os recursos reutilizáveis do monorepo, como componentes e hooks genéricos que são utilizados por outras soluções além do Hub.
+Na composição das pastas podemos identificar pontos importantes a serem ressaltados. A pasta _common_ guarda os recursos reutilizáveis do monorepo, como componentes e hooks genéricos que são utilizados por outras soluções além do Hub.
 
-No diretório *api* temos a configuração das chamadas às APIS utilizadas no funcionamento do Hub, através do *[axios](https://www.npmjs.com/package/axios).*
+No diretório _api_ temos a configuração das chamadas às APIS utilizadas no funcionamento do Hub, através do _[axios](https://www.npmjs.com/package/axios)._
 
-Na pasta *apps* temos os arquivos relacionados ao Hub como solução individual, que se integram entre si mas não são exportados para outras soluções que compõem o monorepo.
+Na pasta _apps_ temos os arquivos relacionados ao Hub como solução individual, que se integram entre si mas não são exportados para outras soluções que compõem o monorepo.
 
 # Principais dependências
 
@@ -192,7 +191,7 @@ O [Redux](https://redux.js.org/introduction/getting-started) é uma biblioteca p
 
 ### 7.2. `react-router-dom`
 
-O [React Router Dom](https://reactrouter.com/web/guides/quick-start) é a biblioteca padrão de roteamento do React.js que mantém a interface do usuário em sincronia com o valor atual da URL acessada. Ela tem uma API poderosa que traz a possibilidade de roteamento dinâmico, da utilização de hooks, do manuseio das rotas e muitas outras abordagens. ****
+O [React Router Dom](https://reactrouter.com/web/guides/quick-start) é a biblioteca padrão de roteamento do React.js que mantém a interface do usuário em sincronia com o valor atual da URL acessada. Ela tem uma API poderosa que traz a possibilidade de roteamento dinâmico, da utilização de hooks, do manuseio das rotas e muitas outras abordagens. \*\*\*\*
 
 ### 7.3. `lodash`
 
@@ -224,7 +223,7 @@ Para estilização dos componentes React, o projeto utiliza duas principais depe
 
 O hub-web utiliza majoritariamente esta biblioteca para fazer o encapsulamento de estilos e temas nos componentes React da aplicação. Isso dar-se pela facilitação da estilização dos mesmos no próprio escopo do componente (através de props). Veja um exemplo de uso abaixo:
 
-***Trecho de código 1**:*
+**\*Trecho de código 1**:\*
 
 ```jsx
 import React from 'react'
@@ -239,9 +238,9 @@ const Box: React.FC<BoxProps> = ({ children, ...rest }) => {
 ...
 ```
 
-*Componente disponível em `packages/common`.*
+_Componente disponível em `packages/common`._
 
-No diretório `*packages/common*` está disponível a grande maioria dos componentes criados com o Chacka UI. Dessa forma é possível prover utilitários comuns entre a aplicação, sem depender de uma estilização específica, deixando isso por responsabilidade de quem for utilizar este componente *genérico*.  [O trecho de código 2]() demonstra como o [trecho de código 1]() é utilizado.
+No diretório `*packages/common*` está disponível a grande maioria dos componentes criados com o Chacka UI. Dessa forma é possível prover utilitários comuns entre a aplicação, sem depender de uma estilização específica, deixando isso por responsabilidade de quem for utilizar este componente _genérico_. [O trecho de código 2]() demonstra como o [trecho de código 1]() é utilizado.
 
 **Trecho de código 2:**
 
@@ -266,7 +265,7 @@ No diretório `*packages/common*` está disponível a grande maioria dos compone
 ...
 ```
 
-*Código disponível em `packages/apps/hub-web/src/pages/Auth/ForgotPassword/index.tsx`*
+_Código disponível em `packages/apps/hub-web/src/pages/Auth/ForgotPassword/index.tsx`_
 
 Após importar o componente **Box** para utilização na página de Forgot Password, é possível observar que a estilização é feita através de props que, ao chegar no componente genérico, será interpretado como `{ ...rest }` , ou seja, sendo possível a utilização de quaisquer estilos não previamente definidos, deixando o componente totalmente reutilizável.
 
@@ -301,7 +300,7 @@ export const Container = styled.div`
 `
 ```
 
-*Código disponível em `packages/apps/hub-web/src/layouts/Auth/styles.ts`*
+_Código disponível em `packages/apps/hub-web/src/layouts/Auth/styles.ts`_
 
 Este código demonstra a criação de um componente `Container` que utiliza como base uma `div` que possui toda a estilização descrita no escopo que está entre as crases ( **`** ).
 
@@ -318,7 +317,7 @@ Este código demonstra a criação de um componente `Container` que utiliza como
 ...
 ```
 
-*Código disponível em `packages/apps/hub-web/src/layouts/Auth/index.tsx`*
+_Código disponível em `packages/apps/hub-web/src/layouts/Auth/index.tsx`_
 
 Neste trecho demonstra-se como o `Container` criado no [Trecho de código 3]() encapsula todos os componentes que deseja-se estilizar. Simples e limpo.
 
@@ -347,42 +346,17 @@ O commit deverá seguir o fluxo da CLI do Husky para ser feito, após avançar p
 
 ### 9.2. Regras de estilo
 
-O projeto conta com padronização de estilo própria. É necessário estar de acordo com as regras de estilo para que seja possível realizar um commit, caso contrário a modificação ficará travada na fase *lint staged* do Husky.
+O projeto conta com padronização de estilo própria. É necessário estar de acordo com as regras de estilo para que seja possível realizar um commit, caso contrário a modificação ficará travada na fase _lint staged_ do Husky.
 
 # Testes
 
-Atualmente o projeto conta com um coverage de testes de 75%. Os testes são aplicados às páginas, layouts, hooks e componentes  predominantemente com o uso de [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), assim como os middlewares, validadores, módulos da store e funções utilitárias são testadas unitariamente com [Jest](https://jestjs.io/docs/en/getting-started).
+Os testes são aplicados nas páginas, layouts, hooks e componentes predominantemente com o uso de [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/), assim como os middlewares, validadores, módulos da store e funções utilitárias são testadas unitariamente com [Jest](https://jestjs.io/docs/en/getting-started).
 
-Ressaltamos que para correta execução dos testes se faz necessário, no mínimo, o uso do [Node](https://nodejs.org/en/) v14.15.4.
+Os testes também possuem uma documentação própria dentro do Hub que é divida nas seguintes três partes:
 
-No trecho de código 5 pode-se observar um caso simples de teste que utiliza React Testing Library, que testa os componentes Accordion e UnmountClosed.
-
-**Trecho de código 5:**
-
-```jsx
-import React from 'react'
-
-import { render } from '@hub/test-utils'
-
-import { Accordion, UnmountClosed } from '../../components/Accordion'
-
-describe('Accordion an UnmountClosed components', () => {
-  it('Accordion being rendered on canvas', () => {
-    const wrapper = render(<Accordion isOpened>hub</Accordion>)
-    expect(wrapper).toMatchSnapshot()
-  })
-
-  it('UnmountClosed being rendered on canvas', () => {
-    const wrapper = render(<UnmountClosed isOpened>hub</UnmountClosed>)
-
-    expect(wrapper).toMatchSnapshot()
-  })
-})
-```
-
-*Código disponível em`packages/common/__tests__/components/Accordion.spec.tsx`*
-
-No primeiro teste (*it*) se renderiza o componente Accordion com o "hub" inserido como children, espera-se que ele tenha sido renderizado corretamente.
+1. [Começando com os testes](./docs/tests/COMECANDO_COM_OS_TESTES.md)
+2. [Utilitários para testes](./docs/tests/UTILITARIOS_PARA_TESTES.md)
+3. [Modelos de teste](./docs/tests/MODELOS_DE_TESTE.md)
 
 # Como contribuir
 
