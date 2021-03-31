@@ -132,6 +132,7 @@ const Home: React.FC = () => {
       </Box>
       <Box as={Container} p="4" maxW="1400px" margin="0 auto">
         <SearchInput
+          placeholder="Buscar soluções"
           backgroundColor="white!important"
           onChange={handleSearch}
         />
