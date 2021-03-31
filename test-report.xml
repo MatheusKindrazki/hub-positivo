@@ -1,692 +1,721 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/Filter.spec.tsx">
+    <testCase name="Filter Component (by Welcome) should work properly The component `Filter` shouldn`t render any level options when profile is not `professor`" duration="1305"/>
+    <testCase name="Filter Component (by Welcome) should work properly The component `Filter` should render level options when trigged" duration="2087"/>
+    <testCase name="Filter Component (by Welcome) should work properly The `Filter` component should show only the chosen option" duration="1578"/>
+  </file>
   <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/ModalSupport.spec.tsx">
-    <testCase name="ModalSupport component testing Should redirect to FAQ when `ACESSAR FAQ` button is clicked" duration="1820"/>
-    <testCase name="ModalSupport component testing Context onClose when ModalSupport`s close button is triggered" duration="1113"/>
-    <testCase name="ModalSupport component testing Context`s onClose and onOpen should call useDisclosure`s functions" duration="992"/>
-    <testCase name="ModalSupport component testing Should toMatchSnapShot" duration="134"/>
+    <testCase name="ModalSupport component testing Should redirect to FAQ when `ACESSAR FAQ` button is clicked" duration="3225"/>
+    <testCase name="ModalSupport component testing Context onClose when ModalSupport`s close button is triggered" duration="3487"/>
+    <testCase name="ModalSupport component testing Context`s onClose and onOpen should call useDisclosure`s functions" duration="3489"/>
+    <testCase name="ModalSupport component testing Should toMatchSnapShot" duration="1542"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/MyClasses/MyClasses.spec.tsx">
+    <testCase name="myClasses should work properly Should render /Nenhuma classe encontrada!/ when classes are not provided" duration="2181"/>
+    <testCase name="myClasses should work properly Should render FakeLoading when loading is true" duration="1727"/>
+    <testCase name="myClasses should work properly Should render when classes are provided" duration="3569"/>
+    <testCase name="myClasses should work properly Should filter classes when input search is trigged" duration="2278"/>
   </file>
   <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/HeaderMobile.spec.tsx">
-    <testCase name="Mobile Header`s layout should work properly Should render correct infos on screen when menu is open" duration="1909"/>
-    <testCase name="Mobile Header`s layout should work properly Should call handlePush function when a card is clicked" duration="1079"/>
-    <testCase name="Mobile Header`s layout should work properly Should call useDisclosure`s functions handlers when Drawer is triggered" duration="248"/>
-    <testCase name="Mobile Header`s layout should work properly Should render without crashing even when cards were not provided" duration="1208"/>
-    <testCase name="Mobile Header`s layout should work properly Should filter the cards correctly" duration="1794"/>
-    <testCase name="Mobile Header`s layout should work properly Should call Drawer onOpen if show is false  or onClose if show is true when `Escape` (Esc) key is down" duration="1562"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Select.spec.tsx">
-    <testCase name="Select renders without crashing Select normal variant render all options" duration="677"/>
-    <testCase name="Select renders without crashing Select blue-transparent variant render options" duration="471"/>
-    <testCase name="Select renders without crashing Select displays error message when no options are provided" duration="362"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Drawer.spec.tsx">
-    <testCase name="Testing if Drawer component render correctly should render open, as well must render Drawer Header, Body and Footer" duration="980"/>
-    <testCase name="Testing if Drawer component render correctly Drawer matches snapshot" duration="666"/>
-    <testCase name="testing useDesclosure should returns the correct values" duration="3"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ChangePassword.spec.tsx">
-    <testCase name="Change Password page should work properly should change input type if view changes" duration="306"/>
-    <testCase name="Change Password page should work properly should redirect user if no token was provided" duration="185"/>
-    <testCase name="Change Password page should work properly should return user to previous page when goBack is clicked" duration="198"/>
-    <testCase name="Change Password page should work properly should display an error when validation fails" duration="260"/>
-    <testCase name="Change Password page should work properly should display a generic error when validation throws it" duration="252"/>
-    <testCase name="Change Password page should work properly Should dispatch actions with correct payloads" duration="250"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/Home.spec.tsx">
-    <testCase name="Testing that the Home page works correctly Should render the correct elements on the screen" duration="980"/>
-    <testCase name="Testing that the Home page works correctly Should not show any card when an unknown card is searched on filter" duration="382"/>
-    <testCase name="Testing that the Home page works correctly Should dispatch `@auth/AUTH_PRODUCT_REQUEST` when a card is clicked" duration="338"/>
-    <testCase name="Testing that the Home page works correctly Should not render any cards when the products are loading" duration="626"/>
-    <testCase name="Testing that the Home page works correctly Should render a message when the products have already loaded, but they are empty []" duration="311"/>
-    <testCase name="Testing that the Home page works correctly Should render with default Welcome titles" duration="261"/>
-    <testCase name="Testing that the Home page works correctly Should render `userClass` and `Profile` when profile name is `Aluno`" duration="314"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Tour.spec.tsx">
-    <testCase name="Testing Tour component and your functionalities Should render Tour component with first step" duration="15"/>
-    <testCase name="Testing Tour component and your functionalities should close the tour when closeButton is clicked" duration="833"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/ModalNoClass.spec.tsx">
-    <testCase name="ModalNoClass component should work properly should trigger the logout action by clicking the exit button" duration="2261"/>
-    <testCase name="ModalNoClass component should work properly Must render the component on screen correctly" duration="1268"/>
-    <testCase name="ModalNoClass component should work properly Render the component in the Desktop version" duration="1150"/>
-    <testCase name="ModalNoClass component should work properly The component should not be on screen" duration="171"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Popover.spec.tsx">
-    <testCase name="Popover component should work properly Should render with correctly content" duration="194"/>
-    <testCase name="Popover component should work properly Should close visibility of the Popover when close button is clicked" duration="522"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Logged/Dashboard.spec.tsx">
-    <testCase name="Logged`s layout should render without crashing Should call render children on screen" duration="223"/>
-    <testCase name="Logged`s layout should render without crashing Shouldn`t call steps if `open` is false" duration="220"/>
-    <testCase name="Logged`s layout should render without crashing Steps should work properly on Dashboard when `open` and `viewed` are true" duration="1844"/>
-    <testCase name="Logged`s layout should render without crashing Steps should work properly on Dashboard when `open` is true and `viewed` is false" duration="1409"/>
-    <testCase name="Logged`s layout should render without crashing Should call that hooks: useSentry, useSendGlobalInfo and useAmplitudeSetProperties" duration="178"/>
+    <testCase name="Mobile Header`s layout should work properly Should render correct infos on screen when menu is open" duration="4275"/>
+    <testCase name="Mobile Header`s layout should work properly Should call handlePush function when a card is clicked" duration="4132"/>
+    <testCase name="Mobile Header`s layout should work properly Should call useDisclosure`s functions handlers when Drawer is triggered" duration="1944"/>
+    <testCase name="Mobile Header`s layout should work properly Should render without crashing even when cards were not provided" duration="3922"/>
+    <testCase name="Mobile Header`s layout should work properly Should filter the cards correctly" duration="3793"/>
+    <testCase name="Mobile Header`s layout should work properly Should call Drawer onOpen if show is false  or onClose if show is true when `Escape` (Esc) key is down" duration="3050"/>
   </file>
   <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Header/Desktop.spec.tsx">
-    <testCase name="Desktop Header component Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked" duration="748"/>
-    <testCase name="Desktop Header component Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked" duration="998"/>
-    <testCase name="Desktop Header component Popover should be visible when header`s avatar is clicked" duration="904"/>
-    <testCase name="Desktop Header component Should have a button called `Estou com uma dúvida`" duration="247"/>
-    <testCase name="Desktop Header component Should dispatch an `@auth/SIGN_OUT` action when `Sair` is clicked" duration="986"/>
-    <testCase name="Desktop Header component Should close Popover when component is on blur or escape (ESC)" duration="1077"/>
-    <testCase name="Desktop Header component Should change the `school` on selector when other `school` is triggered" duration="1237"/>
-    <testCase name="Desktop Header component Should change the `role` on selector when other `role` is triggered" duration="1081"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/auth/sagas.spec.ts">
-    <testCase name="Sagas of authentication history sign in Should the user authenticate with valid login and password and pass is redirected to choice" duration="12"/>
-    <testCase name="Sagas of authentication history sign in If the Return of the API is flawed for some reason, the user is warned and the login will be rejected" duration="6"/>
-    <testCase name="Sagas of authentication history sign in Should generate with a redirect query in the URL when passing the Redirect parameter in the login" duration="2"/>
-    <testCase name="Sagas of authentication history prepare Access Should prepare all data for the first user access" duration="7"/>
-    <testCase name="Sagas of authentication history prepare Access Should signOut the user if the ID from the reduced token is different from the user ID" duration="2"/>
-    <testCase name="Sagas of authentication history prepare Access Should set the user as authenticated when receiving the redirect parameter" duration="4"/>
-    <testCase name="Sagas of authentication history checking Expiring Token You should pause running if payload comes empty" duration="1"/>
-    <testCase name="Sagas of authentication history checking Expiring Token Should not log the user if it does not have the active login flag" duration="4"/>
-    <testCase name="Sagas of authentication history checking Expiring Token Should return if the expiration date is not defined" duration="1"/>
-    <testCase name="Sagas of authentication history checking Expiring Token Should be set, in the reload of the application, the token in the Header of the API if the user is logged in" duration="1502"/>
-    <testCase name="Sagas of authentication history checking Expiring Token should refresh the user if the Token expiration date is less than the current date" duration="1"/>
-    <testCase name="Sagas of authentication history refresh Token Should generate a new user authentication token for the user" duration="2003"/>
-    <testCase name="Sagas of authentication history refresh Token You should discharge the user if something fails in the return of API" duration="3"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Modal.spec.tsx">
-    <testCase name="Modal component should work properly Should render the children on screen with correctly props" duration="27"/>
-    <testCase name="Modal component should work properly Shoudn`t render the component when prop open is false (closed Model)" duration="134"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/SignIn.spec.tsx">
-    <testCase name="Testing that the Login page works correctly should redirect the user to /esqueci-minha-senha when click on `Esqueci minha senha`" duration="310"/>
-    <testCase name="Testing that the Login page works correctly should open help modal when click on `Precido de ajuda`" duration="177"/>
-    <testCase name="Testing that the Login page works correctly should change password input type when view icon is clicked" duration="222"/>
-    <testCase name="Testing that the Login page works correctly Should render the elements of the Login page" duration="213"/>
-    <testCase name="Testing that the Login page works correctly should dispatch @auth/SIGN_IN REQUEST with the right payload if the user data format is correct" duration="218"/>
-    <testCase name="Testing that the Login page works correctly should throw a validation error when username and password input are empty" duration="238"/>
-    <testCase name="Testing that the Login page works correctly should throw new error when username or password input are incorrect" duration="249"/>
-    <testCase name="Testing that the Login page works correctly should change the type of the submit button to button type when sign-in strike is true" duration="213"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/HeaderDesktop.spec.tsx">
-    <testCase name="HeaderDesktop should work properly Products menu should should display all solutions when clicked" duration="817"/>
-    <testCase name="HeaderDesktop should work properly shouldnt display any card when no cards are provided" duration="291"/>
-    <testCase name="HeaderDesktop should work properly card should handle push and log amplitude event when clicked" duration="351"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/Profile/Profile.spec.tsx">
-    <testCase name="Profile page should work properly Should render the correct elements on the screen" duration="478"/>
-    <testCase name="Profile page should work properly The component `Select` should work correctly when the user interacts with it" duration="424"/>
-    <testCase name="Profile page should work properly The `Profile` component should dispatch `@auth/FIRST_ACCESS` when the user chooses an option" duration="593"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/Filter.spec.tsx">
-    <testCase name="Filter Component (by Welcome) should work properly The component `Filter` shouldn`t render any level options when profile is not `professor`" duration="138"/>
-    <testCase name="Filter Component (by Welcome) should work properly The component `Filter` should render level options when trigged" duration="475"/>
-    <testCase name="Filter Component (by Welcome) should work properly The `Filter` component should show only the chosen option" duration="388"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ForgotPassword.spec.tsx">
-    <testCase name="Forgot Password page should work properly should display instructions about password recovery" duration="239"/>
-    <testCase name="Forgot Password page should work properly Should display an error toast if submit with empty input" duration="253"/>
-    <testCase name="Forgot Password page should work properly Should display an error toast if validator throws a generic error" duration="230"/>
-    <testCase name="Forgot Password page should work properly Should redirect client to login page if sendViewToken is true" duration="144"/>
-    <testCase name="Forgot Password page should work properly should go back when GoBack is clicked" duration="173"/>
-    <testCase name="Forgot Password page should work properly Should dispatch an action with correct payload" duration="241"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ExpiredToken.spec.tsx">
-    <testCase name="Expired Token page should work properly Should redirect to `/` when `validateViewPin` doesn`t exist or it`s false" duration="206"/>
-    <testCase name="Expired Token page should work properly Should render the correcly elements on screen" duration="283"/>
-    <testCase name="Expired Token page should work properly Should redirect to `/esqueci-minha-senha` when `Solicitar novo link` is clicked" duration="221"/>
-    <testCase name="Expired Token page should work properly Should redirect to `/login` when `GoBack` is clicked" duration="112"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/products/sagas.spec.ts">
-    <testCase name="testing getProducts saga flow should set loadings, call api, dispatch success action, call mhunArvoreIntegration, get tour and enable refresh token middleware" duration="2022"/>
-    <testCase name="testing getProducts saga flow should call toast error when api returns with an error" duration="3"/>
-    <testCase name="testing getProducts saga flow should dispatch a withoutAccess action and early return a user without the correct level" duration="2"/>
-    <testCase name="testing getProducts saga flow should early return when theres no user or school info" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Header/AlterPass.spec.tsx">
-    <testCase name="get started Should throw a `validation` error if the form was submitted without any information" duration="537"/>
-    <testCase name="get started Should throw a `generic` error if an error other than` validation` has been thrown" duration="383"/>
-    <testCase name="get started Should call `onClose` function when `CANCELAR` is clicked" duration="250"/>
-    <testCase name="get started Should dispatch an `@user/USER_PASSWORD_PANEL_REQUEST` action if the form has been submitted with correct data" duration="317"/>
-    <testCase name="get started Should convert input`s type to text when viewPass and viewNewPass are true" duration="268"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ForgotFail.spec.tsx">
-    <testCase name="Expired Token page should work properly Should redirect to `/login` when `sendViewToken` doesn`t exist or it`s false" duration="243"/>
-    <testCase name="Expired Token page should work properly Should render the correcly elements on screen" duration="197"/>
-    <testCase name="Expired Token page should work properly Should redirect to `/login` when `Voltar para o login` is clicked" duration="149"/>
-    <testCase name="Expired Token page should work properly Should redirect to `/login` when `GoBack` is clicked" duration="228"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Header/context.spec.tsx">
-    <testCase name="Testing useHeader Should return define a Header Context" duration="21"/>
-    <testCase name="Testing useHeader Should throw an error when context is not provided" duration="191"/>
-    <testCase name="Testing HeaderContext Should dispatch an `@auth/FIRST_ACCESS` action when setRole is triggered" duration="10"/>
-    <testCase name="Testing HeaderContext Should call useState`s handle function when setSchool is triggered" duration="7"/>
-    <testCase name="Testing HeaderContext Should call useState`s handle function when resetInfo is triggered" duration="9"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/FakeCollapse.spec.tsx">
-    <testCase name="FakeCollapse renders without crashing should have children" duration="249"/>
-    <testCase name="FakeCollapse renders without crashing Collapse with false grid doesn&apos;t render SimpleGrid" duration="126"/>
-    <testCase name="FakeCollapse renders without crashing renders without crashing on larger screens" duration="177"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/Header.spec.tsx">
-    <testCase name="Header`s layout should work properly Header should render Mobile Header when useMediaQuery returns [false]" duration="134"/>
-    <testCase name="Header`s layout should work properly Header should render Desktop Header when useMediaQuery returns [true]" duration="212"/>
-    <testCase name="Header`s layout should work properly Should call the go back handler when a GoBack is clicked" duration="236"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/AnimateGoBack.spec.tsx">
-    <testCase name="AnimateGoBack should work properly Shoud call onClick when arrow left is clicked" duration="506"/>
-    <testCase name="AnimateGoBack should work properly Should render without crashing when width was not provided" duration="203"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Card.spec.tsx">
-    <testCase name="Card`s layout should work properly Should render card`s elements on screen" duration="205"/>
-    <testCase name="Card`s layout should work properly Should call onClick function when card box is clicked" duration="160"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Collapse.spec.tsx">
-    <testCase name="Collapse component should work properly Collapse doesnt render collapse-box when disable is true" duration="303"/>
-    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is true" duration="168"/>
-    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is false" duration="255"/>
-    <testCase name="Collapse component should work properly Collapse render name inside Heading" duration="157"/>
-    <testCase name="Collapse component should work properly Collapse with false grid doesnt render SimpleGrid" duration="163"/>
-    <testCase name="Collapse component should work properly Collapse uses SimpleGrid in large screens" duration="139"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/CardProduct.spec.tsx">
-    <testCase name="CardProduct component should work properly Card redirects to the correct link" duration="408"/>
-    <testCase name="CardProduct component should work properly Card shows correct notification" duration="167"/>
-    <testCase name="CardProduct component should work properly Card has &quot;hub&quot; category when no category is received" duration="206"/>
-    <testCase name="CardProduct component should work properly Card shows &quot;Em breve&quot; text when doesnt receive a link" duration="116"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Form.spec.tsx">
-    <testCase name="Form works properly input should render icons correctly and change style when focused" duration="311"/>
-    <testCase name="Form works properly input should display an error if useField returns error as truthy" duration="154"/>
-    <testCase name="Form works properly Form calls submit with correct values" duration="154"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Search.spec.tsx">
-    <testCase name="should work properly Should render an input on screen" duration="200"/>
-    <testCase name="should work properly Should call onChange handler when a value is triggered on input" duration="191"/>
-    <testCase name="should work properly Should render without crashing" duration="200"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/layout/styles.spec.tsx">
-    <testCase name="Testing chacka`s styles hooks useTheme shouldn`t return void theme when encapsulated by a theme provider" duration="308"/>
-    <testCase name="Testing chacka`s styles hooks useColorMode should  gives you access to the current color mode, and a function to toggle the color mode." duration="266"/>
-    <testCase name="Testing chacka`s styles hooks useColorModeValue returns current color mode: by default return light mode color" duration="113"/>
-    <testCase name="Testing chacka`s styles hooks useMediaQuery should returns an array of booleans, indicating whether the given query matches or queries match" duration="102"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Skeleton.spec.tsx">
-    <testCase name="Skeleton renders without crashing Stack matches snapshot" duration="164"/>
-    <testCase name="Skeleton renders without crashing Skeleton matches snapshot" duration="288"/>
-    <testCase name="Skeleton renders without crashing SkeletonCircle matches snapshot" duration="284"/>
-    <testCase name="Skeleton renders without crashing SkeletonText matches snapshot" duration="184"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Welcome.spec.tsx">
-    <testCase name="Welcome renders with correct props should render Welcome message correctly" duration="232"/>
-    <testCase name="Welcome renders with correct props should render with welcome message despite undefined props" duration="335"/>
-    <testCase name="Welcome renders with correct props should render user name as `Usuário` when option is `name` and prop name is undefined" duration="212"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/BarLoader.spec.tsx">
-    <testCase name="BarLoader renders without crashing BarLoader matches snapshot" duration="201"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/layout/provider.spec.tsx">
-    <testCase name="Testing Theme Provider should change theme when profile changes" duration="361"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/GoBack.spec.tsx">
-    <testCase name="Goback component should render on screen and when clicking trigger an event" duration="182"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/user/sagas.spec.ts">
-    <testCase name="Sagas of user history Forgot Password Should shoot a message to the user and redirect it to login to API success" duration="516"/>
-    <testCase name="Sagas of user history Forgot Password Should shoot an error message for user if the API returns some exception" duration="5"/>
-    <testCase name="Sagas of user history Forgot Password Should return a custom error message if the password or PIN PASSE INVALIDS" duration="2"/>
-    <testCase name="Sagas of user history Forgot Password Should return the default error message if the invalid password or password PIN and the API does not contain a response" duration="2"/>
-    <testCase name="Sagas of user history Alter Password Should shoot a successful message for user in the return of API" duration="3"/>
-    <testCase name="Sagas of user history Alter Password Should shoot an error message for user if the API returns some exception" duration="2"/>
-    <testCase name="Sagas of user history Alter Password Should return a custom error message if the password or PIN PASSE INVALIDS" duration="2"/>
-    <testCase name="Sagas of user history Alter Password Should return the default error message if the invalid password the API does not contain a response" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Avatar.spec.tsx">
-    <testCase name="Avatar renders without crashing Avatar matches snapshot" duration="241"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Auth/Auth.spec.tsx">
-    <testCase name="Auth`s layout should render without crashing Auth`s layout should encapsulate correctly the children" duration="227"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/Profile/CardBox.spec.tsx">
-    <testCase name="CardBox Component should work properly Should render icon with correct titles" duration="179"/>
-    <testCase name="CardBox Component should work properly Should call onClick when user choises an role" duration="209"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/FakeLoading.spec.tsx">
-    <testCase name="testing fakeLoading should render without  crashing" duration="340"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Accordion.spec.tsx">
-    <testCase name="Accordion an UnmountClosed components Accordion being rendered on canvas" duration="196"/>
-    <testCase name="Accordion an UnmountClosed components UnmountClosed being rendered on canvas" duration="267"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/LogoOn.spec.tsx">
-    <testCase name="LogoOn component Must render the component on screen correctly" duration="131"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Tooltip.spec.tsx">
-    <testCase name="Tooltip renders without crashing Tooltip has children" duration="11"/>
-    <testCase name="Tooltip renders without crashing Tooltip matches snapshot" duration="4"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Image.spec.tsx">
-    <testCase name="Image renders without crashing Should render image with correct alt text" duration="19"/>
-    <testCase name="Image renders without crashing Image matches snapshot" duration="7"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Box.spec.tsx">
-    <testCase name="Box renders without crashing Box has children" duration="12"/>
-    <testCase name="Box renders without crashing Box matches snapshot" duration="47"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/CardBox.spec.tsx">
-    <testCase name="CardBox renders without crashing CardBox has children" duration="11"/>
-    <testCase name="CardBox renders without crashing CardBox matches snapshot" duration="6"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Logo.spec.tsx">
-    <testCase name="Logo component Must render the component on screen correctly" duration="113"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Badge.spec.tsx">
-    <testCase name="Badge renders without crashing Badge matches snapshot" duration="155"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/middlewares/refreshToken.spec.ts">
-    <testCase name="RefreshToken should work properly should dispatch no action when token is expired" duration="7"/>
-    <testCase name="RefreshToken should work properly should dispatch success action when api returns ok true" duration="56"/>
-    <testCase name="RefreshToken should work properly should dispatch failure action when api returns ok false" duration="526"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/SpinnerLoader.spec.tsx">
-    <testCase name="SpinnerLoader renders without crashing SpinnerLoader matches snapshot" duration="294"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Button.spec.tsx">
-    <testCase name="Button renders without crashing Button matches snapshot" duration="332"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Stack.spec.tsx">
-    <testCase name="Stack renders without crashing Stack matches snapshot" duration="144"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Flex.spec.tsx">
-    <testCase name="Flex renders without crashing Flex has children" duration="11"/>
-    <testCase name="Flex renders without crashing Flex matches snapshot" duration="4"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/authProduct/sagas.spec.ts">
-    <testCase name="Testing productSorting saga flow productSorting should call refresh token then dispatch a request action" duration="5"/>
-    <testCase name="Testing productSorting saga flow productSorting should redirect user when tipoRenderizacao is `iframenoauth`" duration="3"/>
-    <testCase name="Testing productSorting saga flow productSorting should open a new page when tipoRenderizacao is `targetblank`" duration="6"/>
-    <testCase name="Testing productSorting saga flow productSorting should dispatch request action when tipoRenderizacao is `iframe`" duration="1"/>
-    <testCase name="Testing productSorting saga flow productSorting should early return when no auth, profile or user info is available" duration="0"/>
-    <testCase name="testing authProductGUID saga flow should set loading, make a post request, redirect user, set iframe and dispatch success action" duration="8"/>
-    <testCase name="testing authProductGUID saga flow should redirect user to correct path when payload has a subpath" duration="1"/>
-    <testCase name="testing authProductGUID saga flow should send a tost and dispatch failure action when post response has a error" duration="6"/>
-    <testCase name="testing authProductGUID saga flow productSorting should early return when no auth, profile or user info is available" duration="2"/>
-    <testCase name="testing authProductEEM saga flow should set loading, set iframe url and then dispatch success action" duration="3"/>
-    <testCase name="testing authProductEEM saga flow should open a new window when tipoRenderizacao is `iframeblank` and the device is IOS" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Input.spec.tsx">
-    <testCase name="Input renders without crashing Input matches snapshot" duration="187"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/SimpleGrid.spec.tsx">
-    <testCase name="SimpleGrid renders without crashing SimpleGrid matches snapshot" duration="220"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Text.spec.tsx">
-    <testCase name="Text renders without crashing Text matches snapshot" duration="119"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/educationalStage/sagas.spec.ts">
-    <testCase name="Sagas of educationalStage history get Education Stage Should generate a new user authentication token for the user" duration="6"/>
-    <testCase name="Sagas of educationalStage history get Education Stage Should return empty if the API returns an error" duration="1"/>
-    <testCase name="Sagas of educationalStage history get Educational By Person Should shoot the saga to seek the levels of teaching" duration="2"/>
-    <testCase name="Sagas of educationalStage history get Educational By Person Should reset the profile selection if the selected profile is different from expected" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Search.spec.tsx">
-    <testCase name="Search component should work properly Input should call onChange with correct value" duration="146"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/tour/sagas.spec.ts">
-    <testCase name="testing getProducts saga flow should dispatch tour request action, make get request do tour api and dispatch success action" duration="8"/>
-    <testCase name="testing getProducts saga flow should not include educational level on tour request if user is not PROFESSOR or ALUNO" duration="1"/>
-    <testCase name="testing getProducts saga flow should log error and dispatch failure action when api returns with an error" duration="44"/>
-    <testCase name="testing getViewed saga flow should request for info on tour viewed and dispatch a success action" duration="12"/>
-    <testCase name="testing getViewed saga flow should log error and dispatch failure action on api error" duration="2"/>
-    <testCase name="testing getProducts saga flow should dispatch tour request action, make get request do tour api and dispatch success action" duration="2"/>
-    <testCase name="testing getProducts saga flow should not include educational level on tour request if user is not PROFESSOR or ALUNO" duration="4"/>
-    <testCase name="testing getProducts saga flow should log error and dispatch failure action when api returns with an error" duration="5"/>
-    <testCase name="testing post tour saga flow should set open tour to false and post tour info" duration="3"/>
-    <testCase name="testing post tour saga flow should log error and dispatch failure action on api error" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Heading.spec.tsx">
-    <testCase name="Heading renders without crashing Heading has children" duration="43"/>
-    <testCase name="Heading renders without crashing Heading matches snapshot" duration="4"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/educationalStage/actions.spec.ts">
-    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="2"/>
-    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="1"/>
-    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/validators/auth/signIn.spec.ts">
-    <testCase name="signInSchema must check if the format of `shape` is correctly Should return a `missing username` error if username was not provided" duration="3"/>
-    <testCase name="signInSchema must check if the format of `shape` is correctly Should return a `missing password` error if password was not provided" duration="9"/>
-    <testCase name="signInSchema must check if the format of `shape` is correctly Should return the `shape` if all data is correct" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/forgotPassword/sagas.spec.ts">
-    <testCase name="Sagas of forgotPassword history pwd Token Should show a message to the user and redirect it to login to API success" duration="8"/>
-    <testCase name="Sagas of forgotPassword history pwd Token Should send the user to the failure page if the return of the API is flawed" duration="2"/>
-    <testCase name="Sagas of forgotPassword history pwd Token Show an error message for the user if the API returns an exception" duration="9"/>
-    <testCase name="Sagas of forgotPassword history validate PIN Should Validate User PIN via API" duration="2"/>
-    <testCase name="Sagas of forgotPassword history validate PIN Show for the user that the token is expired or invalid" duration="4"/>
-    <testCase name="Sagas of forgotPassword history validate PIN Show an error message for the user if the API returns an exception" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/setProperties.spec.tsx">
-    <testCase name="Mixpanel Services Should return false if the user is not logged in" duration="21"/>
-    <testCase name="Mixpanel Services Should prepare user information for sending MixPanel" duration="10"/>
-    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="5"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/myClasses/sagas.spec.ts">
-    <testCase name="Sagas of myClasses history Should seek the list of students of a class and return only the assets" duration="4"/>
-    <testCase name="Sagas of myClasses history Should show an error for the user if the search for the list of students returned an exception" duration="3"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/useAmplitudeSetProperties.spec.tsx">
-    <testCase name="testing if amplitude set properties functions work properly Should call setUserProperties with the correct information" duration="11"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/productIntegrations/sagas.spec.ts">
-    <testCase name="Sagas of productIntegrations history Should return the MHUND and tree cards with the appropriate application links" duration="4"/>
-    <testCase name="Sagas of productIntegrations history Should return undefined case if you do not have cards loaded" duration="2"/>
-    <testCase name="Sagas of productIntegrations history Should return the MHUND card and not the arvore card" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/validators/auth/createNewPassword.spec.ts">
-    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return a `min characters` error if password is smaller than 5 characters" duration="8"/>
-    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return error if password is different of confirm-password" duration="1"/>
-    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return a `missing confirm-password` error if confirm-password was not provided" duration="1"/>
-    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return the `shape` if `password` and `confirm-password` is correct" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/eemIntegration.spec.ts">
-    <testCase name="eemIntegration should work properly eemIntegration should use store data when no args are received" duration="4"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/hooks/useSentry.spec.ts">
-    <testCase name="useSentry hook should work properly If environment is `production`, this hook should call its methods correctly" duration="12"/>
-    <testCase name="useSentry hook should work properly If environment is not `production`, this hook shouldn`t call its methods" duration="9"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/amplitudeInit.spec.ts">
-    <testCase name="testing if `amplitude init` function work properly Amplitude should initialize on amplitudeInit" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/clearAll.spec.ts">
-    <testCase name="Mixpanel Services Should shoot the MixPanel reset function" duration="1"/>
-    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/validators/validators.spec.ts">
-    <testCase name="ValidationError should work properly ValidationError should return the correct error data" duration="2"/>
-    <testCase name="getValidationErrors should work properly getValidationErrors should give errors triggered by ValidationError" duration="1"/>
-    <testCase name="getValidationErrors should work properly getValidationErrors should give errors triggered by ValidationError even when field name is not provided, replacing the fild with ` `" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/index.spec.tsx">
-    <testCase name="Root import components I hope these components are called" duration="10"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/hooks/usePostMessage.spec.ts">
-    <testCase name="postMessage should work properly shouldnt redirect when mounted URL is equal current pathname" duration="17"/>
-    <testCase name="postMessage should work properly should call push on history-change event" duration="163"/>
-    <testCase name="postMessage should work properly shouldnt redirect when receives non stringfied data" duration="6"/>
-    <testCase name="postMessage should work properly shouldnt redirect when data hasnt json structure" duration="5"/>
-    <testCase name="postMessage should work properly shouldnt redirect when event type isnt history-change" duration="5"/>
-    <testCase name="postMessage should work properly shouldnt redirect when data isnt parseable" duration="6"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/profile/actions.spec.ts">
-    <testCase name="profile module action creators should work properly should set profile with the correct payload" duration="2"/>
-    <testCase name="profile module action creators should work properly should set profiles with the correct payload" duration="0"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/products/reducers.spec.ts">
-    <testCase name="authProduct reducer returns the initial state when an action type is not passed" duration="2"/>
-    <testCase name="authProduct reducer should change loading to true when a product is requested" duration="37"/>
-    <testCase name="authProduct reducer loading is set to false on success action" duration="1"/>
-    <testCase name="authProduct reducer should set data on product integration action" duration="1"/>
-    <testCase name="authProduct reducer should set loading to false and reset data on product failure action" duration="2"/>
-    <testCase name="authProduct reducer should set loading to true and reset data on without access action" duration="1"/>
-    <testCase name="authProduct reducer should set frameURL and frame name on frame URL action" duration="1"/>
-    <testCase name="authProduct reducer should set loading to true and reset data on sign out action" duration="59"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/tour/reducer.spec.ts">
-    <testCase name="tour reducer should work properly returns the initial state when an action type is not passed" duration="1"/>
-    <testCase name="tour reducer should work properly loading is set to true on get tour viewed action" duration="2"/>
-    <testCase name="tour reducer should work properly should set loading and tour info on getTourViewedSuccess action" duration="1"/>
-    <testCase name="tour reducer should work properly loading is set to false on getTourViewedFailure action" duration="1"/>
-    <testCase name="tour reducer should work properly should set open to true on openTour action with truthy payload" duration="1"/>
-    <testCase name="tour reducer should work properly should reset tour info on sign out" duration="83"/>
-    <testCase name="tour reducer should work properly should set tour info on successful getTour action" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/user/actions.spec.ts">
-    <testCase name="Action of user history Should shoot the action of UserRequest" duration="2"/>
-    <testCase name="Action of user history Should shoot the action of UserSuccess" duration="1"/>
-    <testCase name="Action of user history Should shoot the action of UserFailure" duration="7"/>
-    <testCase name="Action of user history Should shoot setSchool action with payload containing the infos" duration="1"/>
-    <testCase name="Action of user history Should shoot forgotPasswordRequest action with payload containing the infos" duration="2"/>
-    <testCase name="Action of user history Should shoot the action of forgotPasswordSuccess" duration="2"/>
-    <testCase name="Action of user history Should shoot the action of forgotPasswordFailure" duration="1"/>
-    <testCase name="Action of user history Should shoot alterPasswordRequest action with payload containing the infos" duration="1"/>
-    <testCase name="Action of user history Should shoot the action of alterPasswordSuccess" duration="41"/>
-    <testCase name="Action of user history Should shoot the action of alterPasswordFailure" duration="3"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/auth/reducer.spec.ts">
-    <testCase name="Reducer of authentication history Should at the shooting of Action Reducers steps are triggered by setting the default information" duration="4"/>
-    <testCase name="Reducer of authentication history Should that in login failure, the information returns to the initial state" duration="2"/>
-    <testCase name="Reducer of authentication history Should that in the success of the login, the token is received beyond the other infos for access to the platform" duration="1"/>
-    <testCase name="Reducer of authentication history Should the loading is fired while the check action happens" duration="1"/>
-    <testCase name="Reducer of authentication history Should that in the absence of an initial status defined, the default state is triggered" duration="0"/>
-    <testCase name="Reducer of authentication history Should that being true all login treatives, the user is released for access to the system" duration="1"/>
-    <testCase name="Reducer of authentication history Should that in the absence of education level, the user is blocked for access to platform" duration="1"/>
-    <testCase name="Reducer of authentication history Should the reduced token is received and past for storage" duration="1"/>
-    <testCase name="Reducer of authentication history Should in the success generation of a new token, a refresh token and an expiration date is received" duration="1"/>
-    <testCase name="Reducer of authentication history Should that in the user&apos;s exit, all states are resetted" duration="2"/>
-    <testCase name="Reducer of authentication history Should if an unexpected exception is received, the same will have no effect on the application states" duration="0"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/cardFilter.spec.ts">
-    <testCase name="testing cardFilter funcionalities Should return only the `product cards` that matches with text search" duration="3"/>
-    <testCase name="testing cardFilter funcionalities Should return only the `classes cards` that matches with text search without crashing when findIndex returns -1" duration="1"/>
-    <testCase name="testing cardFilter funcionalities Should return an empty array when search text wasn`t matches with any card" duration="8"/>
-    <testCase name="testing cardFilter funcionalities Should return data without  changes when search text was not provided" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/forgotPassword/reducer.spec.ts">
-    <testCase name="Reducer of authentication history Should change the state of load in the firing of the request of Request" duration="1"/>
-    <testCase name="Reducer of authentication history Should set the loading as false if the call fails" duration="1"/>
-    <testCase name="Reducer of authentication history Should set the View Token to True in application success" duration="2"/>
-    <testCase name="Reducer of authentication history Should Set Loading How to True Call for PIN Validation" duration="1"/>
-    <testCase name="Reducer of authentication history Should Set Loading How to False Call for PIN Validation" duration="1"/>
-    <testCase name="Reducer of authentication history Should Save the Pin Payload Case Success" duration="1"/>
-    <testCase name="Reducer of authentication history Should return the unchanged state if it does not contain any action" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/productIntegrations/actions.spec.ts">
-    <testCase name="Action of global history Should call the loading action correctly and receive the value within payload" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/educationalStage/reducer.spec.ts">
-    <testCase name="Reducer of authentication history Should set the Educational Stage for the chosen" duration="2"/>
-    <testCase name="Reducer of authentication history Should set the Educational Stage Default with the array of that the user has access to" duration="1"/>
-    <testCase name="Reducer of authentication history Should reset all states" duration="1"/>
-    <testCase name="Reducer of authentication history Should set Loading as True and Clean User Infos" duration="2"/>
-    <testCase name="Reducer of authentication history Should return the unchanged state if it does not contain any action" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/reCaptcha.spec.ts">
-    <testCase name="Captcha for Login Should trigger the lib that removes the captcha cache" duration="1"/>
-    <testCase name="Captcha for Login Must validate quantity of stored items and return a Bool" duration="2"/>
-    <testCase name="Captcha for Login Save to set login attempts in cache" duration="4"/>
-    <testCase name="Captcha for Login You must validate the captcha token and remove the cache if ok" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/profile/reducer.spec.ts">
-    <testCase name="authProduct reducer returns the initial state when an action type is not passed" duration="1"/>
-    <testCase name="authProduct reducer loading is set to false on failure action" duration="2"/>
-    <testCase name="authProduct reducer loading is set to false on failure action" duration="1"/>
-    <testCase name="authProduct reducer loading is set to false on failure action" duration="142"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/global/reducer.spec.ts">
-    <testCase name="Reducer of authentication history Should set the loading for the chosen" duration="3"/>
-    <testCase name="Reducer of authentication history Should set the enableRefreshTokenMiddleware for the chosen" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/history.spec.ts">
-    <testCase name="history service should work properly should be defined" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/authProduct/actions.spec.ts">
-    <testCase name="authProduct action creators should work properly should create an request action on preAuth" duration="2"/>
-    <testCase name="authProduct action creators should work properly should create an specific request action on authProductRequest" duration="1"/>
-    <testCase name="authProduct action creators should work properly should create an success action on authProductSuccess" duration="1"/>
-    <testCase name="authProduct action creators should work properly should create an failure action on authProductFailure" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/toolOpened.spec.ts">
-    <testCase name="testing if `mixpanel tool opened` function work properly mixpanelToolOpened send event with correct properties" duration="2"/>
-    <testCase name="testing if `mixpanel tool opened` function work properly Show an error in the console if MixPanel is not instantiated" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/tour/actions.spec.ts">
-    <testCase name="tour module action creators should work properly should get tour request with correct action type" duration="1"/>
-    <testCase name="tour module action creators should work properly should dispatch tour success action with correct type and payload" duration="1"/>
-    <testCase name="tour module action creators should work properly should dispatch tour failure action with correct type" duration="1"/>
-    <testCase name="tour module action creators should work properly should request if user has already seen the tour with correct action type" duration="1"/>
-    <testCase name="tour module action creators should work properly should dispatch success action with correct payload on getTourViewedSuccess" duration="1"/>
-    <testCase name="tour module action creators should work properly should dispatch failure action with correct payload on getTourViewedFailure" duration="4"/>
-    <testCase name="tour module action creators should work properly should dispatch openTour action with correct payload and action type" duration="1"/>
-    <testCase name="tour module action creators should work properly should dispatch postTour action with correct type" duration="0"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/eemConnect.spec.ts">
-    <testCase name="EEMConnectPost should work properly EEMConnectPost should set headers then send a post request" duration="38"/>
-    <testCase name="EEMConnectPost should work properly EEMConnectGET should send a get request" duration="14"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/transpileProfile.spec.ts">
-    <testCase name="Profile structure Must return the correct structure following a pre-defined string" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/identifyUser.spec.ts">
-    <testCase name="testing if amplitude Set Id function work properly amplitudeSetId should send event with correct id" duration="52"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/prepareSchoolAndRoles.spec.ts">
-    <testCase name="Adjust school structure and profiles Should return data structure of schools" duration="3"/>
-    <testCase name="Adjust school structure and profiles Should return data structure of Roles" duration="5"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/hotjar/hotjarInit.spec.ts">
-    <testCase name="Should start Hotjar correctly" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/clearAll.spec.tsx">
-    <testCase name="testing if `amplitude clear all` function work properly clearAll should clear all properties of amplitude`s session" duration="42"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/identifyUser.spec.ts">
-    <testCase name="Mixpanel Services Should shoot the MixPanel reset function" duration="2"/>
-    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Icon.spec.tsx">
-    <testCase name="Root import icons I hope these components are called" duration="217"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/products/actions.spec.ts">
-    <testCase name="products action creators should work properly should create an request action with productRequest" duration="1"/>
-    <testCase name="products action creators should work properly should create an success action with productSuccess" duration="1"/>
-    <testCase name="products action creators should work properly should create a productIntegration action on productIntegration" duration="1"/>
-    <testCase name="products action creators should work properly should create an failure action on productFailure" duration="1"/>
-    <testCase name="products action creators should work properly should create an frame url action on setFrameURL" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/user/reducer.spec.ts">
-    <testCase name="Reducer of user history Should Set Loading How True On The Action Shooting of AlterPasswordRequest" duration="3"/>
-    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of alterPasswordSuccess" duration="1"/>
-    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of alterPasswordFailure" duration="1"/>
-    <testCase name="Reducer of user history Should reset the information in the user logout" duration="1"/>
-    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of alterPasswordSuccess" duration="1"/>
-    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of forgotPasswordSuccess" duration="1"/>
-    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of forgotPasswordFailure" duration="1"/>
-    <testCase name="Reducer of user history Should set the state with the selected school" duration="1"/>
-    <testCase name="Reducer of user history Should set all user information in the initial state" duration="1"/>
-    <testCase name="Reducer of user history Should return the unchanged state if it does not contain any action" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/forgotPassword/actions.spec.ts">
-    <testCase name="Action of forgotPassword history Should the validatePinRequest calls the correct action and receive the value within payload" duration="2"/>
-    <testCase name="Action of forgotPassword history Should the pwdTokenSuccess calls the correct action and receive the value within payload" duration="2"/>
-    <testCase name="Action of forgotPassword history Should the validatePinFailure" duration="38"/>
-    <testCase name="Action of forgotPassword history Should the pwdTokenRequest calls the correct action and receive the value within payload" duration="2"/>
-    <testCase name="Action of forgotPassword history Should the pwdTokenSuccess calls the correct action" duration="1"/>
-    <testCase name="Action of forgotPassword history Should the pwdTokenFailure calls the correct action" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/init.spec.ts">
-    <testCase name="Mixpanel Services Should properly boot MixPanel" duration="2"/>
-    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/validators/user/alterPassword.spec.ts">
-    <testCase name="alterPassword must check the format of the new password Should return a `min characters` error if new password is smaller than 5 characters" duration="7"/>
-    <testCase name="alterPassword must check the format of the new password Should return an error if newPassword is different of confirmNewPassword" duration="2"/>
-    <testCase name="alterPassword must check the format of the new password Should return a `missing confirmNewPassword` error if confirmNewPassword was not provided" duration="2"/>
-    <testCase name="alterPassword must check the format of the new password Should return a `missing oldPassword` error if oldPassword was not provided" duration="1"/>
-    <testCase name="alterPassword must check the format of the new password Should return the `shape` if `password`, `confirm-password` and `oldPassword` is correct" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/pageView.spec.ts">
-    <testCase name="testing if mixpanel page viewed functions work properly AmplitudePageView should dispatch Page Viewed event when application is loaded" duration="6"/>
-    <testCase name="testing if mixpanel page viewed functions work properly AmplitudePageView should dispatch Page Viewed event when history href is changed" duration="4"/>
-    <testCase name="testing if mixpanel page viewed functions work properly AmplitudePageView should not dispatch a Page Viewed event when oldTitle is the same that current title" duration="3"/>
-    <testCase name="testing if mixpanel page viewed functions work properly Show an error in the console if MixPanel is not instantiated" duration="3"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/auth/actions.spec.ts">
-    <testCase name="Action of authentication history Should the preparingUserData calls the correct action and receive the value within payload" duration="2"/>
-    <testCase name="Action of authentication history Should the signInRequest calls the correct action and receive the value within payload" duration="2"/>
-    <testCase name="Action of authentication history Should the signInSuccess calls the correct action and receive the value within payload" duration="1"/>
-    <testCase name="Action of authentication history Should the refreshTokenSuccess calls the correct action and receive the value within payload" duration="2"/>
-    <testCase name="Action of authentication history Should the reducedTokenEEM calls the correct action and receive the value within payload" duration="1"/>
-    <testCase name="Action of authentication history I Should the signOut is called and the amplitude states are clean" duration="1"/>
-    <testCase name="Action of authentication history Should refreshTokenRequest is called" duration="1"/>
-    <testCase name="Action of authentication history Should signInRequestLoading is called" duration="1"/>
-    <testCase name="Action of authentication history Should signInFailure is called" duration="2"/>
-    <testCase name="Action of authentication history Should withoutAccess is called" duration="1"/>
-    <testCase name="Action of authentication history Should setSigned is called" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/validators/auth/forgotPassword.spec.ts">
-    <testCase name="forgotPasswordSchema must check if the format of `email` is correct Should return a `missing email` error if email was not provided" duration="2"/>
-    <testCase name="forgotPasswordSchema must check if the format of `email` is correct Should return `shape` if email`s formart is correct" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/hooks/useSendGlobalInfo.spec.ts">
-    <testCase name="useSendGlobalInfo hook should work properly Global Variable `window.__HUB_USER_INFO__` should be undefined before initialization of useSendGlobalInfo hook" duration="1"/>
-    <testCase name="useSendGlobalInfo hook should work properly Global Variable `window.__HUB_USER_INFO__` should be defined after initialization of useSendGlobalInfo hook" duration="10"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/authProduct/reducer.spec.ts">
-    <testCase name="authProduct reducer returns the initial state when an action type is not passed" duration="1"/>
-    <testCase name="authProduct reducer should return change loading to true when a product is requested" duration="1"/>
-    <testCase name="authProduct reducer loading is set to false on success action" duration="1"/>
-    <testCase name="authProduct reducer loading is set to false on failure action" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/myClasses/reducer.spec.ts">
-    <testCase name="Reducer of authentication history Should set Loading to True When Request Action is Triggered" duration="3"/>
-    <testCase name="Reducer of authentication history Should set Loading to false and classes to return api When Success Action is Triggered" duration="2"/>
-    <testCase name="Reducer of authentication history Should set Loading to false and classes to undefined When Failure Action is Triggered" duration="2"/>
-    <testCase name="Reducer of authentication history Should return the unchanged state if it does not contain any action" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/myClasses/actions.spec.ts">
-    <testCase name="Action of global history Should call the classesRequest action correctly and receive the value within payload" duration="2"/>
-    <testCase name="Action of global history Should call the classesSuccess action correctly and receive the value within payload" duration="1"/>
-    <testCase name="Action of global history Should call the classesFailure action correctly and receive the value within payload" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/prepareEducationalStage.spec.ts">
-    <testCase name="prepareEducationalStage should work properly should return object with correct keys and values" duration="2"/>
-    <testCase name="prepareEducationalStage should work properly should return empty object if data.serie.ciclo is undefined" duration="1"/>
-    <testCase name="prepareEducationalStage should work properly should return empty object if ativo is false" duration="1"/>
-    <testCase name="prepareEducationalStage should work properly should return empty object if no data is received" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/amplitudeToolOpened.spec.ts">
-    <testCase name="testing if `amplitude tool opened` function work properly amplitudeToolOpened send event with correct properties" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/global/actions.spec.ts">
-    <testCase name="Action of global history Should call the loading action correctly and receive the value within payload" duration="3"/>
-    <testCase name="Action of global history Should call the enableRefreshTokenMiddleware action correctly and receive the value within payload" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/hooks/useQuery.spec.ts">
-    <testCase name="useQuery hook should work properly Should return the value of the query provided by the get method" duration="9"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/utils/createSlug.spec.ts">
-    <testCase name="expect createSlug to work correctly should convert string into slug" duration="3"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/isMobile.spec.ts">
-    <testCase name="Check device origin Should return if the device is not mobile" duration="2"/>
-    <testCase name="Check device origin Should return if the device is  mobile" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/utils/capitalize.spec.ts">
-    <testCase name="expect capitalize to work correctly should return capitalized string" duration="2"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/hasJsonStructure.spec.ts">
-    <testCase name="json-type structure Should be check if string has a json structure" duration="2"/>
-    <testCase name="json-type structure Must return that the structure sent is not of the JSON type" duration="1"/>
-    <testCase name="json-type structure Should return false when receives non string data" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/utils/documentTitle.spec.ts">
-    <testCase name="expect documentTitle to work correctly should return documentTitle styled string" duration="2"/>
-    <testCase name="expect documentTitle to work correctly should return default string when theres no env title" duration="1"/>
-  </file>
-  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Header/Mobile.spec.tsx">
-    <testCase name="Mobile Header component  Should have a button called `Estou com uma dúvida`" duration="2875"/>
-    <testCase name="Mobile Header component  openMenu should call onOpen when isOpen is false" duration="262"/>
-    <testCase name="Mobile Header component  openMenu should call onClose when isOpen is true" duration="2285"/>
-    <testCase name="Mobile Header component  Should redirect to `/` when `Sair` button is clicked" duration="2305"/>
-    <testCase name="Mobile Header component  Should open a Tour (dispatch a `@tour/OPEN_TOUR` action) when /Fazer tour/ button is clicked" duration="2816"/>
-    <testCase name="Mobile Header component  Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked" duration="2779"/>
-    <testCase name="Mobile Header component  Should call useDisclosure`s onClose function when ´Home` button is clicked" duration="3112"/>
-    <testCase name="Mobile Header component  Should call useDisclosure`s onClose function when key of escape is pressed (ESC)" duration="3549"/>
-    <testCase name="Mobile Header component  Should change the `school` on selector when other `school` is triggered" duration="33802"/>
-    <testCase name="Mobile Header component  Should change the `role` on selector when other `role` is triggered" duration="7321"/>
-    <testCase name="Mobile Header component  Should change `Home` button color when pathname is /minhas-turmas" duration="2167"/>
-    <testCase name="Mobile Header component  Should change `Minhas turmas` button color when pathname is `/`" duration="2127"/>
+    <testCase name="Desktop Header component Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked" duration="2800"/>
+    <testCase name="Desktop Header component Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked" duration="3539"/>
+    <testCase name="Desktop Header component Popover should be visible when header`s avatar is clicked" duration="4101"/>
+    <testCase name="Desktop Header component Should have a button called `Estou com uma dúvida`" duration="2361"/>
+    <testCase name="Desktop Header component Should dispatch an `@auth/SIGN_OUT` action when `Sair` is clicked" duration="3638"/>
+    <testCase name="Desktop Header component Should close Popover when component is on blur or escape (ESC)" duration="3677"/>
+    <testCase name="Desktop Header component Should change the `school` on selector when other `school` is triggered" duration="5369"/>
+    <testCase name="Desktop Header component Should change the `role` on selector when other `role` is triggered" duration="4823"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ChangePassword.spec.tsx">
+    <testCase name="Change Password page should work properly should change input type if view changes" duration="1882"/>
+    <testCase name="Change Password page should work properly should redirect user if no token was provided" duration="1793"/>
+    <testCase name="Change Password page should work properly should return user to previous page when goBack is clicked" duration="1568"/>
+    <testCase name="Change Password page should work properly should display an error when validation fails" duration="1672"/>
+    <testCase name="Change Password page should work properly should display a generic error when validation throws it" duration="2581"/>
+    <testCase name="Change Password page should work properly Should dispatch actions with correct payloads" duration="1575"/>
   </file>
   <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Header/Header.spec.tsx">
-    <testCase name="Header component  Should render Desktop Header when min-width is 480px" duration="8302"/>
-    <testCase name="Header component  Should render Mobile Header when min-width is 479px" duration="13650"/>
-    <testCase name="Header component  Should call handleClick when MenuButton is clicked" duration="14908"/>
-    <testCase name="Header component  Should redirect to `/` when hub logo is clicked" duration="14256"/>
-    <testCase name="Header component  Should call openModalPass when `Alterar minha senha` is clicked" duration="29246"/>
+    <testCase name="Header component  Should render Desktop Header when min-width is 480px" duration="11773"/>
+    <testCase name="Header component  Should render Mobile Header when min-width is 479px" duration="7464"/>
+    <testCase name="Header component  Should call handleClick when MenuButton is clicked" duration="6976"/>
+    <testCase name="Header component  Should redirect to `/` when hub logo is clicked" duration="8225"/>
+    <testCase name="Header component  Should call openModalPass when `Alterar minha senha` is clicked" duration="9325"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Header/AlterPass.spec.tsx">
+    <testCase name="get started Should throw a `validation` error if the form was submitted without any information" duration="2332"/>
+    <testCase name="get started Should throw a `generic` error if an error other than` validation` has been thrown" duration="1898"/>
+    <testCase name="get started Should call `onClose` function when `CANCELAR` is clicked" duration="1682"/>
+    <testCase name="get started Should dispatch an `@user/USER_PASSWORD_PANEL_REQUEST` action if the form has been submitted with correct data" duration="1157"/>
+    <testCase name="get started Should convert input`s type to text when viewPass and viewNewPass are true" duration="1509"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Header/Mobile.spec.tsx">
+    <testCase name="Mobile Header component  Should call OpenModalPass when `alterar minha senha` is clicked" duration="5337"/>
+    <testCase name="Mobile Header component  Should have a button called `Estou com uma dúvida`" duration="5003"/>
+    <testCase name="Mobile Header component  openMenu should call onOpen when isOpen is false" duration="1878"/>
+    <testCase name="Mobile Header component  openMenu should call onClose when isOpen is true" duration="4649"/>
+    <testCase name="Mobile Header component  Should redirect to `/` when `Sair` button is clicked" duration="3895"/>
+    <testCase name="Mobile Header component  Should open a Tour (dispatch a `@tour/OPEN_TOUR` action) when /Fazer tour/ button is clicked" duration="4710"/>
+    <testCase name="Mobile Header component  Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked" duration="3775"/>
+    <testCase name="Mobile Header component  Should call useDisclosure`s onClose function when ´Home` button is clicked" duration="4604"/>
+    <testCase name="Mobile Header component  Should call useDisclosure`s onClose function when key of escape is pressed (ESC)" duration="7013"/>
+    <testCase name="Mobile Header component  Should change the `school` on selector when other `school` is triggered" duration="10300"/>
+    <testCase name="Mobile Header component  Should change the `role` on selector when other `role` is triggered" duration="10010"/>
+    <testCase name="Mobile Header component  Should change `Home` button color when pathname is /minhas-turmas" duration="0"/>
+    <testCase name="Mobile Header component  Should change `Minhas turmas` button color when pathname is `/`" duration="0"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/ModalNoClass.spec.tsx">
+    <testCase name="ModalNoClass component should work properly should trigger the logout action by clicking the exit button" duration="4528"/>
+    <testCase name="ModalNoClass component should work properly Must render the component on screen correctly" duration="3264"/>
+    <testCase name="ModalNoClass component should work properly Render the component in the Desktop version" duration="4452"/>
+    <testCase name="ModalNoClass component should work properly The component should not be on screen" duration="1699"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Logged/Dashboard.spec.tsx">
+    <testCase name="Logged`s layout should render without crashing Should call render children on screen" duration="1545"/>
+    <testCase name="Logged`s layout should render without crashing Shouldn`t call steps if `open` is false" duration="1635"/>
+    <testCase name="Logged`s layout should render without crashing Steps should work properly on Dashboard when `open` and `viewed` are true" duration="3468"/>
+    <testCase name="Logged`s layout should render without crashing Steps should work properly on Dashboard when `open` is true and `viewed` is false" duration="3375"/>
+    <testCase name="Logged`s layout should render without crashing Should call that hooks: useSentry, useSendGlobalInfo and useAmplitudeSetProperties" duration="1661"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/SignIn.spec.tsx">
+    <testCase name="Testing that the Login page works correctly should redirect the user to /esqueci-minha-senha when click on `Esqueci minha senha`" duration="1904"/>
+    <testCase name="Testing that the Login page works correctly should open help modal when click on `Precido de ajuda`" duration="1623"/>
+    <testCase name="Testing that the Login page works correctly should change password input type when view icon is clicked" duration="1971"/>
+    <testCase name="Testing that the Login page works correctly Should render the elements of the Login page" duration="1974"/>
+    <testCase name="Testing that the Login page works correctly should dispatch @auth/SIGN_IN REQUEST with the right payload if the user data format is correct" duration="2072"/>
+    <testCase name="Testing that the Login page works correctly should throw a validation error when username and password input are empty" duration="1600"/>
+    <testCase name="Testing that the Login page works correctly should throw new error when username or password input are incorrect" duration="1580"/>
+    <testCase name="Testing that the Login page works correctly should change the type of the submit button to button type when sign-in strike is true" duration="1607"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/educationalStage/sagas.spec.ts">
+    <testCase name="Sagas of educationalStage history get Education Stage Should generate a new user authentication token for the user" duration="914"/>
+    <testCase name="Sagas of educationalStage history get Education Stage Should return empty if the API returns an error" duration="853"/>
+    <testCase name="Sagas of educationalStage history get Educational By Person Should shoot the saga to seek the levels of teaching" duration="936"/>
+    <testCase name="Sagas of educationalStage history get Educational By Person Should reset the profile selection if the selected profile is different from expected" duration="896"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/Profile/Profile.spec.tsx">
+    <testCase name="Profile page should work properly Should render the correct elements on the screen" duration="1726"/>
+    <testCase name="Profile page should work properly The component `Select` should work correctly when the user interacts with it" duration="2021"/>
+    <testCase name="Profile page should work properly The `Profile` component should dispatch `@auth/FIRST_ACCESS` when the user chooses an option" duration="2196"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/Home.spec.tsx">
+    <testCase name="Testing that the Home page works correctly Should render the correct elements on the screen" duration="1599"/>
+    <testCase name="Testing that the Home page works correctly Should not show any card when an unknown card is searched on filter" duration="1139"/>
+    <testCase name="Testing that the Home page works correctly Should dispatch `@auth/AUTH_PRODUCT_REQUEST` when a card is clicked" duration="1596"/>
+    <testCase name="Testing that the Home page works correctly Should not render any cards when the products are loading" duration="1957"/>
+    <testCase name="Testing that the Home page works correctly Should render a message when the products have already loaded, but they are empty []" duration="1319"/>
+    <testCase name="Testing that the Home page works correctly Should render with default Welcome titles" duration="1559"/>
+    <testCase name="Testing that the Home page works correctly Should render `userClass` and `Profile` when profile name is `Aluno`" duration="1502"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/HeaderDesktop.spec.tsx">
+    <testCase name="HeaderDesktop should work properly Products menu should should display all solutions when clicked" duration="1843"/>
+    <testCase name="HeaderDesktop should work properly shouldnt display any card when no cards are provided" duration="1459"/>
+    <testCase name="HeaderDesktop should work properly card should handle push and log amplitude event when clicked" duration="1627"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/layout/provider.spec.tsx">
+    <testCase name="Testing Theme Provider should change theme when profile changes" duration="6348"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/auth/sagas.spec.ts">
+    <testCase name="Sagas of authentication history sign in Should the user authenticate with valid login and password and pass is redirected to choice" duration="1062"/>
+    <testCase name="Sagas of authentication history sign in If the Return of the API is flawed for some reason, the user is warned and the login will be rejected" duration="1105"/>
+    <testCase name="Sagas of authentication history sign in Should generate with a redirect query in the URL when passing the Redirect parameter in the login" duration="1364"/>
+    <testCase name="Sagas of authentication history prepare Access Should prepare all data for the first user access" duration="1183"/>
+    <testCase name="Sagas of authentication history prepare Access Should signOut the user if the ID from the reduced token is different from the user ID" duration="1442"/>
+    <testCase name="Sagas of authentication history prepare Access Should set the user as authenticated when receiving the redirect parameter" duration="1138"/>
+    <testCase name="Sagas of authentication history checking Expiring Token You should pause running if payload comes empty" duration="1185"/>
+    <testCase name="Sagas of authentication history checking Expiring Token Should not log the user if it does not have the active login flag" duration="1345"/>
+    <testCase name="Sagas of authentication history checking Expiring Token Should return if the expiration date is not defined" duration="1134"/>
+    <testCase name="Sagas of authentication history checking Expiring Token Should be set, in the reload of the application, the token in the Header of the API if the user is logged in" duration="2203"/>
+    <testCase name="Sagas of authentication history checking Expiring Token should refresh the user if the Token expiration date is less than the current date" duration="692"/>
+    <testCase name="Sagas of authentication history refresh Token Should generate a new user authentication token for the user" duration="2708"/>
+    <testCase name="Sagas of authentication history refresh Token You should discharge the user if something fails in the return of API" duration="1071"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Popover.spec.tsx">
+    <testCase name="Popover component should work properly Should render with correctly content" duration="1811"/>
+    <testCase name="Popover component should work properly Should close visibility of the Popover when close button is clicked" duration="3602"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/SpinnerLoader.spec.tsx">
+    <testCase name="SpinnerLoader renders without crashing SpinnerLoader matches snapshot" duration="6284"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Drawer.spec.tsx">
+    <testCase name="Testing if Drawer component render correctly should render open, as well must render Drawer Header, Body and Footer" duration="7301"/>
+    <testCase name="Testing if Drawer component render correctly Drawer matches snapshot" duration="3728"/>
+    <testCase name="testing useDesclosure should returns the correct values" duration="1591"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ExpiredToken.spec.tsx">
+    <testCase name="Expired Token page should work properly Should redirect to `/` when `validateViewPin` doesn`t exist or it`s false" duration="1663"/>
+    <testCase name="Expired Token page should work properly Should render the correcly elements on screen" duration="1340"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/esqueci-minha-senha` when `Solicitar novo link` is clicked" duration="1421"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `GoBack` is clicked" duration="1643"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ForgotFail.spec.tsx">
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `sendViewToken` doesn`t exist or it`s false" duration="2815"/>
+    <testCase name="Expired Token page should work properly Should render the correcly elements on screen" duration="1786"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `Voltar para o login` is clicked" duration="1716"/>
+    <testCase name="Expired Token page should work properly Should redirect to `/login` when `GoBack` is clicked" duration="1565"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Accordion.spec.tsx">
+    <testCase name="Accordion an UnmountClosed components Accordion being rendered on canvas" duration="1963"/>
+    <testCase name="Accordion an UnmountClosed components UnmountClosed being rendered on canvas" duration="2268"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/Header.spec.tsx">
+    <testCase name="Header`s layout should work properly Header should render Mobile Header when useMediaQuery returns [false]" duration="2151"/>
+    <testCase name="Header`s layout should work properly Header should render Desktop Header when useMediaQuery returns [true]" duration="1742"/>
+    <testCase name="Header`s layout should work properly Should call the go back handler when a GoBack is clicked" duration="2068"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/user/reducer.spec.ts">
+    <testCase name="Reducer of user history Should Set Loading How True On The Action Shooting of AlterPasswordRequest" duration="1515"/>
+    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of alterPasswordSuccess" duration="1336"/>
+    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of alterPasswordFailure" duration="1476"/>
+    <testCase name="Reducer of user history Should reset the information in the user logout" duration="1341"/>
+    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of alterPasswordSuccess" duration="1495"/>
+    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of forgotPasswordSuccess" duration="1433"/>
+    <testCase name="Reducer of user history Should Set Loading How false On The Action Shooting of forgotPasswordFailure" duration="1465"/>
+    <testCase name="Reducer of user history Should set the state with the selected school" duration="1508"/>
+    <testCase name="Reducer of user history Should set all user information in the initial state" duration="1370"/>
+    <testCase name="Reducer of user history Should return the unchanged state if it does not contain any action" duration="1475"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/authProduct/sagas.spec.ts">
+    <testCase name="Testing productSorting saga flow productSorting should call refresh token then dispatch a request action" duration="1450"/>
+    <testCase name="Testing productSorting saga flow productSorting should redirect user when tipoRenderizacao is `iframenoauth`" duration="1267"/>
+    <testCase name="Testing productSorting saga flow productSorting should open a new page when tipoRenderizacao is `targetblank`" duration="1069"/>
+    <testCase name="Testing productSorting saga flow productSorting should dispatch request action when tipoRenderizacao is `iframe`" duration="1099"/>
+    <testCase name="Testing productSorting saga flow productSorting should dispatch request action when tipoRenderizacao is `wordpress`" duration="1306"/>
+    <testCase name="Testing productSorting saga flow productSorting should early return when no auth, profile or user info is available" duration="1275"/>
+    <testCase name="testing authProductGUID saga flow should set loading, make a post request, redirect user, set iframe and dispatch success action" duration="1186"/>
+    <testCase name="testing authProductGUID saga flow should redirect user to correct path when payload has a subpath" duration="1232"/>
+    <testCase name="testing authProductGUID saga flow should send a tost and dispatch failure action when post response has a error" duration="1617"/>
+    <testCase name="testing authProductGUID saga flow productSorting should early return when no auth, profile or user info is available" duration="1593"/>
+    <testCase name="testing authProductEEM saga flow should set loading, set iframe url and then dispatch success action" duration="1792"/>
+    <testCase name="testing authProductEEM saga flow should open a new window when tipoRenderizacao is `iframeblank` and the device is IOS" duration="1546"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/products/reducers.spec.ts">
+    <testCase name="authProduct reducer returns the initial state when an action type is not passed" duration="1159"/>
+    <testCase name="authProduct reducer should change loading to true when a product is requested" duration="1461"/>
+    <testCase name="authProduct reducer loading is set to false on success action" duration="1346"/>
+    <testCase name="authProduct reducer should set data on product integration action" duration="1284"/>
+    <testCase name="authProduct reducer should set loading to false and reset data on product failure action" duration="1602"/>
+    <testCase name="authProduct reducer should set loading to true and reset data on without access action" duration="1626"/>
+    <testCase name="authProduct reducer should set frameURL and frame name on frame URL action" duration="2135"/>
+    <testCase name="authProduct reducer should set loading to true and reset data on sign out action" duration="1773"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Select.spec.tsx">
+    <testCase name="Select renders without crashing Select normal variant render all options" duration="4438"/>
+    <testCase name="Select renders without crashing Select blue-transparent variant render options" duration="3363"/>
+    <testCase name="Select renders without crashing Select displays error message when no options are provided" duration="2026"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/ForgotPassword.spec.tsx">
+    <testCase name="Forgot Password page should work properly should display instructions about password recovery" duration="2629"/>
+    <testCase name="Forgot Password page should work properly Should display an error toast if submit with empty input" duration="2845"/>
+    <testCase name="Forgot Password page should work properly Should display an error toast if validator throws a generic error" duration="2738"/>
+    <testCase name="Forgot Password page should work properly Should redirect client to login page if sendViewToken is true" duration="2538"/>
+    <testCase name="Forgot Password page should work properly should go back when GoBack is clicked" duration="1556"/>
+    <testCase name="Forgot Password page should work properly Should dispatch an action with correct payload" duration="1923"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/index.spec.tsx">
+    <testCase name="Root import components I hope these components are called" duration="17"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/tour/actions.spec.ts">
+    <testCase name="tour module action creators should work properly should get tour request with correct action type" duration="1289"/>
+    <testCase name="tour module action creators should work properly should dispatch tour success action with correct type and payload" duration="1640"/>
+    <testCase name="tour module action creators should work properly should dispatch tour failure action with correct type" duration="1376"/>
+    <testCase name="tour module action creators should work properly should request if user has already seen the tour with correct action type" duration="1597"/>
+    <testCase name="tour module action creators should work properly should dispatch success action with correct payload on getTourViewedSuccess" duration="1846"/>
+    <testCase name="tour module action creators should work properly should dispatch failure action with correct payload on getTourViewedFailure" duration="1434"/>
+    <testCase name="tour module action creators should work properly should dispatch openTour action with correct payload and action type" duration="1707"/>
+    <testCase name="tour module action creators should work properly should dispatch postTour action with correct type" duration="1830"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Welcome.spec.tsx">
+    <testCase name="Welcome renders with correct props should render Welcome message correctly" duration="4284"/>
+    <testCase name="Welcome renders with correct props should render with welcome message despite undefined props" duration="4048"/>
+    <testCase name="Welcome renders with correct props should render user name as `Usuário` when option is `name` and prop name is undefined" duration="3644"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/user/sagas.spec.ts">
+    <testCase name="Sagas of user history Forgot Password Should shoot a message to the user and redirect it to login to API success" duration="2312"/>
+    <testCase name="Sagas of user history Forgot Password Should shoot an error message for user if the API returns some exception" duration="2558"/>
+    <testCase name="Sagas of user history Forgot Password Should return a custom error message if the password or PIN PASSE INVALIDS" duration="2153"/>
+    <testCase name="Sagas of user history Forgot Password Should return the default error message if the invalid password or password PIN and the API does not contain a response" duration="2183"/>
+    <testCase name="Sagas of user history Alter Password Should shoot a successful message for user in the return of API" duration="2178"/>
+    <testCase name="Sagas of user history Alter Password Should shoot an error message for user if the API returns some exception" duration="2160"/>
+    <testCase name="Sagas of user history Alter Password Should return a custom error message if the password or PIN PASSE INVALIDS" duration="2420"/>
+    <testCase name="Sagas of user history Alter Password Should return the default error message if the invalid password the API does not contain a response" duration="1931"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/auth/reducer.spec.ts">
+    <testCase name="Reducer of authentication history Should at the shooting of Action Reducers steps are triggered by setting the default information" duration="1232"/>
+    <testCase name="Reducer of authentication history Should that in login failure, the information returns to the initial state" duration="1378"/>
+    <testCase name="Reducer of authentication history Should that in the success of the login, the token is received beyond the other infos for access to the platform" duration="2059"/>
+    <testCase name="Reducer of authentication history Should the loading is fired while the check action happens" duration="2082"/>
+    <testCase name="Reducer of authentication history Should that in the absence of an initial status defined, the default state is triggered" duration="1972"/>
+    <testCase name="Reducer of authentication history Should that being true all login treatives, the user is released for access to the system" duration="2330"/>
+    <testCase name="Reducer of authentication history Should that in the absence of education level, the user is blocked for access to platform" duration="2255"/>
+    <testCase name="Reducer of authentication history Should the reduced token is received and past for storage" duration="2643"/>
+    <testCase name="Reducer of authentication history Should in the success generation of a new token, a refresh token and an expiration date is received" duration="2677"/>
+    <testCase name="Reducer of authentication history Should that in the user&apos;s exit, all states are resetted" duration="1995"/>
+    <testCase name="Reducer of authentication history Should if an unexpected exception is received, the same will have no effect on the application states" duration="2285"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Header/context.spec.tsx">
+    <testCase name="Testing useHeader Should return define a Header Context" duration="2380"/>
+    <testCase name="Testing useHeader Should throw an error when context is not provided" duration="2744"/>
+    <testCase name="Testing HeaderContext Should dispatch an `@auth/FIRST_ACCESS` action when setRole is triggered" duration="1800"/>
+    <testCase name="Testing HeaderContext Should call useState`s handle function when setSchool is triggered" duration="1971"/>
+    <testCase name="Testing HeaderContext Should call useState`s handle function when resetInfo is triggered" duration="1926"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/CardProduct.spec.tsx">
+    <testCase name="CardProduct component should work properly Card redirects to the correct link" duration="5347"/>
+    <testCase name="CardProduct component should work properly Card shows correct notification" duration="3985"/>
+    <testCase name="CardProduct component should work properly Card has &quot;hub&quot; category when no category is received" duration="3337"/>
+    <testCase name="CardProduct component should work properly Card shows &quot;Em breve&quot; text when doesnt receive a link" duration="3266"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/FakeCollapse.spec.tsx">
+    <testCase name="FakeCollapse renders without crashing should have children" duration="3356"/>
+    <testCase name="FakeCollapse renders without crashing Collapse with false grid doesn&apos;t render SimpleGrid" duration="2539"/>
+    <testCase name="FakeCollapse renders without crashing renders without crashing on larger screens" duration="1970"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/forgotPassword/sagas.spec.ts">
+    <testCase name="Sagas of forgotPassword history pwd Token Should show a message to the user and redirect it to login to API success" duration="1539"/>
+    <testCase name="Sagas of forgotPassword history pwd Token Should send the user to the failure page if the return of the API is flawed" duration="1131"/>
+    <testCase name="Sagas of forgotPassword history pwd Token Show an error message for the user if the API returns an exception" duration="1130"/>
+    <testCase name="Sagas of forgotPassword history validate PIN Should Validate User PIN via API" duration="1418"/>
+    <testCase name="Sagas of forgotPassword history validate PIN Show for the user that the token is expired or invalid" duration="1214"/>
+    <testCase name="Sagas of forgotPassword history validate PIN Show an error message for the user if the API returns an exception" duration="1144"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Tour.spec.tsx">
+    <testCase name="Testing Tour component and your functionalities Should render Tour component with first step" duration="2186"/>
+    <testCase name="Testing Tour component and your functionalities should close the tour when closeButton is clicked" duration="5337"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Skeleton.spec.tsx">
+    <testCase name="Skeleton renders without crashing Stack matches snapshot" duration="2661"/>
+    <testCase name="Skeleton renders without crashing Skeleton matches snapshot" duration="2804"/>
+    <testCase name="Skeleton renders without crashing SkeletonCircle matches snapshot" duration="2767"/>
+    <testCase name="Skeleton renders without crashing SkeletonText matches snapshot" duration="3524"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/layout/styles.spec.ts">
+    <testCase name="Testing chacka`s styles hooks useTheme shouldn`t return void theme when encapsulated by a theme provider" duration="2558"/>
+    <testCase name="Testing chacka`s styles hooks useColorMode should  gives you access to the current color mode, and a function to toggle the color mode." duration="2865"/>
+    <testCase name="Testing chacka`s styles hooks useColorModeValue returns current color mode: by default return light mode color" duration="2916"/>
+    <testCase name="Testing chacka`s styles hooks useMediaQuery should returns an array of booleans, indicating whether the given query matches or queries match" duration="2123"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/products/sagas.spec.ts">
+    <testCase name="testing getProducts saga flow should set loadings, call api, dispatch success action, call mhunArvoreIntegration, get tour and enable refresh token middleware" duration="4605"/>
+    <testCase name="testing getProducts saga flow should call toast error when api returns with an error" duration="2449"/>
+    <testCase name="testing getProducts saga flow should dispatch a withoutAccess action and early return a user without the correct level" duration="1937"/>
+    <testCase name="testing getProducts saga flow should early return when theres no user or school info" duration="2133"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Modal.spec.tsx">
+    <testCase name="Modal component should work properly Should render the children on screen with correctly props" duration="1521"/>
+    <testCase name="Modal component should work properly Shoudn`t render the component when prop open is false (closed Model)" duration="2019"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/tour/sagas.spec.ts">
+    <testCase name="testing getProducts saga flow should dispatch tour request action, make get request do tour api and dispatch success action" duration="1778"/>
+    <testCase name="testing getProducts saga flow should not include educational level on tour request if user is not PROFESSOR or ALUNO" duration="2273"/>
+    <testCase name="testing getProducts saga flow should log error and dispatch failure action when api returns with an error" duration="2385"/>
+    <testCase name="testing getViewed saga flow should request for info on tour viewed and dispatch a success action" duration="2612"/>
+    <testCase name="testing getViewed saga flow should log error and dispatch failure action on api error" duration="2208"/>
+    <testCase name="testing getProducts saga flow should dispatch tour request action, make get request do tour api and dispatch success action" duration="2118"/>
+    <testCase name="testing getProducts saga flow should not include educational level on tour request if user is not PROFESSOR or ALUNO" duration="2168"/>
+    <testCase name="testing getProducts saga flow should log error and dispatch failure action when api returns with an error" duration="2409"/>
+    <testCase name="testing post tour saga flow should set open tour to false and post tour info" duration="1893"/>
+    <testCase name="testing post tour saga flow should log error and dispatch failure action on api error" duration="1628"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Header/AnimateGoBack.spec.tsx">
+    <testCase name="AnimateGoBack should work properly Shoud call onClick when arrow left is clicked" duration="4714"/>
+    <testCase name="AnimateGoBack should work properly Should render without crashing when width was not provided" duration="3764"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Search.spec.tsx">
+    <testCase name="should work properly Should render an input on screen" duration="3849"/>
+    <testCase name="should work properly Should call onChange handler when a value is triggered on input" duration="3147"/>
+    <testCase name="should work properly Should render without crashing" duration="3385"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/auth/actions.spec.ts">
+    <testCase name="Action of authentication history Should the preparingUserData calls the correct action and receive the value within payload" duration="2747"/>
+    <testCase name="Action of authentication history Should the signInRequest calls the correct action and receive the value within payload" duration="2912"/>
+    <testCase name="Action of authentication history Should the signInSuccess calls the correct action and receive the value within payload" duration="3184"/>
+    <testCase name="Action of authentication history Should the refreshTokenSuccess calls the correct action and receive the value within payload" duration="2936"/>
+    <testCase name="Action of authentication history Should the reducedTokenEEM calls the correct action and receive the value within payload" duration="2383"/>
+    <testCase name="Action of authentication history I Should the signOut is called and the amplitude states are clean" duration="2988"/>
+    <testCase name="Action of authentication history Should refreshTokenRequest is called" duration="2250"/>
+    <testCase name="Action of authentication history Should signInRequestLoading is called" duration="2928"/>
+    <testCase name="Action of authentication history Should signInFailure is called" duration="2962"/>
+    <testCase name="Action of authentication history Should withoutAccess is called" duration="3010"/>
+    <testCase name="Action of authentication history Should setSigned is called" duration="2970"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/hooks/usePostMessage.spec.ts">
+    <testCase name="postMessage should work properly shouldnt redirect when mounted URL is equal current pathname" duration="2313"/>
+    <testCase name="postMessage should work properly should call push on history-change event" duration="1399"/>
+    <testCase name="postMessage should work properly shouldnt redirect when receives non stringfied data" duration="1886"/>
+    <testCase name="postMessage should work properly shouldnt redirect when data hasnt json structure" duration="1812"/>
+    <testCase name="postMessage should work properly shouldnt redirect when event type isnt history-change" duration="1849"/>
+    <testCase name="postMessage should work properly shouldnt redirect when data isnt parseable" duration="1279"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/user/actions.spec.ts">
+    <testCase name="Action of user history Should shoot the action of UserRequest" duration="2494"/>
+    <testCase name="Action of user history Should shoot the action of UserSuccess" duration="2138"/>
+    <testCase name="Action of user history Should shoot the action of UserFailure" duration="1665"/>
+    <testCase name="Action of user history Should shoot setSchool action with payload containing the infos" duration="2290"/>
+    <testCase name="Action of user history Should shoot forgotPasswordRequest action with payload containing the infos" duration="2048"/>
+    <testCase name="Action of user history Should shoot the action of forgotPasswordSuccess" duration="2477"/>
+    <testCase name="Action of user history Should shoot the action of forgotPasswordFailure" duration="2349"/>
+    <testCase name="Action of user history Should shoot alterPasswordRequest action with payload containing the infos" duration="2700"/>
+    <testCase name="Action of user history Should shoot the action of alterPasswordSuccess" duration="2069"/>
+    <testCase name="Action of user history Should shoot the action of alterPasswordFailure" duration="1450"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Tooltip.spec.tsx">
+    <testCase name="Tooltip renders without crashing Tooltip has children" duration="1666"/>
+    <testCase name="Tooltip renders without crashing Tooltip matches snapshot" duration="1662"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Image.spec.tsx">
+    <testCase name="Image renders without crashing Should render image with correct alt text" duration="1719"/>
+    <testCase name="Image renders without crashing Image matches snapshot" duration="2629"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Collapse.spec.tsx">
+    <testCase name="Collapse component should work properly Collapse doesnt render collapse-box when disable is true" duration="3491"/>
+    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is true" duration="1865"/>
+    <testCase name="Collapse component should work properly Collapse change its animation when isOpen is false" duration="1968"/>
+    <testCase name="Collapse component should work properly Collapse render name inside Heading" duration="2527"/>
+    <testCase name="Collapse component should work properly Collapse with false grid doesnt render SimpleGrid" duration="2850"/>
+    <testCase name="Collapse component should work properly Collapse uses SimpleGrid in large screens" duration="2026"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Auth/Auth.spec.tsx">
+    <testCase name="Auth`s layout should render without crashing Auth`s layout should encapsulate correctly the children" duration="2575"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Form.spec.tsx">
+    <testCase name="Form works properly input should render icons correctly and change style when focused" duration="3168"/>
+    <testCase name="Form works properly input should display an error if useField returns error as truthy" duration="3129"/>
+    <testCase name="Form works properly Form calls submit with correct values" duration="2638"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Auth/Profile/CardBox.spec.tsx">
+    <testCase name="CardBox Component should work properly Should render icon with correct titles" duration="3706"/>
+    <testCase name="CardBox Component should work properly Should call onClick when user choises an role" duration="2781"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/setProperties.spec.tsx">
+    <testCase name="Mixpanel Services Should return false if the user is not logged in" duration="1909"/>
+    <testCase name="Mixpanel Services Should prepare user information for sending MixPanel" duration="2107"/>
+    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="1451"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/GoBack.spec.tsx">
+    <testCase name="Goback component should render on screen and when clicking trigger an event" duration="2480"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Home/FakeLoading.spec.tsx">
+    <testCase name="testing fakeLoading should render without  crashing" duration="3971"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Heading.spec.tsx">
+    <testCase name="Heading renders without crashing Heading has children" duration="1588"/>
+    <testCase name="Heading renders without crashing Heading matches snapshot" duration="1840"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/validators/user/alterPassword.spec.ts">
+    <testCase name="alterPassword must check the format of the new password Should return a `min characters` error if new password is smaller than 5 characters" duration="2159"/>
+    <testCase name="alterPassword must check the format of the new password Should return an error if newPassword is different of confirmNewPassword" duration="2117"/>
+    <testCase name="alterPassword must check the format of the new password Should return a `missing confirmNewPassword` error if confirmNewPassword was not provided" duration="2399"/>
+    <testCase name="alterPassword must check the format of the new password Should return a `missing oldPassword` error if oldPassword was not provided" duration="2814"/>
+    <testCase name="alterPassword must check the format of the new password Should return the `shape` if `password`, `confirm-password` and `oldPassword` is correct" duration="3142"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/forgotPassword/actions.spec.ts">
+    <testCase name="Action of forgotPassword history Should the validatePinRequest calls the correct action and receive the value within payload" duration="1500"/>
+    <testCase name="Action of forgotPassword history Should the pwdTokenSuccess calls the correct action and receive the value within payload" duration="1894"/>
+    <testCase name="Action of forgotPassword history Should the validatePinFailure" duration="2385"/>
+    <testCase name="Action of forgotPassword history Should the pwdTokenRequest calls the correct action and receive the value within payload" duration="2263"/>
+    <testCase name="Action of forgotPassword history Should the pwdTokenSuccess calls the correct action" duration="1604"/>
+    <testCase name="Action of forgotPassword history Should the pwdTokenFailure calls the correct action" duration="1916"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/Logo.spec.tsx">
+    <testCase name="Logo component Must render the component on screen correctly" duration="3641"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/validators/auth/createNewPassword.spec.ts">
+    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return a `min characters` error if password is smaller than 5 characters" duration="1763"/>
+    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return error if password is different of confirm-password" duration="2952"/>
+    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return a `missing confirm-password` error if confirm-password was not provided" duration="2937"/>
+    <testCase name="CreateNewPasswordSchema must check the format of the new password Should return the `shape` if `password` and `confirm-password` is correct" duration="2898"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/MyClasses/FakeLoading.spec.tsx">
+    <testCase name="FakeLoading should render properly FakeLoading matches snapshot" duration="3491"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Stack.spec.tsx">
+    <testCase name="Stack renders without crashing Stack matches snapshot" duration="2427"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Search.spec.tsx">
+    <testCase name="Search component should work properly Input should call onChange with correct value" duration="3939"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/authProduct/actions.spec.ts">
+    <testCase name="authProduct action creators should work properly should create an request action on preAuth" duration="1655"/>
+    <testCase name="authProduct action creators should work properly should create an specific request action on authProductRequest" duration="2263"/>
+    <testCase name="authProduct action creators should work properly should create an success action on authProductSuccess" duration="2197"/>
+    <testCase name="authProduct action creators should work properly should create an failure action on authProductFailure" duration="2173"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/tour/reducer.spec.ts">
+    <testCase name="tour reducer should work properly returns the initial state when an action type is not passed" duration="2269"/>
+    <testCase name="tour reducer should work properly loading is set to true on get tour viewed action" duration="1740"/>
+    <testCase name="tour reducer should work properly should set loading and tour info on getTourViewedSuccess action" duration="1517"/>
+    <testCase name="tour reducer should work properly loading is set to false on getTourViewedFailure action" duration="1905"/>
+    <testCase name="tour reducer should work properly should set open to true on openTour action with truthy payload" duration="2197"/>
+    <testCase name="tour reducer should work properly should reset tour info on sign out" duration="2351"/>
+    <testCase name="tour reducer should work properly should set tour info on successful getTour action" duration="2304"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/CardBox.spec.tsx">
+    <testCase name="CardBox renders without crashing CardBox has children" duration="2301"/>
+    <testCase name="CardBox renders without crashing CardBox matches snapshot" duration="2140"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/authProduct/reducer.spec.ts">
+    <testCase name="authProduct reducer returns the initial state when an action type is not passed" duration="2723"/>
+    <testCase name="authProduct reducer should return change loading to true when a product is requested" duration="2889"/>
+    <testCase name="authProduct reducer loading is set to false on success action" duration="3038"/>
+    <testCase name="authProduct reducer loading is set to false on failure action" duration="2671"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/productIntegrations/sagas.spec.ts">
+    <testCase name="Sagas of productIntegrations history Should return the MHUND and tree cards with the appropriate application links" duration="1550"/>
+    <testCase name="Sagas of productIntegrations history Should return undefined case if you do not have cards loaded" duration="1767"/>
+    <testCase name="Sagas of productIntegrations history Should return the MHUND card and not the arvore card" duration="1560"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/layouts/Iframe/components/Card.spec.tsx">
+    <testCase name="Card`s layout should work properly Should render card`s elements on screen" duration="3926"/>
+    <testCase name="Card`s layout should work properly Should call onClick function when card box is clicked" duration="2571"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/BarLoader.spec.tsx">
+    <testCase name="BarLoader renders without crashing BarLoader matches snapshot" duration="2116"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/components/LogoOn.spec.tsx">
+    <testCase name="LogoOn component Must render the component on screen correctly" duration="2721"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Box.spec.tsx">
+    <testCase name="Box renders without crashing Box has children" duration="1746"/>
+    <testCase name="Box renders without crashing Box matches snapshot" duration="2455"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Button.spec.tsx">
+    <testCase name="Button renders without crashing Button matches snapshot" duration="3295"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/educationalStage/reducer.spec.ts">
+    <testCase name="Reducer of authentication history Should set the Educational Stage for the chosen" duration="2376"/>
+    <testCase name="Reducer of authentication history Should set the Educational Stage Default with the array of that the user has access to" duration="2158"/>
+    <testCase name="Reducer of authentication history Should reset all states" duration="1354"/>
+    <testCase name="Reducer of authentication history Should set Loading as True and Clean User Infos" duration="2326"/>
+    <testCase name="Reducer of authentication history Should return the unchanged state if it does not contain any action" duration="3158"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Badge.spec.tsx">
+    <testCase name="Badge renders without crashing Badge matches snapshot" duration="3941"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Iframe/getCardBySlug.spec.tsx">
+    <testCase name="getCardBySlug should work as expected getCardBySlug should work as expected" duration="1636"/>
+    <testCase name="getCardBySlug should work as expected getCardBySlug should throw a toast error when api returns with ok false" duration="1949"/>
+    <testCase name="getCardBySlug should work as expected getCardBySlug should early return when no slug is received" duration="2034"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Text.spec.tsx">
+    <testCase name="Text renders without crashing Text matches snapshot" duration="1410"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/MyClasses/CardAlunos.spec.tsx">
+    <testCase name="CardAlunos should work properly Should render username in lowercase" duration="2371"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Avatar.spec.tsx">
+    <testCase name="Avatar renders without crashing Avatar matches snapshot" duration="2445"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/middlewares/refreshToken.spec.ts">
+    <testCase name="RefreshToken should work properly should dispatch no action when token is expired" duration="1267"/>
+    <testCase name="RefreshToken should work properly should dispatch success action when api returns ok true" duration="1560"/>
+    <testCase name="RefreshToken should work properly should dispatch failure action when api returns ok false" duration="2763"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/hooks/useSentry.spec.ts">
+    <testCase name="useSentry hook should work properly If environment is `production`, this hook should call its methods correctly" duration="1650"/>
+    <testCase name="useSentry hook should work properly If environment is not `production`, this hook shouldn`t call its methods" duration="2317"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/SimpleGrid.spec.tsx">
+    <testCase name="SimpleGrid renders without crashing SimpleGrid matches snapshot" duration="4255"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Iframe/Loading.spec.tsx">
+    <testCase name="iframe loading should work as expected loader should work when loading is true" duration="4212"/>
+    <testCase name="iframe loading should work as expected loader should work when loading is false" duration="3800"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/cardFilter.spec.ts">
+    <testCase name="testing cardFilter funcionalities Should return only the `product cards` that matches with text search" duration="2620"/>
+    <testCase name="testing cardFilter funcionalities Should return only the `classes cards` that matches with text search without crashing when findIndex returns -1" duration="2778"/>
+    <testCase name="testing cardFilter funcionalities Should return an empty array when search text wasn`t matches with any card" duration="2012"/>
+    <testCase name="testing cardFilter funcionalities Should return data without  changes when search text was not provided" duration="2236"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/profile/reducer.spec.ts">
+    <testCase name="authProduct reducer returns the initial state when an action type is not passed" duration="2633"/>
+    <testCase name="authProduct reducer loading is set to false on failure action" duration="1879"/>
+    <testCase name="authProduct reducer loading is set to false on failure action" duration="1862"/>
+    <testCase name="authProduct reducer loading is set to false on failure action" duration="2010"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/useAmplitudeSetProperties.spec.tsx">
+    <testCase name="testing if amplitude set properties functions work properly Should call setUserProperties with the correct information" duration="1916"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Input.spec.tsx">
+    <testCase name="Input renders without crashing Input matches snapshot" duration="4166"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/reCaptcha.spec.ts">
+    <testCase name="Captcha for Login Should trigger the lib that removes the captcha cache" duration="1684"/>
+    <testCase name="Captcha for Login Must validate quantity of stored items and return a Bool" duration="2231"/>
+    <testCase name="Captcha for Login Save to set login attempts in cache" duration="2924"/>
+    <testCase name="Captcha for Login You must validate the captcha token and remove the cache if ok" duration="2638"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/myClasses/actions.spec.ts">
+    <testCase name="Action of global history Should call the classesRequest action correctly and receive the value within payload" duration="3573"/>
+    <testCase name="Action of global history Should call the classesSuccess action correctly and receive the value within payload" duration="3770"/>
+    <testCase name="Action of global history Should call the classesFailure action correctly and receive the value within payload" duration="3116"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/educationalStage/actions.spec.ts">
+    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="2507"/>
+    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="2058"/>
+    <testCase name="Action of educationalStage history Should the setEducationalStage calls the correct action and receive the value within payload" duration="2535"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/products/actions.spec.ts">
+    <testCase name="products action creators should work properly should create an request action with productRequest" duration="2513"/>
+    <testCase name="products action creators should work properly should create an success action with productSuccess" duration="3550"/>
+    <testCase name="products action creators should work properly should create a productIntegration action on productIntegration" duration="3270"/>
+    <testCase name="products action creators should work properly should create an failure action on productFailure" duration="3294"/>
+    <testCase name="products action creators should work properly should create an frame url action on setFrameURL" duration="3397"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/myClasses/sagas.spec.ts">
+    <testCase name="Sagas of myClasses history Should seek the list of students of a class and return only the assets" duration="1853"/>
+    <testCase name="Sagas of myClasses history Should show an error for the user if the search for the list of students returned an exception" duration="2221"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/toolOpened.spec.ts">
+    <testCase name="testing if `mixpanel tool opened` function work properly mixpanelToolOpened send event with correct properties" duration="2744"/>
+    <testCase name="testing if `mixpanel tool opened` function work properly Show an error in the console if MixPanel is not instantiated" duration="2572"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/pageView.spec.ts">
+    <testCase name="testing if mixpanel page viewed functions work properly AmplitudePageView should dispatch Page Viewed event when application is loaded" duration="2307"/>
+    <testCase name="testing if mixpanel page viewed functions work properly AmplitudePageView should dispatch Page Viewed event when history href is changed" duration="2759"/>
+    <testCase name="testing if mixpanel page viewed functions work properly AmplitudePageView should not dispatch a Page Viewed event when oldTitle is the same that current title" duration="2736"/>
+    <testCase name="testing if mixpanel page viewed functions work properly Show an error in the console if MixPanel is not instantiated" duration="2238"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/forgotPassword/reducer.spec.ts">
+    <testCase name="Reducer of authentication history Should change the state of load in the firing of the request of Request" duration="2858"/>
+    <testCase name="Reducer of authentication history Should set the loading as false if the call fails" duration="2439"/>
+    <testCase name="Reducer of authentication history Should set the View Token to True in application success" duration="2137"/>
+    <testCase name="Reducer of authentication history Should Set Loading How to True Call for PIN Validation" duration="2947"/>
+    <testCase name="Reducer of authentication history Should Set Loading How to False Call for PIN Validation" duration="2976"/>
+    <testCase name="Reducer of authentication history Should Save the Pin Payload Case Success" duration="2306"/>
+    <testCase name="Reducer of authentication history Should return the unchanged state if it does not contain any action" duration="1796"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/validators/auth/forgotPassword.spec.ts">
+    <testCase name="forgotPasswordSchema must check if the format of `email` is correct Should return a `missing email` error if email was not provided" duration="2455"/>
+    <testCase name="forgotPasswordSchema must check if the format of `email` is correct Should return `shape` if email`s formart is correct" duration="2636"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/isMobile.spec.ts">
+    <testCase name="Check device origin Should return if the device is not mobile" duration="2086"/>
+    <testCase name="Check device origin Should return if the device is  mobile" duration="2731"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/validators/validators.spec.ts">
+    <testCase name="ValidationError should work properly ValidationError should return the correct error data" duration="2091"/>
+    <testCase name="getValidationErrors should work properly getValidationErrors should give errors triggered by ValidationError" duration="2328"/>
+    <testCase name="getValidationErrors should work properly getValidationErrors should give errors triggered by ValidationError even when field name is not provided, replacing the fild with ` `" duration="2809"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/myClasses/reducer.spec.ts">
+    <testCase name="Reducer of authentication history Should set Loading to True When Request Action is Triggered" duration="1569"/>
+    <testCase name="Reducer of authentication history Should set Loading to false and classes to return api When Success Action is Triggered" duration="1464"/>
+    <testCase name="Reducer of authentication history Should set Loading to false and classes to undefined When Failure Action is Triggered" duration="2064"/>
+    <testCase name="Reducer of authentication history Should return the unchanged state if it does not contain any action" duration="2088"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/clearAll.spec.ts">
+    <testCase name="Mixpanel Services Should shoot the MixPanel reset function" duration="2500"/>
+    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="2557"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Flex.spec.tsx">
+    <testCase name="Flex renders without crashing Flex has children" duration="3014"/>
+    <testCase name="Flex renders without crashing Flex matches snapshot" duration="3600"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/validators/auth/signIn.spec.ts">
+    <testCase name="signInSchema must check if the format of `shape` is correctly Should return a `missing username` error if username was not provided" duration="2662"/>
+    <testCase name="signInSchema must check if the format of `shape` is correctly Should return a `missing password` error if password was not provided" duration="2338"/>
+    <testCase name="signInSchema must check if the format of `shape` is correctly Should return the `shape` if all data is correct" duration="1628"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/global/reducer.spec.ts">
+    <testCase name="Reducer of authentication history Should set the loading for the chosen" duration="2958"/>
+    <testCase name="Reducer of authentication history Should set the enableRefreshTokenMiddleware for the chosen" duration="2864"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/prepareSchoolAndRoles.spec.ts">
+    <testCase name="Adjust school structure and profiles Should return data structure of schools" duration="1770"/>
+    <testCase name="Adjust school structure and profiles Should return data structure of Roles" duration="2098"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/eemConnect.spec.ts">
+    <testCase name="EEMConnectPost should work properly EEMConnectPost should set headers then send a post request" duration="2592"/>
+    <testCase name="EEMConnectPost should work properly EEMConnectGET should send a get request" duration="2532"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/identifyUser.spec.ts">
+    <testCase name="Mixpanel Services Should shoot the MixPanel reset function" duration="2335"/>
+    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="2814"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/hasJsonStructure.spec.ts">
+    <testCase name="json-type structure Should be check if string has a json structure" duration="2371"/>
+    <testCase name="json-type structure Must return that the structure sent is not of the JSON type" duration="2835"/>
+    <testCase name="json-type structure Should return false when receives non string data" duration="1715"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/global/actions.spec.ts">
+    <testCase name="Action of global history Should call the loading action correctly and receive the value within payload" duration="3697"/>
+    <testCase name="Action of global history Should call the enableRefreshTokenMiddleware action correctly and receive the value within payload" duration="1976"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/eemIntegration.spec.ts">
+    <testCase name="eemIntegration should work properly eemIntegration should use store data when no args are received" duration="1600"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/profile/actions.spec.ts">
+    <testCase name="profile module action creators should work properly should set profile with the correct payload" duration="1213"/>
+    <testCase name="profile module action creators should work properly should set profiles with the correct payload" duration="1841"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/hotjar/hotjarInit.spec.ts">
+    <testCase name="Should start Hotjar correctly" duration="2253"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/history.spec.ts">
+    <testCase name="history service should work properly should be defined" duration="2154"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/transpileProfile.spec.ts">
+    <testCase name="Profile structure Must return the correct structure following a pre-defined string" duration="2030"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Iframe/Iframe.spec.tsx">
+    <testCase name="iframe should work as expected" duration="3954"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/clearAll.spec.tsx">
+    <testCase name="testing if `amplitude clear all` function work properly clearAll should clear all properties of amplitude`s session" duration="1994"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/components/Icon.spec.tsx">
+    <testCase name="Root import icons I hope these components are called" duration="725"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/services/mixpanel/init.spec.ts">
+    <testCase name="Mixpanel Services Should properly boot MixPanel" duration="1732"/>
+    <testCase name="Mixpanel Services Show an error in the console if MixPanel is not instantiated" duration="2013"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/hooks/useSendGlobalInfo.spec.ts">
+    <testCase name="useSendGlobalInfo hook should work properly Global Variable `window.__HUB_USER_INFO__` should be undefined before initialization of useSendGlobalInfo hook" duration="1354"/>
+    <testCase name="useSendGlobalInfo hook should work properly Global Variable `window.__HUB_USER_INFO__` should be defined after initialization of useSendGlobalInfo hook" duration="1719"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/amplitudeToolOpened.spec.ts">
+    <testCase name="testing if `amplitude tool opened` function work properly amplitudeToolOpened send event with correct properties" duration="1826"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/pages/Iframe/useCardInformation.spec.ts">
+    <testCase name="" duration="2855"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/utils/documentTitle.spec.ts">
+    <testCase name="expect documentTitle to work correctly should return documentTitle styled string" duration="4"/>
+    <testCase name="expect documentTitle to work correctly should return default string when theres no env title" duration="1"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/amplitudeInit.spec.ts">
+    <testCase name="testing if `amplitude init` function work properly Amplitude should initialize on amplitudeInit" duration="2204"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/store/modules/productIntegrations/actions.spec.ts">
+    <testCase name="Action of global history Should call the loading action correctly and receive the value within payload" duration="2594"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/utils/prepareEducationalStage.spec.ts">
+    <testCase name="prepareEducationalStage should work properly should return object with correct keys and values" duration="2028"/>
+    <testCase name="prepareEducationalStage should work properly should return empty object if data.serie.ciclo is undefined" duration="2430"/>
+    <testCase name="prepareEducationalStage should work properly should return empty object if ativo is false" duration="1862"/>
+    <testCase name="prepareEducationalStage should work properly should return empty object if no data is received" duration="2216"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/hooks/useQuery.spec.ts">
+    <testCase name="useQuery hook should work properly Should return the value of the query provided by the get method" duration="2061"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/utils/capitalize.spec.ts">
+    <testCase name="expect capitalize to work correctly should return capitalized string" duration="1"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/common/__tests__/utils/createSlug.spec.ts">
+    <testCase name="expect createSlug to work correctly should convert string into slug" duration="2"/>
+  </file>
+  <file path="/home/lucascardoso/Arco/HubDigitalFront/packages/apps/hub-web/src/__tests__/amplitude/identifyUser.spec.ts">
+    <testCase name="testing if amplitude Set Id function work properly amplitudeSetId should send event with correct id" duration="2515"/>
   </file>
 </testExecutions>

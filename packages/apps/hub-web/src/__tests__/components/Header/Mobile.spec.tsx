@@ -6,6 +6,7 @@ import * as reactRouter from 'react-router'
 import { store } from '~/store'
 
 import { render, CustomState, fireEvent, act } from '@hub/test-utils'
+import ThemeContainer from '@hub/common/layout/Provider'
 import * as drawer from '@hub/common/components/Drawer'
 
 import history from '~/services/history'
@@ -39,17 +40,6 @@ jest.mock('react-router', () => {
     }))
   }
 })
-
-// jest.mock('amplitude-js', () => ({
-//   getInstance: jest.fn().mockReturnValue({
-//     init: jest.fn(),
-//     clearUserProperties: jest.fn(),
-//     regenerateDeviceId: jest.fn(),
-//     isNewSession: jest.fn(),
-//     setUserId: jest.fn()
-//   })
-// }))
-
 jest.mock('~/hooks/amplitude/clearAll')
 
 describe('Mobile Header component ', () => {
@@ -113,10 +103,10 @@ describe('Mobile Header component ', () => {
     const openModalPass = jest.fn()
 
     const { getByText } = render(
-      <>
+      <ThemeContainer>
         <MenuButton onClick={handleMenuClick} />
         <MobileMenu openModalPass={openModalPass} ref={ref} />
-      </>,
+      </ThemeContainer>,
       {
         reducers: ['tour', 'user', 'profile'],
         store,
@@ -273,28 +263,28 @@ describe('Mobile Header component ', () => {
     expect(setRole).toHaveBeenLastCalledWith(coordenador)
   })
 
-  it.skip('Should change `Home` button color when pathname is /minhas-turmas', async () => {
-    jest.spyOn(reactRouter, 'useHistory').mockReturnValue({
-      location: {
-        pathname: '/minhas-turmas'
-      }
-    } as any)
-    const { getByText } = setup(profileState)
-
-    const homeButton = getByText(/Home/i)
-    expect(homeButton).toHaveStyle('color: rgb(122, 122, 122)')
-  })
-
-  it.skip('Should change `Minhas turmas` button color when pathname is `/`', () => {
+  it.skip('Should change `Home` color when pathname is `/`', async () => {
     jest.spyOn(reactRouter, 'useHistory').mockReturnValue({
       location: {
         pathname: '/'
       }
     } as any)
+    // const { getByText } = setup(profileState)
 
-    const { getByText } = setup(profileState)
-    const classesButton = getByText(/Minhas turmas/i)
+    // const homeButton = getByText(/Home/i)
+    // expect(homeButton).toHaveStyle('color: blue')
+  })
 
-    expect(classesButton).toHaveStyle('color: rgb(122, 122, 122)')
+  it.skip('Should change `Minhas turmas` color when pathname is `/minhas-turmas`', () => {
+    jest.spyOn(reactRouter, 'useHistory').mockReturnValue({
+      location: {
+        pathname: '/minhas-turmas'
+      }
+    } as any)
+
+    // const { getByText } = setup(profileState)
+    // const classes = getByText(/Minhas turmas/i)
+
+    // expect(classes).toHaveStyle('color: var(--hub-base-color)')
   })
 })
