@@ -7,11 +7,11 @@ import Box from '../../components/Box'
 describe('Box renders without crashing', () => {
   const childrenValue = 'testing children'
   const wrapper = render(<Box>{childrenValue}</Box>)
-  const { getByText } = wrapper
+  const { queryByText } = wrapper
 
   it('Box has children', () => {
-    const children = getByText(childrenValue)
-    expect(children).toBeInTheDocument()
+    const children = queryByText(childrenValue)
+    expect(children).not.toBeNull()
   })
 
   it('Box matches snapshot', () => {
