@@ -22,9 +22,10 @@
     ]
   },
   "scripts": {
-    "test": "jest --runInBand -u",
-    "test:watch": "jest --runInBand --watch -u --collectCoverage",
-    "test:coverage": "jest --collectCoverage -u --testResultsProcessor=jest-sonar-reporter && coverage-badges",
+    "test": "node --expose-gc ./node_modules/.bin/jest -u --logHeapUsage",
+    "test:watch": "node --expose-gc ./node_modules/.bin/jest --watch -u --collectCoverage --logHeapUsage",
+    "test:watch:inspect": "node --inspect-brk --expose-gc ./node_modules/.bin/jest --logHeapUsage",
+    "test:coverage": "node --expose-gc ./node_modules/.bin/jest --collectCoverage -u --logHeapUsage --testResultsProcessor=jest-sonar-reporter && coverage-badges",
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "build:web": "npm run --prefix packages/apps/hub-web build",
@@ -38,6 +39,7 @@
     "@semantic-release/git": "^9.0.0",
     "@testing-library/react-hooks": "^5.0.3",
     "@types/jest": "^26.0.20",
+    "babel-plugin-styled-components": "^1.12.0",
     "commitizen": "^4.2.3",
     "coverage-badges": "^1.0.4",
     "cz-conventional-changelog": "^3.3.0",

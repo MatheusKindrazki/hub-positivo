@@ -1,6 +1,11 @@
 import { extendTheme } from '@chakra-ui/react'
 
 export default extendTheme({
+  config: {
+    cssVarPrefix: 'hub',
+    initialColorMode: 'light',
+    useSystemColorMode: true
+  },
   fonts: {
     body: 'TTNorms, system-ui, sans-serif',
     heading: 'TTNorms, system-ui, sans-serif',
