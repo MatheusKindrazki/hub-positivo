@@ -93,16 +93,18 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
         isLazy
       >
         <PopoverTrigger>
-          <Avatar
-            data-testid="hub-popover-trigger"
-            cursor="pointer"
-            width="2.6rem"
-            color="#3C3C3C"
-            height="2.5rem"
-            backgroundColor="gray.400"
-            name={user?.name || ''}
-            src=""
-          />
+          <Button p="0" m="0" background="transparent">
+            <Avatar
+              data-testid="hub-popover-trigger"
+              cursor="pointer"
+              width="2.6rem"
+              color="#3C3C3C"
+              height="2.5rem"
+              backgroundColor="gray.400"
+              name={user?.name || ''}
+              src=""
+            />
+          </Button>
         </PopoverTrigger>
         <PopoverContent
           data-testid="hub-popover-content"
@@ -112,7 +114,6 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
           boxShadow="dark-lg"
           border="1px solid #D9D9D9"
           mr="2rem!important"
-          top="50px!important"
           _focus={{
             boxShadow: 'dark-lg'
           }}
