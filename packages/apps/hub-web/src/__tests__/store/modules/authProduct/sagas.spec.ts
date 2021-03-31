@@ -127,6 +127,21 @@ describe('Testing productSorting saga flow', () => {
     )
   })
 
+  it('productSorting should dispatch request action when tipoRenderizacao is `wordpress`', async () => {
+    mockedPayload.payload.tipoRenderizacao = 'wordpress'
+
+    global.open = jest.fn() as jest.Mock
+    const refreshTokenMock = refreshTokenMiddleware as jest.Mock
+
+    await runSaga(store, productSorting, mockedPayload).toPromise()
+
+    expect(refreshTokenMock).toHaveBeenCalled()
+
+    expect(dispatchedActions).toContainObject(
+      authProductRequest(mockedPayload.payload, 'AUTH_PRODUCT_GUID_REQUEST')
+    )
+  })
+
   it('productSorting should early return when no auth, profile or user info is available', async () => {
     mockState.auth = (undefined as unknown) as any
     mockState.profile = (undefined as unknown) as any
@@ -196,7 +211,7 @@ describe('testing authProductGUID saga flow', () => {
     expect(pushSpy).toHaveBeenCalledWith('/solucao/Teste/')
     expect(dispatchedActions).toContainObject(
       setFrameURL({
-        url: 'http://produtoteste.com/test/',
+        url: 'http://produtoteste.com',
         name: 'Produto Teste'
       })
     )
