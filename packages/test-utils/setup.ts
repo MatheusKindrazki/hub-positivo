@@ -4,6 +4,10 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
 
+afterEach(() => {
+  if (global.gc) global.gc()
+})
+
 export default expect.extend({
   toContainObject(received, argument) {
     const pass = this.equals(
