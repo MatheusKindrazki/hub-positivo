@@ -4,6 +4,8 @@ import * as utils from '~/utils/hasJsonStructure'
 
 import usePostMessage from '~/hooks/usePostMessage'
 
+jest.mock('~/hooks/amplitude/clearAll')
+
 interface Data {
   event: string
   data: string

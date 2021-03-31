@@ -1,5 +1,6 @@
-import { INITIAL_STATE as initialState } from '~/store/modules/tour/reducer'
-import tour from '~/store/modules/tour/reducer'
+import tour, {
+  INITIAL_STATE as initialState
+} from '~/store/modules/tour/reducer'
 import {
   getTourSuccess,
   getTourViewedRequest,
@@ -10,6 +11,7 @@ import {
 import { signOut } from '~/store/modules/auth/actions'
 
 jest.mock('~/services/mixpanel/clearAll')
+jest.mock('~/hooks/amplitude/clearAll')
 
 describe('tour reducer should work properly', () => {
   it('returns the initial state when an action type is not passed', () => {

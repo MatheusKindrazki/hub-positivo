@@ -1,11 +1,13 @@
-import { INITIAL_STATE as initialState } from '~/store/modules/profile/reducer'
-import profile from '~/store/modules/profile/reducer'
+import profile, {
+  INITIAL_STATE as initialState
+} from '~/store/modules/profile/reducer'
 import { setProfile, profiles } from '~/store/modules/profile/actions'
 import { signOut } from '~/store/modules/auth/actions'
 
 import mockedProfiles from '~/__mocks__/store/profiles.mock.json'
 
 jest.mock('~/services/mixpanel/clearAll')
+jest.mock('~/hooks/amplitude/clearAll')
 
 const setProfileExpectedOutput = {
   colorProfile: 'professor',
