@@ -1,6 +1,6 @@
 import React from 'react'
 
-import reactEvent from 'react-select-event'
+import { openMenu } from 'react-select-event'
 
 import { store } from '~/store'
 
@@ -163,7 +163,7 @@ describe('Desktop Header component', () => {
     fireEvent.mouseDown(school)
 
     expect(school).toBeInTheDocument()
-    reactEvent.openMenu(school)
+    openMenu(school)
     const otherSchool = getByText(schoolList[0].label)
     expect(otherSchool).toBeInTheDocument()
 
@@ -186,7 +186,7 @@ describe('Desktop Header component', () => {
     fireEvent.mouseDown(selectedRole)
 
     expect(selectedRole).toBeInTheDocument()
-    reactEvent.openMenu(selectedRole)
+    openMenu(selectedRole)
 
     const coordenador = roleList[1]
 

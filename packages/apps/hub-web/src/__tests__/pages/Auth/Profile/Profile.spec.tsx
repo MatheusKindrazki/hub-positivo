@@ -1,6 +1,6 @@
 import React from 'react'
 
-import selectEvent from 'react-select-event'
+import { openMenu } from 'react-select-event'
 
 import { store } from '~/store'
 
@@ -61,7 +61,7 @@ describe('Profile page should work properly', () => {
   it('The component `Select` should work correctly when the user interacts with it', async () => {
     const { findByText, select } = setup()
 
-    selectEvent.openMenu(select)
+    openMenu(select)
 
     const schoolName = await findByText(school.name)
     expect(schoolName).toBeInTheDocument()
@@ -74,7 +74,7 @@ describe('Profile page should work properly', () => {
 
     const select = getByText(selectPlaceholder)
 
-    selectEvent.openMenu(select)
+    openMenu(select)
 
     const schoolName = await findByText(school.name)
 
