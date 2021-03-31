@@ -21,15 +21,14 @@ import {
 
 jest.mock('mixpanel-browser')
 
+jest.mock('~/components/Header/context', () => ({
+  useHeader: jest.fn(),
+  HeaderProvider: jest.fn()
+}))
+
 jest.mock('~/services/history', () => ({
   push: jest.fn()
 }))
-
-jest.mock('~/components/Header/context', () => {
-  return {
-    useHeader: jest.fn()
-  }
-})
 
 jest.mock('react-router', () => {
   return {
@@ -40,6 +39,16 @@ jest.mock('react-router', () => {
     }))
   }
 })
+
+jest.mock('amplitude-js', () => ({
+  getInstance: jest.fn().mockReturnValue({
+    init: jest.fn(),
+    clearUserProperties: jest.fn(),
+    regenerateDeviceId: jest.fn(),
+    isNewSession: jest.fn(),
+    setUserId: jest.fn()
+  })
+}))
 
 describe('Mobile Header component ', () => {
   jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
