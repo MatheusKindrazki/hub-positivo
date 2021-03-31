@@ -222,17 +222,16 @@ describe('Mobile Header component ', () => {
     expect(useDisclosureFunctions.onClose).toHaveBeenCalledTimes(1)
   })
 
-  it('Should change the `school` on selector when other `school` is triggered', async () => {
+  it('Should change the `school` on selector when other `school` is triggered', () => {
     spyUseDisclosure(useDisclosureFunctions)
 
-    const { getByText, findByText } = setup()
+    const { getByText } = setup()
 
     const schoolLabel = defaultValue.school?.label as string
-    const school = await findByText(schoolLabel)
+    const school = getByText(schoolLabel)
 
     fireEvent.mouseDown(school)
 
-    expect(school).toBeInTheDocument()
     openMenu(school)
     const otherSchool = getByText(schoolList[0].label)
     expect(otherSchool).toBeInTheDocument()
@@ -246,19 +245,17 @@ describe('Mobile Header component ', () => {
     })
   })
 
-  it('Should change the `role` on selector when other `role` is triggered', async () => {
-    const { getByText, findByText } = setup()
+  it('Should change the `role` on selector when other `role` is triggered', () => {
+    const { getByText } = setup()
     const roleLabel = defaultValue.role?.label as string
-    const selectedRole = await findByText(roleLabel)
+    const selectedRole = getByText(roleLabel)
     fireEvent.mouseDown(selectedRole)
 
-    expect(selectedRole).toBeInTheDocument()
     openMenu(selectedRole)
 
     const coordenador = roleList[1]
 
     const otherRole = getByText(coordenador.name)
-    expect(otherRole).toBeInTheDocument()
 
     fireEvent.click(otherRole)
 
