@@ -61,7 +61,7 @@ describe('Testing that the Home page works correctly', () => {
   }
 
   it('Should render the correct elements on the screen', () => {
-    const { getByText, getAllByText } = setup()
+    const { getByText, queryAllByText } = setup()
 
     const { name } = user.info
     const { data } = products
@@ -69,7 +69,7 @@ describe('Testing that the Home page works correctly', () => {
     const fragmentedName = name.split(' ')
 
     const nameInitals = getByText(fragmentedName[0][0] + fragmentedName[1][0])
-    const soonBagde = getAllByText('Em breve', queryConfig)
+    const soonBagde = queryAllByText('Em breve', queryConfig)
 
     expect(soonBagde.length).toBe(2)
     expect(nameInitals).toBeInTheDocument()
