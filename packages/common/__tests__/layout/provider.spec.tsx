@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 
 import { renderHook } from '@testing-library/react-hooks'
-import '@testing-library/jest-dom'
 
 import { render, act } from '@hub/test-utils'
 
