@@ -4,8 +4,11 @@ import * as utils from '~/utils/hasJsonStructure'
 
 import usePostMessage from '~/hooks/usePostMessage'
 
-jest.mock('~/hooks/amplitude/clearAll')
-
+jest.mock('amplitude-js', () => ({
+  getInstance: () => ({
+    logEvent: jest.fn()
+  })
+}))
 interface Data {
   event: string
   data: string

@@ -5,6 +5,7 @@ import { signOut } from '~/store/modules/auth/actions'
 import mockedProfiles from '~/__mocks__/store/profiles.mock.json'
 
 jest.mock('~/services/mixpanel/clearAll')
+
 jest.mock('~/hooks/amplitude/clearAll')
 
 const setProfileExpectedOutput = {

@@ -46,6 +46,7 @@ describe('Header component ', () => {
   const spyDrawerDisclosure = () => {
     const drawerOnClose = jest.fn()
     const drawerOnOpen = jest.fn()
+
     jest.spyOn(drawer, 'useDisclosure').mockReturnValue({
       isOpen: true,
       onClose: drawerOnClose,

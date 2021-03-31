@@ -2,8 +2,9 @@ import React from 'react'
 
 import { render, fireEvent } from '@hub/test-utils'
 
-import CardProduct from '../../components/CardProduct'
-import { CardProductProps as propTypes } from '../../components/CardProduct'
+import CardProduct, {
+  CardProductProps as propTypes
+} from '../../components/CardProduct'
 
 const handlePush = jest.fn()
 

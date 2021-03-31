@@ -7,7 +7,11 @@ jest.mock('mixpanel-browser', () => ({
   track: jest.fn()
 }))
 
-jest.mock('~/hooks/amplitude/clearAll')
+jest.mock('amplitude-js', () => ({
+  getInstance: () => ({
+    logEvent: jest.fn()
+  })
+}))
 
 describe('testing if mixpanel page viewed functions work properly', () => {
   const pageViewedEvent = 'Page Viewed'
