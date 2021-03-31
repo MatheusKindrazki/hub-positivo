@@ -60,7 +60,7 @@ describe('Desktop Header component', () => {
     setRole
   } = useHeaderReturn
 
-  it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked', () => {
+  it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked', async () => {
     const { getByText, storeUtils } = setup({
       tour: {
         steps: [
@@ -70,7 +70,6 @@ describe('Desktop Header component', () => {
     })
 
     const tour = getByText(/Fazer tour/i)
-    expect(tour).toBeInTheDocument()
 
     fireEvent.click(tour)
 

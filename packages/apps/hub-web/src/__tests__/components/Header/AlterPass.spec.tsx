@@ -14,7 +14,7 @@ describe('get started', () => {
     jest.restoreAllMocks()
   })
 
-  const setup = (CUSTOM_STATE = {} as CustomState) => {
+  const setup = async (CUSTOM_STATE = {} as CustomState) => {
     const onClose = jest.fn()
     const wrapper = render(<AlterPass onClose={onClose} />, {
       store,
@@ -26,9 +26,9 @@ describe('get started', () => {
     const cancel = 'Cancelar'
     const alter = 'Alterar'
 
-    const cancelButton = wrapper.getByText(cancel, queryConfig)
-    const alterButton = wrapper.getByText(alter, queryConfig)
-    const inputs = wrapper.getAllByTestId('form-input')
+    const cancelButton = await wrapper.findByText(cancel, queryConfig)
+    const alterButton = await wrapper.findByText(alter, queryConfig)
+    const inputs = await wrapper.findAllByTestId('form-input')
     return {
       ...wrapper,
       onClose,
@@ -40,7 +40,7 @@ describe('get started', () => {
   }
 
   it('Should throw a `validation` error if the form was submitted without any information', async () => {
-    const { alterButton, findByText } = setup()
+    const { alterButton, findByText } = await setup()
 
     expect(alterButton).toBeInTheDocument()
     fireEvent.click(alterButton)
@@ -56,7 +56,7 @@ describe('get started', () => {
   })
 
   it('Should throw a `generic` error if an error other than` validation` has been thrown', async () => {
-    const { alterButton, findByText, queryConfig } = setup()
+    const { alterButton, findByText, queryConfig } = await setup()
 
     jest.spyOn(alterPasswordValidate, 'validate').mockImplementation(() => {
       throw new Error()
@@ -71,8 +71,8 @@ describe('get started', () => {
     expect(error).toBeInTheDocument()
   })
 
-  it('Should call `onClose` function when `CANCELAR` is clicked', () => {
-    const { cancelButton, onClose } = setup()
+  it('Should call `onClose` function when `CANCELAR` is clicked', async () => {
+    const { cancelButton, onClose } = await setup()
 
     expect(cancelButton).toBeInTheDocument()
 
@@ -81,7 +81,7 @@ describe('get started', () => {
     expect(onClose).toHaveBeenCalledTimes(1)
   })
   it('Should dispatch an `@user/USER_PASSWORD_PANEL_REQUEST` action if the form has been submitted with correct data', async () => {
-    const { inputs, alterButton, storeUtils } = setup()
+    const { inputs, alterButton, storeUtils } = await setup()
 
     expect(inputs.length).toBe(3)
 
@@ -105,8 +105,8 @@ describe('get started', () => {
     ])
   })
 
-  it('Should convert input`s type to text when viewPass and viewNewPass are true', () => {
-    const { inputs, getByTestId } = setup()
+  it('Should convert input`s type to text when viewPass and viewNewPass are true', async () => {
+    const { inputs, getByTestId } = await setup()
 
     inputs.forEach(input => {
       expect(input).toHaveAttribute('type', 'password')
