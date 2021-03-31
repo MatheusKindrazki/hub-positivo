@@ -22,10 +22,10 @@
     ]
   },
   "scripts": {
-    "test": "node --expose-gc ./node_modules/.bin/jest  --runInBand  -u --logHeapUsage",
-    "test:watch": "node --expose-gc ./node_modules/.bin/jest  --runInBand --watch -u --collectCoverage --logHeapUsage",
-    "test:watch:inspect": "node --inspect-brk --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage",
-    "test:coverage": "node --expose-gc ./node_modules/.bin/jest  --collectCoverage -u --logHeapUsage --testResultsProcessor=jest-sonar-reporter && coverage-badges",
+    "test": "node --expose-gc ./node_modules/.bin/jest -u --logHeapUsage",
+    "test:watch": "node --expose-gc ./node_modules/.bin/jest --watch -u --collectCoverage --logHeapUsage",
+    "test:watch:inspect": "node --inspect-brk --expose-gc ./node_modules/.bin/jest --logHeapUsage",
+    "test:coverage": "node --expose-gc ./node_modules/.bin/jest --collectCoverage -u --logHeapUsage --testResultsProcessor=jest-sonar-reporter && coverage-badges",
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "build:web": "npm run --prefix packages/apps/hub-web build",
