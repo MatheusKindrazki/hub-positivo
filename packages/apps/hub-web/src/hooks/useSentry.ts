@@ -21,6 +21,11 @@ const useSentry = (): void => {
         email: user?.email as string
       })
 
+      window.newrelic?.setCustomAttribute('role', name as string)
+      window.newrelic?.setCustomAttribute('id', user?.guid as string)
+      window.newrelic?.setCustomAttribute('school', school?.label as string)
+      window.newrelic?.setCustomAttribute('username', user?.username as string)
+
       Sentry.setContext('user_info', {
         username: user?.username as string,
         email: user?.email as string,
