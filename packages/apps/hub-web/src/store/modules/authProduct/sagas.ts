@@ -118,6 +118,9 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
 
   window.newrelic?.addPageAction('auth_solution', {
     product: payload.product,
+    user_id: user.info?.guid as string,
+    user_name: user.info?.name as string,
+    school_id: user.school?.value as string,
     guid: (data as unknown) as string
   })
 
@@ -154,11 +157,6 @@ export function* authProductEEM({ payload }: AuthPayload): Generator {
   yield put(loading(true))
 
   const newUrl = payload.url.replace('{token}', reduced_token as string)
-
-  window.newrelic?.addPageAction('auth_solution', {
-    product: payload.product,
-    guid: 'EEM_AUTH_TYPE'
-  })
 
   if (payload.tipoRenderizacao === 'iframeblank' && isMobile.iOS()) {
     window.open(newUrl, '_blank')

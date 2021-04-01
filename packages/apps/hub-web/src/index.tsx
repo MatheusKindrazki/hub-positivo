@@ -18,6 +18,4 @@ if (enableTracking.includes(process.env.REACT_APP_NODE_ENV as string)) {
   hotjarInit()
 }
 
-window.newrelic?.addRelease('@hub', process.env.REACT_APP_VERSION as string)
-
 ReactDOM.render(<App />, document.getElementById('hub-psd'))

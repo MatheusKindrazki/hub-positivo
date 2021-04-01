@@ -28,7 +28,7 @@ const Route: React.FC<RouteProps> = ({
 
   setUserProperties()
 
-  window.newrelic?.setPageViewName(pathname)
+  window.newrelic?.setCurrentRouteName(pathname)
 
   const { signed } = store.getState().auth
 
