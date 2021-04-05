@@ -99,10 +99,7 @@ describe('Change Password page should work properly', () => {
     const { submitButton, findByText } = setup()
 
     fireEvent.click(submitButton)
-
-    const errorMessage = await findByText(/Algo deu errado/i)
-
-    await waitFor(() => expect(errorMessage).toBeInTheDocument())
+    expect(await findByText(/Algo deu errado/i)).toBeInTheDocument()
   })
 
   it('Should dispatch actions with correct payloads', async () => {

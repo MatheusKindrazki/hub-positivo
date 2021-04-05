@@ -58,9 +58,6 @@ describe('Expired Token page should work properly', () => {
   it('Should redirect to `/esqueci-minha-senha` when `Solicitar novo link` is clicked', () => {
     const { getByText } = setup(CUSTOM_STATE)
     const newLinkButton = getByText(/Solicitar novo link/i)
-
-    expect(newLinkButton).toBeInTheDocument()
-
     fireEvent.click(newLinkButton)
 
     expect(spyPush).toHaveBeenCalledTimes(1)
@@ -70,9 +67,6 @@ describe('Expired Token page should work properly', () => {
   it('Should redirect to `/login` when `GoBack` is clicked', () => {
     const { getByTestId } = setup(CUSTOM_STATE)
     const goBackButton = getByTestId('go-back')
-
-    expect(goBackButton).toBeInTheDocument()
-
     fireEvent.click(goBackButton)
 
     expect(spyPush).toHaveBeenCalledTimes(1)

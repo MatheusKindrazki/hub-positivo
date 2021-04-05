@@ -50,9 +50,9 @@ describe('Profile page should work properly', () => {
   }
 
   it('Should render the correct elements on the screen', async () => {
-    const { getByText, select } = setup()
+    const { queryByText, select } = setup()
 
-    const selectTitle = getByText(/Selecione sua escola e acesso/i)
+    const selectTitle = queryByText(/Selecione sua escola e acesso/i)
 
     expect(selectTitle).toBeInTheDocument()
     expect(select).toBeInTheDocument()
@@ -68,7 +68,7 @@ describe('Profile page should work properly', () => {
   })
 
   it('The `Profile` component should dispatch `@auth/FIRST_ACCESS` when the user chooses an option', async () => {
-    const { getByText, findByText, storeUtils } = setup()
+    const { getByText, findByText, storeUtils, queryByText } = setup()
 
     const { roles } = school
 
@@ -81,7 +81,7 @@ describe('Profile page should work properly', () => {
     fireEvent.click(schoolName)
 
     roles.forEach(role => {
-      const element = getByText(role, { exact: false })
+      const element = queryByText(role, { exact: false })
       expect(element).toBeInTheDocument()
     })
 
