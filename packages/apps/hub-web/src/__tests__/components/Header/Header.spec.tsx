@@ -125,9 +125,8 @@ describe('Header component ', () => {
     useMediaMock('desktop')
 
     const { queryByText } = setup()
-    const popOverContent = queryByText('DesktopMenu')
 
-    expect(popOverContent).toBeInTheDocument()
+    expect(queryByText('DesktopMenu')).toBeInTheDocument()
   })
 
   it('Should render Mobile Header when min-width is 479px', () => {

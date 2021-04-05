@@ -44,8 +44,7 @@ describe('Header`s layout should work properly', () => {
       .mockImplementation(jest.fn(() => <span>{mobile}</span>))
 
     const { getByText } = setup()
-    const Header = getByText(mobile)
-    expect(Header).toBeInTheDocument()
+    expect(getByText(mobile)).toBeInTheDocument()
   })
   it('Header should render Desktop Header when useMediaQuery returns [true]', () => {
     const desktop = 'Header Desktop'
@@ -55,8 +54,7 @@ describe('Header`s layout should work properly', () => {
       .mockImplementation(jest.fn(() => <span>{desktop}</span>))
 
     const { getByText } = setup()
-    const Header = getByText(desktop)
-    expect(Header).toBeInTheDocument()
+    expect(getByText(desktop)).toBeInTheDocument()
   })
 
   it('Should call the go back handler when a GoBack is clicked', () => {

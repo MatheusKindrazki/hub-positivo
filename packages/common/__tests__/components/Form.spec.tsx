@@ -60,9 +60,7 @@ describe('Form works properly', () => {
       </Form>
     )
 
-    const inputError = getByTestId('input-error')
-
-    expect(inputError).toBeInTheDocument()
+    expect(getByTestId('input-error')).toBeInTheDocument()
   })
 
   it('Form calls submit with correct values', () => {

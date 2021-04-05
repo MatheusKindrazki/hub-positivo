@@ -14,7 +14,7 @@ describe('get started', () => {
     jest.restoreAllMocks()
   })
 
-  const setup = async (CUSTOM_STATE = {} as CustomState) => {
+  const setup = (CUSTOM_STATE = {} as CustomState) => {
     const onClose = jest.fn()
     const wrapper = render(<AlterPass onClose={onClose} />, {
       store,
@@ -26,9 +26,9 @@ describe('get started', () => {
     const cancel = 'Cancelar'
     const alter = 'Alterar'
 
-    const cancelButton = await wrapper.findByText(cancel, queryConfig)
-    const alterButton = await wrapper.findByText(alter, queryConfig)
-    const inputs = await wrapper.findAllByTestId('form-input')
+    const cancelButton = wrapper.getByText(cancel, queryConfig)
+    const alterButton = wrapper.getByText(alter, queryConfig)
+    const inputs = wrapper.queryAllByTestId('form-input')
     return {
       ...wrapper,
       onClose,
@@ -40,48 +40,42 @@ describe('get started', () => {
   }
 
   it('Should throw a `validation` error if the form was submitted without any information', async () => {
-    const { alterButton, findByText } = await setup()
+    const { alterButton, findByText } = setup()
 
-    expect(alterButton).toBeInTheDocument()
     fireEvent.click(alterButton)
 
-    const passwordError = await findByText(/Campo obrigatório/i)
-    const newPasswordError = await findByText(/Senha Obrigatória/i)
-    const confirmNewPasswordError = await findByText(
-      /Confirmação da senha é obrigatória/i
-    )
-    expect(passwordError).toBeInTheDocument()
-    expect(newPasswordError).toBeInTheDocument()
-    expect(confirmNewPasswordError).toBeInTheDocument()
+    expect(await findByText(/Campo obrigatório/i)).toBeInTheDocument()
+    expect(await findByText(/Senha Obrigatória/i)).toBeInTheDocument()
+    expect(
+      await findByText(/Confirmação da senha é obrigatória/i)
+    ).toBeInTheDocument()
   })
 
   it('Should throw a `generic` error if an error other than` validation` has been thrown', async () => {
-    const { alterButton, findByText, queryConfig } = await setup()
+    const { alterButton, findByText, queryConfig } = setup()
 
     jest.spyOn(alterPasswordValidate, 'validate').mockImplementation(() => {
       throw new Error()
     })
     fireEvent.click(alterButton)
 
-    const error = await findByText(
-      'Algo deu errado, Verifique seus dados e tente novamente!',
-      queryConfig
-    )
-
-    expect(error).toBeInTheDocument()
+    expect(
+      await findByText(
+        'Algo deu errado, Verifique seus dados e tente novamente!',
+        queryConfig
+      )
+    ).toBeInTheDocument()
   })
 
   it('Should call `onClose` function when `CANCELAR` is clicked', async () => {
-    const { cancelButton, onClose } = await setup()
-
-    expect(cancelButton).toBeInTheDocument()
+    const { cancelButton, onClose } = setup()
 
     fireEvent.click(cancelButton)
 
     expect(onClose).toHaveBeenCalledTimes(1)
   })
   it('Should dispatch an `@user/USER_PASSWORD_PANEL_REQUEST` action if the form has been submitted with correct data', async () => {
-    const { inputs, alterButton, storeUtils } = await setup()
+    const { inputs, alterButton, storeUtils } = setup()
 
     expect(inputs.length).toBe(3)
 
@@ -106,7 +100,7 @@ describe('get started', () => {
   })
 
   it('Should convert input`s type to text when viewPass and viewNewPass are true', async () => {
-    const { inputs, getByTestId } = await setup()
+    const { inputs, getByTestId } = setup()
 
     inputs.forEach(input => {
       expect(input).toHaveAttribute('type', 'password')

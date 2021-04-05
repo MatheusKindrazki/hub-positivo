@@ -16,10 +16,8 @@ describe('Auth`s layout should render without crashing', () => {
       store,
       reducers: ['global']
     })
-    const children = getByText(element)
-    const version = getByText(/1.0/)
 
-    expect(children).toBeInTheDocument()
-    expect(version).toBeInTheDocument()
+    expect(getByText(element)).toBeInTheDocument()
+    expect(getByText(/1.0/)).toBeInTheDocument()
   })
 })

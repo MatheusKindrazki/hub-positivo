@@ -155,7 +155,6 @@ describe('Mobile Header component ', () => {
     const { getByText, storeUtils } = setup()
 
     const exitButton = getByText(/Sair/i)
-    expect(exitButton).toBeInTheDocument()
 
     fireEvent.click(exitButton)
 
@@ -197,8 +196,6 @@ describe('Mobile Header component ', () => {
   it('Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked', () => {
     const { getByText } = setup(profileState)
     const classesButton = getByText(/Minhas turmas/i)
-
-    expect(classesButton).toBeInTheDocument()
 
     fireEvent.click(classesButton)
     expect(spyPush).toHaveBeenCalledWith('/minhas-turmas')
