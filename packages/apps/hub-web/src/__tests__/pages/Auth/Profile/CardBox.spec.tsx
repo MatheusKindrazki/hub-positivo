@@ -8,8 +8,8 @@ describe('CardBox Component should work properly', () => {
   it('Should render icon with correct titles', () => {
     const role = 'professor'
 
-    const { getByText } = render(<CardBox icon={role} title={role} />)
-    const iconElement = getByText(role, { exact: false })
+    const { queryByText } = render(<CardBox icon={role} title={role} />)
+    const iconElement = queryByText(role, { exact: false })
     expect(iconElement).toBeInTheDocument()
   })
 

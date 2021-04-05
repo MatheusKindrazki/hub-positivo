@@ -25,10 +25,10 @@ const PopoverComponent = () => {
 
 describe('Popover component should work properly', () => {
   it('Should render with correctly content', () => {
-    const { getByText } = render(<PopoverComponent />)
-    const content = getByText(phrase)
+    const { queryByText } = render(<PopoverComponent />)
+    const content = queryByText(phrase)
 
-    expect(content).toBeInTheDocument()
+    expect(content).not.toBeNull()
   })
 
   it('Should close visibility of the Popover when close button is clicked', async () => {
