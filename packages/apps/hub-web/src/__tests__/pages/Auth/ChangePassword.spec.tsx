@@ -84,10 +84,7 @@ describe('Change Password page should work properly', () => {
     fireEvent.change(pwdInput, { target: { value: '123' } })
     fireEvent.change(confirmPwdInput, { target: { value: '123' } })
     fireEvent.click(submitButton)
-
-    const errorMessage = await findByText(/senha deve ter no mínimo/i)
-
-    await waitFor(() => expect(errorMessage).toBeInTheDocument())
+    expect(await findByText(/senha deve ter no mínimo/i)).toBeInTheDocument()
   })
 
   it('should display a generic error when validation throws it', async () => {

@@ -76,7 +76,6 @@ describe('myClasses should work properly', () => {
       jest.runAllTimers()
     })
 
-    const notFound = await findByText(/Nenhuma turma encontrada/i)
-    expect(notFound).toBeInTheDocument()
+    expect(await findByText(/Nenhuma turma encontrada/i)).toBeInTheDocument()
   })
 })
