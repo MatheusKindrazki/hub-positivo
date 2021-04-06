@@ -40,6 +40,7 @@ const Iframe: React.FC = () => {
       <LoadingFrame loading={loading} />
       <DynamicIframe
         id="hub-solution-iframe"
+        data-testid="hub-solution-iframe"
         loading="lazy"
         onLoad={() => setLoading(false)}
         src={url}
