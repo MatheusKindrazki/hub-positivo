@@ -46,13 +46,10 @@ describe('Mobile Header`s layout should work properly', () => {
     fireEvent.click(menuButton)
 
     cards.forEach(({ nome: tituloDasSolucoes, solucoes }: CardProduct) => {
-      const solutionsTitle = getByText(tituloDasSolucoes)
-      expect(solutionsTitle).toBeInTheDocument()
+      expect(getByText(tituloDasSolucoes)).toBeInTheDocument()
 
       solucoes.forEach(({ nome }) => {
-        const name = getByText(nome)
-
-        expect(name).toBeInTheDocument()
+        expect(getByText(nome)).toBeInTheDocument()
       })
     })
   })
@@ -101,8 +98,9 @@ describe('Mobile Header`s layout should work properly', () => {
     const { menuButton, queryByPlaceholderText } = setup(undefined)
     fireEvent.click(menuButton)
 
-    const input = queryByPlaceholderText('Buscar soluções', { exact: false })
-    expect(input).toBeInTheDocument()
+    expect(
+      queryByPlaceholderText('Buscar soluções', { exact: false })
+    ).toBeInTheDocument()
   })
 
   it('Should filter the cards correctly', async () => {

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 
 import { renderHook } from '@testing-library/react-hooks'
-import '@testing-library/jest-dom'
 
 import { render, act } from '@hub/test-utils'
 
@@ -16,13 +15,13 @@ describe('Testing Theme Provider', () => {
       result: { current }
     } = renderHook(() => useContext(ThemeContext))
     const children = 'testing'
-    const { getByText } = render(<HubProvider>{children}</HubProvider>)
+    const { queryByText } = render(<HubProvider>{children}</HubProvider>)
     const spyCurrentTheme = jest.spyOn(current, 'theme')
     expect(spyCurrentTheme).not.toHaveBeenCalled()
     act(() => {
       current.theme({ profile })
     })
     expect(spyCurrentTheme).toHaveBeenCalledWith({ profile })
-    expect(getByText(children)).toBeInTheDocument()
+    expect(queryByText(children)).not.toBeNull()
   })
 })

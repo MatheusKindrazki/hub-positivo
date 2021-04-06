@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import * as reactDom from 'react-router-dom'
+import { renderHook } from '@testing-library/react-hooks'
 
 import * as redux from 'react-redux'
 
@@ -11,6 +12,8 @@ import { render, fireEvent, waitFor, CustomState } from '@hub/test-utils'
 import * as ReCAPTCHA from '~/utils/reCaptcha'
 
 import SignIn from '~/pages/Auth/SignIn'
+
+import ModalSupportContext from '~/components/ModalSupport/context'
 
 import signInValidator from '~/validators/auth/signIn'
 
@@ -90,11 +93,24 @@ describe('Testing that the Login page works correctly', () => {
     expect(push).toHaveBeenCalledWith('/esqueci-minha-senha')
   })
 
-  it('should open help modal when click on `Precido de ajuda`', async () => {
+  it('should open help modal when click on `Preciso de ajuda`', async () => {
+    const Context: React.FC = ({ children }) => {
+      return <redux.Provider store={store}>{children}</redux.Provider>
+    }
+    const {
+      result: { current }
+    } = renderHook(() => useContext(ModalSupportContext), {
+      wrapper: Context
+    })
+
+    current.onOpen = jest.fn()
+
     const { getByText } = setup({})
     const helpButton = getByText('Preciso de ajuda', queryConfig)
+
     fireEvent.click(helpButton)
-    expect(helpButton).toBeInTheDocument()
+
+    expect(current.onOpen).toHaveBeenCalledTimes(1)
   })
 
   it('should change password input type when view icon is clicked', async () => {
@@ -170,11 +186,12 @@ describe('Testing that the Login page works correctly', () => {
 
     await waitFor(() => fireEvent.click(form))
 
-    const userError = await findByText('usuário obrigatório', queryConfig)
-    const passwordError = await findByText('senha obrigatória', queryConfig)
-
-    expect(userError).toBeInTheDocument()
-    expect(passwordError).toBeInTheDocument()
+    expect(
+      await findByText('usuário obrigatório', queryConfig)
+    ).toBeInTheDocument()
+    expect(
+      await findByText('senha obrigatória', queryConfig)
+    ).toBeInTheDocument()
   })
 
   it('should throw new error when username or password input are incorrect', async () => {
@@ -186,11 +203,12 @@ describe('Testing that the Login page works correctly', () => {
     const form = getByTestId('submit-button')
 
     await waitFor(() => fireEvent.click(form))
-    const errorMessage = await findByText(
-      'Algo deu errado, Verifique seus dados e tente novamente!',
-      queryConfig
-    )
-    expect(errorMessage).toBeInTheDocument()
+    expect(
+      await findByText(
+        'Algo deu errado, Verifique seus dados e tente novamente!',
+        queryConfig
+      )
+    ).toBeInTheDocument()
   })
 
   it('should change the type of the submit button to button type when sign-in strike is true', async () => {

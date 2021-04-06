@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { render } from '@hub/test-utils'
-
 import * as Components from '../../components'
 
 type StringPropsKeys<T extends { [key: string]: any }> = {

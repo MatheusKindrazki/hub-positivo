@@ -6,6 +6,8 @@ import mockedProfiles from '~/__mocks__/store/profiles.mock.json'
 
 jest.mock('~/services/mixpanel/clearAll')
 
+jest.mock('~/hooks/amplitude/clearAll')
+
 const setProfileExpectedOutput = {
   colorProfile: 'professor',
   guid: 'PROFESSOR',

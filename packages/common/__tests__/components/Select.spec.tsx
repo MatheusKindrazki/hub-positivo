@@ -1,6 +1,6 @@
 import React from 'react'
 
-import selectEvent from 'react-select-event'
+import { openMenu, select } from 'react-select-event'
 import { renderHook } from '@testing-library/react-hooks'
 
 import { fireEvent, render } from '@hub/test-utils'
@@ -45,14 +45,14 @@ describe('Select renders without crashing', () => {
   it('Select normal variant render all options', async () => {
     const wrapper = render(<Select {...mockedProperties} />)
     const { getAllByText, getByText, container } = wrapper
-    selectEvent.openMenu(getByText('placeholder_test'))
+    openMenu(getByText('placeholder_test'))
     const options = getAllByText('option', { exact: false })
 
     options.forEach(option => {
       expect(option).not.toHaveStyle(`background-color: ${colors.blue[500]};`)
     })
 
-    await selectEvent.select(getByText('placeholder_test'), 'option3')
+    await select(getByText('placeholder_test'), 'option3')
     // Evento de mousedown para alteracao no estilo com state.isSelected
     fireEvent.mouseDown(getByText('option3'))
 
@@ -70,14 +70,14 @@ describe('Select renders without crashing', () => {
 
     const { getAllByText, getByText, container } = wrapper
 
-    selectEvent.openMenu(getByText('placeholder_test'))
+    openMenu(getByText('placeholder_test'))
     const options = getAllByText('option', { exact: false })
 
     options.forEach(option => {
       expect(option).toHaveStyle(`background-color: ${colors.blue[500]};`)
     })
 
-    await selectEvent.select(getByText('placeholder_test'), 'option2')
+    await select(getByText('placeholder_test'), 'option2')
     // Evento de mousedown para alteracao no estilo com state.isSelected
     fireEvent.mouseDown(getByText('option2'))
 
@@ -93,11 +93,11 @@ describe('Select renders without crashing', () => {
   it('Select displays error message when no options are provided', () => {
     mockedProperties.options = []
     const wrapper = render(<Select {...mockedProperties} />)
-    const { getByText } = wrapper
+    const { getByText, queryByText } = wrapper
 
-    selectEvent.openMenu(getByText('placeholder_test'))
-    const errorMessage = getByText('Nada encontrado =(')
+    openMenu(getByText('placeholder_test'))
+    const errorMessage = queryByText('Nada encontrado =(')
 
-    expect(errorMessage).toBeInTheDocument()
+    expect(errorMessage).not.toBeNull()
   })
 })

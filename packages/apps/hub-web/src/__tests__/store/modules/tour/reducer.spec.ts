@@ -9,6 +9,7 @@ import {
 import { signOut } from '~/store/modules/auth/actions'
 
 jest.mock('~/services/mixpanel/clearAll')
+jest.mock('~/hooks/amplitude/clearAll')
 
 describe('tour reducer should work properly', () => {
   it('returns the initial state when an action type is not passed', () => {
