@@ -20,7 +20,7 @@
   ],
   "peerDependencies": {
     "classnames": "^2.2.6",
-    "react": "^17.0.1",
+    "react": "^16.13.1",
     "styled-components": "^5.2.1"
   },
   "peerDependenciesMeta": {
