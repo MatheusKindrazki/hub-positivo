@@ -49,8 +49,25 @@ const setProperties = (): void => {
   // Identificador new relic
   window.newrelic?.setCustomAttribute('role', sendProps.selected_role)
   window.newrelic?.setCustomAttribute('user_id', sendProps.user_id as string)
-  window.newrelic?.setCustomAttribute('school', sendProps.selected_school_id as string)
-  window.newrelic?.setCustomAttribute('user_name', sendProps.user_name as string)
+  window.newrelic?.setCustomAttribute(
+    'school',
+    sendProps.selected_school_id as string
+  )
+  window.newrelic?.setCustomAttribute(
+    'user_name',
+    sendProps.user_name as string
+  )
+
+  // Identificador Get Site Control
+  if (window.gsc) {
+    window?.gsc('params', {
+      name: sendProps.user_name as string,
+      role: sendProps.selected_role,
+      user_id: sendProps.user_id,
+      school: sendProps.selected_school_name,
+      educationalStage: sendProps.selected_educational_stage
+    })
+  }
 
   try {
     mixpanel.people.set(sendProps)
