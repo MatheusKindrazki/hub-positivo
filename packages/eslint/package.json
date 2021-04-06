@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/eslint",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "author": "matheuskindrazki",
   "description": "PSD Hub eslint react setup",
   "main": ".eslintrc.js",
