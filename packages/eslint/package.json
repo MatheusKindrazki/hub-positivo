@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/eslint",
-  "version": "1.1.3",
+  "version": "1.2.1",
   "author": "matheuskindrazki",
   "description": "PSD Hub eslint react setup",
   "main": ".eslintrc.js",
@@ -9,10 +9,7 @@
     "node": "^10.12.0 || >=12.0.0"
   },
   "files": [
-    ".eslintrc.js",
-    "install.js",
-    "install-npm.js",
-    "install-yarn.js"
+    ".eslintrc.js"
   ],
   "scripts": {
     "postinstall": "node install.js"

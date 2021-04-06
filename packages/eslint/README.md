@@ -1,4 +1,4 @@
-# @PSD/ESLINT
+# @PSDHUB/ESLINT
 
 Setup de pré-configurado de eslint & Prettier
 
@@ -7,13 +7,13 @@ Setup de pré-configurado de eslint & Prettier
 ### npm
 
 ```
-$ npm install --save-dev --ignore-scripts @psdhub/eslint
+$ npm install --save-dev --ignore-scripts @psdhub/peers @psdhub/eslint
 ```
 
 ### yarn
 
 ```
-$ yarn add --dev --ignore-scripts @psdhub/eslint
+$ yarn add --dev --ignore-scripts @psdhub/peers @psdhub/eslint
 ```
 
 ## Uso
