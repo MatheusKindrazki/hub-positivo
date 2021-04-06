@@ -1,3 +1,3 @@
-const eslintConfig = require('@psdhub/eslint-config');
+const eslintConfig = require('@psdhub/eslint');
 
 module.exports = eslintConfig
