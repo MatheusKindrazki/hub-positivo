@@ -3,6 +3,7 @@ import baseStyled, { ThemedStyledInterface } from 'styled-components'
 import {
   useTheme,
   useMediaQuery,
+  extendTheme,
   useColorMode,
   useColorModeValue
 } from '@chakra-ui/react'
@@ -14,4 +15,11 @@ export const theme = chakra
 export type Theme = typeof theme
 const styled = baseStyled as ThemedStyledInterface<Theme>
 
-export { styled, useTheme, useMediaQuery, useColorMode, useColorModeValue }
+export {
+  styled,
+  useTheme,
+  useMediaQuery,
+  useColorMode,
+  useColorModeValue,
+  extendTheme
+}
