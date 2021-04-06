@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/eslint",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "author": "matheuskindrazki",
   "description": "PSD Hub eslint react setup",
   "main": ".eslintrc.js",
@@ -11,13 +11,7 @@
   "files": [
     ".eslintrc.js"
   ],
-  "scripts": {
-    "postinstall": "node install.js"
-  },
   "dependencies": {
-    "executioner": "^2.0.1"
-  },
-  "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.7.0",
     "babel-plugin-root-import": "^6.5.0",

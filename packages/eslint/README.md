@@ -1,6 +1,6 @@
-# @PSDHUB/ESLINT
+# @psdhub/eslint
 
-Setup de pré-configurado de eslint & Prettier
+Setup de pré-configuração de eslint & Prettier
 
 ## Instalação
 
