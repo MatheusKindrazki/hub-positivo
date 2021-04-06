@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useTheme } from '@hub/common/layout/styles'
+import { useTheme } from '@psdhub/common/layout/styles'
 
 const LogoOn: React.FC = () => {
   const { colors } = useTheme()

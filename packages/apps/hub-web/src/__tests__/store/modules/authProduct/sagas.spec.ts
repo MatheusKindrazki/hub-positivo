@@ -15,8 +15,8 @@ import {
   authProductSuccess
 } from '~/store/modules/authProduct/actions'
 
-import { toast } from '@hub/common/utils'
-import { apiAuthProduct } from '@hub/api'
+import { toast } from '@psdhub/common/utils'
+import { apiAuthProduct } from '@psdhub/api'
 
 import history from '~/services/history'
 

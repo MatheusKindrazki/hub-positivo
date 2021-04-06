@@ -2,8 +2,8 @@ import React, { useCallback } from 'react'
 
 import { CardProduct } from '~/store/modules/products/types'
 
-import { useMediaQuery } from '@hub/common/layout/styles'
-import { Box } from '@hub/common/components'
+import { useMediaQuery } from '@psdhub/common/layout/styles'
+import { Box } from '@psdhub/common/components'
 
 import history from '~/services/history'
 

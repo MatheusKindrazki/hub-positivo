@@ -4,7 +4,7 @@ import selectEvent from 'react-select-event'
 
 import { store } from '~/store'
 
-import { render, fireEvent } from '@hub/test-utils'
+import { render, fireEvent } from '@psdhub/test-utils'
 
 import * as chakra from '@chakra-ui/react'
 

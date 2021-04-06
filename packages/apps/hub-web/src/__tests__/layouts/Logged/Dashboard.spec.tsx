@@ -3,7 +3,7 @@ import React from 'react'
 import { StepsTour } from '~/store/modules/tour/types'
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent } from '@hub/test-utils'
+import { render, CustomState, fireEvent } from '@psdhub/test-utils'
 
 import Dashboard from '~/layouts/Logged'
 import * as sentry from '~/hooks/useSentry'

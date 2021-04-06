@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render } from '@hub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import Skeleton, {
   SkeletonProps,

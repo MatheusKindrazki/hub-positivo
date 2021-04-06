@@ -1,22 +1,28 @@
 {
-  "name": "@hub/common",
-  "version": "1.7.0",
-  "description": "",
-  "author": "MatheusKindrazki",
+  "name": "@psdhub/common",
+  "version": "1.0.0",
+  "author": "Matheus Kindrazki",
+  "description": "PSD Hub Design Styles Kit",
   "license": "MIT",
-  "repository": "PSD/@hub/common",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
   "engines": {
-    "node": ">=10"
+    "node": "^10.12.0 || >=12.0.0"
   },
+  "files": [
+    "components",
+    "hooks",
+    "layout",
+    "utils"
+  ],
   "peerDependencies": {
-    "@types/classnames": "^2.2.11",
-    "@types/styled-components": "^5.1.7",
-    "classnames": "^2.2.6",
     "react": "^17.0.1",
-    "styled-components": "^5.2.1"
+    "classnames": "^2.2.6",
+    "styled-components": "^5.2.1",
+    "typescript": "^3.2.1 || ^4"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": false
+    }
   },
   "dependencies": {
     "@chakra-ui/react": "^1.4.2",
@@ -37,15 +43,12 @@
     "reactour": "^1.18.0"
   },
   "devDependencies": {
-    "@hub/test-utils": "*",
+    "@psdhub/test-utils": "*",
     "@types/classnames": "^2.2.11",
     "@types/node": "^14.14.25",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "@types/react-select": "^4.0.13",
     "@types/reactour": "^1.18.0"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }

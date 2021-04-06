@@ -2,7 +2,7 @@ import React from 'react'
 
 import { PulseLoader } from 'react-spinners'
 
-import { useTheme } from '@hub/common/layout/styles'
+import { useTheme } from '@psdhub/common/layout/styles'
 interface LoadingProps {
   loading: boolean
 }

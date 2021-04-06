@@ -4,8 +4,8 @@ import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
 
 import { store } from '~/store'
 
-import { toast } from '@hub/common/utils'
-import { apiAuthProduct } from '@hub/api'
+import { toast } from '@psdhub/common/utils'
+import { apiAuthProduct } from '@psdhub/api'
 
 import history from '~/services/history'
 

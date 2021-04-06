@@ -6,8 +6,8 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent, act } from '@hub/test-utils'
-import * as drawer from '@hub/common/components/Drawer'
+import { render, CustomState, fireEvent, act } from '@psdhub/test-utils'
+import * as drawer from '@psdhub/common/components/Drawer'
 
 import { UseDisclosureProps } from '@chakra-ui/react'
 

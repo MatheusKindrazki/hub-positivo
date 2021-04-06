@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { AccessData } from '~/store/modules/auth/types'
 import { preparingUserData } from '~/store/modules/auth/actions'
 
-import documentTitle from '@hub/common/utils/documentTitle'
-import { Select, Box, Heading } from '@hub/common/components'
+import documentTitle from '@psdhub/common/utils/documentTitle'
+import { Select, Box, Heading } from '@psdhub/common/components'
 
 import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
 

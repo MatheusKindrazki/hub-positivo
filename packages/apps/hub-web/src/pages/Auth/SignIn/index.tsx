@@ -14,16 +14,16 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { signInRequest } from '~/store/modules/auth/actions'
 
-import documentTitle from '@hub/common/utils/documentTitle'
-import { toast } from '@hub/common/utils'
-import { Lock, User, Eye, EyeSlash } from '@hub/common/components/Icons'
+import documentTitle from '@psdhub/common/utils/documentTitle'
+import { toast } from '@psdhub/common/utils'
+import { Lock, User, Eye, EyeSlash } from '@psdhub/common/components/Icons'
 import {
   Input,
   Button as FormButton,
   Form,
   FormProps
-} from '@hub/common/components/Form'
-import { Box, Heading, Text, Button } from '@hub/common/components'
+} from '@psdhub/common/components/Form'
+import { Box, Heading, Text, Button } from '@psdhub/common/components'
 
 import { handleCaptcha, checkForStrikes } from '~/utils/reCaptcha'
 

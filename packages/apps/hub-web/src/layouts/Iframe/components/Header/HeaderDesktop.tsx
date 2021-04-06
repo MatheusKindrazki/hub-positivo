@@ -9,7 +9,7 @@ import {
   Heading,
   SpinnerLoader,
   SimpleGrid
-} from '@hub/common/components'
+} from '@psdhub/common/components'
 
 import { toolOpened } from '~/services/mixpanel/toolOpened'
 import { amplitudeToolOpened } from '~/services/amplitude'

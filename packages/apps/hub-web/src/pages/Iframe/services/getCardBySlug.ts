@@ -3,8 +3,8 @@ import { ApiResponse } from 'apisauce'
 import { Product } from '~/store/modules/products/types'
 import { store } from '~/store'
 
-import { toast } from '@hub/common/utils'
-import api from '@hub/api'
+import { toast } from '@psdhub/common/utils'
+import api from '@psdhub/api'
 
 interface CarBySlugProps {
   slug?: string

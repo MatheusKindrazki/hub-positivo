@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import documentTitle from '@hub/common/utils/documentTitle'
+import documentTitle from '@psdhub/common/utils/documentTitle'
 
 import usePostMessage from '~/hooks/usePostMessage'
 

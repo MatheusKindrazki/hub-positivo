@@ -2,7 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent, waitFor } from '@hub/test-utils'
+import { render, CustomState, fireEvent, waitFor } from '@psdhub/test-utils'
 
 import AlterPass from '~/components/Header/components/AlterPass'
 

@@ -2,8 +2,8 @@ import { ApiResponse } from 'apisauce'
 
 import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
 
-import { toast } from '@hub/common/utils'
-import { apiEEMAuth } from '@hub/api'
+import { toast } from '@psdhub/common/utils'
+import { apiEEMAuth } from '@psdhub/api'
 
 import history from '~/services/history'
 

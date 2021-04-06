@@ -2,9 +2,9 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { cards as mockedCards } from '@hub/test-utils/__mocks__'
-import { render, fireEvent, act, CustomState } from '@hub/test-utils'
-import createSlug from '@hub/common/utils/createSlug'
+import { cards as mockedCards } from '@psdhub/test-utils/__mocks__'
+import { render, fireEvent, act, CustomState } from '@psdhub/test-utils'
+import createSlug from '@psdhub/common/utils/createSlug'
 
 import * as amplitude from '~/services/amplitude'
 

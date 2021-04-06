@@ -1,9 +1,9 @@
 {
-  "name": "@hub/test-utils",
+  "name": "@psdhub/test-utils",
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {
-    "@hub/common": "*",
-    "@hub/api": "*"
+    "@psdhub/common": "*",
+    "@psdhub/api": "*"
   }
 }

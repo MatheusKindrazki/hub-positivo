@@ -2,18 +2,18 @@ import React, { useMemo, useState } from 'react'
 
 import classNames from 'classnames'
 
-import { DotsNine } from '@hub/common/components/Icons'
+import { DotsNine } from '@psdhub/common/components/Icons'
 import Drawer, {
   DrawerContent,
   useDisclosure
-} from '@hub/common/components/Drawer'
+} from '@psdhub/common/components/Drawer'
 import {
   Box,
   Button,
   Heading,
   SpinnerLoader,
   SimpleGrid
-} from '@hub/common/components'
+} from '@psdhub/common/components'
 
 import { toolOpened } from '~/services/mixpanel/toolOpened'
 import { amplitudeToolOpened } from '~/services/amplitude'

@@ -2,7 +2,7 @@ import React from 'react'
 
 import * as unform from '@unform/core'
 
-import { fireEvent, render } from '@hub/test-utils'
+import { fireEvent, render } from '@psdhub/test-utils'
 
 import { Form, Input, Button } from '../../components/Form'
 

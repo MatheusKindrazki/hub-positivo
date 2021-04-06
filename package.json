@@ -1,5 +1,5 @@
 {
-  "name": "hub",
+  "name": "psdhub",
   "private": true,
   "version": "1.8.0",
   "repository": {
@@ -34,7 +34,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@hub/eslint-config": "*",
+    "@psdhub/eslint-config": "*",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
     "@testing-library/react-hooks": "^5.0.3",

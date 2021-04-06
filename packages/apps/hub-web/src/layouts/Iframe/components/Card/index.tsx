@@ -2,7 +2,7 @@ import React from 'react'
 
 import classNames from 'classnames'
 
-import { Box, Text, Image } from '@hub/common/components'
+import { Box, Text, Image } from '@psdhub/common/components'
 
 import GlobalStyle from './styles'
 export interface CardProps {

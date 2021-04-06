@@ -10,8 +10,8 @@ import {
 } from '~/store/modules/global/actions'
 import { withoutAccess } from '~/store/modules/auth/actions'
 
-import { toast } from '@hub/common/utils'
-import api from '@hub/api'
+import { toast } from '@psdhub/common/utils'
+import api from '@psdhub/api'
 
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 import mockedApiGetResponse from '~/__mocks__/api/fakeProductsApiResponse.json'

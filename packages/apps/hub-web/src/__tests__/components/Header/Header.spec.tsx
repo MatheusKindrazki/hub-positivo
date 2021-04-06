@@ -4,21 +4,21 @@ import MatchMediaMock from 'jest-matchmedia-mock'
 
 import { store } from '~/store'
 
-import { fireEvent, render, waitFor } from '@hub/test-utils'
-import * as hooks from '@hub/common/hooks'
-import * as drawer from '@hub/common/components/Drawer'
+import { fireEvent, render, waitFor } from '@psdhub/test-utils'
+import * as hooks from '@psdhub/common/hooks'
+import * as drawer from '@psdhub/common/components/Drawer'
 
 import history from '~/services/history'
 
 import Header from '~/components/Header'
 
-// jest.mock('@hub/common/hooks', () => {
-//   const rest = jest.requireActual('@hub/common/hooks')
+// jest.mock('@psdhub/common/hooks', () => {
+//   const rest = jest.requireActual('@psdhub/common/hooks')
 //   return { ...rest, useDisclosure: jest.fn(() => ({ isOpen: true })) }
 // })
 
-// jest.mock('@hub/common/components/Drawer', () => {
-//   const rest = jest.requireActual('@hub/common/components/Drawer')
+// jest.mock('@psdhub/common/components/Drawer', () => {
+//   const rest = jest.requireActual('@psdhub/common/components/Drawer')
 //   return { ...rest, useDisclosure: jest.fn() }
 // })
 

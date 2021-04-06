@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks'
 
-import { Providers } from '@hub/test-utils'
+import { Providers } from '@psdhub/test-utils'
 
 import { useColorMode, useColorModeValue } from '../../layout/styles'
 import { useTheme, useMediaQuery, theme } from '../../layout/'

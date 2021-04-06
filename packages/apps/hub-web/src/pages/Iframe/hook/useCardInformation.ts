@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { preAuth } from '~/store/modules/authProduct/actions'
 import { store } from '~/store'
 
-import createSlug from '@hub/common/utils/createSlug'
+import createSlug from '@psdhub/common/utils/createSlug'
 
 import history from '~/services/history'
 

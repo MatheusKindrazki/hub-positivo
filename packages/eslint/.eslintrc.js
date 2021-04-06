@@ -41,7 +41,8 @@ module.exports = {
     "no-unused-vars": "off",
     "@typescript-eslint/no-duplicate-imports": ["error"],
     "@typescript-eslint/no-unused-vars": ["error", {
-      "argsIgnorePattern": "_"
+      "argsIgnorePattern": "_",
+      "varsIgnorePattern": "_",
     }],
     'import-helpers/order-imports': [
       'warn',
@@ -53,7 +54,7 @@ module.exports = {
           '/^react-redux/',
           '/^redux/',
           '/^~/store/',
-          '/^@hub/',
+          '/^@psdhub/',
           '/^@chakra/',
           '/^~/services/',
           '/^~/utils/',

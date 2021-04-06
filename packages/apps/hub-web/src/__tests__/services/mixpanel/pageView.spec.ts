@@ -15,7 +15,7 @@ describe('testing if mixpanel page viewed functions work properly', () => {
 
   const pageViewedTestUtils = () => {
     const changedHubTitleEvent = (title: string | undefined) =>
-      new CustomEvent('@hub:title', {
+      new CustomEvent('@psdhub:title', {
         detail: title
       })
 

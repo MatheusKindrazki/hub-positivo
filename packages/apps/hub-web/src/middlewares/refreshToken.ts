@@ -6,8 +6,8 @@ import { RefreshTokenApi } from '~/store/modules/auth/types'
 import { Actions as AuthActions } from '~/store/modules/auth/actions'
 import { store } from '~/store'
 
-import { toast } from '@hub/common/utils'
-import api from '@hub/api'
+import { toast } from '@psdhub/common/utils'
+import api from '@psdhub/api'
 
 import history from '~/services/history'
 import { EEMConnectPost } from '~/services/eemConnect'

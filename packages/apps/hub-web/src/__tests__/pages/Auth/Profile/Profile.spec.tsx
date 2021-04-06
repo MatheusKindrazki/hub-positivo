@@ -4,7 +4,7 @@ import selectEvent from 'react-select-event'
 
 import { store } from '~/store'
 
-import { render, fireEvent, CustomState } from '@hub/test-utils'
+import { render, fireEvent, CustomState } from '@psdhub/test-utils'
 
 import Profile from '~/pages/Auth/Profile'
 

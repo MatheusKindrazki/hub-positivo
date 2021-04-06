@@ -10,7 +10,7 @@ import configureStore from 'redux-mock-store'
 
 import './setup'
 
-import ThemeProviderHub from '@hub/common/layout/Provider'
+import ThemeProviderHub from '@psdhub/common/layout/Provider'
 
 import {
   CustomRenderOptions,

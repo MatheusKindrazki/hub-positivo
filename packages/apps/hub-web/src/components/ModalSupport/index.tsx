@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 
-import { useDisclosure, useMediaQuery } from '@hub/common/hooks'
-import Modal from '@hub/common/components/Modal'
-import { Box, Button, Image, Text } from '@hub/common/components'
+import { useDisclosure, useMediaQuery } from '@psdhub/common/hooks'
+import Modal from '@psdhub/common/components/Modal'
+import { Box, Button, Image, Text } from '@psdhub/common/components'
 
 import ModalContext from './context'
 import cerebro from './cerebro.svg'

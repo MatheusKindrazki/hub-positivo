@@ -8,11 +8,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { forgotPasswordRequest } from '~/store/modules/user/actions'
 import { validatePinRequest } from '~/store/modules/forgotPassword/actions'
 
-import { useToast } from '@hub/common/hooks'
-import { Eye, EyeSlash, Lock } from '@hub/common/components/Icons'
-import { FormProps, Form, Input, Button } from '@hub/common/components/Form'
-import BarLoader from '@hub/common/components/BarLoader'
-import { Box, Text } from '@hub/common/components'
+import { useToast } from '@psdhub/common/hooks'
+import { Eye, EyeSlash, Lock } from '@psdhub/common/components/Icons'
+import { FormProps, Form, Input, Button } from '@psdhub/common/components/Form'
+import BarLoader from '@psdhub/common/components/BarLoader'
+import { Box, Text } from '@psdhub/common/components'
 
 import history from '~/services/history'
 

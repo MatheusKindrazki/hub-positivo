@@ -2,7 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { fireEvent, render, StoreUtils, waitFor } from '@hub/test-utils'
+import { fireEvent, render, StoreUtils, waitFor } from '@psdhub/test-utils'
 
 import history from '~/services/history'
 

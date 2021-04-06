@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { alterPasswordRequest } from '~/store/modules/user/actions'
 
-import { toast } from '@hub/common/utils'
-import { Eye, EyeSlash } from '@hub/common/components/Icons'
-import { Form, FormProps, Input } from '@hub/common/components/Form'
-import { Box, Button, SimpleGrid } from '@hub/common/components'
+import { toast } from '@psdhub/common/utils'
+import { Eye, EyeSlash } from '@psdhub/common/components/Icons'
+import { Form, FormProps, Input } from '@psdhub/common/components/Form'
+import { Box, Button, SimpleGrid } from '@psdhub/common/components'
 
 import alterPassword from '~/validators/user/alterPassword'
 import { getValidationErrors, ValidationError } from '~/validators'

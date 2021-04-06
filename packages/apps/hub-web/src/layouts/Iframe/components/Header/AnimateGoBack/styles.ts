@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Box } from '@hub/common/components'
+import { Box } from '@psdhub/common/components'
 
 export const Container = styled(Box)`
   display: flex;

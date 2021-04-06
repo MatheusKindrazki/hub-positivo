@@ -1,11 +1,10 @@
 import React from 'react'
 
-import { render } from '@hub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import * as media from '@chakra-ui/react'
 
-import Collapse from '../../components/Collapse'
-import { CollapseProps as propTypes } from '../../components/Collapse'
+import Collapse, { CollapseProps as propTypes } from '../../components/Collapse'
 
 const CollapseProps: propTypes = {
   id: 'teste',

@@ -4,7 +4,7 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { Provider } from 'react-redux'
 
-import { act } from '@hub/test-utils'
+import { act } from '@psdhub/test-utils'
 
 import { useHeader, HeaderProvider } from '~/components/Header/context'
 

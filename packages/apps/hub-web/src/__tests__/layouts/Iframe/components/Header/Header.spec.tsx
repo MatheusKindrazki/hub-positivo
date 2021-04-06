@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { fireEvent, render } from '@hub/test-utils'
+import { fireEvent, render } from '@psdhub/test-utils'
 
 import history from '~/services/history'
 
@@ -9,8 +9,8 @@ import * as HeaderDesktop from '~/layouts/Iframe/components/Header/HeaderDesktop
 import * as AnimateGoBack from '~/layouts/Iframe/components/Header/AnimateGoBack'
 import Header from '~/layouts/Iframe/components/Header/'
 
-jest.mock('@hub/common/layout/styles', () => {
-  const rest = jest.requireActual('@hub/common/layout/styles')
+jest.mock('@psdhub/common/layout/styles', () => {
+  const rest = jest.requireActual('@psdhub/common/layout/styles')
   return {
     ...rest,
     useMediaQuery: jest
