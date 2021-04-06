@@ -1,11 +1,16 @@
 {
   "name": "@psdhub/common",
-  "version": "1.0.0",
-  "author": "Matheus Kindrazki",
+  "version": "1.1.6",
+  "author": "matheuskindrazki",
   "description": "PSD Hub Design Styles Kit",
   "license": "MIT",
   "engines": {
     "node": "^10.12.0 || >=12.0.0"
+  },
+  "scripts": {
+    "prebuild": "rm -rf build",
+    "build": "tsc -p .",
+    "postbuild": "cp package.json build"
   },
   "files": [
     "components",
@@ -14,14 +19,13 @@
     "utils"
   ],
   "peerDependencies": {
-    "react": "^17.0.1",
     "classnames": "^2.2.6",
-    "styled-components": "^5.2.1",
-    "typescript": "^3.2.1 || ^4"
+    "react": "^17.0.1",
+    "styled-components": "^5.2.1"
   },
   "peerDependenciesMeta": {
     "typescript": {
-      "optional": false
+      "optional": true
     }
   },
   "dependencies": {
@@ -34,9 +38,7 @@
     "framer-motion": "^4",
     "phosphor-react": "^1.1.2",
     "polished": "^4.1.0",
-    "react": "^17.0.1",
     "react-collapse": "^5.1.0",
-    "react-dom": "^17.0.1",
     "react-select": "^4.1.0",
     "react-spinners": "^0.10.4",
     "react-toastify": "^7.0.3",
@@ -49,6 +51,8 @@
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "@types/react-select": "^4.0.13",
-    "@types/reactour": "^1.18.0"
+    "@types/reactour": "^1.18.0",
+    "react": "^17.0.1",
+    "typescript": "^4.2.3"
   }
 }
