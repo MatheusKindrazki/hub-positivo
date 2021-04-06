@@ -14,11 +14,9 @@ import Routes from '~/routes'
 
 import '~/services/mixpanel/pageView'
 
-// window?.gsc('params', 123)
-
 const App: React.FC = () => {
   return (
-    <ThemeProvider>
+    <ThemeProvider cssVarPrefix="hub">
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Routes />
