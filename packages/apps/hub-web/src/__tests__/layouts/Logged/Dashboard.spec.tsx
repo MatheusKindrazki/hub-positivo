@@ -6,7 +6,6 @@ import { store } from '~/store'
 import { render, CustomState, fireEvent } from '@hub/test-utils'
 
 import Dashboard from '~/layouts/Logged'
-import * as sentry from '~/hooks/useSentry'
 import * as globalInfo from '~/hooks/useSendGlobalInfo'
 import * as amplitude from '~/hooks/amplitude/useAmplitudeSetProperties'
 
@@ -132,11 +131,9 @@ describe('Logged`s layout should render without crashing', () => {
 
   it('Should call that hooks: useSentry, useSendGlobalInfo and useAmplitudeSetProperties', () => {
     setup()
-    const spyUseSentry = jest.spyOn(sentry, 'useSentry')
     const spyGlobalInfo = jest.spyOn(globalInfo, 'useSendGlobalInfo')
     const spyAmplitude = jest.spyOn(amplitude, 'useAmplitudeSetProperties')
 
-    expect(spyUseSentry).toHaveBeenCalledTimes(1)
     expect(spyGlobalInfo).toHaveBeenCalledTimes(1)
     expect(spyAmplitude).toHaveBeenCalledTimes(1)
   })
