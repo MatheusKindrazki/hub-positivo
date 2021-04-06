@@ -1,9 +1,17 @@
 {
-  "name": "@psdhub/eslint-config",
-  "version": "1.2.0",
+  "name": "@psdhub/eslint",
+  "version": "1.0.0",
+  "author": "matheuskindrazki",
+  "description": "PSD Hub eslint react setup",
   "main": ".eslintrc.js",
   "license": "MIT",
-  "devDependencies": {
+  "engines": {
+    "node": "^10.12.0 || >=12.0.0"
+  },
+  "files": [
+    ".eslintrc.js"
+  ],
+  "dependencies": {
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.7.0",
     "babel-plugin-root-import": "^6.5.0",
