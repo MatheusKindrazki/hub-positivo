@@ -11,7 +11,11 @@
   "files": [
     ".eslintrc.js"
   ],
+  "scripts": {
+    "postinstall": "node install.js"
+  },
   "dependencies": {
+    "executioner": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.7.0",
     "babel-plugin-root-import": "^6.5.0",
