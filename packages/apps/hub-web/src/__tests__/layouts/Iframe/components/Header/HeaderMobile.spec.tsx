@@ -4,9 +4,9 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { CardProduct } from '~/store/modules/products/types'
 
-import { cards } from '@hub/test-utils/__mocks__'
-import { render, fireEvent, act } from '@hub/test-utils'
-import * as drawer from '@hub/common/components/Drawer'
+import { cards } from '@psdhub/test-utils/__mocks__'
+import { render, fireEvent, act } from '@psdhub/test-utils'
+import * as drawer from '@psdhub/common/components/Drawer'
 
 import * as amplitude from '~/services/amplitude'
 

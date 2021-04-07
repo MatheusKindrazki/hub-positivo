@@ -6,11 +6,11 @@ import * as redux from 'react-redux'
 
 import { store } from '~/store'
 
-import { render, fireEvent } from '@hub/test-utils'
+import { render, fireEvent } from '@psdhub/test-utils'
 
 import ModalNoClass from '~/components/ModalNoClass'
 
-jest.unmock('@hub/common/hooks')
+jest.unmock('@psdhub/common/hooks')
 jest.mock('~/services/mixpanel/clearAll')
 
 jest.mock('~/components/ModalNoClass/turma.svg', () => <>Turma svg</>)

@@ -13,7 +13,7 @@ import {
 } from '~/store/modules/auth/sagas'
 import * as authActions from '~/store/modules/auth/actions'
 
-import { toast } from '@hub/common/utils'
+import { toast } from '@psdhub/common/utils'
 
 import history from '~/services/history'
 import * as eemIntegration from '~/services/eemIntegration'
@@ -30,7 +30,7 @@ jest.mock('~/hooks/amplitude/clearAll')
 jest.mock('~/hooks/amplitude/identifyUser')
 jest.mock('~/services/mixpanel/identifyUser')
 jest.mock('~/services/mixpanel/clearAll')
-jest.mock('@hub/common/utils/capitalize')
+jest.mock('@psdhub/common/utils/capitalize')
 
 let dispatchedActions = store.getActions()
 

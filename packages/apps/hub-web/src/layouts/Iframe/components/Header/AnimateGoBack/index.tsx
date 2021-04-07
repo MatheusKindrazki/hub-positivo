@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { useTheme } from '@hub/common/layout/styles'
-import { ArrowLeft } from '@hub/common/components/Icons'
-import { Box, Button } from '@hub/common/components'
+import { useTheme } from '@psdhub/common/layout/styles'
+import { ArrowLeft } from '@psdhub/common/components/Icons'
+import { Box, Button } from '@psdhub/common/components'
 
 import { Container } from './styles'
 

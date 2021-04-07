@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { BarLoader, CardBox, Text } from '@hub/common/components'
+import { BarLoader, CardBox, Text } from '@psdhub/common/components'
 
 import Logo from '~/components/Logo'
 

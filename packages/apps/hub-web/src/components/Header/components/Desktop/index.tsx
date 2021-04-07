@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { openTour } from '~/store/modules/tour/actions'
 import { signOut } from '~/store/modules/auth/actions'
 
-import { useDisclosure } from '@hub/common/hooks'
-import Welcome from '@hub/common/components/Welcome'
-import Select from '@hub/common/components/Select'
+import { useDisclosure } from '@psdhub/common/hooks'
+import Welcome from '@psdhub/common/components/Welcome'
+import Select from '@psdhub/common/components/Select'
 import Popover, {
   PopoverTrigger,
   PopoverContent
-} from '@hub/common/components/Popover'
-import { MenuDivider } from '@hub/common/components/Menu'
-import { Box, Button, Avatar } from '@hub/common/components'
+} from '@psdhub/common/components/Popover'
+import { MenuDivider } from '@psdhub/common/components/Menu'
+import { Box, Button, Avatar } from '@psdhub/common/components'
 
 import history from '~/services/history'
 

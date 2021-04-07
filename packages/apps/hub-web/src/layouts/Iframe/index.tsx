@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CardProduct } from '~/store/modules/products/types'
 import { preAuth } from '~/store/modules/authProduct/actions'
 
-import createSlug from '@hub/common/utils/createSlug'
-import { BarLoader } from '@hub/common/components'
+import createSlug from '@psdhub/common/utils/createSlug'
+import { BarLoader } from '@psdhub/common/components'
 
 import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
 import { useAmplitudeSetProperties } from '~/hooks/amplitude/useAmplitudeSetProperties'

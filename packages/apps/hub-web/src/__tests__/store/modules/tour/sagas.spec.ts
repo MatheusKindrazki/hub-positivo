@@ -10,7 +10,7 @@ import {
   openTour
 } from '~/store/modules/tour/actions'
 
-import api from '@hub/api'
+import api from '@psdhub/api'
 
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 

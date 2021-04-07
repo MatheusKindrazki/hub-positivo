@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 
 import { renderHook } from '@testing-library/react-hooks'
 
-import { render, act } from '@hub/test-utils'
+import { render, act } from '@psdhub/test-utils'
 
 import ThemeContext from '../../layout/Provider/context'
 import { HubProvider } from '../../layout'

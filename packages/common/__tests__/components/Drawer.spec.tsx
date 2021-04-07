@@ -2,7 +2,7 @@ import React from 'react'
 
 import { renderHook } from '@testing-library/react-hooks'
 
-import { render } from '@hub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import Text from '../../components/Text'
 import Drawer, {

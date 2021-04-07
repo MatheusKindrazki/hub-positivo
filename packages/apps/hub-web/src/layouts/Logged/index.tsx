@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour, postTourViewed } from '~/store/modules/tour/actions'
 
-import Tour from '@hub/common/components/Tour'
-import { BarLoader } from '@hub/common/components'
+import Tour from '@psdhub/common/components/Tour'
+import { BarLoader } from '@psdhub/common/components'
 
 import ModalNoClass from '~/components/ModalNoClass'
 import Header from '~/components/Header'

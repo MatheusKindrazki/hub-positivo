@@ -2,8 +2,8 @@ import React, { useCallback, useRef } from 'react'
 
 import Headroom from 'react-headroom'
 
-import { useMediaQuery, useDisclosure } from '@hub/common/hooks'
-import { Box, Button, Modal } from '@hub/common/components'
+import { useMediaQuery, useDisclosure } from '@psdhub/common/hooks'
+import { Box, Button, Modal } from '@psdhub/common/components'
 
 import history from '~/services/history'
 

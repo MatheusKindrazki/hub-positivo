@@ -1,6 +1,6 @@
 import qs from 'qs'
 
-import { apiEEMAuth, apiEEMInfos } from '@hub/api'
+import { apiEEMAuth, apiEEMInfos } from '@psdhub/api'
 
 import {
   EEMConnectPost,

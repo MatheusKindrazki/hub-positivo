@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render, CustomState, fireEvent, act } from '@hub/test-utils'
+import { render, CustomState, fireEvent, act } from '@psdhub/test-utils'
 
 import MyClasses from '~/pages/MyClasses'
 

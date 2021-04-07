@@ -5,9 +5,9 @@ import * as reactRouter from 'react-router'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent, act } from '@hub/test-utils'
-import ThemeContainer from '@hub/common/layout/Provider'
-import * as drawer from '@hub/common/components/Drawer'
+import { render, CustomState, fireEvent, act } from '@psdhub/test-utils'
+import ThemeContainer from '@psdhub/common/layout/Provider'
+import * as drawer from '@psdhub/common/components/Drawer'
 
 import history from '~/services/history'
 

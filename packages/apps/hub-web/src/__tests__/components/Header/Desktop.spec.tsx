@@ -4,7 +4,7 @@ import { openMenu } from 'react-select-event'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent, waitFor } from '@hub/test-utils'
+import { render, CustomState, fireEvent, waitFor } from '@psdhub/test-utils'
 
 import history from '~/services/history'
 

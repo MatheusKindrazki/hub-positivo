@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render, fireEvent } from '@hub/test-utils'
+import { render, fireEvent } from '@psdhub/test-utils'
 
 import Search from '../../components/Search'
 

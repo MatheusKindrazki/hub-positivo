@@ -2,8 +2,8 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { CustomState, StoreUtils } from '@hub/test-utils/types'
-import { fireEvent, render, waitFor } from '@hub/test-utils'
+import { CustomState, StoreUtils } from '@psdhub/test-utils/types'
+import { fireEvent, render, waitFor } from '@psdhub/test-utils'
 
 import history from '~/services/history'
 

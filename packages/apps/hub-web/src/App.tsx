@@ -6,7 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import { store, persistor } from '~/store'
 
-import ThemeProvider from '@hub/common/layout/Provider'
+import ThemeProvider from '@psdhub/common/layout/Provider'
 
 import ModalSupport from '~/components/ModalSupport'
 
@@ -16,7 +16,7 @@ import '~/services/mixpanel/pageView'
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider>
+    <ThemeProvider cssVarPrefix="hub">
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <Routes />

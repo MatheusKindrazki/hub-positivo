@@ -4,7 +4,7 @@ import * as reactDom from 'react-router-dom'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent } from '@hub/test-utils'
+import { render, CustomState, fireEvent } from '@psdhub/test-utils'
 
 import ForgotFail from '~/pages/Auth/ForgotFail'
 

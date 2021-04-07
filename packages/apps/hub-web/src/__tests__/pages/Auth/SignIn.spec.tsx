@@ -7,7 +7,7 @@ import * as redux from 'react-redux'
 
 import { store } from '~/store'
 
-import { render, fireEvent, waitFor, CustomState } from '@hub/test-utils'
+import { render, fireEvent, waitFor, CustomState } from '@psdhub/test-utils'
 
 import * as ReCAPTCHA from '~/utils/reCaptcha'
 

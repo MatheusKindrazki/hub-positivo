@@ -5,8 +5,8 @@ import { ConnectedRouter } from 'connected-react-router'
 
 import { useSelector } from 'react-redux'
 
-import { VariantsProps } from '@hub/common/layout/styles/colors'
-import ThemeContext from '@hub/common/layout/Provider/context'
+import { VariantsProps } from '@psdhub/common/layout/styles/colors'
+import ThemeContext from '@psdhub/common/layout/Provider/context'
 
 import history from '~/services/history'
 

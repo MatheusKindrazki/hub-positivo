@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom'
 
 import { useSelector } from 'react-redux'
 
-import documentTitle from '@hub/common/utils/documentTitle'
-import { Box, Text, Button } from '@hub/common/components'
+import documentTitle from '@psdhub/common/utils/documentTitle'
+import { Box, Text, Button } from '@psdhub/common/components'
 
 import GoBack from '~/components/GoBack'
 

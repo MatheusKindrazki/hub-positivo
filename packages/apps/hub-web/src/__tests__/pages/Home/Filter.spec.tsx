@@ -4,8 +4,8 @@ import { openMenu } from 'react-select-event'
 
 import { store } from '~/store'
 
-import { render, fireEvent } from '@hub/test-utils'
-import * as styles from '@hub/common/layout/styles'
+import { render, fireEvent } from '@psdhub/test-utils'
+import * as styles from '@psdhub/common/layout/styles'
 
 import Filter from '~/pages/Home/components/Filter'
 

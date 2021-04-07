@@ -24,11 +24,11 @@ window.onload = function () {
 
   dispatchPage(eventProperties)
 
-  document.addEventListener('@hub:title', listenerHubTitle)
+  document.addEventListener('@psdhub:title', listenerHubTitle)
 }
 
 history.listen(() => {
-  document.addEventListener('@hub:title', listenerHubTitle)
+  document.addEventListener('@psdhub:title', listenerHubTitle)
 })
 
 const listenerHubTitle = (custom: CustomEvent) => {
@@ -46,7 +46,7 @@ const listenerHubTitle = (custom: CustomEvent) => {
 
   dispatchPage(eventProperties)
 
-  document.removeEventListener('@hub:title', listenerHubTitle)
+  document.removeEventListener('@psdhub:title', listenerHubTitle)
 }
 
 function dispatchPage(data: PageViewed): void {

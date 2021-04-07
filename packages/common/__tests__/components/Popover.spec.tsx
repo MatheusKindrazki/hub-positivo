@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { fireEvent, render, waitFor } from '@hub/test-utils'
+import { fireEvent, render, waitFor } from '@psdhub/test-utils'
 
 import Popover, {
   PopoverTrigger,

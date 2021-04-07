@@ -4,7 +4,7 @@ import { CardProduct } from '~/store/modules/products/types'
 import { productIntegration } from '~/store/modules/products/actions'
 import * as sagas from '~/store/modules/productIntegrations/sagas'
 
-import { apiLivro, apiMHUND } from '@hub/api'
+import { apiLivro, apiMHUND } from '@psdhub/api'
 
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 

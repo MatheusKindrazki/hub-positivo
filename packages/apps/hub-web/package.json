@@ -1,5 +1,5 @@
 {
-  "name": "@hub/web",
+  "name": "@psdhub/web",
   "version": "1.7.0",
   "license": "MIT",
   "scripts": {
@@ -11,8 +11,8 @@
     "tsc": "tsc --noEmit"
   },
   "dependencies": {
-    "@hub/api": "*",
-    "@hub/common": "*",
+    "@psdhub/api": "*",
+    "@psdhub/common": "*",
     "@types/amplitude-js": "^7.0.1",
     "@types/redux-mock-store": "^1.0.2",
     "amplitude-js": "^7.4.1",
@@ -58,7 +58,7 @@
     ]
   },
   "devDependencies": {
-    "@hub/test-utils": "*",
+    "@psdhub/test-utils": "*",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@types/classnames": "^2.2.11",

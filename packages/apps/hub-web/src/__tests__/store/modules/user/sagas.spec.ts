@@ -5,12 +5,12 @@ import * as types from '~/store/modules/user/types'
 import * as sagas from '~/store/modules/user/sagas'
 import * as userActions from '~/store/modules/user/actions'
 
-import { toast } from '@hub/common/utils'
-import { apiEEMAuth } from '@hub/api'
+import { toast } from '@psdhub/common/utils'
+import { apiEEMAuth } from '@psdhub/api'
 
 import history from '~/services/history'
 
-import store, { mockState } from '~/__mocks__/fakeStore.mock'
+import store from '~/__mocks__/fakeStore.mock'
 
 jest.mock('~/services/eemConnect')
 

@@ -7,14 +7,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { openTour } from '~/store/modules/tour/actions'
 import { signOut } from '~/store/modules/auth/actions'
 
-import { useTheme } from '@hub/common/layout/styles'
-import { MenuDivider } from '@hub/common/components/Menu'
-import { List } from '@hub/common/components/Icons'
+import { useTheme } from '@psdhub/common/layout/styles'
+import { MenuDivider } from '@psdhub/common/components/Menu'
+import { List } from '@psdhub/common/components/Icons'
 import Drawer, {
   useDisclosure,
   DrawerContent
-} from '@hub/common/components/Drawer'
-import { Box, Button, Select, Welcome } from '@hub/common/components'
+} from '@psdhub/common/components/Drawer'
+import { Box, Button, Select, Welcome } from '@psdhub/common/components'
 
 import history from '~/services/history'
 

@@ -99,7 +99,7 @@ _Se finalizado sem erros, todas as dependências foram instaladas com sucesso._
 Para instalar uma dependência individual do hub-web:
 
 ```bash
-yarn workspace @hub/web add NOME_DA_DEPENDÊNCIA
+yarn workspace @psdhub/web add NOME_DA_DEPENDÊNCIA
 ```
 
 # Removendo dependências
@@ -107,7 +107,7 @@ yarn workspace @hub/web add NOME_DA_DEPENDÊNCIA
 Para remover uma dependência individual do hub-web:
 
 ```bash
-yarn workspace @hub/web remove NOME_DA_DEPENDÊNCIA
+yarn workspace @psdhub/web remove NOME_DA_DEPENDÊNCIA
 ```
 
 # Configurando variáveis de ambiente
@@ -129,7 +129,7 @@ REACT_APP_HUB_TITLE='Hub Positivo'
 Neste momento já é possível inicializar o projeto localmente. Na raiz do projeto digite:
 
 ```bash
-yarn workspace @hub/web start
+yarn workspace @psdhub/web start
 ```
 
 _Espera-se que o navegador abra na porta padrão do React (3000) com o projeto inicializado na tela de Login do Hub._

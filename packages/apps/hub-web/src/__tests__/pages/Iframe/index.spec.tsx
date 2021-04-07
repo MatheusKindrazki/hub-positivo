@@ -2,7 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { render } from '@hub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import Iframe from '~/pages/Iframe/'
 

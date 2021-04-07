@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render, fireEvent, waitFor } from '@hub/test-utils'
+import { render, fireEvent, waitFor } from '@psdhub/test-utils'
 
 import Tour, { TourProps } from '../../components/Tour'
 

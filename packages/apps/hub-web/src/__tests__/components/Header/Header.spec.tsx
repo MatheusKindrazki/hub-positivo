@@ -4,9 +4,9 @@ import MatchMediaMock from 'jest-matchmedia-mock'
 
 import { store } from '~/store'
 
-import { fireEvent, render } from '@hub/test-utils'
-import * as hooks from '@hub/common/hooks'
-import * as drawer from '@hub/common/components/Drawer'
+import { fireEvent, render } from '@psdhub/test-utils'
+import * as hooks from '@psdhub/common/hooks'
+import * as drawer from '@psdhub/common/components/Drawer'
 
 import history from '~/services/history'
 

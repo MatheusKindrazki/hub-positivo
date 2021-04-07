@@ -4,7 +4,7 @@ import { all, takeLatest, call, put } from 'redux-saga/effects'
 
 import { store } from '~/store'
 
-import api from '@hub/api'
+import api from '@psdhub/api'
 
 import { StepsTour, StepsTourResponseApi } from './types'
 import {

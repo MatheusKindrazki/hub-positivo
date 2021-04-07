@@ -16,9 +16,9 @@ import {
 import { setSigned, signInRequestLoading } from '~/store/modules/auth/actions'
 import { store } from '~/store'
 
-import capitalize from '@hub/common/utils/capitalize'
-import { toast } from '@hub/common/utils'
-import api from '@hub/api'
+import capitalize from '@psdhub/common/utils/capitalize'
+import { toast } from '@psdhub/common/utils'
+import api from '@psdhub/api'
 
 import mixpanelIdentifyUser from '~/services/mixpanel/identifyUser'
 import history from '~/services/history'

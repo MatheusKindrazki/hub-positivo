@@ -28,7 +28,7 @@ export default createGlobalStyle`
       background: #ECEFF1;
       border-radius: 8px;
         svg {
-          fill: ${({ theme }) => theme.colors.blue[500]};
+          fill: var(--hub-base-color);
           transition: all .2s linear;
         }
 

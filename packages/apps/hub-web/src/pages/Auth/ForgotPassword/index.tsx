@@ -7,15 +7,15 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { pwdTokenRequest } from '~/store/modules/forgotPassword/actions'
 
-import documentTitle from '@hub/common/utils/documentTitle'
-import { User } from '@hub/common/components/Icons'
+import documentTitle from '@psdhub/common/utils/documentTitle'
+import { User } from '@psdhub/common/components/Icons'
 import {
   Input,
   Form,
   FormProps,
   Button as ButtonForm
-} from '@hub/common/components/Form'
-import { Box, Text } from '@hub/common/components'
+} from '@psdhub/common/components/Form'
+import { Box, Text } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
