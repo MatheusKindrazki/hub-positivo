@@ -1,6 +1,6 @@
-import { extendTheme, ChakraTheme } from '@chakra-ui/react'
+import { extendTheme, Theme } from '@chakra-ui/react'
 
-export default (prefix?: string): ChakraTheme => {
+export default (prefix?: string): Theme => {
   return extendTheme({
     config: {
       cssVarPrefix: prefix || 'generic-hub-prefix',

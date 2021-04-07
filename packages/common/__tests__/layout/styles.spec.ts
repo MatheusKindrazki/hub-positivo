@@ -9,7 +9,6 @@ import {
   useColorModeValue,
   useTheme
 } from '../../layout/styles'
-
 describe('Testing chakra`s styles hooks', () => {
   it('useTheme shouldn`t return void theme when encapsulated by a theme provider', () => {
     const {
@@ -18,8 +17,11 @@ describe('Testing chakra`s styles hooks', () => {
       wrapper: Providers
     })
     expect(current).not.toBe({})
+
+    const renderedTheme = theme()
+
     // Blue é alterado durante a renderização do provider
-    expect(current.colors.blue).not.toEqual(theme('hub').colors.blue)
+    expect(current.colors?.blue).not.toEqual(renderedTheme?.colors?.blue)
   })
   it('useColorMode should  gives you access to the current color mode, and a function to toggle the color mode.', () => {
     const {
