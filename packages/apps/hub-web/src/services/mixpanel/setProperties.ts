@@ -46,6 +46,18 @@ const setProperties = (): void => {
 
   if (!signed) return
 
+  // Identificador new relic
+  window.newrelic?.setCustomAttribute('role', sendProps.selected_role)
+  window.newrelic?.setCustomAttribute('user_id', sendProps.user_id as string)
+  window.newrelic?.setCustomAttribute(
+    'school',
+    sendProps.selected_school_id as string
+  )
+  window.newrelic?.setCustomAttribute(
+    'user_name',
+    sendProps.user_name as string
+  )
+
   try {
     mixpanel.people.set(sendProps)
     mixpanel.identify(user?.guid)
