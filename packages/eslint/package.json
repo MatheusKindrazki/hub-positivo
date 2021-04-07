@@ -1,5 +1,5 @@
 {
-  "name": "@psdhub/eslint-config",
+  "name": "@psdhub/eslint",
   "version": "1.2.0",
   "main": ".eslintrc.js",
   "license": "MIT",

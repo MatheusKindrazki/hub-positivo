@@ -9,10 +9,8 @@ describe('Image renders without crashing', () => {
   const wrapper = render(<Image alt={altText} />)
   it('Should render image with correct alt text', () => {
     const { getByAltText } = wrapper
-    const image = getByAltText(altText)
 
-    expect(image).toBeInTheDocument()
-    expect(image).toHaveAttribute('alt', altText)
+    expect(getByAltText(altText)).toBeInTheDocument()
   })
   it('Image matches snapshot', () => {
     expect(wrapper).toMatchSnapshot()
