@@ -14,7 +14,7 @@ import profileColors, {
 import { theme as HubTheme } from '../styles'
 
 interface ThemeProps {
-  cssVarPrefix: string
+  cssVarPrefix?: string
 }
 
 const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {

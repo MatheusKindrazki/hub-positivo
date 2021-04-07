@@ -27,7 +27,7 @@ const middlewares = [sagaMiddleware, routerMiddleware(history)]
 const mockStore = configureStore(middlewares)
 
 export const Providers: FC = ({ children }) => {
-  return <ThemeProviderHub>{children}</ThemeProviderHub>
+  return <ThemeProviderHub cssVarPrefix="hub">{children}</ThemeProviderHub>
 }
 
 function getStatesFromStore(store: Store, reducers: Reducers[]): CustomState {
