@@ -1,3 +1,15 @@
+## [1.8.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.8.0...v1.8.1) (2021-04-07)
+
+
+### Bug Fixes
+
+* implementação do new relic ([5a7d930](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/5a7d93019b3d4be875ed2ee6b57257946a1194b2))
+
+
+### Reverts
+
+* voltando ao arquivo pipe padrão com sonar ativo ([dad9a4c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/dad9a4cdcf9043774c68a0e2910aaa3d9d9a3a12))
+
 # [1.8.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.7.0...v1.8.0) (2021-03-26)
 
 
