@@ -31,6 +31,8 @@ const Route: React.FC<RouteProps> = ({
 
   Sentry.configureScope(scope => scope.setTransactionName(pathname))
 
+  window.newrelic?.setCurrentRouteName(pathname)
+
   const { signed } = store.getState().auth
 
   let RenderLayout = signed ? Logged : Auth
