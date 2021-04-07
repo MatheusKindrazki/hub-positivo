@@ -1,6 +1,8 @@
+import React from 'react'
+
 import { renderHook } from '@testing-library/react-hooks'
 
-import { Providers } from '@psdhub/test-utils'
+import { HubProvider } from '@psdhub/common/layout'
 
 import {
   useMediaQuery,
@@ -9,6 +11,10 @@ import {
   useColorModeValue,
   useTheme
 } from '../../layout/styles'
+export const Providers: React.FC = ({ children }) => {
+  return <HubProvider>{children}</HubProvider>
+}
+
 describe('Testing chakra`s styles hooks', () => {
   it('useTheme shouldn`t return void theme when encapsulated by a theme provider', () => {
     const {
