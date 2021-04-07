@@ -6,14 +6,8 @@ import { store } from '~/store'
 import { render, CustomState, fireEvent } from '@psdhub/test-utils'
 
 import Dashboard from '~/layouts/Logged'
-import * as sentry from '~/hooks/useSentry'
 import * as globalInfo from '~/hooks/useSendGlobalInfo'
 import * as amplitude from '~/hooks/amplitude/useAmplitudeSetProperties'
-
-jest.mock('~/hooks/useSentry', () => ({
-  useSentry: jest.fn()
-}))
-
 jest.mock('~/hooks/useSendGlobalInfo', () => ({
   useSendGlobalInfo: jest.fn()
 }))
@@ -59,9 +53,8 @@ describe('Logged`s layout should render without crashing', () => {
   it('Should call render children on screen', () => {
     const element = 'children'
     const { getByText } = setup(element)
-    const children = getByText(element, { exact: false })
 
-    expect(children).toBeInTheDocument()
+    expect(getByText(element, { exact: false })).toBeInTheDocument()
   })
 
   it('Shouldn`t call steps if `open` is false', () => {
@@ -90,16 +83,14 @@ describe('Logged`s layout should render without crashing', () => {
 
     storeUtils?.clearActions()
 
-    const firstContent = getByText(first_step, { exact: false })
-    expect(firstContent).toBeInTheDocument()
+    expect(getByText(first_step, { exact: false })).toBeInTheDocument()
 
     const buttonsOnScreen = getAllByRole('button')
     const rightArrow = buttonsOnScreen[3]
 
     fireEvent.click(rightArrow)
 
-    const secondContent = getByText(second_step, { exact: false })
-    expect(secondContent).toBeInTheDocument()
+    expect(getByText(second_step, { exact: false })).toBeInTheDocument()
 
     storeUtils?.clearActions()
 
@@ -130,13 +121,11 @@ describe('Logged`s layout should render without crashing', () => {
     expect(actions).toStrictEqual([{ type: '@tour/POST_TOUR' }])
   })
 
-  it('Should call that hooks: useSentry, useSendGlobalInfo and useAmplitudeSetProperties', () => {
+  it('Should call that hooks: useSendGlobalInfo and useAmplitudeSetProperties', () => {
     setup()
-    const spyUseSentry = jest.spyOn(sentry, 'useSentry')
     const spyGlobalInfo = jest.spyOn(globalInfo, 'useSendGlobalInfo')
     const spyAmplitude = jest.spyOn(amplitude, 'useAmplitudeSetProperties')
 
-    expect(spyUseSentry).toHaveBeenCalledTimes(1)
     expect(spyGlobalInfo).toHaveBeenCalledTimes(1)
     expect(spyAmplitude).toHaveBeenCalledTimes(1)
   })

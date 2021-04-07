@@ -21,8 +21,8 @@ const setup = (props?: any) => {
 
 describe('FakeCollapse renders without crashing', () => {
   it('should have children', () => {
-    const { getByText } = setup()
-    const children = getByText(childrenValue)
+    const { queryByText } = setup()
+    const children = queryByText(childrenValue)
     expect(children).toBeInTheDocument()
   })
 

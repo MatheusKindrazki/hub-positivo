@@ -78,9 +78,6 @@ describe('Expired Token page should work properly', () => {
     const { getByText } = setup(CUSTOM_STATE)
 
     const goBackToLogin = getByText(/Voltar para o login/i)
-
-    expect(goBackToLogin).toBeInTheDocument()
-
     fireEvent.click(goBackToLogin)
     jest.runAllTimers()
 

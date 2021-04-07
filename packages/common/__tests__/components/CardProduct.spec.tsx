@@ -35,10 +35,10 @@ describe('CardProduct component should work properly', () => {
   it('Card shows correct notification', () => {
     const notificationText = 'this string is a test notification'
     CardProductProps.card.notificacao = notificationText
-    const { getByText } = render(<CardProduct {...CardProductProps} />)
+    const { queryByText } = render(<CardProduct {...CardProductProps} />)
 
-    const notification = getByText(notificationText)
-    expect(notification).toBeInTheDocument()
+    const notification = queryByText(notificationText)
+    expect(notification).not.toBeNull()
   })
 
   it('Card has "hub" category when no category is received', () => {
@@ -51,9 +51,9 @@ describe('CardProduct component should work properly', () => {
 
   it('Card shows "Em breve" text when doesnt receive a link', () => {
     CardProductProps.card.link = undefined
-    const { getByText } = render(<CardProduct {...CardProductProps} />)
-    const textoDeEmbreve = getByText('Em Breve')
+    const { queryByText } = render(<CardProduct {...CardProductProps} />)
+    const textoDeEmbreve = queryByText('Em Breve')
 
-    expect(textoDeEmbreve).toBeInTheDocument()
+    expect(textoDeEmbreve).not.toBeNull()
   })
 })

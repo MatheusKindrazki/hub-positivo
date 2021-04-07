@@ -18,11 +18,11 @@ jest.mock('~/services/history', () => ({
 
 describe('Forgot Password page should work properly', () => {
   it('should display instructions about password recovery', async () => {
-    const { getByText } = render(<ForgotPassword />, {
+    const { queryByText } = render(<ForgotPassword />, {
       reducers: ['forgotPassword'],
       store
     })
-    const instructionMessage = getByText(/Insira seu nome de usuário/i)
+    const instructionMessage = queryByText(/Insira seu nome de usuário/i)
     expect(instructionMessage).toBeInTheDocument()
   })
 
@@ -35,8 +35,7 @@ describe('Forgot Password page should work properly', () => {
 
     // gerando erro ao clicar submeter form sem valor no input
     fireEvent.click(forgotPwdButton)
-    const errorMessage = await findByText(/Algo deu errado/i)
-    expect(errorMessage).toBeInTheDocument()
+    expect(await findByText(/Algo deu errado/i)).toBeInTheDocument()
   })
 
   it('Should display an error toast if validator throws a generic error', async () => {
@@ -51,10 +50,7 @@ describe('Forgot Password page should work properly', () => {
 
     const forgotPwdButton = getByText('Solicitar Link')
     fireEvent.click(forgotPwdButton)
-
-    const toast = await findByText(/Algo deu errado/i)
-
-    expect(toast).toBeInTheDocument()
+    expect(await findByText(/Algo deu errado/i)).toBeInTheDocument()
   })
 
   it('Should redirect client to login page if sendViewToken is true', () => {

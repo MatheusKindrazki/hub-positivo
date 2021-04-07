@@ -61,30 +61,30 @@ describe('Testing that the Home page works correctly', () => {
   }
 
   it('Should render the correct elements on the screen', () => {
-    const { getByText, getAllByText } = setup()
+    const { queryByText, queryAllByText } = setup()
 
     const { name } = user.info
     const { data } = products
 
     const fragmentedName = name.split(' ')
 
-    const nameInitals = getByText(fragmentedName[0][0] + fragmentedName[1][0])
-    const soonBagde = getAllByText('Em breve', queryConfig)
+    const nameInitals = queryByText(fragmentedName[0][0] + fragmentedName[1][0])
+    const soonBagde = queryAllByText('Em breve', queryConfig)
 
     expect(soonBagde.length).toBe(2)
-    expect(nameInitals).toBeInTheDocument()
+    expect(nameInitals).not.toBeNull()
 
     // Busca cada grupo de soluções e verifica se todos os cards estão na tela
     data.forEach(({ nome, solucoes }) => {
-      const groupOfSolutionTitle = getByText(nome)
-      expect(groupOfSolutionTitle).toBeInTheDocument()
+      const groupOfSolutionTitle = queryByText(nome)
+      expect(groupOfSolutionTitle).not.toBeNull()
 
       solucoes.forEach(({ nome: solutionName, descricao }) => {
-        const cardName = getByText(solutionName)
-        const cardDescription = getByText(descricao)
+        const cardName = queryByText(solutionName)
+        const cardDescription = queryByText(descricao)
 
-        expect(cardName).toBeInTheDocument()
-        expect(cardDescription).toBeInTheDocument()
+        expect(cardName).not.toBeNull()
+        expect(cardDescription).not.toBeNull()
       })
     })
   })
@@ -156,7 +156,7 @@ describe('Testing that the Home page works correctly', () => {
       products: { data: undefined, loading: false }
     })
     const emptyMessage = queryByText('Nenhum produto encontrado!', queryConfig)
-    expect(emptyMessage).toBeInTheDocument()
+    expect(emptyMessage).not.toBeNull()
   })
 
   it('Should render with default Welcome titles', async () => {
@@ -171,8 +171,8 @@ describe('Testing that the Home page works correctly', () => {
 
     const defaultRole = queryByText('Perfil', queryConfig)
     const defaultUser = queryByText('Usuário', queryConfig)
-    expect(defaultRole).toBeInTheDocument()
-    expect(defaultUser).toBeInTheDocument()
+    expect(defaultRole).not.toBeNull()
+    expect(defaultUser).not.toBeNull()
   })
 
   it('Should render `userClass` and `Profile` when profile name is `Aluno`', async () => {
@@ -190,7 +190,7 @@ describe('Testing that the Home page works correctly', () => {
     const studentTitle = queryByText(student, queryConfig)
     const userClass = queryByText(className, queryConfig)
 
-    expect(studentTitle).toBeInTheDocument()
-    expect(userClass).toBeInTheDocument()
+    expect(studentTitle).not.toBeNull()
+    expect(userClass).not.toBeNull()
   })
 })

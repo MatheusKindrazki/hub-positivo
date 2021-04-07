@@ -14,8 +14,7 @@ describe('should work properly', () => {
     return { ...wrapper, handleChange, placeholderValue, input }
   }
   it('Should render an input on screen', () => {
-    const { input } = setup()
-    expect(input).toBeInTheDocument()
+    expect(setup().input).toBeInTheDocument()
   })
 
   it('Should call onChange handler when a value is triggered on input', () => {

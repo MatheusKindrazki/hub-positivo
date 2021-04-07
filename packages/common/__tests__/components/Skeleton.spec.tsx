@@ -10,7 +10,6 @@ import Skeleton, {
   SkeletonText,
   Stack
 } from '../../components/Skeleton'
-import '@testing-library/jest-dom'
 
 const skeletonProps: SkeletonProps = {
   height: '20px'

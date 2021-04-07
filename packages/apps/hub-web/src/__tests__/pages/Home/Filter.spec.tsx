@@ -1,12 +1,11 @@
 import React from 'react'
 
-import selectEvent from 'react-select-event'
+import { openMenu } from 'react-select-event'
 
 import { store } from '~/store'
 
 import { render, fireEvent } from '@psdhub/test-utils'
-
-import * as chakra from '@chakra-ui/react'
+import * as styles from '@psdhub/common/layout/styles'
 
 import Filter from '~/pages/Home/components/Filter'
 
@@ -44,13 +43,13 @@ describe('Filter Component (by Welcome) should work properly', () => {
   })
 
   it('The component `Filter` should render level options when trigged', () => {
-    jest.spyOn(chakra, 'useMediaQuery').mockReturnValue([false])
+    jest.spyOn(styles, 'useMediaQuery').mockReturnValue([false])
 
     const { queryAllByText, getByText } = setup({ profileName: 'Professor' })
 
     const select = getByText(/Ensino Infantil/i)
 
-    selectEvent.openMenu(select)
+    openMenu(select)
     const levels = queryAllByText(/Ensino/i)
 
     // deve haver 4 ensinos em tela, além do ensino escolhido
@@ -58,7 +57,7 @@ describe('Filter Component (by Welcome) should work properly', () => {
   })
 
   it('The `Filter` component should show only the chosen option', async () => {
-    jest.spyOn(chakra, 'useMediaQuery').mockReturnValue([true])
+    jest.spyOn(styles, 'useMediaQuery').mockReturnValue([true])
 
     const { findAllByText, getByText, queryAllByText, storeUtils } = setup({
       profileName: 'Professor'
@@ -67,7 +66,7 @@ describe('Filter Component (by Welcome) should work properly', () => {
 
     const select = getByText(/Ensino Infantil/i)
 
-    selectEvent.openMenu(select)
+    openMenu(select)
 
     const level = await findAllByText(choice)
     fireEvent.click(level[1])

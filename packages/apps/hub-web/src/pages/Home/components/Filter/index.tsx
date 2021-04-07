@@ -32,7 +32,7 @@ const Filter: React.FC = () => {
   if (!levels?.length || name !== 'Professor') return null
 
   return (
-    <Box mb={isMobile ? 5 : 0}>
+    <Box mb={isMobile ? 5 : 0} data-testid="filter-box">
       <Select
         variant="blue-transparent"
         value={levels.find(e => e.value === level)}

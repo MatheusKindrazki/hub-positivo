@@ -7,11 +7,11 @@ import CardBox from '../../components/CardBox'
 describe('CardBox renders without crashing', () => {
   const childrenValue = 'testing children'
   const wrapper = render(<CardBox>{childrenValue}</CardBox>)
-  const { getByText } = wrapper
+  const { queryByText } = wrapper
 
   it('CardBox has children', () => {
-    const children = getByText(childrenValue)
-    expect(children).toBeInTheDocument()
+    const children = queryByText(childrenValue)
+    expect(children).not.toBeNull()
   })
 
   it('CardBox matches snapshot', () => {

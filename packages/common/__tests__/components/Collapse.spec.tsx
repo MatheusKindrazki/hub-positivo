@@ -57,12 +57,12 @@ describe('Collapse component should work properly', () => {
   })
 
   it('Collapse render name inside Heading', () => {
-    const { getByText } = render(
+    const { queryByText } = render(
       <Collapse {...CollapseProps}>Children</Collapse>
     )
 
-    const header = getByText('nome teste do header')
-    expect(header).toBeInTheDocument()
+    const header = queryByText('nome teste do header')
+    expect(header).not.toBeNull()
   })
 
   it('Collapse with false grid doesnt render SimpleGrid', () => {
