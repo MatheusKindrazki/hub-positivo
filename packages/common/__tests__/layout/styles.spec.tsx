@@ -11,8 +11,9 @@ import {
   useColorModeValue,
   useTheme
 } from '../../layout/styles'
+
 export const Providers: React.FC = ({ children }) => {
-  return <HubProvider>{children}</HubProvider>
+  return <HubProvider cssVarPrefix="hub">{children}</HubProvider>
 }
 
 describe('Testing chakra`s styles hooks', () => {
@@ -22,12 +23,16 @@ describe('Testing chakra`s styles hooks', () => {
     } = renderHook(() => useTheme(), {
       wrapper: Providers
     })
+
     expect(current).not.toBe({})
 
-    const renderedTheme = theme()
+    const renderedTheme = theme('hub')
+
+    console.log(current)
 
     // Blue é alterado durante a renderização do provider
-    expect(current.colors?.blue).not.toEqual(renderedTheme?.colors?.blue)
+    jest.setTimeout(1000)
+    expect(current?.colors?.blue).not.toEqual(renderedTheme?.colors?.blue)
   })
   it('useColorMode should  gives you access to the current color mode, and a function to toggle the color mode.', () => {
     const {
