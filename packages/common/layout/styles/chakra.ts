@@ -3,7 +3,7 @@ import { extendTheme, ChakraTheme } from '@chakra-ui/react'
 export default (prefix?: string): ChakraTheme => {
   return extendTheme({
     config: {
-      cssVarPrefix: prefix || String(Math.random()),
+      cssVarPrefix: prefix || 'generic-hub-prefix',
       useSystemColorMode: true
     },
     fonts: {
