@@ -29,7 +29,7 @@ const HeaderProvider: React.FC = ({ children }) => {
   const [roles, setRoles] = useState(userSchool?.roles)
 
   const [role, setRole] = useState<SelectProps | undefined>({
-    label: name as string,
+    label: name,
     value: profile as string
   })
 
@@ -52,7 +52,7 @@ const HeaderProvider: React.FC = ({ children }) => {
       value: userSchool?.value as string
     })
     setRole({
-      label: name as string,
+      label: name,
       value: profile as string
     })
     setRoles(userSchool?.roles)

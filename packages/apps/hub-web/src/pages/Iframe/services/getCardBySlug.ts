@@ -1,3 +1,5 @@
+import { ApiResponse } from 'apisauce'
+
 import { Product } from '~/store/modules/products/types'
 import { store } from '~/store'
 
@@ -10,8 +12,10 @@ interface CarBySlugProps {
   nivelEnsino?: string
 }
 
-async function getCardBySlug(data: CarBySlugProps): Promise<Product | null> {
-  if (!data.slug) return null
+async function getCardBySlug(
+  data: CarBySlugProps
+): Promise<Product | undefined> {
+  if (!data.slug) return
   const { token } = store.getState().auth
 
   api.setHeaders({
@@ -32,15 +36,15 @@ async function getCardBySlug(data: CarBySlugProps): Promise<Product | null> {
     }
   )
 
-  const { ok, data: responseData } = response
+  const { ok, data: responseData } = response as ApiResponse<Product>
 
   if (!ok) {
     toast.error('Sinto muito, você não tem acesso a esta solução.')
 
-    return null
+    return
   }
 
-  return (responseData as unknown) as Product
+  return responseData
 }
 
 export { getCardBySlug }

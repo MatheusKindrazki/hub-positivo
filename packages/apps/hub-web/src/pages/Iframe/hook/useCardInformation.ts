@@ -30,9 +30,9 @@ export default async function useCardInformation(): Promise<void> {
 
   let path = ''
   if (subpath) {
-    const queryParams = window.location.hash.split('?')[1] || undefined
+    const queryParams = window.location.hash.split('?')[1] || ''
 
-    path = `${subpath}${queryParams ? `?${queryParams}` : ''}`
+    path = `${subpath}${queryParams}`
   }
 
   store.dispatch(

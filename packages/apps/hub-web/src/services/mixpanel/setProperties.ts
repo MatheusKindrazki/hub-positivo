@@ -9,7 +9,7 @@ import { store } from '~/store'
 import profiles from '~/utils/formatData/profile'
 import educationalStage from '~/utils/formatData/educationalStage'
 
-const setUserProperties = (): void => {
+const setProperties = (): void => {
   const { info: user, school } = store.getState().user
 
   const schools_list = user?.schools?.map(s => s.name)
@@ -46,6 +46,18 @@ const setUserProperties = (): void => {
 
   if (!signed) return
 
+  // Identificador new relic
+  window.newrelic?.setCustomAttribute('role', sendProps.selected_role)
+  window.newrelic?.setCustomAttribute('user_id', sendProps.user_id as string)
+  window.newrelic?.setCustomAttribute(
+    'school',
+    sendProps.selected_school_id as string
+  )
+  window.newrelic?.setCustomAttribute(
+    'user_name',
+    sendProps.user_name as string
+  )
+
   try {
     mixpanel.people.set(sendProps)
     mixpanel.identify(user?.guid)
@@ -54,4 +66,4 @@ const setUserProperties = (): void => {
   }
 }
 
-export default setUserProperties
+export default setProperties

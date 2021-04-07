@@ -66,5 +66,5 @@ export default async (): Promise<boolean> => {
     return true
   }
 
-  return true
+  return false
 }

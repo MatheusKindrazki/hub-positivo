@@ -1,4 +1,4 @@
-import React, { createElement, IframeHTMLAttributes, useEffect } from 'react'
+import React, { createElement, IframeHTMLAttributes } from 'react'
 
 type IframeProps = IframeHTMLAttributes<HTMLIFrameElement>
 

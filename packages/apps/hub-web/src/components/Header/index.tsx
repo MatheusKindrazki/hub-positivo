@@ -10,8 +10,7 @@ import history from '~/services/history'
 import Logo from '~/components/LogoOn'
 
 import { HeaderProvider } from './context'
-import MobileMenu, { MenuButton } from './components/Mobile'
-import { RefMenuProps } from './components/Mobile'
+import MobileMenu, { MenuButton, RefMenuProps } from './components/Mobile'
 import DesktopMenu from './components/Desktop'
 import AlterPass from './components/AlterPass'
 const Header: React.FC = () => {
