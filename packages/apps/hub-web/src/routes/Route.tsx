@@ -6,7 +6,6 @@ import {
   Redirect,
   useLocation
 } from 'react-router-dom'
-import * as Sentry from '@sentry/react'
 
 import { store } from '~/store'
 
@@ -28,8 +27,6 @@ const Route: React.FC<RouteProps> = ({
   const { pathname } = useLocation()
 
   setUserProperties()
-
-  Sentry.configureScope(scope => scope.setTransactionName(pathname))
 
   window.newrelic?.setCurrentRouteName(pathname)
 
