@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 
 import { useHistory, useLocation, useParams } from 'react-router-dom'
 import mixpanel from 'mixpanel-browser'
-import amplitude from 'amplitude-js'
 
 import { hasJsonStructure } from '~/utils/hasJsonStructure'
 
@@ -60,8 +59,6 @@ const usePostMessage = (): void => {
             page_title: document.title,
             page_url: document.URL
           }
-
-          amplitude.getInstance().logEvent('Page Viewed', eventProperties)
 
           mixpanel.track('Page Viewed', eventProperties)
 

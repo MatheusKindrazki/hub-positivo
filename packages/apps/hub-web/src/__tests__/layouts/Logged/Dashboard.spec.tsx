@@ -7,14 +7,9 @@ import { render, CustomState, fireEvent } from '@hub/test-utils'
 
 import Dashboard from '~/layouts/Logged'
 import * as globalInfo from '~/hooks/useSendGlobalInfo'
-import * as amplitude from '~/hooks/amplitude/useAmplitudeSetProperties'
 
 jest.mock('~/hooks/useSendGlobalInfo', () => ({
   useSendGlobalInfo: jest.fn()
-}))
-
-jest.mock('~/hooks/amplitude/useAmplitudeSetProperties', () => ({
-  useAmplitudeSetProperties: jest.fn()
 }))
 
 jest.mock('~/components/ModalNoClass', () =>
@@ -125,12 +120,10 @@ describe('Logged`s layout should render without crashing', () => {
     expect(actions).toStrictEqual([{ type: '@tour/POST_TOUR' }])
   })
 
-  it('Should call that hooks:  useSendGlobalInfo and useAmplitudeSetProperties', () => {
+  it('Should call that hooks:  useSendGlobalInfo', () => {
     setup()
     const spyGlobalInfo = jest.spyOn(globalInfo, 'useSendGlobalInfo')
-    const spyAmplitude = jest.spyOn(amplitude, 'useAmplitudeSetProperties')
 
     expect(spyGlobalInfo).toHaveBeenCalledTimes(1)
-    expect(spyAmplitude).toHaveBeenCalledTimes(1)
   })
 })

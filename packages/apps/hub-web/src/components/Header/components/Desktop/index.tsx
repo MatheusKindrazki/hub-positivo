@@ -114,7 +114,6 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
           boxShadow="dark-lg"
           border="1px solid #D9D9D9"
           mr="2rem!important"
-          top="50px!important"
           _focus={{
             boxShadow: 'dark-lg'
           }}
