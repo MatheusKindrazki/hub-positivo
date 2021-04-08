@@ -30,6 +30,9 @@ const usePostMessage = (): void => {
 
   useEffect(() => {
     function handleEvent(event: { data: string }): void {
+      // Ignora erros vindos do postMessage
+      window.newrelic?.setErrorHandler(() => false)
+
       if (typeof event.data === 'string') {
         if (!hasJsonStructure(event.data)) return
 
