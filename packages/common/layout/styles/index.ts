@@ -15,7 +15,6 @@ export const theme = chakra
 
 export type { Theme }
 
-// export type Theme = typeof theme
 const styled = baseStyled as ThemedStyledInterface<Theme>
 export {
   styled,
