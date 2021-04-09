@@ -1,14 +1,15 @@
 import mixpanel from 'mixpanel-browser'
+
 // utilizar formatacao dos dados quando a funcao estiver pronta
-// import formatWidgetData from '~/utils/formatData/gscWidgetData'
+import formatWidgetData from '~/utils/formatData/gscWidgetData'
 
 const widgetSubmitEvent = 'Widget submitted'
 
-const setGSCOnSubmit = () => {
+const setGSCOnSubmit = (): void => {
   if (window.gsc) {
     window.gsc('onSubmit', (widgetId, data) => {
       try {
-        mixpanel.track(widgetSubmitEvent, { widgetId, ...data })
+        mixpanel.track(widgetSubmitEvent, formatWidgetData(widgetId, data))
       } catch (error) {
         console.error('Erro ao capturar submissao do widget do gsc no mixpanel')
       }
