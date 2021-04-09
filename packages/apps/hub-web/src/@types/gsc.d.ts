@@ -1,13 +1,5 @@
 type GSC = 'show' | 'params' | 'onSubmit'
 
-interface GSCParams {
-  name?: string
-  role?: string
-  user_id?: string
-  school?: string
-  educationalStage?: string
-}
-
 interface GSCParamms {
   is_teacher?: boolean
   is_student?: boolean
@@ -32,7 +24,6 @@ interface LooseBoolObject {
 }
 
 interface WidgetData {
-  time: number
   radio?: LooseObject
   text?: string
   textarea?: string
