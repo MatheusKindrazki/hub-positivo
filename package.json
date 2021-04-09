@@ -1,7 +1,7 @@
 {
   "name": "hub",
   "private": true,
-  "version": "1.8.1",
+  "version": "1.8.2",
   "repository": {
     "type": "git",
     "url": "https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront"

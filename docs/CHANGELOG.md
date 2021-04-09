@@ -1,3 +1,16 @@
+## [1.8.2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.8.1...v1.8.2) (2021-04-09)
+
+
+### Bug Fixes
+
+* ignorando erros não tratados vindos do postMessage dos iframes ([d4a040d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d4a040d500b4ac8e2b7cc9f70b90b88fba64700c))
+* resolvendo bug de referência no avatar ([793d077](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/793d077f461044d06bece3d92f5a86a8126d875a))
+
+
+### Performance Improvements
+
+* atualizando codigo de funcionamento do newrelic ([9a7c453](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9a7c4531e783f96900aad5be3781bf9cb92477af))
+
 ## [1.8.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.8.0...v1.8.1) (2021-04-07)
 
 
