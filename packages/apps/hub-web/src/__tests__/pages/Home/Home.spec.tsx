@@ -6,8 +6,6 @@ import { cards as mockedCards } from '@psdhub/test-utils/__mocks__'
 import { render, fireEvent, act, CustomState } from '@psdhub/test-utils'
 import createSlug from '@psdhub/common/utils/createSlug'
 
-import * as amplitude from '~/services/amplitude'
-
 import Home from '~/pages/Home'
 
 const mockState = {
@@ -32,9 +30,6 @@ const mockState = {
   }
 }
 
-jest.mock('~/services/amplitude', () => ({
-  amplitudeToolOpened: jest.fn()
-}))
 jest.mock('~/services/mixpanel/toolOpened')
 
 describe('Testing that the Home page works correctly', () => {
@@ -118,8 +113,6 @@ describe('Testing that the Home page works correctly', () => {
   it('Should dispatch `@auth/AUTH_PRODUCT_REQUEST` when a card is clicked', async () => {
     const { getByText, storeUtils } = setup()
 
-    const spyAmplitudeToolOpened = jest.spyOn(amplitude, 'amplitudeToolOpened')
-
     const card = getByText('Provas')
 
     fireEvent.click(card)
@@ -135,11 +128,6 @@ describe('Testing that the Home page works correctly', () => {
       product: createSlug('provas'),
       tipoRenderizacao: provasSolution.tipoRenderizacao,
       url: provasSolution.link
-    })
-    expect(spyAmplitudeToolOpened).toHaveBeenCalledTimes(1)
-    expect(spyAmplitudeToolOpened).toHaveBeenCalledWith({
-      card_name: provasSolution.nome,
-      location: 'dashboard'
     })
   })
 

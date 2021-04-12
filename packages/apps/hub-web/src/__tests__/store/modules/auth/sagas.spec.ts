@@ -26,8 +26,6 @@ import fakeResponse from '~/__mocks__/api/fakeEemResponse.json'
 jest.mock('~/services/eemConnect')
 jest.mock('~/services/eemIntegration')
 jest.mock('~/middlewares/refreshToken')
-jest.mock('~/hooks/amplitude/clearAll')
-jest.mock('~/hooks/amplitude/identifyUser')
 jest.mock('~/services/mixpanel/identifyUser')
 jest.mock('~/services/mixpanel/clearAll')
 jest.mock('@psdhub/common/utils/capitalize')

@@ -2,7 +2,6 @@ import AuthReducer from '~/store/modules/auth/reducer'
 import * as authActions from '~/store/modules/auth/actions'
 
 jest.mock('~/services/mixpanel/clearAll')
-jest.mock('~/hooks/amplitude/clearAll')
 
 const mockedSignIn = {
   exp: 0,

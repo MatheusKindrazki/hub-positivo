@@ -9,13 +9,11 @@ import createSlug from '@psdhub/common/utils/createSlug'
 import { BarLoader } from '@psdhub/common/components'
 
 import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
-import { useAmplitudeSetProperties } from '~/hooks/amplitude/useAmplitudeSetProperties'
 
 import Header from './components/Header'
 
 const Iframe: React.FC = ({ children }) => {
   useSendGlobalInfo()
-  useAmplitudeSetProperties()
 
   const dispatch = useDispatch()
 
