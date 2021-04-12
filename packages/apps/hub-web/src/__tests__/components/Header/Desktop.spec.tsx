@@ -13,8 +13,6 @@ import Desktop from '~/components/Header/components/Desktop'
 
 import { useHeaderReturn, userState } from '~/__mocks__/HeaderContext'
 
-jest.mock('~/hooks/amplitude/clearAll')
-
 jest.mock('~/services/history', () => ({
   push: jest.fn()
 }))

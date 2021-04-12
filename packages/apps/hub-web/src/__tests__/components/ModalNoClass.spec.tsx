@@ -15,8 +15,6 @@ jest.mock('~/services/mixpanel/clearAll')
 
 jest.mock('~/components/ModalNoClass/turma.svg', () => <>Turma svg</>)
 
-jest.mock('~/hooks/amplitude/clearAll')
-
 describe('ModalNoClass component should work properly', () => {
   it('should trigger the logout action by clicking the exit button', async () => {
     const dispatch = jest.fn()

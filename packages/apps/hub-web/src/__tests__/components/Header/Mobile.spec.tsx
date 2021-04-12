@@ -40,7 +40,6 @@ jest.mock('react-router', () => {
     }))
   }
 })
-jest.mock('~/hooks/amplitude/clearAll')
 
 describe('Mobile Header component ', () => {
   jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
