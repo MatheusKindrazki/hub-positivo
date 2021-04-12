@@ -2,15 +2,15 @@ import React from 'react'
 
 import { renderHook } from '@testing-library/react-hooks'
 
-import { HubProvider } from '@psdhub/common/layout'
-
 import {
   useMediaQuery,
   theme,
   useColorMode,
   useColorModeValue,
-  useTheme
+  useTheme,
+  Theme
 } from '../../layout/styles'
+import { HubProvider } from '../../layout'
 
 export const Providers: React.FC = ({ children }) => {
   return <HubProvider cssVarPrefix="hub">{children}</HubProvider>
@@ -20,7 +20,7 @@ describe('Testing chakra`s styles hooks', () => {
   it.skip('useTheme shouldn`t return void theme when encapsulated by a theme provider', () => {
     const {
       result: { current }
-    } = renderHook(() => useTheme(), {
+    }: { result: { current: Theme } } = renderHook(() => useTheme(), {
       wrapper: Providers
     })
 
@@ -28,10 +28,7 @@ describe('Testing chakra`s styles hooks', () => {
 
     const renderedTheme = theme('hub')
 
-    console.log(current)
-
     // Blue é alterado durante a renderização do provider
-    jest.setTimeout(1000)
     expect(current?.colors?.blue).not.toEqual(renderedTheme?.colors?.blue)
   })
   it('useColorMode should  gives you access to the current color mode, and a function to toggle the color mode.', () => {

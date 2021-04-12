@@ -6,13 +6,6 @@ import '~/services/mixpanel/pageView'
 jest.mock('mixpanel-browser', () => ({
   track: jest.fn()
 }))
-
-jest.mock('amplitude-js', () => ({
-  getInstance: () => ({
-    logEvent: jest.fn()
-  })
-}))
-
 describe('testing if mixpanel page viewed functions work properly', () => {
   const pageViewedEvent = 'Page Viewed'
 
@@ -51,7 +44,7 @@ describe('testing if mixpanel page viewed functions work properly', () => {
     jest.clearAllMocks()
   })
 
-  it('AmplitudePageView should dispatch Page Viewed event when application is loaded', () => {
+  it('MixpanelPageView should dispatch Page Viewed event when application is loaded', () => {
     const {
       changedHubTitleEvent,
       loadWindow,
@@ -69,7 +62,7 @@ describe('testing if mixpanel page viewed functions work properly', () => {
     )
   })
 
-  it('AmplitudePageView should dispatch Page Viewed event when history href is changed', () => {
+  it('MixpanelPageView should dispatch Page Viewed event when history href is changed', () => {
     const {
       changedHubTitleEvent,
       changeHistory,
@@ -88,7 +81,7 @@ describe('testing if mixpanel page viewed functions work properly', () => {
     )
   })
 
-  it('AmplitudePageView should not dispatch a Page Viewed event when oldTitle is the same that current title', () => {
+  it('MixpanelPageView should not dispatch a Page Viewed event when oldTitle is the same that current title', () => {
     const { changedHubTitleEvent, loadWindow } = pageViewedTestUtils()
     loadWindow()
 

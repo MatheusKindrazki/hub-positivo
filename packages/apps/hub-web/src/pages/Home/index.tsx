@@ -20,7 +20,6 @@ import {
 } from '@psdhub/common/components'
 
 import { toolOpened } from '~/services/mixpanel/toolOpened'
-import { amplitudeToolOpened } from '~/services/amplitude'
 
 import { cardFilter } from '~/utils/cardFilter'
 
@@ -71,12 +70,6 @@ const Home: React.FC = () => {
         card_name: data.nome,
         location: 'dashboard'
       })
-
-      amplitudeToolOpened({
-        card_name: data.nome,
-        location: 'dashboard'
-      })
-
       dispatch(
         preAuth({
           product: slug,

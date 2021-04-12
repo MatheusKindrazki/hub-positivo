@@ -1,8 +1,5 @@
 import * as authActions from '~/store/modules/auth/actions'
 
-import clearAmplitudeSession from '~/services/mixpanel/clearAll'
-
-jest.mock('~/hooks/amplitude/clearAll')
 jest.mock('~/services/mixpanel/clearAll')
 
 describe('Action of authentication history', () => {
@@ -133,7 +130,7 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual({ ...mockedType, payload: mockedPayload })
   })
 
-  it('I Should the signOut is called and the amplitude states are clean', () => {
+  it('I Should the signOut is called', () => {
     const spy = jest.spyOn(authActions, 'signOut')
 
     const mockedType = {
@@ -143,9 +140,6 @@ describe('Action of authentication history', () => {
     const resolved = authActions.signOut()
 
     expect(spy).toBeCalled()
-
-    expect(clearAmplitudeSession).toBeCalled()
-
     expect(resolved).toEqual(mockedType)
   })
 

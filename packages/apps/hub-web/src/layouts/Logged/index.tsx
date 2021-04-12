@@ -11,13 +11,11 @@ import ModalNoClass from '~/components/ModalNoClass'
 import Header from '~/components/Header'
 
 import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
-import { useAmplitudeSetProperties } from '~/hooks/amplitude/useAmplitudeSetProperties'
 
 import { Container } from './styles'
 
 const Dashboard: React.FC = ({ children }) => {
   useSendGlobalInfo()
-  useAmplitudeSetProperties()
 
   const dispatch = useDispatch()
 

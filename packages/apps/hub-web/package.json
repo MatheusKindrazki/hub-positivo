@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/web",
-  "version": "1.7.0",
+  "version": "1.8.2",
   "license": "MIT",
   "scripts": {
     "start": "REACT_APP_VERSION=$npm_package_version react-app-rewired start",
@@ -13,9 +13,7 @@
   "dependencies": {
     "@psdhub/api": "*",
     "@psdhub/common": "*",
-    "@types/amplitude-js": "^7.0.1",
     "@types/redux-mock-store": "^1.0.2",
-    "amplitude-js": "^7.4.1",
     "classnames": "^2.2.6",
     "connected-react-router": "~6.8.0",
     "date-fns": "^2.17.0",

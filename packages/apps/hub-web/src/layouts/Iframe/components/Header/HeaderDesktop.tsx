@@ -12,7 +12,6 @@ import {
 } from '@psdhub/common/components'
 
 import { toolOpened } from '~/services/mixpanel/toolOpened'
-import { amplitudeToolOpened } from '~/services/amplitude'
 
 import { cardFilter } from '~/utils/cardFilter'
 
@@ -103,10 +102,6 @@ const HeaderDesktop: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                       key={solucao.id}
                       card={{ ...solucao, cor: card.cor }}
                       onClick={e => {
-                        amplitudeToolOpened({
-                          card_name: solucao.nome,
-                          location: 'header'
-                        })
                         toolOpened({
                           card_name: solucao.nome,
                           location: 'header'

@@ -8,8 +8,6 @@ import { cards } from '@psdhub/test-utils/__mocks__'
 import { render, fireEvent, act } from '@psdhub/test-utils'
 import * as drawer from '@psdhub/common/components/Drawer'
 
-import * as amplitude from '~/services/amplitude'
-
 import HeaderMobile from '~/layouts/Iframe/components/Header/HeaderMobile'
 import cardsMock from '~/../../../test-utils/__mocks__/cards.mock'
 
@@ -55,9 +53,6 @@ describe('Mobile Header`s layout should work properly', () => {
   })
 
   it('Should call handlePush function when a card is clicked', () => {
-    const spyAmplitudeToolOpened = jest
-      .spyOn(amplitude, 'amplitudeToolOpened')
-      .mockImplementation(() => jest.fn())
     const { getByText, menuButton, handlePush } = setup(cardsMock)
 
     fireEvent.click(menuButton)
@@ -70,11 +65,6 @@ describe('Mobile Header`s layout should work properly', () => {
       nome: firstCard.nome,
       tipoRenderizacao: firstCard.tipoRenderizacao,
       url: firstCard.link
-    })
-
-    expect(spyAmplitudeToolOpened).toHaveBeenCalledWith({
-      card_name: firstCard.nome,
-      location: 'header'
     })
   })
 
