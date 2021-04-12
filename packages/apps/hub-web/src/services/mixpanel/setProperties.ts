@@ -58,6 +58,13 @@ const setProperties = (): void => {
     sendProps.user_name as string
   )
 
+  // Identificador Get Site Control
+  if (window.gsc) {
+    window?.gsc('params', {
+      ...sendProps
+    })
+  }
+
   try {
     mixpanel.people.set(sendProps)
     mixpanel.identify(user?.guid)
