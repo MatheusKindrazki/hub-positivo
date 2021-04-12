@@ -4,10 +4,11 @@ import ReactDOM from 'react-dom'
 
 import mixPanelInit from './services/mixpanel/init'
 import hotjarInit from './services/hotjar/hotjarInit'
+import setGSCOnSubmit from './services/getSiteControl/gscOnSubmit'
 import App from './App'
 
 mixPanelInit()
-
+setGSCOnSubmit()
 hotjarInit()
 
 window.newrelic?.addRelease('@hub', process.env.REACT_APP_VERSION as string)

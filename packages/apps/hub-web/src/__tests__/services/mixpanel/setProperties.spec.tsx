@@ -102,18 +102,34 @@ describe('Mixpanel Services', () => {
   it('should properly set gsc properties', () => {
     // mock do modulo do Get Site Control
     window.gsc = jest.fn()
+    const gscSpy = jest.spyOn(window, 'gsc')
 
     const mockedProps = {
-      educationalStage: 'EF1',
-      name: 'John Doe',
-      role: 'Professor',
-      school: 'Escola Positivo',
-      user_id: '6d45f4f8-3326-4856-a29d-36216b2e4e2c'
+      $name: 'John Doe',
+      educational_stage_EF1: true,
+      educational_stage_EF2: true,
+      educational_stage_EI: false,
+      educational_stage_EM: true,
+      is_admin: true,
+      is_coordinator: true,
+      is_family: true,
+      is_student: false,
+      is_teacher: true,
+      roles_list: ['Administrador', 'Coordenador', 'Família', 'Professor'],
+      schools_list: ['Escola Positivo'],
+      selected_class: '1º ano',
+      selected_educational_stage: 'EF1',
+      selected_role: 'Professor',
+      selected_school_id: '21694ec0-88be-4231-ac2a-392dbf845518',
+      selected_school_name: 'Escola Positivo',
+      user_id: '6d45f4f8-3326-4856-a29d-36216b2e4e2c',
+      user_login: 'john.doe',
+      user_mail: 'johndoe@teste.com',
+      user_name: 'John Doe'
     }
 
     renderHook(() => setProperties(), { wrapper })
 
-    const gscSpy = jest.spyOn(window, 'gsc')
-    expect(gscSpy).toHaveBeenCalledWith('params', mockedProps)
+    expect(gscSpy).toBeCalledWith('params', mockedProps)
   })
 })
