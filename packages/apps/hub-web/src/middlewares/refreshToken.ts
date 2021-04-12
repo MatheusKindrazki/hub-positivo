@@ -12,15 +12,12 @@ import api from '@psdhub/api'
 import history from '~/services/history'
 import { EEMConnectPost } from '~/services/eemConnect'
 
+import { enableRefreshToken } from '~/utils/enableRefreshToken'
+
 export default async (): Promise<boolean> => {
   const { exp, refresh_token } = store.getState().auth
-  const { enableMiddlewareRefreshToken } = store.getState().global
 
-  const date = new Date().getTime()
-
-  const now = Math.round(date / 1000)
-
-  if (now >= exp && enableMiddlewareRefreshToken) {
+  if (enableRefreshToken(exp)) {
     store.dispatch({
       type: GlobalActions.ENABLE_REFRESH_TOKEN,
       payload: false
