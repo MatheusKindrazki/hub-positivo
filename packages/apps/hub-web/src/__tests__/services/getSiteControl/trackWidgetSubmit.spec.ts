@@ -29,14 +29,19 @@ describe('trackWidgetSubmit should work properly', () => {
   })
 
   it('should do nothing if window.gsc is undefined', () => {
-    // alterando implementacao do mock do mixpanel para que lance um erro
-    const errorSpy = jest.spyOn(console, 'error')
+    // alterando implementação do mock do mixpanel para que lance um erro
+    const mockLog = jest.fn()
+
+    Object.assign(console, {
+      error: mockLog
+    })
+
     mixpanelSpy.mockImplementation(() => {
       throw new Error()
     })
 
     trackWidgetSubmit(mockedWidgetId, mockedWidgetData)
-    expect(errorSpy).toHaveBeenCalledWith(
+    expect(mockLog).toHaveBeenCalledWith(
       'Erro ao capturar submissao do widget do gsc no mixpanel'
     )
   })
