@@ -99,15 +99,12 @@ describe('Mixpanel Services', () => {
     expect(mockLog).toBeCalledWith('Erro ao identificar usuário via mixpanel')
   })
 
-  it.skip('should properly set gsc properties', () => {
+  it('should properly set gsc properties', () => {
     // mock do modulo do Get Site Control
     window.gsc = jest.fn()
+    const gscSpy = jest.spyOn(window, 'gsc')
 
     const mockedProps = {
-      educationalStage: 'EF1',
-      name: 'John Doe',
-      role: 'Professor',
-      school: 'Escola Positivo',
       $name: 'John Doe',
       educational_stage_EF1: true,
       educational_stage_EF2: true,
@@ -133,7 +130,6 @@ describe('Mixpanel Services', () => {
 
     renderHook(() => setProperties(), { wrapper })
 
-    const gscSpy = jest.spyOn(window, 'gsc')
-    expect(gscSpy).toHaveBeenCalledWith('params', mockedProps)
+    expect(gscSpy).toBeCalledWith('params', mockedProps)
   })
 })

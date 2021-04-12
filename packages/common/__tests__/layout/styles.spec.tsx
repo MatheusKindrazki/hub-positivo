@@ -17,7 +17,7 @@ export const Providers: React.FC = ({ children }) => {
 }
 
 describe('Testing chakra`s styles hooks', () => {
-  it.skip('useTheme shouldn`t return void theme when encapsulated by a theme provider', () => {
+  it('useTheme shouldn`t return void theme when encapsulated by a theme provider', () => {
     const {
       result: { current }
     }: { result: { current: Theme } } = renderHook(() => useTheme(), {
