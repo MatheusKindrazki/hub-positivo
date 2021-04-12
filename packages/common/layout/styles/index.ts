@@ -5,14 +5,16 @@ import {
   useMediaQuery,
   extendTheme,
   useColorMode,
-  useColorModeValue
+  useColorModeValue,
+  Theme
 } from '@chakra-ui/react'
 
 import chakra from './chakra'
 
 export const theme = chakra
 
-export type Theme = typeof theme
+export type { Theme }
+
 const styled = baseStyled as ThemedStyledInterface<Theme>
 export {
   styled,
