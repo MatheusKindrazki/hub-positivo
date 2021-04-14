@@ -34,12 +34,12 @@ jest.mock('~/services/mixpanel/toolOpened')
 
 describe('Testing that the Home page works correctly', () => {
   const { user, profile, products, educationalStage } = mockState
-  const defaultItemsInState: CustomState = {
+  const defaultItemsInState: CustomState<Store.State> = {
     user,
     profile,
     products
   }
-  const setup = (contextConfig: CustomState = {}) => {
+  const setup = (contextConfig: CustomState<Store.State> = {}) => {
     const utils = render(<Home />, {
       store,
       reducers: ['user', 'profile', 'educationalStage', 'products', 'global'],
@@ -148,7 +148,7 @@ describe('Testing that the Home page works correctly', () => {
   })
 
   it('Should render with default Welcome titles', async () => {
-    const emptyContextValues: CustomState = {
+    const emptyContextValues: CustomState<Store.State> = {
       user: {},
       profile: {
         name: undefined
@@ -167,7 +167,7 @@ describe('Testing that the Home page works correctly', () => {
     const student = 'Aluno'
     const className = educationalStage.class
 
-    const studentProfile: CustomState = {
+    const studentProfile: CustomState<Store.State> = {
       profile: {
         name: student
       },

@@ -80,7 +80,9 @@ describe('Mobile Header component ', () => {
     })
   })
 
-  const setup = (CUSTOM_STATE = { ...userState } as CustomState) => {
+  const setup = (
+    CUSTOM_STATE = { ...userState } as CustomState<Store.State>
+  ) => {
     const wrapper = render(
       <>
         <MenuButton onClick={handleMenuClick} />

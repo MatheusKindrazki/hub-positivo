@@ -33,7 +33,9 @@ describe('Desktop Header component', () => {
   })
   jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
 
-  const setup = (CUSTOM_STATE = { ...userState } as CustomState) => {
+  const setup = (
+    CUSTOM_STATE = { ...userState } as CustomState<Store.State>
+  ) => {
     const openModalPass = jest.fn()
     const wrapper = render(<Desktop openModalPass={openModalPass} />, {
       reducers: ['tour', 'user', 'profile'],

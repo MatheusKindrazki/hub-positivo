@@ -30,7 +30,10 @@ describe('Logged`s layout should render without crashing', () => {
     ]
   })
 
-  const setup = (children = '', CUSTOM_STATE = {} as CustomState) => {
+  const setup = (
+    children = '',
+    CUSTOM_STATE = {} as CustomState<Store.State>
+  ) => {
     const wrapper = render(<Dashboard>{children}</Dashboard>, {
       store,
       reducers: ['global', 'tour'],

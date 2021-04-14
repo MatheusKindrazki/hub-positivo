@@ -54,7 +54,7 @@ describe('Forgot Password page should work properly', () => {
   })
 
   it('Should redirect client to login page if sendViewToken is true', () => {
-    const CUSTOM_STATE: CustomState = {
+    const CUSTOM_STATE: CustomState<Store.State> = {
       forgotPassword: {
         sendViewToken: true
       }
