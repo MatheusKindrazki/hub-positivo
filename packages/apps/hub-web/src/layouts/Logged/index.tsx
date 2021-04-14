@@ -8,6 +8,8 @@ import { postTourViewed } from '~/store/modules/tour/actions'
 import Tour from '@hub/common/components/Tour'
 import { BarLoader } from '@hub/common/components'
 
+import setUserProperties from '~/services/mixpanel/setProperties'
+
 import ModalNoClass from '~/components/ModalNoClass'
 import Header from '~/components/Header'
 
@@ -17,6 +19,7 @@ import { Container } from './styles'
 
 const Dashboard: React.FC = ({ children }) => {
   useSendGlobalInfo()
+  setUserProperties()
 
   const dispatch = useDispatch()
 
