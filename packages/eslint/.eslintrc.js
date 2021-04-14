@@ -30,7 +30,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-use-before-define': 'off',
     'react/no-children-prop': 'off',
-    "generator-star-spacing": ["error", {"before": false, "after": true}],
+    'generator-star-spacing': ['error', {'before': false, 'after': true}],
     'import/no-duplicates': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'space-before-function-paren': 'off',
@@ -67,25 +67,30 @@ module.exports = {
         'alphabetize': { 'order': 'desc', 'ignoreCase': true }
       }
     ],
-    "@typescript-eslint/ban-types": [
-      "error",
+    '@typescript-eslint/ban-types': [
+      'error',
       {
-        "types": {
-          "extendDefaults": true,
-          "Foo": "Don't use Foo because it is unsafe",
-          "String": {
-            "message": "Use string instead",
-            "fixWith": "string"
+        'types': {
+          'extendDefaults': true,
+          'Foo': "Don't use Foo because it is unsafe",
+          'String': {
+            'message': 'Use string instead',
+            'fixWith': 'string'
           },
-
-          "{}": {
-            "message": "Use object instead",
-            "fixWith": "object",
+          '{}': {
+            'message': 'Use object instead',
+            'fixWith': 'object',
           },
-          "object": false
+          'object': false
         }
       }
-    ]
+    ],
+    "@typescript-eslint/no-unused-vars": ["error",
+    {
+      "args": "after-used",
+      "varsIgnorePattern": "^_",
+      "argsIgnorePattern": "^_"
+    }],
   },
   settings: {
     'import/resolver': {

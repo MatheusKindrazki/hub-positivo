@@ -4,9 +4,9 @@ import { render } from '@psdhub/test-utils'
 
 import * as media from '@chakra-ui/react'
 
-import Collapse, { CollapseProps as propTypes } from '../../components/Collapse'
+import Collapse, { CollapseProps } from '../../components/Collapse'
 
-const CollapseProps: propTypes = {
+const collapseProps: CollapseProps = {
   id: 'teste',
   cor: 'teste',
   nome: 'nome teste do header'
@@ -22,10 +22,10 @@ jest.mock('@chakra-ui/react', () => {
 })
 
 describe('Collapse component should work properly', () => {
-  it('Collapse doesnt render collapse-box when disable is true', () => {
-    CollapseProps.disable = true
+  it("Collapse doesn't render collapse-box when disable is true", () => {
+    collapseProps.disable = true
     const { queryByTestId } = render(
-      <Collapse {...CollapseProps}>Children</Collapse>
+      <Collapse {...collapseProps}>Children</Collapse>
     )
 
     const collapseBox = queryByTestId('collapse-box')
@@ -33,9 +33,9 @@ describe('Collapse component should work properly', () => {
   })
 
   it('Collapse change its animation when isOpen is true', () => {
-    CollapseProps.disable = false
+    collapseProps.disable = false
     const { queryByTestId } = render(
-      <Collapse {...CollapseProps}>Children</Collapse>
+      <Collapse {...collapseProps}>Children</Collapse>
     )
 
     const collapseBox = queryByTestId('collapse-box')
@@ -49,7 +49,7 @@ describe('Collapse component should work properly', () => {
     disclosureSpy.mockReturnValue({ ...useDisclosure(), isOpen: false })
 
     const { queryByTestId } = render(
-      <Collapse {...CollapseProps}>Children</Collapse>
+      <Collapse {...collapseProps}>Children</Collapse>
     )
 
     const collapseBox = queryByTestId('collapse-box')
@@ -58,17 +58,17 @@ describe('Collapse component should work properly', () => {
 
   it('Collapse render name inside Heading', () => {
     const { queryByText } = render(
-      <Collapse {...CollapseProps}>Children</Collapse>
+      <Collapse {...collapseProps}>Children</Collapse>
     )
 
     const header = queryByText('nome teste do header')
     expect(header).not.toBeNull()
   })
 
-  it('Collapse with false grid doesnt render SimpleGrid', () => {
-    CollapseProps.grid = false
+  it("Collapse with false grid doesn't render SimpleGrid", () => {
+    collapseProps.grid = false
     const { queryByTestId } = render(
-      <Collapse {...CollapseProps}>Children</Collapse>
+      <Collapse {...collapseProps}>Children</Collapse>
     )
 
     const collapseBox = queryByTestId('simple-grid')
@@ -76,14 +76,14 @@ describe('Collapse component should work properly', () => {
   })
 
   it('Collapse uses SimpleGrid in large screens', () => {
-    CollapseProps.grid = true
-    CollapseProps.disable = true
+    collapseProps.grid = true
+    collapseProps.disable = true
     // mockando useMediaQuery para que isLargerThan1280 retorne true
     const mediaQuerySpy = jest.spyOn(media, 'useMediaQuery')
     mediaQuerySpy.mockReturnValue([true])
 
     const { getByTestId } = render(
-      <Collapse {...CollapseProps}>Children</Collapse>
+      <Collapse {...collapseProps}>Children</Collapse>
     )
 
     const collapseBox = getByTestId('simple-grid')

@@ -23,6 +23,8 @@ const ExpiredToken = React.lazy(() => import('~/pages/Auth/ExpiredToken'))
 const ChangePassword = React.lazy(() => import('~/pages/Auth/ChangePassword'))
 const ForgotPassword = React.lazy(() => import('~/pages/Auth/ForgotPassword'))
 
+const Solutions = React.lazy(() => import('~/pages/Solutions'))
+
 const Routes: React.FC = () => {
   const { colorProfile } = useSelector((state: Store.State) => state.profile)
   const { guid } = useSelector((state: Store.State) => state.profile)
@@ -58,6 +60,11 @@ const Routes: React.FC = () => {
             />
 
             <Route path="/" exact component={Home} isPrivate />
+            <Route
+              path="/microfrontend/:subpath+"
+              component={Solutions}
+              isPrivate
+            />
             {guid === 'PROFESSOR' && (
               <Route path="/minhas-turmas" component={MyClasses} isPrivate />
             )}
