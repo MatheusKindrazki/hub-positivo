@@ -17,7 +17,7 @@ describe('Expired Token page should work properly', () => {
     jest.clearAllMocks()
   })
 
-  const CUSTOM_STATE: CustomState = {
+  const CUSTOM_STATE: CustomState<Store.State> = {
     forgotPassword: {
       validateViewPin: true
     }
@@ -25,7 +25,7 @@ describe('Expired Token page should work properly', () => {
 
   const spyPush = jest.spyOn(history, 'push')
 
-  const setup = (rest: CustomState | object) => {
+  const setup = (rest: CustomState<Store.State> | object) => {
     const utils = render(<ExpiredToken />, {
       store,
       reducers: ['forgotPassword'],

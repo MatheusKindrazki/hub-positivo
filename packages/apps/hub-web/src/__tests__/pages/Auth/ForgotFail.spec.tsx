@@ -36,13 +36,13 @@ describe('Expired Token page should work properly', () => {
 
   jest.spyOn(reactDom, 'useHistory').mockReturnValue(history as any)
 
-  const CUSTOM_STATE: CustomState = {
+  const CUSTOM_STATE: CustomState<Store.State> = {
     forgotPassword: {
       sendViewToken: true
     }
   }
 
-  const setup = (rest: CustomState | object) => {
+  const setup = (rest: CustomState<Store.State> | object) => {
     const utils = render(<ForgotFail />, {
       store,
       reducers: ['forgotPassword'],

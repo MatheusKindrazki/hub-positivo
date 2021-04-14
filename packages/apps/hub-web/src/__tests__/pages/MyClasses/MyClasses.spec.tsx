@@ -23,7 +23,7 @@ const classes = fakeClassesResponse.conteudo
   .filter(i => i.ativo)
 
 describe('myClasses should work properly', () => {
-  const setup = (CUSTOM_STATE: CustomState = {}) => {
+  const setup = (CUSTOM_STATE: CustomState<Store.State> = {}) => {
     const wrapper = render(<MyClasses />, {
       store,
       reducers: ['myClasses', 'global'],

@@ -14,7 +14,7 @@ describe('get started', () => {
     jest.restoreAllMocks()
   })
 
-  const setup = (CUSTOM_STATE = {} as CustomState) => {
+  const setup = (CUSTOM_STATE = {} as CustomState<Store.State>) => {
     const onClose = jest.fn()
     const wrapper = render(<AlterPass onClose={onClose} />, {
       store,

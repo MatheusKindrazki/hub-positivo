@@ -77,7 +77,7 @@ describe('Testing that the Login page works correctly', () => {
 
   const queryConfig = { exact: false }
 
-  const setup = (rest: CustomState | object) => {
+  const setup = (rest: CustomState<Store.State> | object) => {
     const utils = render(<SignIn />, {
       store,
       reducers: ['auth'],

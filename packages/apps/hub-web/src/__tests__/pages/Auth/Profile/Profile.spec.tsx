@@ -28,7 +28,7 @@ describe('Profile page should work properly', () => {
     name: 'school_name'
   }
 
-  const CUSTOM_STATE: CustomState = {
+  const CUSTOM_STATE: CustomState<Store.State> = {
     user: {
       info: {
         schools: [school]
