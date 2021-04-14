@@ -28,7 +28,6 @@ import { EEMConnectPost } from '~/services/eemConnect'
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
 
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
-import amplitudeIdentifyUser from '~/hooks/amplitude/identifyUser'
 
 import {
   SignInRequest,
@@ -83,8 +82,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
     Authorization: `Bearer ${data?.access_token}`
   })
 
-  // ? Identifica o usuário no amplitude
-  amplitudeIdentifyUser({ guid: user?.sub as string })
+  // ? Identifica o usuário no mixpanel
   mixpanelIdentifyUser({ guid: user?.sub as string })
 
   clearStrikes()
@@ -207,8 +205,7 @@ export function* checkingExpiringToken({
 
   yield delay(1500)
 
-  // ? Identifica o usuário no amplitude
-  amplitudeIdentifyUser({ guid: user.guid })
+  // ? Identifica o usuário no mixpanel
   mixpanelIdentifyUser({ guid: user.guid })
 
   return yield put(productRequest({}))

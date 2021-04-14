@@ -1,7 +1,7 @@
 {
   "name": "hub",
   "private": true,
-  "version": "1.8.0",
+  "version": "1.8.2",
   "repository": {
     "type": "git",
     "url": "https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront"
@@ -54,8 +54,5 @@
     "ts-jest": "^26.5.1",
     "typescript": "^4.1.3"
   },
-  "dependencies": {
-    "@sentry/react": "^6.1.0",
-    "@sentry/tracing": "^6.2.0"
-  }
+  "dependencies": {}
 }

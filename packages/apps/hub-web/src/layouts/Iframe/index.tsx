@@ -8,16 +8,12 @@ import { preAuth } from '~/store/modules/authProduct/actions'
 import createSlug from '@hub/common/utils/createSlug'
 import { BarLoader } from '@hub/common/components'
 
-import { useSentry } from '~/hooks/useSentry'
 import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
-import { useAmplitudeSetProperties } from '~/hooks/amplitude/useAmplitudeSetProperties'
 
 import Header from './components/Header'
 
 const Iframe: React.FC = ({ children }) => {
-  useSentry()
   useSendGlobalInfo()
-  useAmplitudeSetProperties()
 
   const dispatch = useDispatch()
 
