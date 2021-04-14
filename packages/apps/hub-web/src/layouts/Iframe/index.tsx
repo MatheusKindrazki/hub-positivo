@@ -8,12 +8,15 @@ import { preAuth } from '~/store/modules/authProduct/actions'
 import createSlug from '@psdhub/common/utils/createSlug'
 import { BarLoader } from '@psdhub/common/components'
 
+import setUserProperties from '~/services/mixpanel/setProperties'
+
 import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
 
 import Header from './components/Header'
 
 const Iframe: React.FC = ({ children }) => {
   useSendGlobalInfo()
+  setUserProperties()
 
   const dispatch = useDispatch()
 

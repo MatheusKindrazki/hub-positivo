@@ -11,7 +11,7 @@ interface EducationalProps {
 }
 
 export default (): EducationalProps => {
-  const { educationalStage } = store.getState()
+  const educationalStage = store.getState().educationalStage
 
   const selected_class = educationalStage.class
   const selected_educational_stage = educationalStage.level

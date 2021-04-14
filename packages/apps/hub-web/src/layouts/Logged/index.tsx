@@ -7,6 +7,8 @@ import { openTour, postTourViewed } from '~/store/modules/tour/actions'
 import Tour from '@psdhub/common/components/Tour'
 import { BarLoader } from '@psdhub/common/components'
 
+import setUserProperties from '~/services/mixpanel/setProperties'
+
 import ModalNoClass from '~/components/ModalNoClass'
 import Header from '~/components/Header'
 
@@ -16,6 +18,7 @@ import { Container } from './styles'
 
 const Dashboard: React.FC = ({ children }) => {
   useSendGlobalInfo()
+  setUserProperties()
 
   const dispatch = useDispatch()
 

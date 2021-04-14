@@ -11,6 +11,7 @@ import educationalStage from '~/utils/formatData/educationalStage'
 
 const setProperties = (): void => {
   const { info: user, school } = store.getState().user
+  const educational = store.getState().educationalStage
 
   const schools_list = user?.schools?.map(s => s.name)
 
@@ -18,14 +19,13 @@ const setProperties = (): void => {
 
   const {
     activeStages,
-    selected_class,
     selected_educational_stage
   } = educationalStage()
 
   const sendProps = {
     ...activeProfiles,
     ...activeStages,
-    selected_class,
+    selected_class: educational.class,
     selected_educational_stage,
 
     user_id: user?.guid,
