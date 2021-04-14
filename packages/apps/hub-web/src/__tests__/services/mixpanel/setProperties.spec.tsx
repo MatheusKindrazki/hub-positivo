@@ -79,7 +79,8 @@ describe('Mixpanel Services', () => {
       roles_list: ['Administrador', 'Coordenador', 'Família', 'Professor'],
       selected_school_id: '21694ec0-88be-4231-ac2a-392dbf845518',
       selected_school_name: 'Escola Positivo',
-      schools_list: ['Escola Positivo']
+      schools_list: ['Escola Positivo'],
+      isCTPM: false
     })
   })
 
@@ -125,7 +126,8 @@ describe('Mixpanel Services', () => {
       user_id: '6d45f4f8-3326-4856-a29d-36216b2e4e2c',
       user_login: 'john.doe',
       user_mail: 'johndoe@teste.com',
-      user_name: 'John Doe'
+      user_name: 'John Doe',
+      isCTPM: false
     }
 
     renderHook(() => setProperties(), { wrapper })
