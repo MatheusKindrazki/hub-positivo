@@ -57,7 +57,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
 
     const { onOpen: openModalSupport } = useContext(ModalSupportContext)
 
-    const { user } = useSelector((state: Store.State) => state.user)
+    const { info: user } = useSelector((state: Store.State) => state.user)
     const { guid } = useSelector((state: Store.State) => state.profile)
 
     const { isOpen, onClose, onOpen } = useDisclosure()
@@ -106,7 +106,11 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
           placement="left"
           onClose={() => onClose()}
         >
-          <DrawerContent mt={['72px', '72px']} position="relative">
+          <DrawerContent
+            mt={['72px', '72px']}
+            position="relative"
+            data-testid="hub-drawer-content"
+          >
             <Box px="4" py="2" w="100%" h="auto">
               <Welcome
                 option="name"

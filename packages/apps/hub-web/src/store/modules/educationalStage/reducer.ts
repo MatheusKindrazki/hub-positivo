@@ -8,7 +8,8 @@ import { Actions } from './actions'
 export const INITIAL_STATE: EducationReducer = {
   loading: false,
   level: '',
-  levels: undefined
+  levels: undefined,
+  class: undefined
 }
 
 type ReturnReducer = Reducer<EducationReducer>
@@ -27,23 +28,19 @@ const educationalStage: ReturnReducer = (state = INITIAL_STATE, action) => {
         break
       }
 
-      case Actions.SIGN_OUT: {
-        draft.loading = false
-        draft.level = ''
-        draft.levels = undefined
-        break
-      }
-
+      case Actions.SIGN_OUT:
       case Actions.RESET_LEVEL: {
         draft.loading = false
         draft.level = ''
         draft.levels = undefined
+        draft.class = undefined
         break
       }
 
       case Actions.GET_LEVEL_SUCCESS: {
         draft.level = action.payload.level
         draft.levels = action.payload.levels
+        draft.class = action.payload.class
         draft.loading = false
         break
       }

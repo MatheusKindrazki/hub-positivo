@@ -32,14 +32,15 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
   const [enableBlur, setEnableBlur] = useState(true)
 
   const { schoolList, roleList, ...func } = useHeader()
+
   const { steps } = useSelector((state: Store.State) => state.tour)
 
-  const { user } = useSelector((state: Store.State) => state.user)
+  const { info: user } = useSelector((state: Store.State) => state.user)
   const { guid } = useSelector((state: Store.State) => state.profile)
 
   const handleSignOut = useCallback(async () => {
     dispatch(signOut())
-    history.push('/login')
+    setTimeout(() => history.push('/login'), 500)
   }, [dispatch])
 
   const handleOpenTour = useCallback(() => {
@@ -92,24 +93,27 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
         isLazy
       >
         <PopoverTrigger>
-          <Avatar
-            cursor="pointer"
-            width="2.6rem"
-            color="#3C3C3C"
-            height="2.5rem"
-            backgroundColor="gray.400"
-            name={user?.name || ''}
-            src=""
-          />
+          <Button p="0" m="0" background="transparent">
+            <Avatar
+              data-testid="hub-popover-trigger"
+              cursor="pointer"
+              width="2.6rem"
+              color="#3C3C3C"
+              height="2.5rem"
+              backgroundColor="gray.400"
+              name={user?.name || ''}
+              src=""
+            />
+          </Button>
         </PopoverTrigger>
         <PopoverContent
+          data-testid="hub-popover-content"
           outline="none"
           minW="310px"
           borderRadius="md"
           boxShadow="dark-lg"
           border="1px solid #D9D9D9"
           mr="2rem!important"
-          top="50px!important"
           _focus={{
             boxShadow: 'dark-lg'
           }}

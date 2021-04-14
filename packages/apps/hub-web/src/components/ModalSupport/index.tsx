@@ -2,8 +2,7 @@ import React, { useContext } from 'react'
 
 import { useDisclosure, useMediaQuery } from '@hub/common/hooks'
 import Modal from '@hub/common/components/Modal'
-import { Phone, EnvelopeSimple } from '@hub/common/components/Icons'
-import { Box, Button, Image, SimpleGrid, Text } from '@hub/common/components'
+import { Box, Button, Image, Text } from '@hub/common/components'
 
 import ModalContext from './context'
 import cerebro from './cerebro.svg'
@@ -54,6 +53,11 @@ const ModalSupport: React.FC = () => {
         >
           ACESSAR FAQ
         </Button>
+
+        <Text mb="1rem" fontSize="14px" lineHeight="20px">
+          Caso não encontre a sua dúvida nesse portal, você poderá entrar em
+          contato direto com a sua escola.
+        </Text>
       </Box>
     </Modal>
   )

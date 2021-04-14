@@ -11,16 +11,12 @@ import { BarLoader } from '@hub/common/components'
 import ModalNoClass from '~/components/ModalNoClass'
 import Header from '~/components/Header'
 
-import { useSentry } from '~/hooks/useSentry'
 import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
-import { useAmplitudeSetProperties } from '~/hooks/amplitude/useAmplitudeSetProperties'
 
 import { Container } from './styles'
 
 const Dashboard: React.FC = ({ children }) => {
-  useSentry()
   useSendGlobalInfo()
-  useAmplitudeSetProperties()
 
   const dispatch = useDispatch()
 
@@ -41,7 +37,7 @@ const Dashboard: React.FC = ({ children }) => {
       <ModalNoClass />
       <BarLoader width="100%" height="4px" loading={loading} />
       {steps?.length && (
-        <Tour onClosed={handleClosedTour} open={open} steps={steps || []} />
+        <Tour onClosed={handleClosedTour} open={open} steps={steps} />
       )}
       <Header />
       {children}

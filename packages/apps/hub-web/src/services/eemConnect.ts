@@ -3,7 +3,7 @@ import { ApiResponse } from 'apisauce'
 
 import { apiEEMAuth, apiEEMInfos } from '@hub/api'
 
-interface EEMProps {
+export interface EEMProps {
   endpoint: string
   data: {
     grant_type: 'change_school' | 'password' | 'refresh_token'
@@ -15,7 +15,7 @@ interface EEMProps {
   }
 }
 
-interface EEMPropsInfo<T> {
+export interface EEMPropsInfo<T> {
   endpoint: string
   token: string
   data: T
@@ -38,7 +38,7 @@ async function EEMConnectPost<T>(attributes: EEMProps): ReturnConnect<T> {
     accept: '*/*'
   })
 
-  return await apiEEMAuth.post(endpoint, qs.stringify(sendInfo))
+  return apiEEMAuth.post(endpoint, qs.stringify(sendInfo))
 }
 
 async function EEMConnectGET<T, A = unknown>(
@@ -46,7 +46,7 @@ async function EEMConnectGET<T, A = unknown>(
 ): Promise<ApiResponse<A>> {
   const { data, endpoint, token } = attributes
 
-  return await apiEEMInfos.get(endpoint, data, {
+  return apiEEMInfos.get(endpoint, data, {
     headers: { Authorization: token }
   })
 }

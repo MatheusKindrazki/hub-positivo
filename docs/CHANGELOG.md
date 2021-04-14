@@ -1,3 +1,186 @@
+## [1.8.2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.8.1...v1.8.2) (2021-04-09)
+
+
+### Bug Fixes
+
+* ignorando erros não tratados vindos do postMessage dos iframes ([d4a040d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d4a040d500b4ac8e2b7cc9f70b90b88fba64700c))
+* resolvendo bug de referência no avatar ([793d077](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/793d077f461044d06bece3d92f5a86a8126d875a))
+
+
+### Performance Improvements
+
+* atualizando codigo de funcionamento do newrelic ([9a7c453](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9a7c4531e783f96900aad5be3781bf9cb92477af))
+
+## [1.8.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.8.0...v1.8.1) (2021-04-07)
+
+
+### Bug Fixes
+
+* implementação do new relic ([5a7d930](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/5a7d93019b3d4be875ed2ee6b57257946a1194b2))
+
+
+### Reverts
+
+* voltando ao arquivo pipe padrão com sonar ativo ([dad9a4c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/dad9a4cdcf9043774c68a0e2910aaa3d9d9a3a12))
+
+# [1.8.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.7.0...v1.8.0) (2021-03-26)
+
+
+### Bug Fixes
+
+* ajustando propriedades ([b4767eb](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b4767eb184cb2d569dcf68587d4141247baed71e))
+* criando array de string de perfis ([65297f9](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/65297f9db08924e04ea383d943e819f634112c4b))
+* disparo de pageview inicial ([a33c62b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/a33c62b1e1b41b17fb8a84be22e0999ef45e4980))
+* enviando pageview das soluções ([3ede599](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3ede599402b8364c56aaa46631a905af9946cb92))
+* identificando titulo da página pela primeira vez ([abeecdb](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/abeecdba6846c16e98bfb56408fc96d13c688cdc))
+* identificando usuário ([4085bc9](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/4085bc976177b7c1913b3cf8e2b613189f517f08))
+* iniciando mixpanel apenas em hml e prod ([d81f4f6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d81f4f6a862ee152676c018ec918c718c2fe116d))
+* iniciando mixpanel sempre ([33e825e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/33e825e59446cef6e0490823528ce4a43331262e))
+* teste de falha ([5a2cae9](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/5a2cae94b5c91cb35b97db5cab08cd55bd14ea5a))
+* **resetar estados do filtro e do drawer:** reparo ([2b1ccb6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2b1ccb651e6553860b70a3ccd33d491ce6a1875c))
+
+
+### Features
+
+* ajustando ([7c2c6a3](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/7c2c6a3b2bb13a12404092d8c0fa2c26aa7d57ca))
+* implementação do mixpanel ([64bc8be](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/64bc8be7914c6160eb1387a080b9c96e355c9712))
+* skip test ([dd914bf](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/dd914bf00c3682bbd2f0ba205b05df4150d7a109))
+* testes automatizados ([7ad7e7c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/7ad7e7c40f01e32d8d8647234bc1ac22a00fca94))
+* testes automatizados ([a6f3df1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/a6f3df12d75e434fe5839f62d175077982fc7d55))
+* testes automatizados ([27acd2b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/27acd2b1f11a2d0a88bc3d273ec8773d69b0d640))
+* testes automatizados ([89ca72b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/89ca72bb2f6939ffa7ffc028d68ad20adafa2f07))
+* testes automatizados ([fa80ef8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/fa80ef8256d6f552516b4247902b69132ef900fe))
+* testes automatizados ([46f0ccc](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/46f0ccc6f3cf8cabf9167ecf54edc1d0c446f896))
+* testes automatizados ([c607484](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/c6074843fdf794b2c6a2e6bb09d1c14878db961d))
+* testes automatizados ([6daa31c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/6daa31c30ad105e6ac7cf4b142414ee03f636f91))
+* testes automatizados ([aad2028](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/aad202844dcc0d7412e34fb0b8e689395f68b88a))
+* testes automatizados ([3114a0f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3114a0f47ad89e8612658cc137b882977c52addd))
+* testes automatizados ([f0facbd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/f0facbdf2d2f4c10e7fd4976d1eb537e6c2dd802))
+* testes automatizados ([10c00e3](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/10c00e32ccfeb864091491460bef993f4c0477de))
+* testes automatizados ([57f2f13](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/57f2f13c004bb879a39f381b715d9ca0aeea7360))
+* testes automatizados ([dfb4791](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/dfb4791f47e25979b287a69e927954a5c378ad2b))
+* testes automatizados ([5fd7bad](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/5fd7badd40f5b785f1a1c621ce3dac26540b6d54))
+* testes automatizados ([dd4ebea](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/dd4ebea89ad1f5896a4da788307777ce436d3762))
+* testes automatizados ([f14f657](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/f14f6574f66320e53c2ecca1eb7066f478f0fd67))
+* **alterpass.spec.tsx:** testes automatizados ([6bc6bd2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/6bc6bd20ac2357bc89211f578fa70ff3da8ab7b5))
+* **alterpass.spec.tsx:** testes automatizados ([32863d8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/32863d8282666e5a2f1c9e6d2a6189a4ec6a51af))
+* **alterpass.spec.tsx:** testes automatizados ([e67c62e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/e67c62e17b2597a7f815f1483a9138c1167c19a6))
+* **desktop.spec.tsx:** testes automatizados ([1a9bfcc](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1a9bfccd34a1be5b84a06e3e697c75ebc45484f2))
+* **desktop.spec.tsx:** testes automatizados ([3bf9f7b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3bf9f7bae48f84a7da0d20ef805c346d601d2ad0))
+* **desktop/index.tsx:** testes automatizados ([b7b2ebc](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b7b2ebc6eb12a4bb28712a26d30e92fbfe5ff428))
+* **mobile.spec.tsx:** testes automatizados ([ab0b4d0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ab0b4d043c51d5da07b29ad20557730486708332))
+* **mobile.spec.tsx:** testes automatizados ([debfb3a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/debfb3a036857105478d20a6ebfe193914465714))
+* **mobile.spec.tsx:** testes automatizados ([3dd01b1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3dd01b18078c81fbb4dbf35d572b0b2367be25ab))
+* testes automatizados ([a2cda89](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/a2cda89add3fc65717780a904814fee3f79d0991))
+* testes automatizados ([2b98392](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2b9839236efbfd831671fea6df8dc33b63ca1c45))
+* testes automatizados ([c482b24](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/c482b24c1e370bb18503d12cad89a90616905348))
+* testes automatizados ([dd75b27](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/dd75b279542af876687206791269442f967b7e71))
+* testes automatizados ([680acd7](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/680acd73e022215dd14834d05e223f5837aa598f))
+* testes automatizados ([7030cb8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/7030cb8701288296585939a7a17e3059835e1599))
+* testes automatizados ([61cc271](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/61cc2714b4c7f26d8d0a9086867cfc99c694cb51))
+* testes automatizados ([ffdd6af](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ffdd6af9168fd466ce3fa41ac8b76aef44ef5b34))
+* testes automatizados ([1cb0bf4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1cb0bf4e110ce2dfd28e7a9a405ed0fb22c0e062))
+* testes automatizados ([8c553b1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/8c553b18b1aa65ceda479847d45827f736c68902))
+* **alterpass.spec.tsx:** testes automatizados ([fe7f350](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/fe7f35093e6ba7f1e7198f30729f65deebd91463))
+* **alterpass.spec.tsx:** testes automatizados ([79aecc7](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/79aecc747c982cda65b313181b2de5253b7ba3d6))
+* **alterpass.spec.tsx:** testes automatizados ([79f23c2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/79f23c24d6816a331ec6e38e9c90744a633ee5b6))
+* **alterpass/index.tsx:** adicionar data testid ([f221e0d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/f221e0dba82d70cc73cf42d49ef7e63ae99c99c4))
+* **desktop.spec.tsx:** testes automatizados ([6b817d1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/6b817d14dd7aaf745c543c326abcb244d3f69df9))
+* **desktop.spec.tsx:** testes automatizados ([c103764](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/c10376494322b1ba5ff6cc7e66b192ae2c1a96a8))
+* refatorar nome de testes ([934075a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/934075aff6054a9af0bc0dd44529c2d9a9c05038))
+* testes automatizados ([cf5af7e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/cf5af7ebda43c37a6f0442faecf2c7b5b07bf632))
+* testes automatizados ([463c098](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/463c09853b9814e6245b12caa0128abd7d983c32))
+* testes automatizados ([43a6013](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/43a6013cd514e4808d5ae61eab1767bb7bedef7f))
+* testes automatizados ([8de2e83](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/8de2e83ecd5b77459631d307250f966306dc829e))
+* testes automatizados ([cd08b43](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/cd08b4307b5d997ef83c32d88fbe525424aa7a8e))
+* testes automatizados ([6340ee4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/6340ee4a8838f50d231a4dfe109ea6646fc1fc71))
+* testes automatizados ([bcd31fc](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/bcd31fccd8cd426afc3d095c217ac9f23ad8a07a))
+* testes automatizados ([9ea5f0b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9ea5f0bb2ea3bd364a8f4d36d59191fd03472b6f))
+
+# [1.7.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.6.0...v1.7.0) (2021-03-19)
+
+
+### Bug Fixes
+
+* fixed history.push warning ([7016bd8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/7016bd85aa091d7023dd12734662095dc8ad1ef8))
+* removendo debug() ([d31119e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d31119eed647c279f6e044efd65ab03b1923f9e6))
+* removendo testes de changePassword ([0146c8c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/0146c8c2e5f7cc26e1b6b47be2b9b2a37540a425))
+
+
+### Features
+
+* adicionando redux-mock-store no yarn.lock ([b2382ad](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b2382ada9189109e2b70a1fa538560f77768e22d))
+
+
+### Performance Improvements
+
+* removendo nomenclaturas duplicadas ([d34a783](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d34a783437f2daee051421bf297dce2036f3064c))
+* **finalizar testes da pagina de profile:** testes automatizados ([35cde83](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/35cde83549c73a7394ee914dc52095411f1bf66f))
+
+# [1.6.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.5.0...v1.6.0) (2021-03-13)
+
+
+### Bug Fixes
+
+* **~/pages/home/cardfilter.ts:** reparar filtro ([9dc6651](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9dc6651f0d4c82fa0131e5e92ff40b5f21270c33))
+* **adicionando nao obrigatoriedade na tipagem do amplitudeprops:** bug fix ([8d3c2ed](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/8d3c2ed9fd4904163020a14004db6fdca1fd5359))
+* **adicionar corpo da tipagem das propriedades setadas no amplitude:** bug fix ([a842399](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/a8423994d85093a55a43a324dc18d249c1a2c4e5))
+* **adicionar tipagem nas propriedades do setprop do amplitude:** bug fix ([b3e3bb7](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b3e3bb75d205ceb80b2ecc92bc123e70ebe2f2df))
+* **amplitude:** corrigido disparo inicial setProperties com informacoes faltando ([9fef4e7](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9fef4e7d372f6daf85185e583d112ff1725b7d5f))
+* **amplitude:** corrigido erro na funcao de formatacao da lista de escolas ([847ce86](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/847ce86ae5bd6c09efbcd6c42bc384265a465ccb))
+* **amplitude -> tool opened, set user props e page view:** bug fix ([bc67ebd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/bc67ebd5dd6b4733b04e8cb88d963bba087001cf))
+* **amplitude setproperties:** modificadas propriedades do usuario ([3273181](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3273181bb363da5d2dd06e3e3d0633ccbd262e3f))
+* **configurando chamada do amplitude page view:** bug fix ([554b8bd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/554b8bd98f41fbbca390958ea1acb7498c93a740))
+* **criando mocks para testar a funcao cardfilter:** mocks ([21dd427](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/21dd427b80079bffff159b88963023ac969e2887))
+* **fix no teste do componente commom do popover/inicializar testes do cardfilter de utils:** fix ([1e8ed9e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1e8ed9ec81ef5d4a67877e766ff78d999708086b))
+* **mover tipagem do amplitude para ./types:** bug fix ([3c7c396](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3c7c396d0d7a06de6d9476c41736bba93b4f0ddc))
+* **refatorar função responsavel por filtrar os cards do hub e as turmas das classes:** refatoração ([bfac5b6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/bfac5b69565f752e851332b276656ceda08068d9))
+* **removendo cardfilter dos headers dos iframes:** refatoração ([df956e5](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/df956e5094e7ec7b3dee3050149cc089e5ccb703))
+* **removendo types não utilizados:** remoção de linhas ([fb547bf](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/fb547bf3a98b0738940d3fe4800ba8454d505039))
+* **remover cardfilter/home e cardfilter/classes:** remover duplicação de arquivo ([2977851](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/297785124528e78cdaadb0a36639d77dcfddbed3))
+* **testar branch faltando no amplitude page view (se signed é falso):** bug fix ([f33c2d3](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/f33c2d3900de71685e4647aba9e26b6ee331b2d6))
+* **tipagem dos elementos enviados ao amplitude:** bug fix ([640c5a3](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/640c5a38bffe09031e3c63c7990620661ecc5e71))
+* adequando teste do amplitude as modificacoes feitas ([7f3f413](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/7f3f4130641dcea631d15ad137989c2be11acdc2))
+* adequando testes do amplitude com a condicional de signed ([d6f30ca](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d6f30ca2a6eab629e2ec7586272011de1be4cf50))
+* corrigida ordem dos disparos de eventos no identify do amplitude ([755a9ef](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/755a9efabdd6bf22af6fcf5a1f34f42773cb3770))
+* **testes da funçao cardfilter/utils finalizados:** testar refatoração ([c38305a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/c38305a4c6b39a5d24457676116cf02c48ded73f))
+* corrigido bug de pageview ser disparado antes do login do usuario ([ae007db](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ae007dbae6cf267222f46da599d6b2ec696baabe))
+* removendo informacoes do usuario apos sign out ([eff995e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/eff995e5d031ba7175d9cf84cd7907205a011a0b))
+
+
+### Features
+
+* criando evento customizado para captura do titulo da aplicação ([0073a83](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/0073a83d0b6306ffbf4dbd29e7661228ff3ed711))
+* validando id token e reduced token ([2da6572](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2da6572d1fa11d65a9bc2afdb18d705ab006df8b))
+* **amplitude:** incluindo disparos de tool opened nos menus header e mobile ([aa30c3b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/aa30c3b896c0ccc20fee983866b8ad2f5ab4eee0))
+
+# [1.5.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.4.0...v1.5.0) (2021-02-27)
+
+
+### Bug Fixes
+
+* ajuste no teste do Popover ([52892bf](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/52892bfaa7f8e59e005103f0e6cd6edd63296df4))
+* atualizando nome dos alunos ([244afe8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/244afe816848829c97d22a70b287e02ce4a9ffc9))
+* fixed amplitude setUserId call with wrong properties ([040a56e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/040a56ec46dd2606c113440705119b812c380a01))
+* forçando alteração do iframe ([1251fa0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1251fa0565b9e8ccf01c3764974a8397b3ece617))
+* mostrando ensino apenas no aluno ([00f7d7a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/00f7d7a722d6590528688623d80f66c81f78cc11))
+* validação de turmas não encontradas ([a440b4f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/a440b4fea3ca5b78a909727a8b0083c2f37402f6))
+
+
+### Features
+
+* aplicando filtro de alunos na turma ([3bc9f48](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3bc9f48166e3394ffbe5a9b82157980a2a1f6ba8))
+* buscando dados de turma ([bb88d86](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/bb88d86c898cc2cef23edfca7ed6ed7fdddb0ed7))
+* mostrando botão minhas turmas apenas para professor ([d9426c6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d9426c6baf7147f5a94adbae5736d0534593495f))
+* mostrando rota de turmas apenas para professor ([feda2e8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/feda2e8f96f60df256161fb4235cc08c88ee871c))
+* mostrar card soluções por escola ([84ab701](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/84ab701c686ed7e440849f1e57a8af35b797f340))
+
+
+### Reverts
+
+* removendo snapshots ([65a2867](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/65a2867399e0d5d8207c138b9cd141d30345309b))
+* voltando com frozenfile ([eff7c87](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/eff7c87bf0997b7cec75342190502517b2a632a6))
+
 # [1.4.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.3.0...v1.4.0) (2021-02-19)
 
 

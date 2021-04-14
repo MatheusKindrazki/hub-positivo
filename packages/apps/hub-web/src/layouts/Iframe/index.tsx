@@ -8,13 +8,11 @@ import { preAuth } from '~/store/modules/authProduct/actions'
 import createSlug from '@hub/common/utils/createSlug'
 import { BarLoader } from '@hub/common/components'
 
-import { useSentry } from '~/hooks/useSentry'
 import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
 
 import Header from './components/Header'
 
 const Iframe: React.FC = ({ children }) => {
-  useSentry()
   useSendGlobalInfo()
 
   const dispatch = useDispatch()

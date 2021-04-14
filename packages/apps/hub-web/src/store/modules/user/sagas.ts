@@ -24,8 +24,7 @@ export function* forgotPassword({ payload }: AlterPasswordPayload): Generator {
   const response = yield call(() => {
     return apiEEMAuth.put('/api/v1/users/reset-password', payload, {
       headers: {
-        'content-type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*'
+        'content-type': 'application/json;charset=UTF-8'
       }
     })
   })
@@ -47,7 +46,7 @@ export function* forgotPassword({ payload }: AlterPasswordPayload): Generator {
   }
   toast.success('Senha Alterada com sucesso!')
 
-  history.push('/login')
+  setTimeout(() => history.push('/login'), 500)
 
   return yield put(forgotPasswordSuccess())
 }
@@ -57,7 +56,7 @@ type AlterPasswordPanelPayload = Payload<UserAlterPassPanel>
 export function* alterPasswordPanel({
   payload
 }: AlterPasswordPanelPayload): Generator {
-  const { user } = store.getState().user
+  const { info: user } = store.getState().user
   const { token } = store.getState().auth
 
   const guid = user?.guid || '000'
@@ -66,7 +65,6 @@ export function* alterPasswordPanel({
     return apiEEMAuth.put(`/api/v1/users/${guid}/change-password`, payload, {
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
         Authorization: token
       }
     })

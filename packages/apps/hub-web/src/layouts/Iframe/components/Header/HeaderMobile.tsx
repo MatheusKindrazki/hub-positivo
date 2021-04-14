@@ -15,9 +15,12 @@ import {
   SimpleGrid
 } from '@hub/common/components'
 
+import { toolOpened } from '~/services/mixpanel/toolOpened'
+
+import { cardFilter } from '~/utils/cardFilter'
+
 import GlobalStyle from './stylesMobile'
 import { HeaderProps } from './index'
-import { cardFilter } from './cardFilter'
 import Search from '../Search'
 import Card from '../Card'
 
@@ -28,7 +31,8 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const filterCards = useMemo(
-    () => cardFilter({ data: cards || [], search: search }),
+    () =>
+      cardFilter({ data: cards || [], search: search, typeCard: 'solucoes' }),
     [cards, search]
   )
 
@@ -38,6 +42,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
     } else {
       onOpen()
     }
+    setSearch('')
     setShow(!show)
   }
 
@@ -55,7 +60,7 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
       >
         <Box as={DotsNine} size={24} />
       </Button>
-      <Drawer isOpen={isOpen} placement="right" onClose={() => onClose()}>
+      <Drawer isOpen={isOpen} placement="right" onClose={() => toggleMenu()}>
         <DrawerContent
           mt={['41px', '41px']}
           position="relative"
@@ -108,11 +113,15 @@ const HeaderMobile: React.FC<HeaderProps> = ({ cards, handlePush }) => {
                   <SimpleGrid templateColumns="repeat(3, 1fr)" spacing={3}>
                     {card.solucoes?.map(solucao => (
                       <Card
-                        key={Math.random()}
+                        key={solucao.id}
                         card={{ ...solucao, cor: card.cor }}
                         onClick={e => {
+                          toolOpened({
+                            card_name: solucao.nome,
+                            location: 'header'
+                          })
                           handlePush(e)
-                          setShow(false)
+                          toggleMenu()
                         }}
                       />
                     ))}

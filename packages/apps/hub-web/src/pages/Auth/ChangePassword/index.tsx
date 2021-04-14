@@ -43,7 +43,10 @@ const ChangePassword: React.FC = () => {
   })
 
   useEffect(() => {
-    if (!token) return history.push('/login')
+    if (!token) {
+      setTimeout(() => history.push('/login'), 500)
+      return
+    }
 
     dispatch(
       validatePinRequest({
@@ -52,7 +55,8 @@ const ChangePassword: React.FC = () => {
     )
   }, [token, dispatch])
 
-  const handleLoginRedirect = () => history.push('/login')
+  const handleLoginRedirect = () =>
+    setTimeout(() => history.push('/login'), 500)
 
   const handleSubmit = useCallback(
     async data => {
@@ -115,6 +119,7 @@ const ChangePassword: React.FC = () => {
           iconRight={
             <Box
               as={view ? Eye : EyeSlash}
+              data-testid="display-pwd-btn"
               color="gray.500"
               size="19px"
               onClick={() => setView(!view)}
@@ -130,6 +135,7 @@ const ChangePassword: React.FC = () => {
           iconRight={
             <Box
               as={view ? Eye : EyeSlash}
+              data-testid="display-pwd-btn"
               color="gray.500"
               size="19px"
               onClick={() => setView(!view)}

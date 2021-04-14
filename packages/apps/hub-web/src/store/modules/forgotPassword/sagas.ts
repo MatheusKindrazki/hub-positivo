@@ -7,8 +7,12 @@ import { apiEEMAuth } from '@hub/api'
 
 import history from '~/services/history'
 
-import { PwdTokenApi, ValidatePin, ValidatePinAPI } from './types'
-import { PwdTokenRequest } from './types'
+import {
+  PwdTokenApi,
+  ValidatePin,
+  ValidatePinAPI,
+  PwdTokenRequest
+} from './types'
 import {
   Actions,
   pwdTokenSuccess,
@@ -30,8 +34,7 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
       },
       {
         headers: {
-          'content-type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*'
+          'content-type': 'application/json;charset=UTF-8'
         }
       }
     )
@@ -57,7 +60,7 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
     'Um link para recuperação de senha foi enviado para seu email ou celular'
   )
 
-  setTimeout(() => history.push('/login'), 1000)
+  history.push('/login')
 }
 type ValidatePINtPayload = Payload<ValidatePin>
 
@@ -70,8 +73,7 @@ export function* validatePIN({ payload }: ValidatePINtPayload): Generator {
       },
       {
         headers: {
-          'content-type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*'
+          'content-type': 'application/json;charset=UTF-8'
         }
       }
     )

@@ -45,7 +45,7 @@ export function* productSorting({ payload }: AuthPayload): Generator {
   if (!auth && !profile && !user) return
 
   yield call(async () => {
-    return await refreshTokenMiddleware()
+    return refreshTokenMiddleware()
   })
 
   const { tipoRenderizacao, url, product } = payload
@@ -93,7 +93,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
         class: level
       },
       profile: profile.guid,
-      user_id: user.user?.integration_id || user.user?.id
+      user_id: user.info?.integration_id || user.info?.id
     },
     expire_in: auth.exp
   }
@@ -115,6 +115,15 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
 
     return yield put(authProductFailure())
   }
+
+  window.newrelic?.addPageAction('auth_solution', {
+    product: payload.product,
+    user_id: user.info?.guid as string,
+    user_name: user.info?.name as string,
+    school_id: user.school?.value as string,
+    guid: (data as unknown) as string
+  })
+
   yield put(loading(false))
 
   const subpath = payload.subpath !== undefined ? payload.subpath : ''

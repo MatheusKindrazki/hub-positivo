@@ -1,5 +1,10 @@
-import React, { useRef, useState, useCallback, useContext } from 'react'
-import { useEffect } from 'react'
+import React, {
+  useRef,
+  useState,
+  useCallback,
+  useContext,
+  useEffect
+} from 'react'
 
 import { useHistory } from 'react-router-dom'
 import ReCAPTCHA from 'react-google-recaptcha'
@@ -45,7 +50,6 @@ const SignIn: React.FC = () => {
   const redirectTo = search.get('redirect') || undefined
 
   const { onOpen } = useContext(ModalSupportContext)
-
   const { loading, signInStrike } = useSelector(
     (state: Store.State) => state.auth
   )
@@ -85,7 +89,7 @@ const SignIn: React.FC = () => {
     },
     [dispatch, redirectTo]
   )
-
+  /* istanbul ignore next */
   const handleRecaptchaSubmit = useCallback(async token => {
     const validate = await handleCaptcha(token)
 
@@ -124,6 +128,7 @@ const SignIn: React.FC = () => {
           data-testid="password"
           iconRight={
             <Box
+              data-testid="view-button"
               as={view ? Eye : EyeSlash}
               color="gray.500"
               size="19px"
