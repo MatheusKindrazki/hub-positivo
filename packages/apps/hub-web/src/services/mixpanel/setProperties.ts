@@ -9,6 +9,8 @@ import { store } from '~/store'
 import profiles from '~/utils/formatData/profile'
 import educationalStage from '~/utils/formatData/educationalStage'
 
+import ctpmSchools from './mock/ctpmSchools.json'
+
 const setProperties = (): void => {
   const { info: user, school } = store.getState().user
   const educational = store.getState().educationalStage
@@ -27,6 +29,7 @@ const setProperties = (): void => {
     ...activeStages,
     selected_class: educational.class,
     selected_educational_stage,
+    isCTPM: ctpmSchools.includes(school?.value || ''),
 
     user_id: user?.guid,
     user_login: user?.username,

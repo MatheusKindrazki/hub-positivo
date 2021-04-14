@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/helpers",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "src/index.js",
   "author": "matheuskindrazki",
   "description": "Communicator end-to-end between solutions and PSD hub",
