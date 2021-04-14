@@ -1,7 +1,7 @@
 {
   "name": "@psdhub/helpers",
-  "version": "1.0.1",
-  "main": "index.js",
+  "version": "1.0.4",
+  "main": "src/index.js",
   "author": "matheuskindrazki",
   "description": "Communicator end-to-end between solutions and PSD hub",
   "license": "MIT",
@@ -14,7 +14,7 @@
     "postbuild": "cp package.json build"
   },
   "files": [
-    "utils"
+    "*"
   ],
   "dependencies": {},
   "devDependencies": {}
