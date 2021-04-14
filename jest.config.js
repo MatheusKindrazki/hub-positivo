@@ -17,7 +17,8 @@ module.exports = {
   },
   globals: {
     'ts-jest': {
-      diagnostics: true
+      diagnostics: true,
+      isolatedModules: true
     }
   },
   transform: {

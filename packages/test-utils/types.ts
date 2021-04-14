@@ -11,7 +11,6 @@ export type Reducers<T> = keyof KeyProps<T>
 export type DeepPartial<T> = Partial<{ [P in keyof T]: DeepPartial<T[P]> }>
 
 export type Store<T> = ReduxStore<T>
-
 export type CustomState<T> = DeepPartial<T>
 export interface CustomRenderOptions<T = Store.State> extends RenderOptions {
   store?: Store<T>
