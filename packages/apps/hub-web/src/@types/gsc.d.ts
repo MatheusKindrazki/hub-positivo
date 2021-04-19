@@ -18,11 +18,9 @@ interface GSCParamms {
   selected_school_name?: string
   schools_list?: string
 }
-
 interface LooseBoolObject {
   [key: string]: boolean
 }
-
 interface WidgetData {
   radio?: LooseObject
   text?: string
@@ -32,7 +30,6 @@ interface WidgetData {
   rating?: LooseObject
   checkbox?: boolean
 }
-
 declare global {
   export interface Window {
     gsc?: (
@@ -44,5 +41,4 @@ declare global {
     ) => void
   }
 }
-
 export default global

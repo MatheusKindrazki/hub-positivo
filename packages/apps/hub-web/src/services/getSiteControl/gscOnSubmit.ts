@@ -4,7 +4,7 @@ import trackWidgetSubmit from './trackWidgetSubmit'
 
 const setGSCOnSubmit = (): void => {
   if (window.gsc) {
-    window.gsc('onSubmit', trackWidgetSubmit)
+    window?.gsc('onSubmit', trackWidgetSubmit)
   }
 }
 

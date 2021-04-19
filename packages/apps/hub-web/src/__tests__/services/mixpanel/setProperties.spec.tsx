@@ -80,7 +80,7 @@ describe('Mixpanel Services', () => {
       selected_school_id: '21694ec0-88be-4231-ac2a-392dbf845518',
       selected_school_name: 'Escola Positivo',
       schools_list: ['Escola Positivo'],
-      isCTPM: false
+      is_ctpm: 'false'
     })
   })
 

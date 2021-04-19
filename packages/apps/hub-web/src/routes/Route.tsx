@@ -23,6 +23,7 @@ const Route: React.FC<RouteProps> = ({
   ...rest
 }) => {
   const { pathname } = useLocation()
+
   window.newrelic?.setCurrentRouteName(pathname)
 
   const { signed } = store.getState().auth
