@@ -29,6 +29,8 @@ const Routes: React.FC = () => {
   const { colorProfile } = useSelector((state: Store.State) => state.profile)
   const { guid } = useSelector((state: Store.State) => state.profile)
 
+  const { mcf } = useSelector((state: Store.State) => state.authProduct)
+
   const { theme } = useContext(ThemeContext)
 
   useEffect(() => {
@@ -53,18 +55,15 @@ const Routes: React.FC = () => {
             />
             <Route path="/token-expirado" component={ExpiredToken} />
             <Route path="/alterar-senha" component={ChangePassword} />
+
+            <Route path="/" exact component={Home} isPrivate />
+
             <Route
               path={['/solucao/:solution/:subpath+', '/solucao/:solution']}
-              component={Iframe}
+              component={mcf ? Solutions : Iframe}
               isPrivate
             />
 
-            <Route path="/" exact component={Home} isPrivate />
-            <Route
-              path="/microfrontend/:subpath+"
-              component={Solutions}
-              isPrivate
-            />
             {guid === 'PROFESSOR' && (
               <Route path="/minhas-turmas" component={MyClasses} isPrivate />
             )}

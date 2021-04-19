@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import documentTitle from '@psdhub/common/utils/documentTitle'
 
 import usePostMessage from '~/hooks/usePostMessage'
+import getCardInformation from '~/hooks/useCardInformation'
 
 import { IframeContainer } from './styles'
-import getCardInformation from './hook/useCardInformation'
 import LoadingFrame from './components/Loading'
 import DynamicIframe from './components/Iframe'
 
 const Iframe: React.FC = () => {
   usePostMessage()
-
-  const dispatch = useDispatch()
 
   const [url, setUrl] = useState('')
   const [loading, setLoading] = useState(true)
@@ -24,12 +22,12 @@ const Iframe: React.FC = () => {
   )
 
   useEffect(() => {
-    documentTitle(frameName || 'Soluções')
+    documentTitle(frameName || 'Carregando Solução')
 
     if (frameUrl) {
       setUrl(frameUrl)
     }
-  }, [dispatch, frameName, frameUrl])
+  }, [frameName, frameUrl])
 
   if (!frameUrl) {
     getCardInformation()

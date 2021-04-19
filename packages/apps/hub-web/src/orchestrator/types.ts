@@ -15,7 +15,7 @@ export interface Infos {
 }
 
 export interface DataScripts {
-  manifest: string
+  manifestUrl: string
 }
 
 export interface ReturnScripts {

@@ -11,9 +11,10 @@ import history from '~/services/history'
 
 import isMobile from '~/utils/isMobile'
 
+import { loadScripts } from '~/orchestrator'
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
 
-import { AuthRequest } from './types'
+import { AuthRequest, ReturnScripts } from './types'
 import {
   Actions,
   authProductFailure,
@@ -62,11 +63,46 @@ export function* productSorting({ payload }: AuthPayload): Generator {
     return yield put(authProductSuccess())
   }
 
+  if (tipoRenderizacao === 'microfrontend') {
+    return yield put(authProductRequest(payload, 'MICRO_FRONTEND_REQUEST'))
+  }
+
   if (EEMIframeVerify.includes(tipoRenderizacao as string)) {
     return yield put(authProductRequest(payload, 'AUTH_PRODUCT_EEM_REQUEST'))
   }
 
   return yield put(authProductRequest(payload, 'AUTH_PRODUCT_GUID_REQUEST'))
+}
+
+/*
+  ! Micro-frontend Auth
+*/
+export function* authMcf({ payload }: AuthPayload): Generator {
+  yield put(loading(true))
+
+  try {
+    const resMcf = yield call(async () => {
+      return await loadScripts({ manifestUrl: payload.url })
+    })
+
+    yield put(
+      authProductSuccess({
+        mcf: true,
+        productData: resMcf as ReturnScripts,
+        productName: payload.name
+      })
+    )
+
+    history.push(`/solucao/${payload.product}/${payload.subpath || ''}`)
+  } catch (error) {
+    history.push('/')
+
+    toast.warn(
+      'Estamos com dificuldades para carregar a solução, tente novamente em breve!'
+    )
+  }
+
+  return yield put(loading(false))
 }
 
 /*
@@ -174,5 +210,6 @@ export function* authProductEEM({ payload }: AuthPayload): Generator {
 export default all([
   takeLatest(Actions.AUTH_PRODUCT_REQUEST, productSorting),
   takeLatest(Actions.AUTH_PRODUCT_GUID_REQUEST, authProductGUID),
-  takeLatest(Actions.AUTH_PRODUCT_EEM_REQUEST, authProductEEM)
+  takeLatest(Actions.AUTH_PRODUCT_EEM_REQUEST, authProductEEM),
+  takeLatest(Actions.MICRO_FRONTEND_REQUEST, authMcf)
 ])

@@ -6,8 +6,7 @@ import { store } from '~/store'
 import createSlug from '@psdhub/common/utils/createSlug'
 
 import history from '~/services/history'
-
-import { getCardBySlug } from '../services/getCardBySlug'
+import { getCardBySlug } from '~/services/getCardBySlug'
 
 interface IframePropsRouter {
   solution: string

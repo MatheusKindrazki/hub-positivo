@@ -1,3 +1,5 @@
+import { generate } from 'randomstring'
+
 import api from '@psdhub/api'
 
 import { DataScripts, ReturnScripts } from './types'
@@ -5,10 +7,13 @@ import { DataScripts, ReturnScripts } from './types'
 const acceptExtensions = ['css', 'js']
 
 const loadScripts = async (data: DataScripts): Promise<ReturnScripts> => {
-  const res = await api.get(data.manifest)
+  const res = await api.get(data.manifestUrl, {
+    v: process.env.REACT_APP_VERSION,
+    hash: generate(10)
+  })
 
   if (!res.ok) {
-    throw new Error('Não foi possível carregar os arquivos!')
+    throw new Error('Erro ao carregar solução')
   }
 
   const { files: resFiles, element_id } = res.data as {

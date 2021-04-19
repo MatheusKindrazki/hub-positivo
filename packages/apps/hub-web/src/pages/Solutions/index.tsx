@@ -1,43 +1,55 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo, useMemo } from 'react'
 
-import { createEvent, dispatchEvent } from '~/orchestrator/createEvent'
-import { loadScripts, ReturnScripts } from '~/orchestrator'
+import { generate } from 'randomstring'
+
+import { useSelector } from 'react-redux'
+
+import { postInformations } from '@psdhub/helpers'
+import documentTitle from '@psdhub/common/utils/documentTitle'
+import { Box } from '@psdhub/common/components'
+
+import { ReturnScripts } from '~/orchestrator'
+import getCardInformation from '~/hooks/useCardInformation'
 
 import LoadModules from './components/LoadModules'
 
 const Solutions: React.FC = () => {
-  const event = createEvent({
-    userName: 'Matheus Kindrazki Saldanha'
-  })
+  postInformations('Dado vindo do hub 123' as any)
+
+  const { productName, productData } = useSelector(
+    (state: Store.State) => state.authProduct
+  )
 
   const [mcf, setMcf] = useState({} as ReturnScripts)
 
   useEffect(() => {
-    async function getMCF() {
-      const resMcf = await loadScripts({
-        manifest: 'https://run.mocky.io/v3/a96f4f1e-2bee-4082-b543-6bd493d83571'
-      })
+    documentTitle(productName || 'Carregando Solução')
 
-      setMcf({
-        scripts: resMcf.scripts,
-        element_id: resMcf.element_id
-      })
+    if (productData) {
+      setMcf(productData as ReturnScripts)
     }
+  }, [productData, productName])
 
-    dispatchEvent(event)
+  if (!productData) {
+    getCardInformation()
+  }
 
-    getMCF()
+  const hashUrl = useMemo(() => {
+    return generate(10)
   }, [])
 
   return (
     <>
-      <div id={mcf.element_id}></div>
+      <Box
+        mt={['41px', '73px']}
+        key={String(productName)}
+        id={mcf.element_id}
+      ></Box>
       {mcf?.scripts?.map((s, i) => (
-        <LoadModules key={i} {...s} />
+        <LoadModules hash={hashUrl} key={i} {...s} />
       ))}
     </>
   )
 }
 
-export default Solutions
+export default memo(Solutions)
