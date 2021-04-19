@@ -70,9 +70,8 @@ jobs:
         yarn
     displayName: Cache Yarn packages
 
-  - script: yarn --frozen-lockfile
+  - script: yarn
     displayName: Installing project dependencies
-
 
   - task: SonarCloudAnalyze@1
 
