@@ -4,7 +4,8 @@ export default (prefix?: string): Theme => {
   return extendTheme({
     config: {
       cssVarPrefix: prefix || 'generic-hub-prefix',
-      useSystemColorMode: true
+      initialColorMode: 'light',
+      useSystemColorMode: false
     },
     fonts: {
       body: 'TTNorms, system-ui, sans-serif',

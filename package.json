@@ -25,7 +25,7 @@
     "test": "node --expose-gc ./node_modules/.bin/jest -u --logHeapUsage --maxWorkers=4",
     "test:watch": "node --expose-gc ./node_modules/.bin/jest --watch -u --collectCoverage --logHeapUsage --maxWorkers=4",
     "test:watch:inspect": "node --inspect-brk --expose-gc ./node_modules/.bin/jest --logHeapUsage --maxWorkers=4",
-    "test:coverage": "jest --collectCoverage -u --testResultsProcessor=jest-sonar-reporter --maxWorkers=15 && coverage-badges",
+    "test:coverage": "jest --collectCoverage -u --testResultsProcessor=jest-sonar-reporter --maxWorkers=2 && coverage-badges",
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "build:web": "npm run --prefix packages/apps/hub-web build",

@@ -19,7 +19,6 @@ interface ThemeProps {
 
 const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
   const [prof, setProfile] = useState<VariantsProps>('default')
-
   const context = useContext(ThemeContext)
 
   context.theme = ({ profile }) => setProfile(profile)
@@ -49,7 +48,7 @@ const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
   }, [cssVarPrefix, prof])
 
   return (
-    <ChakraProvider theme={renderTheme}>
+    <ChakraProvider theme={renderTheme} resetCSS>
       <StyledProvider theme={renderTheme as any}>
         <CSSReset />
         <GlobalStyles />
