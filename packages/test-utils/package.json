@@ -5,5 +5,8 @@
   "dependencies": {
     "@psdhub/common": "*",
     "@psdhub/api": "*"
+  },
+  "devDependencies": {
+    "@psdhub/web": "*"
   }
 }

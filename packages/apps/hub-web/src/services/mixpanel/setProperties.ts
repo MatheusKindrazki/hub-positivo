@@ -26,7 +26,7 @@ const setProperties = (): void => {
     ...activeStages,
     selected_class: educational.class,
     selected_educational_stage,
-    isCTPM: String(ctpmSchools.includes(school?.value || '')),
+    is_ctpm: String(ctpmSchools.includes(school?.value || '')),
 
     user_id: user?.guid,
     user_login: user?.username,

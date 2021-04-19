@@ -127,7 +127,7 @@ describe('Mixpanel Services', () => {
       user_login: 'john.doe',
       user_mail: 'johndoe@teste.com',
       user_name: 'John Doe',
-      isCTPM: false
+      is_ctpm: 'false'
     }
 
     renderHook(() => setProperties(), { wrapper })

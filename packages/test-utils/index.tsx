@@ -10,6 +10,7 @@ import configureStore from 'redux-mock-store'
 
 import './setup'
 
+import { ApplicationState } from '@psdhub/web/src/store/store'
 import ThemeProviderHub from '@psdhub/common/layout/Provider'
 
 import {
@@ -30,7 +31,7 @@ export const Providers: FC = ({ children }) => {
   return <ThemeProviderHub>{children}</ThemeProviderHub>
 }
 
-function getStatesFromStore<T = Store.State>(
+function getStatesFromStore<T = ApplicationState>(
   store: Store<T>,
   reducers: Reducers<T>[]
 ): CustomState<T> {
@@ -41,7 +42,7 @@ function getStatesFromStore<T = Store.State>(
   }, {})
 }
 
-function formatState<T = Store.State>(
+function formatState<T = ApplicationState>(
   states: CustomState<T>,
   customState: CustomState<T>
 ): CustomState<T> {
@@ -57,7 +58,7 @@ function formatState<T = Store.State>(
   return finalState
 }
 
-function customRender<T = Store.State>(
+function customRender<T = ApplicationState>(
   ui: ReactElement,
   options?: Omit<CustomRenderOptions, 'queries'>
 ): CustomRenderResult {
