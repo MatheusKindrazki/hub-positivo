@@ -16,8 +16,6 @@ async function main() {
     await replaceInFiles(options)
       .pipe({ from: '--chakra-', to: `--hub-` })
       .pipe({ from: ".chakra", to: `.${prefix}` })
-      .pipe({ from: /sc/g, to: `${prefix}` })
-      .pipe({ from: ".sc", to: `.${prefix}` })
 
       console.log('@hub/scripts: Modificação de classname concluída')
 
