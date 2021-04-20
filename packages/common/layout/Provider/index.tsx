@@ -16,7 +16,7 @@ import profileColors, {
 import { theme as HubTheme } from '../styles'
 
 interface ThemeProps {
-  cssVarPrefix: string
+  cssVarPrefix?: string
 }
 
 const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
@@ -52,7 +52,7 @@ const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
   const classKey = process.env.REACT_APP_IS_HUB ? cssVarPrefix : 'hub-component'
 
   return (
-    <CacheProvider value={createCache({ key: classKey })}>
+    <CacheProvider value={createCache({ key: classKey || 'hub-component' })}>
       <ChakraProvider theme={renderTheme} resetCSS>
         <StyledProvider theme={renderTheme as any}>
           <CSSReset />

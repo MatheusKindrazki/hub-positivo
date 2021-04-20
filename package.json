@@ -32,6 +32,7 @@
     "build:web": "npm run --prefix packages/apps/hub-web build",
     "postbuild:web": "node scripts/replace-in-files.js hub",
     "build:common": "npm run --prefix packages/common build",
+    "postbuild:common": "node scripts/replace-in-files.js hub-component",
     "release": "HUSKY_SKIP_HOOKS=1 semantic-release"
   },
   "devDependencies": {
