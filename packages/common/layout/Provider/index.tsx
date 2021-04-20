@@ -2,6 +2,8 @@ import React, { useMemo, useState, useContext } from 'react'
 
 import { ThemeProvider as StyledProvider } from 'styled-components'
 import { ToastContainer } from 'react-toastify'
+import { CacheProvider } from '@emotion/react'
+import createCache from '@emotion/cache'
 
 import { ChakraProvider, CSSReset } from '@chakra-ui/react'
 
@@ -14,7 +16,7 @@ import profileColors, {
 import { theme as HubTheme } from '../styles'
 
 interface ThemeProps {
-  cssVarPrefix?: string
+  cssVarPrefix: string
 }
 
 const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
@@ -47,27 +49,31 @@ const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
     return hubThemeProfile
   }, [cssVarPrefix, prof])
 
+  const classKey = process.env.REACT_APP_IS_HUB ? cssVarPrefix : 'hub-component'
+
   return (
-    <ChakraProvider theme={renderTheme} resetCSS>
-      <StyledProvider theme={renderTheme as any}>
-        <CSSReset />
-        <GlobalStyles />
-        {children}
-        <ToastContainer
-          position="bottom-center"
-          autoClose={4000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeButton={false}
-          limit={3}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </StyledProvider>
-    </ChakraProvider>
+    <CacheProvider value={createCache({ key: classKey })}>
+      <ChakraProvider theme={renderTheme} resetCSS>
+        <StyledProvider theme={renderTheme as any}>
+          <CSSReset />
+          <GlobalStyles />
+          {children}
+          <ToastContainer
+            position="bottom-center"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeButton={false}
+            limit={3}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </StyledProvider>
+      </ChakraProvider>
+    </CacheProvider>
   )
 }
 
