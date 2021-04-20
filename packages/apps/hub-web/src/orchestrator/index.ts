@@ -1,25 +1,29 @@
 import { generate } from 'randomstring'
-
-import api from '@psdhub/api'
+import qs from 'qs'
 
 import { DataScripts, ReturnScripts } from './types'
 
 const acceptExtensions = ['css', 'js']
 
 const loadScripts = async (data: DataScripts): Promise<ReturnScripts> => {
-  const res = await api.get(data.manifestUrl, {
+  const randomUrl = qs.stringify({
     v: process.env.REACT_APP_VERSION,
     hash: generate(10)
   })
+
+  const res = await fetch(`${data.manifestUrl}?${randomUrl}`)
 
   if (!res.ok) {
     throw new Error('Erro ao carregar solução')
   }
 
-  const { files: resFiles, element_id } = res.data as {
+  const responseData = await res.json()
+
+  const { files: resFiles, element_id } = responseData as {
     files: any
     element_id: string
   }
+
   const scripts: ReturnScripts['scripts'] = []
 
   Object.keys(resFiles).map(e => {

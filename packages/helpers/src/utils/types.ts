@@ -26,5 +26,5 @@ export interface SendInfos {
 }
 
 export interface InformationsProps {
-  cb: (data: SendInfos) => void
+  (data: SendInfos): void
 }

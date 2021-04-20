@@ -1,5 +1,5 @@
 import { InformationsProps, SendInfos } from './types'
-import { eventName as eventNameInit } from './init'
+// import { eventName as eventNameInit } from './init'
 
 export const getCommunicatorName = '@psdhub:informations:get'
 export const postCommunicatorName = '@psdhub:informations:post'
@@ -10,7 +10,7 @@ const getInformations = (data: InformationsProps): void => {
   document.dispatchEvent(getEvent)
 
   document.addEventListener(postCommunicatorName, (e: CustomEventInit) => {
-    data.cb(e.detail as SendInfos)
+    data(e.detail as SendInfos)
   })
 }
 
@@ -23,9 +23,9 @@ const postInformations = (data: SendInfos): void => {
     document.dispatchEvent(getEvent)
   })
 
-  document.addEventListener(eventNameInit, () => {
-    document.dispatchEvent(getEvent)
-  })
+  // document.addEventListener(eventNameInit, () => {
+  //   document.dispatchEvent(getEvent)
+  // })
 }
 
 export { getInformations, postInformations }

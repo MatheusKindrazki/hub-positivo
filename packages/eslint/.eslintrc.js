@@ -27,7 +27,7 @@ module.exports = {
     'camelcase': 'off',
     'react/prop-types': 'off',
     'react/display-name': 'off',
-    'prettier/prettier': 'error',
+    'prettier/prettier': 'warn',
     'no-use-before-define': 'off',
     'react/no-children-prop': 'off',
     'generator-star-spacing': ['error', {'before': false, 'after': true}],

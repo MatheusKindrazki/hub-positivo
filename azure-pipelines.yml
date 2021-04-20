@@ -73,13 +73,6 @@ jobs:
   - script: yarn --frozen-lockfile
     displayName: Installing project dependencies
 
-  - task: Yarn@3
-    displayName: Running the project tests
-    inputs:
-      arguments: test:coverage
-
-  - task: SonarCloudAnalyze@1
-
   - script: |
       export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release
     displayName: Semantic Release ( generate changelog and build tag )
