@@ -73,10 +73,10 @@ jobs:
   - script: yarn --frozen-lockfile
     displayName: Installing project dependencies
 
-  # - task: Yarn@3
-  #   displayName: Running the project tests
-  #   inputs:
-  #     arguments: test:coverage
+  - task: Yarn@3
+    displayName: Running the project tests
+    inputs:
+      arguments: test:coverage
 
   - task: SonarCloudAnalyze@1
 

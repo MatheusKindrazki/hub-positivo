@@ -74,7 +74,7 @@ function verifyTypeScriptSetup() {
   let ts;
   try {
     // TODO: Remove this hack once `globalThis` issue is resolved
-    // https://github.com/jsdom/jsdom/issues/2961
+    // https://github-component.com/jsdom/jsdom/issues/2961
     const globalThisWasDefined = !!global.globalThis;
 
     ts = require(resolve.sync('typescript', {

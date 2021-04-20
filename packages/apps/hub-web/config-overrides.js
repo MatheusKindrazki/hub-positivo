@@ -20,7 +20,7 @@ module.exports = function (config, env) {
       addBabelPlugin(["babel-plugin-styled-components", {
         "minify": true,
         "transpileTemplateLiterals": true,
-        "namespace": "hub"
+        "namespace": "hub-component"
       }])
     )(config, env)
   );

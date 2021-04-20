@@ -30,6 +30,7 @@
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "prebuild:web": "npm run --prefix packages/helpers build",
     "build:web": "npm run --prefix packages/apps/hub-web build",
+    "postbuild:web": "node scripts/replace-in-files.js hub",
     "build:common": "npm run --prefix packages/common build",
     "release": "HUSKY_SKIP_HOOKS=1 semantic-release"
   },
@@ -52,6 +53,7 @@
     "jest-svg-transformer": "^1.0.0",
     "lint-staged": "^10.5.4",
     "react-select-event": "^5.2.0",
+    "replace-in-files": "^3.0.0",
     "semantic-release": "^17.3.8",
     "semantic-release-monorepo": "^7.0.4",
     "svg-png-converter": "^0.0.9",

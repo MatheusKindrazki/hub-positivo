@@ -16,11 +16,11 @@ const webPath = path.resolve(
   '..',
   'packages',
   'apps',
-  'hub-web',
+  'hub-component-web',
   'package.json'
 )
 
-console.log('Atualizando versão do @psdhub:common')
+console.log('Atualizando versão do @psdhub-component:common')
 fs.readFile(commonPath, 'utf8', function readFileCallback(err, data) {
   if (err) return
 
@@ -34,7 +34,7 @@ fs.readFile(commonPath, 'utf8', function readFileCallback(err, data) {
   fs.writeFileSync(commonPath, JSON.stringify(d, null, 2))
 })
 
-console.log('Atualizando versão do @psdhub:web')
+console.log('Atualizando versão do @psdhub-component:web')
 fs.readFile(webPath, 'utf8', function readFileCallback(err, data) {
   if (err) return
 
