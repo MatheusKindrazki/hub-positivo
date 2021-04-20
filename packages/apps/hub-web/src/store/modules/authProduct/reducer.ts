@@ -25,9 +25,9 @@ const authProduct: ReturnReducer = (state = INITIAL_STATE, action) => {
 
       case Actions.AUTH_PRODUCT_SUCCESS: {
         draft.loading = false
-        draft.mcf = action.payload.mcf
-        draft.productData = action.payload.productData
-        draft.productName = action.payload.productName
+        draft.mcf = action?.payload?.mcf || false
+        draft.productData = action?.payload?.productData || null
+        draft.productName = action?.payload?.productName || null
         break
       }
 

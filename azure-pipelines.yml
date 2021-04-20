@@ -63,15 +63,20 @@ jobs:
 
   - task: Cache@2
     inputs:
-      key: yarn | $(Agent.OS) | yarn.lock
+      key: yarn | $(Agent.OS) | yarn.lock | node_modules
       path: $(YARN_CACHE_FOLDER)
       restoreKeys: |
         yarn | $(Agent.OS)
         yarn
     displayName: Cache Yarn packages
 
-  - script: yarn
+  - script: yarn --frozen-lockfile
     displayName: Installing project dependencies
+
+  - task: Yarn@3
+    displayName: Running the project tests
+    inputs:
+      arguments: test:coverage
 
   - task: SonarCloudAnalyze@1
 

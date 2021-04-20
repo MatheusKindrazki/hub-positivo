@@ -1,7 +1,7 @@
 {
   "name": "@psdhub/helpers",
-  "version": "1.1.1",
-  "main": "src/index.js",
+  "version": "1.1.2",
+  "main": "src/index.ts",
   "author": "matheuskindrazki",
   "description": "Communicator end-to-end between solutions and PSD hub",
   "license": "MIT",
@@ -11,7 +11,7 @@
   "scripts": {
     "prebuild": "rm -rf build",
     "build": "tsc -p .",
-    "postbuild": "cp package.json build"
+    "postbuild": "cp package.json build && node scripts/update-json.js"
   },
   "files": [
     "*"
