@@ -22,7 +22,7 @@ if (co_index > -1 && co_index + 1 <= process.argv.length) {
   process.argv.splice(co_index, 2);
 }
 
-const scriptVersion = '@psdhub-component/scripts';
+const scriptVersion = '@psdhub/scripts';
 const modulePath = path.join(
   require.resolve(`${scriptVersion}/package.json`),
   '..'

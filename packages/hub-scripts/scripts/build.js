@@ -150,7 +150,7 @@ checkBrowsers(paths.appPath, isInteractive)
 
 // Create the production build and print the deployment instructions.
 function build(previousFileSizes) {
-  console.log('🚀🚀 @hub-component: Criando build otimizado para sua aplicação!');
+  console.log('🚀🚀 @hub: Criando build otimizado para sua aplicação!');
 
   const compiler = webpack(config);
   return new Promise((resolve, reject) => {

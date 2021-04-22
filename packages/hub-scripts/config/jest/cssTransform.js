@@ -8,8 +8,6 @@
 // @remove-on-eject-end
 'use strict';
 
-// This is a custom Jest transformer turning style imports into empty objects.
-// http://facebook.github-component.io/jest/docs/en/webpack.html
 
 module.exports = {
   process() {
