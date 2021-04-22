@@ -26,7 +26,7 @@ const Solutions: React.FC = () => {
   useEffect(() => {
     const quantityScripts = mcf.scripts?.map(i => i.type !== 'css')
 
-    if (quantityScripts.length === scriptsLength) {
+    if (quantityScripts?.length === scriptsLength) {
       window.loadMicrofrontend && window.loadMicrofrontend()
     }
   }, [scriptsLength])
