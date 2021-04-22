@@ -20,6 +20,7 @@ import capitalize from '@psdhub/common/utils/capitalize'
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
+import sessionStarted from '~/services/mixpanel/sessionStarted'
 import mixpanelIdentifyUser from '~/services/mixpanel/identifyUser'
 import history from '~/services/history'
 import { changeSchool, ApiChange } from '~/services/eemIntegration'
@@ -84,6 +85,9 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
   // ? Identifica o usuário no mixpanel
   mixpanelIdentifyUser({ guid: user?.sub as string })
+
+  // dispara evento de sessão iniciada
+  sessionStarted({ tokenRefreshed: false })
 
   clearStrikes()
   yield put(
@@ -262,6 +266,9 @@ export function* refreshToken(): Generator {
       exp: user?.exp
     })
   )
+
+  // dispara evento de sessao iniciada
+  sessionStarted({ tokenRefreshed: true })
 
   yield put(enableRefreshTokenMiddleware(true))
 
