@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/scripts",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Configuration single bundle for CRA",
   "license": "MIT",
   "engines": {

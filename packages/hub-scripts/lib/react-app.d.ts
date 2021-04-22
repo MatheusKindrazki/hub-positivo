@@ -7,6 +7,16 @@ declare namespace NodeJS {
   interface ProcessEnv {
     readonly NODE_ENV: 'development' | 'production' | 'test'
     readonly PUBLIC_URL: string
+    INCLUDE_HTML_BUILD?: boolean
+    SINGLE_BUNDLE?: boolean
+    BASENAME: string
+    ELEMENT_ID: string
+  }
+}
+declare global {
+  export interface Window {
+    loadMicrofrontend: () => void
+    unLoadMicrofrontend: () => void
   }
 }
 
