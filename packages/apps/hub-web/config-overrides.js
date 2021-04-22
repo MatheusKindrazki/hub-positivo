@@ -3,7 +3,7 @@ var path = require('path');
 const { override, babelInclude, addBabelPlugin } = require('customize-cra');
 
 module.exports = function (config, env) {
-  return Object.assign(
+  const rewired = Object.assign(
     config,
     override(
       babelInclude([
@@ -19,4 +19,13 @@ module.exports = function (config, env) {
       ])
     )(config, env)
   );
+
+  if(process.env.NODE_ENV !== 'development') {
+    rewired.externals = {
+      react: 'React',
+      'react-dom': 'ReactDOM'
+    }
+  }
+
+  return rewired;
 };

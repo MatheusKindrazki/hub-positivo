@@ -2,6 +2,8 @@ import React from 'react'
 
 import Select, { Props } from 'react-select'
 import classNames from 'classnames'
+import { CacheProvider } from '@emotion/react'
+import createCache from '@emotion/cache'
 
 import GlobalSelectStyle from './styles'
 import { useTheme } from '../../layout'
@@ -78,7 +80,7 @@ const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
   }
 
   return (
-    <>
+    <CacheProvider value={createCache({ key: 'css' })}>
       <Select
         styles={variant === 'blue-transparent' ? transparentColor : normal}
         clearable
@@ -93,7 +95,7 @@ const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
         {...rest}
       />
       <GlobalSelectStyle />
-    </>
+    </CacheProvider>
   )
 }
 
