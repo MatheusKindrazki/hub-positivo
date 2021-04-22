@@ -14,7 +14,6 @@ import Route from './Route'
 
 // ? Importação das páginas
 const Home = React.lazy(() => import('~/pages/Home'))
-const Iframe = React.lazy(() => import('~/pages/Iframe'))
 const SignIn = React.lazy(() => import('~/pages/Auth/SignIn'))
 const Profile = React.lazy(() => import('~/pages/Auth/Profile'))
 const MyClasses = React.lazy(() => import('~/pages/MyClasses'))
@@ -28,8 +27,6 @@ const Solutions = React.lazy(() => import('~/pages/Solutions'))
 const Routes: React.FC = () => {
   const { colorProfile } = useSelector((state: Store.State) => state.profile)
   const { guid } = useSelector((state: Store.State) => state.profile)
-
-  const { mcf } = useSelector((state: Store.State) => state.authProduct)
 
   const { theme } = useContext(ThemeContext)
 
@@ -60,7 +57,7 @@ const Routes: React.FC = () => {
 
             <Route
               path={['/solucao/:solution/:subpath+', '/solucao/:solution']}
-              component={mcf ? Solutions : Iframe}
+              component={Solutions}
               isPrivate
             />
 

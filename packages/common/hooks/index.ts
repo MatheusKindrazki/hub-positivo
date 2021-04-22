@@ -4,6 +4,8 @@ import {
   useMediaQuery,
   useBoolean,
   useClipboard,
+  useColorMode,
+  useEventListener,
   useToken,
   useOutsideClick
 } from '@chakra-ui/react'
@@ -15,6 +17,8 @@ export {
   useBreakpoint,
   useToast,
   useMediaQuery,
+  useColorMode,
+  useEventListener,
   useBoolean,
   useClipboard,
   useToken,

@@ -39,12 +39,6 @@ const products: ReturnReducer = (state = INITIAL_STATE, action) => {
         break
       }
 
-      case Actions.FRAME_URL: {
-        draft.frameUrl = action.payload.url
-        draft.frameName = action.payload.name
-        break
-      }
-
       case Actions.SIGN_OUT: {
         draft.data = []
         draft.loading = true

@@ -21,7 +21,6 @@ import {
   authProductSuccess,
   authProductRequest
 } from './actions'
-import { setFrameURL } from '../products/actions'
 import { loading } from '../global/actions'
 
 // ! tipos de renderização
@@ -54,13 +53,17 @@ export function* productSorting({ payload }: AuthPayload): Generator {
   if (tipoRenderizacao === 'iframenoauth') {
     history.push(`/solucao/${product}`)
 
-    return yield put(setFrameURL({ url, name: payload.name }))
+    return yield put(
+      authProductSuccess({
+        mcf: false,
+        productData: payload.url,
+        productName: payload.name
+      })
+    )
   }
 
   if (tipoRenderizacao === 'targetblank') {
     window.open(url, '_blank')
-
-    return yield put(authProductSuccess())
   }
 
   if (tipoRenderizacao === 'microfrontend') {
@@ -174,14 +177,13 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
     urlAuth = payload.url.replace('{guid}', guid)
   }
 
-  yield put(
-    setFrameURL({
-      url: urlAuth,
-      name: payload.name
+  return yield put(
+    authProductSuccess({
+      mcf: false,
+      productData: urlAuth,
+      productName: payload.name
     })
   )
-
-  return yield put(authProductSuccess())
 }
 
 /*
@@ -197,14 +199,17 @@ export function* authProductEEM({ payload }: AuthPayload): Generator {
   if (payload.tipoRenderizacao === 'iframeblank' && isMobile.iOS()) {
     window.open(newUrl, '_blank')
   } else {
-    yield put(setFrameURL({ url: newUrl, name: payload.name }))
-
+    yield put(
+      authProductSuccess({
+        mcf: false,
+        productData: newUrl,
+        productName: payload.name
+      })
+    )
     history.push(`/solucao/${payload.product}`)
   }
 
   yield put(loading(false))
-
-  return yield put(authProductSuccess())
 }
 
 export default all([

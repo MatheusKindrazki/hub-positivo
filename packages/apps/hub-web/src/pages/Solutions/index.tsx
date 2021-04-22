@@ -1,79 +1,50 @@
-import React, { useEffect, useState, memo, useMemo, useCallback } from 'react'
-
-import { generate } from 'randomstring'
+import React, { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { postInformations } from '@psdhub/helpers'
 import documentTitle from '@psdhub/common/utils/documentTitle'
-import { Box } from '@psdhub/common/components'
 
-import { ReturnScripts } from '~/orchestrator'
 import getCardInformation from '~/hooks/useCardInformation'
 
-import LoadModules from './components/LoadModules'
+import { Container } from './styles'
+import MicrofrontendPage from './pages/Microfrontend'
+import IframePage from './pages/Iframe'
+import Loading from './components/Loading'
+
+declare global {
+  interface Window {
+    firstCall?: boolean
+  }
+}
 
 const Solutions: React.FC = () => {
-  postInformations('Dado vindo do hub 123' as any)
+  const [loading, setLoading] = useState(true)
 
-  const { productName, productData } = useSelector(
+  const { productName, productData, mcf } = useSelector(
     (state: Store.State) => state.authProduct
   )
 
-  const [mcf, setMcf] = useState({} as ReturnScripts)
-  const [scriptsLength, setScriptsLength] = useState(0)
-
-  useEffect(() => {
-    const quantityScripts = mcf.scripts?.map(i => i.type !== 'css')
-
-    if (quantityScripts?.length === scriptsLength) {
-      window.loadMicrofrontend && window.loadMicrofrontend()
-    }
-  }, [scriptsLength])
-
   useEffect(() => {
     documentTitle(productName || 'Carregando Solução')
-
-    if (productData) {
-      setMcf(productData as ReturnScripts)
-    }
-
-    return () => {
-      window.unLoadMicrofrontend && window?.unLoadMicrofrontend()
-    }
   }, [productData, productName])
 
-  const handleNumberOfScriptsLoaded = useCallback(() => {
-    setScriptsLength(e => {
-      return e + 1
-    })
-  }, [])
-
-  if (!productData) {
+  if (!productData && !window?.firstCall) {
+    window.firstCall = true
     getCardInformation()
   }
 
-  const hashUrl = useMemo(() => {
-    return generate(10)
-  }, [])
+  const RenderPage = mcf ? MicrofrontendPage : IframePage
+
+  console.log(mcf, productData)
 
   return (
-    <>
-      <Box
-        mt={['41px', '73px']}
-        key={String(productName)}
-        id={mcf.element_id}
-      ></Box>
-      {mcf?.scripts?.map((s, i) => (
-        <LoadModules
-          handleLoad={handleNumberOfScriptsLoaded}
-          hash={hashUrl}
-          key={i}
-          {...s}
-        />
-      ))}
-    </>
+    <Container>
+      <Loading loading={loading} />
+      {productData && (
+        <RenderPage data={productData} onLoaded={() => setLoading(false)} />
+      )}
+    </Container>
   )
 }
 
-export default memo(Solutions)
+export default Solutions
