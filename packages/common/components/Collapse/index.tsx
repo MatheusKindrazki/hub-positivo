@@ -25,6 +25,7 @@ export interface CollapseProps extends Omit<CollapseUIProps, 'isOpened'> {
   gridColumns?: number | number[]
   className?: string
   grid?: boolean
+  defaultIsOpen?: boolean
 }
 
 const Collapse: React.FC<CollapseProps> = ({
@@ -36,9 +37,10 @@ const Collapse: React.FC<CollapseProps> = ({
   grid = true,
   className,
   cor,
+  defaultIsOpen = true,
   ...rest
 }) => {
-  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true })
+  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen })
 
   const [isLargerThan1280] = useMediaQuery('(min-width: 1300px)')
 
@@ -62,6 +64,9 @@ const Collapse: React.FC<CollapseProps> = ({
           alignItems="center"
           onClick={onToggle}
           className="collapse-header"
+          rounded={!isOpen ? 'md' : 'none'}
+          roundedTop="md"
+          transition="all .2s linear"
         >
           <Heading as="h6" color={cor} fontWeight="normal" fontSize="1.5rem">
             {nome}

@@ -14,6 +14,7 @@ const AccessControl: React.FC = () => {
       {mockedData.map(categoria => {
         return (
           <Collapse
+            defaultIsOpen={false}
             grid={false}
             key={categoria.name}
             nome={categoria.name}
