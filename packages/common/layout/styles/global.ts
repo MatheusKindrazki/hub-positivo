@@ -2,24 +2,12 @@ import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
 
-  :root {
-    --hub-base-color: #1E88E5;
-    --hub-box-color: white;
-    --hub-background-color: #ECEFF1;
-
-    --hub-success: #0097A7;
-    --hub-warning: #F2C44C;
-    --hub-error: #D81B60;
-    --hub-info: #263238;
-  }
-
   body {
     -webkit-font-smoothing: antialiased;
     background: var(--hub-background-color)!important;
     padding: 0;
     margin: 0;
   }
-
 
   button {
     cursor: pointer;
