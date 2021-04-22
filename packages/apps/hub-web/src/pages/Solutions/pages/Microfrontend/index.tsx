@@ -14,12 +14,12 @@ interface MicrofrontendProps {
   onLoaded(): void
 }
 
+postInformations('Dado vindo do hub 123' as any)
+
 const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   onLoaded,
   data
 }) => {
-  postInformations('Dado vindo do hub 123' as any)
-
   const [scriptsLength, setScriptsLength] = useState(0)
 
   const mcf = useMemo(() => {
@@ -52,7 +52,7 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
 
   return (
     <>
-      <Box mt={['41px', '73px']} id={mcf?.element_id} />
+      <Box id={mcf?.element_id} />
       {mcf?.scripts?.map((s, i) => (
         <LoadModules
           handleLoad={handleNumberOfScriptsLoaded}

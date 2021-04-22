@@ -35,8 +35,6 @@ const Solutions: React.FC = () => {
 
   const RenderPage = mcf ? MicrofrontendPage : IframePage
 
-  console.log(mcf, productData)
-
   return (
     <Container>
       <Loading loading={loading} />

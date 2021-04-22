@@ -25,7 +25,7 @@ const LoadModules: React.FC<ModulesProps> = ({
     return () => {
       element?.remove()
     }
-  }, [])
+  }, [identifyScript])
 
   if (type === 'css') {
     return (
