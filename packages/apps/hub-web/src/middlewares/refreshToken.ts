@@ -9,6 +9,7 @@ import { store } from '~/store'
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
+import sessionStarted from '~/services/mixpanel/sessionStarted'
 import history from '~/services/history'
 import { EEMConnectPost } from '~/services/eemConnect'
 
@@ -59,6 +60,9 @@ export default async (): Promise<boolean> => {
         exp: user?.exp
       }
     })
+
+    // dispara evento de sessão iniciada
+    sessionStarted({ tokenRefreshed: true })
 
     return true
   }

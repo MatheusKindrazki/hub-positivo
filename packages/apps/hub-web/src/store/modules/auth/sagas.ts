@@ -267,9 +267,6 @@ export function* refreshToken(): Generator {
     })
   )
 
-  // dispara evento de sessao iniciada
-  sessionStarted({ tokenRefreshed: true })
-
   yield put(enableRefreshTokenMiddleware(true))
 
   yield delay(2000)
