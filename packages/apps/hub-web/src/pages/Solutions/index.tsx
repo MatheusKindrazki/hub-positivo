@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo, useMemo } from 'react'
+import React, { useEffect, useState, memo, useMemo, useCallback } from 'react'
 
 import { generate } from 'randomstring'
 
@@ -21,6 +21,15 @@ const Solutions: React.FC = () => {
   )
 
   const [mcf, setMcf] = useState({} as ReturnScripts)
+  const [scriptsLength, setScriptsLength] = useState(0)
+
+  useEffect(() => {
+    const quantityScripts = mcf.scripts?.map(i => i.type !== 'css')
+
+    if (quantityScripts.length === scriptsLength) {
+      window.loadMicrofrontend && window.loadMicrofrontend()
+    }
+  }, [scriptsLength])
 
   useEffect(() => {
     documentTitle(productName || 'Carregando Solução')
@@ -28,7 +37,17 @@ const Solutions: React.FC = () => {
     if (productData) {
       setMcf(productData as ReturnScripts)
     }
+
+    return () => {
+      window.unLoadMicrofrontend && window?.unLoadMicrofrontend()
+    }
   }, [productData, productName])
+
+  const handleNumberOfScriptsLoaded = useCallback(() => {
+    setScriptsLength(e => {
+      return e + 1
+    })
+  }, [])
 
   if (!productData) {
     getCardInformation()
@@ -46,7 +65,12 @@ const Solutions: React.FC = () => {
         id={mcf.element_id}
       ></Box>
       {mcf?.scripts?.map((s, i) => (
-        <LoadModules hash={hashUrl} key={i} {...s} />
+        <LoadModules
+          handleLoad={handleNumberOfScriptsLoaded}
+          hash={hashUrl}
+          key={i}
+          {...s}
+        />
       ))}
     </>
   )

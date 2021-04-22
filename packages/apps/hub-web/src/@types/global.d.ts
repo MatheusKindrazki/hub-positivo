@@ -7,6 +7,9 @@ declare global {
       school: string
       educational_stage: string
     }
+
+    loadMicrofrontend?: () => void
+    unLoadMicrofrontend?: () => void
   }
 }
 
