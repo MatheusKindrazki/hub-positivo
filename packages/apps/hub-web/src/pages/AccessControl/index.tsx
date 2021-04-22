@@ -1,37 +1,34 @@
 import React from 'react'
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Box
-} from '@chakra-ui/react'
+import { theme } from '@psdhub/common/layout/styles'
+import { Collapse, Box } from '@psdhub/common/components'
 
 import ControlTable from '~/components/ControlTable'
 
+import GlobalStyle from './styles'
 import { mockedData } from './mock'
 
 const AccessControl: React.FC = () => {
   return (
-    <Accordion>
+    <Box m="1rem">
       {mockedData.map(categoria => {
         return (
-          <AccordionItem key={categoria.name}>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                {categoria.name}
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-            <AccordionPanel pb={4}>
-              <ControlTable solutions={categoria.solutions} />
-            </AccordionPanel>
-          </AccordionItem>
+          <Collapse
+            grid={false}
+            key={categoria.name}
+            nome={categoria.name}
+            id="1"
+            cor="white"
+            css={{
+              background: 'white'
+            }}
+          >
+            <ControlTable solutions={categoria.solutions} />
+          </Collapse>
         )
       })}
-    </Accordion>
+      <GlobalStyle theme={theme} />
+    </Box>
   )
 }
 
