@@ -2,7 +2,7 @@ import mixpanel from 'mixpanel-browser'
 
 import { formatWidgetData, WidgetData } from '~/utils/formatData/gscWidgetData'
 
-const widgetSubmitEvent = 'Widget submitted'
+const widgetSubmitEvent = 'Widget Submitted'
 
 const trackWidgetSubmit = (widgetId: number, data: WidgetData): void => {
   try {
