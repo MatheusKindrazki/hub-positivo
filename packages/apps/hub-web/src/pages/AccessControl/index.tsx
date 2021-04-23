@@ -21,10 +21,16 @@ const AccessControl: React.FC = () => {
             id="1"
             cor="white"
             css={{
-              background: 'white'
+              background: 'white',
+              borderRadius: '0.5rem'
             }}
           >
-            <ControlTable solutions={categoria.solutions} />
+            <ControlTable
+              solutions={categoria.solutions}
+              m="1"
+              borderWidth="1"
+              borderColor="black"
+            />
           </Collapse>
         )
       })}
