@@ -1,11 +1,14 @@
 import React from 'react'
 
 import ReactDOM from 'react-dom'
+import mixpanel from 'mixpanel-browser'
 
 import mixPanelInit from './services/mixpanel/init'
 import hotjarInit from './services/hotjar/hotjarInit'
 import setGSCOnSubmit from './services/getSiteControl/gscOnSubmit'
 import App from './App'
+
+window.mixpanel = mixpanel
 
 mixPanelInit()
 setGSCOnSubmit()
