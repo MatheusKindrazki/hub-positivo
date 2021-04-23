@@ -36,7 +36,7 @@ const Solutions: React.FC = () => {
   const RenderPage = mcf ? MicrofrontendPage : IframePage
 
   return (
-    <Container>
+    <Container className="hub-solution-container">
       <Loading loading={loading} />
       {productData && (
         <RenderPage data={productData} onLoaded={() => setLoading(false)} />

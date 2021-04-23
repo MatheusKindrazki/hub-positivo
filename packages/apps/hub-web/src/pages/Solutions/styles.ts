@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  margin-top: 41px;
-  min-height: calc(100vh - 41px);
+  &.hub-solution-container {
+    margin-top: 41px;
+    min-height: calc(100vh - 41px);
+  }
 
   iframe {
     position: relative;
@@ -15,8 +17,10 @@ export const Container = styled.div`
   }
 
   @media (min-width: 480px) {
-    margin-top: 72px !important;
-    min-height: calc(100vh - 72px);
+    &.hub-solution-container {
+      margin-top: 72px !important;
+      min-height: calc(100vh - 72px);
+    }
 
     iframe {
       height: calc(100vh - 72px);
