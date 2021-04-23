@@ -23,6 +23,9 @@ const ExpiredToken = React.lazy(() => import('~/pages/Auth/ExpiredToken'))
 const ChangePassword = React.lazy(() => import('~/pages/Auth/ChangePassword'))
 const ForgotPassword = React.lazy(() => import('~/pages/Auth/ForgotPassword'))
 const AccessControl = React.lazy(() => import('~/pages/AccessControl'))
+const CreateSolution = React.lazy(
+  () => import('~/pages/AccessControl/CreateSolution')
+)
 
 const Solutions = React.lazy(() => import('~/pages/Solutions'))
 
@@ -56,6 +59,11 @@ const Routes: React.FC = () => {
             />
             <Route path="/token-expirado" component={ExpiredToken} />
             <Route path="/alterar-senha" component={ChangePassword} />
+            <Route
+              path="/controle-de-acessos/criar-solucao"
+              component={CreateSolution}
+              isPrivate
+            />
             <Route
               path="/controle-de-acessos"
               component={AccessControl}
