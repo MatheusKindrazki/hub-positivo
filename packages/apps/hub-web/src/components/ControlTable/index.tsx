@@ -8,8 +8,7 @@ import Table, {
   Td
 } from '@psdhub/common/components/Table'
 import Box, { BoxProps } from '@psdhub/common/components/Box'
-
-import { Switch } from '@chakra-ui/react'
+import { Switch } from '@psdhub/common/components'
 
 interface Solution {
   name: string
