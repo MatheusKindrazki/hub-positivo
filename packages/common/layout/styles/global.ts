@@ -4,9 +4,15 @@ export default createGlobalStyle`
 
   body {
     -webkit-font-smoothing: antialiased;
-    background: var(--hub-background-color)!important;
     padding: 0;
     margin: 0;
+  }
+
+  :root {
+    --hub-toast-success: #0097A7;
+    --hub-toast-warning: #F2C44C;
+    --hub-toast-error: #D81B60;
+    --hub-toast-info: #263238;
   }
 
   button {
@@ -15,16 +21,16 @@ export default createGlobalStyle`
   }
 
     .Toastify__toast--info {
-      background: var(--hub-info);
+      background: var(--hub-toast-info);
     }
     .Toastify__toast--success {
-      background: var(--hub-success);
+      background: var(--hub-toast-success);
     }
     .Toastify__toast--warning {
-      background: var(--hub-warning);
+      background: var(--hub-toast-warning);
     }
     .Toastify__toast--error {
-      background: var(--hub-error);
+      background: var(--hub-toast-error);
     }
   .Toastify__toast-container {
     z-index: 9999;

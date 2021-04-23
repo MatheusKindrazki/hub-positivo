@@ -9,10 +9,7 @@ import { ChakraProvider, CSSReset } from '@chakra-ui/react'
 
 import ThemeContext from './context'
 import GlobalStyles from '../styles/global'
-import profileColors, {
-  VariantsProps,
-  profileBaseColor
-} from '../styles/colors'
+import profileColors, { VariantsProps } from '../styles/colors'
 import { theme as HubTheme } from '../styles'
 
 interface ThemeProps {
@@ -39,12 +36,6 @@ const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
         blue: profileTheme
       }
     }
-
-    // !Apenas para efeito de animação
-    document.documentElement.style.setProperty(
-      '--hub-base-color',
-      profileBaseColor[prof]
-    )
 
     return hubThemeProfile
   }, [cssVarPrefix, prof])
