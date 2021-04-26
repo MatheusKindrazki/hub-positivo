@@ -8,7 +8,7 @@ import ControlTable from './components/ControlTable'
 
 const AccessControl: React.FC = () => {
   return (
-    <Container>
+    <Container m="1">
       {mockedData.map(categoria => {
         return (
           <Collapse

@@ -15,7 +15,7 @@ const Container = styled(Box)`
 
   .switch-button {
     > span {
-      background: var(--hub-colors-gray-400);
+      background: var(--hub-colors-gray-500);
     }
   }
 `
