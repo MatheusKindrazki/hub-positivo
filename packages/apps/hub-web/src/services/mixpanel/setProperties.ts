@@ -9,24 +9,24 @@ import { store } from '~/store'
 import profiles from '~/utils/formatData/profile'
 import educationalStage from '~/utils/formatData/educationalStage'
 
+import ctpmSchools from './mock/ctpmSchools.json'
+
 const setProperties = (): void => {
   const { info: user, school } = store.getState().user
+  const educational = store.getState().educationalStage
 
   const schools_list = user?.schools?.map(s => s.name)
 
   const { activeProfiles, profile, profileNames } = profiles()
 
-  const {
-    activeStages,
-    selected_class,
-    selected_educational_stage
-  } = educationalStage()
+  const { activeStages } = educationalStage()
 
   const sendProps = {
     ...activeProfiles,
     ...activeStages,
-    selected_class,
-    selected_educational_stage,
+    selected_class: educational.class,
+    selected_educational_stage: educational.level,
+    is_ctpm: String(ctpmSchools.includes(school?.value || '')),
 
     user_id: user?.guid,
     user_login: user?.username,
@@ -57,6 +57,13 @@ const setProperties = (): void => {
     'user_name',
     sendProps.user_name as string
   )
+
+  // Identificador Get Site Control
+  if (window.gsc) {
+    window?.gsc('params', {
+      ...sendProps
+    })
+  }
 
   try {
     mixpanel.people.set(sendProps)

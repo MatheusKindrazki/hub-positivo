@@ -9,6 +9,7 @@ import { store } from '~/store'
 import { toast } from '@hub/common/utils'
 import api from '@hub/api'
 
+import sessionStarted from '~/services/mixpanel/sessionStarted'
 import history from '~/services/history'
 import { EEMConnectPost } from '~/services/eemConnect'
 
@@ -65,6 +66,9 @@ export default async (): Promise<boolean> => {
 
     return true
   }
+
+  // dispara evento de sessão iniciada
+  sessionStarted({ tokenRefreshed: true })
 
   return false
 }

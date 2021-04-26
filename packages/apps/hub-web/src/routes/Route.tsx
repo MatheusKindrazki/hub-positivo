@@ -9,8 +9,6 @@ import {
 
 import { store } from '~/store'
 
-import setUserProperties from '~/services/mixpanel/setProperties'
-
 import searchQuery from '~/hooks/useQuery'
 
 const Auth = React.lazy(() => import('~/layouts/Auth'))
@@ -25,8 +23,6 @@ const Route: React.FC<RouteProps> = ({
   ...rest
 }) => {
   const { pathname } = useLocation()
-
-  setUserProperties()
 
   window.newrelic?.setCurrentRouteName(pathname)
 

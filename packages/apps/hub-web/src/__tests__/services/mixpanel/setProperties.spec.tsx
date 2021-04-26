@@ -79,7 +79,8 @@ describe('Mixpanel Services', () => {
       roles_list: ['Administrador', 'Coordenador', 'Família', 'Professor'],
       selected_school_id: '21694ec0-88be-4231-ac2a-392dbf845518',
       selected_school_name: 'Escola Positivo',
-      schools_list: ['Escola Positivo']
+      schools_list: ['Escola Positivo'],
+      is_ctpm: 'false'
     })
   })
 
