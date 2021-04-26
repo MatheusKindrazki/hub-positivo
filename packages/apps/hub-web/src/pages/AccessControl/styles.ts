@@ -12,6 +12,12 @@ const Container = styled(Box)`
   .tr-access-control {
     border-top: 1px solid var(--hub-colors-gray-500);
   }
+
+  .switch-button {
+    > span {
+      background: var(--hub-colors-gray-400);
+    }
+  }
 `
 
 export default Container
