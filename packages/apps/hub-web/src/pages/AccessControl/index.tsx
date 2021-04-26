@@ -1,16 +1,14 @@
 import React from 'react'
 
-import { theme } from '@psdhub/common/layout/styles'
-import { Collapse, Box } from '@psdhub/common/components'
+import { Collapse } from '@psdhub/common/components'
 
-import ControlTable from '~/components/ControlTable'
-
-import GlobalStyle from './styles'
+import Container from './styles'
 import { mockedData } from './mock'
+import ControlTable from './components/ControlTable'
 
 const AccessControl: React.FC = () => {
   return (
-    <Box m="1rem">
+    <Container>
       {mockedData.map(categoria => {
         return (
           <Collapse
@@ -22,20 +20,23 @@ const AccessControl: React.FC = () => {
             cor="white"
             css={{
               background: 'white',
-              borderRadius: '0.5rem'
+              borderRadius: '0.5rem',
+              overflow: 'auto'
             }}
           >
             <ControlTable
+              overflowX="auto"
+              borderWidth="thin"
+              borderColor="gray.500"
+              borderRadius="md"
+              headers={['Solução', 'Perfis', 'Segmentos', 'Escolas']}
               solutions={categoria.solutions}
-              m="1"
-              borderWidth="1"
-              borderColor="black"
+              margin="2"
             />
           </Collapse>
         )
       })}
-      <GlobalStyle theme={theme} />
-    </Box>
+    </Container>
   )
 }
 

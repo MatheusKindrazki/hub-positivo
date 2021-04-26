@@ -1,11 +1,17 @@
-import { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 
-export default createGlobalStyle`
+import { Box } from '@psdhub/common/components'
 
+const Container = styled(Box)`
   .collapse-header {
     background-color: var(--hub-base-color);
     height: 3rem;
     padding: 0.8125rem;
   }
-  
+
+  .tr-access-control {
+    border-top: 1px solid var(--hub-colors-gray-500);
+  }
 `
+
+export default Container
