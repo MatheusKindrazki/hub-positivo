@@ -16,9 +16,11 @@ export interface Columns {
   header?: string | React.ReactNode
   render?: (props: any) => void
 }
+
+export type Data = any
 export interface TableProps extends Props {
   columns?: Columns[]
-  data?: any
+  data?: Data
   className?: string
 }
 
@@ -33,7 +35,7 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
         </Tr>
       </Thead>
       <Tbody>
-        {data?.map((e: any, index) => (
+        {data?.map((e: any, index: number) => (
           <Tr
             key={index}
             className={classNames({
@@ -56,4 +58,4 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
 }
 
 export default Table
-export { Thead, Td, Th, Tr, Tfoot, Tbody }
+export { Thead, Td, Th, Tr, Tfoot, Tbody, TableUI }

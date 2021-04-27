@@ -1,11 +1,10 @@
 import React from 'react'
 
-import { Collapse, Table } from '@psdhub/common/components'
+import { Collapse } from '@psdhub/common/components'
 
 import Container from './styles'
-import { columns, data } from './mockTest'
-import { mockedData } from './mock'
-// import ControlTable from './components/Table'
+import { columns, data, mockedData } from './mockTest'
+import Table from './components/Table'
 
 const AccessControl: React.FC = () => {
   return (
@@ -26,7 +25,6 @@ const AccessControl: React.FC = () => {
             }}
           >
             <Table columns={columns} data={data} />
-            {/* <ControlTable solutions={categoria.solutions} /> */}
           </Collapse>
         )
       })}

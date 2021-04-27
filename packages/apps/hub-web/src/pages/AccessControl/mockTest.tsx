@@ -1,6 +1,9 @@
 import React from 'react'
 
 import { Columns } from '@psdhub/common/components/Table'
+import { Switch } from '@psdhub/common/components'
+
+import Solution from './components/Solution'
 
 export const columns: Columns[] = [
   { property: 'solution', header: 'Solução' },
@@ -8,23 +11,34 @@ export const columns: Columns[] = [
   { property: 'segments', header: 'Segmentos' },
   { property: 'schools', header: 'Escolas' },
   {
-    property: 'actions',
+    property: 'edit',
     header: null,
-    render: (e: any) => <button onClick={() => console.log(e)}>BOTÃO</button>
+    render: (_e: any) => 'EDITAR'
+  },
+  {
+    property: 'active',
+    header: null,
+    render: (_e: any) => <Switch />
   }
 ]
 
 export const data: any = [
   {
-    solution: 'Guia de Estudo',
+    solution: <Solution solution="Guia de Estudo" />,
     profile: 'Todos os perfis',
     segments: 'EF1, EF2, EM',
     schools: 'Todas'
   },
   {
-    solution: 'Atividades',
+    solution: <Solution solution="Atividades" />,
     profile: 'Todos os perfis',
     segments: 'EF1, EF2, EM',
     schools: 'Todas'
   }
+]
+
+export const mockedData = [
+  { name: 'Collapse 1' },
+  { name: 'Collapse 2' },
+  { name: 'Collapse 3' }
 ]
