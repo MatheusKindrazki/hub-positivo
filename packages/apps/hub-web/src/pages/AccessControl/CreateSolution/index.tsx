@@ -1,7 +1,6 @@
 import React, { useCallback, useRef } from 'react'
 
 import { DropzoneRef } from 'react-dropzone'
-import classNames from 'classnames'
 
 import { useSelector } from 'react-redux'
 
@@ -42,7 +41,7 @@ const CreateSolution: React.FC = () => {
       </Box>
 
       <Box w="48rem" m="auto">
-        <Form ref={formRef} onSubmit={handleSubmit} className={classNames({})}>
+        <Form ref={formRef} onSubmit={handleSubmit}>
           <Box d="flex" flexDir="column">
             <Box mb="1.6rem">
               <Text color={`${colors.blue[500]}`}>Titulo</Text>
