@@ -9,9 +9,9 @@ const Container = styled(Box)`
     padding: 0.8125rem;
   }
 
-  .tr-access-control {
+  /* .tr-access-control {
     border-top: 1px solid var(--hub-colors-gray-500);
-  }
+  } */
 
   .switch-button {
     > span {

@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { Collapse } from '@psdhub/common/components'
+import { Collapse, Table } from '@psdhub/common/components'
 
 import Container from './styles'
+import { columns, data } from './mockTest'
 import { mockedData } from './mock'
-import ControlTable from './components/Table'
+// import ControlTable from './components/Table'
 
 const AccessControl: React.FC = () => {
   return (
@@ -24,7 +25,8 @@ const AccessControl: React.FC = () => {
               overflow: 'auto'
             }}
           >
-            <ControlTable solutions={categoria.solutions} />
+            <Table columns={columns} data={data} />
+            {/* <ControlTable solutions={categoria.solutions} /> */}
           </Collapse>
         )
       })}
