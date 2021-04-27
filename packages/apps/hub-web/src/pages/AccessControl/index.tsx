@@ -4,7 +4,7 @@ import { Collapse } from '@psdhub/common/components'
 
 import Container from './styles'
 import { mockedData } from './mock'
-import ControlTable from './components/ControlTable'
+import ControlTable from './components/Table'
 
 const AccessControl: React.FC = () => {
   return (
@@ -24,15 +24,7 @@ const AccessControl: React.FC = () => {
               overflow: 'auto'
             }}
           >
-            <ControlTable
-              overflowX="auto"
-              borderWidth="thin"
-              borderColor="gray.500"
-              borderRadius="md"
-              headers={['Solução', 'Perfis', 'Segmentos', 'Escolas']}
-              solutions={categoria.solutions}
-              margin="2"
-            />
+            <ControlTable solutions={categoria.solutions} />
           </Collapse>
         )
       })}

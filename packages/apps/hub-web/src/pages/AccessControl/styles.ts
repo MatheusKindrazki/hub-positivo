@@ -15,7 +15,11 @@ const Container = styled(Box)`
 
   .switch-button {
     > span {
-      background: var(--hub-colors-gray-500);
+      background: var(--hub-base-color);
+
+      &[data-checked] {
+        background: var(--hub-colors-gray-400);
+      }
     }
   }
 `

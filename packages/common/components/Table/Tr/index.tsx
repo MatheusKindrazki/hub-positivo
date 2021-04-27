@@ -1,9 +1,13 @@
 import React from 'react'
 
-import { Tr as TableRow, TableRowProps } from '@chakra-ui/react'
+import { Tr as TableRow, TableRowProps, forwardRef } from '@chakra-ui/react'
 
-const Tr: React.FC<TableRowProps> = ({ children, ...rest }) => {
-  return <TableRow {...rest}>{children}</TableRow>
-}
+export { TableRowProps }
+
+const Tr = forwardRef<TableRowProps, 'tr'>(({ children, ...rest }, ref) => (
+  <TableRow {...rest} className="tr-access-control" ref={ref}>
+    {children}
+  </TableRow>
+))
 
 export default Tr

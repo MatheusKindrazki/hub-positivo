@@ -1,9 +1,16 @@
 import React from 'react'
 
-import { Tbody as TableBody, TableBodyProps } from '@chakra-ui/react'
+import {
+  Tbody as TableBody,
+  TableBodyProps,
+  forwardRef
+} from '@chakra-ui/react'
 
-const Tbody: React.FC<TableBodyProps> = ({ children, ...rest }) => {
-  return <TableBody {...rest}>{children}</TableBody>
-}
-
+const Tbody = forwardRef<TableBodyProps, 'tbody'>(
+  ({ children, ...rest }, ref) => (
+    <TableBody {...rest} ref={ref}>
+      {children}
+    </TableBody>
+  )
+)
 export default Tbody
