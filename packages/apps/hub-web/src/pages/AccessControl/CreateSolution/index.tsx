@@ -8,13 +8,11 @@ import { useSelector } from 'react-redux'
 import { useTheme } from '@psdhub/common/layout'
 import { FormProps, Form, Input, Button } from '@psdhub/common/components/Form'
 import Dropzone from '@psdhub/common/components/Dropzone'
-import BarLoader from '@psdhub/common/components/BarLoader'
 import { Box, Text, Select, Stack } from '@psdhub/common/components'
 
 const CreateSolution: React.FC = () => {
   const { colors } = useTheme()
 
-  const { loading } = useSelector((state: Store.State) => state.forgotPassword)
   const { loading: alterLoading } = useSelector(
     (state: Store.State) => state.user
   )
@@ -28,16 +26,6 @@ const CreateSolution: React.FC = () => {
 
   return (
     <Box p="6" mt="5rem">
-      <BarLoader
-        loading={loading}
-        css={`
-          position: absolute;
-          top: 0;
-          left: 0;
-        `}
-        height="5px"
-        color="var(--hub-base-color)"
-      />
       <Box
         d="flex"
         flexDir="row"
@@ -54,13 +42,7 @@ const CreateSolution: React.FC = () => {
       </Box>
 
       <Box w="48rem" m="auto">
-        <Form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className={classNames({
-            disabled: loading
-          })}
-        >
+        <Form ref={formRef} onSubmit={handleSubmit} className={classNames({})}>
           <Box d="flex" flexDir="column">
             <Box mb="1.6rem">
               <Text color={`${colors.blue[500]}`}>Titulo</Text>
