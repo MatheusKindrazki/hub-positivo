@@ -1,19 +1,18 @@
-import React, { useRef } from 'react'
+import React, { useCallback, useRef } from 'react'
 
+import { DropzoneRef } from 'react-dropzone'
 import classNames from 'classnames'
 
 import { useSelector } from 'react-redux'
 
-// import { useToast } from '@psdhub/common/hooks'
+import { useTheme } from '@psdhub/common/layout'
 import { FormProps, Form, Input, Button } from '@psdhub/common/components/Form'
+import Dropzone from '@psdhub/common/components/Dropzone'
 import BarLoader from '@psdhub/common/components/BarLoader'
 import { Box, Text, Select, Stack } from '@psdhub/common/components'
 
-// import { getValidationErrors, ValidationError } from '~/validators'
-
 const CreateSolution: React.FC = () => {
-  // const dispatch = useDispatch()
-  // const { error } = useToast()
+  const { colors } = useTheme()
 
   const { loading } = useSelector((state: Store.State) => state.forgotPassword)
   const { loading: alterLoading } = useSelector(
@@ -21,35 +20,11 @@ const CreateSolution: React.FC = () => {
   )
 
   const formRef = useRef<FormProps>(null)
+  const dropRef = useRef<DropzoneRef>(null)
 
-  // const handleSubmit = useCallback(
-  //   async data => {
-  //     formRef?.current?.setErrors({})
-  //     try {
-  //       await passValidation.validate(data, {
-  //         abortEarly: false
-  //       })
-
-  //       dispatch(
-  //         forgotPasswordRequest({
-  //           newPassword: data.password,
-  //           pin: token
-  //         })
-  //       )
-  //     } catch (err) {
-  //       if (err instanceof ValidationError) {
-  //         const errors = getValidationErrors(err)
-
-  //         formRef?.current?.setErrors(errors)
-
-  //         return
-  //       }
-
-  //       error('Algo deu errado, Verifique seus dados e tente novamente!')
-  //     }
-  //   },
-  //   [dispatch, error, token]
-  // )
+  const handleSubmit = useCallback(async data => {
+    console.log(data)
+  }, [])
 
   return (
     <Box p="6" mt="5rem">
@@ -63,57 +38,90 @@ const CreateSolution: React.FC = () => {
         height="5px"
         color="var(--hub-base-color)"
       />
-      <Text
-        fontSize="x-large"
-        color="grey.100"
+      <Box
+        d="flex"
+        flexDir="row"
+        w="28.5rem"
+        justifyContent="space-between"
         ml="14rem"
-        mb="2.8rem"
-        letterSpacing="wider"
+        mb="2rem"
       >
-        {'Controle de acessos > Adicionar Solução'}
-      </Text>
+        <Text fontSize="x-large">Controle de acessos</Text>
+        <Text fontSize="large" fontWeight="300" alignSelf="center">
+          {'>'}
+        </Text>
+        <Text fontSize="x-large">Adicionar Solução</Text>
+      </Box>
 
       <Box w="48rem" m="auto">
         <Form
           ref={formRef}
-          onSubmit={data => console.log(data)}
+          onSubmit={handleSubmit}
           className={classNames({
             disabled: loading
           })}
         >
           <Box d="flex" flexDir="column">
-            <Text color="blue.500">Titulo</Text>
-            <Input name="teste" backgroundColor="white" />
-            <Text color="blue.500">Descricao</Text>
-            <Input name="teste" backgroundColor="white" />
+            <Box mb="1.6rem">
+              <Text color={`${colors.blue[500]}`}>Titulo</Text>
+              <Input
+                name="teste"
+                backgroundColor="white"
+                placeholder="Digite aqui o título da solução"
+              />
+            </Box>
+            <Box mb="1.6rem">
+              <Text color={`${colors.blue[500]}`}>Descricao</Text>
+              <Input
+                name="teste"
+                backgroundColor="white"
+                placeholder="Digite uma breve descrição para ajudar os usuários a entenderem a função desta solução"
+              />
+            </Box>
+          </Box>
+          <Box>
+            <Text color={`${colors.blue[500]}`}>Ícone</Text>
+            <Dropzone ref={dropRef} />
           </Box>
 
           <Stack direction={'row'} justifyContent="space-between" mt="1.6rem">
             <Box width="48.5%">
-              <Text color="blue.500">Categoria</Text>
+              <Text color={`${colors.blue[500]}`}>Categoria</Text>
               <Select variant="normal" name="teste" m="auto"></Select>
             </Box>
             <Box width="48.5%">
-              <Text color="blue.500">Perfis</Text>
-              <Select variant="normal" name="teste" m="auto"></Select>
-            </Box>
-          </Stack>
-
-          <Stack direction={'row'} justifyContent="space-between" mt="1.6rem">
-            <Box width="48.5%">
-              <Text color="blue.500">Segmentos</Text>
-              <Select variant="normal" name="teste" m="auto"></Select>
-            </Box>
-            <Box width="48.5%">
-              <Text color="blue.500">Abrir em...</Text>
+              <Text color={`${colors.blue[500]}`}>Perfis</Text>
               <Select variant="normal" name="teste" m="auto"></Select>
             </Box>
           </Stack>
 
           <Stack direction={'row'} justifyContent="space-between" mt="1.6rem">
             <Box width="48.5%">
-              <Text color="blue.500">Escolas</Text>
+              <Text color={`${colors.blue[500]}`}>Segmentos</Text>
               <Select variant="normal" name="teste" m="auto"></Select>
+            </Box>
+            <Box width="48.5%">
+              <Text color={`${colors.blue[500]}`}>Abrir em...</Text>
+              <Select
+                variant="normal"
+                name="teste"
+                m="auto"
+                className="hub-select"
+              ></Select>
+            </Box>
+          </Stack>
+
+          <Stack direction={'row'} justifyContent="space-between" mt="1.6rem">
+            <Box width="48.5%">
+              <Text color={`${colors.blue[500]}`}>Escolas</Text>
+              <Select
+                variant="normal"
+                name="teste"
+                m="auto"
+                bg="tomato"
+                borderColor="tomato"
+                color="white"
+              ></Select>
             </Box>
             <Box width="48.5%" alignSelf="flex-end">
               <Select variant="normal" name="teste" m="auto"></Select>
@@ -121,16 +129,16 @@ const CreateSolution: React.FC = () => {
           </Stack>
 
           <Box flexDir="row-reverse" d="flex">
+            <Button isLoading={alterLoading} maxWidth="8rem">
+              Adicionar
+            </Button>
             <Button
               variant="outline"
               maxWidth="8rem"
-              background="grey.500"
-              textColor="grey"
+              background={`${colors.gray[400]}`}
+              textColor={`${colors.gray[500]}`}
             >
               Cancelar
-            </Button>
-            <Button isLoading={alterLoading} maxWidth="8rem">
-              Adicionar
             </Button>
           </Box>
         </Form>
