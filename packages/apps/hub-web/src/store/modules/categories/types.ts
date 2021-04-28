@@ -1,8 +1,11 @@
 export interface CategoriesReducer {
   loading: boolean
-  data: Category[]
+  categories?: CategoryAPI[]
 }
 
-export interface Category {
-  category: string
+export interface CategoryAPI {
+  id: string
+  nome: string
+  cor: string
+  ativo: string
 }
