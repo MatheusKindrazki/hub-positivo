@@ -179,7 +179,7 @@ export function* checkingExpiringToken({
 }: ExpiringRehydrate): Generator {
   if (!payload) return
 
-  if (!payload.auth.signed) {
+  if (!payload.auth.signed && payload.auth.token) {
     return yield put(signOut())
   }
 

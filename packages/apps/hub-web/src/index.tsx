@@ -11,6 +11,7 @@ import App from './App'
 window.mixpanel = mixpanel
 
 mixPanelInit()
+
 setGSCOnSubmit()
 hotjarInit()
 

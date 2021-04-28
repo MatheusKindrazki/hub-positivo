@@ -10,6 +10,7 @@ import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
 import sessionStarted from '~/services/mixpanel/sessionStarted'
+import clearMixPanelSession from '~/services/mixpanel/clearAll'
 import history from '~/services/history'
 import { EEMConnectPost } from '~/services/eemConnect'
 
@@ -44,6 +45,8 @@ export default async (): Promise<boolean> => {
       )
 
       setTimeout(() => history.push('/login'), 500)
+
+      clearMixPanelSession()
     }
 
     api.setHeaders({
