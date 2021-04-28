@@ -6,6 +6,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import { useSelector } from 'react-redux'
 
 import { VariantsProps } from '@psdhub/common/layout/styles/colors'
+import { useColorMode } from '@psdhub/common/layout/styles'
 import ThemeContext from '@psdhub/common/layout/Provider/context'
 
 import history from '~/services/history'
@@ -27,6 +28,10 @@ const Solutions = React.lazy(() => import('~/pages/Solutions'))
 const Routes: React.FC = () => {
   const { colorProfile } = useSelector((state: Store.State) => state.profile)
   const { guid } = useSelector((state: Store.State) => state.profile)
+
+  const { setColorMode } = useColorMode()
+
+  setColorMode('light')
 
   const { theme } = useContext(ThemeContext)
 
