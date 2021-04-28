@@ -36,11 +36,10 @@ const HubSelect: React.FC<PropsSelect> = ({
         clearable
         noOptionsMessage={() => 'Nada encontrado =('}
         className={classNames(className, {
-          'hub-select': true,
           'blue-transparent': variant === 'blue-transparent',
           normal: variant === 'normal'
         })}
-        classNamePrefix="hub"
+        classNamePrefix="hub-select"
         isSearchable
         {...rest}
       />
