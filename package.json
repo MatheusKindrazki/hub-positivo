@@ -30,7 +30,6 @@
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "prebuild:web": "npm run --prefix packages/helpers build",
     "build:web": "npm run --prefix packages/apps/hub-web build",
-    "postbuild:web": "node scripts/replace-in-files.js hub",
     "build:common": "npm run --prefix packages/common build",
     "release": "HUSKY_SKIP_HOOKS=1 semantic-release"
   },
