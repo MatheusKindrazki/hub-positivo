@@ -4,14 +4,12 @@ import { DropzoneRef } from 'react-dropzone'
 
 import { useSelector } from 'react-redux'
 
-import { useTheme } from '@psdhub/common/layout'
 import { FormProps, Form, Input, Button } from '@psdhub/common/components/Form'
 import Dropzone from '@psdhub/common/components/Dropzone'
+import { Breadcrumb } from '@psdhub/common/components/BreadCrumbs'
 import { Box, Text, Select, Stack } from '@psdhub/common/components'
 
 const CreateSolution: React.FC = () => {
-  const { colors } = useTheme()
-
   const { loading: alterLoading } = useSelector(
     (state: Store.State) => state.user
   )
@@ -33,18 +31,19 @@ const CreateSolution: React.FC = () => {
         ml="14rem"
         mb="2rem"
       >
-        <Text fontSize="x-large">Controle de acessos</Text>
-        <Text fontSize="large" fontWeight="300" alignSelf="center">
-          {'>'}
-        </Text>
-        <Text fontSize="x-large">Adicionar Solução</Text>
+        <Breadcrumb
+          items={[
+            { title: 'Controle de Acessos', href: 'controle-de-acessos' },
+            { title: 'Adicionar Solucao' }
+          ]}
+        />
       </Box>
 
       <Box w="48rem" m="auto">
         <Form ref={formRef} onSubmit={handleSubmit}>
           <Box d="flex" flexDir="column">
             <Box mb="1.6rem">
-              <Text color={`${colors.blue[500]}`}>Titulo</Text>
+              <Text color="blue.500">Titulo</Text>
               <Input
                 name="teste"
                 backgroundColor="white"
@@ -52,7 +51,7 @@ const CreateSolution: React.FC = () => {
               />
             </Box>
             <Box mb="1.6rem">
-              <Text color={`${colors.blue[500]}`}>Descricao</Text>
+              <Text color="blue.500">Descricao</Text>
               <Input
                 name="teste"
                 backgroundColor="white"
@@ -61,28 +60,28 @@ const CreateSolution: React.FC = () => {
             </Box>
           </Box>
           <Box>
-            <Text color={`${colors.blue[500]}`}>Ícone</Text>
+            <Text color="blue.500">Ícone</Text>
             <Dropzone ref={dropRef} />
           </Box>
 
           <Stack direction={'row'} justifyContent="space-between" mt="1.6rem">
             <Box width="48.5%">
-              <Text color={`${colors.blue[500]}`}>Categoria</Text>
-              <Select variant="normal" name="teste" m="auto"></Select>
+              <Text color="blue.500">Categoria</Text>
+              <Select variant="normal" name="teste" height="30px"></Select>
             </Box>
             <Box width="48.5%">
-              <Text color={`${colors.blue[500]}`}>Perfis</Text>
+              <Text color="blue.500">Perfis</Text>
               <Select variant="normal" name="teste" m="auto"></Select>
             </Box>
           </Stack>
 
           <Stack direction={'row'} justifyContent="space-between" mt="1.6rem">
             <Box width="48.5%">
-              <Text color={`${colors.blue[500]}`}>Segmentos</Text>
+              <Text color="blue.500">Segmentos</Text>
               <Select variant="normal" name="teste" m="auto"></Select>
             </Box>
             <Box width="48.5%">
-              <Text color={`${colors.blue[500]}`}>Abrir em...</Text>
+              <Text color="blue.500">Abrir em...</Text>
               <Select
                 variant="normal"
                 name="teste"
@@ -94,15 +93,8 @@ const CreateSolution: React.FC = () => {
 
           <Stack direction={'row'} justifyContent="space-between" mt="1.6rem">
             <Box width="48.5%">
-              <Text color={`${colors.blue[500]}`}>Escolas</Text>
-              <Select
-                variant="normal"
-                name="teste"
-                m="auto"
-                bg="tomato"
-                borderColor="tomato"
-                color="white"
-              ></Select>
+              <Text color="blue.500">Escolas</Text>
+              <Select variant="normal" name="teste" m="auto"></Select>
             </Box>
             <Box width="48.5%" alignSelf="flex-end">
               <Select variant="normal" name="teste" m="auto"></Select>
@@ -110,14 +102,23 @@ const CreateSolution: React.FC = () => {
           </Stack>
 
           <Box flexDir="row-reverse" d="flex">
-            <Button isLoading={alterLoading} maxWidth="8rem">
+            <Button
+              isLoading={alterLoading}
+              maxWidth="8rem"
+              textTransform="uppercase"
+              fontWeight="500"
+              minHeight="3.4rem"
+            >
               Adicionar
             </Button>
             <Button
               variant="outline"
               maxWidth="8rem"
-              background={`${colors.gray[400]}`}
-              textColor={`${colors.gray[500]}`}
+              minHeight="3.4rem"
+              background="gray.400"
+              textColor="gray.500"
+              fontWeight="500"
+              textTransform="uppercase"
             >
               Cancelar
             </Button>
