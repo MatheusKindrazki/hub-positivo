@@ -135,7 +135,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
               blurInputOnSelect
               placeholder="Selecione"
               isSearchable
-              className="height-md"
+              inputHeight={40}
               value={defaultValue.school}
               options={schoolList}
               onFocus={() => setEnableBlur(false)}
@@ -150,7 +150,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
               key={String(defaultValue.role)}
               variant="normal"
               placeholder="Selecione"
-              className="height-md"
+              inputHeight={40}
               value={defaultValue.role}
               options={roleList}
               onFocus={() => setEnableBlur(false)}
