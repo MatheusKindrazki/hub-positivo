@@ -9,7 +9,7 @@ export const Actions = {
 }
 
 /*
-  ? Buscando categorias
+  ? Buscando todas as categorias e soluções
 */
 
 export function solutionsRequest(): Action {

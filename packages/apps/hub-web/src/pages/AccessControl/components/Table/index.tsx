@@ -17,15 +17,15 @@ import {
   Tbody,
   TableUI
 } from '@psdhub/common/components/Table'
-import type { TableProps, Data } from '@psdhub/common/components/Table'
+import type { TableProps } from '@psdhub/common/components/Table'
 import { Box } from '@psdhub/common/components/'
 
 import { reoderList as reorder } from '~/utils/reorderList'
 
 const Table: React.FC<TableProps> = ({ columns, data, className }) => {
-  const [items, setItems] = useState<Data>(data)
+  const [items, setItems] = useState(data)
 
-  const onDragEnd = (result: DropResult, list: Data) => {
+  const onDragEnd = (result: DropResult, list: any) => {
     if (!result.destination) {
       return
     }

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
+import { solutionsLinksRequest } from '~/store/modules/solutionsLinks/actions'
 import { solutionsRequest } from '~/store/modules/solutions/actions'
 
 import { Collapse } from '@psdhub/common/components'
@@ -17,8 +18,15 @@ const AccessControl: React.FC = () => {
     (state: Store.State) => state.solutions
   )
 
+  const { data: solutionsLinks } = useSelector(
+    (state: Store.State) => state.solutionsLinks
+  )
+
+  console.log({ solutionsLinks })
+
   useEffect(() => {
     dispatch(solutionsRequest())
+    dispatch(solutionsLinksRequest())
   }, [dispatch])
 
   if (l) return <span>Carregando</span>

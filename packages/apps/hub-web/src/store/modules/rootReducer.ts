@@ -8,6 +8,7 @@ import { AnyAction, CombinedState, combineReducers } from 'redux'
 
 import user from './user/reducer'
 import tour from './tour/reducer'
+import solutionsLinks from './solutionsLinks/reducer'
 import solutions from './solutions/reducer'
 import profile from './profile/reducer'
 import products from './products/reducer'
@@ -15,10 +16,8 @@ import myClasses from './myClasses/reducer'
 import global from './global/reducer'
 import forgotPassword from './forgotPassword/reducer'
 import educationalStage from './educationalStage/reducer'
-import categories from './categories/reducer'
 import authProduct from './authProduct/reducer'
 import auth from './auth/reducer'
-
 export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
   return combineReducers({
     auth,
@@ -31,8 +30,8 @@ export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
     authProduct,
     forgotPassword,
     myClasses,
-    categories,
     solutions,
+    solutionsLinks,
     router: connectRouter(history)
   })
 }

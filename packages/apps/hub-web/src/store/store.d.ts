@@ -1,5 +1,6 @@
 import { UserReducer } from './modules/user/types'
 import { TourReducer } from './modules/tour/types'
+import { SolutionsLinksReducer } from './modules/solutionsLink/types'
 import { SolutionsReducer } from './modules/solutions/types'
 import { ProfileReducer } from './modules/profile/types'
 import { ProductReducer } from './modules/products/types'
@@ -10,7 +11,6 @@ import { EducationReducer } from './modules/educationalStage/types'
 import { CategoriesReducer } from './modules/categories/types'
 import { AuthReducer as AuthProductReducer } from './modules/authProduct/types'
 import { AuthReducer } from './modules/auth/types'
-
 interface ApplicationState {
   auth: AuthReducer
   profile: ProfileReducer
@@ -24,6 +24,7 @@ interface ApplicationState {
   forgotPassword: ForgotPasswordReducer
   categories: CategoriesReducer
   solutions: SolutionsReducer
+  solutionsLinks: SolutionsLinksReducer
 }
 declare global {
   declare namespace Store {

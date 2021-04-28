@@ -2,33 +2,33 @@ import { produce } from 'immer'
 
 import { Reducer } from 'redux'
 
-import { CategoriesReducer } from './types'
+import { SolutionsLinksReducer } from './types'
 import { Actions } from './actions'
 
-export const INITIAL_STATE: CategoriesReducer = {
+export const INITIAL_STATE: SolutionsLinksReducer = {
   loading: true,
-  categories: []
+  data: []
 }
 
-type ReturnReducer = Reducer<CategoriesReducer>
+type ReturnReducer = Reducer<SolutionsLinksReducer>
 
 const categories: ReturnReducer = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
-      case Actions.CATEGORIES_REQUEST: {
+      case Actions.SOLUTIONS_LINKS_REQUEST: {
         draft.loading = true
         break
       }
 
-      case Actions.CATEGORIES_SUCCESS: {
+      case Actions.SOLUTIONS_LINKS_SUCCESS: {
         draft.loading = false
-        draft.categories = action.payload
+        draft.data = action.payload
         break
       }
 
-      case Actions.CATEGORIES_FAILURE: {
+      case Actions.SOLUTIONS_LINKS_FAILURE: {
         draft.loading = false
-        draft.categories = undefined
+        draft.data = []
         break
       }
 
