@@ -39,7 +39,7 @@
     "phosphor-react": "^1.1.2",
     "polished": "^4.1.0",
     "react-collapse": "^5.1.0",
-    "react-select": "^4.1.0",
+    "react-select": "3.0.7",
     "react-spinners": "^0.10.4",
     "react-toastify": "^7.0.3",
     "reactour": "^1.18.0"
