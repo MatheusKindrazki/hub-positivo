@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import documentTitle from '@psdhub/common/utils/documentTitle'
+import { Box } from '@psdhub/common/components'
 
 import getCardInformation from '~/hooks/useCardInformation'
 
@@ -37,7 +38,9 @@ const Solutions: React.FC = () => {
 
   return (
     <Container className="hub-solution-container">
-      <Loading loading={loading} />
+      <Box className="hub-login-container">
+        <Loading loading={loading} />
+      </Box>
       {productData && (
         <RenderPage data={productData} onLoaded={() => setLoading(false)} />
       )}

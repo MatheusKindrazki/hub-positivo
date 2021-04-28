@@ -1,9 +1,19 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  &.hub-solution-container {
-    margin-top: 41px;
-    min-height: calc(100vh - 41px);
+  position: relative;
+  margin-top: 41px;
+  min-height: calc(100vh - 41px);
+
+  .hub-login-container {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   iframe {
@@ -17,10 +27,8 @@ export const Container = styled.div`
   }
 
   @media (min-width: 480px) {
-    &.hub-solution-container {
-      margin-top: 72px !important;
-      min-height: calc(100vh - 72px);
-    }
+    margin-top: 72px !important;
+    min-height: calc(100vh - 72px);
 
     iframe {
       height: calc(100vh - 72px);
