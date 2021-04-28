@@ -1,88 +1,38 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
-import Select, { Props } from 'react-select'
+import Select, { Props, mergeStyles } from 'react-select'
 import classNames from 'classnames'
-import { CacheProvider } from '@emotion/react'
-import createCache from '@emotion/cache'
 
-import GlobalSelectStyle from './styles'
-import { useTheme } from '../../layout'
+import { useTheme } from '@psdhub/common/layout/styles'
 
+import { alternative, normal } from './styles'
 export interface PropsSelect extends Props {
   variant: 'blue-transparent' | 'normal'
+  inputHeight?: number
+  styles?: Props['styles']
 }
 
-const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
-  const { colors, shadows } = useTheme()
+const HubSelect: React.FC<PropsSelect> = ({
+  className,
+  inputHeight,
+  styles,
+  variant,
+  ...rest
+}) => {
+  const theme = useTheme()
 
-  const transparentColor: Props['styles'] = {
-    control: provided => ({
-      ...provided,
-      cursor: 'pointer',
-      backgroundColor: 'transparent',
-      color: 'white'
-    }),
-    placeholder: provided => ({
-      ...provided,
-      color: 'white'
-    }),
-    container: provided => ({
-      ...provided,
-      backgroundColor: 'transparent',
-      color: 'white',
-      textTransform: 'capitalize'
-    }),
-    input: provided => ({
-      ...provided,
-      color: 'white',
-      textTransform: 'capitalize'
-    }),
-    menu: provided => ({
-      ...provided,
-      backgroundColor: colors.blue[500],
-      color: 'white',
-      borderColor: colors.blue[700],
-      textTransform: 'capitalize',
-      zIndex: 99,
-      boxShadow: shadows['dark-lg']
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? colors.blue[400] : colors.blue[500],
-      color: 'white',
-      textTransform: 'capitalize',
-      cursor: 'pointer',
+  const renderStyleTheme = useMemo(() => {
+    if (variant === 'blue-transparent') {
+      return alternative(theme, inputHeight)
+    }
 
-      '&:active': {
-        color: 'white',
-        backgroundColor: colors.blue[600]
-      }
-    })
-  }
-
-  const normal: Props['styles'] = {
-    menu: provided => ({
-      ...provided,
-      zIndex: 99
-    }),
-
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? colors.blue[500] : 'transparent',
-
-      color: state.isSelected ? 'white' : 'black',
-
-      '&:active': {
-        backgroundColor: colors.blue[600],
-        color: 'white'
-      }
-    })
-  }
+    return normal(theme, inputHeight)
+  }, [inputHeight, theme, variant])
 
   return (
-    <CacheProvider value={createCache({ key: 'css' })}>
+    <>
       <Select
-        styles={variant === 'blue-transparent' ? transparentColor : normal}
+        styles={mergeStyles({ ...renderStyleTheme }, { ...styles })}
         clearable
         noOptionsMessage={() => 'Nada encontrado =('}
         className={classNames(className, {
@@ -94,8 +44,7 @@ const HubSelect: React.FC<PropsSelect> = ({ className, variant, ...rest }) => {
         isSearchable
         {...rest}
       />
-      <GlobalSelectStyle />
-    </CacheProvider>
+    </>
   )
 }
 

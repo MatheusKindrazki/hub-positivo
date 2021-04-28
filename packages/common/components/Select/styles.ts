@@ -1,90 +1,152 @@
-import { createGlobalStyle } from 'styled-components'
+import { Props } from 'react-select'
 
-export default createGlobalStyle`
-  .hub-select.normal {
-    * {
-      box-shadow: none!important;
-    }
+import { Theme } from '@psdhub/common/layout/styles'
 
+function normal(theme: Theme, inputHeight?: number): Props['styles'] {
+  const { colors, shadows, fontSizes } = theme
 
-    .hub__indicator-separator {
-      opacity: 0;
-    }
+  const height = inputHeight || 48
 
-    &.height-md {
-      .hub__control {
-        min-height: 40px!important;
+  return {
+    control: (provided, state) => ({
+      ...provided,
+      cursor: 'pointer',
+      color: colors.white,
+      minHeight: height,
+      fontSize: fontSizes.sm,
+      borderRadius: 8,
+      backgroundColor: colors.gray[200],
+      boxShadow: state.isFocused
+        ? `0 0 0 1px ${colors.blue[500]}`
+        : provided.boxShadow,
+      borderColor: state.isFocused ? colors.blue[500] : provided.borderColor,
+      '&:hover': {
+        borderColor: colors.blue[500]
+      },
 
-        * {
-          font-size: 0.8125rem!important;
-        }
-
+      svg: {
+        transform: state.isFocused ? 'rotate(180deg)' : 'none'
       }
-    }
-
-    .hub__control  {
-      min-height: 48px;
-      border-color: #D9D9D9;
-      background: #ECEFF1;
-      border-radius: 8px;
-        svg {
-          fill: ${props => props.theme.colors.blue[500]};
-          transition: all .2s linear;
-        }
-
-    }
-    .hub__control--is-focused {
-      .hub__dropdown-indicator svg {
-        transform: rotate(180deg)!important;
+    }),
+    indicatorSeparator: () => ({
+      opacity: 0
+    }),
+    indicatorsContainer: () => ({
+      svg: {
+        fill: colors.blue[500],
+        transition: 'all .2s linear'
       }
-    }
+    }),
+    container: provided => ({
+      ...provided,
+      color: 'white',
+      textTransform: 'capitalize'
+    }),
+    input: provided => ({
+      ...provided,
+      color: 'white',
+      textTransform: 'capitalize'
+    }),
+    menu: provided => ({
+      ...provided,
+      backgroundColor: colors.white,
+      borderRadius: 4,
+      overflow: 'hidden',
+      color: 'white',
+      textTransform: 'capitalize',
+      zIndex: 99,
+      boxShadow: shadows['dark-lg'],
+      borderWidth: 1,
+      borderColor: colors.gray[100]
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? colors.blue[500] : 'transparent',
+      color: state.isSelected ? colors.white : colors.black,
+      textTransform: 'capitalize',
+      fontSize: fontSizes.sm,
+      fontWeight: 'normal',
+      cursor: 'pointer',
+      width: '100%',
+
+      '&:active': {
+        color: colors.white,
+        backgroundColor: colors.blue[600]
+      }
+    })
   }
+}
 
-  .hub__menu {
-    border: 1px solid #D9D9D9;
-    border-radius: 4px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1)!important;
-  }
+function alternative(theme: Theme, inputHeight?: number): Props['styles'] {
+  const { colors, shadows, fontSizes } = theme
 
-  .hub-select.blue-transparent {
-    * {
-      box-shadow: none!important;
-      color: white;
-    }
+  const height = inputHeight || 48
 
+  return {
+    control: (provided, state) => ({
+      ...provided,
+      cursor: 'pointer',
+      color: colors.white,
+      minHeight: height,
+      fontSize: fontSizes.md,
+      borderRadius: 8,
+      backgroundColor: 'transparent',
+      borderColor: `${colors.white}!important`,
+      boxShadow: 'none!important',
+      '*': {
+        color: `${colors.white}!important`
+      },
 
-    .hub__indicator-separator {
-      opacity: 0;
-    }
-
-    &.height-md {
-      .hub__control {
-        min-height: 40px!important;
-
-        * {
-          font-size: 0.8125rem!important;
-        }
-
+      svg: {
+        transform: state.isFocused ? 'rotate(180deg)' : 'none'
       }
-    }
-
-    .hub__control  {
-      min-height: 48px;
-      border-color: white;
-      background: transparent;
-      border-radius: 8px;
-        svg {
-          fill: white;
-          transition: all .2s linear;
-        }
-
-    }
-    .hub__control--is-focused {
-      .hub__dropdown-indicator svg {
-        transform: rotate(180deg)!important;
+    }),
+    indicatorSeparator: () => ({
+      opacity: 0
+    }),
+    indicatorsContainer: () => ({
+      svg: {
+        fill: colors.white,
+        transition: 'all .2s linear'
       }
-    }
+    }),
+    container: provided => ({
+      ...provided,
+      textTransform: 'capitalize',
+      backgroundColor: 'transparent'
+    }),
+    input: provided => ({
+      ...provided,
+      color: 'white!important',
+      textTransform: 'capitalize'
+    }),
+    menu: provided => ({
+      ...provided,
+      backgroundColor: colors.blue[500],
+      borderColor: colors.blue[700],
+      borderRadius: 4,
+      overflow: 'hidden',
+      textTransform: 'capitalize',
+      zIndex: 99,
+      boxShadow: shadows['dark-lg'],
+      borderWidth: 1
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? colors.blue[400] : colors.blue[500],
+      color: colors.white,
+      textTransform: 'capitalize',
+      fontSize: fontSizes.md,
+      fontWeight: 'normal',
+      cursor: 'pointer',
+      width: '100%',
+
+      '&:active': {
+        color: colors.white,
+        backgroundColor: colors.blue[600]
+      }
+    })
   }
+}
 
-
-`
+export { normal, alternative }
