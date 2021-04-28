@@ -1,6 +1,8 @@
 import mixpanel from 'mixpanel-browser'
 
 export default (): void => {
+  console.log('resetando as informações do MIXPANEL')
+
   try {
     mixpanel.reset()
   } catch (error) {
