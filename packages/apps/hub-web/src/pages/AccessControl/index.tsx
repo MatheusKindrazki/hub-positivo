@@ -21,7 +21,7 @@ const AccessControl: React.FC = () => {
             css={{
               background: 'white',
               borderRadius: '0.5rem',
-              overflow: 'auto'
+              overflow: 'hidden'
             }}
           >
             <Table columns={columns} data={data} />

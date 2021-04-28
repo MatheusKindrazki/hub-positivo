@@ -18,6 +18,7 @@ import {
   TableUI
 } from '@psdhub/common/components/Table'
 import type { TableProps, Data } from '@psdhub/common/components/Table'
+import { Box } from '@psdhub/common/components/'
 
 import { reoderList as reorder } from '~/utils/reorderList'
 
@@ -43,48 +44,61 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
       <Droppable droppableId="accessControl">
         {provided => {
           return (
-            <TableUI
-              className={classNames(className, { 'accessControl-table': true })}
+            <Box
+              overflow="auto"
+              m="3"
+              borderWidth="thin"
+              borderColor="gray.400"
+              rounded="md"
             >
-              <Thead>
-                <Tr>
-                  {columns?.map(({ header }, index) => (
-                    <Th key={index}>{header}</Th>
+              <TableUI
+                variant="nostyle"
+                className={classNames(className, {
+                  'accessControl-table': true
+                })}
+              >
+                <Thead>
+                  <Tr>
+                    {columns?.map(({ header }, index) => (
+                      <Th key={index} textAlign="center">
+                        {header}
+                      </Th>
+                    ))}
+                  </Tr>
+                </Thead>
+                <Tbody {...provided.droppableProps} ref={provided.innerRef}>
+                  {items.map((e: any, index: number) => (
+                    <Draggable
+                      key={index}
+                      index={index}
+                      draggableId={index.toString() || ''}
+                    >
+                      {provided => (
+                        <Tr
+                          ref={provided.innerRef}
+                          {...provided.dragHandleProps}
+                          {...provided.draggableProps}
+                          key={index}
+                          className={classNames({
+                            'hub-table-even': index % 2 === 0,
+                            'hub-table-odd': index % 2 !== 0
+                          })}
+                        >
+                          {columns?.map((c, i) => {
+                            return (
+                              <Td key={i} textAlign="center">
+                                {c?.render ? c.render(e) : e[c.property as any]}
+                              </Td>
+                            )
+                          })}
+                        </Tr>
+                      )}
+                    </Draggable>
                   ))}
-                </Tr>
-              </Thead>
-              <Tbody {...provided.droppableProps} ref={provided.innerRef}>
-                {items.map((e: any, index: number) => (
-                  <Draggable
-                    key={index}
-                    index={index}
-                    draggableId={index.toString() || ''}
-                  >
-                    {provided => (
-                      <Tr
-                        ref={provided.innerRef}
-                        {...provided.dragHandleProps}
-                        {...provided.draggableProps}
-                        key={index}
-                        className={classNames({
-                          'hub-table-even': index % 2 === 0,
-                          'hub-table-odd': index % 2 !== 0
-                        })}
-                      >
-                        {columns?.map((c, i) => {
-                          return (
-                            <Td key={i}>
-                              {c?.render ? c.render(e) : e[c.property as any]}
-                            </Td>
-                          )
-                        })}
-                      </Tr>
-                    )}
-                  </Draggable>
-                ))}
-              </Tbody>
-              {provided.placeholder}
-            </TableUI>
+                </Tbody>
+                {provided.placeholder}
+              </TableUI>
+            </Box>
           )
         }}
       </Droppable>

@@ -12,11 +12,11 @@ interface SolutionProps {
 
 const Solution: React.FC<SolutionProps> = ({ solution, order }) => {
   return (
-    <Flex flexDirection="row" alignItems="center">
+    <Flex flexDirection="row" alignItems="center" position="relative">
       <GrabIcon />
-      <Box m="1">{order || '1'}</Box>
+      <Box m="2">{order || '1'}</Box>
       <Square />
-      <Box m="1">{solution}</Box>
+      <Box m="2">{solution}</Box>
     </Flex>
   )
 }
