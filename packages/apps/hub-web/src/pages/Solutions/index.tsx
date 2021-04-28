@@ -12,12 +12,6 @@ import MicrofrontendPage from './pages/Microfrontend'
 import IframePage from './pages/Iframe'
 import Loading from './components/Loading'
 
-declare global {
-  interface Window {
-    firstCall?: boolean
-  }
-}
-
 const Solutions: React.FC = () => {
   const [loading, setLoading] = useState(true)
 
@@ -29,8 +23,7 @@ const Solutions: React.FC = () => {
     documentTitle(productName || 'Carregando Solução')
   }, [productData, productName])
 
-  if (!productData && !window?.firstCall) {
-    window.firstCall = true
+  if (!productData) {
     getCardInformation()
   }
 
