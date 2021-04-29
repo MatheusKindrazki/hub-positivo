@@ -2,17 +2,16 @@ import React, { useMemo, useState, useContext } from 'react'
 
 import { ThemeProvider as StyledProvider } from 'styled-components'
 import { ToastContainer } from 'react-toastify'
-import { generate } from 'randomstring'
 import { CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 
 import { ChakraProvider, CSSReset } from '@chakra-ui/react'
 
 import ThemeContext from './context'
+import { cssKey } from './config'
 import GlobalStyles from '../styles/global'
 import profileColors, { VariantsProps } from '../styles/colors'
 import { theme as HubTheme } from '../styles'
-import getRandom from '../../utils/randomNumber'
 
 interface ThemeProps {
   cssVarPrefix?: string
@@ -42,12 +41,8 @@ const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
     return hubThemeProfile
   }, [cssVarPrefix, prof])
 
-  const generateKey = generate(getRandom(5, 15)).replace(/[0-9]/g, '')
-
   return (
-    <CacheProvider
-      value={createCache({ key: `hub-${generateKey.toLowerCase()}` })}
-    >
+    <CacheProvider value={createCache({ key: cssKey })}>
       <ChakraProvider theme={renderTheme} resetCSS>
         <StyledProvider theme={renderTheme as any}>
           <CSSReset />
