@@ -4,6 +4,7 @@ import { useField } from '@unform/core'
 
 import {
   Input as ChakraInput,
+  FormLabel,
   FormControl,
   FormHelperText,
   InputGroup,
@@ -12,7 +13,9 @@ import {
   InputRightElement
 } from '@chakra-ui/react'
 
-type InputElement = InputProps
+interface InputElement extends InputProps {
+  label?: string
+}
 
 interface InputAddIcons extends InputElement {
   iconLeft?: React.ReactNode
@@ -21,6 +24,7 @@ interface InputAddIcons extends InputElement {
 
 const Input: React.FC<InputAddIcons> = ({
   name,
+  label,
   iconLeft,
   iconRight,
   mb,
@@ -50,10 +54,15 @@ const Input: React.FC<InputAddIcons> = ({
 
   return (
     <FormControl mb={mb}>
-      <InputGroup>
+      <InputGroup d="flex" flexDir="column">
         {iconLeft && (
           <InputLeftElement children={iconLeft} width="3rem" height="3rem" />
         )}
+        {label ? (
+          <FormLabel color="blue.500" fontWeight="400">
+            {label}
+          </FormLabel>
+        ) : null}
         <ChakraInput
           data-testid="form-input"
           ref={inputRef}
