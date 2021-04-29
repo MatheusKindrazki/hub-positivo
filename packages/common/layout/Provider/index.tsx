@@ -42,7 +42,7 @@ const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
     return hubThemeProfile
   }, [cssVarPrefix, prof])
 
-  const generateKey = generate(getRandom(5, 10)).replace(/[0-9]/g, '')
+  const generateKey = generate(getRandom(5, 15)).replace(/[0-9]/g, '')
 
   return (
     <CacheProvider
