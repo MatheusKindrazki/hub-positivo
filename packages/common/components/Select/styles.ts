@@ -166,7 +166,7 @@ function secondary(theme: Theme, inputHeight?: number): Props['styles'] {
       boxShadow: state.isFocused
         ? `0 0 0 1px ${colors.blue[500]}`
         : provided.boxShadow,
-      borderColor: state.isFocused ? colors.blue[500] : provided.borderColor,
+      borderColor: state.isFocused ? colors.blue[500] : colors.gray[400],
       '&:hover': {
         borderColor: colors.blue[500]
       },

@@ -15,6 +15,7 @@ import Route from './Route'
 
 // ? Importação das páginas
 const Home = React.lazy(() => import('~/pages/Home'))
+const DevHub = React.lazy(() => import('~/pages/Dev'))
 const SignIn = React.lazy(() => import('~/pages/Auth/SignIn'))
 const Profile = React.lazy(() => import('~/pages/Auth/Profile'))
 const MyClasses = React.lazy(() => import('~/pages/MyClasses'))
@@ -68,6 +69,10 @@ const Routes: React.FC = () => {
 
             {guid === 'PROFESSOR' && (
               <Route path="/minhas-turmas" component={MyClasses} isPrivate />
+            )}
+
+            {process.env.REACT_APP_NODE_ENV === 'development' && (
+              <Route path="/dev" component={DevHub} isPrivate />
             )}
 
             <Redirect to="/" from="*" />
