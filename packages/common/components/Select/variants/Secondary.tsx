@@ -7,7 +7,7 @@ import { generateKey } from '@psdhub/common/layout/Provider/config'
 
 import { forwardRef } from '@chakra-ui/react'
 
-import { primary } from '../styles'
+import { secondary } from '../styles'
 
 export interface PropsSelect extends Props {
   inputHeight?: number
@@ -25,7 +25,10 @@ const HubSelect = forwardRef<PropsSelect, 'select'>((props, ref) => {
     <NonceProvider cacheKey={cssKey} nonce="hub-secondary">
       <Select
         ref={ref}
-        styles={mergeStyles({ ...primary(theme, inputHeight) }, { ...styles })}
+        styles={mergeStyles(
+          { ...secondary(theme, inputHeight) },
+          { ...styles }
+        )}
         clearable
         noOptionsMessage={() => 'Nada encontrado =('}
         className={className}
