@@ -77,7 +77,7 @@ function normal(theme: Theme, inputHeight?: number): Props['styles'] {
   }
 }
 
-function alternative(theme: Theme, inputHeight?: number): Props['styles'] {
+function primary(theme: Theme, inputHeight?: number): Props['styles'] {
   const { colors, shadows, fontSizes } = theme
 
   const height = inputHeight || 48
@@ -149,4 +149,4 @@ function alternative(theme: Theme, inputHeight?: number): Props['styles'] {
   }
 }
 
-export { normal, alternative }
+export { normal, primary }

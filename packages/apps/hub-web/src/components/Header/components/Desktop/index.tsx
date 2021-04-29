@@ -12,11 +12,10 @@ import Popover, {
   PopoverContent
 } from '@psdhub/common/components/Popover'
 import { MenuDivider } from '@psdhub/common/components/Menu'
-import { Box, Button, Avatar } from '@psdhub/common/components'
+import { Box, Button, Avatar, Select } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
-import Select from '~/components/Select'
 import ModalSupportContext from '~/components/ModalSupport/context'
 
 import GlobalStyle from '../../styles'
