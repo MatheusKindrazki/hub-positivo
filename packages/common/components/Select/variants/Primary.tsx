@@ -12,6 +12,7 @@ import { primary } from '../styles'
 export interface PropsSelect extends Props {
   inputHeight?: number
   styles?: Props['styles']
+  error?: boolean
 }
 
 const HubSelect = forwardRef<PropsSelect, 'select'>((props, ref) => {
@@ -25,7 +26,10 @@ const HubSelect = forwardRef<PropsSelect, 'select'>((props, ref) => {
     <NonceProvider cacheKey={cssKey} nonce="hub-primary">
       <Select
         ref={ref}
-        styles={mergeStyles({ ...primary(theme, inputHeight) }, { ...styles })}
+        styles={mergeStyles(
+          { ...primary(theme, inputHeight, error) },
+          { ...styles }
+        )}
         clearable
         noOptionsMessage={() => 'Nada encontrado =('}
         className={className}

@@ -1,13 +1,20 @@
-import { Props } from 'react-select'
+import { Props, mergeStyles } from 'react-select'
 
 import { Theme } from '@psdhub/common/layout/styles'
+interface ThemeStyle {
+  theme: Theme
+  inputHeight?: number
+  error?: boolean
+}
 
-function normal(theme: Theme, inputHeight?: number): Props['styles'] {
+function normal(data: ThemeStyle): Props['styles'] {
+  const { theme, error, inputHeight } = data
+
   const { colors, shadows, fontSizes } = theme
 
   const height = inputHeight || 48
 
-  return {
+  const styled: Props['styles'] = {
     control: (provided, state) => ({
       ...provided,
       cursor: 'pointer',
@@ -20,10 +27,10 @@ function normal(theme: Theme, inputHeight?: number): Props['styles'] {
         ? `0 0 0 1px ${colors.blue[500]}`
         : provided.boxShadow,
       borderColor: state.isFocused ? colors.blue[500] : provided.borderColor,
+
       '&:hover': {
         borderColor: colors.blue[500]
       },
-
       svg: {
         transform: state.isFocused ? 'rotate(180deg)' : 'none'
       }
@@ -75,14 +82,27 @@ function normal(theme: Theme, inputHeight?: number): Props['styles'] {
       }
     })
   }
+
+  return mergeStyles(styled, {
+    control: provided => ({
+      ...provided,
+      boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
+      borderColor: error ? colors.red[300] : provided.borderColor,
+      '&:hover': {
+        borderColor: colors.red[500]
+      }
+    })
+  })
 }
 
-function primary(theme: Theme, inputHeight?: number): Props['styles'] {
+function primary(data: ThemeStyle): Props['styles'] {
+  const { theme, error, inputHeight } = data
+
   const { colors, shadows, fontSizes } = theme
 
   const height = inputHeight || 48
 
-  return {
+  const styled: Props['styles'] = {
     control: (provided, state) => ({
       ...provided,
       cursor: 'pointer',
@@ -92,6 +112,8 @@ function primary(theme: Theme, inputHeight?: number): Props['styles'] {
       borderRadius: 8,
       backgroundColor: 'transparent',
       borderColor: `${colors.white}!important`,
+      border: error ? '1px solid red!important' : provided.border,
+
       boxShadow: 'none!important',
       '*': {
         color: `${colors.white}!important`
@@ -147,14 +169,27 @@ function primary(theme: Theme, inputHeight?: number): Props['styles'] {
       }
     })
   }
+
+  return mergeStyles(styled, {
+    control: provided => ({
+      ...provided,
+      boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
+      borderColor: error ? colors.red[300] : provided.borderColor,
+      '&:hover': {
+        borderColor: colors.red[500]
+      }
+    })
+  })
 }
 
-function secondary(theme: Theme, inputHeight?: number): Props['styles'] {
+function secondary(data: ThemeStyle): Props['styles'] {
+  const { theme, error, inputHeight } = data
+
   const { colors, shadows, fontSizes } = theme
 
   const height = inputHeight || 48
 
-  return {
+  const styled: Props['styles'] = {
     control: (provided, state) => ({
       ...provided,
       cursor: 'pointer',
@@ -222,6 +257,17 @@ function secondary(theme: Theme, inputHeight?: number): Props['styles'] {
       }
     })
   }
+
+  return mergeStyles(styled, {
+    control: provided => ({
+      ...provided,
+      boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
+      borderColor: error ? colors.red[300] : provided.borderColor,
+      '&:hover': {
+        borderColor: colors.red[500]
+      }
+    })
+  })
 }
 
 export { normal, primary, secondary }

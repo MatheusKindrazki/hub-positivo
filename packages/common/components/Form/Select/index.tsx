@@ -26,7 +26,9 @@ const Select: React.FC<Props> = ({ name, mb, ...rest }) => {
           if (!ref.state.value) {
             return []
           }
-          return ref.state.value.map((option: OptionTypeBase) => option.value)
+          return ref?.state?.value?.map(
+            (option: OptionTypeBase) => option.value
+          )
         }
         if (!ref.state.value) {
           return ''
@@ -38,9 +40,14 @@ const Select: React.FC<Props> = ({ name, mb, ...rest }) => {
 
   return (
     <FormControl mb={mb}>
-      <DefaultSelect defaultValue={defaultValue} ref={selectRef} {...rest} />
+      <DefaultSelect
+        defaultValue={defaultValue}
+        error={!!error}
+        ref={selectRef}
+        {...rest}
+      />
       {!!error && (
-        <FormHelperText data-testid="input-error" color="red.300">
+        <FormHelperText data-testid="input-error" ml="1" color="red.300">
           {error}
         </FormHelperText>
       )}

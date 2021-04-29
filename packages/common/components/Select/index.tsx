@@ -8,6 +8,7 @@ import options from './options'
 
 export type PropsSelect = Props & {
   variant: 'normal' | 'primary' | 'secondary'
+  error?: boolean
 }
 
 const Select = forwardRef<PropsSelect, 'select'>((props, ref) => {

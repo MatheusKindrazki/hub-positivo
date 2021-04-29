@@ -63,7 +63,11 @@ const SignIn: React.FC = () => {
 
   const handleSubmit = useCallback(
     async data => {
-      formRef.current?.setErrors({})
+      formRef.current?.setErrors({
+        'select-legal': 'brasil'
+      })
+
+      console.log(data)
 
       try {
         await signInValidator.validate(data, {
