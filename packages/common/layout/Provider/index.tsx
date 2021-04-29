@@ -2,6 +2,7 @@ import React, { useMemo, useState, useContext } from 'react'
 
 import { ThemeProvider as StyledProvider } from 'styled-components'
 import { ToastContainer } from 'react-toastify'
+import { generate } from 'randomstring'
 import { CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 
@@ -40,10 +41,8 @@ const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
     return hubThemeProfile
   }, [cssVarPrefix, prof])
 
-  const classKey = process.env.REACT_APP_IS_HUB ? cssVarPrefix : 'hub-component'
-
   return (
-    <CacheProvider value={createCache({ key: classKey || 'hub-component' })}>
+    <CacheProvider value={createCache({ key: `hub_${generate(10)}` })}>
       <ChakraProvider theme={renderTheme} resetCSS>
         <StyledProvider theme={renderTheme as any}>
           <CSSReset />
