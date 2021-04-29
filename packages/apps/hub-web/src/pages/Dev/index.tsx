@@ -71,7 +71,7 @@ const DevHub: React.FC = () => {
             type="text"
             data-testid="email"
             placeholder="Url para redirecionamento"
-            defaultValue="http://localhost:300/#/auth"
+            defaultValue="http://localhost:3000/#/auth"
             mb="5"
           />
 
