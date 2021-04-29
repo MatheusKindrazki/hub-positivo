@@ -1,9 +1,8 @@
 export interface SolutionsReducer {
   loading: boolean
-  data?: SolutionAPI[]
+  data?: Category[]
 }
-
-export interface SolutionAPI {
+export interface Category {
   id: string
   ativo: boolean
   nome: string
@@ -20,4 +19,18 @@ export interface Solution {
   tipoRenderizacao: string
   notificacao?: string
   ativo: boolean
+  permissions: Permissions[]
+  restriction: Restriction[]
+}
+
+export interface Permissions {
+  id: string
+  perfil: string
+  nivelEnsino: string[]
+}
+
+export interface Restriction {
+  id: string
+  idEscola: string
+  nomeEscola: string
 }

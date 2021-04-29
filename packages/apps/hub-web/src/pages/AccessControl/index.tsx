@@ -1,39 +1,15 @@
-import React, { useEffect } from 'react'
-
-import { useSelector, useDispatch } from 'react-redux'
-
-import { solutionsLinksRequest } from '~/store/modules/solutionsLinks/actions'
-import { solutionsRequest } from '~/store/modules/solutions/actions'
+import React from 'react'
 
 import { Collapse } from '@psdhub/common/components'
 
 import Container from './styles'
-import { columns, data } from './mockTest'
+import { columns, data, apiReturn } from './mockTest'
 import Table from './components/Table'
 
 const AccessControl: React.FC = () => {
-  const dispatch = useDispatch()
-
-  const { data: solutions, loading: l } = useSelector(
-    (state: Store.State) => state.solutions
-  )
-
-  const { data: solutionsLinks } = useSelector(
-    (state: Store.State) => state.solutionsLinks
-  )
-
-  console.log({ solutionsLinks })
-
-  useEffect(() => {
-    dispatch(solutionsRequest())
-    dispatch(solutionsLinksRequest())
-  }, [dispatch])
-
-  if (l) return <span>Carregando</span>
-
   return (
     <Container m="1">
-      {solutions?.map(categoria => {
+      {apiReturn?.map((categoria: any) => {
         return (
           <Collapse
             defaultIsOpen={false}

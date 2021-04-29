@@ -19,7 +19,7 @@ export interface Columns {
 
 export type Data = any
 export interface TableProps extends Props {
-  columns?: Columns[]
+  columns: Columns[]
   data?: Data
   className?: string
 }
