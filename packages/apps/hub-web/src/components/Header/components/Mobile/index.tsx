@@ -14,11 +14,10 @@ import Drawer, {
   useDisclosure,
   DrawerContent
 } from '@psdhub/common/components/Drawer'
-import { Box, Button, Welcome } from '@psdhub/common/components'
+import { Box, Button, Welcome, Select } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
-import Select from '~/components/Select'
 import ModalSupportContext from '~/components/ModalSupport/context'
 
 import { useHeader } from '../../context'

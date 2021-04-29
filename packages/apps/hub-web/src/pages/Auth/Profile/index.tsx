@@ -8,11 +8,9 @@ import { AccessData } from '~/store/modules/auth/types'
 import { preparingUserData } from '~/store/modules/auth/actions'
 
 import documentTitle from '@psdhub/common/utils/documentTitle'
-import { Box, Heading } from '@psdhub/common/components'
+import { Box, Heading, Select } from '@psdhub/common/components'
 
 import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
-
-import Select from '~/components/Select'
 
 import useQuery from '~/hooks/useQuery'
 

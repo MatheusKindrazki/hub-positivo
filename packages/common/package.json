@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/common",
-  "version": "1.5.2",
+  "version": "1.6.1",
   "author": "matheuskindrazki",
   "description": "PSD Hub Design Styles Kit",
   "license": "MIT",
@@ -40,6 +40,7 @@
     "polished": "^4.1.0",
     "randomstring": "^1.1.5",
     "react-collapse": "^5.1.0",
+    "react-select": "^4.3.0",
     "react-spinners": "^0.10.4",
     "react-toastify": "^7.0.3",
     "reactour": "^1.18.0"
@@ -50,6 +51,7 @@
     "@types/node": "^14.14.25",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
+    "@types/react-select": "^4.0.15",
     "@types/reactour": "^1.18.0",
     "react": "^17.0.1",
     "typescript": "^4.2.4"
