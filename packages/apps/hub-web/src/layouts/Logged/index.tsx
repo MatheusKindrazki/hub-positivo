@@ -1,11 +1,13 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 import Script from 'react-load-script'
+import { generate } from 'randomstring'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour, postTourViewed } from '~/store/modules/tour/actions'
 
+import gsc, { removeGsc } from '@psdhub/gsc'
 import Tour from '@psdhub/common/components/Tour'
 import { BarLoader } from '@psdhub/common/components'
 
@@ -14,15 +16,20 @@ import setUserProperties from '~/services/mixpanel/setProperties'
 import ModalNoClass from '~/components/ModalNoClass'
 import Header from '~/components/Header'
 
-import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
-
 import { Container } from './styles'
 
+window.gsc = undefined
+
 const Dashboard: React.FC = ({ children }) => {
-  useSendGlobalInfo()
+  gsc()
   setUserProperties()
 
   const dispatch = useDispatch()
+  useEffect(() => {
+    return () => {
+      removeGsc()
+    }
+  }, [])
 
   const { loading } = useSelector((state: Store.State) => state.global)
 
@@ -45,7 +52,7 @@ const Dashboard: React.FC = ({ children }) => {
       )}
       <Header />
       {children}
-      <Script url="//l.getsitecontrol.com/e4zj5ly7.js" />
+      <Script url={`//l.getsitecontrol.com/e4zj5ly7.js?hash=${generate(10)}`} />
     </Container>
   )
 }
