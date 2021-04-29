@@ -12,6 +12,7 @@ import ThemeContext from './context'
 import GlobalStyles from '../styles/global'
 import profileColors, { VariantsProps } from '../styles/colors'
 import { theme as HubTheme } from '../styles'
+import getRandom from '../../utils/randomNumber'
 
 interface ThemeProps {
   cssVarPrefix?: string
@@ -41,8 +42,12 @@ const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
     return hubThemeProfile
   }, [cssVarPrefix, prof])
 
+  const generateKey = generate(getRandom(5, 10)).replace(/[0-9]/g, '')
+
   return (
-    <CacheProvider value={createCache({ key: `hub_${generate(10)}` })}>
+    <CacheProvider
+      value={createCache({ key: `hub-${generateKey.toLowerCase()}` })}
+    >
       <ChakraProvider theme={renderTheme} resetCSS>
         <StyledProvider theme={renderTheme as any}>
           <CSSReset />

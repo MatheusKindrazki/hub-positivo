@@ -23,9 +23,9 @@ module.exports = function (config, env) {
           ssr: false,
           pure: true,
           fileName: false,
-          displayName: true,
+          displayName: false,
           namespace: 'hub',
-          transpileTemplateLiterals: true
+          transpileTemplateLiterals: false
         },
       ])
     )(config, env)
