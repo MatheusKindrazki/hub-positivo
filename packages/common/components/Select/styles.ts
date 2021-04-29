@@ -87,10 +87,7 @@ function normal(data: ThemeStyle): Props['styles'] {
     control: provided => ({
       ...provided,
       boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
-      borderColor: error ? colors.red[300] : provided.borderColor,
-      '&:hover': {
-        borderColor: colors.red[500]
-      }
+      borderColor: error ? colors.red[300] : provided.borderColor
     })
   })
 }
@@ -174,10 +171,7 @@ function primary(data: ThemeStyle): Props['styles'] {
     control: provided => ({
       ...provided,
       boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
-      borderColor: error ? colors.red[300] : provided.borderColor,
-      '&:hover': {
-        borderColor: colors.red[500]
-      }
+      borderColor: error ? colors.red[300] : provided.borderColor
     })
   })
 }
@@ -262,10 +256,7 @@ function secondary(data: ThemeStyle): Props['styles'] {
     control: provided => ({
       ...provided,
       boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
-      borderColor: error ? colors.red[300] : provided.borderColor,
-      '&:hover': {
-        borderColor: colors.red[500]
-      }
+      borderColor: error ? colors.red[300] : provided.borderColor
     })
   })
 }

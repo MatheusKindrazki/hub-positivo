@@ -16,7 +16,7 @@ export interface PropsSelect extends Props {
 }
 
 const HubSelect = forwardRef<PropsSelect, 'select'>((props, ref) => {
-  const { className, inputHeight, styles, ...rest } = props
+  const { className, inputHeight, styles, error, ...rest } = props
 
   const theme = useTheme()
 
@@ -27,7 +27,7 @@ const HubSelect = forwardRef<PropsSelect, 'select'>((props, ref) => {
       <Select
         ref={ref}
         styles={mergeStyles(
-          { ...primary(theme, inputHeight, error) },
+          { ...primary({ theme, inputHeight, error }) },
           { ...styles }
         )}
         clearable

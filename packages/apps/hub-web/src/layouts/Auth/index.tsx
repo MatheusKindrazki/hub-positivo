@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 
+import Script from 'react-load-script'
+
 import { useSelector } from 'react-redux'
 
 import { BarLoader, CardBox, Text } from '@psdhub/common/components'
@@ -32,6 +34,8 @@ const Auth: React.FC = ({ children }) => {
       <Text mt="4" color="gray.500">
         v{process.env.REACT_APP_VERSION}
       </Text>
+
+      <Script url="//l.getsitecontrol.com/e4zj5ly7.js" />
     </Container>
   )
 }
