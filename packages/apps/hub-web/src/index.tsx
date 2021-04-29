@@ -8,6 +8,8 @@ import hotjarInit from './services/hotjar/hotjarInit'
 import setGSCOnSubmit from './services/getSiteControl/gscOnSubmit'
 import App from './App'
 
+window.gsc = undefined
+
 window.mixpanel = mixpanel
 
 mixPanelInit()

@@ -1,8 +1,5 @@
 import React, { useCallback, useEffect } from 'react'
 
-import Script from 'react-load-script'
-import { generate } from 'randomstring'
-
 import { useDispatch, useSelector } from 'react-redux'
 
 import { CardProduct } from '~/store/modules/products/types'
@@ -16,12 +13,13 @@ import setUserProperties from '~/services/mixpanel/setProperties'
 
 import Header from './components/Header'
 
-window.gsc = undefined
+gsc()
+
 const Iframe: React.FC = ({ children }) => {
-  gsc()
   setUserProperties()
 
   const dispatch = useDispatch()
+
   useEffect(() => {
     return () => {
       removeGsc()
@@ -51,8 +49,6 @@ const Iframe: React.FC = ({ children }) => {
       <BarLoader width="100%" height="4px" loading={loading} />
       <Header handlePush={handlePlush} cards={data as CardProduct[]} />
       {children}
-
-      <Script url={`//l.getsitecontrol.com/e4zj5ly7.js?hash=${generate(10)}`} />
     </>
   )
 }

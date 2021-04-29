@@ -1,8 +1,5 @@
 import React, { useCallback, useEffect } from 'react'
 
-import Script from 'react-load-script'
-import { generate } from 'randomstring'
-
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour, postTourViewed } from '~/store/modules/tour/actions'
@@ -18,10 +15,9 @@ import Header from '~/components/Header'
 
 import { Container } from './styles'
 
-window.gsc = undefined
+gsc()
 
 const Dashboard: React.FC = ({ children }) => {
-  gsc()
   setUserProperties()
 
   const dispatch = useDispatch()
@@ -52,7 +48,6 @@ const Dashboard: React.FC = ({ children }) => {
       )}
       <Header />
       {children}
-      <Script url={`//l.getsitecontrol.com/e4zj5ly7.js?hash=${generate(10)}`} />
     </Container>
   )
 }

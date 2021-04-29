@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react'
 
-import Script from 'react-load-script'
-import { generate } from 'randomstring'
-
 import { useSelector } from 'react-redux'
 
 import gsc, { removeGsc } from '@psdhub/gsc'
@@ -12,8 +9,9 @@ import Logo from '~/components/Logo'
 
 import { Container } from './styles'
 
+gsc()
+
 const Auth: React.FC = ({ children }) => {
-  gsc()
   /* Variáveis para controle do GTM */
   const { loading } = useSelector((state: Store.State) => state.global)
 
@@ -33,8 +31,6 @@ const Auth: React.FC = ({ children }) => {
       <Text mt="4" color="gray.500">
         v{process.env.REACT_APP_VERSION}
       </Text>
-
-      <Script url={`//l.getsitecontrol.com/e4zj5ly7.js?hash=${generate(10)}`} />
     </Container>
   )
 }
