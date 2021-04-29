@@ -20,7 +20,7 @@ module.exports = function (config, env) {
       addBabelPlugin([
         'babel-plugin-styled-components',
         {
-          ssr: false,
+          ssr: true,
           pure: true,
           fileName: false,
           displayName: false,
