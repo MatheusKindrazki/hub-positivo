@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react'
 
+import Script from 'react-load-script'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour, postTourViewed } from '~/store/modules/tour/actions'
@@ -43,6 +45,7 @@ const Dashboard: React.FC = ({ children }) => {
       )}
       <Header />
       {children}
+      <Script url="//l.getsitecontrol.com/e4zj5ly7.js" />
     </Container>
   )
 }

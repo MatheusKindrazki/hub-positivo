@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react'
 
+import Script from 'react-load-script'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { CardProduct } from '~/store/modules/products/types'
@@ -43,6 +45,7 @@ const Iframe: React.FC = ({ children }) => {
       <BarLoader width="100%" height="4px" loading={loading} />
       <Header handlePush={handlePlush} cards={data as CardProduct[]} />
       {children}
+      <Script url="//l.getsitecontrol.com/e4zj5ly7.js" />
     </>
   )
 }
