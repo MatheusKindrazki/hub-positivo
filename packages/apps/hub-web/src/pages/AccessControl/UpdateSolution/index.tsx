@@ -5,25 +5,37 @@ import { DropzoneRef } from 'react-dropzone'
 import { useSelector } from 'react-redux'
 
 import { CaretRight } from '@psdhub/common/components/Icons'
-import { FormProps, Form, Input, Button } from '@psdhub/common/components/Form'
+import {
+  FormProps,
+  Form,
+  Input,
+  Button as FormButton
+} from '@psdhub/common/components/Form'
 import Dropzone from '@psdhub/common/components/Dropzone'
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink
 } from '@psdhub/common/components/Breadcrumbs'
-import { Box, Text, Select, Stack } from '@psdhub/common/components'
+import { Box, Text, Select, Stack, Button } from '@psdhub/common/components'
 
-const CreateSolution: React.FC = () => {
+import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
+
+const UpdateSolution: React.FC = () => {
   const { loading: alterLoading } = useSelector(
     (state: Store.State) => state.user
   )
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
+  const modalRef = useRef<ModalHandler>(null)
 
   const handleSubmit = useCallback(async data => {
     console.log(data)
+  }, [])
+
+  const openModal = useCallback(() => {
+    modalRef.current?.onOpen()
   }, [])
 
   return (
@@ -37,7 +49,7 @@ const CreateSolution: React.FC = () => {
           </BreadcrumbItem>
 
           <BreadcrumbItem>
-            <BreadcrumbLink>Criar Solucao</BreadcrumbLink>
+            <BreadcrumbLink>Editar Solucao</BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
       </Box>
@@ -46,6 +58,7 @@ const CreateSolution: React.FC = () => {
         <Form ref={formRef} onSubmit={handleSubmit}>
           <Box d="flex" flexDir="column" mb="6">
             <Input
+              mb="5"
               label="Titulo"
               name="teste"
               backgroundColor="white"
@@ -107,33 +120,58 @@ const CreateSolution: React.FC = () => {
             </Box>
           </Stack>
 
-          <Box flexDir="row-reverse" d="flex">
-            <Button
-              marginLeft="3"
-              height="14"
-              maxWidth="32"
-              fontWeight="500"
-              textTransform="uppercase"
-              colorScheme="blue"
-              isLoading={alterLoading}
-            >
-              Adicionar
-            </Button>
-            <Button
-              height="14"
-              maxWidth="32"
-              variant="outline"
-              fontWeight="500"
-              textTransform="uppercase"
-              color="gray"
-            >
-              Cancelar
-            </Button>
+          <Box
+            mt="9"
+            flexDir="row-reverse"
+            d="flex"
+            w="100%"
+            justifyContent="space-between"
+          >
+            <Box w="30%" d="flex" height="14" justifyContent="space-between">
+              <FormButton
+                height="14"
+                m="0"
+                marginLeft="3"
+                maxWidth="32"
+                fontWeight="500"
+                textTransform="uppercase"
+                colorScheme="blue"
+                isLoading={alterLoading}
+              >
+                Adicionar
+              </FormButton>
+              <Button
+                borderColor="gray.500"
+                height="14"
+                maxWidth="32"
+                variant="outline"
+                fontWeight="500"
+                textTransform="uppercase"
+                color="gray"
+              >
+                Cancelar
+              </Button>
+            </Box>
+            <Box w="30%">
+              <Button
+                onClick={openModal}
+                height="14"
+                width="32"
+                variant="outline"
+                fontWeight="500"
+                textTransform="uppercase"
+                colorScheme="red"
+                color="red"
+              >
+                Excluir
+              </Button>
+            </Box>
           </Box>
         </Form>
       </Box>
+      <ModalDeleteSolution ref={modalRef} />
     </Box>
   )
 }
 
-export default CreateSolution
+export default UpdateSolution

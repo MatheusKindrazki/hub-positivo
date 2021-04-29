@@ -26,6 +26,9 @@ const AccessControl = React.lazy(() => import('~/pages/AccessControl'))
 const CreateSolution = React.lazy(
   () => import('~/pages/AccessControl/CreateSolution')
 )
+const UpdateSolution = React.lazy(
+  () => import('~/pages/AccessControl/UpdateSolution')
+)
 
 const Solutions = React.lazy(() => import('~/pages/Solutions'))
 
@@ -59,6 +62,11 @@ const Routes: React.FC = () => {
             />
             <Route path="/token-expirado" component={ExpiredToken} />
             <Route path="/alterar-senha" component={ChangePassword} />
+            <Route
+              path="/controle-de-acessos/editar-solucao"
+              component={UpdateSolution}
+              isPrivate
+            />
             <Route
               path="/controle-de-acessos/criar-solucao"
               component={CreateSolution}
