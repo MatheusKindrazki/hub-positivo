@@ -7,7 +7,6 @@ import { signOut } from '~/store/modules/auth/actions'
 
 import { useDisclosure } from '@psdhub/common/hooks'
 import Welcome from '@psdhub/common/components/Welcome'
-import Select from '@psdhub/common/components/Select'
 import Popover, {
   PopoverTrigger,
   PopoverContent
@@ -17,6 +16,7 @@ import { Box, Button, Avatar } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
+import Select from '~/components/Select'
 import ModalSupportContext from '~/components/ModalSupport/context'
 
 import GlobalStyle from '../../styles'

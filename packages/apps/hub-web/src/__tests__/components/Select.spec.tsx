@@ -4,11 +4,11 @@ import { openMenu, select } from 'react-select-event'
 import { renderHook } from '@testing-library/react-hooks'
 
 import { fireEvent, render } from '@psdhub/test-utils'
+import { useTheme } from '@psdhub/common/layout'
 
-import { useTheme } from '../../layout'
-import Select, { PropsSelect } from '../../components/Select'
+import Select, { PropsSelect } from '~/components/Select'
 
-jest.mock('../../layout', () => ({
+jest.mock('@psdhub/common/layout', () => ({
   useTheme: jest.fn(() => ({
     colors: {
       blue: {

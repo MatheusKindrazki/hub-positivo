@@ -3487,7 +3487,7 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react-select@^4.0.13", "@types/react-select@^4.0.15":
+"@types/react-select@^4.0.15":
   version "4.0.15"
   resolved "https://registry.yarnpkg.com/@types/react-select/-/react-select-4.0.15.tgz#2e6a1cff22c4bbae6c95b8dbee5b5097c12eae54"
   integrity sha512-GPyBFYGMVFCtF4eg9riodEco+s2mflR10Nd5csx69+bcdvX6Uo9H/jgrIqovBU9yxBppB9DS66OwD6xxgVqOYQ==
@@ -13800,7 +13800,7 @@ react-select-event@^5.2.0:
   dependencies:
     "@testing-library/dom" ">=7"
 
-react-select@^4.1.0, react-select@^4.3.0:
+react-select@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-4.3.0.tgz#6bde634ae7a378b49f3833c85c126f533483fa2e"
   integrity sha512-SBPD1a3TJqE9zoI/jfOLCAoLr/neluaeokjOixr3zZ1vHezkom8K0A9J4QG9IWDqIDE9K/Mv+0y1GjidC2PDtQ==

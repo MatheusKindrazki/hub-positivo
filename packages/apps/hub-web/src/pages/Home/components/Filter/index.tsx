@@ -8,7 +8,9 @@ import { productRequest } from '~/store/modules/products/actions'
 import { setEducationalStage } from '~/store/modules/educationalStage/actions'
 
 import { useMediaQuery } from '@psdhub/common/layout/styles'
-import { Box, Select } from '@psdhub/common/components'
+import { Box } from '@psdhub/common/components'
+
+import Select from '~/components/Select'
 
 const Filter: React.FC = () => {
   const dispatch = useDispatch()
