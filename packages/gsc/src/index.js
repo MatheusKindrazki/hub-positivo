@@ -1,3 +1,5 @@
+import {generate} from 'randomstring'
+
 export default function gsc() {
   let script = document.createElement('script');
 
@@ -5,7 +7,7 @@ export default function gsc() {
 
   script.type = 'text/javascript'
 
-  script.src = process.env.REACT_APP_GSC
+  script.src = `${process.env.REACT_APP_GSC}?hash=${generate(10)}`
 
   document.head.appendChild(script);
 

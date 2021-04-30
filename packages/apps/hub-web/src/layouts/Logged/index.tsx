@@ -15,9 +15,8 @@ import Header from '~/components/Header'
 
 import { Container } from './styles'
 
-gsc()
-
 const Dashboard: React.FC = ({ children }) => {
+  gsc()
   setUserProperties()
 
   const dispatch = useDispatch()

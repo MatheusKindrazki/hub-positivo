@@ -9,9 +9,8 @@ import Logo from '~/components/Logo'
 
 import { Container } from './styles'
 
-gsc()
-
 const Auth: React.FC = ({ children }) => {
+  gsc()
   /* Variáveis para controle do GTM */
   const { loading } = useSelector((state: Store.State) => state.global)
 

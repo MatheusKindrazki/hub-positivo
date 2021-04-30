@@ -13,9 +13,8 @@ import setUserProperties from '~/services/mixpanel/setProperties'
 
 import Header from './components/Header'
 
-gsc()
-
 const Iframe: React.FC = ({ children }) => {
+  gsc()
   setUserProperties()
 
   const dispatch = useDispatch()
