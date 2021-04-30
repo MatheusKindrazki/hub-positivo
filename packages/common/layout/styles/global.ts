@@ -20,18 +20,18 @@ export default createGlobalStyle`
     box-shadow: none!important;
   }
 
-    .Toastify__toast--info {
-      background: var(--hub-toast-info)!important;
-    }
-    .Toastify__toast--success {
-      background: var(--hub-toast-success)!important;
-    }
-    .Toastify__toast--warning {
-      background: var(--hub-toast-warning)!important;
-    }
-    .Toastify__toast--error {
-      background: var(--hub-toast-error)!important;
-    }
+  .Toastify__toast--info {
+    background: var(--hub-toast-info)!important;
+  }
+  .Toastify__toast--success {
+    background: var(--hub-toast-success)!important;
+  }
+  .Toastify__toast--warning {
+    background: var(--hub-toast-warning)!important;
+  }
+  .Toastify__toast--error {
+    background: var(--hub-toast-error)!important;
+  }
   .Toastify__toast-container {
     z-index: 9999;
     -webkit-transform: translate3d(0, 0, 9999px);
@@ -41,6 +41,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
     color: #fff;
   }
+
   .Toastify__toast-container--top-left {
     top: 1em;
     left: 1em;
