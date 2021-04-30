@@ -58,8 +58,6 @@ const setProperties = (): void => {
     sendProps.user_name as string
   )
 
-  console.log(sendProps)
-
   // Identificador Get Site Control
   if (window.gsc) {
     window?.gsc('params', {
