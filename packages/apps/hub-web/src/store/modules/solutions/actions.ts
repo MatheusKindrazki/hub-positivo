@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-import { Category } from './types'
+import { Solutions } from './types'
 
 export const Actions = {
   SOLUTIONS_REQUEST: '@solutions/SOLUTIONS_REQUEST',
@@ -24,7 +24,7 @@ export function solutionsFailure(): Action {
   }
 }
 
-export function solutionsSuccess(data?: Category[]): Action {
+export function solutionsSuccess(data?: Solutions[]): Action {
   return {
     type: Actions.SOLUTIONS_SUCCESS,
     payload: data

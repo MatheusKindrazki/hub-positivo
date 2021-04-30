@@ -1,15 +1,59 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
+import { useSelector, useDispatch } from 'react-redux'
+
+import { solutionsRequest } from '~/store/modules/solutions/actions'
+
+import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
 
+import { formatReturnDataFromAPI } from './utils/formatReturnDataFromAPI'
 import Container from './styles'
-import { columns, data, apiReturn } from './mockTest'
-import Table from './components/Table'
+import Table, { TableSolution } from './components/Table'
+import Switch from './components/Switch'
+import EditButton from './components/EditButton'
+
+export interface CollapseData {
+  nome: string
+  solutions: TableSolution[]
+}
+
+export const columns: Columns[] = [
+  { property: 'solution', header: 'Solução' },
+  { property: 'profile', header: 'Perfis' },
+  { property: 'schools', header: 'Escolas' },
+  {
+    property: 'edit',
+    header: null,
+    render: (e: TableSolution) => <EditButton url={`/${e.id}`} />
+  },
+  {
+    property: 'active',
+    header: null,
+    render: (e: TableSolution) => <Switch activated={e.activated} />
+  }
+]
 
 const AccessControl: React.FC = () => {
+  const [solutions, setSolutions] = useState<CollapseData[] | null>(null)
+  const { data } = useSelector((state: Store.State) => state.solutions)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(solutionsRequest())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (data) {
+      setSolutions(formatReturnDataFromAPI(data))
+    }
+  }, [data])
+
+  if (!data) return <h1>Carregando</h1>
+
   return (
     <Container m="1">
-      {apiReturn?.map((categoria: any) => {
+      {solutions?.map(categoria => {
         return (
           <Collapse
             defaultIsOpen={false}
@@ -24,7 +68,7 @@ const AccessControl: React.FC = () => {
               overflow: 'hidden'
             }}
           >
-            <Table columns={columns} data={data} />
+            <Table columns={columns} data={categoria.solutions} />
           </Collapse>
         )
       })}

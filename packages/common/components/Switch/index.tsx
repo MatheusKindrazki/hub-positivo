@@ -9,4 +9,6 @@ const Switch: React.FC<SwitchProps> = ({ children, ...rest }) => {
     </SwitchButton>
   )
 }
+
+export { SwitchProps }
 export default Switch

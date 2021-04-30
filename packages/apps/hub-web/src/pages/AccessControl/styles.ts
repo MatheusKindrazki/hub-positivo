@@ -8,16 +8,6 @@ const Container = styled(Box)`
     height: 3rem;
     padding: 0.8125rem;
   }
-
-  .switch-button {
-    > span {
-      background: var(--hub-base-color);
-
-      &[data-checked] {
-        background: var(--hub-colors-gray-400);
-      }
-    }
-  }
 `
 
 export default Container

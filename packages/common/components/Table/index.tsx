@@ -10,9 +10,8 @@ import Th from './Th'
 import Tfoot from './Tfoot'
 import Td from './Td'
 import Tbody from './Tbody'
-
 export interface Columns {
-  property: string
+  property: keyof Data
   header?: string | React.ReactNode
   render?: (props: any) => void
 }

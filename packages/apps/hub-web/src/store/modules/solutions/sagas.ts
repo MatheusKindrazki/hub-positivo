@@ -7,17 +7,17 @@ import { loading } from '~/store/modules/global/actions'
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
-import { Category } from './types'
+import { Solutions } from './types'
 import { Actions, solutionsFailure, solutionsSuccess } from './actions'
 
 export function* getSolutions(): Generator {
   yield put(loading(true))
 
   const response = yield call(() => {
-    return api.get('/Categoria/Solucoes')
+    return api.get('Categoria/SolucoesPerfisRestricoes')
   })
 
-  const { ok, data } = response as ApiResponse<Category[]>
+  const { ok, data } = response as ApiResponse<Solutions[]>
 
   yield put(loading(false))
 

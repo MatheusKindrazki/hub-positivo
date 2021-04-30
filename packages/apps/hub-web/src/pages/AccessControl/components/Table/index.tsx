@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import {
   DragDropContext,
@@ -15,22 +15,26 @@ import {
   Th,
   Tfoot,
   Td,
-  Tbody,
-  TableUI
+  Tbody
 } from '@psdhub/common/components/Table'
 import type { TableProps } from '@psdhub/common/components/Table'
 import { Box } from '@psdhub/common/components/'
 
 import { reoderList as reorder } from '~/utils/reorderList'
 
-const Table: React.FC<TableProps> = ({ columns, data, className }) => {
-  const [items, setItems] = useState(data)
-  const tableRef = useRef<HTMLTableElement>(null)
-  useEffect(() => {
-    // console.log(tableRef.current)
-  }, [])
+import TableUI from './styles'
+export interface TableSolution {
+  solution: React.ReactNode | string
+  profile: string
+  schools: string
+  activated: boolean
+  id: string
+}
 
-  const onDragEnd = (result: DropResult, list: any) => {
+const Table: React.FC<TableProps> = ({ columns, data }) => {
+  const [items, setItems] = useState<TableSolution[]>(data)
+
+  const onDragEnd = (result: DropResult, list: TableSolution[]) => {
     if (!result.destination) {
       return
     }
@@ -45,7 +49,7 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
   }
 
   const onBeforeDragStart = async (_start: DragStart) => {
-    console.log('width')
+    console.log('onBeforeDragStart')
   }
 
   return (
@@ -63,24 +67,16 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
               borderColor="gray.400"
               rounded="md"
             >
-              <TableUI
-                ref={tableRef}
-                variant="unstyle"
-                className={classNames(className, {
-                  'accessControl-table': true
-                })}
-              >
+              <TableUI>
                 <Thead>
                   <Tr>
                     {columns?.map(({ header }, index) => (
-                      <Th key={index} textAlign="center">
-                        {header}
-                      </Th>
+                      <Th key={index}>{header}</Th>
                     ))}
                   </Tr>
                 </Thead>
                 <Tbody {...provided.droppableProps} ref={provided.innerRef}>
-                  {items.map((e: any, index: number) => (
+                  {items.map((e: any, index) => (
                     <Draggable
                       key={index}
                       index={index}
@@ -92,13 +88,14 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
                           {...provided.dragHandleProps}
                           ref={provided.innerRef}
                           style={{
-                            display: s.isDragging ? 'table' : 'table-row',
-                            ...provided.draggableProps.style
+                            ...provided.draggableProps.style,
+                            display: s.isDragging ? 'table' : 'table-row'
                           }}
                           key={index}
                           className={classNames({
                             'hub-table-even': index % 2 === 0,
-                            'hub-table-odd': index % 2 !== 0
+                            'hub-table-odd': index % 2 !== 0,
+                            'table-row': true
                           })}
                         >
                           {columns?.map((c, i) => {
@@ -109,7 +106,7 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
                                 alignItems="center"
                                 justifyContent="center"
                               >
-                                {c?.render ? c.render(e) : e[c.property as any]}
+                                {c?.render ? c.render(e) : e[c.property]}
                               </Td>
                             )
                           })}
