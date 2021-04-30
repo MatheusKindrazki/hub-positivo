@@ -24,6 +24,7 @@
     "@emotion/styled": "^11.1.5",
     "@types/react-collapse": "^5.0.0",
     "@unform/core": "^2.1.5",
+    "randomstring": "^1.1.5",
     "@unform/web": "^2.1.5",
     "framer-motion": "^3.7.0",
     "phosphor-react": "^1.1.2",
