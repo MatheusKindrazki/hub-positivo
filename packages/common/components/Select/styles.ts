@@ -47,11 +47,14 @@ function normal(data: ThemeStyle): Props['styles'] {
     container: provided => ({
       ...provided,
       color: 'white',
+      'white-space': 'nowrap',
       textTransform: 'capitalize'
     }),
     input: provided => ({
       ...provided,
       color: 'white',
+      overflow: 'hidden',
+      'white-space': 'nowrap',
       textTransform: 'capitalize'
     }),
     menu: provided => ({
@@ -77,6 +80,10 @@ function normal(data: ThemeStyle): Props['styles'] {
       width: '100%',
 
       '&:active': {
+        color: colors.white,
+        backgroundColor: colors.blue[600]
+      },
+      '&:focus': {
         color: colors.white,
         backgroundColor: colors.blue[600]
       }
@@ -246,6 +253,10 @@ function secondary(data: ThemeStyle): Props['styles'] {
       width: '100%',
 
       '&:active': {
+        color: colors.white,
+        backgroundColor: colors.blue[600]
+      },
+      '&:focus': {
         color: colors.white,
         backgroundColor: colors.blue[600]
       }

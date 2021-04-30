@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 
+import { debounce } from 'lodash'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour, postTourViewed } from '~/store/modules/tour/actions'
@@ -15,12 +17,16 @@ import Header from '~/components/Header'
 
 import { Container } from './styles'
 
-const Dashboard: React.FC = ({ children }) => {
-  gsc()
-  setUserProperties()
+const dispatchEvent = debounce(() => setUserProperties(), 1500)
 
+const Dashboard: React.FC = ({ children }) => {
   const dispatch = useDispatch()
+
+  useEffect(() => dispatchEvent())
+
   useEffect(() => {
+    gsc()
+
     return () => {
       removeGsc()
     }

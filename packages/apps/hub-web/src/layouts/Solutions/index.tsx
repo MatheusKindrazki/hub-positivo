@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 
+import { debounce } from 'lodash'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { CardProduct } from '~/store/modules/products/types'
@@ -13,13 +15,16 @@ import setUserProperties from '~/services/mixpanel/setProperties'
 
 import Header from './components/Header'
 
-const Iframe: React.FC = ({ children }) => {
-  gsc()
-  setUserProperties()
+const dispatchEvent = debounce(() => setUserProperties(), 1500)
 
+const Iframe: React.FC = ({ children }) => {
   const dispatch = useDispatch()
 
+  useEffect(() => dispatchEvent())
+
   useEffect(() => {
+    gsc()
+
     return () => {
       removeGsc()
     }
