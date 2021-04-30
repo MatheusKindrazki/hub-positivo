@@ -21,16 +21,16 @@ export default createGlobalStyle`
   }
 
     .Toastify__toast--info {
-      background: var(--hub-toast-info);
+      background: var(--hub-toast-info)!important;
     }
     .Toastify__toast--success {
-      background: var(--hub-toast-success);
+      background: var(--hub-toast-success)!important;
     }
     .Toastify__toast--warning {
-      background: var(--hub-toast-warning);
+      background: var(--hub-toast-warning)!important;
     }
     .Toastify__toast--error {
-      background: var(--hub-toast-error);
+      background: var(--hub-toast-error)!important;
     }
   .Toastify__toast-container {
     z-index: 9999;
