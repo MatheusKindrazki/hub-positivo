@@ -8,7 +8,6 @@ export default function init(): void {
       batch_requests: true,
       cookie_domain: window.location.host
     })
-
   } catch (error) {
     console.error('Erro ao inicializar mix panel')
   }
