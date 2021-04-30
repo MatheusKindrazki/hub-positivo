@@ -12,7 +12,10 @@ describe('Mixpanel Services', () => {
 
     mixPanelInit()
 
-    expect(mockMixPanel).toBeCalledWith('mix-panel-mock-key')
+    expect(mockMixPanel).toBeCalledWith('mix-panel-mock-key', {
+      batch_requests: true,
+      cookie_domain: 'localhost'
+    })
   })
 
   it('Show an error in the console if MixPanel is not instantiated', () => {

@@ -8,6 +8,8 @@ import { render, CustomState, fireEvent } from '@hub/test-utils'
 import Dashboard from '~/layouts/Logged'
 import * as globalInfo from '~/hooks/useSendGlobalInfo'
 
+jest.mock('@hub/gsc')
+
 jest.mock('~/hooks/useSendGlobalInfo', () => ({
   useSendGlobalInfo: jest.fn()
 }))
