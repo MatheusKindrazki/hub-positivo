@@ -101,7 +101,6 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                           {columns?.map((c, i) => {
                             return (
                               <Td
-                                width="500px"
                                 key={i}
                                 alignItems="center"
                                 justifyContent="center"

@@ -18,13 +18,8 @@ const FakeLoadingCard: React.FC = () => {
       d="flex"
       alignItems="center"
       height="4rem"
-      minW={['7.25rem', '10.25rem', '10.25rem', '19.25rem']}
       boxShadow="sm"
       p="0.5rem"
-      _hover={{
-        boxShadow: 'dark-lg'
-      }}
-      style={{ position: 'relative' }}
     >
       <Skeleton
         isLoaded={false}
