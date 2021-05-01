@@ -7,6 +7,7 @@ module.exports = {
   testMatch: ['**/__tests__/**/*.ts?(x)'],
   coverageReporters: ['text', 'html', 'lcov', 'json-summary'],
   setupFilesAfterEnv: ['<rootDir>/packages/test-utils/setup.ts'],
+  transformIgnorePatterns: ['node_modules'],
   coverageThreshold: {
     global: {
       branches: 90,

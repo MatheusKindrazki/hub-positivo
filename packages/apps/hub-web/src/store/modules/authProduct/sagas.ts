@@ -167,15 +167,19 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
 
   const subpath = payload.subpath !== undefined ? payload.subpath : ''
 
-  history.push(`/solucao/${payload.product}/${subpath}`)
-
   let urlAuth = `${payload.url}/${data}/${subpath}`
 
   if (payload.tipoRenderizacao === 'wordpress') {
     const guid = (data as unknown) as string
 
-    urlAuth = payload.url.replace('{guid}', guid)
+    urlAuth = payload.url.replace('{token}', guid)
+
+    window.open(urlAuth, '_blank')
+
+    return yield put(authProductSuccess())
   }
+
+  history.push(`/solucao/${payload.product}/${subpath}`)
 
   return yield put(
     authProductSuccess({

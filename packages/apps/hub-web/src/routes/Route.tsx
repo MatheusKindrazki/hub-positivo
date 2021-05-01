@@ -9,6 +9,8 @@ import {
 
 import { store } from '~/store'
 
+import gscPageView from '~/services/getSiteControl/pageView'
+
 import searchQuery from '~/hooks/useQuery'
 
 const Auth = React.lazy(() => import('~/layouts/Auth'))
@@ -25,6 +27,8 @@ const Route: React.FC<RouteProps> = ({
   const { pathname } = useLocation()
 
   window.newrelic?.setCurrentRouteName(pathname)
+
+  gscPageView(pathname)
 
   const { signed } = store.getState().auth
 
