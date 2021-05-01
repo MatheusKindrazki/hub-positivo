@@ -136,6 +136,10 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
     const guid = (data as unknown) as string
 
     urlAuth = payload.url.replace('{token}', guid)
+
+    window.open(urlAuth, '_blank')
+
+    return yield put(authProductSuccess())
   }
 
   yield put(
