@@ -135,7 +135,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   if (payload.tipoRenderizacao === 'wordpress') {
     const guid = (data as unknown) as string
 
-    urlAuth = payload.url.replace('{guid}', guid)
+    urlAuth = payload.url.replace('{token}', guid)
   }
 
   yield put(

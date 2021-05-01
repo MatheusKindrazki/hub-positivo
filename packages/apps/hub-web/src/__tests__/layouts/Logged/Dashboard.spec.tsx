@@ -6,11 +6,8 @@ import { store } from '~/store'
 import { render, CustomState, fireEvent } from '@hub/test-utils'
 
 import Dashboard from '~/layouts/Logged'
-import * as globalInfo from '~/hooks/useSendGlobalInfo'
 
-jest.mock('~/hooks/useSendGlobalInfo', () => ({
-  useSendGlobalInfo: jest.fn()
-}))
+jest.mock('@hub/gsc', () => jest.fn())
 
 jest.mock('~/components/ModalNoClass', () =>
   jest.fn(() => <div id="modal">Modal</div>)
@@ -19,7 +16,6 @@ jest.mock('~/components/ModalNoClass', () =>
 jest.mock('~/components/Header', () =>
   jest.fn(() => <div id="header">Header</div>)
 )
-
 describe('Logged`s layout should render without crashing', () => {
   let steps: StepsTour[] = []
 
@@ -118,12 +114,5 @@ describe('Logged`s layout should render without crashing', () => {
 
     const actions = storeUtils?.getActions()
     expect(actions).toStrictEqual([{ type: '@tour/POST_TOUR' }])
-  })
-
-  it('Should call that hooks:  useSendGlobalInfo', () => {
-    setup()
-    const spyGlobalInfo = jest.spyOn(globalInfo, 'useSendGlobalInfo')
-
-    expect(spyGlobalInfo).toHaveBeenCalledTimes(1)
   })
 })
