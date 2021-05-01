@@ -1,3 +1,11 @@
+## [1.9.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.9.0...v1.9.1) (2021-05-01)
+
+
+### Bug Fixes
+
+* fix para abertura de solução WP em outra aba ([86cf2d4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/86cf2d49ca28a54f725573b1168624b1d4bbb5a9))
+* skip do history.push para caso de WP ([838563a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/838563aafca90273d5c06abe51f8eef6baaa9e09))
+
 # [1.9.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.8.2...v1.9.0) (2021-05-01)
 
 
