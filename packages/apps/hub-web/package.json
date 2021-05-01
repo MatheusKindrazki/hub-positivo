@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/web",
-  "version": "1.8.2",
+  "version": "1.9.1",
   "license": "MIT",
   "scripts": {
     "start": "REACT_APP_VERSION=$npm_package_version react-app-rewired start",
