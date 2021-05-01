@@ -128,8 +128,6 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
 
   const subpath = payload.subpath !== undefined ? payload.subpath : ''
 
-  history.push(`/solucao/${payload.product}/${subpath}`)
-
   let urlAuth = `${payload.url}/${data}/${subpath}`
 
   if (payload.tipoRenderizacao === 'wordpress') {
@@ -141,6 +139,8 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
 
     return yield put(authProductSuccess())
   }
+
+  history.push(`/solucao/${payload.product}/${subpath}`)
 
   yield put(
     setFrameURL({
