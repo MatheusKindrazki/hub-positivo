@@ -12,19 +12,20 @@ export const formatReturnDataFromAPI = (data: Solutions[]): CollapseData[] => {
     return {
       nome: categoria.nome,
       solutions: categoria.solucoes.map(
-        ({ nome, permissoes, escolas, padrao, ordem, ativo, arquivo, id }) => ({
+        ({ permissoes, padrao, escolas, ...solucao }) => ({
           solution: (
             <SolutionData
-              solution={nome}
-              order={ordem}
-              file={arquivo}
-              activated={ativo}
+              solution={solucao.nome}
+              order={solucao.ordem}
+              file={solucao.arquivo}
+              activated={solucao.ativo}
             />
           ),
           profile: permissoes.length ? formatPermissions(permissoes) : 'Nenhum',
           schools: formatSchoolsRestrictions(escolas, padrao),
-          activated: ativo,
-          id
+          activated: solucao.ativo,
+          id: solucao.id,
+          data: solucao
         })
       )
     }

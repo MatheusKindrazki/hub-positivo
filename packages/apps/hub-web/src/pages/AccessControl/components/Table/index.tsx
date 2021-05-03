@@ -8,6 +8,8 @@ import {
 } from 'react-beautiful-dnd'
 import classNames from 'classnames'
 
+import { Product } from '~/store/modules/products/types'
+
 import { Tr, Thead, Th, Td, Tbody } from '@psdhub/common/components/Table'
 import type { TableProps } from '@psdhub/common/components/Table'
 import { Box } from '@psdhub/common/components/'
@@ -21,6 +23,7 @@ export interface TableSolution {
   schools: string
   activated: boolean
   id: string
+  data: Product
 }
 
 const Table: React.FC<TableProps> = ({ columns, data }) => {
@@ -90,7 +93,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                                 alignItems="center"
                                 justifyContent="center"
                               >
-                                {c?.render ? c.render(e) : e[c.property]}
+                                {c?.render ? c.render(e.data) : e[c.property]}
                               </Td>
                             )
                           })}

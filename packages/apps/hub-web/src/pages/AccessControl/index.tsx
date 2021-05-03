@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { solutionsRequest } from '~/store/modules/solutions/actions'
+import { Product } from '~/store/modules/products/types'
 
 import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
@@ -32,7 +33,7 @@ export const columns: Columns[] = [
   {
     property: 'active',
     header: null,
-    render: (e: TableSolution) => <Switch activated={e.activated} />
+    render: (e: Product) => <Switch data={e} />
   }
 ]
 

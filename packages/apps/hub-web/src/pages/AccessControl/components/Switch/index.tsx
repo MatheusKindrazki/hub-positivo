@@ -1,20 +1,28 @@
 import React, { useState } from 'react'
 
+import { Product } from '~/store/modules/products/types'
+
 import { SwitchProps as SwitchPropsUI } from '@psdhub/common/components/Switch'
 
 import SwitchUI from './styles'
 
 export interface SwitchProps extends SwitchPropsUI {
-  activated: boolean
+  data: Product
 }
 
-const Switch: React.FC<SwitchProps> = ({ activated }) => {
-  const [isChecked, setIsChecked] = useState(activated)
+const Switch: React.FC<SwitchProps> = ({ data }) => {
+  const { ativo } = data
+  const [isChecked, setIsChecked] = useState(ativo)
+
+  const handleCheck = (isChecked: boolean) => {
+    console.log({ ...data, ativo: !isChecked })
+    setIsChecked(!isChecked)
+  }
   return (
     <SwitchUI
       padding="1"
       isChecked={isChecked}
-      onChange={() => setIsChecked(!isChecked)}
+      onChange={() => handleCheck(isChecked)}
     />
   )
 }
