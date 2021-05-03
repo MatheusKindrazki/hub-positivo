@@ -11,6 +11,7 @@ import { formatReturnDataFromAPI } from './utils/formatReturnDataFromAPI'
 import Container from './styles'
 import Table, { TableSolution } from './components/Table'
 import Switch from './components/Switch'
+import Header from './components/Header'
 import FakeLoadingCollapse from './components/FakeLoading'
 import EditButton from './components/EditButton'
 
@@ -39,7 +40,7 @@ const mock = [{}, {}, {}, {}, {}, {}, {}]
 
 const AccessControl: React.FC = () => {
   const [solutions, setSolutions] = useState<CollapseData[] | null>(null)
-  const { data } = useSelector((state: Store.State) => state.solutions)
+  const { data, loading } = useSelector((state: Store.State) => state.solutions)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -52,18 +53,11 @@ const AccessControl: React.FC = () => {
     }
   }, [data])
 
-  if (!data?.length) {
-    return (
-      <Container m="1">
-        {mock.map((_, i) => (
-          <FakeLoadingCollapse key={i} />
-        ))}
-      </Container>
-    )
-  }
-
   return (
-    <Container m="1">
+    // <>
+    <Container m="1" marginTop="10">
+      <Header />
+      {loading && mock.map((_, i) => <FakeLoadingCollapse key={i} />)}
       {solutions?.map(categoria => {
         return (
           <Collapse
@@ -84,6 +78,7 @@ const AccessControl: React.FC = () => {
         )
       })}
     </Container>
+    // </>
   )
 }
 

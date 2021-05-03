@@ -4,19 +4,11 @@ import {
   DragDropContext,
   Droppable,
   Draggable,
-  DropResult,
-  DragStart
+  DropResult
 } from 'react-beautiful-dnd'
 import classNames from 'classnames'
 
-import {
-  Tr,
-  Thead,
-  Th,
-  Tfoot,
-  Td,
-  Tbody
-} from '@psdhub/common/components/Table'
+import { Tr, Thead, Th, Td, Tbody } from '@psdhub/common/components/Table'
 import type { TableProps } from '@psdhub/common/components/Table'
 import { Box } from '@psdhub/common/components/'
 
@@ -48,17 +40,10 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
     setItems(reorderList)
   }
 
-  const onBeforeDragStart = async (_start: DragStart) => {
-    console.log('onBeforeDragStart')
-  }
-
   return (
-    <DragDropContext
-      onDragEnd={e => onDragEnd(e, items)}
-      onBeforeDragStart={onBeforeDragStart}
-    >
+    <DragDropContext onDragEnd={e => onDragEnd(e, items)}>
       <Droppable droppableId="accessControl">
-        {(provided, _snapshot) => {
+        {provided => {
           return (
             <Box
               overflow="auto"
@@ -125,4 +110,3 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
 }
 
 export default Table
-export { Thead, Td, Th, Tr, Tfoot, Tbody }
