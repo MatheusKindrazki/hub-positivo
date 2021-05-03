@@ -9,11 +9,13 @@ import {
 
 import { store } from '~/store'
 
+import gscPageView from '~/services/getSiteControl/pageView'
+
 import searchQuery from '~/hooks/useQuery'
 
 const Auth = React.lazy(() => import('~/layouts/Auth'))
-const Iframe = React.lazy(() => import('~/layouts/Iframe'))
 const Logged = React.lazy(() => import('~/layouts/Logged'))
+const Solutions = React.lazy(() => import('~/layouts/Solutions'))
 interface RouteProps extends RoutePropsWouter {
   isPrivate?: boolean
 }
@@ -26,12 +28,14 @@ const Route: React.FC<RouteProps> = ({
 
   window.newrelic?.setCurrentRouteName(pathname)
 
+  gscPageView(pathname)
+
   const { signed } = store.getState().auth
 
   let RenderLayout = signed ? Logged : Auth
 
   if (pathname.includes('solucao')) {
-    RenderLayout = Iframe
+    RenderLayout = Solutions
   }
 
   if (!signed && isPrivate) {

@@ -32,30 +32,12 @@
 
     <title>%REACT_APP_HUB_TITLE%</title>
 
-    <% if (process.env.NODE_ENV==='production' ) { %>
-      <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-      <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-    <% } %>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 
-    <!-- Get Site Control -->
-    <script type="text/javascript" async
-      src="//l.getsitecontrol.com/e4zj5ly7.js">
-    </script>
+    <link href="./fonts.css?v=%REACT_APP_VERSION%" rel="stylesheet"/>
+    <link href="./toast.css?v=%REACT_APP_VERSION%" rel="stylesheet"/>
 
-    <script>
-      window.gsc=window.gsc||function(){(gsc.q=gsc.q||[]).push(arguments)};
-    </script>
-
-    <link href="./fonts.css?v=%REACT_APP_VERSION%" rel="stylesheet">
-    <link href="./toast.css?v=%REACT_APP_VERSION%" rel="stylesheet">
-
-    <!-- Get Site Control -->
-    <script type="text/javascript" async src="//l.getsitecontrol.com/e4zj5ly7.js">
-    </script>
-
-    <script>
-      window.gsc = window.gsc || function () { (gsc.q = gsc.q || []).push(arguments) };
-    </script>
 
     <script type="text/javascript">
       ; window.NREUM || (NREUM = {}); NREUM.init = { distributed_tracing: { enabled: true, cors_use_newrelic_header: false, cors_use_tracecontext_headers: false }, privacy: { cookies_enabled: true } };

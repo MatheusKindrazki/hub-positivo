@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/web",
-  "version": "1.8.2",
+  "version": "1.9.1",
   "license": "MIT",
   "scripts": {
     "start": "REACT_APP_VERSION=$npm_package_version react-app-rewired start",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@psdhub/api": "*",
+    "@psdhub/gsc": "*",
     "@psdhub/helpers": "*",
     "@types/redux-mock-store": "^1.0.2",
     "classnames": "^2.2.6",
@@ -25,6 +26,7 @@
     "mixpanel-browser": "^2.41.0",
     "qs": "^6.9.6",
     "randomstring": "^1.1.5",
+    "rc-select": "^12.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-dropzone": "^11.3.2",
@@ -37,7 +39,6 @@
     "react-router": "~5.2.0",
     "react-router-dom": "~5.2.0",
     "react-scripts": "4.0.2",
-    "react-select": "^4.1.0",
     "react-spinners": "^0.10.4",
     "react-transition-group": "^4.4.1",
     "redux": "^4.0.5",
@@ -82,11 +83,11 @@
     "@types/react-redux": "^7.1.16",
     "@types/react-router": "~5.1.8",
     "@types/react-router-dom": "~5.1.6",
-    "@types/react-select": "^4.0.13",
     "@types/styled-components": "^5.1.7",
     "@types/yup": "^0.29.11",
     "apisauce": "^2.0.1",
     "babel-plugin-root-import": "^6.6.0",
+    "babel-plugin-styled-components": "^1.12.0",
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.1.8",
     "redux-devtools-extension": "^2.13.8"

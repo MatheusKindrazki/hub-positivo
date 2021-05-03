@@ -8,11 +8,9 @@ import createCache from '@emotion/cache'
 import { ChakraProvider, CSSReset } from '@chakra-ui/react'
 
 import ThemeContext from './context'
+import { cssKey } from './config'
 import GlobalStyles from '../styles/global'
-import profileColors, {
-  VariantsProps,
-  profileBaseColor
-} from '../styles/colors'
+import profileColors, { VariantsProps } from '../styles/colors'
 import { theme as HubTheme } from '../styles'
 
 interface ThemeProps {
@@ -40,19 +38,11 @@ const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
       }
     }
 
-    // !Apenas para efeito de animação
-    document.documentElement.style.setProperty(
-      '--hub-base-color',
-      profileBaseColor[prof]
-    )
-
     return hubThemeProfile
   }, [cssVarPrefix, prof])
 
-  const classKey = process.env.REACT_APP_IS_HUB ? cssVarPrefix : 'hub-component'
-
   return (
-    <CacheProvider value={createCache({ key: classKey || 'hub-component' })}>
+    <CacheProvider value={createCache({ key: cssKey })}>
       <ChakraProvider theme={renderTheme} resetCSS>
         <StyledProvider theme={renderTheme as any}>
           <CSSReset />

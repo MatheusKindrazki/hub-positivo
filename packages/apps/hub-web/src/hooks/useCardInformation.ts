@@ -4,6 +4,7 @@ import { preAuth } from '~/store/modules/authProduct/actions'
 import { store } from '~/store'
 
 import createSlug from '@psdhub/common/utils/createSlug'
+import { delay } from '@psdhub/common/utils'
 
 import history from '~/services/history'
 import { getCardBySlug } from '~/services/getCardBySlug'
@@ -13,17 +14,36 @@ interface IframePropsRouter {
   subpath: string
 }
 
+const searchLevels = ['PROFESSOR', 'ALUNO']
+
+async function getEducationalStage(): Promise<string> {
+  const { level } = store.getState().educationalStage
+
+  await delay(500)
+
+  if (!level) {
+    return await getEducationalStage()
+  }
+
+  return level
+}
+
 export default async function useCardInformation(): Promise<void> {
   const { solution, subpath } = useParams<IframePropsRouter>()
 
   const { guid } = store.getState().profile
-  const { level } = store.getState().educationalStage
+  let level = ''
+
+  if (searchLevels.includes(guid)) {
+    level = await getEducationalStage()
+  }
 
   const card = await getCardBySlug({
     slug: solution,
     nivelEnsino: level,
     perfil: guid
   })
+
   if (!card) return history.push('/')
   const product = createSlug(card.nome)
 

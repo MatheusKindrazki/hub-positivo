@@ -1,24 +1,34 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
+
+import { debounce } from 'lodash'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { CardProduct } from '~/store/modules/products/types'
 import { preAuth } from '~/store/modules/authProduct/actions'
 
+import gsc, { removeGsc } from '@psdhub/gsc'
 import createSlug from '@psdhub/common/utils/createSlug'
 import { BarLoader } from '@psdhub/common/components'
 
 import setUserProperties from '~/services/mixpanel/setProperties'
 
-import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
-
 import Header from './components/Header'
 
-const Iframe: React.FC = ({ children }) => {
-  useSendGlobalInfo()
-  setUserProperties()
+const dispatchEvent = debounce(() => setUserProperties(), 1500)
 
+const Iframe: React.FC = ({ children }) => {
   const dispatch = useDispatch()
+
+  useEffect(() => dispatchEvent())
+
+  useEffect(() => {
+    gsc()
+
+    return () => {
+      removeGsc()
+    }
+  }, [])
 
   const { data } = useSelector((state: Store.State) => state.products)
   const { loading } = useSelector((state: Store.State) => state.global)

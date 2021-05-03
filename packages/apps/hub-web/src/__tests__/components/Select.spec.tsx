@@ -4,11 +4,10 @@ import { openMenu, select } from 'react-select-event'
 import { renderHook } from '@testing-library/react-hooks'
 
 import { fireEvent, render } from '@psdhub/test-utils'
+import { useTheme } from '@psdhub/common/layout'
+import Select, { PropsSelect } from '@psdhub/common/components/Select'
 
-import { useTheme } from '../../layout'
-import Select, { PropsSelect } from '../../components/Select'
-
-jest.mock('../../layout', () => ({
+jest.mock('@psdhub/common/layout', () => ({
   useTheme: jest.fn(() => ({
     colors: {
       blue: {
@@ -65,7 +64,7 @@ describe('Select renders without crashing', () => {
   })
 
   it('Select blue-transparent variant render options', async () => {
-    mockedProperties.variant = 'blue-transparent'
+    mockedProperties.variant = 'primary'
     const wrapper = render(<Select {...mockedProperties} />)
 
     const { getAllByText, getByText, container } = wrapper

@@ -63,8 +63,6 @@ const SignIn: React.FC = () => {
 
   const handleSubmit = useCallback(
     async data => {
-      formRef.current?.setErrors({})
-
       try {
         await signInValidator.validate(data, {
           abortEarly: false

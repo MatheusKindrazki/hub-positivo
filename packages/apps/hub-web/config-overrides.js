@@ -16,6 +16,17 @@ module.exports = function (config, env) {
         {
           rootPathSuffix: 'src',
         },
+      ]),
+      addBabelPlugin([
+        'babel-plugin-styled-components',
+        {
+          ssr: true,
+          pure: true,
+          fileName: false,
+          displayName: false,
+          namespace: 'hub',
+          transpileTemplateLiterals: false
+        },
       ])
     )(config, env)
   );

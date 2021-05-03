@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 import { useHistory, useLocation, useParams } from 'react-router-dom'
 import mixpanel from 'mixpanel-browser'
 
+import gscPageView from '~/services/getSiteControl/pageView'
+
 import { hasJsonStructure } from '~/utils/hasJsonStructure'
 
 interface MessageProps {
@@ -61,6 +63,7 @@ const usePostMessage = (): void => {
           }
 
           mixpanel.track('Page Viewed', eventProperties)
+          gscPageView(mountURL)
 
           history.push(mountURL)
         }
