@@ -80,11 +80,6 @@ const Routes: React.FC = () => {
               component={AccessControl}
               isPrivate
             />
-            <Route
-              path={['/solucao/:solution/:subpath+', '/solucao/:solution']}
-              component={Iframe}
-              isPrivate
-            />
 
             <Route path="/" exact component={Home} isPrivate />
 

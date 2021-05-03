@@ -69,7 +69,7 @@ const CreateSolution: React.FC = () => {
             <Box width="48.5%">
               <Text color="blue.500">Categoria</Text>
               <Select
-                variant="normal"
+                variant="secondary"
                 name="categoria"
                 id="categoria"
                 height="30px"
@@ -77,19 +77,19 @@ const CreateSolution: React.FC = () => {
             </Box>
             <Box width="48.5%">
               <Text color="blue.500">Perfis</Text>
-              <Select variant="normal" name="teste" m="auto"></Select>
+              <Select variant="secondary" name="teste" m="auto"></Select>
             </Box>
           </Stack>
 
           <Stack direction={'row'} justifyContent="space-between" mt="5">
             <Box width="48.5%">
               <Text color="blue.500">Segmentos</Text>
-              <Select variant="normal" name="teste" m="auto"></Select>
+              <Select variant="secondary" name="teste" m="auto"></Select>
             </Box>
             <Box width="48.5%">
               <Text color="blue.500">Abrir em...</Text>
               <Select
-                variant="normal"
+                variant="secondary"
                 name="teste"
                 m="auto"
                 className="hub-select"
@@ -100,10 +100,10 @@ const CreateSolution: React.FC = () => {
           <Stack direction={'row'} justifyContent="space-between" mt="5">
             <Box width="48.5%">
               <Text color="blue.500">Escolas</Text>
-              <Select variant="normal" name="teste" m="auto"></Select>
+              <Select variant="secondary" name="teste" m="auto"></Select>
             </Box>
             <Box width="48.5%" alignSelf="flex-end">
-              <Select variant="normal" name="teste" m="auto"></Select>
+              <Select variant="secondary" name="teste" m="auto"></Select>
             </Box>
           </Stack>
 
