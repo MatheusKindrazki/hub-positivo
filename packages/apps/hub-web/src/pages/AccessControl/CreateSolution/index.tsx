@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { DropzoneRef } from 'react-dropzone'
 
@@ -14,10 +14,23 @@ import {
 } from '@psdhub/common/components/Breadcrumbs'
 import { Box, Text, Select, Stack } from '@psdhub/common/components'
 
+import history from '~/services/history'
+
 const CreateSolution: React.FC = () => {
+  const [operation, setOperation] = useState('')
   const { loading: alterLoading } = useSelector(
     (state: Store.State) => state.user
   )
+
+  useEffect(() => {
+    if (history.location.pathname.endsWith('criar-solucao')) {
+      setOperation('create')
+    }
+    if (history.location.pathname.endsWith('editar-solucao')) {
+      setOperation('update')
+    }
+    console.log('operacao selecionada: ' + operation)
+  }, [operation])
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
@@ -37,7 +50,7 @@ const CreateSolution: React.FC = () => {
           </BreadcrumbItem>
 
           <BreadcrumbItem>
-            <BreadcrumbLink>Criar Solucao</BreadcrumbLink>
+            <BreadcrumbLink>Adicionar Solucao</BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
       </Box>
