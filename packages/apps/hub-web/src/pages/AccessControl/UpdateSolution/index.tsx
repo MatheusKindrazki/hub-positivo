@@ -4,6 +4,7 @@ import { DropzoneRef } from 'react-dropzone'
 
 import { useSelector } from 'react-redux'
 
+import { toast } from '@psdhub/common/utils'
 import { CaretRight } from '@psdhub/common/components/Icons'
 import {
   FormProps,
@@ -20,6 +21,9 @@ import {
 } from '@psdhub/common/components/Breadcrumbs'
 import { Box, Text, Stack, Button } from '@psdhub/common/components'
 
+import solutionInfo from '~/validators/solution/createSolution'
+import { getValidationErrors, ValidationError } from '~/validators'
+
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
 
 const UpdateSolution: React.FC = () => {
@@ -32,7 +36,21 @@ const UpdateSolution: React.FC = () => {
   const modalRef = useRef<ModalHandler>(null)
 
   const handleSubmit = useCallback(async data => {
+    formRef?.current?.setErrors({})
     console.log(data)
+    try {
+      await solutionInfo.validate(data, { abortEarly: false })
+
+      return
+    } catch (err) {
+      if (err instanceof ValidationError) {
+        const errors = getValidationErrors(err)
+        formRef?.current?.setErrors(errors)
+      }
+      return toast.error(
+        'Algo deu errado, Verifique seus dados e tente novamente!'
+      )
+    }
   }, [])
 
   const openModal = useCallback(() => {
@@ -65,14 +83,14 @@ const UpdateSolution: React.FC = () => {
             <Input
               mb="5"
               label="Titulo"
-              name="teste"
+              name="title"
               backgroundColor="white"
               placeholder="Digite aqui o título da solução"
             />
 
             <Input
               label="Descricao"
-              name="teste"
+              name="description"
               backgroundColor="white"
               placeholder="Digite uma breve descrição para ajudar os usuários a entenderem a função desta solução"
             />
@@ -90,15 +108,11 @@ const UpdateSolution: React.FC = () => {
           >
             <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Categoria</Text>
-              <Select
-                variant="secondary"
-                name="categoria"
-                id="categoria"
-              ></Select>
+              <Select variant="secondary" name="category"></Select>
             </Box>
             <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Perfis</Text>
-              <Select variant="secondary" name="teste" m="auto"></Select>
+              <Select variant="secondary" name="profiles"></Select>
             </Box>
           </Stack>
 
@@ -109,14 +123,13 @@ const UpdateSolution: React.FC = () => {
           >
             <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Segmentos</Text>
-              <Select variant="secondary" name="teste" m="auto"></Select>
+              <Select variant="secondary" name="segments"></Select>
             </Box>
             <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Abrir em...</Text>
               <Select
                 variant="secondary"
-                name="teste"
-                m="auto"
+                name="target"
                 className="hub-select"
               ></Select>
             </Box>
@@ -129,10 +142,10 @@ const UpdateSolution: React.FC = () => {
           >
             <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Escolas</Text>
-              <Select variant="secondary" name="teste" m="auto"></Select>
+              <Select variant="secondary" name="schools_rule"></Select>
             </Box>
             <Box width={['100%', '48.5%']} alignSelf="flex-end">
-              <Select variant="secondary" name="teste" m="auto"></Select>
+              <Select variant="secondary" name="schools"></Select>
             </Box>
           </Stack>
 
