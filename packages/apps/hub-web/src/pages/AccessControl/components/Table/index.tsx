@@ -8,7 +8,7 @@ import {
 } from 'react-beautiful-dnd'
 import classNames from 'classnames'
 
-import { Product } from '~/store/modules/products/types'
+import { UpdateSolutionData } from '~/store/modules/updateSolution/types'
 
 import { Tr, Thead, Th, Td, Tbody } from '@psdhub/common/components/Table'
 import type { TableProps } from '@psdhub/common/components/Table'
@@ -21,9 +21,7 @@ export interface TableSolution {
   solution: React.ReactNode | string
   profile: string
   schools: string
-  activated: boolean
-  id: string
-  data: Product
+  data: UpdateSolutionData
 }
 
 const Table: React.FC<TableProps> = ({ columns, data }) => {
@@ -66,6 +64,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                 <Tbody {...provided.droppableProps} ref={provided.innerRef}>
                   {items.map((e: any, index) => (
                     <Draggable
+                      isDragDisabled
                       key={index}
                       index={index}
                       draggableId={index.toString() || ''}

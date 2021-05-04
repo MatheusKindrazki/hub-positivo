@@ -1,7 +1,11 @@
-import { CardProduct as Solution } from '../products/types'
+import { Product } from '../products/types'
+
+interface UpdateSolutionData extends Product {
+  idCategoria: string
+}
 
 interface SolutionUpdateResponse {
   sucesso: boolean
   mensagem: string
 }
-export type { Solution, SolutionUpdateResponse }
+export type { UpdateSolutionData, SolutionUpdateResponse }

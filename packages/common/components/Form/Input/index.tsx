@@ -9,7 +9,8 @@ import {
   InputGroup,
   InputProps,
   InputLeftElement,
-  InputRightElement
+  InputRightElement,
+  FormLabel
 } from '@chakra-ui/react'
 
 type InputElement = InputProps
@@ -17,9 +18,11 @@ type InputElement = InputProps
 interface InputAddIcons extends InputElement {
   iconLeft?: React.ReactNode
   iconRight?: React.ReactNode
+  label?: string
 }
 
 const Input: React.FC<InputAddIcons> = ({
+  label,
   name,
   iconLeft,
   iconRight,
@@ -50,6 +53,11 @@ const Input: React.FC<InputAddIcons> = ({
 
   return (
     <FormControl mb={mb}>
+      {label && (
+        <FormLabel color="blue.500" fontSize="small">
+          {label}
+        </FormLabel>
+      )}
       <InputGroup>
         {iconLeft && (
           <InputLeftElement children={iconLeft} width="3rem" height="3rem" />

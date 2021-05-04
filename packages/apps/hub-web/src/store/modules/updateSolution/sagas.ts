@@ -1,30 +1,37 @@
 import { ApiResponse } from 'apisauce'
 
-import { call, takeLatest, all, Payload } from 'redux-saga/effects'
+import { call, takeLatest, all, Payload, put } from 'redux-saga/effects'
 
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
-import { Solution, SolutionUpdateResponse } from './types'
-import { Actions } from './actions'
+import { UpdateSolutionData, SolutionUpdateResponse } from './types'
+import {
+  Actions,
+  solutionUpdateSuccess,
+  solutionUpdateFailure
+} from './actions'
 
-type UpdateSolutionPayload = Payload<Solution>
+type UpdateSolutionPayload = Payload<UpdateSolutionData>
 
 export function* updateSolution({ payload }: UpdateSolutionPayload): Generator {
   const response = yield call(async () => {
-    return api.put('Categoria/Solucoes', {
+    return api.put('/Solucao', {
       ...payload
     })
   })
 
   const { ok, data } = response as ApiResponse<SolutionUpdateResponse>
-  console.log({ ok, data })
 
   if (!ok || !data?.sucesso) {
-    toast.error(data?.mensagem)
+    toast.error(
+      'Erro ao atualizar solução, atualize a página e tente novamente'
+    )
+    return put(solutionUpdateFailure())
   }
 
   toast.success('Solução atualizada com sucesso')
+  return yield put(solutionUpdateSuccess())
 }
 
 export default all([

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
+import { UpdateSolutionData } from '~/store/modules/updateSolution/types'
 import { solutionsRequest } from '~/store/modules/solutions/actions'
-import { Product } from '~/store/modules/products/types'
 
 import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
@@ -28,12 +28,12 @@ export const columns: Columns[] = [
   {
     property: 'edit',
     header: null,
-    render: (e: TableSolution) => <EditButton url={`/${e.id}`} />
+    render: (e: UpdateSolutionData) => <EditButton url={`/${e.id}`} />
   },
   {
     property: 'active',
     header: null,
-    render: (e: Product) => <Switch data={e} />
+    render: (e: UpdateSolutionData) => <Switch data={e} />
   }
 ]
 
@@ -55,7 +55,6 @@ const AccessControl: React.FC = () => {
   }, [data])
 
   return (
-    // <>
     <Container m="1" marginTop="10">
       <Header />
       {loading && mock.map((_, i) => <FakeLoadingCollapse key={i} />)}
@@ -79,7 +78,6 @@ const AccessControl: React.FC = () => {
         )
       })}
     </Container>
-    // </>
   )
 }
 

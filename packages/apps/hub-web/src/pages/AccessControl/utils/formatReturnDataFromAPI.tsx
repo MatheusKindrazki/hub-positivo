@@ -23,9 +23,7 @@ export const formatReturnDataFromAPI = (data: Solutions[]): CollapseData[] => {
           ),
           profile: permissoes.length ? formatPermissions(permissoes) : 'Nenhum',
           schools: formatSchoolsRestrictions(escolas, padrao),
-          activated: solucao.ativo,
-          id: solucao.id,
-          data: solucao
+          data: { ...solucao, idCategoria: categoria.id }
         })
       )
     }
