@@ -9,7 +9,8 @@ import {
   FormProps,
   Form,
   Input,
-  Button as FormButton
+  Button as FormButton,
+  Select
 } from '@psdhub/common/components/Form'
 import Dropzone from '@psdhub/common/components/Dropzone'
 import {
@@ -17,7 +18,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink
 } from '@psdhub/common/components/Breadcrumbs'
-import { Box, Text, Select, Stack, Button } from '@psdhub/common/components'
+import { Box, Text, Stack, Button } from '@psdhub/common/components'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
 
@@ -39,9 +40,13 @@ const UpdateSolution: React.FC = () => {
   }, [])
 
   return (
-    <Box p="6" mt="20" w="100%">
-      <Box d="flex" flexDir="row" ml="12vw">
-        <Breadcrumb fontSize="x-large" separator={<Box as={CaretRight} />}>
+    <Box p={['4', '6']} mt={['0', '20']} w="100%">
+      <Box d="flex" flexDir="row" ml={['0', '12vw']}>
+        <Breadcrumb
+          fontSize={['large', 'x-large']}
+          spacing={['0.5', '1']}
+          separator={<Box as={CaretRight} />}
+        >
           <BreadcrumbItem>
             <BreadcrumbLink href="/#/controle-de-acessos">
               Controle de Acessos
@@ -54,7 +59,7 @@ const UpdateSolution: React.FC = () => {
         </Breadcrumb>
       </Box>
 
-      <Box w="45%" m="auto" mt="12">
+      <Box w={['100%', '45%']} m="auto" mt="12">
         <Form ref={formRef} onSubmit={handleSubmit}>
           <Box d="flex" flexDir="column" mb="6">
             <Input
@@ -78,31 +83,38 @@ const UpdateSolution: React.FC = () => {
             <Dropzone ref={dropRef} />
           </Box>
 
-          <Stack direction={'row'} justifyContent="space-between" mt="5">
-            <Box width="48.5%">
+          <Stack
+            direction={['column', 'row']}
+            justifyContent="space-between"
+            mt="5"
+          >
+            <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Categoria</Text>
               <Select
-                variant="normal"
+                variant="secondary"
                 name="categoria"
                 id="categoria"
-                height="30px"
               ></Select>
             </Box>
-            <Box width="48.5%">
+            <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Perfis</Text>
-              <Select variant="normal" name="teste" m="auto"></Select>
+              <Select variant="secondary" name="teste" m="auto"></Select>
             </Box>
           </Stack>
 
-          <Stack direction={'row'} justifyContent="space-between" mt="5">
-            <Box width="48.5%">
+          <Stack
+            direction={['column', 'row']}
+            justifyContent="space-between"
+            mt="5"
+          >
+            <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Segmentos</Text>
-              <Select variant="normal" name="teste" m="auto"></Select>
+              <Select variant="secondary" name="teste" m="auto"></Select>
             </Box>
-            <Box width="48.5%">
+            <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Abrir em...</Text>
               <Select
-                variant="normal"
+                variant="secondary"
                 name="teste"
                 m="auto"
                 className="hub-select"
@@ -110,62 +122,67 @@ const UpdateSolution: React.FC = () => {
             </Box>
           </Stack>
 
-          <Stack direction={'row'} justifyContent="space-between" mt="5">
-            <Box width="48.5%">
+          <Stack
+            direction={['column', 'row']}
+            justifyContent="space-between"
+            mt="5"
+          >
+            <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Escolas</Text>
-              <Select variant="normal" name="teste" m="auto"></Select>
+              <Select variant="secondary" name="teste" m="auto"></Select>
             </Box>
-            <Box width="48.5%" alignSelf="flex-end">
-              <Select variant="normal" name="teste" m="auto"></Select>
+            <Box width={['100%', '48.5%']} alignSelf="flex-end">
+              <Select variant="secondary" name="teste" m="auto"></Select>
             </Box>
           </Stack>
 
           <Box
             mt="9"
-            flexDir="row-reverse"
+            flexDir={['row', 'row-reverse']}
+            flexWrap={['wrap', 'nowrap']}
             d="flex"
             w="100%"
             justifyContent="space-between"
           >
-            <Box w="30%" d="flex" height="14" justifyContent="space-between">
-              <FormButton
-                height="14"
-                m="0"
-                marginLeft="3"
-                maxWidth="32"
-                fontWeight="500"
-                textTransform="uppercase"
-                colorScheme="blue"
-                isLoading={alterLoading}
-              >
-                Adicionar
-              </FormButton>
-              <Button
-                borderColor="gray.500"
-                height="14"
-                maxWidth="32"
-                variant="outline"
-                fontWeight="500"
-                textTransform="uppercase"
-                color="gray"
-              >
-                Cancelar
-              </Button>
-            </Box>
-            <Box w="30%">
-              <Button
-                onClick={openModal}
-                height="14"
-                width="32"
-                variant="outline"
-                fontWeight="500"
-                textTransform="uppercase"
-                colorScheme="red"
-                color="red"
-              >
-                Excluir
-              </Button>
-            </Box>
+            <FormButton
+              flexGrow={[2, 1]}
+              height="14"
+              m="0"
+              mb={['3', '0']}
+              marginLeft={['0', '3']}
+              maxWidth={['100%', '32']}
+              fontWeight="500"
+              textTransform="uppercase"
+              colorScheme="blue"
+              isLoading={alterLoading}
+            >
+              Adicionar
+            </FormButton>
+            <Button
+              borderColor="gray.500"
+              height="14"
+              width={['48.4%', '32']}
+              variant="outline"
+              fontWeight="500"
+              textTransform="uppercase"
+              color="gray"
+              alignSelf="flex-start"
+            >
+              Cancelar
+            </Button>
+
+            <Button
+              onClick={openModal}
+              height="14"
+              width={['48.4%', '32']}
+              variant="outline"
+              fontWeight="500"
+              textTransform="uppercase"
+              colorScheme="red"
+              color="red"
+            >
+              Excluir
+            </Button>
           </Box>
         </Form>
       </Box>
