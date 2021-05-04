@@ -142,7 +142,7 @@ const UpdateSolution: React.FC = () => {
             flexWrap={['wrap', 'nowrap']}
             d="flex"
             w="100%"
-            justifyContent="space-between"
+            justifyContent={['space-between', 'flex-start']}
           >
             <FormButton
               flexGrow={[2, 1]}
@@ -166,20 +166,19 @@ const UpdateSolution: React.FC = () => {
               fontWeight="500"
               textTransform="uppercase"
               color="gray"
-              alignSelf="flex-start"
             >
               Cancelar
             </Button>
-
             <Button
               onClick={openModal}
               height="14"
-              width={['48.4%', '32']}
+              width={['48.4%', '28']}
               variant="outline"
               fontWeight="500"
               textTransform="uppercase"
               colorScheme="red"
               color="red"
+              marginRight={['0', 'auto']}
             >
               Excluir
             </Button>
