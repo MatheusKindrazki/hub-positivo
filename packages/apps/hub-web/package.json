@@ -26,7 +26,6 @@
     "mixpanel-browser": "^2.41.0",
     "qs": "^6.9.6",
     "randomstring": "^1.1.5",
-    "rc-select": "^12.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-google-recaptcha": "^2.1.0",

@@ -8,7 +8,6 @@ import { Box } from '@psdhub/common/components'
 import { ReturnScripts } from '~/orchestrator'
 
 import LoadModules from '../../components/LoadModules'
-
 interface MicrofrontendProps {
   data: any // deverá ser any, pois a tipagem virá do componente filho
   onLoaded(): void

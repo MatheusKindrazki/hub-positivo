@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Select, { Props, mergeStyles } from 'react-select'
+import Select, { Props, mergeStyles, NonceProvider } from 'react-select'
 
 import { useTheme } from '@psdhub/common/layout/styles'
 
@@ -21,19 +21,21 @@ const HubSelect = forwardRef<PropsSelect, 'select'>((props, ref) => {
   const theme = useTheme()
 
   return (
-    <Select
-      ref={ref}
-      styles={mergeStyles(
-        { ...secondary({ theme, inputHeight, error }) },
-        { ...styles }
-      )}
-      clearable
-      noOptionsMessage={() => 'Nada encontrado =('}
-      className={className}
-      classNamePrefix={`${prefixClass}-secondary`}
-      isSearchable
-      {...rest}
-    />
+    <NonceProvider cacheKey={`${prefixClass}-secondary`} nonce="secondary">
+      <Select
+        ref={ref}
+        styles={mergeStyles(
+          { ...secondary({ theme, inputHeight, error }) },
+          { ...styles }
+        )}
+        clearable
+        noOptionsMessage={() => 'Nada encontrado =('}
+        className={className}
+        classNamePrefix={`${prefixClass}-secondary`}
+        isSearchable
+        {...rest}
+      />
+    </NonceProvider>
   )
 })
 
