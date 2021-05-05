@@ -121,11 +121,7 @@ const UpdateSolution: React.FC = () => {
             <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Categoria</Text>
               <Select
-                options={
-                  categories.length > 0
-                    ? createCategoryOptions(categories)
-                    : undefined
-                }
+                options={categories[0] && createCategoryOptions(categories)}
                 variant="secondary"
                 name="category"
               />
