@@ -2,15 +2,24 @@ import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
 
-  .background-animate, button {
-    transition: background-color 1s, color 1s, fill 1s, ease 0.5s!important;
+  :root {
+    --hub-base-color: #1E88E5;
+    --hub-box-color: white;
+    --hub-background-color: #ECEFF1;
   }
 
+  body {
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--hub-background-color)!important;
+  }
+
+  button {
+    cursor: pointer;
+    box-shadow: none!important;
+  }
 
   body {
     outline: none!important;
   }
-
-
 
 `

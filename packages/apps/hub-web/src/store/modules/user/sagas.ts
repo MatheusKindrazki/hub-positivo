@@ -1,11 +1,11 @@
 import { ApiResponse } from 'apisauce'
 
-import { all, call, takeLatest, Payload, put } from 'redux-saga/effects'
+import { all, call, delay, takeLatest, Payload, put } from 'redux-saga/effects'
 
 import { store } from '~/store'
 
-import { toast } from '@hub/common/utils'
-import { apiEEMAuth } from '@hub/api'
+import { toast } from '@psdhub/common/utils'
+import { apiEEMAuth } from '@psdhub/api'
 
 import history from '~/services/history'
 
@@ -46,7 +46,9 @@ export function* forgotPassword({ payload }: AlterPasswordPayload): Generator {
   }
   toast.success('Senha Alterada com sucesso!')
 
-  setTimeout(() => history.push('/login'), 500)
+  yield delay(500)
+
+  history.push('/login')
 
   return yield put(forgotPasswordSuccess())
 }
@@ -59,7 +61,7 @@ export function* alterPasswordPanel({
   const { info: user } = store.getState().user
   const { token } = store.getState().auth
 
-  const guid = user?.guid || '000'
+  const guid = user?.guid
 
   const response = yield call(() => {
     return apiEEMAuth.put(`/api/v1/users/${guid}/change-password`, payload, {

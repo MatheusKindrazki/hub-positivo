@@ -10,7 +10,8 @@ import configureStore from 'redux-mock-store'
 
 import './setup'
 
-import ThemeProviderHub from '@hub/common/layout/Provider'
+import { ApplicationState } from '@psdhub/web/src/store/store'
+import ThemeProviderHub from '@psdhub/common/layout/Provider'
 
 import {
   CustomRenderOptions,
@@ -30,7 +31,10 @@ export const Providers: FC = ({ children }) => {
   return <ThemeProviderHub>{children}</ThemeProviderHub>
 }
 
-function getStatesFromStore(store: Store, reducers: Reducers[]): CustomState {
+function getStatesFromStore<T = ApplicationState>(
+  store: Store<T>,
+  reducers: Reducers<T>[]
+): CustomState<T> {
   const applicationState = store.getState()
   return reducers.reduce((accumulator, current) => {
     const initialState = applicationState[current]
@@ -38,13 +42,13 @@ function getStatesFromStore(store: Store, reducers: Reducers[]): CustomState {
   }, {})
 }
 
-function formatState(
-  states: CustomState,
-  customState: CustomState
-): CustomState {
+function formatState<T = ApplicationState>(
+  states: CustomState<T>,
+  customState: CustomState<T>
+): CustomState<T> {
   if (!customState || !Object.keys(customState).length) return states
   const finalState = Object.entries(states).reduce((accumulator, current) => {
-    const reducerName = current[0] as Reducers
+    const reducerName = current[0] as Reducers<T>
     const initialState = states[reducerName]
     return {
       [reducerName]: { ...initialState, ...customState[reducerName] },
@@ -54,7 +58,7 @@ function formatState(
   return finalState
 }
 
-function customRender(
+function customRender<T = ApplicationState>(
   ui: ReactElement,
   options?: Omit<CustomRenderOptions, 'queries'>
 ): CustomRenderResult {
@@ -63,7 +67,10 @@ function customRender(
   if (options?.store && options?.reducers) {
     const { store, reducers, CUSTOM_STATE } = options
     const allStates = getStatesFromStore(store, reducers)
-    const mockedState = formatState(allStates, CUSTOM_STATE as CustomState)
+    const mockedState = formatState(
+      allStates as CustomState<T>,
+      CUSTOM_STATE as CustomState<T>
+    )
     const mockedStore = mockStore(mockedState)
     const { getActions, clearActions } = mockedStore
     storeUtils = { getActions, clearActions }

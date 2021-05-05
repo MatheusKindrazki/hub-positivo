@@ -4,7 +4,7 @@ import { waitFor } from '@testing-library/react'
 import { RefreshTokenApi } from '~/store/modules/auth/types'
 import { store } from '~/store'
 
-import hubApi from '@hub/api'
+import hubApi from '@psdhub/api'
 
 import history from '~/services/history'
 import * as api from '~/services/eemConnect'

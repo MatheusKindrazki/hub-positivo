@@ -2,8 +2,8 @@ import React, { useMemo } from 'react'
 
 import classNames from 'classnames'
 
-import createSlug from '@hub/common/utils/createSlug'
-import { Box, Image, Heading, Text, Badge } from '@hub/common/components'
+import createSlug from '@psdhub/common/utils/createSlug'
+import { Box, Image, Heading, Text, Badge } from '@psdhub/common/components'
 
 import { Container } from './styles'
 

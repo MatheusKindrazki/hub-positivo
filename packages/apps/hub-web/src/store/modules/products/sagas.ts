@@ -5,8 +5,8 @@ import { all, call, delay, put, takeLatest } from 'redux-saga/effects'
 import { getTourRequest } from '~/store/modules/tour/actions'
 import { store } from '~/store'
 
-import { toast } from '@hub/common/utils'
-import api from '@hub/api'
+import { toast } from '@psdhub/common/utils'
+import api from '@psdhub/api'
 
 import { CardProduct } from './types'
 import { Actions, productSuccess } from './actions'

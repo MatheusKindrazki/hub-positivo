@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Avatar, Text } from '@hub/common/components'
+import { Avatar, Text } from '@psdhub/common/components'
 
 import { Container } from './styles'
 

@@ -19,13 +19,13 @@ const setProperties = (): void => {
 
   const { activeProfiles, profile, profileNames } = profiles()
 
-  const { activeStages } = educationalStage()
+  const { activeStages, selected_educational_stage } = educationalStage()
 
   const sendProps = {
     ...activeProfiles,
     ...activeStages,
     selected_class: educational.class,
-    selected_educational_stage: educational.level,
+    selected_educational_stage,
     is_ctpm: String(ctpmSchools.includes(school?.value || '')),
 
     user_id: user?.guid,

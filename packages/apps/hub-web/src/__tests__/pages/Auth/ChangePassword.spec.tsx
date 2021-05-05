@@ -2,7 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { fireEvent, render, StoreUtils, waitFor } from '@hub/test-utils'
+import { fireEvent, render, StoreUtils, waitFor } from '@psdhub/test-utils'
 
 import history from '~/services/history'
 
@@ -84,10 +84,7 @@ describe('Change Password page should work properly', () => {
     fireEvent.change(pwdInput, { target: { value: '123' } })
     fireEvent.change(confirmPwdInput, { target: { value: '123' } })
     fireEvent.click(submitButton)
-
-    const errorMessage = await findByText(/senha deve ter no mínimo/i)
-
-    await waitFor(() => expect(errorMessage).toBeInTheDocument())
+    expect(await findByText(/senha deve ter no mínimo/i)).toBeInTheDocument()
   })
 
   it('should display a generic error when validation throws it', async () => {
@@ -99,10 +96,7 @@ describe('Change Password page should work properly', () => {
     const { submitButton, findByText } = setup()
 
     fireEvent.click(submitButton)
-
-    const errorMessage = await findByText(/Algo deu errado/i)
-
-    await waitFor(() => expect(errorMessage).toBeInTheDocument())
+    expect(await findByText(/Algo deu errado/i)).toBeInTheDocument()
   })
 
   it('Should dispatch actions with correct payloads', async () => {

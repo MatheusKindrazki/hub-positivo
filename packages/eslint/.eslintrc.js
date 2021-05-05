@@ -8,7 +8,6 @@ module.exports = {
   extends: [
     'prettier/react',
     'plugin:react/recommended',
-    'prettier/@typescript-eslint',
     'plugin:@typescript-eslint/recommended',
     'standard',
     'prettier/standard'
@@ -23,14 +22,14 @@ module.exports = {
   },
   plugins: ['react','react-hooks', '@typescript-eslint', 'prettier', 'eslint-plugin-import-helpers'],
   rules: {
+    'prettier/prettier': 'warn',
     'no-undef': 'off',
     'camelcase': 'off',
     'react/prop-types': 'off',
     'react/display-name': 'off',
-    'prettier/prettier': 'error',
     'no-use-before-define': 'off',
     'react/no-children-prop': 'off',
-    "generator-star-spacing": ["error", {"before": false, "after": true}],
+    'generator-star-spacing': ['warn', {'before': false, 'after': true}],
     'import/no-duplicates': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'space-before-function-paren': 'off',
@@ -39,8 +38,12 @@ module.exports = {
     '@typescript-eslint/no-empty-interface': 'off',
     'import/extensions': 'off',
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", {
-      "argsIgnorePattern": "_"
+    "padded-blocks":"warn",
+    "react/jsx-no-undef": "warn",
+    "@typescript-eslint/no-duplicate-imports": ["error"],
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "argsIgnorePattern": "_",
+      "varsIgnorePattern": "_",
     }],
     'import-helpers/order-imports': [
       'warn',
@@ -52,7 +55,7 @@ module.exports = {
           '/^react-redux/',
           '/^redux/',
           '/^~/store/',
-          '/^@hub/',
+          '/^@psdhub/',
           '/^@chakra/',
           '/^~/services/',
           '/^~/utils/',
@@ -65,25 +68,30 @@ module.exports = {
         'alphabetize': { 'order': 'desc', 'ignoreCase': true }
       }
     ],
-    "@typescript-eslint/ban-types": [
-      "error",
+    '@typescript-eslint/ban-types': [
+      'error',
       {
-        "types": {
-          "extendDefaults": true,
-          "Foo": "Don't use Foo because it is unsafe",
-          "String": {
-            "message": "Use string instead",
-            "fixWith": "string"
+        'types': {
+          'extendDefaults': true,
+          'Foo': "Don't use Foo because it is unsafe",
+          'String': {
+            'message': 'Use string instead',
+            'fixWith': 'string'
           },
-
-          "{}": {
-            "message": "Use object instead",
-            "fixWith": "object",
+          '{}': {
+            'message': 'Use object instead',
+            'fixWith': 'object',
           },
-          "object": false
+          'object': false
         }
       }
-    ]
+    ],
+    "@typescript-eslint/no-unused-vars": ["error",
+    {
+      "args": "after-used",
+      "varsIgnorePattern": "^_",
+      "argsIgnorePattern": "^_"
+    }],
   },
   settings: {
     'import/resolver': {

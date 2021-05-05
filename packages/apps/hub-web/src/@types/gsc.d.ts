@@ -1,5 +1,5 @@
 type GSC = 'show' | 'params' | 'onSubmit' | 'trackPage'
-interface GSCParamms {
+interface GSCParams {
   is_teacher?: boolean
   is_student?: boolean
   is_coordinator?: boolean
@@ -16,7 +16,7 @@ interface GSCParamms {
   selected_school_id?: string
   selected_school_name?: string
   schools_list?: string
-  is_ctpm: string
+  is_ctpm?: string
 }
 interface LooseBoolObject {
   [key: string]: boolean
@@ -32,13 +32,7 @@ interface WidgetData {
 }
 declare global {
   export interface Window {
-    gsc?: (
-      method: GSC,
-      options:
-        | number
-        | GSCParams
-        | ((widgetId: number, data: WidgetData) => void)
-    ) => void
+    gsc?: (method: GSC, options: any) => void
   }
 }
 export default global

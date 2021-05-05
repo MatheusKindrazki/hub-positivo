@@ -3,7 +3,7 @@ import React from 'react'
 import { StepsTour } from '~/store/modules/tour/types'
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent } from '@hub/test-utils'
+import { render, CustomState, fireEvent } from '@psdhub/test-utils'
 
 import Dashboard from '~/layouts/Logged'
 
@@ -26,7 +26,10 @@ describe('Logged`s layout should render without crashing', () => {
     ]
   })
 
-  const setup = (children = '', CUSTOM_STATE = {} as CustomState) => {
+  const setup = (
+    children = '',
+    CUSTOM_STATE = {} as CustomState<Store.State>
+  ) => {
     const wrapper = render(<Dashboard>{children}</Dashboard>, {
       store,
       reducers: ['global', 'tour'],
@@ -45,9 +48,8 @@ describe('Logged`s layout should render without crashing', () => {
   it('Should call render children on screen', () => {
     const element = 'children'
     const { getByText } = setup(element)
-    const children = getByText(element, { exact: false })
 
-    expect(children).toBeInTheDocument()
+    expect(getByText(element, { exact: false })).toBeInTheDocument()
   })
 
   it('Shouldn`t call steps if `open` is false', () => {
@@ -76,16 +78,14 @@ describe('Logged`s layout should render without crashing', () => {
 
     storeUtils?.clearActions()
 
-    const firstContent = getByText(first_step, { exact: false })
-    expect(firstContent).toBeInTheDocument()
+    expect(getByText(first_step, { exact: false })).toBeInTheDocument()
 
     const buttonsOnScreen = getAllByRole('button')
     const rightArrow = buttonsOnScreen[3]
 
     fireEvent.click(rightArrow)
 
-    const secondContent = getByText(second_step, { exact: false })
-    expect(secondContent).toBeInTheDocument()
+    expect(getByText(second_step, { exact: false })).toBeInTheDocument()
 
     storeUtils?.clearActions()
 

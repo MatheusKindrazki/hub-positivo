@@ -51,8 +51,9 @@ export const useHeaderReturn = {
 export const name = 'FirstName LastName'
 
 export const userState = {
+  loading: false,
   user: {
-    user: {
+    info: {
       name
     }
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { fireEvent, render } from '@hub/test-utils'
+import { fireEvent, render } from '@psdhub/test-utils'
 
 import AnimateGoBack from '~/layouts/Iframe/components/Header/AnimateGoBack'
 

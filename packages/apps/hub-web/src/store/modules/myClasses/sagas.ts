@@ -5,7 +5,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { loading } from '~/store/modules/global/actions'
 import { store } from '~/store'
 
-import { toast } from '@hub/common/utils'
+import { toast } from '@psdhub/common/utils'
 
 import { EEMConnectGET } from '~/services/eemConnect'
 

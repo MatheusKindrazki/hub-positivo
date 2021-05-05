@@ -4,11 +4,11 @@ import { debounce } from 'lodash'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { postTourViewed, openTour } from '~/store/modules/tour/actions'
+import { openTour, postTourViewed } from '~/store/modules/tour/actions'
 
-import gsc, { removeGsc } from '@hub/gsc'
-import Tour from '@hub/common/components/Tour'
-import { BarLoader } from '@hub/common/components'
+import gsc, { removeGsc } from '@psdhub/gsc'
+import Tour from '@psdhub/common/components/Tour'
+import { BarLoader } from '@psdhub/common/components'
 
 import setUserProperties from '~/services/mixpanel/setProperties'
 

@@ -1,1 +1,1 @@
-declare module '@hub/gsc'
+declare module '@psdhub/gsc'

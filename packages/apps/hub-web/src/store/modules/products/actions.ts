@@ -12,8 +12,6 @@ export const Actions = {
 
   SIGN_OUT: '@auth/SIGN_OUT',
 
-  FRAME_URL: '@products/FRAME_URL',
-
   REHYDRATE: 'persist/REHYDRATE'
 }
 
@@ -43,18 +41,5 @@ export function productIntegration(data: ProductReducer['data']): Action {
 export function productFailure(): Action {
   return {
     type: Actions.PRODUCT_FAILURE
-  }
-}
-
-export function setFrameURL({
-  url,
-  name
-}: {
-  url: string
-  name: string
-}): Action {
-  return {
-    type: Actions.FRAME_URL,
-    payload: { url, name }
   }
 }

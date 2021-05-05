@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render } from '@hub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import Welcome, { WelcomeProps } from '../../components/Welcome'
 
@@ -18,7 +18,7 @@ const undefinedProps: WelcomeProps = {
 
 describe('Welcome renders with correct props', () => {
   it('should render Welcome message correctly', () => {
-    const { getByText } = render(
+    const { queryByText } = render(
       <Welcome
         name="Name"
         fontSize="1em"
@@ -31,37 +31,37 @@ describe('Welcome renders with correct props', () => {
         educational_stage="educational_stage_teste"
       />
     )
-    const welcomeMessage = getByText(/Olá,/i)
-    const userText = getByText(/Name/i)
-    const role = getByText(/Administrador/i)
-    const schoolName = getByText(/Positivo/i)
-    const educationalStage = getByText(/educational_stage_teste/i)
+    const welcomeMessage = queryByText(/Olá,/i)
+    const userText = queryByText(/Name/i)
+    const role = queryByText(/Administrador/i)
+    const schoolName = queryByText(/Positivo/i)
+    const educationalStage = queryByText(/educational_stage_teste/i)
 
-    expect(userText).toBeInTheDocument()
-    expect(welcomeMessage).toBeInTheDocument()
-    expect(schoolName).toBeInTheDocument()
-    expect(role).toBeInTheDocument()
-    expect(educationalStage).toBeInTheDocument()
+    expect(userText).not.toBeNull()
+    expect(welcomeMessage).not.toBeNull()
+    expect(schoolName).not.toBeNull()
+    expect(role).not.toBeNull()
+    expect(educationalStage).not.toBeNull()
   })
 
   it('should render with welcome message despite undefined props', () => {
-    const { getByText } = render(<Welcome {...undefinedProps} />)
-    const welcomeMessage = getByText(/Olá,/i)
-    const userText = getByText(/Usuário/i)
-    const role = getByText(/Perfil/i)
-    const schoolName = getByText(/Escola/i)
+    const { queryByText } = render(<Welcome {...undefinedProps} />)
+    const welcomeMessage = queryByText(/Olá,/i)
+    const userText = queryByText(/Usuário/i)
+    const role = queryByText(/Perfil/i)
+    const schoolName = queryByText(/Escola/i)
 
-    expect(userText).toBeInTheDocument()
-    expect(welcomeMessage).toBeInTheDocument()
-    expect(schoolName).toBeInTheDocument()
-    expect(role).toBeInTheDocument()
+    expect(userText).not.toBeNull()
+    expect(welcomeMessage).not.toBeNull()
+    expect(schoolName).not.toBeNull()
+    expect(role).not.toBeNull()
   })
 
   it('should render user name as `Usuário` when option is `name` and prop name is undefined', () => {
     undefinedProps.option = 'name'
-    const { getByText } = render(<Welcome {...undefinedProps} />)
+    const { queryByText } = render(<Welcome {...undefinedProps} />)
 
-    const userText = getByText(/Usuário/i)
-    expect(userText).toBeInTheDocument()
+    const userText = queryByText(/Usuário/i)
+    expect(userText).not.toBeNull()
   })
 })

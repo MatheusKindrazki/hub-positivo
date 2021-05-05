@@ -2,9 +2,9 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { cards as mockedCards } from '@hub/test-utils/__mocks__'
-import { render, fireEvent, act, CustomState } from '@hub/test-utils'
-import createSlug from '@hub/common/utils/createSlug'
+import { cards as mockedCards } from '@psdhub/test-utils/__mocks__'
+import { render, fireEvent, act, CustomState } from '@psdhub/test-utils'
+import createSlug from '@psdhub/common/utils/createSlug'
 
 import Home from '~/pages/Home'
 
@@ -34,12 +34,12 @@ jest.mock('~/services/mixpanel/toolOpened')
 
 describe('Testing that the Home page works correctly', () => {
   const { user, profile, products, educationalStage } = mockState
-  const defaultItemsInState: CustomState = {
+  const defaultItemsInState: CustomState<Store.State> = {
     user,
     profile,
     products
   }
-  const setup = (contextConfig: CustomState = {}) => {
+  const setup = (contextConfig: CustomState<Store.State> = {}) => {
     const utils = render(<Home />, {
       store,
       reducers: ['user', 'profile', 'educationalStage', 'products', 'global'],
@@ -56,30 +56,30 @@ describe('Testing that the Home page works correctly', () => {
   }
 
   it('Should render the correct elements on the screen', () => {
-    const { getByText, getAllByText } = setup()
+    const { queryByText, queryAllByText } = setup()
 
     const { name } = user.info
     const { data } = products
 
     const fragmentedName = name.split(' ')
 
-    const nameInitals = getByText(fragmentedName[0][0] + fragmentedName[1][0])
-    const soonBagde = getAllByText('Em breve', queryConfig)
+    const nameInitals = queryByText(fragmentedName[0][0] + fragmentedName[1][0])
+    const soonBagde = queryAllByText('Em breve', queryConfig)
 
     expect(soonBagde.length).toBe(2)
-    expect(nameInitals).toBeInTheDocument()
+    expect(nameInitals).not.toBeNull()
 
     // Busca cada grupo de soluções e verifica se todos os cards estão na tela
     data.forEach(({ nome, solucoes }) => {
-      const groupOfSolutionTitle = getByText(nome)
-      expect(groupOfSolutionTitle).toBeInTheDocument()
+      const groupOfSolutionTitle = queryByText(nome)
+      expect(groupOfSolutionTitle).not.toBeNull()
 
       solucoes.forEach(({ nome: solutionName, descricao }) => {
-        const cardName = getByText(solutionName)
-        const cardDescription = getByText(descricao)
+        const cardName = queryByText(solutionName)
+        const cardDescription = queryByText(descricao)
 
-        expect(cardName).toBeInTheDocument()
-        expect(cardDescription).toBeInTheDocument()
+        expect(cardName).not.toBeNull()
+        expect(cardDescription).not.toBeNull()
       })
     })
   })
@@ -144,11 +144,11 @@ describe('Testing that the Home page works correctly', () => {
       products: { data: undefined, loading: false }
     })
     const emptyMessage = queryByText('Nenhum produto encontrado!', queryConfig)
-    expect(emptyMessage).toBeInTheDocument()
+    expect(emptyMessage).not.toBeNull()
   })
 
   it('Should render with default Welcome titles', async () => {
-    const emptyContextValues: CustomState = {
+    const emptyContextValues: CustomState<Store.State> = {
       user: {},
       profile: {
         name: undefined
@@ -159,15 +159,15 @@ describe('Testing that the Home page works correctly', () => {
 
     const defaultRole = queryByText('Perfil', queryConfig)
     const defaultUser = queryByText('Usuário', queryConfig)
-    expect(defaultRole).toBeInTheDocument()
-    expect(defaultUser).toBeInTheDocument()
+    expect(defaultRole).not.toBeNull()
+    expect(defaultUser).not.toBeNull()
   })
 
   it('Should render `userClass` and `Profile` when profile name is `Aluno`', async () => {
     const student = 'Aluno'
     const className = educationalStage.class
 
-    const studentProfile: CustomState = {
+    const studentProfile: CustomState<Store.State> = {
       profile: {
         name: student
       },
@@ -178,7 +178,7 @@ describe('Testing that the Home page works correctly', () => {
     const studentTitle = queryByText(student, queryConfig)
     const userClass = queryByText(className, queryConfig)
 
-    expect(studentTitle).toBeInTheDocument()
-    expect(userClass).toBeInTheDocument()
+    expect(studentTitle).not.toBeNull()
+    expect(userClass).not.toBeNull()
   })
 })

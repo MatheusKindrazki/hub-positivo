@@ -1,16 +1,16 @@
 import React from 'react'
 
-import { render } from '@hub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import Flex from '../../components/Flex'
 
 describe('Flex renders without crashing', () => {
   const childrenValue = 'testing children'
   const wrapper = render(<Flex children={childrenValue} />)
-  const { getByText } = wrapper
+  const { queryByText } = wrapper
   it('Flex has children', () => {
-    const children = getByText(childrenValue)
-    expect(children).toBeInTheDocument()
+    const children = queryByText(childrenValue)
+    expect(children).not.toBeNull()
   })
   it('Flex matches snapshot', () => {
     expect(wrapper).toMatchSnapshot()

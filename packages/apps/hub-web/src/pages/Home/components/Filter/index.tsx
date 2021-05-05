@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { productRequest } from '~/store/modules/products/actions'
 import { setEducationalStage } from '~/store/modules/educationalStage/actions'
 
-import { useMediaQuery } from '@hub/common/layout/styles'
-import { Box, Select } from '@hub/common/components'
+import { useMediaQuery } from '@psdhub/common/layout/styles'
+import { Box, Select } from '@psdhub/common/components'
 
 const Filter: React.FC = () => {
   const dispatch = useDispatch()
@@ -32,9 +32,9 @@ const Filter: React.FC = () => {
   if (!levels?.length || name !== 'Professor') return null
 
   return (
-    <Box mb={isMobile ? 5 : 0}>
+    <Box mb={isMobile ? 5 : 0} data-testid="filter-box">
       <Select
-        variant="blue-transparent"
+        variant="primary"
         value={levels.find(e => e.value === level)}
         options={orderBy(levels, 'label', 'asc')}
         onChange={e => handleSelect(e)}

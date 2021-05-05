@@ -1,4 +1,4 @@
-import { theme } from '@hub/common/layout/styles'
+import { theme } from '@psdhub/common/layout/styles'
 
 type ThemeInterface = typeof theme
 

@@ -1,5 +1,4 @@
-import { INITIAL_STATE as initialState } from '~/store/modules/profile/reducer'
-import profile from '~/store/modules/profile/reducer'
+import profile, { INITIAL_STATE } from '~/store/modules/profile/reducer'
 import { setProfile, profiles } from '~/store/modules/profile/actions'
 import { signOut } from '~/store/modules/auth/actions'
 
@@ -66,21 +65,21 @@ const expectedSignOutOutput = {
 describe('authProduct reducer', () => {
   it('returns the initial state when an action type is not passed', () => {
     const result = profile(undefined, { type: null })
-    expect(result).toEqual(initialState)
+    expect(result).toEqual(INITIAL_STATE)
   })
 
   it('loading is set to false on failure action', () => {
-    const result = profile(initialState, setProfile(mockedProfiles))
+    const result = profile(INITIAL_STATE, setProfile(mockedProfiles))
     expect(result).toEqual(setProfileExpectedOutput)
   })
 
   it('loading is set to false on failure action', () => {
-    const result = profile(initialState, profiles(mockedProfiles.profiles))
+    const result = profile(INITIAL_STATE, profiles(mockedProfiles.profiles))
     expect(result).toEqual(profilesExpectedOutput)
   })
 
   it('loading is set to false on failure action', () => {
-    const result = profile(initialState, signOut())
+    const result = profile(INITIAL_STATE, signOut())
     expect(result).toEqual(expectedSignOutOutput)
   })
 })

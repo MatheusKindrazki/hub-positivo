@@ -5,15 +5,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { openTour } from '~/store/modules/tour/actions'
 import { signOut } from '~/store/modules/auth/actions'
 
-import { useDisclosure } from '@hub/common/hooks'
-import Welcome from '@hub/common/components/Welcome'
-import Select from '@hub/common/components/Select'
+import { useDisclosure } from '@psdhub/common/hooks'
+import Welcome from '@psdhub/common/components/Welcome'
 import Popover, {
   PopoverTrigger,
   PopoverContent
-} from '@hub/common/components/Popover'
-import { MenuDivider } from '@hub/common/components/Menu'
-import { Box, Button, Avatar } from '@hub/common/components'
+} from '@psdhub/common/components/Popover'
+import { MenuDivider } from '@psdhub/common/components/Menu'
+import { Box, Button, Avatar, Select } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
@@ -135,7 +134,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
               blurInputOnSelect
               placeholder="Selecione"
               isSearchable
-              className="height-md"
+              inputHeight={40}
               value={defaultValue.school}
               options={schoolList}
               onFocus={() => setEnableBlur(false)}
@@ -150,7 +149,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
               key={String(defaultValue.role)}
               variant="normal"
               placeholder="Selecione"
-              className="height-md"
+              inputHeight={40}
               value={defaultValue.role}
               options={roleList}
               onFocus={() => setEnableBlur(false)}

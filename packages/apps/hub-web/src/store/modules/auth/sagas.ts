@@ -16,9 +16,9 @@ import {
 import { setSigned, signInRequestLoading } from '~/store/modules/auth/actions'
 import { store } from '~/store'
 
-import capitalize from '@hub/common/utils/capitalize'
-import { toast } from '@hub/common/utils'
-import api from '@hub/api'
+import capitalize from '@psdhub/common/utils/capitalize'
+import { toast } from '@psdhub/common/utils'
+import api from '@psdhub/api'
 
 import sessionStarted from '~/services/mixpanel/sessionStarted'
 import mixpanelIdentifyUser from '~/services/mixpanel/identifyUser'
@@ -179,7 +179,7 @@ export function* checkingExpiringToken({
 }: ExpiringRehydrate): Generator {
   if (!payload) return
 
-  if (!payload.auth.signed) {
+  if (!payload.auth.signed && payload.auth.token) {
     return yield put(signOut())
   }
 

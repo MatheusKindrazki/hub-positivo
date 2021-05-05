@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { fireEvent, render } from '@hub/test-utils'
+import { fireEvent, render } from '@psdhub/test-utils'
 
 import history from '~/services/history'
 
@@ -9,8 +9,8 @@ import * as HeaderDesktop from '~/layouts/Iframe/components/Header/HeaderDesktop
 import * as AnimateGoBack from '~/layouts/Iframe/components/Header/AnimateGoBack'
 import Header from '~/layouts/Iframe/components/Header/'
 
-jest.mock('@hub/common/layout/styles', () => {
-  const rest = jest.requireActual('@hub/common/layout/styles')
+jest.mock('@psdhub/common/layout/styles', () => {
+  const rest = jest.requireActual('@psdhub/common/layout/styles')
   return {
     ...rest,
     useMediaQuery: jest
@@ -44,8 +44,7 @@ describe('Header`s layout should work properly', () => {
       .mockImplementation(jest.fn(() => <span>{mobile}</span>))
 
     const { getByText } = setup()
-    const Header = getByText(mobile)
-    expect(Header).toBeInTheDocument()
+    expect(getByText(mobile)).toBeInTheDocument()
   })
   it('Header should render Desktop Header when useMediaQuery returns [true]', () => {
     const desktop = 'Header Desktop'
@@ -55,8 +54,7 @@ describe('Header`s layout should work properly', () => {
       .mockImplementation(jest.fn(() => <span>{desktop}</span>))
 
     const { getByText } = setup()
-    const Header = getByText(desktop)
-    expect(Header).toBeInTheDocument()
+    expect(getByText(desktop)).toBeInTheDocument()
   })
 
   it('Should call the go back handler when a GoBack is clicked', () => {

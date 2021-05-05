@@ -2,8 +2,8 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import cards from '@hub/test-utils/__mocks__/cards.mock'
-import { fireEvent, render, waitFor } from '@hub/test-utils'
+import cards from '@psdhub/test-utils/__mocks__/cards.mock'
+import { fireEvent, render, waitFor } from '@psdhub/test-utils'
 
 import HeaderDesktop from '~/layouts/Iframe/components/Header/HeaderDesktop'
 

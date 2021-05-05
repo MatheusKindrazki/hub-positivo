@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render } from '@hub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import * as chakra from '@chakra-ui/react'
 
@@ -21,8 +21,8 @@ const setup = (props?: any) => {
 
 describe('FakeCollapse renders without crashing', () => {
   it('should have children', () => {
-    const { getByText } = setup()
-    const children = getByText(childrenValue)
+    const { queryByText } = setup()
+    const children = queryByText(childrenValue)
     expect(children).toBeInTheDocument()
   })
 

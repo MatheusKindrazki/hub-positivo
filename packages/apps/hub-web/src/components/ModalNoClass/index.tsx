@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { signOut } from '~/store/modules/auth/actions'
 
-import { useDisclosure, useMediaQuery } from '@hub/common/hooks'
-import Modal from '@hub/common/components/Modal'
-import { Box, Button, Image, Text } from '@hub/common/components'
+import { useDisclosure, useMediaQuery } from '@psdhub/common/hooks'
+import Modal from '@psdhub/common/components/Modal'
+import { Box, Button, Image, Text } from '@psdhub/common/components'
 
 import turma from './turma.svg'
 import GlobalStyles from './styles'

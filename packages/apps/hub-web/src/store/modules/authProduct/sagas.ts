@@ -4,23 +4,23 @@ import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
 
 import { store } from '~/store'
 
-import { toast } from '@hub/common/utils'
-import { apiAuthProduct } from '@hub/api'
+import { toast } from '@psdhub/common/utils'
+import { apiAuthProduct } from '@psdhub/api'
 
 import history from '~/services/history'
 
 import isMobile from '~/utils/isMobile'
 
+import { loadScripts } from '~/orchestrator'
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
 
-import { AuthRequest } from './types'
+import { AuthRequest, ReturnScripts } from './types'
 import {
   Actions,
   authProductFailure,
   authProductSuccess,
   authProductRequest
 } from './actions'
-import { setFrameURL } from '../products/actions'
 import { loading } from '../global/actions'
 
 // ! tipos de renderização
@@ -53,13 +53,21 @@ export function* productSorting({ payload }: AuthPayload): Generator {
   if (tipoRenderizacao === 'iframenoauth') {
     history.push(`/solucao/${product}`)
 
-    return yield put(setFrameURL({ url, name: payload.name }))
+    return yield put(
+      authProductSuccess({
+        mcf: false,
+        productData: payload.url,
+        productName: payload.name
+      })
+    )
   }
 
   if (tipoRenderizacao === 'targetblank') {
     window.open(url, '_blank')
+  }
 
-    return yield put(authProductSuccess())
+  if (tipoRenderizacao === 'microfrontend') {
+    return yield put(authProductRequest(payload, 'MICRO_FRONTEND_REQUEST'))
   }
 
   if (EEMIframeVerify.includes(tipoRenderizacao as string)) {
@@ -67,6 +75,37 @@ export function* productSorting({ payload }: AuthPayload): Generator {
   }
 
   return yield put(authProductRequest(payload, 'AUTH_PRODUCT_GUID_REQUEST'))
+}
+
+/*
+  ! Micro-frontend Auth
+*/
+export function* authMcf({ payload }: AuthPayload): Generator {
+  yield put(loading(true))
+
+  try {
+    const resMcf = yield call(async () => {
+      return await loadScripts({ manifestUrl: payload.url })
+    })
+
+    yield put(
+      authProductSuccess({
+        mcf: true,
+        productData: resMcf as ReturnScripts,
+        productName: payload.name
+      })
+    )
+
+    history.push(`/solucao/${payload.product}/${payload.subpath || ''}`)
+  } catch (error) {
+    history.push('/')
+
+    toast.warn(
+      'Estamos com dificuldades para carregar a solução, tente novamente em breve!'
+    )
+  }
+
+  return yield put(loading(false))
 }
 
 /*
@@ -128,24 +167,27 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
 
   const subpath = payload.subpath !== undefined ? payload.subpath : ''
 
-  history.push(`/solucao/${payload.product}/${subpath}`)
-
   let urlAuth = `${payload.url}/${data}/${subpath}`
 
   if (payload.tipoRenderizacao === 'wordpress') {
     const guid = (data as unknown) as string
 
     urlAuth = payload.url.replace('{token}', guid)
+
+    window.open(urlAuth, '_blank')
+
+    return yield put(authProductSuccess())
   }
 
-  yield put(
-    setFrameURL({
-      url: urlAuth,
-      name: payload.name
+  history.push(`/solucao/${payload.product}/${subpath}`)
+
+  return yield put(
+    authProductSuccess({
+      mcf: false,
+      productData: urlAuth,
+      productName: payload.name
     })
   )
-
-  return yield put(authProductSuccess())
 }
 
 /*
@@ -161,18 +203,22 @@ export function* authProductEEM({ payload }: AuthPayload): Generator {
   if (payload.tipoRenderizacao === 'iframeblank' && isMobile.iOS()) {
     window.open(newUrl, '_blank')
   } else {
-    yield put(setFrameURL({ url: newUrl, name: payload.name }))
-
+    yield put(
+      authProductSuccess({
+        mcf: false,
+        productData: newUrl,
+        productName: payload.name
+      })
+    )
     history.push(`/solucao/${payload.product}`)
   }
 
   yield put(loading(false))
-
-  return yield put(authProductSuccess())
 }
 
 export default all([
   takeLatest(Actions.AUTH_PRODUCT_REQUEST, productSorting),
   takeLatest(Actions.AUTH_PRODUCT_GUID_REQUEST, authProductGUID),
-  takeLatest(Actions.AUTH_PRODUCT_EEM_REQUEST, authProductEEM)
+  takeLatest(Actions.AUTH_PRODUCT_EEM_REQUEST, authProductEEM),
+  takeLatest(Actions.MICRO_FRONTEND_REQUEST, authMcf)
 ])

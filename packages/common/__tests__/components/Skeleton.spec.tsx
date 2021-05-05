@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render } from '@hub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import Skeleton, {
   SkeletonProps,
@@ -10,7 +10,6 @@ import Skeleton, {
   SkeletonText,
   Stack
 } from '../../components/Skeleton'
-import '@testing-library/jest-dom'
 
 const skeletonProps: SkeletonProps = {
   height: '20px'

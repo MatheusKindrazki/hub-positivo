@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { fireEvent, render } from '@hub/test-utils'
+import { fireEvent, render } from '@psdhub/test-utils'
 
 import Card, { CardProps } from '~/layouts/Iframe/components/Card'
 
@@ -34,9 +34,7 @@ describe('Card`s layout should work properly', () => {
   }
 
   it('Should render card`s elements on screen', () => {
-    const { cardName } = setup(card)
-
-    expect(cardName).toBeInTheDocument()
+    expect(setup(card).cardName).toBeInTheDocument()
   })
 
   it('Should call onClick function when card box is clicked', () => {

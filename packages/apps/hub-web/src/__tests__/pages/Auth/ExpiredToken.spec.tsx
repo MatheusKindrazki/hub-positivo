@@ -2,7 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent } from '@hub/test-utils'
+import { render, CustomState, fireEvent } from '@psdhub/test-utils'
 
 import history from '~/services/history'
 
@@ -17,7 +17,7 @@ describe('Expired Token page should work properly', () => {
     jest.clearAllMocks()
   })
 
-  const CUSTOM_STATE: CustomState = {
+  const CUSTOM_STATE: CustomState<Store.State> = {
     forgotPassword: {
       validateViewPin: true
     }
@@ -25,7 +25,7 @@ describe('Expired Token page should work properly', () => {
 
   const spyPush = jest.spyOn(history, 'push')
 
-  const setup = (rest: CustomState | object) => {
+  const setup = (rest: CustomState<Store.State> | object) => {
     const utils = render(<ExpiredToken />, {
       store,
       reducers: ['forgotPassword'],
@@ -58,9 +58,6 @@ describe('Expired Token page should work properly', () => {
   it('Should redirect to `/esqueci-minha-senha` when `Solicitar novo link` is clicked', () => {
     const { getByText } = setup(CUSTOM_STATE)
     const newLinkButton = getByText(/Solicitar novo link/i)
-
-    expect(newLinkButton).toBeInTheDocument()
-
     fireEvent.click(newLinkButton)
 
     expect(spyPush).toHaveBeenCalledTimes(1)
@@ -70,9 +67,6 @@ describe('Expired Token page should work properly', () => {
   it('Should redirect to `/login` when `GoBack` is clicked', () => {
     const { getByTestId } = setup(CUSTOM_STATE)
     const goBackButton = getByTestId('go-back')
-
-    expect(goBackButton).toBeInTheDocument()
-
     fireEvent.click(goBackButton)
 
     expect(spyPush).toHaveBeenCalledTimes(1)
