@@ -1,0 +1,44 @@
+{
+  "name": "@psdhub/easyauth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development",
+    "errors": "webpack --display-error-details"
+  },
+  "dependencies": {
+    "@psdhub/api": "*",
+    "@psdhub/common": "*",
+    "dotenv-webpack": "^6.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.5",
+    "@babel/preset-typescript": "^7.10.4",
+    "@babel/runtime": "^7.12.5",
+    "@types/crypto-js": "^4.0.1",
+    "@types/dotenv-webpack": "^5.0.0",
+    "@types/react": "^16.9.50",
+    "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.4",
+    "@types/webpack": "^4.41.25",
+    "@webpack-cli/serve": "^1.1.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-styled-components": "^1.11.1",
+    "dotenv": "^8.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "ts-loader": "^8.0.4",
+    "ts-node": "^9.0.0",
+    "webpack": "4.44.2",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
