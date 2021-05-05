@@ -1,8 +1,10 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 
 import { DropzoneRef } from 'react-dropzone'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { categoryGetAllRequest } from '~/store/modules/category/actions'
 
 import { toast } from '@psdhub/common/utils'
 import { CaretRight } from '@psdhub/common/components/Icons'
@@ -25,15 +27,25 @@ import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
+import createCategoryOptions from '../utils/createCategoryOptions'
 
 const UpdateSolution: React.FC = () => {
+  const dispatch = useDispatch()
   const { loading: alterLoading } = useSelector(
     (state: Store.State) => state.user
   )
 
+  const { categories } = useSelector((state: Store.State) => state.category)
+
+  console.log(categories)
+
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
   const modalRef = useRef<ModalHandler>(null)
+
+  useEffect(() => {
+    dispatch(categoryGetAllRequest())
+  }, [dispatch])
 
   const handleSubmit = useCallback(async data => {
     formRef?.current?.setErrors({})
@@ -108,7 +120,15 @@ const UpdateSolution: React.FC = () => {
           >
             <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Categoria</Text>
-              <Select variant="secondary" name="category"></Select>
+              <Select
+                options={
+                  categories.length > 0
+                    ? createCategoryOptions(categories)
+                    : undefined
+                }
+                variant="secondary"
+                name="category"
+              />
             </Box>
             <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Perfis</Text>
