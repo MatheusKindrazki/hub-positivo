@@ -1,23 +1,13 @@
-import webpack from 'webpack'
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import Dotenv from 'dotenv-webpack'
 import dotenv from 'dotenv'
 
-interface Config extends webpack.Configuration {
-  devServer: {
-    contentBase: string
-    historyApiFallback: boolean
-    hot: boolean
-    port: number
-  }
-}
-
 dotenv.config()
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-const config: Config = {
+const config: any = {
   mode: isDevelopment ? 'development' : 'production',
 
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
@@ -53,12 +43,12 @@ const config: Config = {
     extensions: ['.tsx', '.ts', '.js']
   },
   plugins: [
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html'),
       title: 'Hub Digital - Easy Auth'
-    }),
-    new Dotenv()
-  ].filter(Boolean)
+    })
+  ]
 }
 
 export default config
