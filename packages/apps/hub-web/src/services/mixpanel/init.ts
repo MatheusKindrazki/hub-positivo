@@ -6,7 +6,8 @@ export default function init(): void {
   try {
     mixpanel.init(key, {
       batch_requests: true,
-      cookie_domain: window.location.host
+      cookie_domain: window.location.host,
+      cross_subdomain_cookie: false
     })
   } catch (error) {
     console.error('Erro ao inicializar mix panel')

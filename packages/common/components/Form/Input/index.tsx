@@ -21,11 +21,12 @@ interface InputElement extends InputProps {
 interface InputAddIcons extends InputElement {
   iconLeft?: React.ReactNode
   iconRight?: React.ReactNode
+  label?: string
 }
 
 const Input: React.FC<InputAddIcons> = ({
-  name,
   label,
+  name,
   iconLeft,
   iconRight,
   mb,

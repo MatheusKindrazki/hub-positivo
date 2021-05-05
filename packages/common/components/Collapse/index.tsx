@@ -1,6 +1,9 @@
 import React, { useMemo } from 'react'
 
-import { Collapse as CollapseUI } from 'react-collapse'
+import {
+  Collapse as CollapseUI,
+  CollapseProps as CollapseUIProps
+} from 'react-collapse'
 import { CaretDown } from 'phosphor-react'
 import classNames from 'classnames'
 
@@ -14,7 +17,7 @@ import {
 
 import CollapseGlobal from './styles'
 
-export interface CollapseProps {
+export interface CollapseProps extends Omit<CollapseUIProps, 'isOpened'> {
   id: string
   nome: string
   disable?: boolean
@@ -22,6 +25,7 @@ export interface CollapseProps {
   gridColumns?: number | number[]
   className?: string
   grid?: boolean
+  defaultIsOpen?: boolean
 }
 
 const Collapse: React.FC<CollapseProps> = ({
@@ -31,9 +35,12 @@ const Collapse: React.FC<CollapseProps> = ({
   disable,
   gridColumns,
   grid = true,
-  className
+  className,
+  cor,
+  defaultIsOpen = true,
+  ...rest
 }) => {
-  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true })
+  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen })
 
   const [isLargerThan1280] = useMediaQuery('(min-width: 1300px)')
 
@@ -47,7 +54,7 @@ const Collapse: React.FC<CollapseProps> = ({
         mt="8"
         key={id}
         width="100%"
-        className={classNames(className, { 'collapse-home': true })}
+        className={classNames(className, { collapse: true })}
       >
         <Box
           width="100%"
@@ -56,21 +63,19 @@ const Collapse: React.FC<CollapseProps> = ({
           justifyContent="space-between"
           alignItems="center"
           onClick={onToggle}
+          className="collapse-header"
+          rounded={!isOpen ? 'md' : 'none'}
+          roundedTop="md"
+          transition="all .2s linear"
         >
-          <Heading
-            as="h6"
-            color="blue.500"
-            fontWeight="normal"
-            fontSize="1.5rem"
-            className="background-animate"
-          >
+          <Heading as="h6" color={cor} fontWeight="normal" fontSize="1.5rem">
             {nome}
           </Heading>
           {!disable && (
             <Box
               data-testid="collapse-box"
               as={CaretDown}
-              color="blue.500"
+              color={cor}
               size="1.25rem"
               style={{
                 transition: 'all .2s linear',
@@ -80,6 +85,7 @@ const Collapse: React.FC<CollapseProps> = ({
           )}
         </Box>
         <CollapseUI
+          {...rest}
           isOpened={disable ? true : isOpen}
           style={{ padding: '10px 0' }}
         >

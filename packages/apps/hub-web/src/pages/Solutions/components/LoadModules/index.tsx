@@ -23,7 +23,9 @@ const LoadModules: React.FC<ModulesProps> = ({
     const element = document.getElementById(`micro-frontend-${identifyScript}`)
 
     return () => {
-      element?.remove()
+      setTimeout(() => {
+        element?.remove()
+      }, 500)
     }
   }, [identifyScript])
 

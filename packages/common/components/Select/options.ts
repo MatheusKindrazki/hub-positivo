@@ -7,3 +7,7 @@ export default {
   primary: Primary,
   secondary: Secondary
 }
+
+export const prefixClass = process.env.REACT_APP_IS_HUB
+  ? 'hub'
+  : 'hub-component'

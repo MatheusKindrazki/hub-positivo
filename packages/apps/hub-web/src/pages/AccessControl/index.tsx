@@ -1,37 +1,83 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Box
-} from '@chakra-ui/react'
+import { useSelector, useDispatch } from 'react-redux'
 
-import ControlTable from '~/components/ControlTable'
+import { UpdateSolutionData } from '~/store/modules/updateSolution/types'
+import { solutionsRequest } from '~/store/modules/solutions/actions'
 
-import { mockedData } from './mock'
+import { Columns } from '@psdhub/common/components/Table'
+import { Collapse } from '@psdhub/common/components'
+
+import { formatReturnDataFromAPI } from './utils/formatReturnDataFromAPI'
+import Container from './styles'
+import Table, { TableSolution } from './components/Table'
+import Switch from './components/Switch'
+import Header from './components/Header'
+import FakeLoadingCollapse from './components/FakeLoading'
+import EditButton from './components/EditButton'
+
+export interface CollapseData {
+  nome: string
+  solutions: TableSolution[]
+}
+
+export const columns: Columns[] = [
+  { property: 'solution', header: 'Solução' },
+  { property: 'profile', header: 'Perfis' },
+  { property: 'schools', header: 'Escolas' },
+  {
+    property: 'edit',
+    header: null,
+    render: (e: UpdateSolutionData) => <EditButton url={`/${e.id}`} />
+  },
+  {
+    property: 'active',
+    header: null,
+    render: (e: UpdateSolutionData) => <Switch data={e} />
+  }
+]
+
+const mock = [{}, {}, {}, {}, {}, {}, {}]
 
 const AccessControl: React.FC = () => {
+  const [solutions, setSolutions] = useState<CollapseData[] | null>(null)
+  const { data, loading } = useSelector((state: Store.State) => state.solutions)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(solutionsRequest())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (data) {
+      setSolutions(formatReturnDataFromAPI(data))
+    }
+  }, [data])
+
   return (
-    <Accordion>
-      {mockedData.map(categoria => {
+    <Container m="1" marginTop="10">
+      <Header />
+      {loading && mock.map((_, i) => <FakeLoadingCollapse key={i} />)}
+      {solutions?.map(categoria => {
         return (
-          <AccordionItem key={categoria.name}>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                {categoria.name}
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-            <AccordionPanel pb={4}>
-              <ControlTable solutions={categoria.solutions} />
-            </AccordionPanel>
-          </AccordionItem>
+          <Collapse
+            defaultIsOpen={false}
+            grid={false}
+            key={categoria.nome}
+            nome={categoria.nome}
+            id="1"
+            cor="white"
+            css={{
+              background: 'white',
+              borderRadius: '0.5rem',
+              overflow: 'hidden'
+            }}
+          >
+            <Table columns={columns} data={categoria.solutions} />
+          </Collapse>
         )
       })}
-    </Accordion>
+    </Container>
   )
 }
 
