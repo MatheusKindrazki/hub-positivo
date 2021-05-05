@@ -85,6 +85,10 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
       history.push('/')
     }, [dispatch])
 
+    const handleRedirect = useCallback(async (path: string) => {
+      history.push(path)
+    }, [])
+
     const handleOpenTour = useCallback(() => {
       onClose()
       dispatch(openTour(true))
@@ -211,6 +215,21 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               >
                 Home
               </Button>
+              {guid === 'ADMINISTRADOR' && (
+                <Button
+                  onClick={() => handleRedirect('/controle-de-acessos')}
+                  color={
+                    location.pathname === '/controle-de-acessos'
+                      ? 'blue.500'
+                      : 'gray.500'
+                  }
+                  fontSize="0.875rem"
+                  variant="ghost"
+                  ml="-10px"
+                >
+                  Controle de acessos
+                </Button>
+              )}
               {guid === 'PROFESSOR' && (
                 <Button
                   onClick={() => {
