@@ -5,7 +5,7 @@ import { Flex, Button, Box } from '@psdhub/common/components'
 import ModalContext from '../ModalAddCategory/context'
 import Modal from '../ModalAddCategory'
 
-const Header = () => {
+const Header: React.FC = () => {
   const { onOpen } = useContext(ModalContext)
 
   return (
