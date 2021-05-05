@@ -9,6 +9,7 @@ import { AnyAction, CombinedState, combineReducers } from 'redux'
 import user from './user/reducer'
 import tour from './tour/reducer'
 import solutions from './solutions/reducer'
+import school from './school/reducer'
 import profile from './profile/reducer'
 import products from './products/reducer'
 import myClasses from './myClasses/reducer'
@@ -32,6 +33,7 @@ export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
     myClasses,
     solutions,
     category,
+    school,
     router: connectRouter(history)
   })
 }
