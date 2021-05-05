@@ -79,7 +79,5 @@ if(['build-overrides'].includes(script)) {
 } else {
   console.log('Unknown script "' + script + '".');
   console.log('Perhaps you need to update react-scripts?');
-  console.log(
-    'See: https://facebook.github.io/create-react-app/docs/updating-to-new-releases'
-  );
+
 }

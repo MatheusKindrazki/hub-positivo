@@ -34,7 +34,7 @@ const Filter: React.FC = () => {
   return (
     <Box mb={isMobile ? 5 : 0} data-testid="filter-box">
       <Select
-        variant="blue-transparent"
+        variant="primary"
         value={levels.find(e => e.value === level)}
         options={orderBy(levels, 'label', 'asc')}
         onChange={e => handleSelect(e)}

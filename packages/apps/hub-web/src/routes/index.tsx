@@ -6,6 +6,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import { useSelector } from 'react-redux'
 
 import { VariantsProps } from '@psdhub/common/layout/styles/colors'
+import { useColorMode } from '@psdhub/common/layout/styles'
 import ThemeContext from '@psdhub/common/layout/Provider/context'
 
 import history from '~/services/history'
@@ -14,7 +15,7 @@ import Route from './Route'
 
 // ? Importação das páginas
 const Home = React.lazy(() => import('~/pages/Home'))
-const Iframe = React.lazy(() => import('~/pages/Iframe'))
+const DevHub = React.lazy(() => import('~/pages/Dev'))
 const SignIn = React.lazy(() => import('~/pages/Auth/SignIn'))
 const Profile = React.lazy(() => import('~/pages/Auth/Profile'))
 const MyClasses = React.lazy(() => import('~/pages/MyClasses'))
@@ -29,6 +30,10 @@ const Solutions = React.lazy(() => import('~/pages/Solutions'))
 const Routes: React.FC = () => {
   const { colorProfile } = useSelector((state: Store.State) => state.profile)
   const { guid } = useSelector((state: Store.State) => state.profile)
+
+  const { setColorMode } = useColorMode()
+
+  setColorMode('light')
 
   const { theme } = useContext(ThemeContext)
 
@@ -59,20 +64,21 @@ const Routes: React.FC = () => {
               component={AccessControl}
               isPrivate
             />
-            <Route
-              path={['/solucao/:solution/:subpath+', '/solucao/:solution']}
-              component={Iframe}
-              isPrivate
-            />
 
             <Route path="/" exact component={Home} isPrivate />
+
             <Route
-              path="/microfrontend/:subpath+"
+              path={['/solucao/:solution/:subpath+', '/solucao/:solution']}
               component={Solutions}
               isPrivate
             />
+
             {guid === 'PROFESSOR' && (
               <Route path="/minhas-turmas" component={MyClasses} isPrivate />
+            )}
+
+            {process.env.REACT_APP_NODE_ENV === 'development' && (
+              <Route path="/dev" component={DevHub} isPrivate />
             )}
 
             <Redirect to="/" from="*" />

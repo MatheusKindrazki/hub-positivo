@@ -1,7 +1,7 @@
 {
   "name": "psdhub",
   "private": true,
-  "version": "1.8.2",
+  "version": "1.9.1",
   "repository": {
     "type": "git",
     "url": "https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront"
@@ -28,7 +28,9 @@
     "test:coverage": "jest --collectCoverage -u --testResultsProcessor=jest-sonar-reporter --maxWorkers=2 && coverage-badges",
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
+    "prebuild:web": "npm run --prefix packages/helpers build",
     "build:web": "npm run --prefix packages/apps/hub-web build",
+    "postbuild:web": "node scripts/replace-in-files.js hub",
     "build:common": "npm run --prefix packages/common build",
     "release": "HUSKY_SKIP_HOOKS=1 semantic-release"
   },
@@ -40,7 +42,6 @@
     "@semantic-release/git": "^9.0.0",
     "@testing-library/react-hooks": "^5.0.3",
     "@types/jest": "^26.0.20",
-    "babel-plugin-styled-components": "^1.12.0",
     "commitizen": "^4.2.3",
     "coverage-badges": "^1.0.4",
     "cz-conventional-changelog": "^3.3.0",
@@ -51,11 +52,15 @@
     "jest-svg-transformer": "^1.0.0",
     "lint-staged": "^10.5.4",
     "react-select-event": "^5.2.0",
+    "replace-in-files": "^3.0.0",
     "semantic-release": "^17.3.8",
     "semantic-release-monorepo": "^7.0.4",
     "svg-png-converter": "^0.0.9",
     "ts-jest": "^26.5.1",
     "typescript": "4.2.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@emotion/cache": "^11.1.3",
+    "@emotion/react": "^11.1.5"
+  }
 }

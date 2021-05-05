@@ -14,7 +14,7 @@ import Drawer, {
   useDisclosure,
   DrawerContent
 } from '@psdhub/common/components/Drawer'
-import { Box, Button, Select, Welcome } from '@psdhub/common/components'
+import { Box, Button, Welcome, Select } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
@@ -126,7 +126,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               <Select
                 variant="normal"
                 placeholder="Selecione"
-                className="height-md"
+                inputHeight={40}
                 value={defaultValue.school}
                 options={schoolList}
                 onChange={e => setSchool(e as any)}
@@ -137,7 +137,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                 key={String(defaultValue.role)}
                 variant="normal"
                 placeholder="Selecione"
-                className="height-md"
+                inputHeight={40}
                 value={defaultValue.role}
                 options={roleList}
                 onChange={e => setRole(e as any)}

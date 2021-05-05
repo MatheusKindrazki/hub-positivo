@@ -3,10 +3,20 @@
 /// <reference types="react" />
 /// <reference types="react-dom" />
 
-declare namespace NodeJS {
-  interface ProcessEnv {
-    readonly NODE_ENV: 'development' | 'production' | 'test'
-    readonly PUBLIC_URL: string
+declare global {
+  export declare namespace NodeJS {
+    interface ProcessEnv {
+      readonly NODE_ENV: 'development' | 'production' | 'test'
+      readonly PUBLIC_URL: string
+      INCLUDE_HTML_BUILD?: boolean
+      SINGLE_BUNDLE?: boolean
+      BASENAME: string
+      ELEMENT_ID: string
+    }
+  }
+  export interface Window {
+    loadMicrofrontend: () => void
+    unLoadMicrofrontend: () => void
   }
 }
 
@@ -70,3 +80,5 @@ declare module '*.module.sass' {
   const classes: { readonly [key: string]: string }
   export default classes
 }
+
+export default global

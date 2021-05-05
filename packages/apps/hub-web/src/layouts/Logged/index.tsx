@@ -1,9 +1,12 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
+
+import { debounce } from 'lodash'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour, postTourViewed } from '~/store/modules/tour/actions'
 
+import gsc, { removeGsc } from '@psdhub/gsc'
 import Tour from '@psdhub/common/components/Tour'
 import { BarLoader } from '@psdhub/common/components'
 
@@ -12,15 +15,22 @@ import setUserProperties from '~/services/mixpanel/setProperties'
 import ModalNoClass from '~/components/ModalNoClass'
 import Header from '~/components/Header'
 
-import { useSendGlobalInfo } from '~/hooks/useSendGlobalInfo'
-
 import { Container } from './styles'
 
-const Dashboard: React.FC = ({ children }) => {
-  useSendGlobalInfo()
-  setUserProperties()
+const dispatchEvent = debounce(() => setUserProperties(), 1500)
 
+const Dashboard: React.FC = ({ children }) => {
   const dispatch = useDispatch()
+
+  useEffect(() => dispatchEvent())
+
+  useEffect(() => {
+    gsc()
+
+    return () => {
+      removeGsc()
+    }
+  }, [])
 
   const { loading } = useSelector((state: Store.State) => state.global)
 

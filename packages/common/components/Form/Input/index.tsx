@@ -10,7 +10,8 @@ import {
   InputProps,
   InputLeftElement,
   InputRightElement,
-  FormLabel
+  FormLabel,
+  useTheme
 } from '@chakra-ui/react'
 
 type InputElement = InputProps
@@ -30,6 +31,8 @@ const Input: React.FC<InputAddIcons> = ({
   ...rest
 }) => {
   const inputRef = useRef(null)
+
+  const { colors } = useTheme()
 
   const { fieldName, defaultValue, error, registerField } = useField(
     name as string
@@ -82,7 +85,7 @@ const Input: React.FC<InputAddIcons> = ({
           }}
           _focus={{
             borderColor: 'blue.500',
-            boxShadow: '0 0 0 1px var(--hub-base-color)'
+            boxShadow: `0 0 0 1px ${colors.blue[500]}`
           }}
           defaultValue={defaultValue}
           errorBorderColor="red.300"

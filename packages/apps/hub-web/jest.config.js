@@ -11,6 +11,7 @@ module.exports = {
   transform: {
     '^.+\\.svg$': 'jest-svg-transformer'
   },
+  transformIgnorePatterns: ['node_modules'],
   collectCoverageFrom: [
     '<rootDir>/src/components/**/.tsx',
     '<rootDir>/src/layouts/**/.tsx',

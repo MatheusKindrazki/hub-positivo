@@ -1,3 +1,50 @@
+## [1.9.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.9.0...v1.9.1) (2021-05-01)
+
+
+### Bug Fixes
+
+* fix para abertura de solução WP em outra aba ([86cf2d4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/86cf2d49ca28a54f725573b1168624b1d4bbb5a9))
+* skip do history.push para caso de WP ([838563a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/838563aafca90273d5c06abe51f8eef6baaa9e09))
+
+# [1.9.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.8.2...v1.9.0) (2021-05-01)
+
+
+### Bug Fixes
+
+* adicionando escopo de sessão no mixpanel ([b1fb04d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b1fb04d1ef04f89588244e61833a0303e008bea2))
+* adicionando mixpanel ao index.src ([fd92b9d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/fd92b9de797ee044e44df5d76df1604e9e7283fe))
+* adicionando utilitarios ([2c4af48](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2c4af48e141436eeb6b9a9c3afb8b79e8495582b))
+* ajustando importações ([77645dd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/77645ddb033d0da16e0c66dae946987613baf77e))
+* ajustando testes ([7de4ce5](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/7de4ce559a2f344fa48478b098aa42c2be6605eb))
+* ajustando testes quebrados na dashboard ([d766190](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d766190b86e58ed42c7b50f797a77bb4ca0c344d))
+* ajuste no disparo do gsc ([4e85286](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/4e8528618fb2a634f349b8ac476892f3bc533ffe))
+* atualizando abertura do mixpanel ([014d6bd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/014d6bdbb1d9180cdff6e1f617ecddbee7f6d052))
+* convertendo ctpm para string ([ef2ff9a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ef2ff9a769fd4a08a168e3b20e794cfe6f886665))
+* disparando pageview para o gsc ([80d6d7d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/80d6d7d42e37c824712818b45f6123448d03daba))
+* importando getsitecontrol ([6db99cc](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/6db99ccce98d242a413723a2dddd8c16baed36e1))
+* removendo comentário de renderização wordpress ([2c26b82](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2c26b82194d5034f508bd7e87a31e90f61239ba6))
+
+
+### Features
+
+* adicionando gsc via modulos ([1712fd2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1712fd2db3090ffb843ef9bf9c4bcdf610fab60b))
+* implementando gsc no component didmount e unmount ([fc51146](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/fc5114664ae1d32d3086d39b52a7012584878cbd))
+
+## [1.8.3](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.8.2...v1.8.3) (2021-04-26)
+
+
+### Bug Fixes
+
+* adicionando escopo de sessão no mixpanel ([b1fb04d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b1fb04d1ef04f89588244e61833a0303e008bea2))
+* adicionando utilitarios ([2c4af48](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2c4af48e141436eeb6b9a9c3afb8b79e8495582b))
+* ajustando importações ([77645dd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/77645ddb033d0da16e0c66dae946987613baf77e))
+* ajustando testes ([7de4ce5](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/7de4ce559a2f344fa48478b098aa42c2be6605eb))
+* ajuste no disparo do gsc ([4e85286](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/4e8528618fb2a634f349b8ac476892f3bc533ffe))
+* atualizando abertura do mixpanel ([014d6bd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/014d6bdbb1d9180cdff6e1f617ecddbee7f6d052))
+* convertendo ctpm para string ([ef2ff9a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ef2ff9a769fd4a08a168e3b20e794cfe6f886665))
+* importando getsitecontrol ([6db99cc](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/6db99ccce98d242a413723a2dddd8c16baed36e1))
+* removendo comentário de renderização wordpress ([2c26b82](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2c26b82194d5034f508bd7e87a31e90f61239ba6))
+
 ## [1.8.2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.8.1...v1.8.2) (2021-04-09)
 
 

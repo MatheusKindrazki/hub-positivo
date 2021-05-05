@@ -30,7 +30,7 @@ const HubProfileColors = ({ profile }: { profile: VariantsProps }): Colors => {
       200: lighten(0.3, profileBaseColor[profile]),
       300: lighten(0.2, profileBaseColor[profile]),
       400: lighten(0.1, profileBaseColor[profile]),
-      500: 'var(--hub-base-color)',
+      500: profileBaseColor[profile],
       600: darken(0.1, profileBaseColor[profile]),
       700: darken(0.1, profileBaseColor[profile]),
       800: darken(0.1, profileBaseColor[profile]),

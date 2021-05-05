@@ -8,7 +8,6 @@ module.exports = {
   extends: [
     'prettier/react',
     'plugin:react/recommended',
-    'prettier/@typescript-eslint',
     'plugin:@typescript-eslint/recommended',
     'standard',
     'prettier/standard'
@@ -23,14 +22,14 @@ module.exports = {
   },
   plugins: ['react','react-hooks', '@typescript-eslint', 'prettier', 'eslint-plugin-import-helpers'],
   rules: {
+    'prettier/prettier': 'warn',
     'no-undef': 'off',
     'camelcase': 'off',
     'react/prop-types': 'off',
     'react/display-name': 'off',
-    'prettier/prettier': 'error',
     'no-use-before-define': 'off',
     'react/no-children-prop': 'off',
-    'generator-star-spacing': ['error', {'before': false, 'after': true}],
+    'generator-star-spacing': ['warn', {'before': false, 'after': true}],
     'import/no-duplicates': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'space-before-function-paren': 'off',
@@ -39,6 +38,8 @@ module.exports = {
     '@typescript-eslint/no-empty-interface': 'off',
     'import/extensions': 'off',
     "no-unused-vars": "off",
+    "padded-blocks":"warn",
+    "react/jsx-no-undef": "warn",
     "@typescript-eslint/no-duplicate-imports": ["error"],
     "@typescript-eslint/no-unused-vars": ["error", {
       "argsIgnorePattern": "_",

@@ -2,23 +2,20 @@ import React, { useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import gsc, { removeGsc } from '@psdhub/gsc'
 import { BarLoader, CardBox, Text } from '@psdhub/common/components'
 
 import Logo from '~/components/Logo'
 
 import { Container } from './styles'
-
 const Auth: React.FC = ({ children }) => {
-  /* Variáveis para controle do GTM */
   const { loading } = useSelector((state: Store.State) => state.global)
 
   useEffect(() => {
-    window.__HUB_USER_INFO__ = {
-      id: '',
-      educational_stage: '',
-      name: '',
-      role: '',
-      school: ''
+    gsc()
+
+    return () => {
+      removeGsc()
     }
   }, [])
 

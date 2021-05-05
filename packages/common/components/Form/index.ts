@@ -5,6 +5,7 @@ import { chakra } from '@chakra-ui/react'
 
 export { default as Input } from './Input'
 export { default as Button } from './Button'
+export { default as Select } from './Select'
 
 export const Form = chakra(UnForm)
 export type { FormHandles as FormProps }

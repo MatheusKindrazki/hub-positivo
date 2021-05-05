@@ -1,42 +1,43 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 
-import { createEvent, dispatchEvent } from '~/orchestrator/createEvent'
-import { loadScripts, ReturnScripts } from '~/orchestrator'
+import { useSelector } from 'react-redux'
 
-import LoadModules from './components/LoadModules'
+import documentTitle from '@psdhub/common/utils/documentTitle'
+import { Box } from '@psdhub/common/components'
+
+import getCardInformation from '~/hooks/useCardInformation'
+
+import { Container } from './styles'
+import MicrofrontendPage from './pages/Microfrontend'
+import IframePage from './pages/Iframe'
+import Loading from './components/Loading'
 
 const Solutions: React.FC = () => {
-  const event = createEvent({
-    userName: 'Matheus Kindrazki Saldanha'
-  })
+  const [loading, setLoading] = useState(true)
 
-  const [mcf, setMcf] = useState({} as ReturnScripts)
+  const { productName, productData, mcf } = useSelector(
+    (state: Store.State) => state.authProduct
+  )
 
   useEffect(() => {
-    async function getMCF() {
-      const resMcf = await loadScripts({
-        manifest: 'https://run.mocky.io/v3/a96f4f1e-2bee-4082-b543-6bd493d83571'
-      })
+    documentTitle(productName || 'Carregando Solução')
+  }, [productData, productName])
 
-      setMcf({
-        scripts: resMcf.scripts,
-        element_id: resMcf.element_id
-      })
-    }
+  if (!productData) {
+    getCardInformation()
+  }
 
-    dispatchEvent(event)
-
-    getMCF()
-  }, [])
+  const RenderPage = mcf ? MicrofrontendPage : IframePage
 
   return (
-    <>
-      <div id={mcf.element_id}></div>
-      {mcf?.scripts?.map((s, i) => (
-        <LoadModules key={i} {...s} />
-      ))}
-    </>
+    <Container className="hub-solution-container">
+      <Box className="hub-login-container">
+        <Loading loading={loading} />
+      </Box>
+      {productData && (
+        <RenderPage data={productData} onLoaded={() => setLoading(false)} />
+      )}
+    </Container>
   )
 }
 
