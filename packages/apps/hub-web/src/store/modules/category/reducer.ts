@@ -12,7 +12,7 @@ export const INITIAL_STATE: CategoryReducer = {
 
 type ReturnReducer = Reducer<CategoryReducer>
 
-const products: ReturnReducer = (state = INITIAL_STATE, action) => {
+const category: ReturnReducer = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
       case Actions.CATEGORY_GETALL_REQUEST: {
@@ -34,4 +34,4 @@ const products: ReturnReducer = (state = INITIAL_STATE, action) => {
   })
 }
 
-export default products
+export default category
