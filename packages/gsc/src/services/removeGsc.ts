@@ -7,7 +7,7 @@ type RemoveGSCProps = () => void
 export async function removeGsc(fn: RemoveGSCProps): Promise<void> {
   closeModalsGsc()
 
-  await delay(500)
+  await delay(1000)
 
   window.gsc = undefined
 
@@ -15,7 +15,7 @@ export async function removeGsc(fn: RemoveGSCProps): Promise<void> {
 
   const iframes = document.querySelectorAll('iframe')
 
-  // remove scripts instanciados pelo GSC
+  // ?remove scripts instanciados pelo GSC
   scripts.forEach(script => {
     const gsc = 'getsitecontrol'
 
@@ -24,7 +24,7 @@ export async function removeGsc(fn: RemoveGSCProps): Promise<void> {
     }
   })
 
-  // remove iframes instanciados pelo GSC
+  // ?remove iframes instanciados pelo GSC
   iframes.forEach(iframe => {
     const void0 = 'javascript:void(0)'
 
@@ -34,8 +34,6 @@ export async function removeGsc(fn: RemoveGSCProps): Promise<void> {
   })
 
   console.info('GSC: Removendo SCRIPTS')
-
-  await delay(1000)
 
   fn()
 }

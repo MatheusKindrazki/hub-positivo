@@ -1,7 +1,7 @@
 import delay from '@psdhub/common/utils/delay'
 
 async function setParamsGsc<T>(data: T): Promise<void> {
-  await delay(200)
+  await delay(500)
 
   if (!window?.gsc) {
     return setParamsGsc(data)

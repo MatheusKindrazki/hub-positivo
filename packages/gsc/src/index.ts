@@ -52,6 +52,8 @@ function gscOrquestrador(history: OrquestradorProps, cb: CBProps): void {
 
     await removeGsc(() => instanceGsc())
 
+    lastPath = e.pathname
+
     pageViewGsc(e.pathname)
     onSubmitGsc(cb)
 
