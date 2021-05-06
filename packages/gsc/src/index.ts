@@ -15,7 +15,9 @@ type OrquestradorProps = History<LocationState>
 // onSubmitCallBack
 type CBProps = (id: number, data: any) => void
 
+let lastPath = ''
 let historyLength = 0
+
 window.pageviewCount = 0
 
 const setCount = (): void => {
@@ -32,12 +34,15 @@ function gscOrquestrador(history: OrquestradorProps, cb: CBProps): void {
 
     await delay(500)
 
+    lastPath = pathname
     pageViewGsc(pathname)
 
     onSubmitGsc(cb)
   }
 
   history.listen(async e => {
+    if (lastPath === e.pathname) return
+
     await removeGsc(() => instanceGsc())
 
     pageViewGsc(e.pathname)
