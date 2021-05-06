@@ -71,7 +71,7 @@ const Routes: React.FC = () => {
               isPrivate
             />
             <Route
-              path="/controle-de-acessos/editar"
+              path="/controle-de-acessos/editar/:slug"
               component={UpdateSolution}
               isPrivate
             />

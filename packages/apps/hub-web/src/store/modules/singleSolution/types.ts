@@ -1,15 +1,13 @@
-import { Product } from '../products/types'
-
 export interface Solution {
   id: string
   nome: string
   descricao: string
   arquivo: string
-  link: string
+  link?: string
   idCategoria: string
   ativo: boolean
   tipoRenderizacao: string
-  slug: string
+  slug?: string
   dataExclusao: string
   ordem: number
   excluida: boolean
@@ -37,9 +35,8 @@ export interface PostSolutionPayload {
   ordem: number
   padrao: boolean
 }
-
-export interface PutSolutionData extends Product {
-  idCategoria: string
+export interface PutSolutionData
+  extends Omit<Solution, 'dataExclusao' | 'excluida'> {
   padrao: boolean
 }
 export interface SolutionPutResponse {
