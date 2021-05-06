@@ -35,7 +35,7 @@ export async function removeGsc(fn: RemoveGSCProps): Promise<void> {
 
   console.info('GSC: Removendo SCRIPTS')
 
-  await delay(500)
+  await delay(1000)
 
   fn()
 }

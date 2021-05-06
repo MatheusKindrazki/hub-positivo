@@ -41,6 +41,7 @@ function gscOrquestrador(history: OrquestradorProps, cb: CBProps): void {
     await delay(500)
 
     lastPath = pathname
+
     pageViewGsc(pathname)
 
     onSubmitGsc(cb)
@@ -50,8 +51,6 @@ function gscOrquestrador(history: OrquestradorProps, cb: CBProps): void {
     if (lastPath === e.pathname) return
 
     await removeGsc(() => instanceGsc())
-
-    await delay(500)
 
     pageViewGsc(e.pathname)
     onSubmitGsc(cb)
