@@ -7,7 +7,7 @@ type RemoveGSCProps = () => void
 export async function removeGsc(fn: RemoveGSCProps): Promise<void> {
   closeModalsGsc()
 
-  await delay(1000)
+  await delay(500)
 
   window.gsc = undefined
 
@@ -35,7 +35,7 @@ export async function removeGsc(fn: RemoveGSCProps): Promise<void> {
 
   console.info('GSC: Removendo SCRIPTS')
 
-  await delay(1000)
+  await delay(500)
 
   fn()
 }

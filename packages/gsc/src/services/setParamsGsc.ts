@@ -7,7 +7,7 @@ async function setParamsGsc<T>(data: T): Promise<void> {
     return setParamsGsc(data)
   }
 
-  console.info('GSC: Setando parametros')
+  console.info('GSC: Setando parâmetros')
 
   window.gsc('params', {
     ...data,
