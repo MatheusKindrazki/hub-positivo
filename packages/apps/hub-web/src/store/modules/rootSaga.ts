@@ -1,9 +1,9 @@
 import { all } from 'redux-saga/effects'
 
 import user from './user/sagas'
-import updateSolution from './updateSolution/sagas'
 import tour from './tour/sagas'
 import solutions from './solutions/sagas'
+import singleSolution from './singleSolution/sagas'
 import school from './school/sagas'
 import products from './products/sagas'
 import productIntegrations from './productIntegrations/sagas'
@@ -25,7 +25,7 @@ export default function* rootSaga(): Generator {
     products,
     tour,
     solutions,
-    updateSolution,
+    singleSolution,
     category,
     school
   ])

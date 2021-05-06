@@ -8,7 +8,7 @@ import {
 } from 'react-beautiful-dnd'
 import classNames from 'classnames'
 
-import { UpdateSolutionData } from '~/store/modules/updateSolution/types'
+import { PutSolutionData } from '~/store/modules/singleSolution/types'
 
 import { Tr, Thead, Th, Td, Tbody } from '@psdhub/common/components/Table'
 import type { TableProps } from '@psdhub/common/components/Table'
@@ -21,7 +21,7 @@ export interface TableSolution {
   solution: React.ReactNode | string
   profile: string
   schools: string
-  data: UpdateSolutionData
+  data: PutSolutionData
 }
 
 const Table: React.FC<TableProps> = ({ columns, data }) => {

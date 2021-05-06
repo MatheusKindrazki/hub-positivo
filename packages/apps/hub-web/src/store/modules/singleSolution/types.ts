@@ -1,3 +1,5 @@
+import { Product } from '../products/types'
+
 export interface Solution {
   id: string
   nome: string
@@ -34,4 +36,13 @@ export interface PostSolutionPayload {
   tipoRenderizacao: string
   ordem: number
   padrao: boolean
+}
+
+export interface PutSolutionData extends Product {
+  idCategoria: string
+  padrao: boolean
+}
+export interface SolutionPutResponse {
+  sucesso: boolean
+  mensagem: string
 }

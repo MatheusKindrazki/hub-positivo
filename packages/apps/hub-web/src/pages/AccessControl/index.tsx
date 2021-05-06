@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { UpdateSolutionData } from '~/store/modules/updateSolution/types'
 import { solutionsRequest } from '~/store/modules/solutions/actions'
+import { PutSolutionData } from '~/store/modules/singleSolution/types'
 
 import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
@@ -29,12 +29,14 @@ export const columns: Columns[] = [
   {
     property: 'edit',
     header: null,
-    render: (e: UpdateSolutionData) => <EditButton url={`/${e.id}`} />
+    render: (e: PutSolutionData) => (
+      <EditButton url={`/controle-de-acessos/${e.id}`} />
+    )
   },
   {
     property: 'active',
     header: null,
-    render: (e: UpdateSolutionData) => <Switch data={e} />
+    render: (e: PutSolutionData) => <Switch data={e} />
   }
 ]
 
