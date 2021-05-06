@@ -7,6 +7,7 @@ import { ClassesReducer } from './modules/myClasses/types'
 import { GlobalReducer } from './modules/global/types'
 import { ForgotPasswordReducer } from './modules/forgotPassword/types'
 import { EducationReducer } from './modules/educationalStage/types'
+import { CategoryReducer } from './modules/category/types'
 import { AuthReducer as AuthProductReducer } from './modules/authProduct/types'
 import { AuthReducer } from './modules/auth/types'
 interface ApplicationState {
@@ -21,6 +22,7 @@ interface ApplicationState {
   myClasses: ClassesReducer
   forgotPassword: ForgotPasswordReducer
   solutions: SolutionsReducer
+  category: CategoryReducer
 }
 declare global {
   declare namespace Store {

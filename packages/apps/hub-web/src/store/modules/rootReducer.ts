@@ -15,6 +15,7 @@ import myClasses from './myClasses/reducer'
 import global from './global/reducer'
 import forgotPassword from './forgotPassword/reducer'
 import educationalStage from './educationalStage/reducer'
+import category from './category/reducer'
 import authProduct from './authProduct/reducer'
 import auth from './auth/reducer'
 export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
@@ -30,6 +31,7 @@ export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
     forgotPassword,
     myClasses,
     solutions,
+    category,
     router: connectRouter(history)
   })
 }

@@ -9,7 +9,7 @@ import productIntegrations from './productIntegrations/sagas'
 import myClasses from './myClasses/sagas'
 import forgotPassword from './forgotPassword/sagas'
 import educationalStage from './educationalStage/sagas'
-import createCategory from './createCategory/sagas'
+import category from './category/sagas'
 import authProduct from './authProduct/sagas'
 import auth from './auth/sagas'
 export default function* rootSaga(): Generator {
@@ -25,6 +25,6 @@ export default function* rootSaga(): Generator {
     tour,
     solutions,
     updateSolution,
-    createCategory
+    category
   ])
 }

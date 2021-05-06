@@ -2,7 +2,7 @@ import React, { useContext, useRef, useCallback } from 'react'
 
 import { useDispatch } from 'react-redux'
 
-import { categoryPostRequest } from '~/store/modules/createCategory/actions'
+import { categoryPostRequest } from '~/store/modules/category/actions'
 
 import { toast } from '@psdhub/common/utils'
 import { useDisclosure, useMediaQuery } from '@psdhub/common/hooks'

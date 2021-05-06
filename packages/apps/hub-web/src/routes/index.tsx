@@ -11,6 +11,8 @@ import ThemeContext from '@psdhub/common/layout/Provider/context'
 
 import history from '~/services/history'
 
+import UpdateSolution from '~/pages/AccessControl/UpdateSolution'
+
 import Route from './Route'
 
 // ? Importação das páginas
@@ -25,6 +27,10 @@ const ChangePassword = React.lazy(() => import('~/pages/Auth/ChangePassword'))
 const ForgotPassword = React.lazy(() => import('~/pages/Auth/ForgotPassword'))
 const AccessControl = React.lazy(() => import('~/pages/AccessControl'))
 const Trash = React.lazy(() => import('~/pages/Trash'))
+const CreateSolution = React.lazy(
+  () => import('~/pages/AccessControl/CreateSolution')
+)
+
 const Solutions = React.lazy(() => import('~/pages/Solutions'))
 
 const Routes: React.FC = () => {
@@ -59,6 +65,16 @@ const Routes: React.FC = () => {
             />
             <Route path="/token-expirado" component={ExpiredToken} />
             <Route path="/alterar-senha" component={ChangePassword} />
+            <Route
+              path="/controle-de-acessos/criar"
+              component={CreateSolution}
+              isPrivate
+            />
+            <Route
+              path="/controle-de-acessos/editar"
+              component={UpdateSolution}
+              isPrivate
+            />
             <Route
               path="/controle-de-acessos"
               exact
