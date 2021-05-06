@@ -1,5 +1,5 @@
-export type CustomEvent = Event & {
-  detail?: string
+export type CustomEvent = {
+  title?: string
 }
 
 export interface PageViewed {

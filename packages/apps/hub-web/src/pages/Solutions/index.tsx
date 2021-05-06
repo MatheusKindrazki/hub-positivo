@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -12,6 +12,8 @@ import MicrofrontendPage from './pages/Microfrontend'
 import IframePage from './pages/Iframe'
 import Loading from './components/Loading'
 
+window.firstCallMCF = false
+
 const Solutions: React.FC = () => {
   const [loading, setLoading] = useState(true)
 
@@ -23,7 +25,8 @@ const Solutions: React.FC = () => {
     documentTitle(productName || 'Carregando Solução')
   }, [productData, productName])
 
-  if (!productData) {
+  if (!productData || !window.firstCallMCF) {
+    window.firstCallMCF = true
     getCardInformation()
   }
 
@@ -41,4 +44,4 @@ const Solutions: React.FC = () => {
   )
 }
 
-export default Solutions
+export default memo(Solutions)

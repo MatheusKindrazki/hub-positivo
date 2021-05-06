@@ -13,6 +13,8 @@ import ModalSupport from '~/components/ModalSupport'
 import GlobalStyle from '~/styles/global'
 import Routes from '~/routes'
 
+import '~/services/mixpanel/pageView'
+
 const App: React.FC = () => {
   return (
     <ThemeProvider cssVarPrefix="hub">

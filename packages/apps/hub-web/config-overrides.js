@@ -10,6 +10,7 @@ module.exports = function (config, env) {
         path.resolve('src'),
         path.resolve('../../common'),
         path.resolve('../../helpers'),
+        path.resolve('../../gsc'),
       ]),
       addBabelPlugin([
         'babel-plugin-root-import',
