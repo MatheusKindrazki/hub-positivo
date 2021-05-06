@@ -47,6 +47,8 @@ function gscOrquestrador(history: OrquestradorProps, cb: CBProps): void {
   }
 
   history.listen(async e => {
+    await delay(500)
+
     if (lastPath === e.pathname) return
 
     await removeGsc(() => instanceGsc())
