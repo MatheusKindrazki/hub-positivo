@@ -30,7 +30,6 @@ const ModalSupport: React.FC = () => {
 
   const handleAddCategory = useCallback(
     async data => {
-      console.log({ data })
       formRef.current?.setErrors({})
       try {
         await categoryValidator.validate(data, { abortEarly: false })

@@ -8,11 +8,12 @@ import { solutionsRequest } from '~/store/modules/solutions/actions'
 import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
 
+import Header from '~/components/AccessControlHeader'
+
 import { formatReturnDataFromAPI } from './utils/formatReturnDataFromAPI'
 import Container from './styles'
 import Table, { TableSolution } from './components/Table'
 import Switch from './components/Switch'
-import Header from './components/Header'
 import FakeLoadingCollapse from './components/FakeLoading'
 import EditButton from './components/EditButton'
 
@@ -45,14 +46,12 @@ const AccessControl: React.FC = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(solutionsRequest())
-  }, [dispatch])
-
-  useEffect(() => {
-    if (data) {
+    if (data?.length) {
       setSolutions(formatReturnDataFromAPI(data))
+    } else {
+      dispatch(solutionsRequest())
     }
-  }, [data])
+  }, [data, dispatch])
 
   return (
     <Container m="1" marginTop="10">

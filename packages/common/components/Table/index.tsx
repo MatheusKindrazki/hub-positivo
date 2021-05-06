@@ -10,13 +10,14 @@ import Th from './Th'
 import Tfoot from './Tfoot'
 import Td from './Td'
 import Tbody from './Tbody'
+
+export type Data = any
 export interface Columns {
   property: keyof Data
   header?: string | React.ReactNode
   render?: (props: any) => void
 }
 
-export type Data = any
 export interface TableProps extends Props {
   columns: Columns[]
   data?: Data

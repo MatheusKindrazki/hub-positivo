@@ -16,14 +16,13 @@ export function* createCategory({ payload }: CategoryPostPayload): Generator {
   })
 
   const { ok, data } = response as ApiResponse<CategoryPostResponse>
-  console.log({ ok, data })
 
   if (!ok || !data?.sucesso) {
     toast.error('Erro ao criar categoria')
     return yield put(categoryPostFailure())
   }
 
-  toast.success('Solução atualizada com sucesso')
+  toast.success('Categoria adicionada com sucesso')
   return yield put(categoryPostSuccess())
 }
 
