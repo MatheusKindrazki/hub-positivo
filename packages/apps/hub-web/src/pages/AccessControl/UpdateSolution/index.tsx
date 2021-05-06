@@ -24,10 +24,14 @@ import {
 } from '@psdhub/common/components/Breadcrumbs'
 import { Box, Text, Stack, Button } from '@psdhub/common/components'
 
+import history from '~/services/history'
+
 import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
+import getSolutionBySlug from '../utils/getSolutionBySlug'
+import getSlugFromURL from '../utils/getSlugFromURL'
 import createOptions from '../utils/createOptions'
 
 const UpdateSolution: React.FC = () => {
@@ -36,17 +40,37 @@ const UpdateSolution: React.FC = () => {
     (state: Store.State) => state.user
   )
 
+  const solutionSlug = getSlugFromURL(history.location.pathname)
+
   const { categories } = useSelector((state: Store.State) => state.category)
   const { schools } = useSelector((state: Store.State) => state.school)
+  const { data: categoryArr } = useSelector(
+    (state: Store.State) => state.solutions
+  )
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
   const modalRef = useRef<ModalHandler>(null)
 
   useEffect(() => {
+    if (!categoryArr || categoryArr?.length === 0) {
+      return history.push('/controle-de-acessos')
+    }
+
+    if (solutionSlug) {
+      const data = getSolutionBySlug(categoryArr, solutionSlug)
+
+      formRef.current?.setData({
+        title: data?.solution.nome,
+        description: data?.solution.descricao,
+        category: data?.category
+      })
+      console.log(data)
+    }
+
     dispatch(categoryGetAllRequest())
     dispatch(schoolGetAllRequest())
-  }, [dispatch])
+  }, [categoryArr, dispatch, solutionSlug])
 
   const handleSubmit = useCallback(async data => {
     formRef?.current?.setErrors({})
@@ -71,7 +95,7 @@ const UpdateSolution: React.FC = () => {
   }, [])
 
   return (
-    <Box p={['4', '6']} mt={['0', '20']} w="100%">
+    <Box p={['4', '6']} mt={['0', '4']} w="100%">
       <Box d="flex" flexDir="row" ml={['0', '12vw']}>
         <Breadcrumb
           fontSize={['large', 'x-large']}
