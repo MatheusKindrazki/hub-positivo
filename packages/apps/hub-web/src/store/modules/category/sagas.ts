@@ -46,7 +46,7 @@ export function* getCategories(): Generator {
   yield put(loading(false))
 
   if (!ok || !data) {
-    toast.error('Erro ao buscar as produtos por categoria!')
+    toast.error('Erro ao buscar as categorias!')
     return yield put(categoryGetAllFailure())
   }
   return yield put(categoryGetAllSuccess(data))

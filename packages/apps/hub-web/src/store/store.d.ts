@@ -1,6 +1,7 @@
 import { UserReducer } from './modules/user/types'
 import { TourReducer } from './modules/tour/types'
 import { SolutionsReducer } from './modules/solutions/types'
+import { SchoolReducer } from './modules/school/types'
 import { ProfileReducer } from './modules/profile/types'
 import { ProductReducer } from './modules/products/types'
 import { ClassesReducer } from './modules/myClasses/types'
@@ -23,6 +24,7 @@ interface ApplicationState {
   forgotPassword: ForgotPasswordReducer
   solutions: SolutionsReducer
   category: CategoryReducer
+  school: SchoolReducer
 }
 declare global {
   declare namespace Store {

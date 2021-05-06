@@ -4,6 +4,7 @@ import user from './user/sagas'
 import updateSolution from './updateSolution/sagas'
 import tour from './tour/sagas'
 import solutions from './solutions/sagas'
+import school from './school/sagas'
 import products from './products/sagas'
 import productIntegrations from './productIntegrations/sagas'
 import myClasses from './myClasses/sagas'
@@ -25,6 +26,7 @@ export default function* rootSaga(): Generator {
     tour,
     solutions,
     updateSolution,
-    category
+    category,
+    school
   ])
 }

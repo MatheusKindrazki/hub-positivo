@@ -4,6 +4,7 @@ import { DropzoneRef } from 'react-dropzone'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import { schoolGetAllRequest } from '~/store/modules/school/actions'
 import { categoryGetAllRequest } from '~/store/modules/category/actions'
 
 import { toast } from '@psdhub/common/utils'
@@ -27,7 +28,7 @@ import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
-import createCategoryOptions from '../utils/createCategoryOptions'
+import createOptions from '../utils/createOptions'
 
 const UpdateSolution: React.FC = () => {
   const dispatch = useDispatch()
@@ -36,8 +37,7 @@ const UpdateSolution: React.FC = () => {
   )
 
   const { categories } = useSelector((state: Store.State) => state.category)
-
-  console.log(categories)
+  const { schools } = useSelector((state: Store.State) => state.school)
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
@@ -45,6 +45,7 @@ const UpdateSolution: React.FC = () => {
 
   useEffect(() => {
     dispatch(categoryGetAllRequest())
+    dispatch(schoolGetAllRequest())
   }, [dispatch])
 
   const handleSubmit = useCallback(async data => {
@@ -121,11 +122,7 @@ const UpdateSolution: React.FC = () => {
             <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Categoria</Text>
               <Select
-                options={
-                  categories.length > 0
-                    ? createCategoryOptions(categories)
-                    : undefined
-                }
+                options={categories[0] && createOptions(categories)}
                 variant="secondary"
                 name="category"
               />
@@ -162,10 +159,14 @@ const UpdateSolution: React.FC = () => {
           >
             <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Escolas</Text>
-              <Select variant="secondary" name="schools_rule"></Select>
+              <Select variant="secondary" name="schools_rule" />
             </Box>
             <Box width={['100%', '48.5%']} alignSelf="flex-end">
-              <Select variant="secondary" name="schools"></Select>
+              <Select
+                variant="secondary"
+                name="schools"
+                options={schools[0] && createOptions(schools)}
+              />
             </Box>
           </Stack>
 
