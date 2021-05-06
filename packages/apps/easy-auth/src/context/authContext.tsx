@@ -1,12 +1,23 @@
-import React, { createContext, useState, useEffect, useContext } from 'react'
+import React, {
+  createContext,
+  useCallback,
+  useState,
+  useEffect,
+  useContext
+} from 'react'
 
 import { SendInfos } from '@psdhub/helpers'
+import { toast } from '@psdhub/common/utils'
 import Loading from '@psdhub/common/components/BarLoader'
 
 import { getAuth } from '../services/storage'
+import authService, { UserAuthProps } from '../services/auth'
 
 export interface AuthContextParams {
   signed: boolean
+  loading: boolean
+
+  signIn(data: UserAuthProps): void
 
   data?: SendInfos
 }
@@ -28,10 +39,32 @@ const AuthProvider: React.FC = ({ children }) => {
     setLoading(false)
   }, [])
 
+  const handleSignIn = useCallback(async (data: UserAuthProps) => {
+    setLoading(true)
+
+    try {
+      const response = await authService(data)
+
+      console.log('brasil', process.env)
+
+      console.log(response)
+
+      setLoading(false)
+    } catch (error) {
+      toast.error(
+        'Erro ao fazer login, verifique seus dados e tente novamente!'
+      )
+
+      setLoading(false)
+    }
+  }, [])
+
   return (
     <AuthContext.Provider
       value={{
         signed,
+        loading,
+        signIn: handleSignIn,
         data
       }}
     >
