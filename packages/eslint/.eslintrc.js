@@ -29,6 +29,7 @@ module.exports = {
     'react/display-name': 'off',
     'no-use-before-define': 'off',
     'react/no-children-prop': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
     'generator-star-spacing': ['warn', {'before': false, 'after': true}],
     'import/no-duplicates': 'off',
     'react-hooks/rules-of-hooks': 'error',

@@ -1,8 +1,11 @@
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
 
 import { SendInfos } from '@psdhub/helpers'
+import Loading from '@psdhub/common/components/BarLoader'
 
-interface AuthContextParams {
+import { getAuth } from '../services/storage'
+
+export interface AuthContextParams {
   signed: boolean
 
   data?: SendInfos
@@ -11,15 +14,28 @@ interface AuthContextParams {
 const AuthContext = createContext({} as AuthContextParams)
 
 const AuthProvider: React.FC = ({ children }) => {
-  const [data] = useState({} as SendInfos)
+  const [data, seData] = useState({} as SendInfos)
+  const [signed, setSigned] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const informations = getAuth()
+
+    setSigned(!!informations.signed)
+
+    seData(informations.data as SendInfos)
+
+    setLoading(false)
+  }, [])
 
   return (
     <AuthContext.Provider
       value={{
-        signed: false,
+        signed,
         data
       }}
     >
+      <Loading loading={loading} />
       {children}
     </AuthContext.Provider>
   )
