@@ -25,6 +25,12 @@ const setCount = (): void => {
   window.pageviewCount = historyLength
 }
 
+/*
+  ! Nota: Os delays não importantes para
+  ! que o ciclo de vida do gsc não seja interrompido
+  ! na remoção por completo dos elementos e scripts!
+*/
+
 function gscOrquestrador(history: OrquestradorProps, cb: CBProps): void {
   const pathname = document.location.hash.replace('#', '')
 

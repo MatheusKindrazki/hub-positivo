@@ -5,9 +5,11 @@ import closeModalsGsc from './closeModalGsc'
 type RemoveGSCProps = () => void
 
 export async function removeGsc(fn: RemoveGSCProps): Promise<void> {
+  await delay(600)
+
   closeModalsGsc()
 
-  await delay(1500)
+  await delay(1000)
 
   window.gsc = undefined
 
