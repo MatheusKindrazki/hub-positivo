@@ -2,30 +2,26 @@ import React, { useState } from 'react'
 
 import { useDispatch } from 'react-redux'
 
-import { UpdateSolutionData } from '~/store/modules/updateSolution/types'
-import { solutionUpdateRequest } from '~/store/modules/updateSolution/actions'
+import { PutSolutionData } from '~/store/modules/singleSolution/types'
+import { solutionPutRequest } from '~/store/modules/singleSolution/actions'
 
 import { SwitchProps as SwitchPropsUI } from '@psdhub/common/components/Switch'
 
 import SwitchUI from './styles'
 
 export interface SwitchProps extends SwitchPropsUI {
-  data: UpdateSolutionData
+  data: PutSolutionData
 }
 
 const Switch: React.FC<SwitchProps> = ({ data }) => {
+  console.log({ data })
   const dispatch = useDispatch()
   const { ativo } = data
   const [isChecked, setIsChecked] = useState(ativo)
 
   const handleCheck = async (check: boolean) => {
-    try {
-      dispatch(solutionUpdateRequest({ ...data, ativo: !check }))
-      setIsChecked(!check)
-    } catch (e) {
-      console.log(e)
-      setIsChecked(check)
-    }
+    dispatch(solutionPutRequest({ ...data, ativo: !check }))
+    setIsChecked(!check)
   }
   return (
     <SwitchUI

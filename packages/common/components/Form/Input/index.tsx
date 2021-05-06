@@ -62,11 +62,11 @@ const Input: React.FC<InputAddIcons> = ({
         {iconLeft && (
           <InputLeftElement children={iconLeft} width="3rem" height="3rem" />
         )}
-        {label ? (
+        {label && (
           <FormLabel color="blue.500" fontWeight="400">
             {label}
           </FormLabel>
-        ) : null}
+        )}
         <ChakraInput
           data-testid="form-input"
           ref={inputRef}

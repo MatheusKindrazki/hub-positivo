@@ -30,7 +30,7 @@ export function* createCategory({ payload }: CategoryPostPayload): Generator {
     return yield put(categoryPostFailure())
   }
 
-  toast.success('Solução atualizada com sucesso')
+  toast.success('Categoria criada com sucesso')
   return yield put(categoryPostSuccess())
 }
 

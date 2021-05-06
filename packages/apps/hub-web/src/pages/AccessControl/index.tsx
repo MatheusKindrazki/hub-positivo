@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { UpdateSolutionData } from '~/store/modules/updateSolution/types'
 import { solutionsRequest } from '~/store/modules/solutions/actions'
+import { PutSolutionData } from '~/store/modules/singleSolution/types'
 
 import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
+
+import Header from '~/components/AccessControlHeader'
 
 import { formatReturnDataFromAPI } from './utils/formatReturnDataFromAPI'
 import Container from './styles'
 import Table, { TableSolution } from './components/Table'
 import Switch from './components/Switch'
-import Header from './components/Header'
 import FakeLoadingCollapse from './components/FakeLoading'
 import EditButton from './components/EditButton'
 
@@ -28,12 +29,14 @@ export const columns: Columns[] = [
   {
     property: 'edit',
     header: null,
-    render: (e: UpdateSolutionData) => <EditButton url={`/${e.id}`} />
+    render: (e: PutSolutionData) => (
+      <EditButton url={`/controle-de-acessos/${e.id}`} />
+    )
   },
   {
     property: 'active',
     header: null,
-    render: (e: UpdateSolutionData) => <Switch data={e} />
+    render: (e: PutSolutionData) => <Switch data={e} />
   }
 ]
 
@@ -45,14 +48,12 @@ const AccessControl: React.FC = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(solutionsRequest())
-  }, [dispatch])
-
-  useEffect(() => {
-    if (data) {
+    if (data?.length) {
       setSolutions(formatReturnDataFromAPI(data))
+    } else {
+      dispatch(solutionsRequest())
     }
-  }, [data])
+  }, [data, dispatch])
 
   return (
     <Container m="1" marginTop="10">

@@ -161,6 +161,18 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
             />
           </Box>
           <MenuDivider />
+          {guid === 'ADMINISTRADOR' && (
+            <Box px="5" pt="5">
+              <Button
+                onClick={() => history.push('/controle-de-acessos')}
+                variant="link"
+                color="gray.500"
+                fontSize="0.875rem"
+              >
+                Controle de acessos
+              </Button>
+            </Box>
+          )}
           {guid === 'PROFESSOR' && (
             <Box px="5" py="3" pt="5">
               <Button
