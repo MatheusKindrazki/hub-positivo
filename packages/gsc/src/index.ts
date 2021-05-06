@@ -1,21 +1,10 @@
 import { History, LocationState } from 'history'
 
-import delay from '@psdhub/common/utils/delay'
-
-import {
-  instanceGsc,
-  removeGsc,
-  setParamsGsc,
-  pageViewGsc,
-  onSubmitGsc
-} from './services'
+import { instanceGsc, removeGsc, setParamsGsc, pageViewGsc } from './services'
 
 type OrquestradorProps = History<LocationState>
 
-// onSubmitCallBack
-type CBProps = (id: number, data: any) => void
-
-let lastPath = ''
+let lastPath = document.location.hash.replace('#', '')
 let historyLength = 0
 
 window.pageviewCount = 0
@@ -31,20 +20,12 @@ const setCount = (): void => {
   ! na remoção por completo dos elementos e scripts!
 */
 
-function gscOrquestrador(history: OrquestradorProps, cb: CBProps): void {
-  const pathname = document.location.hash.replace('#', '')
-
+function gscOrquestrador(history: OrquestradorProps): void {
   window.onload = async function () {
     setCount()
     instanceGsc()
 
-    await delay(500)
-
-    lastPath = pathname
-
-    pageViewGsc(pathname)
-
-    onSubmitGsc(cb)
+    pageViewGsc(lastPath)
   }
 
   history.listen(async e => {
@@ -54,10 +35,8 @@ function gscOrquestrador(history: OrquestradorProps, cb: CBProps): void {
 
     lastPath = e.pathname
 
-    pageViewGsc(e.pathname)
-    onSubmitGsc(cb)
-
     setCount()
+    pageViewGsc(e.pathname)
   })
 }
 
