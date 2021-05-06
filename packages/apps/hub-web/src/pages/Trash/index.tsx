@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Table, { Columns } from '@psdhub/common/components/Table'
+import { Box, Button } from '@psdhub/common/components'
 
 import Header from '~/components/AccessControlHeader'
 
@@ -22,28 +23,55 @@ export const columns: Columns[] = [
   {
     property: 'delete',
     header: null,
-    render: () => <span>EXCLUIR</span>
+    render: () => (
+      <Button variant="unstyled" color="#BF360C">
+        EXCLUIR
+      </Button>
+    )
   },
   {
     property: 'restaure',
     header: null,
-    render: () => <span>RESTAURAR</span>
+    render: () => (
+      <Button variant="unstyled" color="#1565C0">
+        RESTAURAR
+      </Button>
+    )
   }
 ]
 
 const mock = [
   {
-    solution: 'TESTE',
-    description: 'TESTE',
-    category: 'TESTE',
-    openOn: 'TESTE'
+    solution: 'Salas virtuais',
+    description: 'Acesse e visualize as salas virtuais',
+    category: 'Recursos',
+    openOn: 'Mesma janela'
+  },
+  {
+    solution: 'Plano semanal',
+    description: 'Organize e distribua suas aulas',
+    category: 'Recursos',
+    openOn: 'Outra janela'
+  },
+  {
+    solution: 'Livro digital',
+    description: 'Material didático em PDF e Digital interativo',
+    category: 'Conteúdo',
+    openOn: 'Mesma janela'
   }
 ]
 const Trash: React.FC = () => {
   return (
     <Container m="1" marginTop="10">
       <Header />
-      <Table columns={columns} data={mock} />
+      <Box overflow="auto" bg="white" rounded="md" m="5">
+        <Table
+          columns={columns}
+          data={mock}
+          className="trash-table"
+          size="sm"
+        />
+      </Box>
     </Container>
   )
 }
