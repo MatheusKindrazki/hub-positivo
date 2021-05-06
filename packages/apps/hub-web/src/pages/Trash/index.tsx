@@ -6,6 +6,7 @@ import { Box, Button } from '@psdhub/common/components'
 import Header from '~/components/AccessControlHeader'
 
 import Container from './styles'
+import DeleteSolutionButton from './components/DeleteSolutionButton'
 
 type TableSolution = any
 
@@ -23,17 +24,13 @@ export const columns: Columns[] = [
   {
     property: 'delete',
     header: null,
-    render: () => (
-      <Button variant="unstyled" color="#BF360C">
-        EXCLUIR
-      </Button>
-    )
+    render: () => <DeleteSolutionButton />
   },
   {
     property: 'restaure',
     header: null,
     render: () => (
-      <Button variant="unstyled" color="#1565C0">
+      <Button variant="unstyled" color="blue.500">
         RESTAURAR
       </Button>
     )

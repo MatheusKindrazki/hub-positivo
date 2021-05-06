@@ -6,8 +6,9 @@ import { Stack, Button, Box } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
+import ModalDeleteSolution from '../ModalDeleteSolution'
 import ModalContext from '../ModalAddCategory/context'
-import Modal from '../ModalAddCategory'
+import ModalAddCategory from '../ModalAddCategory'
 
 const Header: React.FC = () => {
   const { onOpen } = useContext(ModalContext)
@@ -15,7 +16,8 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <Modal />
+      <ModalAddCategory />
+      <ModalDeleteSolution />
       <Stack direction={['column', 'column', 'row']} spacing="auto" m="2">
         <Box>
           <Button
@@ -73,6 +75,7 @@ const Header: React.FC = () => {
               borderColor="blue.500"
               borderWidth="thin"
               minW="11.25rem"
+              onClick={() => history.push(location.pathname + '/criar')}
             >
               Adicionar Solução
             </Button>

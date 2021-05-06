@@ -13,7 +13,6 @@ import { Box, Button, Stack } from '@psdhub/common/components'
 import categoryValidator from '~/validators/accessControl/newCategory'
 import { getValidationErrors, ValidationError } from '~/validators'
 
-import Container from './styles'
 import ModalContext from './context'
 
 const ModalSupport: React.FC = () => {
@@ -47,7 +46,7 @@ const ModalSupport: React.FC = () => {
   )
 
   return (
-    <Container>
+    <Box>
       <Modal
         title="Adicionar categoria"
         isCentered
@@ -82,7 +81,7 @@ const ModalSupport: React.FC = () => {
           </Form>
         </Box>
       </Modal>
-    </Container>
+    </Box>
   )
 }
 
