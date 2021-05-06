@@ -13,6 +13,8 @@ declare global {
     unLoadMicrofrontend?: () => void
 
     mixpanel: typeof mixpanel
+    pageviewCount: number
+    firstCallMCF: boolean
   }
 }
 

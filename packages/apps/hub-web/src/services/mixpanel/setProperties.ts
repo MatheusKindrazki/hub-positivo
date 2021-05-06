@@ -6,6 +6,8 @@ import mixpanel from 'mixpanel-browser'
 
 import { store } from '~/store'
 
+import { setParamsGsc } from '@psdhub/gsc'
+
 import profiles from '~/utils/formatData/profile'
 import educationalStage from '~/utils/formatData/educationalStage'
 
@@ -59,11 +61,7 @@ const setProperties = (): void => {
   )
 
   // Identificador Get Site Control
-  if (window.gsc) {
-    window?.gsc('params', {
-      ...sendProps
-    })
-  }
+  setParamsGsc(sendProps)
 
   try {
     mixpanel.people.set(sendProps)
