@@ -8,8 +8,15 @@ const trackWidgetSubmit = (widgetId: number, data: WidgetData): void => {
   try {
     mixpanel.track(widgetSubmitEvent, formatWidgetData(widgetId, data))
   } catch (error) {
-    console.error('Erro ao capturar submissao do widget do gsc no mixpanel')
+    console.error('Erro ao capturar submissão do widget do gsc no mixpanel')
   }
 }
 
-export default trackWidgetSubmit
+document.addEventListener('@psdhub:gsc:submit', (e: CustomEventInit) => {
+  const infos = e.detail as {
+    id: number
+    data: WidgetData
+  }
+
+  trackWidgetSubmit(infos.id, infos.data)
+})
