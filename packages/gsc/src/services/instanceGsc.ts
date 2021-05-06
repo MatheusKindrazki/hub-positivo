@@ -13,6 +13,8 @@ function instanceGsc(): void {
 
   script.addEventListener('load', () => {
     require('../scripts/gsc')
+
+    console.info('GSC: Load da aplicação')
   })
 }
 

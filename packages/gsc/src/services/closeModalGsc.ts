@@ -11,6 +11,8 @@ function closeModalGsc(): void {
     Object.keys(getModals).forEach(key => {
       if (window?.gsc) {
         window?.gsc('close', key)
+
+        console.info('GSC: Fechando modal id', key)
       }
     })
   } catch (error) {
