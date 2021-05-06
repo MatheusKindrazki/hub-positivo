@@ -8,7 +8,7 @@ import {
 } from 'react-beautiful-dnd'
 import classNames from 'classnames'
 
-import { PutSolutionData } from '~/store/modules/singleSolution/types'
+import { PutSolutionData } from '~/store/modules/solutions/types'
 
 import { Tr, Thead, Th, Td, Tbody } from '@psdhub/common/components/Table'
 import type { TableProps } from '@psdhub/common/components/Table'

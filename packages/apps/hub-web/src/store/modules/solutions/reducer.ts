@@ -15,18 +15,18 @@ type ReturnReducer = Reducer<SolutionsReducer>
 const categories: ReturnReducer = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
-      case Actions.SOLUTIONS_REQUEST: {
+      case Actions.SOLUTIONS_GET_REQUEST: {
         draft.loading = true
         break
       }
 
-      case Actions.SOLUTIONS_SUCCESS: {
+      case Actions.SOLUTIONS_GET_SUCCESS: {
         draft.loading = false
         draft.data = action.payload
         break
       }
 
-      case Actions.SOLUTIONS_FAILURE: {
+      case Actions.SOLUTIONS_GET_FAILURE: {
         draft.loading = false
         draft.data = undefined
         break

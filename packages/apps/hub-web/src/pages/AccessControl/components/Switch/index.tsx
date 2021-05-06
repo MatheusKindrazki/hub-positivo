@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 import { useDispatch } from 'react-redux'
 
-import { PutSolutionData } from '~/store/modules/singleSolution/types'
-import { solutionPutRequest } from '~/store/modules/singleSolution/actions'
+import { PutSolutionData } from '~/store/modules/solutions/types'
+import { solutionPutRequest } from '~/store/modules/solutions/actions'
 
 import { SwitchProps as SwitchPropsUI } from '@psdhub/common/components/Switch'
 

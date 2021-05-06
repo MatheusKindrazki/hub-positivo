@@ -1,8 +1,10 @@
+import { Product } from '../products/types'
+
 export interface SolutionsReducer {
   loading: boolean
-  data?: Solutions[]
+  data?: Category[]
 }
-export interface Solutions {
+export interface Category {
   id: string
   ordem: number
   ativo: boolean
@@ -25,6 +27,27 @@ export interface Solution {
   ordem: number
   permissoes: Permissions[]
   escolas: Schools[]
+}
+
+export interface PostSolutionPayload {
+  nome: string
+  descricao: string
+  arquivo: string
+  link: string
+  idCategoria: string
+  idProduto: string
+  tipoRenderizacao: string
+  ordem: number
+  padrao: boolean
+}
+
+export interface PutSolutionData extends Product {
+  idCategoria: string
+  padrao: boolean
+}
+export interface SolutionPutResponse {
+  sucesso: boolean
+  mensagem: string
 }
 
 export interface Permissions {

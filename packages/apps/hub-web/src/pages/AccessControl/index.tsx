@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { solutionsRequest } from '~/store/modules/solutions/actions'
-import { PutSolutionData } from '~/store/modules/singleSolution/types'
+import { PutSolutionData } from '~/store/modules/solutions/types'
+import { solutionsGetRequest } from '~/store/modules/solutions/actions'
 
 import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
@@ -51,7 +51,7 @@ const AccessControl: React.FC = () => {
     if (data?.length) {
       setSolutions(formatReturnDataFromAPI(data))
     } else {
-      dispatch(solutionsRequest())
+      dispatch(solutionsGetRequest())
     }
   }, [data, dispatch])
 
