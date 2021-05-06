@@ -1,21 +1,22 @@
-// import mixpanel from 'mixpanel-browser'
+import mixpanel from 'mixpanel-browser'
 
-// import { formatWidgetData, WidgetData } from '~/utils/formatData/gscWidgetData'
+import { formatWidgetData, WidgetData } from '~/utils/formatData/gscWidgetData'
 
-// const widgetSubmitEvent = 'Widget Submitted'
+const widgetSubmitEvent = 'Widget Submitted'
 
-// const trackWidgetSubmit = (widgetId: number, data: WidgetData): void => {
-//   try {
-//     mixpanel.track(widgetSubmitEvent, formatWidgetData(widgetId, data))
-//   } catch (error) {
-//     console.error('Erro ao capturar submissão do widget do gsc no mixpanel')
-//   }
-// }
+const trackWidgetSubmit = (widgetId: number, data: WidgetData): void => {
+  try {
+    mixpanel.track(widgetSubmitEvent, formatWidgetData(widgetId, data))
+  } catch (error) {
+    console.error('Erro ao capturar submissão do widget do gsc no mixpanel')
+  }
+}
 
-const teste = ''
+document.addEventListener('@psdhub:gsc:submit', (e: CustomEventInit) => {
+  const infos = e.detail as {
+    id: number
+    data: WidgetData
+  }
 
-window.addEventListener('@psdhub:gsc:submit', e => {
-  console.log('GSC BRASIL', e)
+  trackWidgetSubmit(infos.id, infos.data)
 })
-
-export default teste
