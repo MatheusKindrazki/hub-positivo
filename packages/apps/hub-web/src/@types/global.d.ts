@@ -14,6 +14,7 @@ declare global {
 
     mixpanel: typeof mixpanel
     pageviewCount: number
+    firstCallMCF: boolean
   }
 }
 
