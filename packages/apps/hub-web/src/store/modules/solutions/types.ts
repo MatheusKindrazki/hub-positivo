@@ -1,5 +1,3 @@
-import { Product } from '../products/types'
-
 export interface SolutionsReducer {
   loading: boolean
   data?: Category[]
@@ -41,7 +39,8 @@ export interface PostSolutionPayload {
   padrao: boolean
 }
 
-export interface PutSolutionData extends Product {
+export interface PutSolutionData
+  extends Omit<Solution, 'permissoes' | 'escolas'> {
   idCategoria: string
   padrao: boolean
 }
