@@ -1,6 +1,6 @@
 import { Category, Solution } from '~/store/modules/solutions/types'
 
-interface SolutionWithCategory {
+export interface SolutionWithCategory {
   solution: Solution
   category: string
 }

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { DropzoneRef } from 'react-dropzone'
 
@@ -30,11 +30,14 @@ import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
-import getSolutionBySlug from '../utils/getSolutionBySlug'
+import getSolutionBySlug, {
+  SolutionWithCategory
+} from '../utils/getSolutionBySlug'
 import getSlugFromURL from '../utils/getSlugFromURL'
-import createOptions from '../utils/createOptions'
+import createOptions, { schoolRestrictionRules } from '../utils/createOptions'
 
 const UpdateSolution: React.FC = () => {
+  const [solution, setSolution] = useState<SolutionWithCategory>()
   const dispatch = useDispatch()
   const { loading: alterLoading } = useSelector(
     (state: Store.State) => state.user
@@ -57,20 +60,19 @@ const UpdateSolution: React.FC = () => {
       return history.push('/controle-de-acessos')
     }
 
-    if (solutionSlug) {
-      const data = getSolutionBySlug(categoryArr, solutionSlug)
-
-      formRef.current?.setData({
-        title: data?.solution.nome,
-        description: data?.solution.descricao,
-        category: data?.category
-      })
-      console.log(data)
+    if (solutionSlug && !solution) {
+      setSolution(getSolutionBySlug(categoryArr, solutionSlug))
     }
 
     dispatch(categoryGetAllRequest())
     dispatch(schoolGetAllRequest())
-  }, [categoryArr, dispatch, solutionSlug])
+
+    formRef.current?.setData({
+      title: solution?.solution.nome,
+      description: solution?.solution.descricao,
+      category: solution?.category
+    })
+  }, [categoryArr, dispatch, solution, solutionSlug])
 
   const handleSubmit = useCallback(async data => {
     formRef?.current?.setErrors({})
@@ -152,7 +154,7 @@ const UpdateSolution: React.FC = () => {
               />
             </Box>
             <Box width={['100%', '48.5%']}>
-              <Text color="blue.500">Perfis</Text>
+              <Text color="blue.500">Perfis e Segmentos</Text>
               <Select variant="secondary" name="profiles"></Select>
             </Box>
           </Stack>
@@ -163,8 +165,12 @@ const UpdateSolution: React.FC = () => {
             mt="5"
           >
             <Box width={['100%', '48.5%']}>
-              <Text color="blue.500">Segmentos</Text>
-              <Select variant="secondary" name="segments"></Select>
+              <Text color="blue.500">Escolas - Regra de restrição</Text>
+              <Select
+                variant="secondary"
+                name="schools_rule"
+                options={schoolRestrictionRules}
+              />
             </Box>
             <Box width={['100%', '48.5%']}>
               <Text color="blue.500">Abrir em...</Text>
@@ -181,12 +187,10 @@ const UpdateSolution: React.FC = () => {
             justifyContent="space-between"
             mt="5"
           >
-            <Box width={['100%', '48.5%']}>
+            <Box width="100%" alignSelf="flex-end">
               <Text color="blue.500">Escolas</Text>
-              <Select variant="secondary" name="schools_rule" />
-            </Box>
-            <Box width={['100%', '48.5%']} alignSelf="flex-end">
               <Select
+                label="Escolas"
                 variant="secondary"
                 name="schools"
                 options={schools[0] && createOptions(schools)}
@@ -243,7 +247,7 @@ const UpdateSolution: React.FC = () => {
           </Box>
         </Form>
       </Box>
-      <ModalDeleteSolution ref={modalRef} />
+      <ModalDeleteSolution ref={modalRef} solutionId={solution?.solution.id} />
     </Box>
   )
 }

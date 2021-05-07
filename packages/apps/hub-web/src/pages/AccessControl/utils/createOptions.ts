@@ -15,4 +15,19 @@ const createCategoryOptions = (categories: any[]): Option[] => {
   return options
 }
 
+export const schoolRestrictionRules = [
+  {
+    label: 'Todas Escolas',
+    value: 'Todas Escolas'
+  },
+  {
+    label: 'Apenas',
+    value: 'Apenas'
+  },
+  {
+    label: 'Exceto',
+    value: 'Exceto'
+  }
+]
+
 export default createCategoryOptions
