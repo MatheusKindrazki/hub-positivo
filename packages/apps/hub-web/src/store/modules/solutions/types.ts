@@ -1,6 +1,7 @@
 export interface SolutionsReducer {
   loading: boolean
   data?: Category[]
+  excludedSolutions?: GetExcludedSolutionsResponse[]
 }
 export interface Category {
   id: string
@@ -59,4 +60,9 @@ export interface Schools {
   id: string
   idEscola: string
   nome: string
+}
+
+export interface GetExcludedSolutionsResponse
+  extends Omit<Solution, 'permissoes' | 'escolas'> {
+  excluido: boolean
 }

@@ -50,7 +50,6 @@ const UpdateSolution: React.FC = () => {
 
   const handleSubmit = useCallback(async data => {
     formRef?.current?.setErrors({})
-    console.log(data)
     try {
       await solutionInfo.validate(data, { abortEarly: false })
 

@@ -14,7 +14,6 @@ export interface SwitchProps extends SwitchPropsUI {
 }
 
 const Switch: React.FC<SwitchProps> = ({ data }) => {
-  console.log({ data })
   const dispatch = useDispatch()
   const { ativo } = data
   const [isChecked, setIsChecked] = useState(ativo)
@@ -28,6 +27,7 @@ const Switch: React.FC<SwitchProps> = ({ data }) => {
       padding="1"
       isChecked={isChecked}
       onChange={() => handleCheck(isChecked)}
+      className="solution-switch"
     />
   )
 }

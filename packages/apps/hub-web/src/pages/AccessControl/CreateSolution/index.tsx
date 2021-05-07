@@ -29,7 +29,6 @@ const CreateSolution: React.FC = () => {
     if (history.location.pathname.endsWith('editar-solucao')) {
       setOperation('update')
     }
-    console.log('operacao selecionada: ' + operation)
   }, [operation])
 
   const formRef = useRef<FormProps>(null)

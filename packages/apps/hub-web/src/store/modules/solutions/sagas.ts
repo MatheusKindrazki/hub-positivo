@@ -12,7 +12,8 @@ import {
   Category,
   Solution,
   PutSolutionData,
-  SolutionPutResponse
+  SolutionPutResponse,
+  GetExcludedSolutionsResponse
 } from './types'
 import {
   Actions,
@@ -23,7 +24,11 @@ import {
   solutionPutSuccess,
   solutionPutFailure,
   solutionDeleteSuccess,
-  solutionDeleteFailure
+  solutionDeleteFailure,
+  solutionsGetExcludedFailure,
+  solutionsGetExcludedSuccess,
+  solutionRestaureFailure,
+  solutionRestaureSuccess
 } from './actions'
 
 export function* createSolution(action: Action): Generator {
@@ -78,7 +83,6 @@ export function* updateSolution({ payload }: SolutionPutPayload): Generator {
 
   const { ok, data } = response as ApiResponse<SolutionPutResponse>
   yield put(loading(false))
-  console.log({ ok, data })
 
   if (!ok || !data?.sucesso) {
     toast.error(
@@ -101,7 +105,7 @@ export function* deleteSolution(action: Action): Generator {
       }
     })
   })
-  const { ok, data } = response as ApiResponse<Solution>
+  const { ok, data } = response as ApiResponse<SolutionPutResponse>
 
   yield put(loading(false))
 
@@ -112,9 +116,55 @@ export function* deleteSolution(action: Action): Generator {
   return yield put(solutionDeleteSuccess())
 }
 
+export function* restaureSolution(action: Action): Generator {
+  yield put(loading(true))
+
+  const response = yield call(() => {
+    return api.put(
+      '/Solucao/RecuperaSolucaoDaLixeira',
+      {},
+      {
+        params: {
+          idCard: action.payload.id
+        }
+      }
+    )
+  })
+
+  const { ok } = response as ApiResponse<SolutionPutResponse>
+
+  yield put(loading(false))
+
+  if (!ok) {
+    toast.error('Erro ao restaurar solução, tente novamente!')
+    return yield put(solutionRestaureFailure())
+  }
+  toast.success('Solução restaurada com sucesso')
+  return yield put(solutionRestaureSuccess())
+}
+
+export function* getExcludedSolutions(): Generator {
+  yield put(loading(true))
+
+  const response = yield call(() => {
+    return api.get('Solucao/GetSolucoesExcluidas')
+  })
+  const { ok, data } = response as ApiResponse<GetExcludedSolutionsResponse>
+
+  yield put(loading(false))
+
+  if (!ok || !data) {
+    toast.error('Erro ao buscar items da lixeira!')
+    return yield put(solutionsGetExcludedFailure())
+  }
+  return yield put(solutionsGetExcludedSuccess(data))
+}
+
 export default all([
   takeLatest(Actions.SOLUTION_POST_REQUEST, createSolution),
   takeLatest(Actions.SOLUTIONS_GET_REQUEST, getSolutions),
   takeLatest(Actions.SOLUTION_PUT_REQUEST, updateSolution),
-  takeLatest(Actions.SOLUTION_DELETE_REQUEST, deleteSolution)
+  takeLatest(Actions.SOLUTION_DELETE_REQUEST, deleteSolution),
+  takeLatest(Actions.SOLUTIONS_GET_EXCLUDED_REQUEST, getExcludedSolutions),
+  takeLatest(Actions.SOLUTION_RESTAURE_REQUEST, restaureSolution)
 ])

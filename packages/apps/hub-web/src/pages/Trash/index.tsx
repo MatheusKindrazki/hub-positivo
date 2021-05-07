@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
+import { useDispatch, useSelector } from 'react-redux'
+
+import { solutionsGetExcludedRequest } from '~/store/modules/solutions/actions'
 
 import Table, { Columns } from '@psdhub/common/components/Table'
-import { Box, Button } from '@psdhub/common/components'
+import { Box, Text } from '@psdhub/common/components'
 
 import Header from '~/components/AccessControlHeader'
 
+import { formatReturnDataFromAPI } from './utils/formatReturnDataFromAPI'
 import Container from './styles'
+import RestaureSolutionButton from './components/RestaureSolutionButton'
 import DeleteSolutionButton from './components/DeleteSolutionButton'
 
-type TableSolution = any
-
+type TableSolution = {
+  solution: string
+  description: string
+  category: string
+  openOn: string
+  id: string
+}
 export interface CollapseData {
   nome: string
   solutions: TableSolution[]
@@ -29,45 +40,35 @@ export const columns: Columns[] = [
   {
     property: 'restaure',
     header: null,
-    render: () => (
-      <Button variant="unstyled" color="blue.500">
-        RESTAURAR
-      </Button>
-    )
-  }
-]
-
-const mock = [
-  {
-    solution: 'Salas virtuais',
-    description: 'Acesse e visualize as salas virtuais',
-    category: 'Recursos',
-    openOn: 'Mesma janela'
-  },
-  {
-    solution: 'Plano semanal',
-    description: 'Organize e distribua suas aulas',
-    category: 'Recursos',
-    openOn: 'Outra janela'
-  },
-  {
-    solution: 'Livro digital',
-    description: 'Material didático em PDF e Digital interativo',
-    category: 'Conteúdo',
-    openOn: 'Mesma janela'
+    render: (e: TableSolution) => <RestaureSolutionButton id={e.id} />
   }
 ]
 const Trash: React.FC = () => {
+  const dispatch = useDispatch()
+  const { excludedSolutions: data } = useSelector(
+    (state: Store.State) => state.solutions
+  )
+
+  useEffect(() => {
+    if (!data) {
+      dispatch(solutionsGetExcludedRequest())
+    }
+  }, [dispatch, data])
+
   return (
     <Container m="1" marginTop="10">
       <Header />
       <Box overflow="auto" bg="white" rounded="md" m="5">
-        <Table
-          columns={columns}
-          data={mock}
-          className="trash-table"
-          size="sm"
-        />
+        {data?.length ? (
+          <Table
+            columns={columns}
+            data={formatReturnDataFromAPI(data)}
+            className="trash-table"
+            size="sm"
+          />
+        ) : (
+          <Text variant="unstyled">Lixeira vazia</Text>
+        )}
       </Box>
     </Container>
   )

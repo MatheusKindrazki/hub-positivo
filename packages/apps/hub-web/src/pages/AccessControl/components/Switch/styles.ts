@@ -3,13 +3,11 @@ import styled from 'styled-components'
 import SwitchUI from '@psdhub/common/components/Switch'
 
 const Switch = styled(SwitchUI)`
-  .switch-button {
-    > span {
-      background: var(--hub-base-color);
+  > span {
+    background: ${props => props.theme.colors.gray[450]};
 
-      &[data-checked] {
-        background: var(--hub-colors-gray-400);
-      }
+    &[data-checked] {
+      background: ${props => props.theme.colors.blue[500]};
     }
   }
 `
