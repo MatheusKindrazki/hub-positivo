@@ -30,4 +30,34 @@ export const schoolRestrictionRules = [
   }
 ]
 
+export const targetOptions = [
+  {
+    label: 'Mesma pagina',
+    value: 'Mesma pagina'
+  },
+  {
+    label: 'Nova aba',
+    value: 'Nova aba'
+  }
+]
+
+export const profileOptions = [
+  {
+    label: 'Professor',
+    value: 'Professor'
+  },
+  {
+    label: 'Aluno',
+    value: 'Aluno'
+  },
+  {
+    label: 'Administrador',
+    value: 'Administrador'
+  },
+  {
+    label: 'Coordenador',
+    value: 'Coordenador'
+  }
+]
+
 export default createCategoryOptions

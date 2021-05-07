@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { PutSolutionData } from '~/store/modules/solutions/types'
 import { solutionsGetRequest } from '~/store/modules/solutions/actions'
+import { schoolGetAllRequest } from '~/store/modules/school/actions'
+import { categoryGetAllRequest } from '~/store/modules/category/actions'
 
 import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
@@ -48,6 +50,8 @@ const AccessControl: React.FC = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(categoryGetAllRequest())
+    dispatch(schoolGetAllRequest())
     if (data?.length) {
       setSolutions(formatReturnDataFromAPI(data))
     } else {

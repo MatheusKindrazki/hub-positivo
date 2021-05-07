@@ -8,7 +8,6 @@ import { schoolGetAllRequest } from '~/store/modules/school/actions'
 import { categoryGetAllRequest } from '~/store/modules/category/actions'
 
 import { toast } from '@psdhub/common/utils'
-import { CaretRight } from '@psdhub/common/components/Icons'
 import {
   FormProps,
   Form,
@@ -17,11 +16,7 @@ import {
   Select
 } from '@psdhub/common/components/Form'
 import Dropzone from '@psdhub/common/components/Dropzone'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink
-} from '@psdhub/common/components/Breadcrumbs'
+import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Box, Text, Stack, Button } from '@psdhub/common/components'
 
 import history from '~/services/history'
@@ -34,7 +29,7 @@ import getSolutionBySlug, {
   SolutionWithCategory
 } from '../utils/getSolutionBySlug'
 import getSlugFromURL from '../utils/getSlugFromURL'
-import createOptions, { schoolRestrictionRules } from '../utils/createOptions'
+import selectOptions from '../CreateSolution/selectOptions'
 
 const UpdateSolution: React.FC = () => {
   const [solution, setSolution] = useState<SolutionWithCategory>()
@@ -45,8 +40,6 @@ const UpdateSolution: React.FC = () => {
 
   const solutionSlug = getSlugFromURL(history.location.pathname)
 
-  const { categories } = useSelector((state: Store.State) => state.category)
-  const { schools } = useSelector((state: Store.State) => state.school)
   const { data: categoryArr } = useSelector(
     (state: Store.State) => state.solutions
   )
@@ -98,23 +91,12 @@ const UpdateSolution: React.FC = () => {
 
   return (
     <Box p={['4', '6']} mt={['0', '4']} w="100%">
-      <Box d="flex" flexDir="row" ml={['0', '12vw']}>
-        <Breadcrumb
-          fontSize={['large', 'x-large']}
-          spacing={['0.5', '1']}
-          separator={<Box as={CaretRight} />}
-        >
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/#/controle-de-acessos">
-              Controle de Acessos
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem>
-            <BreadcrumbLink>Editar Solucao</BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
-      </Box>
+      <Breadcrumbs
+        data={[
+          { title: 'Controle de Acessos', href: '/controle-de-acessos' },
+          { title: 'Editar Solução' }
+        ]}
+      />
 
       <Box w={['100%', '45%']} m="auto" mt="12">
         <Form ref={formRef} onSubmit={handleSubmit}>
@@ -128,10 +110,18 @@ const UpdateSolution: React.FC = () => {
             />
 
             <Input
+              mb="5"
               label="Descricao"
               name="description"
               backgroundColor="white"
               placeholder="Digite uma breve descrição para ajudar os usuários a entenderem a função desta solução"
+            />
+
+            <Input
+              label="Link"
+              name="link"
+              backgroundColor="white"
+              placeholder="Insira o Link de acesso a solução"
             />
           </Box>
 
@@ -142,60 +132,25 @@ const UpdateSolution: React.FC = () => {
 
           <Stack
             direction={['column', 'row']}
+            wrap="wrap"
             justifyContent="space-between"
             mt="5"
           >
-            <Box width={['100%', '48.5%']}>
-              <Text color="blue.500">Categoria</Text>
-              <Select
-                options={categories[0] && createOptions(categories)}
-                variant="secondary"
-                name="category"
-              />
-            </Box>
-            <Box width={['100%', '48.5%']}>
-              <Text color="blue.500">Perfis e Segmentos</Text>
-              <Select variant="secondary" name="profiles"></Select>
-            </Box>
-          </Stack>
-
-          <Stack
-            direction={['column', 'row']}
-            justifyContent="space-between"
-            mt="5"
-          >
-            <Box width={['100%', '48.5%']}>
-              <Text color="blue.500">Escolas - Regra de restrição</Text>
-              <Select
-                variant="secondary"
-                name="schools_rule"
-                options={schoolRestrictionRules}
-              />
-            </Box>
-            <Box width={['100%', '48.5%']}>
-              <Text color="blue.500">Abrir em...</Text>
-              <Select
-                variant="secondary"
-                name="target"
-                className="hub-select"
-              ></Select>
-            </Box>
-          </Stack>
-
-          <Stack
-            direction={['column', 'row']}
-            justifyContent="space-between"
-            mt="5"
-          >
-            <Box width="100%" alignSelf="flex-end">
-              <Text color="blue.500">Escolas</Text>
-              <Select
-                label="Escolas"
-                variant="secondary"
-                name="schools"
-                options={schools[0] && createOptions(schools)}
-              />
-            </Box>
+            {selectOptions.map(select => (
+              <Box
+                ml={select.name === 'category' ? '8px' : '0px'}
+                key={select.name}
+                w={select.name === 'schools' ? '100%' : '48.5%'}
+              >
+                <Select
+                  mb="4"
+                  name={select.name}
+                  options={select.options}
+                  label={select.label}
+                  variant="secondary"
+                />
+              </Box>
+            ))}
           </Stack>
 
           <Box
@@ -228,10 +183,12 @@ const UpdateSolution: React.FC = () => {
               fontWeight="500"
               textTransform="uppercase"
               color="gray"
+              onClick={() => history.push('/controle-de-acessos')}
             >
               Cancelar
             </Button>
             <Button
+              ml="8px"
               onClick={openModal}
               height="14"
               width={['48.4%', '28']}

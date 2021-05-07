@@ -24,18 +24,18 @@ export const ModalDeleteSolution = React.forwardRef<ModalHandler, ModalProps>(
 
     const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
+    useImperativeHandle(ref, () => {
+      return {
+        onOpen
+      }
+    })
+
     const deleteSolution = useCallback(() => {
       if (solutionId) {
         console.log(solutionId)
         dispatch(solutionDeleteRequest(solutionId))
       }
     }, [dispatch, solutionId])
-
-    useImperativeHandle(ref, () => {
-      return {
-        onOpen
-      }
-    })
 
     return (
       <>

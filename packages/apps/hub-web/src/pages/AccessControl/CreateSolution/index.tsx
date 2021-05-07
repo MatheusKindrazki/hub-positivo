@@ -1,75 +1,96 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 
 import { DropzoneRef } from 'react-dropzone'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { CaretRight } from '@psdhub/common/components/Icons'
-import { FormProps, Form, Input, Button } from '@psdhub/common/components/Form'
-import Dropzone from '@psdhub/common/components/Dropzone'
+import { schoolGetAllRequest } from '~/store/modules/school/actions'
+import { categoryGetAllRequest } from '~/store/modules/category/actions'
+
+import { toast } from '@psdhub/common/utils'
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink
-} from '@psdhub/common/components/Breadcrumbs'
-import { Box, Text, Select, Stack } from '@psdhub/common/components'
+  FormProps,
+  Form,
+  Input,
+  Button as FormButton,
+  Select
+} from '@psdhub/common/components/Form'
+import Dropzone from '@psdhub/common/components/Dropzone'
+import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
+import { Box, Text, Stack, Button } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
-const CreateSolution: React.FC = () => {
-  const [operation, setOperation] = useState('')
+import solutionInfo from '~/validators/solution/createSolution'
+import { getValidationErrors, ValidationError } from '~/validators'
+
+import selectOptions from './selectOptions'
+
+const UpdateSolution: React.FC = () => {
+  const dispatch = useDispatch()
   const { loading: alterLoading } = useSelector(
     (state: Store.State) => state.user
   )
 
-  useEffect(() => {
-    if (history.location.pathname.endsWith('criar-solucao')) {
-      setOperation('create')
-    }
-    if (history.location.pathname.endsWith('editar-solucao')) {
-      setOperation('update')
-    }
-    console.log('operacao selecionada: ' + operation)
-  }, [operation])
-
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
 
+  useEffect(() => {
+    dispatch(categoryGetAllRequest())
+    dispatch(schoolGetAllRequest())
+  }, [dispatch])
+
   const handleSubmit = useCallback(async data => {
+    formRef?.current?.setErrors({})
     console.log(data)
+    try {
+      await solutionInfo.validate(data, { abortEarly: false })
+
+      return
+    } catch (err) {
+      if (err instanceof ValidationError) {
+        const errors = getValidationErrors(err)
+        formRef?.current?.setErrors(errors)
+      }
+      return toast.error(
+        'Algo deu errado, Verifique seus dados e tente novamente!'
+      )
+    }
   }, [])
 
   return (
-    <Box p="6" mt="20" w="100%">
-      <Box d="flex" flexDir="row" ml="12vw">
-        <Breadcrumb fontSize="x-large" separator={<Box as={CaretRight} />}>
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/#/controle-de-acessos">
-              Controle de Acessos
-            </BreadcrumbLink>
-          </BreadcrumbItem>
+    <Box p={['4', '6']} mt={['0', '4']} w="100%">
+      <Breadcrumbs
+        data={[
+          { title: 'Controle de Acessos', href: '/controle-de-acessos' },
+          { title: 'Adicionar Solução' }
+        ]}
+      />
 
-          <BreadcrumbItem>
-            <BreadcrumbLink>Adicionar Solucao</BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
-      </Box>
-
-      <Box w="45%" m="auto" mt="12">
+      <Box w={['100%', '45%']} m="auto" mt="12">
         <Form ref={formRef} onSubmit={handleSubmit}>
           <Box d="flex" flexDir="column" mb="6">
             <Input
+              mb="5"
               label="Titulo"
-              name="teste"
+              name="title"
               backgroundColor="white"
               placeholder="Digite aqui o título da solução"
             />
 
             <Input
+              mb="5"
               label="Descricao"
-              name="teste"
+              name="description"
               backgroundColor="white"
               placeholder="Digite uma breve descrição para ajudar os usuários a entenderem a função desta solução"
+            />
+
+            <Input
+              label="Link"
+              name="link"
+              backgroundColor="white"
+              placeholder="Insira o Link de acesso a solução"
             />
           </Box>
 
@@ -78,67 +99,60 @@ const CreateSolution: React.FC = () => {
             <Dropzone ref={dropRef} />
           </Box>
 
-          <Stack direction={'row'} justifyContent="space-between" mt="5">
-            <Box width="48.5%">
-              <Text color="blue.500">Categoria</Text>
-              <Select
-                variant="secondary"
-                name="categoria"
-                id="categoria"
-                height="30px"
-              ></Select>
-            </Box>
-            <Box width="48.5%">
-              <Text color="blue.500">Perfis</Text>
-              <Select variant="secondary" name="teste" m="auto"></Select>
-            </Box>
+          <Stack
+            direction={['column', 'row']}
+            wrap="wrap"
+            justifyContent="space-between"
+            mt="5"
+          >
+            {selectOptions.map(select => (
+              <Box
+                ml={select.name === 'category' ? '8px' : '0px'}
+                key={select.name}
+                w={select.name === 'schools' ? '100%' : '48.5%'}
+              >
+                <Select
+                  mb="4"
+                  name={select.name}
+                  options={select.options}
+                  label={select.label}
+                  variant="secondary"
+                />
+              </Box>
+            ))}
           </Stack>
 
-          <Stack direction={'row'} justifyContent="space-between" mt="5">
-            <Box width="48.5%">
-              <Text color="blue.500">Segmentos</Text>
-              <Select variant="secondary" name="teste" m="auto"></Select>
-            </Box>
-            <Box width="48.5%">
-              <Text color="blue.500">Abrir em...</Text>
-              <Select
-                variant="secondary"
-                name="teste"
-                m="auto"
-                className="hub-select"
-              ></Select>
-            </Box>
-          </Stack>
-
-          <Stack direction={'row'} justifyContent="space-between" mt="5">
-            <Box width="48.5%">
-              <Text color="blue.500">Escolas</Text>
-              <Select variant="secondary" name="teste" m="auto"></Select>
-            </Box>
-            <Box width="48.5%" alignSelf="flex-end">
-              <Select variant="secondary" name="teste" m="auto"></Select>
-            </Box>
-          </Stack>
-
-          <Box flexDir="row-reverse" d="flex">
-            <Button
-              marginLeft="3"
+          <Box
+            mt="9"
+            flexDir={['row', 'row-reverse']}
+            flexWrap={['wrap', 'nowrap']}
+            d="flex"
+            w="100%"
+            justifyContent={['space-between', 'flex-start']}
+          >
+            <FormButton
+              flexGrow={[2, 1]}
               height="14"
-              maxWidth="32"
+              m="0"
+              mb={['3', '0']}
+              marginLeft={['0', '3']}
+              maxWidth={['100%', '32']}
               fontWeight="500"
               textTransform="uppercase"
               colorScheme="blue"
               isLoading={alterLoading}
             >
               Adicionar
-            </Button>
+            </FormButton>
             <Button
+              borderColor="gray.500"
               height="14"
-              maxWidth="32"
+              width={['48.4%', '32']}
               variant="outline"
               fontWeight="500"
               textTransform="uppercase"
               color="gray"
+              onClick={() => history.push('/controle-de-acessos')}
             >
               Cancelar
             </Button>
@@ -149,4 +163,4 @@ const CreateSolution: React.FC = () => {
   )
 }
 
-export default CreateSolution
+export default UpdateSolution
