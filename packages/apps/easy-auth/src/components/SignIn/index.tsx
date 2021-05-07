@@ -15,9 +15,7 @@ import { useAuth } from '../../context/authContext'
 const SignIn: React.FC = () => {
   const formRef = useRef<FormProps>(null)
 
-  const { signIn, loading } = useAuth()
-
-  console.log(loading)
+  const { signIn } = useAuth()
 
   const [view, setView] = useState(false)
 

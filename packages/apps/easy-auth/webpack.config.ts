@@ -17,7 +17,7 @@ const config: any = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
-    historyApiFallback: true,
+    historyApiFallback: false,
     hot: true,
     port: 3001
   },
@@ -39,6 +39,7 @@ const config: any = {
       }
     ]
   },
+  devtool: 'inline-source-map',
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
   },
