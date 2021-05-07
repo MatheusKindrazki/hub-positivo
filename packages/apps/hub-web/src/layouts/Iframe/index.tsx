@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CardProduct } from '~/store/modules/products/types'
 import { preAuth } from '~/store/modules/authProduct/actions'
 
-import gsc, { removeGsc } from '@hub/gsc'
 import createSlug from '@hub/common/utils/createSlug'
 import { BarLoader } from '@hub/common/components'
 
@@ -21,14 +20,6 @@ const Iframe: React.FC = ({ children }) => {
   const dispatch = useDispatch()
 
   useEffect(() => dispatchEvent())
-
-  useEffect(() => {
-    gsc()
-
-    return () => {
-      removeGsc()
-    }
-  }, [])
 
   const { data } = useSelector((state: Store.State) => state.products)
   const { loading } = useSelector((state: Store.State) => state.global)

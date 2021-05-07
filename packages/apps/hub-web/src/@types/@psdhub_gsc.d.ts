@@ -1,1 +1,0 @@
-declare module '@hub/gsc'

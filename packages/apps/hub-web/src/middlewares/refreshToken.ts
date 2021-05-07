@@ -64,11 +64,11 @@ export default async (): Promise<boolean> => {
       }
     })
 
+    // dispara evento de sessão iniciada
+    sessionStarted({ tokenRefreshed: true })
+
     return true
   }
-
-  // dispara evento de sessão iniciada
-  sessionStarted({ tokenRefreshed: true })
 
   return false
 }

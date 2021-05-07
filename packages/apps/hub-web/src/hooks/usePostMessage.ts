@@ -1,9 +1,6 @@
 import { useEffect } from 'react'
 
 import { useHistory, useLocation, useParams } from 'react-router-dom'
-import mixpanel from 'mixpanel-browser'
-
-import gscPageView from '~/services/getSiteControl/pageView'
 
 import { hasJsonStructure } from '~/utils/hasJsonStructure'
 
@@ -55,15 +52,6 @@ const usePostMessage = (): void => {
           const mountURL = mergeLocation + newURL.pathname
 
           if (mountURL === location.pathname) return
-
-          const eventProperties: PageViewed = {
-            page_path: mountURL,
-            page_title: document.title,
-            page_url: document.URL
-          }
-
-          mixpanel.track('Page Viewed', eventProperties)
-          gscPageView(mountURL)
 
           history.push(mountURL)
         }

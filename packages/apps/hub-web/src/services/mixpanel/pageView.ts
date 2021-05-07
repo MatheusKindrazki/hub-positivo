@@ -1,51 +1,49 @@
 import mixpanel from 'mixpanel-browser'
 
+import delay from '@hub/common/utils/delay'
+
 import history from '~/services/history'
 
-import { PageViewed, CustomEvent } from './types'
+import { PageViewed } from './types'
+
+let lastPath = ''
 
 const pageViewedEvent = 'Page Viewed'
 
-let oldTitle = document.title
+const firstTitle = document.title
 
-let pathname = '/'
+const ignoreTitle = ['Carregando Solução', firstTitle]
 
-window.onload = function () {
-  pathname = document.location.hash.replace('#', '')
-
-  const eventProperties: PageViewed = {
-    page_path: pathname,
-    page_title: document.title,
-    page_url: document.URL
-  }
-
-  oldTitle = document.title
-
-  dispatchPage(eventProperties)
-
-  document.addEventListener('@hub:title', listenerHubTitle)
-}
+window.addEventListener('load', () => listenerHubTitle())
 
 history.listen(() => {
-  document.addEventListener('@hub:title', listenerHubTitle)
+  listenerHubTitle()
 })
 
-const listenerHubTitle = (custom: CustomEvent) => {
-  if (oldTitle === custom?.detail) return
+const listenerHubTitle = async () => {
+  await delay(1000)
 
-  pathname = document.location.hash.replace('#', '')
+  const arrayTitle = document.title.split(' - ')[0]
+
+  if (document.title === firstTitle || ignoreTitle.includes(arrayTitle)) {
+    listenerHubTitle()
+
+    return
+  }
+
+  const pathname = document.location.hash.replace('#', '')
 
   const eventProperties: PageViewed = {
     page_path: pathname,
-    page_title: custom?.detail || '',
+    page_title: document.title || '',
     page_url: document.URL
   }
 
-  oldTitle = custom?.detail || ''
+  if (lastPath === pathname) return
+
+  lastPath = pathname
 
   dispatchPage(eventProperties)
-
-  document.removeEventListener('@hub:title', listenerHubTitle)
 }
 
 function dispatchPage(data: PageViewed): void {

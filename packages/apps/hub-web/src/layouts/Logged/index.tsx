@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { postTourViewed, openTour } from '~/store/modules/tour/actions'
 
-import gsc, { removeGsc } from '@hub/gsc'
 import Tour from '@hub/common/components/Tour'
 import { BarLoader } from '@hub/common/components'
 
@@ -23,14 +22,6 @@ const Dashboard: React.FC = ({ children }) => {
   const dispatch = useDispatch()
 
   useEffect(() => dispatchEvent())
-
-  useEffect(() => {
-    gsc()
-
-    return () => {
-      removeGsc()
-    }
-  }, [])
 
   const { loading } = useSelector((state: Store.State) => state.global)
 
