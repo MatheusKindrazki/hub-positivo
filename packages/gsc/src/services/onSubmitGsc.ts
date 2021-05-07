@@ -1,7 +1,20 @@
-type CBProps = (id: number, data: any) => void
+import delay from '@psdhub/common/utils/delay'
 
-export default function onSubmitGsc(cb: CBProps): void {
-  if (window.gsc) {
-    window?.gsc('onSubmit', cb)
+async function onSubmitInstance(): Promise<void> {
+  if (!window?.gsc) {
+    await delay(500)
+    return onSubmitInstance()
   }
+
+  window?.gsc('onSubmit', (id: number, data: any) => {
+    console.log('submit dentro do service')
+
+    const sendEvent = new CustomEvent('@psdhub:gsc:submit', {
+      detail: { id, data }
+    })
+
+    document.dispatchEvent(sendEvent)
+  })
 }
+
+export default onSubmitInstance

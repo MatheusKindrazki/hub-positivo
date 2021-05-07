@@ -1,5 +1,7 @@
 import { generate } from 'randomstring'
 
+import onSubmitInstance from './onSubmitGsc'
+
 function instanceGsc(): void {
   const script = document.createElement('script')
 
@@ -13,6 +15,8 @@ function instanceGsc(): void {
 
   script.addEventListener('load', () => {
     require('../scripts/gsc')
+
+    onSubmitInstance()
 
     console.info('GSC: Load da aplicação')
   })
