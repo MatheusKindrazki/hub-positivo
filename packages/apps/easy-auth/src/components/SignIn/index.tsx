@@ -15,7 +15,7 @@ import { useAuth } from '../../context/authContext'
 const SignIn: React.FC = () => {
   const formRef = useRef<FormProps>(null)
 
-  const { signIn } = useAuth()
+  const { signIn, loading } = useAuth()
 
   const [view, setView] = useState(false)
 
@@ -67,6 +67,7 @@ const SignIn: React.FC = () => {
           textTransform="uppercase"
           data-testid="submit-button"
           mb="6"
+          isLoading={loading}
         >
           Entrar
         </FormButton>
