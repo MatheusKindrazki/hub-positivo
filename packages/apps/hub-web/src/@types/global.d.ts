@@ -7,6 +7,7 @@ declare global {
       school: string
       educational_stage: string
     }
+    pageviewCount: number
   }
 }
 

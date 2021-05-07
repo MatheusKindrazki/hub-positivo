@@ -7,8 +7,6 @@ async function onSubmitInstance(): Promise<void> {
   }
 
   window?.gsc('onSubmit', (id: number, data: any) => {
-    console.log('submit dentro do service')
-
     const sendEvent = new CustomEvent('@psdhub:gsc:submit', {
       detail: { id, data }
     })
