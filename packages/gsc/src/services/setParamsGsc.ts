@@ -1,4 +1,4 @@
-import delay from '@psdhub/common/utils/delay'
+import delay from '@hub/common/utils/delay'
 
 async function setParamsGsc<T>(data: T): Promise<void> {
   await delay(500)
