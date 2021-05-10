@@ -50,6 +50,11 @@ export interface SolutionPutResponse {
   mensagem: string
 }
 
+export interface DeleteResponse {
+  sucesso: boolean
+  mensagem: string
+}
+
 export interface Permissions {
   id: string
   perfil: string

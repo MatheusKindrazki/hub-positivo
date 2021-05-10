@@ -3,16 +3,22 @@ import React, { useRef, useEffect } from 'react'
 import { OptionTypeBase } from 'react-select'
 import { useField } from '@unform/core'
 
-import { FormControl, FormHelperText, FormControlProps } from '@chakra-ui/react'
+import {
+  FormControl,
+  FormHelperText,
+  FormControlProps,
+  FormLabel
+} from '@chakra-ui/react'
 
 import DefaultSelect, { PropsSelect } from '../../Select'
 
 interface Props extends PropsSelect {
   name: string
   mb?: FormControlProps['mb']
+  label?: string
 }
 
-const Select: React.FC<Props> = ({ name, mb, ...rest }) => {
+const Select: React.FC<Props> = ({ name, mb, label, ...rest }) => {
   const selectRef = useRef(null)
 
   const { fieldName, defaultValue, registerField, error } = useField(name)
@@ -45,6 +51,11 @@ const Select: React.FC<Props> = ({ name, mb, ...rest }) => {
 
   return (
     <FormControl mb={mb}>
+      {label && (
+        <FormLabel color="blue.500" fontWeight="400">
+          {label}
+        </FormLabel>
+      )}
       <DefaultSelect
         defaultValue={defaultValue}
         error={!!error}

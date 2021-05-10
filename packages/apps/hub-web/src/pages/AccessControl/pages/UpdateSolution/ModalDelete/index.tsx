@@ -1,4 +1,8 @@
-import React, { useImperativeHandle } from 'react'
+import React, { useImperativeHandle, useCallback } from 'react'
+
+import { useDispatch } from 'react-redux'
+
+import { solutionDeleteRequest } from '~/store/modules/solutions/actions'
 
 import { useDisclosure, useMediaQuery } from '@psdhub/common/hooks'
 import Modal from '@psdhub/common/components/Modal'
@@ -9,8 +13,13 @@ export interface ModalHandler {
   onOpen: () => void
 }
 
-export const ModalDeleteSolution: React.FC<any> = React.forwardRef(
-  (_props, ref) => {
+interface ModalProps {
+  solutionId: string | undefined
+}
+
+export const ModalDeleteSolution = React.forwardRef<ModalHandler, ModalProps>(
+  ({ solutionId }, ref) => {
+    const dispatch = useDispatch()
     const { isOpen, onClose, onOpen } = useDisclosure()
 
     const [isDesktop] = useMediaQuery('(min-width: 480px)')
@@ -20,6 +29,13 @@ export const ModalDeleteSolution: React.FC<any> = React.forwardRef(
         onOpen
       }
     })
+
+    const deleteSolution = useCallback(() => {
+      if (solutionId) {
+        dispatch(solutionDeleteRequest(solutionId))
+        onClose()
+      }
+    }, [dispatch, onClose, solutionId])
 
     return (
       <>
@@ -63,6 +79,7 @@ export const ModalDeleteSolution: React.FC<any> = React.forwardRef(
               w="48%"
               h="48px"
               textTransform="uppercase"
+              onClick={deleteSolution}
             >
               Excluir
             </Button>

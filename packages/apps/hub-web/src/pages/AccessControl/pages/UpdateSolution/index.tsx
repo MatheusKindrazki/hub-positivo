@@ -1,14 +1,13 @@
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
+import { useLocation } from 'react-router'
 import { DropzoneRef } from 'react-dropzone'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { schoolGetAllRequest } from '~/store/modules/school/actions'
-import { categoryGetAllRequest } from '~/store/modules/category/actions'
+import { solutionPutRequest } from '~/store/modules/solutions/actions'
 
 import { toast } from '@psdhub/common/utils'
-import { CaretRight } from '@psdhub/common/components/Icons'
 import {
   FormProps,
   Form,
@@ -17,77 +16,103 @@ import {
   Select
 } from '@psdhub/common/components/Form'
 import Dropzone from '@psdhub/common/components/Dropzone'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink
-} from '@psdhub/common/components/Breadcrumbs'
+import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Box, Text, Stack, Button } from '@psdhub/common/components'
+
+import history from '~/services/history'
 
 import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
-import createOptions from '../utils/createOptions'
+import { selects } from '../CreateSolution/selectOptions'
+import getSolutionBySlug, {
+  SolutionWithCategory
+} from '../../utils/getSolutionBySlug'
+import getSlugFromURL from '../../utils/getSlugFromURL'
+import createOptions from '../../utils/createOptions'
 
 const UpdateSolution: React.FC = () => {
+  const [solution, setSolution] = useState<SolutionWithCategory>()
+
+  const { pathname } = useLocation()
+
   const dispatch = useDispatch()
+
   const { loading: alterLoading } = useSelector(
     (state: Store.State) => state.user
   )
-
+  const { data: categoryArr } = useSelector(
+    (state: Store.State) => state.solutions
+  )
   const { categories } = useSelector((state: Store.State) => state.category)
   const { schools } = useSelector((state: Store.State) => state.school)
+
+  const categoryOptions = createOptions(categories)
+  const schoolOptions = createOptions(schools)
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
   const modalRef = useRef<ModalHandler>(null)
 
   useEffect(() => {
-    dispatch(categoryGetAllRequest())
-    dispatch(schoolGetAllRequest())
-  }, [dispatch])
+    const solutionSlug = getSlugFromURL(pathname)
 
-  const handleSubmit = useCallback(async data => {
-    formRef?.current?.setErrors({})
-    try {
-      await solutionInfo.validate(data, { abortEarly: false })
-
-      return
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        const errors = getValidationErrors(err)
-        formRef?.current?.setErrors(errors)
-      }
-      return toast.error(
-        'Algo deu errado, Verifique seus dados e tente novamente!'
-      )
+    if (!categoryArr || categoryArr?.length === 0) {
+      return history.push('/controle-de-acessos')
     }
-  }, [])
+
+    if (solutionSlug && !solution) {
+      setSolution(getSolutionBySlug(categoryArr, solutionSlug))
+    }
+
+    if (solution) {
+      formRef.current?.setData({
+        nome: solution?.solution.nome,
+        descricao: solution?.solution.descricao,
+        link: solution.solution.link,
+        category: solution?.category
+      })
+    }
+  }, [categoryArr, dispatch, pathname, solution])
+
+  const handleSubmit = useCallback(
+    async data => {
+      formRef?.current?.setErrors({})
+      try {
+        await solutionInfo.validate(data, { abortEarly: false })
+
+        data.id = solution?.solution.id
+        data.slug = solution?.solution.slug
+
+        console.log(data)
+
+        return dispatch(solutionPutRequest(data))
+      } catch (err) {
+        if (err instanceof ValidationError) {
+          const errors = getValidationErrors(err)
+          formRef?.current?.setErrors(errors)
+        }
+        return toast.error(
+          'Algo deu errado, Verifique seus dados e tente novamente!'
+        )
+      }
+    },
+    [dispatch, solution?.solution.id, solution?.solution.slug]
+  )
 
   const openModal = useCallback(() => {
     modalRef.current?.onOpen()
   }, [])
 
   return (
-    <Box p={['4', '6']} mt={['0', '20']} w="100%">
-      <Box d="flex" flexDir="row" ml={['0', '12vw']}>
-        <Breadcrumb
-          fontSize={['large', 'x-large']}
-          spacing={['0.5', '1']}
-          separator={<Box as={CaretRight} />}
-        >
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/#/controle-de-acessos">
-              Controle de Acessos
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem>
-            <BreadcrumbLink>Editar Solucao</BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
-      </Box>
+    <Box p={['4', '6']} mt={['0', '4']} w="100%">
+      <Breadcrumbs
+        data={[
+          { title: 'Controle de Acessos', href: '/controle-de-acessos' },
+          { title: 'Editar Solução' }
+        ]}
+      />
 
       <Box w={['100%', '45%']} m="auto" mt="12">
         <Form ref={formRef} onSubmit={handleSubmit}>
@@ -95,16 +120,24 @@ const UpdateSolution: React.FC = () => {
             <Input
               mb="5"
               label="Titulo"
-              name="title"
+              name="nome"
               backgroundColor="white"
               placeholder="Digite aqui o título da solução"
             />
 
             <Input
+              mb="5"
               label="Descricao"
-              name="description"
+              name="descricao"
               backgroundColor="white"
               placeholder="Digite uma breve descrição para ajudar os usuários a entenderem a função desta solução"
+            />
+
+            <Input
+              label="Link"
+              name="link"
+              backgroundColor="white"
+              placeholder="Insira o Link de acesso a solução"
             />
           </Box>
 
@@ -115,58 +148,27 @@ const UpdateSolution: React.FC = () => {
 
           <Stack
             direction={['column', 'row']}
+            wrap="wrap"
             justifyContent="space-between"
             mt="5"
           >
-            <Box width={['100%', '48.5%']}>
-              <Text color="blue.500">Categoria</Text>
-              <Select
-                options={categories[0] && createOptions(categories)}
-                variant="secondary"
-                name="category"
-              />
-            </Box>
-            <Box width={['100%', '48.5%']}>
-              <Text color="blue.500">Perfis</Text>
-              <Select variant="secondary" name="profiles"></Select>
-            </Box>
-          </Stack>
-
-          <Stack
-            direction={['column', 'row']}
-            justifyContent="space-between"
-            mt="5"
-          >
-            <Box width={['100%', '48.5%']}>
-              <Text color="blue.500">Segmentos</Text>
-              <Select variant="secondary" name="segments"></Select>
-            </Box>
-            <Box width={['100%', '48.5%']}>
-              <Text color="blue.500">Abrir em...</Text>
-              <Select
-                variant="secondary"
-                name="target"
-                className="hub-select"
-              ></Select>
-            </Box>
-          </Stack>
-
-          <Stack
-            direction={['column', 'row']}
-            justifyContent="space-between"
-            mt="5"
-          >
-            <Box width={['100%', '48.5%']}>
-              <Text color="blue.500">Escolas</Text>
-              <Select variant="secondary" name="schools_rule" />
-            </Box>
-            <Box width={['100%', '48.5%']} alignSelf="flex-end">
-              <Select
-                variant="secondary"
-                name="schools"
-                options={schools[0] && createOptions(schools)}
-              />
-            </Box>
+            {selects(categoryOptions, schoolOptions).map(select => {
+              return (
+                <Box
+                  ml={select.name === 'category' ? '8px' : '0px'}
+                  key={select.name}
+                  w={select.name === 'schools' ? '100%' : '48.5%'}
+                >
+                  <Select
+                    mb="4"
+                    name={select.name}
+                    options={select.options}
+                    label={select.label}
+                    variant="secondary"
+                  />
+                </Box>
+              )
+            })}
           </Stack>
 
           <Box
@@ -199,10 +201,12 @@ const UpdateSolution: React.FC = () => {
               fontWeight="500"
               textTransform="uppercase"
               color="gray"
+              onClick={() => history.push('/controle-de-acessos')}
             >
               Cancelar
             </Button>
             <Button
+              ml="8px"
               onClick={openModal}
               height="14"
               width={['48.4%', '28']}
@@ -218,7 +222,7 @@ const UpdateSolution: React.FC = () => {
           </Box>
         </Form>
       </Box>
-      <ModalDeleteSolution ref={modalRef} />
+      <ModalDeleteSolution ref={modalRef} solutionId={solution?.solution.id} />
     </Box>
   )
 }

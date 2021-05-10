@@ -13,7 +13,8 @@ import {
   Solution,
   PutSolutionData,
   SolutionPutResponse,
-  GetExcludedSolutionsResponse
+  GetExcludedSolutionsResponse,
+  DeleteResponse
 } from './types'
 import {
   Actions,
@@ -75,6 +76,8 @@ type SolutionPutPayload = Payload<PutSolutionData>
 export function* updateSolution({ payload }: SolutionPutPayload): Generator {
   yield put(loading(true))
 
+  console.log('updating solution', payload)
+
   const response = yield call(async () => {
     return api.put('/Solucao', {
       ...payload
@@ -99,20 +102,27 @@ export function* deleteSolution(action: Action): Generator {
   yield put(loading(true))
 
   const response = yield call(() => {
-    return api.get('Solucao/ExcluiCard', {
-      params: {
-        idCard: action.payload.id
-      }
+    return api.delete('Solucao/ExcluiCard', {
+      idCard: action.payload.id
     })
   })
-  const { ok, data } = response as ApiResponse<SolutionPutResponse>
+  const { ok, data } = response as ApiResponse<DeleteResponse>
 
   yield put(loading(false))
 
-  if (!ok || !data) {
-    toast.error('Erro ao deletar solução!')
+  if (data?.mensagem.includes('solução ativa')) {
+    toast.error('Não é possível excluir uma solução ativa!')
+    console.log(response)
     return yield put(solutionDeleteFailure())
   }
+
+  if (!ok || !data) {
+    toast.error('Erro ao excluir solução!')
+    console.log(response)
+    return yield put(solutionDeleteFailure())
+  }
+
+  toast.success('Solução excluída com sucesso!')
   return yield put(solutionDeleteSuccess())
 }
 
