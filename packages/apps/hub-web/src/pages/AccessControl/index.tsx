@@ -56,7 +56,7 @@ const AccessControl: React.FC = () => {
   }, [data, dispatch])
 
   return (
-    <Container m="1" marginTop="10">
+    <Container m="10" marginTop="10">
       <Header />
       {loading && mock.map((_, i) => <FakeLoadingCollapse key={i} />)}
       {solutions?.map(categoria => {
