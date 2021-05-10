@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { solutionsGetExcludedRequest } from '~/store/modules/solutions/actions'
 
 import Table, { Columns } from '@psdhub/common/components/Table'
-import { Box, Text } from '@psdhub/common/components'
+import { Box } from '@psdhub/common/components'
 
 import Header from '~/components/AccessControlHeader'
 
 import { formatReturnDataFromAPI } from './utils/formatReturnDataFromAPI'
 import Container from './styles'
 import RestaureSolutionButton from './components/RestaureSolutionButton'
+import EmptyTrash from './components/EmptyTrash'
 import DeleteSolutionButton from './components/DeleteSolutionButton'
 
 type TableSolution = {
@@ -67,7 +68,7 @@ const Trash: React.FC = () => {
             size="sm"
           />
         ) : (
-          <Text variant="unstyled">Lixeira vazia</Text>
+          <EmptyTrash />
         )}
       </Box>
     </Container>
