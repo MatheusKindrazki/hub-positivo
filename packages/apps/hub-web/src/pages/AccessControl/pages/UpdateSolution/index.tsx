@@ -80,12 +80,11 @@ const UpdateSolution: React.FC = () => {
     async data => {
       formRef?.current?.setErrors({})
       try {
+        console.log(data)
         await solutionInfo.validate(data, { abortEarly: false })
 
         data.id = solution?.solution.id
         data.slug = solution?.solution.slug
-
-        console.log(data)
 
         return dispatch(solutionPutRequest(data))
       } catch (err) {
@@ -109,7 +108,7 @@ const UpdateSolution: React.FC = () => {
     <Box p={['4', '6']} mt={['0', '4']} w="100%">
       <Breadcrumbs
         data={[
-          { title: 'Controle de Acessos', href: '/controle-de-acessos' },
+          { title: 'Controle de Acessos', href: '/#/controle-de-acessos' },
           { title: 'Editar Solução' }
         ]}
       />
@@ -155,11 +154,12 @@ const UpdateSolution: React.FC = () => {
             {selects(categoryOptions, schoolOptions).map(select => {
               return (
                 <Box
-                  ml={select.name === 'category' ? '8px' : '0px'}
+                  ml="0px"
                   key={select.name}
                   w={select.name === 'schools' ? '100%' : '48.5%'}
                 >
                   <Select
+                    ml="0"
                     mb="4"
                     name={select.name}
                     options={select.options}

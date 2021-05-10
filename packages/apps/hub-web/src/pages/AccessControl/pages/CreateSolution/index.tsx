@@ -25,7 +25,7 @@ import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { selects } from './selectOptions'
-import createOptions from '../utils/createOptions'
+import createOptions from '../../utils/createOptions'
 
 const UpdateSolution: React.FC = () => {
   const dispatch = useDispatch()
@@ -69,7 +69,7 @@ const UpdateSolution: React.FC = () => {
     <Box p={['4', '6']} mt={['0', '4']} w="100%">
       <Breadcrumbs
         data={[
-          { title: 'Controle de Acessos', href: '/controle-de-acessos' },
+          { title: 'Controle de Acessos', href: '/#/controle-de-acessos' },
           { title: 'Adicionar Solução' }
         ]}
       />
