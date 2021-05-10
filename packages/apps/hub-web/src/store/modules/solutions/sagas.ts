@@ -71,6 +71,8 @@ type SolutionPutPayload = Payload<PutSolutionData>
 export function* updateSolution({ payload }: SolutionPutPayload): Generator {
   yield put(loading(true))
 
+  console.log('updating solution', payload)
+
   const response = yield call(async () => {
     return api.put('/Solucao', {
       ...payload
@@ -115,6 +117,8 @@ export function* deleteSolution(action: Action): Generator {
     console.log(response)
     return yield put(solutionDeleteFailure())
   }
+
+  toast.success('Solução excluída com sucesso!')
   return yield put(solutionDeleteSuccess())
 }
 

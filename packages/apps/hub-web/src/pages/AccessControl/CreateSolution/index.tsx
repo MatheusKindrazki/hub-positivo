@@ -24,13 +24,20 @@ import history from '~/services/history'
 import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
-import selectOptions from './selectOptions'
+import { selects } from './selectOptions'
+import createOptions from '../utils/createOptions'
 
 const UpdateSolution: React.FC = () => {
   const dispatch = useDispatch()
   const { loading: alterLoading } = useSelector(
     (state: Store.State) => state.user
   )
+
+  const { categories } = useSelector((state: Store.State) => state.category)
+  const { schools } = useSelector((state: Store.State) => state.school)
+
+  const categoryOptions = createOptions(categories)
+  const schoolOptions = createOptions(schools)
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
@@ -73,15 +80,15 @@ const UpdateSolution: React.FC = () => {
             <Input
               mb="5"
               label="Titulo"
-              name="title"
+              name="nome"
               backgroundColor="white"
               placeholder="Digite aqui o título da solução"
             />
 
             <Input
               mb="5"
-              label="Descricao"
-              name="description"
+              label="Descriçao"
+              name="Descricao"
               backgroundColor="white"
               placeholder="Digite uma breve descrição para ajudar os usuários a entenderem a função desta solução"
             />
@@ -105,23 +112,24 @@ const UpdateSolution: React.FC = () => {
             justifyContent="space-between"
             mt="5"
           >
-            {selectOptions.map(select => (
-              <Box
-                ml={select.name === 'category' ? '8px' : '0px'}
-                key={select.name}
-                w={select.name === 'schools' ? '100%' : '48.5%'}
-              >
-                <Select
-                  mb="4"
-                  name={select.name}
-                  options={select.options}
-                  label={select.label}
-                  variant="secondary"
-                />
-              </Box>
-            ))}
+            {selects(categoryOptions, schoolOptions).map(select => {
+              return (
+                <Box
+                  ml={select.name === 'category' ? '8px' : '0px'}
+                  key={select.name}
+                  w={select.name === 'schools' ? '100%' : '48.5%'}
+                >
+                  <Select
+                    mb="4"
+                    name={select.name}
+                    options={select.options}
+                    label={select.label}
+                    variant="secondary"
+                  />
+                </Box>
+              )
+            })}
           </Stack>
-
           <Box
             mt="9"
             flexDir={['row', 'row-reverse']}

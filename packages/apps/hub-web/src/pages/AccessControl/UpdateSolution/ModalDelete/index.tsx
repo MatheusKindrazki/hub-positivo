@@ -32,10 +32,10 @@ export const ModalDeleteSolution = React.forwardRef<ModalHandler, ModalProps>(
 
     const deleteSolution = useCallback(() => {
       if (solutionId) {
-        console.log(solutionId)
         dispatch(solutionDeleteRequest(solutionId))
+        onClose()
       }
-    }, [dispatch, solutionId])
+    }, [dispatch, onClose, solutionId])
 
     return (
       <>

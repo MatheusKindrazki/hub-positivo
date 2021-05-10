@@ -1,19 +1,25 @@
-import { store } from '~/store'
-
-import createOptions, {
+import {
   profileOptions,
   schoolRestrictionRules,
   targetOptions
 } from '../utils/createOptions'
 
-const { categories } = store.getState().category
-const { schools } = store.getState().school
+interface Option {
+  label: string
+  value: string
+}
+interface Select {
+  name: string
+  placeholder: string
+  options: Option[]
+  label: string
+}
 
-export default [
+export const selects = (categories: Option[], schools: Option[]): Select[] => [
   {
-    name: 'category',
+    name: 'idCategoria',
     placeholder: 'Selecione',
-    options: createOptions(categories),
+    options: categories,
     label: 'Categoria'
   },
   {
@@ -29,7 +35,7 @@ export default [
     label: 'Escolas - Regra de restrição'
   },
   {
-    name: 'target',
+    name: 'tipoRenderizacao',
     placeholder: 'Selecione',
     options: targetOptions,
     label: 'Abrir em...'
@@ -37,7 +43,7 @@ export default [
   {
     name: 'schools',
     placeholder: 'Selecione',
-    options: createOptions(schools),
+    options: schools,
     label: 'Escolas'
   }
 ]

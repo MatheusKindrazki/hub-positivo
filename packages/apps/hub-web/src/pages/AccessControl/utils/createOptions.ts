@@ -33,11 +33,11 @@ export const schoolRestrictionRules = [
 export const targetOptions = [
   {
     label: 'Mesma pagina',
-    value: 'Mesma pagina'
+    value: 'iframe'
   },
   {
     label: 'Nova aba',
-    value: 'Nova aba'
+    value: 'targetblank'
   }
 ]
 

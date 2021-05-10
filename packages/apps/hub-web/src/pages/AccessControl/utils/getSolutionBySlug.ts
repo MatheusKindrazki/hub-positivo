@@ -3,6 +3,7 @@ import { Category, Solution } from '~/store/modules/solutions/types'
 export interface SolutionWithCategory {
   solution: Solution
   category: string
+  tipoRenderizacao: string
 }
 
 const getSolutionBySlug = (
@@ -13,12 +14,15 @@ const getSolutionBySlug = (
 
   data?.forEach(category => {
     category?.solucoes.forEach(solucao => {
-      if (solucao.slug === solutionSlug) {
+      if (solutionSlug.includes(solucao?.slug as string)) {
         result = {
           solution: solucao,
           category: {
             label: category.nome,
             value: category.id
+          },
+          tipoRenderizacao: {
+            value: solucao.tipoRenderizacao
           }
         }
       }

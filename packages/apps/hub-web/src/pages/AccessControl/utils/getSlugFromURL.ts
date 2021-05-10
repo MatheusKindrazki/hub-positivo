@@ -1,5 +1,6 @@
 const getSlugFromURL = (pathname: string): string | undefined => {
-  const slug = pathname.split('/controle-de-acessos/editar/').pop()
+  const slug = pathname.replace('/controle-de-acessos/editar/', '')
+  slug.replace('/', '')
   return slug
 }
 
