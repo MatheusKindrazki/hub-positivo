@@ -4,6 +4,7 @@ import { DropzoneRef } from 'react-dropzone'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import { solutionPostRequest } from '~/store/modules/solutions/actions'
 import { schoolGetAllRequest } from '~/store/modules/school/actions'
 import { categoryGetAllRequest } from '~/store/modules/category/actions'
 
@@ -47,23 +48,27 @@ const UpdateSolution: React.FC = () => {
     dispatch(schoolGetAllRequest())
   }, [dispatch])
 
-  const handleSubmit = useCallback(async data => {
-    formRef?.current?.setErrors({})
-    console.log(data)
-    try {
-      await solutionInfo.validate(data, { abortEarly: false })
+  const handleSubmit = useCallback(
+    async data => {
+      formRef?.current?.setErrors({})
+      try {
+        console.log(data)
+        await solutionInfo.validate(data, { abortEarly: false })
 
-      return
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        const errors = getValidationErrors(err)
-        formRef?.current?.setErrors(errors)
+        return dispatch(solutionPostRequest(data))
+      } catch (err) {
+        if (err instanceof ValidationError) {
+          const errors = getValidationErrors(err)
+          formRef?.current?.setErrors(errors)
+        }
+        console.log(err)
+        return toast.error(
+          'Algo deu errado, Verifique seus dados e tente novamente!'
+        )
       }
-      return toast.error(
-        'Algo deu errado, Verifique seus dados e tente novamente!'
-      )
-    }
-  }, [])
+    },
+    [dispatch]
+  )
 
   return (
     <Box p={['4', '6']} mt={['0', '4']} w="100%">
@@ -88,7 +93,7 @@ const UpdateSolution: React.FC = () => {
             <Input
               mb="5"
               label="Descriçao"
-              name="Descricao"
+              name="descricao"
               backgroundColor="white"
               placeholder="Digite uma breve descrição para ajudar os usuários a entenderem a função desta solução"
             />

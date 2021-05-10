@@ -6,7 +6,7 @@ const schema = Yup.object().shape({
     .required('Campo Obrigatório'),
   descricao: Yup.string()
     .min(10, 'Descricao deve ter no mínimo 10 caracteres')
-    .required('Campo Obrigatório'),
+    .required('Campo Obrigatórioso'),
   link: Yup.string().url('link deve ser uma URL'),
   idCategoria: Yup.string().required('Campo Obrigatório'),
   profiles: Yup.string().required('Campo Obrigatório'),

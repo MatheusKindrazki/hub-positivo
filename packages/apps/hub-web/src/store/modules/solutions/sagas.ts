@@ -8,6 +8,8 @@ import { loading } from '~/store/modules/global/actions'
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
+import history from '~/services/history'
+
 import {
   Category,
   Solution,
@@ -37,13 +39,15 @@ export function* createSolution(action: Action): Generator {
   })
 
   const { ok, data } = response as ApiResponse<Solution>
-
+  console.log('resposta da api', response)
   yield put(loading(false))
 
   if (!ok || !data) {
     toast.error('Erro ao criar solução!')
     return yield put(solutionPostFailure())
   }
+  setTimeout(() => history.push('/controle-de-acessos'), 800)
+  toast.success('Solução criada com sucesso')
   return yield put(solutionPostSuccess())
 }
 
@@ -62,7 +66,6 @@ export function* getSolutions(): Generator {
     toast.error('Erro ao buscar as produtos por categoria!')
     return yield put(solutionsGetFailure())
   }
-
   return yield put(solutionsGetSuccess(data))
 }
 
@@ -89,7 +92,7 @@ export function* updateSolution({ payload }: SolutionPutPayload): Generator {
     )
     return put(solutionPutFailure())
   }
-
+  setTimeout(() => history.push('/controle-de-acessos'), 800)
   toast.success('Solução atualizada com sucesso')
   return yield put(solutionPutSuccess())
 }

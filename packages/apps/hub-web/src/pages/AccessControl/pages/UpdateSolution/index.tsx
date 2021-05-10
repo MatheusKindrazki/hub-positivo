@@ -80,7 +80,7 @@ const UpdateSolution: React.FC = () => {
     async data => {
       formRef?.current?.setErrors({})
       try {
-        console.log(data)
+        console.log(data, 'teste')
         await solutionInfo.validate(data, { abortEarly: false })
 
         data.id = solution?.solution.id
