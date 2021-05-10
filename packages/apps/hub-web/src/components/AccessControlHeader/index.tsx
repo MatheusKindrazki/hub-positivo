@@ -6,9 +6,7 @@ import { Stack, Button, Box } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
-import ModalDeleteSolution from '../ModalDeleteSolution'
 import ModalContext from '../ModalAddCategory/context'
-import ModalAddCategory from '../ModalAddCategory'
 
 const Header: React.FC = () => {
   const { onOpen } = useContext(ModalContext)
@@ -16,8 +14,6 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <ModalAddCategory />
-      <ModalDeleteSolution />
       <Stack direction={['column', 'column', 'row']} spacing="auto" m="2">
         <Box>
           <Button

@@ -25,7 +25,7 @@ import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { selects } from './selectOptions'
-import createOptions from '../utils/createOptions'
+import createOptions from '../../utils/createOptions'
 
 const UpdateSolution: React.FC = () => {
   const dispatch = useDispatch()

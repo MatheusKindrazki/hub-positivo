@@ -11,6 +11,7 @@ import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
 
 import Header from '~/components/AccessControlHeader'
+import ModalAddCategory from '~/components//ModalAddCategory'
 
 import { formatReturnDataFromAPI } from './utils/formatReturnDataFromAPI'
 import Container from './styles'
@@ -62,26 +63,29 @@ const AccessControl: React.FC = () => {
   return (
     <Container m="10" marginTop="10">
       <Header />
+      <ModalAddCategory />
+
       {loading && mock.map((_, i) => <FakeLoadingCollapse key={i} />)}
-      {solutions?.map(categoria => {
-        return (
-          <Collapse
-            defaultIsOpen={false}
-            grid={false}
-            key={categoria.nome}
-            nome={categoria.nome}
-            id="1"
-            cor="white"
-            css={{
-              background: 'white',
-              borderRadius: '0.5rem',
-              overflow: 'hidden'
-            }}
-          >
-            <Table columns={columns} data={categoria.solutions} />
-          </Collapse>
-        )
-      })}
+      {!loading &&
+        solutions?.map(categoria => {
+          return (
+            <Collapse
+              defaultIsOpen={false}
+              grid={false}
+              key={categoria.nome}
+              nome={categoria.nome}
+              id="1"
+              cor="white"
+              css={{
+                background: 'white',
+                borderRadius: '0.5rem',
+                overflow: 'hidden'
+              }}
+            >
+              <Table columns={columns} data={categoria.solutions} />
+            </Collapse>
+          )
+        })}
     </Container>
   )
 }

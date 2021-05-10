@@ -56,7 +56,15 @@ export function* getSolutions(): Generator {
   yield put(loading(true))
 
   const response = yield call(() => {
-    return api.get('Categoria/SolucoesPerfisRestricoes')
+    return api.get(
+      'Categoria/SolucoesPerfisRestricoes',
+      {},
+      {
+        params: {
+          EstadoSolucao: 'PUBLICADA'
+        }
+      }
+    )
   })
 
   const { ok, data } = response as ApiResponse<Category[]>
@@ -157,10 +165,18 @@ export function* getExcludedSolutions(): Generator {
   yield put(loading(true))
 
   const response = yield call(() => {
-    return api.get('Solucao/GetSolucoesExcluidas')
+    return api.get(
+      'Categoria/SolucoesPerfisRestricoes',
+      {},
+      {
+        params: {
+          EstadoSolucao: 'EXCLUIDA'
+        }
+      }
+    )
   })
   const { ok, data } = response as ApiResponse<GetExcludedSolutionsResponse>
-
+  console.log('excl', { ok, data })
   yield put(loading(false))
 
   if (!ok || !data) {

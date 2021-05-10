@@ -7,6 +7,7 @@ import { solutionsGetExcludedRequest } from '~/store/modules/solutions/actions'
 import Table, { Columns } from '@psdhub/common/components/Table'
 import { Box } from '@psdhub/common/components'
 
+import ModalDeleteSolution from '~/components/ModalDeleteSolution'
 import Header from '~/components/AccessControlHeader'
 
 import { formatReturnDataFromAPI } from './utils/formatReturnDataFromAPI'
@@ -58,6 +59,7 @@ const Trash: React.FC = () => {
 
   return (
     <Container m="1" marginTop="10">
+      <ModalDeleteSolution />
       <Header />
       <Box overflow="auto" bg="white" rounded="md" m="5">
         {data?.length ? (
