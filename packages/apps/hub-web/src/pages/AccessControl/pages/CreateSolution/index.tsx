@@ -13,20 +13,23 @@ import {
   FormProps,
   Form,
   Input,
-  Button as FormButton,
-  Select
+  Button as FormButton
+  // Select
 } from '@psdhub/common/components/Form'
 import Dropzone from '@psdhub/common/components/Dropzone'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
-import { Box, Text, Stack, Button } from '@psdhub/common/components'
+import { Box, Text, Button } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
 import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
-import { selects } from './selectOptions'
-import createOptions from '../../utils/createOptions'
+// import { selects } from './selectOptions'
+// import createOptions from '../../utils/createOptions'
+import CheckboxProfiles, {
+  mockedNestedCheckboxesData
+} from '../../components/CheckboxProfiles'
 
 const UpdateSolution: React.FC = () => {
   const dispatch = useDispatch()
@@ -34,11 +37,11 @@ const UpdateSolution: React.FC = () => {
     (state: Store.State) => state.user
   )
 
-  const { categories } = useSelector((state: Store.State) => state.category)
-  const { schools } = useSelector((state: Store.State) => state.school)
+  // const { categories } = useSelector((state: Store.State) => state.category)
+  // const { schools } = useSelector((state: Store.State) => state.school)
 
-  const categoryOptions = createOptions(categories)
-  const schoolOptions = createOptions(schools)
+  // const categoryOptions = createOptions(categories)
+  // const schoolOptions = createOptions(schools)
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
@@ -110,8 +113,18 @@ const UpdateSolution: React.FC = () => {
             <Text color="blue.500">Ícone</Text>
             <Dropzone ref={dropRef} />
           </Box>
+          <Box>
+            {mockedNestedCheckboxesData?.map(checkbox => (
+              <CheckboxProfiles
+                key={checkbox.name}
+                name={checkbox.name}
+                value={checkbox.value}
+                children={checkbox.children}
+              />
+            ))}
+          </Box>
 
-          <Stack
+          {/* <Stack
             direction={['column', 'row']}
             wrap="wrap"
             justifyContent="space-between"
@@ -134,7 +147,7 @@ const UpdateSolution: React.FC = () => {
                 </Box>
               )
             })}
-          </Stack>
+          </Stack> */}
           <Box
             mt="9"
             flexDir={['row', 'row-reverse']}
