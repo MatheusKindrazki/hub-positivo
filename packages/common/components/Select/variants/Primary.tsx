@@ -8,20 +8,22 @@ import { forwardRef } from '@chakra-ui/react'
 
 import { primary } from '../styles'
 import { prefixClass } from '../options'
-export interface PropsSelect extends Props {
+
+export type PropsSelect = Props & {
   inputHeight?: number
   styles?: Props['styles']
   error?: boolean
+  isMulti?: boolean
 }
-
 const HubSelect = forwardRef<PropsSelect, 'select'>((props, ref) => {
-  const { className, inputHeight, styles, error, ...rest } = props
+  const { className, inputHeight, styles, error, isMulti, ...rest } = props
 
   const theme = useTheme()
 
   return (
     <NonceProvider cacheKey={`${prefixClass}-primary`} nonce="primary">
       <Select
+        isMulti={isMulti}
         ref={ref}
         styles={mergeStyles(
           { ...primary({ theme, inputHeight, error }) },

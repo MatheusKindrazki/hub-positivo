@@ -35,6 +35,13 @@ function normal(data: ThemeStyle): Props['styles'] {
         transform: state.isFocused ? 'rotate(180deg)' : 'none'
       }
     }),
+    valueContainer: provided => ({
+      ...provided,
+      flexWrap: 'initial'
+    }),
+    clearIndicator: () => ({
+      display: 'none'
+    }),
     indicatorSeparator: () => ({
       opacity: 0
     }),
@@ -127,6 +134,13 @@ function primary(data: ThemeStyle): Props['styles'] {
         transform: state.isFocused ? 'rotate(180deg)' : 'none'
       }
     }),
+    valueContainer: provided => ({
+      ...provided,
+      flexWrap: 'initial'
+    }),
+    clearIndicator: () => ({
+      display: 'none'
+    }),
     indicatorSeparator: () => ({
       opacity: 0
     }),
@@ -210,6 +224,13 @@ function secondary(data: ThemeStyle): Props['styles'] {
       svg: {
         transform: state.isFocused ? 'rotate(180deg)' : 'none'
       }
+    }),
+    valueContainer: provided => ({
+      ...provided,
+      flexWrap: 'initial'
+    }),
+    clearIndicator: () => ({
+      display: 'none'
     }),
     indicatorSeparator: () => ({
       opacity: 0
