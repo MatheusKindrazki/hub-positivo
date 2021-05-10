@@ -2,7 +2,7 @@ import {
   profileOptions,
   schoolRestrictionRules,
   targetOptions
-} from '../utils/createOptions'
+} from '../../utils/createOptions'
 
 interface Option {
   label: string

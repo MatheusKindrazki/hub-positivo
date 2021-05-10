@@ -25,12 +25,12 @@ import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
+import { selects } from '../CreateSolution/selectOptions'
 import getSolutionBySlug, {
   SolutionWithCategory
-} from '../utils/getSolutionBySlug'
-import getSlugFromURL from '../utils/getSlugFromURL'
-import createOptions from '../utils/createOptions'
-import { selects } from '../CreateSolution/selectOptions'
+} from '../../utils/getSolutionBySlug'
+import getSlugFromURL from '../../utils/getSlugFromURL'
+import createOptions from '../../utils/createOptions'
 
 const UpdateSolution: React.FC = () => {
   const [solution, setSolution] = useState<SolutionWithCategory>()

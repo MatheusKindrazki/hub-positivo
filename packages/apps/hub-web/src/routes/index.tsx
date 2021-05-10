@@ -11,7 +11,7 @@ import ThemeContext from '@psdhub/common/layout/Provider/context'
 
 import history from '~/services/history'
 
-import UpdateSolution from '~/pages/AccessControl/UpdateSolution'
+import UpdateSolution from '~/pages/AccessControl/pages/UpdateSolution'
 
 import Route from './Route'
 
@@ -28,7 +28,7 @@ const ForgotPassword = React.lazy(() => import('~/pages/Auth/ForgotPassword'))
 const AccessControl = React.lazy(() => import('~/pages/AccessControl'))
 const Trash = React.lazy(() => import('~/pages/Trash'))
 const CreateSolution = React.lazy(
-  () => import('~/pages/AccessControl/CreateSolution')
+  () => import('~/pages/AccessControl/pages/CreateSolution')
 )
 
 const Solutions = React.lazy(() => import('~/pages/Solutions'))
