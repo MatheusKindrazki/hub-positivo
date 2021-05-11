@@ -7,7 +7,7 @@ import { formatPermissions } from './formatPermissions'
 import { CollapseData } from '../index'
 import SolutionData from '../components/Solution'
 
-export const formatReturnDataFromAPI = (data: Category[]): CollapseData[] => {
+export const solutionsTableDataFormat = (data: Category[]): CollapseData[] => {
   return data.map(categoria => {
     return {
       nome: categoria.nome,

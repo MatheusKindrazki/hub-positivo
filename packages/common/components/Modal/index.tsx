@@ -29,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <ModalChakra {...rest}>
       <ModalOverlay />
-      <ModalContent maxW={maxW} className={className}>
+      <ModalContent maxW={maxW} className={className} opacity="1!important">
         <ModalHeader fontWeight="500" fontSize="1.125rem">
           {title}
         </ModalHeader>

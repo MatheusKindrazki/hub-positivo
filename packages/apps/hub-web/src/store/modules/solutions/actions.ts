@@ -1,11 +1,6 @@
 import { Action } from 'redux'
 
-import {
-  Category,
-  PostSolutionPayload,
-  PutSolutionData,
-  GetExcludedSolutionsResponse
-} from './types'
+import { Category, PostSolutionPayload, PutSolutionData } from './types'
 
 export const Actions = {
   SOLUTION_POST_REQUEST: '@solution/SOLUTION_POST_REQUEST',
@@ -170,9 +165,7 @@ export function solutionsGetExcludedFailure(): Action {
   }
 }
 
-export function solutionsGetExcludedSuccess(
-  data: GetExcludedSolutionsResponse
-): Action {
+export function solutionsGetExcludedSuccess(data: Category[]): Action {
   return {
     type: Actions.SOLUTIONS_GET_EXCLUDED_SUCCESS,
     payload: data

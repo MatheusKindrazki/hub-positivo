@@ -13,7 +13,6 @@ import {
   Solution,
   PutSolutionData,
   SolutionPutResponse,
-  GetExcludedSolutionsResponse,
   DeleteResponse
 } from './types'
 import {
@@ -175,8 +174,7 @@ export function* getExcludedSolutions(): Generator {
       }
     )
   })
-  const { ok, data } = response as ApiResponse<GetExcludedSolutionsResponse>
-  console.log('excl', { ok, data })
+  const { ok, data } = response as ApiResponse<Category[]>
   yield put(loading(false))
 
   if (!ok || !data) {

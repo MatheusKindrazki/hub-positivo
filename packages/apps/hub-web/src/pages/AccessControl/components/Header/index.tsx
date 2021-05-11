@@ -4,13 +4,11 @@ import { useHistory } from 'react-router'
 
 import { Stack, Button, Box } from '@psdhub/common/components'
 
-import history from '~/services/history'
-
-import ModalContext from '../ModalAddCategory/context'
+import ModalContext from '~/components/ModalAddCategory/context'
 
 const Header: React.FC = () => {
   const { onOpen } = useContext(ModalContext)
-  const { location } = useHistory()
+  const { location, push } = useHistory()
 
   return (
     <>
@@ -28,7 +26,7 @@ const Header: React.FC = () => {
                 ? 'blue.500'
                 : 'transparent'
             }
-            onClick={() => history.push('/controle-de-acessos')}
+            onClick={() => push('/controle-de-acessos')}
           >
             SOLUÇÕES
           </Button>
@@ -44,7 +42,7 @@ const Header: React.FC = () => {
                 ? 'blue.500'
                 : 'transparent'
             }
-            onClick={() => history.push(location.pathname + '/lixeira')}
+            onClick={() => push('/controle-de-acessos/lixeira')}
           >
             LIXEIRA
           </Button>
@@ -71,7 +69,7 @@ const Header: React.FC = () => {
               borderColor="blue.500"
               borderWidth="thin"
               minW="11.25rem"
-              onClick={() => history.push(location.pathname + '/criar')}
+              onClick={() => push('/controle-de-acessos/criar')}
             >
               Adicionar Solução
             </Button>

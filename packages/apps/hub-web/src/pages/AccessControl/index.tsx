@@ -10,13 +10,13 @@ import { categoryGetAllRequest } from '~/store/modules/category/actions'
 import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
 
-import Header from '~/components/AccessControlHeader'
-import ModalAddCategory from '~/components//ModalAddCategory'
+import ModalAddCategory from '~/components/ModalAddCategory'
 
-import { formatReturnDataFromAPI } from './utils/formatReturnDataFromAPI'
+import { solutionsTableDataFormat } from './utils/solutionsTableDataFormat'
 import Container from './styles'
 import Table, { TableSolution } from './components/Table'
 import Switch from './components/Switch'
+import Header from './components/Header'
 import FakeLoadingCollapse from './components/FakeLoading'
 import EditButton from './components/EditButton'
 
@@ -54,17 +54,16 @@ const AccessControl: React.FC = () => {
     dispatch(categoryGetAllRequest())
     dispatch(schoolGetAllRequest())
     if (data?.length) {
-      setSolutions(formatReturnDataFromAPI(data))
+      setSolutions(solutionsTableDataFormat(data))
     } else {
       dispatch(solutionsGetRequest())
     }
   }, [data, dispatch])
 
   return (
-    <Container m="10" marginTop="10">
+    <Container m="auto" maxW="90rem" p="10">
       <Header />
       <ModalAddCategory />
-
       {loading && mock.map((_, i) => <FakeLoadingCollapse key={i} />)}
       {!loading &&
         solutions?.map(categoria => {
