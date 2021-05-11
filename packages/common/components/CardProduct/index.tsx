@@ -98,7 +98,7 @@ const CardProduct: React.FC<CardProductProps> = ({
         as="button"
         className="card-click"
         pointerEvents="none"
-        p={['4', '4', '1.1rem']}
+        p="4"
         outline="none"
         boxShadow="none"
       >
@@ -123,12 +123,11 @@ const CardProduct: React.FC<CardProductProps> = ({
           alignItems="baseline"
           flexDirection="column"
           h="100%"
-          pr="1rem"
         >
           <Heading as="b" fontWeight="normal" fontSize="1.125rem" color="black">
             {nome}
           </Heading>
-          <Text mt="2" color="gray.500" noOfLines={2} fontSize="1rem">
+          <Text mt="2" color="gray.500" noOfLines={3} fontSize="1rem">
             {descricao}
           </Text>
         </Box>
