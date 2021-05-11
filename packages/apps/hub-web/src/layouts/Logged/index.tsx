@@ -38,7 +38,7 @@ const Dashboard: React.FC = ({ children }) => {
   return (
     <Container>
       <ModalNoClass />
-      <BarLoader width="100%" height="4px" loading={loading} />
+      <BarLoader height="4px" loading={loading} />
       {steps?.length && (
         <Tour onClosed={handleClosedTour} open={open} steps={steps} />
       )}
