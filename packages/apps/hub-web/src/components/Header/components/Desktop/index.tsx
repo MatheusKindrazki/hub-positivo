@@ -109,6 +109,7 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
           data-testid="hub-popover-content"
           outline="none"
           minW="310px"
+          opacity={isOpen ? 1 : '0!important'}
           borderRadius="md"
           boxShadow="dark-lg"
           border="1px solid #D9D9D9"
