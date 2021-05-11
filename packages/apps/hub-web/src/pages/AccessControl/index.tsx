@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import { useHistory } from 'react-router'
+
 import { useSelector, useDispatch } from 'react-redux'
 
 import { PutSolutionData } from '~/store/modules/solutions/types'
@@ -48,7 +50,15 @@ const mock = [{}, {}, {}, {}, {}, {}, {}]
 const AccessControl: React.FC = () => {
   const [solutions, setSolutions] = useState<CollapseData[] | null>(null)
   const { data, loading } = useSelector((state: Store.State) => state.solutions)
+  const { profile } = useSelector((state: Store.State) => state.profile)
+  const history = useHistory()
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (profile !== 'administrador') {
+      history.push('/')
+    }
+  }, [profile, history])
 
   useEffect(() => {
     dispatch(categoryGetAllRequest())
