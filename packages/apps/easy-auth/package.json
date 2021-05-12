@@ -10,14 +10,14 @@
   },
   "dependencies": {
     "@psdhub/api": "*",
-    "@psdhub/helpers": "*",
     "@psdhub/common": "*",
+    "@psdhub/helpers": "*",
     "dotenv-webpack": "^7.0.2",
-    "qs": "^6.9.6",
     "jsonwebtoken": "^8.5.1",
+    "qs": "^6.9.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "styled-components": "^5.2.1"
+    "styled-components": "5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
