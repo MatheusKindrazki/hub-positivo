@@ -12,6 +12,7 @@ import Loading from '@psdhub/common/components/BarLoader'
 
 import { getAuth, setAuth } from '../services/storage'
 import reducedTokenService from '../services/reducedToken'
+import { sendAllInfos } from '../services/postInformation'
 import authService, { UserAuthProps } from '../services/auth'
 import { SignInSuccess, LoggedData } from '../@types/auth'
 
@@ -56,6 +57,10 @@ const AuthProvider: React.FC = ({ children }) => {
     hubContext.theme({
       profile: informations.loggedData.selected_profile?.colorProfile as any
     })
+
+    if (informations) {
+      sendAllInfos(informations)
+    }
 
     setLoading(false)
   }, [hubContext])
@@ -104,6 +109,12 @@ const AuthProvider: React.FC = ({ children }) => {
 
         hubContext.theme({
           profile: d.selected_profile?.colorProfile as any
+        })
+
+        sendAllInfos({
+          data,
+          reducedToken: response.access_token,
+          loggedData: d
         })
       } catch (error) {
         toast.error(error)
