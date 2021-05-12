@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-import { AccessControlData } from './types'
+import { AccessControlPutData, AccessControlPostData } from './types'
 
 export const Actions = {
   ACCESS_CONTROL_POST_REQUEST: '@accessControl/ACCESS_CONTROL_POST_REQUEST',
@@ -17,7 +17,7 @@ export const Actions = {
 */
 
 export function accessControlPostRequest(
-  accessControlData: AccessControlData
+  accessControlData: AccessControlPostData
 ): Action {
   console.log('Access Control Submit Request: ', accessControlData)
 
@@ -36,5 +36,28 @@ export function accessControlPostFailure(): Action {
 export function accessControlPostSuccess(): Action {
   return {
     type: Actions.ACCESS_CONTROL_POST_FAILURE
+  }
+}
+
+export function accessControlPutRequest(
+  accessControlData: AccessControlPutData
+): Action {
+  console.log('Access Control Put Request: ', accessControlData)
+
+  return {
+    type: Actions.ACCESS_CONTROL_PUT_REQUEST,
+    payload: accessControlData
+  }
+}
+
+export function accessControlPutFailure(): Action {
+  return {
+    type: Actions.ACCESS_CONTROL_PUT_SUCCESS
+  }
+}
+
+export function accessControlPutSuccess(): Action {
+  return {
+    type: Actions.ACCESS_CONTROL_PUT_FAILURE
   }
 }

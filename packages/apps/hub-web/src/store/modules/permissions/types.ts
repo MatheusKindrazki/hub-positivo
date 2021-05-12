@@ -1,7 +1,5 @@
-type Restricao = 'Exibir' | 'Ocultar'
-
 type Permissions = {
-  restricao: Restricao
+  restricao: string
   idSolucao: string
 }
 
@@ -12,12 +10,12 @@ export type ProfilePermissionData = {
 } & Permissions
 
 export type SchoolPermissions = {
-  remove: SchoolPermissionData
+  remove: Omit<SchoolPermissionData, 'restricao'>
   create: SchoolPermissionData
 }
 
 export interface ProfilePermissions {
-  remove: ProfilePermissionData
+  remove: Omit<ProfilePermissionData, 'restricao'>
   create: ProfilePermissionData
 }
 

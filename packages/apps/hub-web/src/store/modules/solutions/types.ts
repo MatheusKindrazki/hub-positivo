@@ -15,10 +15,8 @@ export interface Category {
 export interface Solution {
   id: string
   nome: string
-  slug?: string
   descricao: string
   arquivo: string
-  link?: string
   tipoRenderizacao: string
   notificacao?: string
   ativo: boolean
@@ -26,9 +24,11 @@ export interface Solution {
   ordem: number
   permissoes: Permissions[]
   escolas: Schools[]
+  slug: string
+  link?: string
 }
 
-export interface PostSolutionPayload {
+export interface PostSolutionData {
   nome: string
   descricao: string
   arquivo: string
@@ -45,6 +45,7 @@ export interface PutSolutionData
   idCategoria: string
   padrao: boolean
 }
+
 export interface SolutionPutResponse {
   sucesso: boolean
   mensagem: string
@@ -66,8 +67,3 @@ export interface Schools {
   idEscola: string
   nome: string
 }
-
-// export interface GetExcludedSolutionsResponse
-//   extends Omit<Solution, 'permissoes' | 'escolas'> {
-//   excluido: boolean
-// }

@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-import { Category, PostSolutionPayload, PutSolutionData } from './types'
+import { Category, PostSolutionData, PutSolutionData } from './types'
 
 export const Actions = {
   SOLUTION_POST_REQUEST: '@solutions/SOLUTION_POST_REQUEST',
@@ -32,7 +32,7 @@ export const Actions = {
   ? Criar solucao individualmente
 */
 
-export function solutionPostRequest(solution: PostSolutionPayload): Action {
+export function solutionPostRequest(solution: PostSolutionData): Action {
   console.log('solutionPostRequest', solution)
   return {
     type: Actions.SOLUTION_POST_REQUEST,
@@ -48,9 +48,35 @@ export function solutionPostFailure(): Action {
   }
 }
 
-export function solutionPostSuccess(): Action {
+export function solutionPostSuccess(id: string): Action {
   return {
-    type: Actions.SOLUTION_POST_SUCCESS
+    type: Actions.SOLUTION_POST_SUCCESS,
+    payload: {
+      id
+    }
+  }
+}
+
+/*
+  ? Atualizar solucao individualmente
+*/
+
+export function solutionPutRequest(data: PutSolutionData): Action {
+  return {
+    type: Actions.SOLUTION_PUT_REQUEST,
+    payload: data
+  }
+}
+
+export function solutionPutFailure(): Action {
+  return {
+    type: Actions.SOLUTION_PUT_FAILURE
+  }
+}
+
+export function solutionPutSuccess(): Action {
+  return {
+    type: Actions.SOLUTION_PUT_SUCCESS
   }
 }
 
@@ -124,29 +150,6 @@ export function solutionRestaureFailure(): Action {
 export function solutionRestaureSuccess(): Action {
   return {
     type: Actions.SOLUTION_RESTAURE_SUCCESS
-  }
-}
-
-/*
-  ? Atualizar solucao individualmente
-*/
-
-export function solutionPutRequest(data: PutSolutionData): Action {
-  return {
-    type: Actions.SOLUTION_PUT_REQUEST,
-    payload: data
-  }
-}
-
-export function solutionPutFailure(): Action {
-  return {
-    type: Actions.SOLUTION_PUT_FAILURE
-  }
-}
-
-export function solutionPutSuccess(): Action {
-  return {
-    type: Actions.SOLUTION_PUT_SUCCESS
   }
 }
 

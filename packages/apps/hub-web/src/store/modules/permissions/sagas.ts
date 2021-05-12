@@ -4,6 +4,7 @@ import { call, takeLatest, all, put, Payload } from 'redux-saga/effects'
 
 import { loading } from '~/store/modules/global/actions'
 
+import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
 import {
@@ -29,15 +30,15 @@ export function* profilePermissions({
 
   if (remove.idsPerfilNivelDeEnsino?.length) {
     const removeResponse = yield call(() => {
-      return api.delete('SolucaoPerfilNivelEnsino', {
-        ...remove
-      })
+      return api.delete('SolucaoPerfilNivelEnsino', {}, { data: remove })
     })
 
     const { ok: removeOk } = removeResponse as ApiResponse<any>
 
     if (!removeOk) {
-      throw new Error('Erro ao deletar permissões')
+      toast.error('Erro ao atualizar permissões')
+      yield put(profilePermissionsFailure())
+      throw new Error('Erro ao atualizar permissões')
     }
   }
 
@@ -48,12 +49,14 @@ export function* profilePermissions({
       })
     })
 
-    const { ok: createOk } = createResponse as ApiResponse<any>
-
+    const { ok: createOk, data } = createResponse as ApiResponse<any>
+    console.log({ permissionsSchoolData: data })
     if (!createOk) {
-      put(profilePermissionsFailure())
+      toast.error('Erro ao atualizar permissões')
+      yield put(profilePermissionsFailure())
       throw new Error('Erro ao criar permissões')
     }
+    toast.success('Permissoes atualizadas com sucesso!')
     yield put(profilePermissionsSuccess())
   }
 }
@@ -63,7 +66,6 @@ type SchoolPermissionsPayload = Payload<SchoolPermissions>
 export function* schoolPermissions({
   payload
 }: SchoolPermissionsPayload): Generator {
-  console.log('schoolPermissions', payload)
   const { create, remove } = payload
 
   // Remove permissoes interrompendo o fluxo caso haja algum erro
@@ -71,18 +73,15 @@ export function* schoolPermissions({
 
   if (remove.idsEscolas?.length) {
     const deleteResponse = yield call(() => {
-      return api.delete('Solucao/Restricao', {
-        ...remove
-      })
+      return api.delete('Solucao/Restricao', {}, { data: remove })
     })
 
     const { ok: removeOk } = deleteResponse as ApiResponse<GenericApiResponse>
-
     yield put(loading(false))
 
     if (!removeOk) {
+      toast.error('Algo deu errado no momento de atualizar permissões')
       put(schoolPermissionsFailure())
-      throw new Error('Erro ao deletar permissões')
     }
 
     yield put(schoolPermissionsSuccess())
@@ -98,16 +97,18 @@ export function* schoolPermissions({
       })
     })
 
-    const { ok: createOk } = postResponse as ApiResponse<GenericApiResponse>
+    const { ok: createOk, data } =
+      postResponse as ApiResponse<GenericApiResponse>
 
     yield put(loading(false))
 
     if (!createOk) {
-      put(schoolPermissionsFailure())
-      throw new Error('Erro ao criar permissões')
+      console.log({ permissionsSchoolsData: data })
+      toast.error('Algo deu errado no momento de atualizar restrições')
+      return put(schoolPermissionsFailure())
     }
-
-    put(schoolPermissionsSuccess())
+    toast.success('Restrições atualizadas com sucesso')
+    return put(schoolPermissionsSuccess())
   }
 }
 

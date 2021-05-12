@@ -8,11 +8,8 @@ import { loading } from '~/store/modules/global/actions'
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
-import history from '~/services/history'
-
 import {
   Category,
-  Solution,
   PutSolutionData,
   SolutionPutResponse,
   DeleteResponse
@@ -42,7 +39,7 @@ export function* createSolution(action: Action): Generator {
     })
   })
 
-  const { ok, data } = response as ApiResponse<Solution>
+  const { ok, data } = response as ApiResponse<{ dados: { id: string } }>
   yield put(loading(false))
 
   if (!ok || !data) {
@@ -51,7 +48,8 @@ export function* createSolution(action: Action): Generator {
     return yield put(solutionPostFailure())
   }
   toast.success('Solução criada com sucesso')
-  return yield put(solutionPostSuccess())
+  yield put(solutionPostSuccess(data?.dados.id))
+  return data?.dados.id
 }
 
 export function* getSolutions(): Generator {
@@ -85,8 +83,6 @@ type SolutionPutPayload = Payload<PutSolutionData>
 export function* updateSolution({ payload }: SolutionPutPayload): Generator {
   yield put(loading(true))
 
-  console.log('updating solution', payload)
-
   const response = yield call(async () => {
     return api.put('/Solucao', {
       ...payload
@@ -102,8 +98,7 @@ export function* updateSolution({ payload }: SolutionPutPayload): Generator {
     )
     return put(solutionPutFailure())
   }
-  setTimeout(() => history.push('/controle-de-acessos'), 800)
-  toast.success('Solução atualizada com sucesso')
+  toast.success('Informações de solução atualizada com sucesso')
   return yield put(solutionPutSuccess())
 }
 
