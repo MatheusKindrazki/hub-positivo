@@ -13,11 +13,7 @@ import { useHeader } from './context'
 
 const DesktopMenu: React.FC = () => {
   const [enableBlur, setEnableBlur] = useState(true)
-  const { schoolList, roleList, userName, ...func } = useHeader()
-
-  const handleSignOut = useCallback(async () => {
-    alert('brasil')
-  }, [])
+  const { schoolList, roleList, userName, signOut, ...func } = useHeader()
 
   const { setRole, setSchool, resetInfo, defaultValue } = func
 
@@ -118,7 +114,7 @@ const DesktopMenu: React.FC = () => {
               variant="link"
               color="gray.500"
               fontSize="0.875rem"
-              onClick={handleSignOut}
+              onClick={signOut}
             >
               Sair
             </Button>

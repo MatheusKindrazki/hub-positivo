@@ -12,13 +12,14 @@ import { orderBy } from 'lodash'
 import { prepareRoles, prepareSchool } from '@psdhub/common/utils'
 
 import { ContextHeaderProps, SelectProps } from './types'
+import { STORAGE_KEY } from '../../../../services/storage'
 import { useAuth } from '../../../../context/authContext'
 import { Schools } from '../../../../@types/auth'
 
 const HeaderContext = createContext({} as ContextHeaderProps)
 
 const HeaderProvider: React.FC = ({ children }) => {
-  const { data, loggedData, setLoggedData } = useAuth()
+  const { data, loggedData, setSigned, setLoggedData } = useAuth()
 
   const [roles, setRoles] = useState(loggedData?.selected_school?.roles)
 
@@ -78,12 +79,19 @@ const HeaderProvider: React.FC = ({ children }) => {
     [roleList, school, setLoggedData]
   )
 
+  const handleSignOut = useCallback(() => {
+    localStorage.removeItem(STORAGE_KEY)
+
+    setSigned(false)
+  }, [setSigned])
+
   return (
     <HeaderContext.Provider
       value={{
         userName: 'Matheus Kindrazki',
         schoolList,
         roleList,
+        signOut: handleSignOut,
         setSchool: handleSetSchool,
         setRole: setRoleAndDispatchRequest,
         resetInfo: handleResetInfo,

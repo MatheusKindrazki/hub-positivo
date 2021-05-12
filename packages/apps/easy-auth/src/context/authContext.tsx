@@ -19,6 +19,7 @@ export interface AuthContextParams {
   loading: boolean
   reducedToken?: string
 
+  setSigned(e: boolean): void
   signIn(data: UserAuthProps): void
 
   loggedData: LoggedData
@@ -108,6 +109,7 @@ const AuthProvider: React.FC = ({ children }) => {
         step,
         signed,
         loading,
+        setSigned,
         loggedData,
         reducedToken,
         signIn: handleSignIn,

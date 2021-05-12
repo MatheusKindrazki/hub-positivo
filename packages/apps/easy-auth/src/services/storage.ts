@@ -1,6 +1,6 @@
 import { SignInSuccess, LoggedData } from '../@types/auth'
 
-const STORAGE_KEY = '@psdhub/easyauth'
+export const STORAGE_KEY = '@psdhub/easyauth'
 
 type ItemsProps = {
   data?: SignInSuccess

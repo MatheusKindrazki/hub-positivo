@@ -8,6 +8,7 @@ export interface ContextHeaderProps {
 
   schoolList: SchoolsProps[]
   roleList: RolesProps[]
+  signOut: (data: boolean) => void
   setSchool: (data: SchoolsProps) => void
   setRole: (data: RolesProps) => void
   resetInfo: () => void
