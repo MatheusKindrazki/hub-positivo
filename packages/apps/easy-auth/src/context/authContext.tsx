@@ -44,6 +44,8 @@ const AuthProvider: React.FC = ({ children }) => {
   const [loggedData, setLoggedData] = useState({} as LoggedData)
 
   useEffect(() => {
+    setLoading(true)
+
     const informations = getAuth()
 
     setData(informations.data)
@@ -51,8 +53,12 @@ const AuthProvider: React.FC = ({ children }) => {
     setReducedToken(informations.reducedToken)
     setLoggedData(informations.loggedData)
 
+    hubContext.theme({
+      profile: informations.loggedData.selected_profile?.colorProfile as any
+    })
+
     setLoading(false)
-  }, [])
+  }, [hubContext])
 
   const handleSignIn = useCallback(async (data: UserAuthProps) => {
     setLoading(true)
