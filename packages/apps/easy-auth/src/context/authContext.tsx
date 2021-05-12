@@ -96,7 +96,7 @@ const AuthProvider: React.FC = ({ children }) => {
       setLoading(false)
       setLoggedData(d)
     },
-    [data, reducedToken, signed]
+    [data]
   )
 
   return (
