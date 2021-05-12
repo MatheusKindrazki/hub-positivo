@@ -1,13 +1,18 @@
 import React from 'react'
 
+import { useMediaQuery } from '@psdhub/common/hooks'
 import { Box } from '@psdhub/common/components'
 
 import GlobalStyle from './styles'
+import { HeaderProvider } from './components/Desktop/context'
+import DesktopOptions from './components/Desktop'
 import Logo from '../Logo'
 import { useAuth } from '../../context/authContext'
 
 const Header: React.FC = () => {
   const { signed } = useAuth()
+
+  const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
   if (!signed) return null
 
@@ -35,6 +40,11 @@ const Header: React.FC = () => {
         >
           <Logo />
         </Box>
+        {isDesktop ? (
+          <HeaderProvider>
+            <DesktopOptions />
+          </HeaderProvider>
+        ) : null}
       </Box>
       <GlobalStyle />
     </>

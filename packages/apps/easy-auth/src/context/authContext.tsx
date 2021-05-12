@@ -45,6 +45,7 @@ const AuthProvider: React.FC = ({ children }) => {
     setData(informations.data)
     setSigned(informations.signed)
     setReducedToken(informations.reducedToken)
+    setLoggedData(informations.loggedData)
 
     setLoading(false)
   }, [])
@@ -87,7 +88,8 @@ const AuthProvider: React.FC = ({ children }) => {
         setAuth({
           signed: true,
           data,
-          reducedToken: response.access_token
+          reducedToken: response.access_token,
+          loggedData: d
         })
       } catch (error) {
         toast.error(error)

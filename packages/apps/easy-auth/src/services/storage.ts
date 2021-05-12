@@ -1,4 +1,4 @@
-import { SignInSuccess } from '../@types/auth'
+import { SignInSuccess, LoggedData } from '../@types/auth'
 
 const STORAGE_KEY = '@psdhub/easyauth'
 
@@ -6,6 +6,7 @@ type ItemsProps = {
   data?: SignInSuccess
   signed: boolean
   reducedToken: string
+  loggedData: LoggedData
 }
 
 const getAuth = (): ItemsProps => {
