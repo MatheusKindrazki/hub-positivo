@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 
 import { toast } from '@psdhub/common/utils'
+import HubContext from '@psdhub/common/layout/Provider/context'
 import Loading from '@psdhub/common/components/BarLoader'
 
 import { getAuth, setAuth } from '../services/storage'
@@ -33,6 +34,8 @@ export interface AuthContextParams {
 const AuthContext = createContext({} as AuthContextParams)
 
 const AuthProvider: React.FC = ({ children }) => {
+  const hubContext = useContext(HubContext)
+
   const [step, setStep] = useState(0)
   const [signed, setSigned] = useState(true)
   const [loading, setLoading] = useState(true)
@@ -92,6 +95,10 @@ const AuthProvider: React.FC = ({ children }) => {
           reducedToken: response.access_token,
           loggedData: d
         })
+
+        hubContext.theme({
+          profile: d.selected_profile?.colorProfile as any
+        })
       } catch (error) {
         toast.error(error)
       }
@@ -99,7 +106,7 @@ const AuthProvider: React.FC = ({ children }) => {
       setLoading(false)
       setLoggedData(d)
     },
-    [data]
+    [data, hubContext]
   )
 
   return (
