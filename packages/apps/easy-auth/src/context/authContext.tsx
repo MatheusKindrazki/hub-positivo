@@ -21,6 +21,7 @@ export interface AuthContextParams {
   loading: boolean
   reducedToken?: string
 
+  setStep(e: number): void
   setSigned(e: boolean): void
   signIn(data: UserAuthProps): void
 
@@ -54,12 +55,13 @@ const AuthProvider: React.FC = ({ children }) => {
     setReducedToken(informations.reducedToken)
     setLoggedData(informations.loggedData)
 
-    hubContext.theme({
-      profile: informations.loggedData.selected_profile?.colorProfile as any
-    })
-
-    if (informations) {
+    if (informations?.signed) {
       sendAllInfos(informations)
+      const { selected_profile } = informations.loggedData
+
+      hubContext.theme({
+        profile: selected_profile?.colorProfile as any
+      })
     }
 
     setLoading(false)
@@ -132,6 +134,7 @@ const AuthProvider: React.FC = ({ children }) => {
         data,
         step,
         signed,
+        setStep,
         loading,
         setSigned,
         loggedData,

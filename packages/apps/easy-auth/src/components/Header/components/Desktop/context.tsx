@@ -19,7 +19,7 @@ import { Schools } from '../../../../@types/auth'
 const HeaderContext = createContext({} as ContextHeaderProps)
 
 const HeaderProvider: React.FC = ({ children }) => {
-  const { data, loggedData, setSigned, setLoggedData } = useAuth()
+  const { data, loggedData, setSigned, setStep, setLoggedData } = useAuth()
 
   const [roles, setRoles] = useState(loggedData?.selected_school?.roles)
 
@@ -82,13 +82,14 @@ const HeaderProvider: React.FC = ({ children }) => {
   const handleSignOut = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY)
 
+    setStep(0)
     setSigned(false)
-  }, [setSigned])
+  }, [setSigned, setStep])
 
   return (
     <HeaderContext.Provider
       value={{
-        userName: 'Matheus Kindrazki',
+        userName: data?.info?.name as string,
         schoolList,
         roleList,
         signOut: handleSignOut,
