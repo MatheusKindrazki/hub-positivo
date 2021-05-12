@@ -1,4 +1,5 @@
 import { postInformations, SendInfos } from '@psdhub/helpers'
+import createColors from '@psdhub/common/layout/styles/colors'
 
 import { SignInSuccess, LoggedData } from '../@types/auth'
 
@@ -9,7 +10,11 @@ interface SendAllProps {
   class?: string
 }
 
-function sendAllInfos(e: SendAllProps): void {
+function useSendAllInfos(e: SendAllProps): void {
+  const profile = e?.loggedData?.selected_profile?.colorProfile as any
+
+  const colors = createColors({ profile })
+
   console.info('@HUB: Enviando dados para a solução')
 
   const prepareData: SendInfos = {
@@ -23,10 +28,11 @@ function sendAllInfos(e: SendAllProps): void {
         id: e.loggedData.selected_school.id,
         name: e.loggedData.selected_school.name
       }
-    }
+    },
+    primary_color: colors.blue
   }
 
   postInformations(prepareData)
 }
 
-export { sendAllInfos }
+export { useSendAllInfos as sendAllInfos }
