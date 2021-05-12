@@ -20,3 +20,14 @@ export interface Schools {
   label: string
   value: string
 }
+export interface LoggedData {
+  selected_school: Schools
+  profiles: Profiles[]
+  selected_profile: Profiles
+}
+export interface Profiles {
+  id: string
+  name: string
+  icon: string
+  colorProfile: string
+}
