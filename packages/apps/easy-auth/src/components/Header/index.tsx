@@ -21,8 +21,6 @@ export const mockLevels = [
 const Header: React.FC = () => {
   const { signed, loggedData, setLevel } = useAuth()
 
-  const { selected_profile } = loggedData
-
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
   if (!signed) return null
@@ -53,7 +51,7 @@ const Header: React.FC = () => {
         </Box>
         {isDesktop && (
           <Box d="flex" alignItems="center">
-            {enableProfile.includes(selected_profile?.id) && (
+            {enableProfile.includes(loggedData?.selected_profile?.id) && (
               <Box mr="4" width="280px">
                 <Select
                   variant="normal"
