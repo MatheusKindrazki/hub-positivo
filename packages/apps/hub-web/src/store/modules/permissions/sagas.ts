@@ -24,33 +24,38 @@ type UpdateProfilePayload = Payload<ProfilePermissions>
 export function* profilePermissions({
   payload
 }: UpdateProfilePayload): Generator {
+  console.log('profilePermissions', payload)
   const { create, remove } = payload
 
-  const removeResponse = yield call(() => {
-    return api.delete('ENDPOINT', {
-      ...remove
+  if (remove.idsPerfilNivelDeEnsino?.length) {
+    const removeResponse = yield call(() => {
+      return api.delete('SolucaoPerfilNivelEnsino', {
+        ...remove
+      })
     })
-  })
 
-  const { ok: removeOk } = removeResponse as ApiResponse<any>
+    const { ok: removeOk } = removeResponse as ApiResponse<any>
 
-  if (!removeOk) {
-    throw new Error('Erro ao deletar permissões')
+    if (!removeOk) {
+      throw new Error('Erro ao deletar permissões')
+    }
   }
 
-  const createResponse = yield call(() => {
-    return api.delete('ENDPOINT', {
-      ...create
+  if (create.idsPerfilNivelDeEnsino?.length) {
+    const createResponse = yield call(() => {
+      return api.post('SolucaoPerfilNivelEnsino', {
+        ...create
+      })
     })
-  })
 
-  const { ok: createOk } = createResponse as ApiResponse<any>
+    const { ok: createOk } = createResponse as ApiResponse<any>
 
-  if (!createOk) {
-    put(profilePermissionsFailure())
-    throw new Error('Erro ao criar permissões')
+    if (!createOk) {
+      put(profilePermissionsFailure())
+      throw new Error('Erro ao criar permissões')
+    }
+    yield put(profilePermissionsSuccess())
   }
-  yield put(profilePermissionsSuccess())
 }
 
 type SchoolPermissionsPayload = Payload<SchoolPermissions>
@@ -58,47 +63,52 @@ type SchoolPermissionsPayload = Payload<SchoolPermissions>
 export function* schoolPermissions({
   payload
 }: SchoolPermissionsPayload): Generator {
+  console.log('schoolPermissions', payload)
   const { create, remove } = payload
 
   // Remove permissoes interrompendo o fluxo caso haja algum erro
   yield put(loading(true))
 
-  const deleteResponse = yield call(() => {
-    return api.delete('Solucao/Restricao/Escola', {
-      ...remove
+  if (remove.idsEscolas?.length) {
+    const deleteResponse = yield call(() => {
+      return api.delete('Solucao/Restricao', {
+        ...remove
+      })
     })
-  })
 
-  const { ok: removeOk } = deleteResponse as ApiResponse<GenericApiResponse>
+    const { ok: removeOk } = deleteResponse as ApiResponse<GenericApiResponse>
 
-  yield put(loading(false))
+    yield put(loading(false))
 
-  if (!removeOk) {
-    put(schoolPermissionsFailure())
-    throw new Error('Erro ao deletar permissões')
+    if (!removeOk) {
+      put(schoolPermissionsFailure())
+      throw new Error('Erro ao deletar permissões')
+    }
+
+    yield put(schoolPermissionsSuccess())
   }
-
-  yield put(schoolPermissionsSuccess())
 
   // Cria permissoes interrompendo o fluxo caso haja algum erro
   yield put(loading(true))
 
-  const postResponse = yield call(() => {
-    return api.post('Solucao/Restricao/Escola', {
-      ...create
+  if (create.idsEscolas?.length) {
+    const postResponse = yield call(() => {
+      return api.post('Solucao/Restricao', {
+        ...create
+      })
     })
-  })
 
-  const { ok: createOk } = postResponse as ApiResponse<GenericApiResponse>
+    const { ok: createOk } = postResponse as ApiResponse<GenericApiResponse>
 
-  yield put(loading(false))
+    yield put(loading(false))
 
-  if (!createOk) {
-    put(schoolPermissionsFailure())
-    throw new Error('Erro ao criar permissões')
+    if (!createOk) {
+      put(schoolPermissionsFailure())
+      throw new Error('Erro ao criar permissões')
+    }
+
+    put(schoolPermissionsSuccess())
   }
-
-  put(schoolPermissionsSuccess())
 }
 
 export default all([

@@ -16,24 +16,24 @@ export const Actions = {
   ? iniciar fluxo de submissao dos formularios de controle de acessos
 */
 
-export function solutionPostRequest(solution: AccessControlData): Action {
-  console.log('Access Control Submit Request: ', solution)
+export function accessControlPostRequest(
+  accessControlData: AccessControlData
+): Action {
+  console.log('Access Control Submit Request: ', accessControlData)
 
   return {
     type: Actions.ACCESS_CONTROL_POST_REQUEST,
-    payload: {
-      solution
-    }
+    payload: accessControlData
   }
 }
 
-export function solutionPostFailure(): Action {
+export function accessControlPostFailure(): Action {
   return {
     type: Actions.ACCESS_CONTROL_POST_SUCCESS
   }
 }
 
-export function solutionPostSuccess(): Action {
+export function accessControlPostSuccess(): Action {
   return {
     type: Actions.ACCESS_CONTROL_POST_FAILURE
   }

@@ -43,9 +43,9 @@ export function* createSolution(action: Action): Generator {
 
   if (!ok || !data) {
     toast.error('Erro ao criar solução!')
+    console.log('retorno api na saga createSolution: ', data)
     return yield put(solutionPostFailure())
   }
-  setTimeout(() => history.push('/controle-de-acessos'), 800)
   toast.success('Solução criada com sucesso')
   return yield put(solutionPostSuccess())
 }

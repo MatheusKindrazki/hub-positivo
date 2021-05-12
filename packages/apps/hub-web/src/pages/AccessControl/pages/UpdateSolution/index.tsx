@@ -5,7 +5,9 @@ import { DropzoneRef } from 'react-dropzone'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { solutionPutRequest } from '~/store/modules/solutions/actions'
+// import { solutionPutRequest } from '~/store/modules/solutions/actions'
+import { postAccessControlData } from '~/store/modules/accessControl/sagas'
+import { accessControlPostRequest } from '~/store/modules/accessControl/actions'
 
 import { toast } from '@psdhub/common/utils'
 import {
@@ -18,6 +20,7 @@ import {
 import Dropzone from '@psdhub/common/components/Dropzone'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Box, Text, Stack, Button } from '@psdhub/common/components'
+import api from '@psdhub/api'
 
 import history from '~/services/history'
 
@@ -55,8 +58,15 @@ const UpdateSolution: React.FC = () => {
   const dropRef = useRef<DropzoneRef>(null)
   const modalRef = useRef<ModalHandler>(null)
 
+  const logarRestricao = async () => {
+    const restricao = await api.get('Solucao/Restricao')
+    console.log('restricao escolas', restricao)
+  }
+
   useEffect(() => {
     const solutionSlug = getSlugFromURL(pathname)
+    console.log('soluao recebida em updatesolution', { solution })
+    logarRestricao()
 
     if (!categoryArr || categoryArr?.length === 0) {
       return history.push('/controle-de-acessos')
@@ -80,13 +90,12 @@ const UpdateSolution: React.FC = () => {
     async data => {
       formRef?.current?.setErrors({})
       try {
-        console.log(data, 'teste')
         await solutionInfo.validate(data, { abortEarly: false })
 
         data.id = solution?.solution.id
         data.slug = solution?.solution.slug
 
-        return dispatch(solutionPutRequest(data))
+        return dispatch(accessControlPostRequest(postAccessControlData))
       } catch (err) {
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)

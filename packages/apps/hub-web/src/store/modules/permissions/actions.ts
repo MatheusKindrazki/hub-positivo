@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-import { ProfilePermissionData, SchoolPermissionData } from './types'
+import { SchoolPermissions, ProfilePermissions } from './types'
 
 export const Actions = {
   PROFILE_PERMISSIONS_REQUEST: '@permissions/PROFILE_PERMISSION_REQUEST',
@@ -15,7 +15,7 @@ export const Actions = {
 // ? Actions de request dos dados de permissao por perfil/nivel de ensino
 
 export const profilePermissionsRequest = (
-  permissions: ProfilePermissionData
+  permissions: ProfilePermissions
 ): Action => {
   return {
     type: Actions.PROFILE_PERMISSIONS_REQUEST,
@@ -38,13 +38,11 @@ export const profilePermissionsFailure = (): Action => {
 // ? Actions que disparam ações referentes às permissoes das escolas
 
 export const schoolPermissionsRequest = (
-  permissions: SchoolPermissionData
+  permissions: SchoolPermissions
 ): Action => {
   return {
     type: Actions.SCHOOL_PERMISSIONS_REQUEST,
-    payload: {
-      permissions
-    }
+    payload: permissions
   }
 }
 
