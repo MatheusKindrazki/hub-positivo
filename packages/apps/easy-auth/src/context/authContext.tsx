@@ -14,6 +14,7 @@ import { getAuth, setAuth } from '../services/storage'
 import reducedTokenService from '../services/reducedToken'
 import { sendAllInfos } from '../services/postInformation'
 import authService, { UserAuthProps } from '../services/auth'
+import { enableProfile, mockLevels } from '../components/Header'
 import { SignInSuccess, LoggedData } from '../@types/auth'
 
 export interface AuthContextParams {
@@ -21,6 +22,7 @@ export interface AuthContextParams {
   loading: boolean
   reducedToken?: string
 
+  setLevel(e: any): void
   setStep(e: number): void
   setSigned(e: boolean): void
   signIn(data: UserAuthProps): void
@@ -113,10 +115,17 @@ const AuthProvider: React.FC = ({ children }) => {
           profile: d.selected_profile?.colorProfile as any
         })
 
+        let sendClass = ''
+
+        if (enableProfile.includes(d.selected_profile.id)) {
+          sendClass = mockLevels[0].label
+        }
+
         sendAllInfos({
           data,
           reducedToken: response.access_token,
-          loggedData: d
+          loggedData: d,
+          class: sendClass
         })
       } catch (error) {
         toast.error(error)
@@ -126,6 +135,18 @@ const AuthProvider: React.FC = ({ children }) => {
       setLoggedData(d)
     },
     [data, hubContext]
+  )
+
+  const handleSelectedLevel = useCallback(
+    data => {
+      sendAllInfos({
+        data,
+        reducedToken: reducedToken,
+        loggedData: loggedData,
+        class: data.label
+      })
+    },
+    [loggedData, reducedToken]
   )
 
   return (
@@ -140,6 +161,7 @@ const AuthProvider: React.FC = ({ children }) => {
         loggedData,
         reducedToken,
         signIn: handleSignIn,
+        setLevel: handleSelectedLevel,
         setLoggedData: handleSelectSchoolAndProfile
       }}
     >

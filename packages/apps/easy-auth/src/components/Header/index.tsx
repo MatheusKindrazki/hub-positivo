@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useMediaQuery } from '@psdhub/common/hooks'
-import { Box } from '@psdhub/common/components'
+import { Box, Select } from '@psdhub/common/components'
 
 import GlobalStyle from './styles'
 import { HeaderProvider } from './components/Desktop/context'
@@ -9,8 +9,19 @@ import DesktopOptions from './components/Desktop'
 import Logo from '../Logo'
 import { useAuth } from '../../context/authContext'
 
+export const enableProfile = ['PROFESSOR', 'ALUNO']
+
+export const mockLevels = [
+  { label: 'Educação Infantil', value: 'EI' },
+  { label: 'Ensino Fundamental Anos Iniciais', value: 'EF1' },
+  { label: 'Ensino Fundamental Anos Finais', value: 'EF2' },
+  { label: 'Ensino Médio', value: 'EM' }
+]
+
 const Header: React.FC = () => {
-  const { signed } = useAuth()
+  const { signed, loggedData, setLevel } = useAuth()
+
+  const { selected_profile } = loggedData
 
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
@@ -40,11 +51,25 @@ const Header: React.FC = () => {
         >
           <Logo />
         </Box>
-        {isDesktop ? (
-          <HeaderProvider>
-            <DesktopOptions />
-          </HeaderProvider>
-        ) : null}
+        {isDesktop && (
+          <Box d="flex" alignItems="center">
+            {enableProfile.includes(selected_profile?.id) && (
+              <Box mr="4" width="280px">
+                <Select
+                  variant="normal"
+                  defaultValue={mockLevels[0]}
+                  placeholder="Selecione o Nivel de ensino"
+                  inputHeight={40}
+                  onChange={e => setLevel(e)}
+                  options={mockLevels}
+                />
+              </Box>
+            )}
+            <HeaderProvider>
+              <DesktopOptions />
+            </HeaderProvider>
+          </Box>
+        )}
       </Box>
       <GlobalStyle />
     </>
