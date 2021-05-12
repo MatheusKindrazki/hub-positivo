@@ -7,7 +7,8 @@ import { Actions } from './actions'
 
 export const INITIAL_STATE: SolutionsReducer = {
   loading: true,
-  data: []
+  data: undefined,
+  excludedSolutions: undefined
 }
 
 type ReturnReducer = Reducer<SolutionsReducer>
@@ -29,6 +30,24 @@ const categories: ReturnReducer = (state = INITIAL_STATE, action) => {
       case Actions.SOLUTIONS_GET_FAILURE: {
         draft.loading = false
         draft.data = undefined
+        break
+      }
+
+      case Actions.SOLUTIONS_GET_EXCLUDED_REQUEST: {
+        draft.loading = true
+        draft.excludedSolutions = undefined
+        break
+      }
+
+      case Actions.SOLUTIONS_GET_EXCLUDED_FAILURE: {
+        draft.loading = false
+        draft.excludedSolutions = undefined
+        break
+      }
+
+      case Actions.SOLUTIONS_GET_EXCLUDED_SUCCESS: {
+        draft.loading = false
+        draft.excludedSolutions = action.payload
         break
       }
 

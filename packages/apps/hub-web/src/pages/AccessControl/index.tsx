@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import { useHistory } from 'react-router'
+
 import { useSelector, useDispatch } from 'react-redux'
 
 import { PutSolutionData } from '~/store/modules/solutions/types'
@@ -10,12 +12,13 @@ import { categoryGetAllRequest } from '~/store/modules/category/actions'
 import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
 
-import Header from '~/components/AccessControlHeader'
+import ModalAddCategory from '~/components/ModalAddCategory'
 
-import { formatReturnDataFromAPI } from './utils/formatReturnDataFromAPI'
+import { solutionsTableDataFormat } from './utils/solutionsTableDataFormat'
 import Container from './styles'
 import Table, { TableSolution } from './components/Table'
 import Switch from './components/Switch'
+import Header from './components/Header'
 import FakeLoadingCollapse from './components/FakeLoading'
 import EditButton from './components/EditButton'
 
@@ -47,41 +50,51 @@ const mock = [{}, {}, {}, {}, {}, {}, {}]
 const AccessControl: React.FC = () => {
   const [solutions, setSolutions] = useState<CollapseData[] | null>(null)
   const { data, loading } = useSelector((state: Store.State) => state.solutions)
+  const { profile } = useSelector((state: Store.State) => state.profile)
+  const history = useHistory()
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (profile !== 'administrador') {
+      history.push('/')
+    }
+  }, [profile, history])
 
   useEffect(() => {
     dispatch(categoryGetAllRequest())
     dispatch(schoolGetAllRequest())
     if (data?.length) {
-      setSolutions(formatReturnDataFromAPI(data))
+      setSolutions(solutionsTableDataFormat(data))
     } else {
       dispatch(solutionsGetRequest())
     }
   }, [data, dispatch])
 
   return (
-    <Container m="1" marginTop="10">
+    <Container m="auto" maxW="90rem" p="10">
       <Header />
+      <ModalAddCategory />
       {loading && mock.map((_, i) => <FakeLoadingCollapse key={i} />)}
-      {solutions?.map(categoria => {
-        return (
-          <Collapse
-            defaultIsOpen={false}
-            grid={false}
-            key={categoria.nome}
-            nome={categoria.nome}
-            id="1"
-            cor="white"
-            css={{
-              background: 'white',
-              borderRadius: '0.5rem',
-              overflow: 'hidden'
-            }}
-          >
-            <Table columns={columns} data={categoria.solutions} />
-          </Collapse>
-        )
-      })}
+      {!loading &&
+        solutions?.map(categoria => {
+          return (
+            <Collapse
+              defaultIsOpen={false}
+              grid={false}
+              key={categoria.nome}
+              nome={categoria.nome}
+              id="1"
+              cor="white"
+              css={{
+                background: 'white',
+                borderRadius: '0.5rem',
+                overflow: 'hidden'
+              }}
+            >
+              <Table columns={columns} data={categoria.solutions} />
+            </Collapse>
+          )
+        })}
     </Container>
   )
 }

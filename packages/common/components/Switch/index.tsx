@@ -1,10 +1,15 @@
 import React from 'react'
 
+import classNames from 'classnames'
+
 import { Switch as SwitchButton, SwitchProps } from '@chakra-ui/react'
 
-const Switch: React.FC<SwitchProps> = ({ children, ...rest }) => {
+const Switch: React.FC<SwitchProps> = ({ children, className, ...rest }) => {
   return (
-    <SwitchButton {...rest} className="switch-button">
+    <SwitchButton
+      {...rest}
+      className={classNames(className, { 'switch-button': true })}
+    >
       {children}
     </SwitchButton>
   )

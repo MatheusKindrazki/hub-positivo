@@ -27,6 +27,7 @@ const Switch: React.FC<SwitchProps> = ({ data }) => {
       padding="1"
       isChecked={isChecked}
       onChange={() => handleCheck(isChecked)}
+      className="solution-switch"
     />
   )
 }

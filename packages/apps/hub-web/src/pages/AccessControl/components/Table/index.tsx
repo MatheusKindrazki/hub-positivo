@@ -53,7 +53,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
               borderColor="gray.400"
               rounded="md"
             >
-              <TableUI size="sm">
+              <TableUI size="md">
                 <Thead>
                   <Tr>
                     {columns?.map(({ header }, index) => (
