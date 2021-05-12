@@ -39,7 +39,6 @@ export function* createSolution(action: Action): Generator {
   })
 
   const { ok, data } = response as ApiResponse<Solution>
-  console.log('resposta da api', response)
   yield put(loading(false))
 
   if (!ok || !data) {

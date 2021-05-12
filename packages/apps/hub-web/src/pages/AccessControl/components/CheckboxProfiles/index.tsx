@@ -1,7 +1,9 @@
 import React, { useCallback, useState } from 'react'
 
-import { Checkbox } from '@psdhub/common/components/Checkbox'
+import Checkbox from '@psdhub/common/components/Checkbox'
 import { Stack } from '@psdhub/common/components'
+
+import { BoxProps } from '~/../../../common/components/Box'
 
 export const mockedNestedCheckboxesData = [
   {
@@ -29,7 +31,7 @@ interface ChildItem {
   value: string
 }
 
-interface CheckboxProfilesProps {
+interface CheckboxProfilesProps extends BoxProps {
   name: string
   value: string
   children: ChildItem[]

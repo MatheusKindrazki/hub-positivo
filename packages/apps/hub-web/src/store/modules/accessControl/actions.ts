@@ -1,0 +1,40 @@
+import { Action } from 'redux'
+
+import { AccessControlData } from './types'
+
+export const Actions = {
+  ACCESS_CONTROL_POST_REQUEST: '@accessControl/ACCESS_CONTROL_POST_REQUEST',
+  ACCESS_CONTROL_POST_SUCCESS: '@accessControl/ACCESS_CONTROL_POST_SUCCESS',
+  ACCESS_CONTROL_POST_FAILURE: '@accessControl/ACCESS_CONTROL_POST_FAILURE',
+
+  ACCESS_CONTROL_PUT_REQUEST: '@accessControl/ACCESS_CONTROL_PUT_REQUEST',
+  ACCESS_CONTROL_PUT_SUCCESS: '@accessControl/ACCESS_CONTROL_PUT_SUCCESS',
+  ACCESS_CONTROL_PUT_FAILURE: '@accessControl/ACCESS_CONTROL_PUT_FAILURE'
+}
+
+/*
+  ? iniciar fluxo de submissao dos formularios de controle de acessos
+*/
+
+export function solutionPostRequest(solution: AccessControlData): Action {
+  console.log('Access Control Submit Request: ', solution)
+
+  return {
+    type: Actions.ACCESS_CONTROL_POST_REQUEST,
+    payload: {
+      solution
+    }
+  }
+}
+
+export function solutionPostFailure(): Action {
+  return {
+    type: Actions.ACCESS_CONTROL_POST_SUCCESS
+  }
+}
+
+export function solutionPostSuccess(): Action {
+  return {
+    type: Actions.ACCESS_CONTROL_POST_FAILURE
+  }
+}

@@ -9,15 +9,17 @@ import { schoolGetAllRequest } from '~/store/modules/school/actions'
 import { categoryGetAllRequest } from '~/store/modules/category/actions'
 
 import { toast } from '@psdhub/common/utils'
+import SearchableCheckbox from '@psdhub/common/components/SearchableCheckboxes'
 import {
   FormProps,
   Form,
   Input,
-  Button as FormButton
-  // Select
+  Button as FormButton,
+  Select
 } from '@psdhub/common/components/Form'
 import Dropzone from '@psdhub/common/components/Dropzone'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
+import { Stack } from '@psdhub/common/components/'
 import { Box, Text, Button } from '@psdhub/common/components'
 
 import history from '~/services/history'
@@ -25,11 +27,8 @@ import history from '~/services/history'
 import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
-// import { selects } from './selectOptions'
-// import createOptions from '../../utils/createOptions'
-import CheckboxProfiles, {
-  mockedNestedCheckboxesData
-} from '../../components/CheckboxProfiles'
+import { selects } from './selectOptions'
+import createOptions from '../../utils/createOptions'
 
 const UpdateSolution: React.FC = () => {
   const dispatch = useDispatch()
@@ -37,11 +36,11 @@ const UpdateSolution: React.FC = () => {
     (state: Store.State) => state.user
   )
 
-  // const { categories } = useSelector((state: Store.State) => state.category)
-  // const { schools } = useSelector((state: Store.State) => state.school)
+  const { categories } = useSelector((state: Store.State) => state.category)
+  const { schools } = useSelector((state: Store.State) => state.school)
 
-  // const categoryOptions = createOptions(categories)
-  // const schoolOptions = createOptions(schools)
+  const categoryOptions = createOptions(categories)
+  const schoolOptions = createOptions(schools)
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
@@ -113,18 +112,8 @@ const UpdateSolution: React.FC = () => {
             <Text color="blue.500">Ícone</Text>
             <Dropzone ref={dropRef} />
           </Box>
-          <Box>
-            {mockedNestedCheckboxesData?.map(checkbox => (
-              <CheckboxProfiles
-                key={checkbox.name}
-                name={checkbox.name}
-                value={checkbox.value}
-                children={checkbox.children}
-              />
-            ))}
-          </Box>
 
-          {/* <Stack
+          <Stack
             direction={['column', 'row']}
             wrap="wrap"
             justifyContent="space-between"
@@ -133,7 +122,6 @@ const UpdateSolution: React.FC = () => {
             {selects(categoryOptions, schoolOptions).map(select => {
               return (
                 <Box
-                  ml={select.name === 'category' ? '8px' : '0px'}
                   key={select.name}
                   w={select.name === 'schools' ? '100%' : '48.5%'}
                 >
@@ -147,7 +135,12 @@ const UpdateSolution: React.FC = () => {
                 </Box>
               )
             })}
-          </Stack> */}
+          </Stack>
+          <SearchableCheckbox
+            w="32%"
+            onChange={e => console.log(e)}
+            options={schoolOptions}
+          />
           <Box
             mt="9"
             flexDir={['row', 'row-reverse']}
