@@ -41,7 +41,7 @@ const Iframe: React.FC = ({ children }) => {
   )
   return (
     <>
-      <BarLoader width="100%" height="4px" loading={loading} />
+      <BarLoader height="4px" loading={loading} />
       <Header handlePush={handlePlush} cards={data as CardProduct[]} />
       {children}
     </>

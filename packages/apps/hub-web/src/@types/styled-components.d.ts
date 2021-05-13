@@ -1,7 +1,4 @@
-import { theme } from '@psdhub/common/layout/styles'
-
-type ThemeInterface = typeof theme
-
+import { Theme } from '@psdhub/common/layout/styles'
 declare module 'styled-components' {
-  interface DefaultTheme extends ThemeInterface {}
+  interface DefaultTheme extends Theme {}
 }

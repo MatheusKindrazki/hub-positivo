@@ -7,16 +7,10 @@ import { generate } from 'randomstring'
 interface ModulesProps {
   type: string
   url: string
-  hash: string
   handleLoad: () => void
 }
 
-const LoadModules: React.FC<ModulesProps> = ({
-  type,
-  url,
-  hash,
-  handleLoad
-}) => {
+const LoadModules: React.FC<ModulesProps> = ({ type, url, handleLoad }) => {
   const identifyScript = generate(15)
 
   useEffect(() => {
@@ -30,7 +24,7 @@ const LoadModules: React.FC<ModulesProps> = ({
   if (type === 'css') {
     return (
       <Helmet>
-        <link rel="stylesheet" href={`${url}?hash=${hash}`} />
+        <link rel="stylesheet" href={url} />
       </Helmet>
     )
   }
@@ -42,7 +36,7 @@ const LoadModules: React.FC<ModulesProps> = ({
         crossOrigin: ''
       }}
       onLoad={handleLoad}
-      url={`${url}?hash=${hash}`}
+      url={url}
     />
   )
 }

@@ -22,6 +22,7 @@ module.exports = function (config, env) {
         'babel-plugin-styled-components',
         {
           ssr: true,
+          pure: true,
           fileName: false,
           displayName: false,
           namespace: 'hub',
