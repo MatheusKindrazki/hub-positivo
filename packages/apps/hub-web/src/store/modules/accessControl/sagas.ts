@@ -1,79 +1,79 @@
 // import { toast } from 'react-toastify'
 
-import { takeLatest, all, Payload, put } from 'redux-saga/effects'
+import { takeLatest, all, Payload, put, call } from 'redux-saga/effects'
 
-import { AccessControlPutData } from './types'
+import { AccessControlPutData, AccessControlPostData } from './types'
 import {
   Actions
   // accessControlPostFailure,
   // accessControlPostSuccess
 } from './actions'
 // import api, { } from '@psdhub/api'
-import { solutionPutRequest } from '../solutions/actions'
+import { createSolution } from '../solutions/sagas'
+import { solutionPostRequest, solutionPutRequest } from '../solutions/actions'
 import {
   profilePermissionsRequest,
   schoolPermissionsRequest
 } from '../permissions/actions'
 
-export const postAccessControlData: AccessControlPutData = {
+export const postAccessControlData: AccessControlPostData = {
   solution: {
-    id: '18364a7a-fe11-4b68-a0fd-cf0bea8dcc4e',
     idCategoria: '84ff9ff2-1f47-4e29-9f24-a848d852d468',
-    nome: 'MUDAMOS-O-NOME-UMA-TERCEIRA-VEZ',
+    nome: 'o post esta funcionando',
     descricao: 'Esta solucao é um teste',
     arquivo: 'string',
     link: 'https://www.google.com.br',
     tipoRenderizacao: 'iframe',
     ordem: 1,
-    padrao: true,
-    ativo: true,
-    slug: 'pipoquinha-agora-para-assistir'
+    padrao: true
   },
   schoolPermissions: {
     remove: {
-      idSolucao: '18364a7a-fe11-4b68-a0fd-cf0bea8dcc4e',
+      idSolucao: '',
       idsEscolas: []
     },
     create: {
-      idSolucao: '18364a7a-fe11-4b68-a0fd-cf0bea8dcc4e',
+      idSolucao: '',
       idsEscolas: ['a3684569-764d-4ad1-b816-9a11736e5adf'],
       restricao: 'Ocultar'
     }
   },
   profilePermissions: {
     create: {
-      idSolucao: '18364a7a-fe11-4b68-a0fd-cf0bea8dcc4e',
-      idsPerfilNivelDeEnsino: [],
-      restricao: 'Ocultar'
+      idSolucao: '',
+      IdsPerfisNiveisEnsino: ['6190aaa0-cbd5-488c-9b49-ab86f52728b1']
     },
     remove: {
-      idSolucao: '18364a7a-fe11-4b68-a0fd-cf0bea8dcc4e',
-      idsPerfilNivelDeEnsino: []
+      idSolucao: '',
+      IdsPerfisNiveisEnsino: []
     }
   }
 }
 
 // chamar submitPost > Chamar solutionPost > alterar id na Store > chamar permissions
 
-// export function* submitPostAccessControl({
-//   payload
-// }: PostAccessControlPayload): Generator {
-//   console.log('saga access control', payload)
-//   const { solution, profilePermissions, schoolPermissions } = payload
-//   yield put(solutionPostRequest(solution))
+type PostAccessControlPayload = Payload<AccessControlPostData>
 
-//   // return put(accessControlPostFailure())
-//   return yield put(accessControlPostSuccess())
-// }
+export function* submitPostAccessControl({
+  payload
+}: PostAccessControlPayload): Generator {
+  console.log('saga access control', payload)
+  const { solution, profilePermissions, schoolPermissions } = payload
 
-// export function* createSchoolPermissions({
-//   payload
-// }: {
-//   id: string
-// }): Generator {
-//   yield put(profilePermissionsRequest(profilePermissions))
-//   yield put(schoolPermissionsRequest(schoolPermissions))
-// }
+  const id = yield call(createSolution, solutionPostRequest(solution))
+
+  console.log('id extraido do putResolve: ', id)
+
+  if (id) {
+    profilePermissions.create.idSolucao = id as string
+    profilePermissions.remove.idSolucao = id as string
+    yield put(profilePermissionsRequest(profilePermissions))
+
+    schoolPermissions.create.idSolucao = id as string
+    schoolPermissions.remove.idSolucao = id as string
+    yield put(schoolPermissionsRequest(schoolPermissions))
+  }
+}
 
 type PutAccessControlPayload = Payload<AccessControlPutData>
 
@@ -92,6 +92,6 @@ export function* submitPutAccessControl({
 }
 
 export default all([
-  // takeLatest(Actions.ACCESS_CONTROL_POST_REQUEST, submitPostAccessControl),
+  takeLatest(Actions.ACCESS_CONTROL_POST_REQUEST, submitPostAccessControl),
   takeLatest(Actions.ACCESS_CONTROL_PUT_REQUEST, submitPutAccessControl)
 ])

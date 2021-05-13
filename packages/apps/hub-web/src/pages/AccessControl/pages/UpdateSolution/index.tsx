@@ -24,7 +24,7 @@ import api from '@psdhub/api'
 
 import history from '~/services/history'
 
-import solutionInfo from '~/validators/solution/createSolution'
+// import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
@@ -63,10 +63,18 @@ const UpdateSolution: React.FC = () => {
     console.log('restricao escolas', restricao)
   }
 
+  const logarPermissao = async () => {
+    const permissao = await api.get('SolucaoPerfilNivelEnsino', {
+      idSolucao: '0c464a02-d7e1-434a-8c06-38b98cb89b5a'
+    })
+    console.log('permissao perfis', permissao)
+  }
+
   useEffect(() => {
     const solutionSlug = getSlugFromURL(pathname)
     console.log('soluao recebida em updatesolution', { solution })
     logarRestricao()
+    logarPermissao()
 
     if (!categoryArr || categoryArr?.length === 0) {
       return history.push('/controle-de-acessos')
@@ -90,7 +98,7 @@ const UpdateSolution: React.FC = () => {
     async data => {
       formRef?.current?.setErrors({})
       try {
-        await solutionInfo.validate(data, { abortEarly: false })
+        // await solutionInfo.validate(data, { abortEarly: false })
 
         data.id = solution?.solution.id
         data.slug = solution?.solution.slug

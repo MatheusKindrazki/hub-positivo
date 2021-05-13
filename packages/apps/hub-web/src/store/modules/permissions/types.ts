@@ -1,22 +1,24 @@
-type Permissions = {
-  restricao: string
-  idSolucao: string
-}
-
-export type SchoolPermissionData = { idsEscolas: string[] } & Permissions
-
-export type ProfilePermissionData = {
-  idsPerfilNivelDeEnsino: string[]
-} & Permissions
-
 export type SchoolPermissions = {
-  remove: Omit<SchoolPermissionData, 'restricao'>
-  create: SchoolPermissionData
+  remove: {
+    idSolucao: string
+    idsEscolas: string[]
+  }
+  create: {
+    idSolucao: string
+    idsEscolas: string[]
+    restricao: 'Ocultar' | 'Exibir'
+  }
 }
 
-export interface ProfilePermissions {
-  remove: Omit<ProfilePermissionData, 'restricao'>
-  create: ProfilePermissionData
+export type ProfilePermissions = {
+  remove: {
+    idSolucao: string
+    IdsPerfisNiveisEnsino: string[]
+  }
+  create: {
+    idSolucao: string
+    IdsPerfisNiveisEnsino: string[]
+  }
 }
 
 export interface GenericApiResponse {

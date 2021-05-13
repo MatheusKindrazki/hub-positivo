@@ -47,9 +47,9 @@ export function* createSolution(action: Action): Generator {
     console.log('retorno api na saga createSolution: ', data)
     return yield put(solutionPostFailure())
   }
-  toast.success('Solução criada com sucesso')
+  toast.success(`Solução criada com sucesso ${data?.dados.id}`)
   yield put(solutionPostSuccess(data?.dados.id))
-  return data?.dados.id
+  return yield data?.dados.id
 }
 
 export function* getSolutions(): Generator {

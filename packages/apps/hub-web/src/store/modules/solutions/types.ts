@@ -34,7 +34,6 @@ export interface PostSolutionData {
   arquivo: string
   link: string
   idCategoria: string
-  idProduto: string
   tipoRenderizacao: string
   ordem: number
   padrao: boolean

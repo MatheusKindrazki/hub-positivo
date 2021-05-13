@@ -28,7 +28,7 @@ export function* profilePermissions({
   console.log('profilePermissions', payload)
   const { create, remove } = payload
 
-  if (remove.idsPerfilNivelDeEnsino?.length) {
+  if (remove.IdsPerfisNiveisEnsino?.length) {
     const removeResponse = yield call(() => {
       return api.delete('SolucaoPerfilNivelEnsino', {}, { data: remove })
     })
@@ -36,28 +36,25 @@ export function* profilePermissions({
     const { ok: removeOk } = removeResponse as ApiResponse<any>
 
     if (!removeOk) {
-      toast.error('Erro ao atualizar permissões')
-      yield put(profilePermissionsFailure())
-      throw new Error('Erro ao atualizar permissões')
+      toast.error('Erro ao atualizar permissões de perfil')
+      return yield put(profilePermissionsFailure())
     }
   }
 
-  if (create.idsPerfilNivelDeEnsino?.length) {
+  if (create.IdsPerfisNiveisEnsino?.length) {
     const createResponse = yield call(() => {
       return api.post('SolucaoPerfilNivelEnsino', {
         ...create
       })
     })
 
-    const { ok: createOk, data } = createResponse as ApiResponse<any>
-    console.log({ permissionsSchoolData: data })
+    const { ok: createOk } = createResponse as ApiResponse<any>
     if (!createOk) {
-      toast.error('Erro ao atualizar permissões')
-      yield put(profilePermissionsFailure())
-      throw new Error('Erro ao criar permissões')
+      toast.error('Erro ao atualizar permissões de perfil')
+      return put(profilePermissionsFailure())
     }
-    toast.success('Permissoes atualizadas com sucesso!')
-    yield put(profilePermissionsSuccess())
+    toast.success('Permissoes de perfil atualizadas com sucesso!')
+    return yield put(profilePermissionsSuccess())
   }
 }
 
@@ -97,13 +94,11 @@ export function* schoolPermissions({
       })
     })
 
-    const { ok: createOk, data } =
-      postResponse as ApiResponse<GenericApiResponse>
+    const { ok: createOk } = postResponse as ApiResponse<GenericApiResponse>
 
     yield put(loading(false))
 
     if (!createOk) {
-      console.log({ permissionsSchoolsData: data })
       toast.error('Algo deu errado no momento de atualizar restrições')
       return put(schoolPermissionsFailure())
     }
