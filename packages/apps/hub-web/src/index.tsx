@@ -15,8 +15,8 @@ import '~/services/getSiteControl/trackWidgetSubmit'
 
 window.mixpanel = mixpanel
 
-hotjarInit()
 mixPanelInit()
+hotjarInit()
 getSiteControlInit(history)
 
 window.newrelic?.addRelease('@hub', process.env.REACT_APP_VERSION as string)

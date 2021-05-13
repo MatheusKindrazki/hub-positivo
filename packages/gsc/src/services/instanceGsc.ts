@@ -17,8 +17,6 @@ function instanceGsc(): void {
     require('../scripts/gsc')
 
     onSubmitInstance()
-
-    console.info('GSC: Load da aplicação')
   })
 }
 
