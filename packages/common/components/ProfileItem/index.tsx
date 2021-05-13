@@ -28,7 +28,7 @@ interface CardProps extends CardPropsButton {
   icon: Icons
 }
 
-const CardBox: React.FC<CardProps> = ({ icon, title, onClick }) => {
+const ProfileItem: React.FC<CardProps> = ({ icon, title, onClick }) => {
   const hasIconProfile = profiles.includes(icon as string) ? icon : 'default'
 
   const IconType = iconTypes[hasIconProfile as Icons]
@@ -43,4 +43,4 @@ const CardBox: React.FC<CardProps> = ({ icon, title, onClick }) => {
   )
 }
 
-export default CardBox
+export default ProfileItem

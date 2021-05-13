@@ -28,6 +28,7 @@
     "test:coverage": "jest --collectCoverage -u --testResultsProcessor=jest-sonar-reporter --maxWorkers=2 && coverage-badges",
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
+    "build:easyauth": "npm run --prefix packages/apps/easy-auth build",
     "prebuild:web": "npm run --prefix packages/helpers build",
     "build:web": "npm run --prefix packages/apps/hub-web build",
     "postbuild:web": "node scripts/replace-in-files.js hub",
@@ -60,7 +61,7 @@
     "typescript": "4.2.4"
   },
   "dependencies": {
-    "@emotion/cache": "^11.1.3",
-    "@emotion/react": "^11.1.5"
+    "@emotion/cache": "^11",
+    "@emotion/react": "^11"
   }
 }

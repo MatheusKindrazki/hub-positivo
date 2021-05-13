@@ -7,7 +7,7 @@ import {
   Archive,
   Pedestrian,
   Browsers
-} from 'phosphor-react'
+} from '../Icons'
 
 const types = {
   default: Archive,

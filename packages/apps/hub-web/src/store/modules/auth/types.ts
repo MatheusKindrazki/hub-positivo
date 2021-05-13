@@ -28,6 +28,7 @@ export interface AuthApi {
   refresh_token: string
   expires_in: string
   token_type: string
+  error_description?: string
 }
 
 export interface SignInSuccess {
