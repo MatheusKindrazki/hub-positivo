@@ -17,6 +17,7 @@ const config: any = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
+    index: 'mcf-dev.html',
     historyApiFallback: false,
     hot: true,
     port: 3001
@@ -47,7 +48,8 @@ const config: any = {
     new Dotenv(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html'),
-      title: 'Hub Digital - Easy Auth'
+      title: 'Hub Digital - Easy Auth',
+      filename: 'mcf-dev.html'
     })
   ]
 }
