@@ -41,8 +41,6 @@ const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
     return hubThemeProfile
   }, [cssVarPrefix, prof])
 
-  console.log(renderTheme)
-
   return (
     <CacheProvider value={createCache({ key: cssKey })}>
       <ChakraProvider theme={renderTheme} resetCSS>
