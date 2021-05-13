@@ -3,8 +3,6 @@ import { ApiResponse } from 'apisauce'
 import { call, takeLatest, all, put, Payload } from 'redux-saga/effects'
 import { Action } from 'redux'
 
-import { loading } from '~/store/modules/global/actions'
-
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
@@ -31,8 +29,6 @@ import {
 } from './actions'
 
 export function* createSolution(action: Action): Generator {
-  yield put(loading(true))
-
   const response = yield call(() => {
     return api.post('Solucao', {
       ...action.payload.solution
@@ -40,21 +36,18 @@ export function* createSolution(action: Action): Generator {
   })
 
   const { ok, data } = response as ApiResponse<{ dados: { id: string } }>
-  yield put(loading(false))
 
   if (!ok || !data) {
     toast.error('Erro ao criar solução!')
-    console.log('retorno api na saga createSolution: ', data)
     return yield put(solutionPostFailure())
   }
+
   toast.success(`Solução criada com sucesso ${data?.dados.id}`)
   yield put(solutionPostSuccess(data?.dados.id))
   return yield data?.dados.id
 }
 
 export function* getSolutions(): Generator {
-  yield put(loading(true))
-
   const response = yield call(() => {
     return api.get(
       'Categoria/SolucoesPerfisRestricoes',
@@ -69,8 +62,6 @@ export function* getSolutions(): Generator {
 
   const { ok, data } = response as ApiResponse<Category[]>
 
-  yield put(loading(false))
-
   if (!ok) {
     toast.error('Erro ao buscar as produtos por categoria!')
     return yield put(solutionsGetFailure())
@@ -81,8 +72,6 @@ export function* getSolutions(): Generator {
 type SolutionPutPayload = Payload<PutSolutionData>
 
 export function* updateSolution({ payload }: SolutionPutPayload): Generator {
-  yield put(loading(true))
-
   const response = yield call(async () => {
     return api.put('/Solucao', {
       ...payload
@@ -90,7 +79,6 @@ export function* updateSolution({ payload }: SolutionPutPayload): Generator {
   })
 
   const { ok, data } = response as ApiResponse<SolutionPutResponse>
-  yield put(loading(false))
 
   if (!ok || !data?.sucesso) {
     toast.error(
@@ -103,8 +91,6 @@ export function* updateSolution({ payload }: SolutionPutPayload): Generator {
 }
 
 export function* deleteSolution(action: Action): Generator {
-  yield put(loading(true))
-
   const response = yield call(() => {
     return api.delete('Solucao/ExcluiCard', {
       idCard: action.payload.id
@@ -112,17 +98,13 @@ export function* deleteSolution(action: Action): Generator {
   })
   const { ok, data } = response as ApiResponse<DeleteResponse>
 
-  yield put(loading(false))
-
   if (data?.mensagem.includes('solução ativa')) {
     toast.error('Não é possível excluir uma solução ativa!')
-    console.log(response)
     return yield put(solutionDeleteFailure())
   }
 
   if (!ok || !data) {
     toast.error('Erro ao excluir solução!')
-    console.log(response)
     return yield put(solutionDeleteFailure())
   }
 
@@ -131,8 +113,6 @@ export function* deleteSolution(action: Action): Generator {
 }
 
 export function* restaureSolution(action: Action): Generator {
-  yield put(loading(true))
-
   const response = yield call(() => {
     return api.put(
       '/Solucao/RecuperaSolucaoDaLixeira',
@@ -147,8 +127,6 @@ export function* restaureSolution(action: Action): Generator {
 
   const { ok } = response as ApiResponse<SolutionPutResponse>
 
-  yield put(loading(false))
-
   if (!ok) {
     toast.error('Erro ao restaurar solução, tente novamente!')
     return yield put(solutionRestaureFailure())
@@ -158,8 +136,6 @@ export function* restaureSolution(action: Action): Generator {
 }
 
 export function* getExcludedSolutions(): Generator {
-  yield put(loading(true))
-
   const response = yield call(() => {
     return api.get(
       'Categoria/SolucoesPerfisRestricoes',
@@ -172,7 +148,6 @@ export function* getExcludedSolutions(): Generator {
     )
   })
   const { ok, data } = response as ApiResponse<Category[]>
-  yield put(loading(false))
 
   if (!ok || !data) {
     toast.error('Erro ao buscar items da lixeira!')

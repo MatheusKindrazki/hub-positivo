@@ -19,8 +19,6 @@ export const Actions = {
 export function accessControlPostRequest(
   accessControlData: AccessControlPostData
 ): Action {
-  console.log('Access Control Submit Request: ', accessControlData)
-
   return {
     type: Actions.ACCESS_CONTROL_POST_REQUEST,
     payload: accessControlData
@@ -42,8 +40,6 @@ export function accessControlPostSuccess(): Action {
 export function accessControlPutRequest(
   accessControlData: AccessControlPutData
 ): Action {
-  console.log('Access Control Put Request: ', accessControlData)
-
   return {
     type: Actions.ACCESS_CONTROL_PUT_REQUEST,
     payload: accessControlData

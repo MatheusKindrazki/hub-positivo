@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 // import { solutionPutRequest } from '~/store/modules/solutions/actions'
 import { postAccessControlData } from '~/store/modules/accessControl/sagas'
-import { accessControlPostRequest } from '~/store/modules/accessControl/actions'
+import { accessControlPutRequest } from '~/store/modules/accessControl/actions'
 
 import { toast } from '@psdhub/common/utils'
 import {
@@ -19,7 +19,7 @@ import {
 } from '@psdhub/common/components/Form'
 import Dropzone from '@psdhub/common/components/Dropzone'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
-import { Box, Text, Stack, Button } from '@psdhub/common/components'
+import { Box, Text, Stack, Button, BarLoader } from '@psdhub/common/components'
 import api from '@psdhub/api'
 
 import history from '~/services/history'
@@ -42,14 +42,12 @@ const UpdateSolution: React.FC = () => {
 
   const dispatch = useDispatch()
 
-  const { loading: alterLoading } = useSelector(
-    (state: Store.State) => state.user
-  )
   const { data: categoryArr } = useSelector(
     (state: Store.State) => state.solutions
   )
   const { categories } = useSelector((state: Store.State) => state.category)
   const { schools } = useSelector((state: Store.State) => state.school)
+  const { loading } = useSelector((state: Store.State) => state.global)
 
   const categoryOptions = createOptions(categories)
   const schoolOptions = createOptions(schools)
@@ -103,7 +101,7 @@ const UpdateSolution: React.FC = () => {
         data.id = solution?.solution.id
         data.slug = solution?.solution.slug
 
-        return dispatch(accessControlPostRequest(postAccessControlData))
+        return dispatch(accessControlPutRequest(postAccessControlData))
       } catch (err) {
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)
@@ -122,125 +120,131 @@ const UpdateSolution: React.FC = () => {
   }, [])
 
   return (
-    <Box p={['4', '6']} mt={['0', '4']} w="100%">
-      <Breadcrumbs
-        data={[
-          { title: 'Controle de Acessos', href: '/#/controle-de-acessos' },
-          { title: 'Editar Solução' }
-        ]}
-      />
+    <>
+      <BarLoader width="100%" height="0.25rem" loading={loading} />
+      <Box p={['4', '6']} mt={['0', '4']} w="100%">
+        <Breadcrumbs
+          data={[
+            { title: 'Controle de Acessos', href: '/#/controle-de-acessos' },
+            { title: 'Editar Solução' }
+          ]}
+        />
 
-      <Box w={['100%', '45%']} m="auto" mt="12">
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <Box d="flex" flexDir="column" mb="6">
-            <Input
-              mb="5"
-              label="Titulo"
-              name="nome"
-              backgroundColor="white"
-              placeholder="Digite aqui o título da solução"
-            />
+        <Box w={['100%', '45%']} m="auto" mt="12">
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <Box d="flex" flexDir="column" mb="6">
+              <Input
+                mb="5"
+                label="Titulo"
+                name="nome"
+                backgroundColor="white"
+                placeholder="Digite aqui o título da solução"
+              />
 
-            <Input
-              mb="5"
-              label="Descricao"
-              name="descricao"
-              backgroundColor="white"
-              placeholder="Digite uma breve descrição para ajudar os usuários a entenderem a função desta solução"
-            />
+              <Input
+                mb="5"
+                label="Descricao"
+                name="descricao"
+                backgroundColor="white"
+                placeholder="Digite uma breve descrição para ajudar os usuários a entenderem a função desta solução"
+              />
 
-            <Input
-              label="Link"
-              name="link"
-              backgroundColor="white"
-              placeholder="Insira o Link de acesso a solução"
-            />
-          </Box>
+              <Input
+                label="Link"
+                name="link"
+                backgroundColor="white"
+                placeholder="Insira o Link de acesso a solução"
+              />
+            </Box>
 
-          <Box>
-            <Text color="blue.500">Ícone</Text>
-            <Dropzone ref={dropRef} />
-          </Box>
+            <Box>
+              <Text color="blue.500">Ícone</Text>
+              <Dropzone ref={dropRef} />
+            </Box>
 
-          <Stack
-            direction={['column', 'row']}
-            wrap="wrap"
-            justifyContent="space-between"
-            mt="5"
-          >
-            {selects(categoryOptions, schoolOptions).map(select => {
-              return (
-                <Box
-                  ml="0px"
-                  key={select.name}
-                  w={select.name === 'schools' ? '100%' : '48.5%'}
-                >
-                  <Select
-                    ml="0"
-                    mb="4"
-                    name={select.name}
-                    options={select.options}
-                    label={select.label}
-                    variant="secondary"
-                  />
-                </Box>
-              )
-            })}
-          </Stack>
-
-          <Box
-            mt="9"
-            flexDir={['row', 'row-reverse']}
-            flexWrap={['wrap', 'nowrap']}
-            d="flex"
-            w="100%"
-            justifyContent={['space-between', 'flex-start']}
-          >
-            <FormButton
-              flexGrow={[2, 1]}
-              height="14"
-              m="0"
-              mb={['3', '0']}
-              marginLeft={['0', '3']}
-              maxWidth={['100%', '32']}
-              fontWeight="500"
-              textTransform="uppercase"
-              colorScheme="blue"
-              isLoading={alterLoading}
+            <Stack
+              direction={['column', 'row']}
+              wrap="wrap"
+              justifyContent="space-between"
+              mt="5"
             >
-              Adicionar
-            </FormButton>
-            <Button
-              borderColor="gray.500"
-              height="14"
-              width={['48.4%', '32']}
-              variant="outline"
-              fontWeight="500"
-              textTransform="uppercase"
-              color="gray"
-              onClick={() => history.push('/controle-de-acessos')}
+              {selects(categoryOptions, schoolOptions).map(select => {
+                return (
+                  <Box
+                    ml="0px"
+                    key={select.name}
+                    w={select.name === 'schools' ? '100%' : '48.5%'}
+                  >
+                    <Select
+                      ml="0"
+                      mb="4"
+                      name={select.name}
+                      options={select.options}
+                      label={select.label}
+                      variant="secondary"
+                    />
+                  </Box>
+                )
+              })}
+            </Stack>
+
+            <Box
+              mt="9"
+              flexDir={['row', 'row-reverse']}
+              flexWrap={['wrap', 'nowrap']}
+              d="flex"
+              w="100%"
+              justifyContent={['space-between', 'flex-start']}
             >
-              Cancelar
-            </Button>
-            <Button
-              ml="8px"
-              onClick={openModal}
-              height="14"
-              width={['48.4%', '28']}
-              variant="outline"
-              fontWeight="500"
-              textTransform="uppercase"
-              colorScheme="red"
-              color="red"
-              marginRight={['0', 'auto']}
-            >
-              Excluir
-            </Button>
-          </Box>
-        </Form>
+              <FormButton
+                flexGrow={[2, 1]}
+                height="14"
+                m="0"
+                mb={['3', '0']}
+                marginLeft={['0', '3']}
+                maxWidth={['100%', '32']}
+                fontWeight="500"
+                textTransform="uppercase"
+                colorScheme="blue"
+                isLoading={loading}
+              >
+                Adicionar
+              </FormButton>
+              <Button
+                borderColor="gray.500"
+                height="14"
+                width={['48.4%', '32']}
+                variant="outline"
+                fontWeight="500"
+                textTransform="uppercase"
+                color="gray"
+                onClick={() => history.push('/controle-de-acessos')}
+              >
+                Cancelar
+              </Button>
+              <Button
+                ml="8px"
+                onClick={openModal}
+                height="14"
+                width={['48.4%', '28']}
+                variant="outline"
+                fontWeight="500"
+                textTransform="uppercase"
+                colorScheme="red"
+                color="red"
+                marginRight={['0', 'auto']}
+              >
+                Excluir
+              </Button>
+            </Box>
+          </Form>
+        </Box>
+        <ModalDeleteSolution
+          ref={modalRef}
+          solutionId={solution?.solution.id}
+        />
       </Box>
-      <ModalDeleteSolution ref={modalRef} solutionId={solution?.solution.id} />
-    </Box>
+    </>
   )
 }
 

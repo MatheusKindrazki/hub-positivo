@@ -6,7 +6,7 @@ export type SchoolPermissions = {
   create: {
     idSolucao: string
     idsEscolas: string[]
-    restricao: 'Ocultar' | 'Exibir'
+    restricao?: 'Ocultar' | 'Exibir'
   }
 }
 

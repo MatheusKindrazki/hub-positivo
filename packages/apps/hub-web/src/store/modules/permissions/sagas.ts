@@ -2,8 +2,6 @@ import { ApiResponse } from 'apisauce'
 
 import { call, takeLatest, all, put, Payload } from 'redux-saga/effects'
 
-import { loading } from '~/store/modules/global/actions'
-
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
@@ -15,8 +13,8 @@ import {
 import {
   Actions,
   profilePermissionsSuccess,
-  schoolPermissionsSuccess,
   profilePermissionsFailure,
+  schoolPermissionsSuccess,
   schoolPermissionsFailure
 } from './actions'
 
@@ -25,8 +23,14 @@ type UpdateProfilePayload = Payload<ProfilePermissions>
 export function* profilePermissions({
   payload
 }: UpdateProfilePayload): Generator {
-  console.log('profilePermissions', payload)
   const { create, remove } = payload
+
+  if (
+    !remove.IdsPerfisNiveisEnsino?.length &&
+    !create.IdsPerfisNiveisEnsino?.length
+  ) {
+    return
+  }
 
   if (remove.IdsPerfisNiveisEnsino?.length) {
     const removeResponse = yield call(() => {
@@ -53,9 +57,10 @@ export function* profilePermissions({
       toast.error('Erro ao atualizar permissões de perfil')
       return put(profilePermissionsFailure())
     }
-    toast.success('Permissoes de perfil atualizadas com sucesso!')
-    return yield put(profilePermissionsSuccess())
   }
+
+  toast.success('Permissoes de perfil atualizadas com sucesso!')
+  return put(profilePermissionsSuccess())
 }
 
 type SchoolPermissionsPayload = Payload<SchoolPermissions>
@@ -65,16 +70,15 @@ export function* schoolPermissions({
 }: SchoolPermissionsPayload): Generator {
   const { create, remove } = payload
 
-  // Remove permissoes interrompendo o fluxo caso haja algum erro
-  yield put(loading(true))
+  if (!remove.idsEscolas?.length && !create.idsEscolas?.length) return
 
+  // Remove permissoes interrompendo o fluxo caso haja algum erro
   if (remove.idsEscolas?.length) {
     const deleteResponse = yield call(() => {
       return api.delete('Solucao/Restricao', {}, { data: remove })
     })
 
     const { ok: removeOk } = deleteResponse as ApiResponse<GenericApiResponse>
-    yield put(loading(false))
 
     if (!removeOk) {
       toast.error('Algo deu errado no momento de atualizar permissões')
@@ -85,8 +89,6 @@ export function* schoolPermissions({
   }
 
   // Cria permissoes interrompendo o fluxo caso haja algum erro
-  yield put(loading(true))
-
   if (create.idsEscolas?.length) {
     const postResponse = yield call(() => {
       return api.post('Solucao/Restricao', {
@@ -94,17 +96,20 @@ export function* schoolPermissions({
       })
     })
 
-    const { ok: createOk } = postResponse as ApiResponse<GenericApiResponse>
-
-    yield put(loading(false))
-
+    const { ok: createOk, data } = postResponse as ApiResponse<any>
+    console.log({ data }, 'permissionData')
     if (!createOk) {
-      toast.error('Algo deu errado no momento de atualizar restrições')
+      data?.dados?.forEach((e: any) => {
+        console.log({ e })
+        toast.error(e.message)
+      })
+      // toast.error('Algo deu errado no momento de atualizar restrições')
       return put(schoolPermissionsFailure())
     }
-    toast.success('Restrições atualizadas com sucesso')
-    return put(schoolPermissionsSuccess())
   }
+
+  toast.success('Restrições atualizadas com sucesso')
+  return put(schoolPermissionsSuccess())
 }
 
 export default all([
