@@ -11,13 +11,18 @@ import ThemeContext from './context'
 import { cssKey } from './config'
 import GlobalStyles from '../styles/global'
 import profileColors, { VariantsProps } from '../styles/colors'
-import { theme as HubTheme } from '../styles'
+import { theme as HubTheme, Theme } from '../styles'
 
 interface ThemeProps {
   cssVarPrefix?: string
+  theme?: Partial<Theme>
 }
 
-const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
+const ThemeContainer: React.FC<ThemeProps> = ({
+  children,
+  theme,
+  cssVarPrefix
+}) => {
   const [prof, setProfile] = useState<VariantsProps>('default')
   const context = useContext(ThemeContext)
 
@@ -43,8 +48,8 @@ const ThemeContainer: React.FC<ThemeProps> = ({ children, cssVarPrefix }) => {
 
   return (
     <CacheProvider value={createCache({ key: cssKey })}>
-      <ChakraProvider theme={renderTheme} resetCSS>
-        <StyledProvider theme={renderTheme as any}>
+      <ChakraProvider theme={{ ...renderTheme, ...theme }} resetCSS>
+        <StyledProvider theme={{ ...renderTheme, ...theme }}>
           <CSSReset />
           <GlobalStyles />
           {children}

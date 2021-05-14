@@ -1,7 +1,7 @@
 import { extendTheme, Theme } from '@chakra-ui/react'
 
 export default (prefix?: string): Theme => {
-  return extendTheme({
+  return extendTheme<Theme>({
     config: {
       cssVarPrefix: prefix || 'generic-hub-prefix',
       initialColorMode: 'light',

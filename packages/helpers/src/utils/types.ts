@@ -9,6 +9,7 @@ export interface SendInfos {
       class: string
     }
     profile: string
+    profileTheme: string
   }
 
   user_info: {
