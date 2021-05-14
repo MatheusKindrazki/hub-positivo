@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react'
 
+import { generate } from 'randomstring'
+
 import { postInformations } from '@psdhub/helpers'
 import { Box } from '@psdhub/common/components'
 
@@ -43,11 +45,20 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
     })
   }, [])
 
+  const hashRender = useMemo(() => {
+    return generate(15)
+  }, [])
+
   return (
     <>
       <Box id={mcf?.element_id} />
       {mcf?.scripts?.map((s, i) => (
-        <LoadModules handleLoad={handleNumberOfScriptsLoaded} key={i} {...s} />
+        <LoadModules
+          handleLoad={handleNumberOfScriptsLoaded}
+          hash={hashRender}
+          key={i}
+          {...s}
+        />
       ))}
     </>
   )

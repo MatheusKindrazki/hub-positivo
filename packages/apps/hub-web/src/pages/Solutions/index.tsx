@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -45,4 +45,4 @@ const Solutions: React.FC = () => {
   )
 }
 
-export default Solutions
+export default memo(Solutions)
