@@ -19,7 +19,7 @@ const searchLevels = ['PROFESSOR', 'ALUNO']
 async function getEducationalStage(): Promise<string> {
   const { level } = store.getState().educationalStage
 
-  await delay(500)
+  await delay(200)
 
   if (!level) {
     return await getEducationalStage()

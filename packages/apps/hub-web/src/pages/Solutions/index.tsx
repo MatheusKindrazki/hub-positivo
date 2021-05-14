@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -25,8 +25,9 @@ const Solutions: React.FC = () => {
     documentTitle(productName || 'Carregando Solução')
   }, [productData, productName])
 
-  if (!productData || !window.firstCallMCF) {
+  if (!productData && !window.firstCallMCF) {
     window.firstCallMCF = true
+
     getCardInformation()
   }
 
@@ -44,4 +45,4 @@ const Solutions: React.FC = () => {
   )
 }
 
-export default memo(Solutions)
+export default Solutions

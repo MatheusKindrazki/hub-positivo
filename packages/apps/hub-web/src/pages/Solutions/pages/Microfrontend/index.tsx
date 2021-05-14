@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo, useMemo, useCallback } from 'react'
+import React, { useEffect, useState, useMemo, useCallback } from 'react'
 
 import { postInformations } from '@psdhub/helpers'
 import { Box } from '@psdhub/common/components'
@@ -53,4 +53,4 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   )
 }
 
-export default memo(MicrofrontendSolution)
+export default MicrofrontendSolution
