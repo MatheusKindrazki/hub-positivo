@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react'
+import React, { useEffect, useState, useMemo, memo, useCallback } from 'react'
 
 import { generate } from 'randomstring'
 
@@ -46,7 +46,7 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   }, [])
 
   const hashRender = useMemo(() => {
-    return generate(15)
+    return generate(20)
   }, [])
 
   return (
@@ -64,4 +64,4 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   )
 }
 
-export default MicrofrontendSolution
+export default memo(MicrofrontendSolution)
