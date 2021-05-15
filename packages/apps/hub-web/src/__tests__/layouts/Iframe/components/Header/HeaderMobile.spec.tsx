@@ -4,9 +4,9 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { CardProduct } from '~/store/modules/products/types'
 
-import { cards } from '@hub/test-utils/__mocks__'
-import { render, fireEvent, act } from '@hub/test-utils'
-import * as drawer from '@hub/common/components/Drawer'
+import { cards } from '@psdhub/test-utils/__mocks__'
+import { render, fireEvent, act } from '@psdhub/test-utils'
+import * as drawer from '@psdhub/common/components/Drawer'
 
 import HeaderMobile from '~/layouts/Iframe/components/Header/HeaderMobile'
 import cardsMock from '~/../../../test-utils/__mocks__/cards.mock'
@@ -44,13 +44,10 @@ describe('Mobile Header`s layout should work properly', () => {
     fireEvent.click(menuButton)
 
     cards.forEach(({ nome: tituloDasSolucoes, solucoes }: CardProduct) => {
-      const solutionsTitle = getByText(tituloDasSolucoes)
-      expect(solutionsTitle).toBeInTheDocument()
+      expect(getByText(tituloDasSolucoes)).toBeInTheDocument()
 
       solucoes.forEach(({ nome }) => {
-        const name = getByText(nome)
-
-        expect(name).toBeInTheDocument()
+        expect(getByText(nome)).toBeInTheDocument()
       })
     })
   })
@@ -91,8 +88,9 @@ describe('Mobile Header`s layout should work properly', () => {
     const { menuButton, queryByPlaceholderText } = setup(undefined)
     fireEvent.click(menuButton)
 
-    const input = queryByPlaceholderText('Buscar soluções', { exact: false })
-    expect(input).toBeInTheDocument()
+    expect(
+      queryByPlaceholderText('Buscar soluções', { exact: false })
+    ).toBeInTheDocument()
   })
 
   it('Should filter the cards correctly', async () => {

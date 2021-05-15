@@ -1,5 +1,6 @@
-import prepareEducationalStage from '~/utils/prepareEducationalStage'
-import { ContentResponse } from '~/utils/prepareEducationalStage'
+import prepareEducationalStage, {
+  ContentResponse
+} from '~/utils/prepareEducationalStage'
 
 const mockedContentResponse: ContentResponse = {
   ativo: true,

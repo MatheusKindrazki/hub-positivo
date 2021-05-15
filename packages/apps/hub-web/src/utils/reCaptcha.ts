@@ -2,7 +2,7 @@ import lscache from 'lscache'
 import { format } from 'date-fns'
 import { ApiResponse } from 'apisauce'
 
-import api from '@hub/api'
+import api from '@psdhub/api'
 
 const dateFormat = 'dd MM yyyy, H:mm:ss'
 

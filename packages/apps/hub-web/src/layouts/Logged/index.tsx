@@ -4,10 +4,10 @@ import { debounce } from 'lodash'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { postTourViewed, openTour } from '~/store/modules/tour/actions'
+import { openTour, postTourViewed } from '~/store/modules/tour/actions'
 
-import Tour from '@hub/common/components/Tour'
-import { BarLoader } from '@hub/common/components'
+import Tour from '@psdhub/common/components/Tour'
+import { BarLoader } from '@psdhub/common/components'
 
 import setUserProperties from '~/services/mixpanel/setProperties'
 
@@ -16,7 +16,7 @@ import Header from '~/components/Header'
 
 import { Container } from './styles'
 
-const dispatchEvent = debounce(() => setUserProperties(), 1500)
+const dispatchEvent = debounce(() => setUserProperties(), 1000)
 
 const Dashboard: React.FC = ({ children }) => {
   const dispatch = useDispatch()
@@ -38,7 +38,7 @@ const Dashboard: React.FC = ({ children }) => {
   return (
     <Container>
       <ModalNoClass />
-      <BarLoader width="100%" height="4px" loading={loading} />
+      <BarLoader height="4px" loading={loading} />
       {steps?.length && (
         <Tour onClosed={handleClosedTour} open={open} steps={steps} />
       )}

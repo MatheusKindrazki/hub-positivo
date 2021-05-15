@@ -4,7 +4,7 @@ import * as reactDom from 'react-router-dom'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent } from '@hub/test-utils'
+import { render, CustomState, fireEvent } from '@psdhub/test-utils'
 
 import ForgotFail from '~/pages/Auth/ForgotFail'
 
@@ -36,13 +36,13 @@ describe('Expired Token page should work properly', () => {
 
   jest.spyOn(reactDom, 'useHistory').mockReturnValue(history as any)
 
-  const CUSTOM_STATE: CustomState = {
+  const CUSTOM_STATE: CustomState<Store.State> = {
     forgotPassword: {
       sendViewToken: true
     }
   }
 
-  const setup = (rest: CustomState | object) => {
+  const setup = (rest: CustomState<Store.State> | object) => {
     const utils = render(<ForgotFail />, {
       store,
       reducers: ['forgotPassword'],
@@ -78,9 +78,6 @@ describe('Expired Token page should work properly', () => {
     const { getByText } = setup(CUSTOM_STATE)
 
     const goBackToLogin = getByText(/Voltar para o login/i)
-
-    expect(goBackToLogin).toBeInTheDocument()
-
     fireEvent.click(goBackToLogin)
     jest.runAllTimers()
 

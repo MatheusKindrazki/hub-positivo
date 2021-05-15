@@ -3,7 +3,7 @@ import { runSaga } from 'redux-saga'
 import * as sagas from '~/store/modules/myClasses/sagas'
 import * as actions from '~/store/modules/myClasses/actions'
 
-import { toast } from '@hub/common/utils'
+import { toast } from '@psdhub/common/utils'
 
 import * as eem from '~/services/eemConnect'
 

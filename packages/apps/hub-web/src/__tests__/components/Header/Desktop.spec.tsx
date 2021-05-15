@@ -1,10 +1,10 @@
 import React from 'react'
 
-import reactEvent from 'react-select-event'
+import { openMenu } from 'react-select-event'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent, waitFor } from '@hub/test-utils'
+import { render, CustomState, fireEvent, waitFor } from '@psdhub/test-utils'
 
 import history from '~/services/history'
 
@@ -33,7 +33,9 @@ describe('Desktop Header component', () => {
   })
   jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
 
-  const setup = (CUSTOM_STATE = { ...userState } as CustomState) => {
+  const setup = (
+    CUSTOM_STATE = { ...userState } as CustomState<Store.State>
+  ) => {
     const openModalPass = jest.fn()
     const wrapper = render(<Desktop openModalPass={openModalPass} />, {
       reducers: ['tour', 'user', 'profile'],
@@ -60,7 +62,7 @@ describe('Desktop Header component', () => {
     setRole
   } = useHeaderReturn
 
-  it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked', () => {
+  it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked', async () => {
     const { getByText, storeUtils } = setup({
       tour: {
         steps: [
@@ -70,7 +72,6 @@ describe('Desktop Header component', () => {
     })
 
     const tour = getByText(/Fazer tour/i)
-    expect(tour).toBeInTheDocument()
 
     fireEvent.click(tour)
 
@@ -89,34 +90,33 @@ describe('Desktop Header component', () => {
   it('Should redirect to `/minhas-turmas`when `Minhas turmas` button is clicked', async () => {
     const spyPush = jest.spyOn(history, 'push')
 
-    const { popOverTrigger, findByText } = setup({
+    const { getByTestId, findByText } = setup({
       profile: { guid: 'PROFESSOR' }
     })
 
-    fireEvent.click(popOverTrigger)
+    fireEvent.click(getByTestId('hub-popover-trigger'))
 
     const classes = await findByText(/Minhas turmas/i)
-    expect(classes).toBeInTheDocument()
 
     fireEvent.click(classes)
     expect(spyPush).toHaveBeenCalledWith('/minhas-turmas')
   })
 
   it('Popover should be visible when header`s avatar is clicked', async () => {
-    const { popOverTrigger, popOverContent } = setup()
+    const { popOverTrigger, getByTestId } = setup()
 
-    expect(popOverContent).not.toBeVisible()
-    expect(popOverTrigger).toBeInTheDocument()
+    expect(getByTestId('hub-popover-content')).not.toBeVisible()
 
     fireEvent.click(popOverTrigger)
-    await waitFor(() => expect(popOverContent).toBeVisible())
+    await waitFor(() =>
+      expect(getByTestId('hub-popover-content')).toBeVisible()
+    )
   })
 
   it('Should have a button called `Estou com uma dúvida`', () => {
     const { getByText } = setup()
-    const helpButton = getByText(/Estou com uma dúvida/i)
 
-    expect(helpButton).toBeInTheDocument()
+    expect(getByText(/Estou com uma dúvida/i)).toBeInTheDocument()
   })
 
   it('Should dispatch an `@auth/SIGN_OUT` action when `Sair` is clicked', async () => {
@@ -163,10 +163,8 @@ describe('Desktop Header component', () => {
 
     fireEvent.mouseDown(school)
 
-    expect(school).toBeInTheDocument()
-    reactEvent.openMenu(school)
+    openMenu(school)
     const otherSchool = getByText(schoolList[0].label)
-    expect(otherSchool).toBeInTheDocument()
 
     fireEvent.click(otherSchool)
 
@@ -186,13 +184,11 @@ describe('Desktop Header component', () => {
     const selectedRole = await findByText(roleLabel)
     fireEvent.mouseDown(selectedRole)
 
-    expect(selectedRole).toBeInTheDocument()
-    reactEvent.openMenu(selectedRole)
+    openMenu(selectedRole)
 
     const coordenador = roleList[1]
 
     const otherRole = getByText(coordenador.name)
-    expect(otherRole).toBeInTheDocument()
 
     fireEvent.click(otherRole)
 

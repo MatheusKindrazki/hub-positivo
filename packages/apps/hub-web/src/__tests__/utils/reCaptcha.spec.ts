@@ -1,6 +1,6 @@
 import lscache from 'lscache'
 
-import api from '@hub/api'
+import api from '@psdhub/api'
 
 import {
   clearStrikes,
@@ -15,7 +15,7 @@ jest.mock('lscache', () => ({
   set: jest.fn()
 }))
 
-jest.mock('@hub/api')
+jest.mock('@psdhub/api')
 
 describe('Captcha for Login', () => {
   it('Should trigger the lib that removes the captcha cache', () => {

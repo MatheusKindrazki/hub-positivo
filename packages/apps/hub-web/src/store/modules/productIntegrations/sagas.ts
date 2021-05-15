@@ -6,7 +6,7 @@ import { CardProduct, Product } from '~/store/modules/products/types'
 import { productIntegration } from '~/store/modules/products/actions'
 import { store } from '~/store'
 
-import { apiMHUND, apiLivro } from '@hub/api'
+import { apiMHUND, apiLivro } from '@psdhub/api'
 
 import arvoreLivros from './mock.json'
 import { Actions } from './actions'

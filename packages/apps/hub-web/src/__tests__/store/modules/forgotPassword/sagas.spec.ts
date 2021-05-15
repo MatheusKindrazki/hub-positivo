@@ -5,8 +5,8 @@ import * as types from '~/store/modules/forgotPassword/types'
 import * as sagas from '~/store/modules/forgotPassword/sagas'
 import * as actions from '~/store/modules/forgotPassword/actions'
 
-import { toast } from '@hub/common/utils'
-import { apiEEMAuth } from '@hub/api'
+import { toast } from '@psdhub/common/utils'
+import { apiEEMAuth } from '@psdhub/api'
 
 import history from '~/services/history'
 

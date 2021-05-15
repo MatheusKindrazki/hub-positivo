@@ -1,53 +1,60 @@
 {
-  "name": "@hub/common",
-  "version": "1.7.0",
-  "description": "",
-  "author": "MatheusKindrazki",
+  "name": "@psdhub/common",
+  "version": "1.7.2",
+  "author": "matheuskindrazki",
+  "description": "PSD Hub Design Styles Kit",
   "license": "MIT",
-  "repository": "PSD/@hub/common",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
   "engines": {
-    "node": ">=10"
+    "node": "^10.12.0 || >=12.0.0"
   },
+  "scripts": {
+    "prebuild": "rm -rf build",
+    "build": "tsc -p .",
+    "postbuild": "cp package.json build"
+  },
+  "files": [
+    "components",
+    "hooks",
+    "layout",
+    "utils"
+  ],
   "peerDependencies": {
-    "@types/classnames": "^2.2.11",
-    "@types/styled-components": "^5.1.7",
     "classnames": "^2.2.6",
-    "react": "^17.0.1",
+    "react": "^16.13.1",
     "styled-components": "^5.2.1"
   },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
   "dependencies": {
-    "@chakra-ui/react": "^1.3.3",
-    "@emotion/react": "^11.1.5",
-    "@emotion/styled": "^11.1.5",
+    "@chakra-ui/react": "^1.6.1",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@types/react-collapse": "^5.0.0",
     "@unform/core": "^2.1.5",
-    "randomstring": "^1.1.5",
     "@unform/web": "^2.1.5",
-    "framer-motion": "^3.7.0",
+    "framer-motion": "^4",
     "phosphor-react": "^1.1.2",
     "polished": "^4.1.0",
-    "react": "^17.0.1",
+    "randomstring": "^1.1.5",
     "react-collapse": "^5.1.0",
-    "react-dom": "^17.0.1",
-    "react-select": "^4.1.0",
-    "react-spinners": "^0.10.4",
+    "react-select": "https://github.com/MatheusKindrazki/react-select-rewired/archive/refs/tags/1.0.0.tar.gz",
+    "react-spinners": "^0.10.6",
     "react-toastify": "^7.0.3",
     "reactour": "^1.18.0"
   },
   "devDependencies": {
-    "@hub/test-utils": "*",
+    "@psdhub/test-utils": "*",
     "@types/classnames": "^2.2.11",
     "@types/randomstring": "^1.1.6",
     "@types/node": "^14.14.25",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
-    "@types/react-select": "^4.0.13",
-    "@types/reactour": "^1.18.0"
-  },
-  "files": [
-    "dist"
-  ]
+    "@types/react-select": "^4.0.15",
+    "@types/reactour": "^1.18.0",
+    "react": "^17.0.1",
+    "typescript": "^4.2.4"
+  }
 }

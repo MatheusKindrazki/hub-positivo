@@ -14,7 +14,7 @@ import { AccessData } from '~/store/modules/auth/types'
 import { preparingUserData } from '~/store/modules/auth/actions'
 import { store } from '~/store'
 
-import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
+import { prepareRoles, prepareSchool } from '@psdhub/common/utils'
 
 import { ContextHeaderProps, SelectProps } from './types'
 

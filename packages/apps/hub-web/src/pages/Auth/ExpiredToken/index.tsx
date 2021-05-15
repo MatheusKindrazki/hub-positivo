@@ -2,8 +2,8 @@ import React from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { Button } from '@hub/common/components/Form'
-import { Box, Text } from '@hub/common/components'
+import { Button } from '@psdhub/common/components/Form'
+import { Box, Text } from '@psdhub/common/components'
 
 import history from '~/services/history'
 

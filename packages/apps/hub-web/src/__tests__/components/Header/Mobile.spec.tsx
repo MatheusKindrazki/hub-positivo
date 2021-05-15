@@ -1,23 +1,18 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
-import reactEvent from 'react-select-event'
+import { openMenu } from 'react-select-event'
 import * as reactRouter from 'react-router'
-import { renderHook } from '@testing-library/react-hooks'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent, act } from '@hub/test-utils'
-import * as drawer from '@hub/common/components/Drawer'
-
-import { UseDisclosureProps } from '@chakra-ui/react'
+import { render, CustomState, fireEvent, act } from '@psdhub/test-utils'
+import ThemeContainer from '@psdhub/common/layout/Provider'
+import * as drawer from '@psdhub/common/components/Drawer'
 
 import history from '~/services/history'
 
 import * as header from '~/components/Header/context'
-import MobileMenu, {
-  RefMenuProps,
-  MenuButton
-} from '~/components/Header/components/Mobile'
+import MobileMenu, { MenuButton } from '~/components/Header/components/Mobile'
 
 import {
   useHeaderReturn,
@@ -27,22 +22,17 @@ import {
 
 jest.mock('mixpanel-browser')
 
+jest.mock('~/components/Header/context', () => ({
+  useHeader: jest.fn(),
+  HeaderProvider: jest.fn()
+}))
+
 jest.mock('~/services/history', () => ({
   push: jest.fn()
 }))
 
-jest.mock('~/components/Header/context', () => {
-  const rest = jest.requireActual('~/components/Header/context')
-  return {
-    ...rest,
-    useHeader: jest.fn()
-  }
-})
-
 jest.mock('react-router', () => {
-  const rest = jest.requireActual('react-router')
   return {
-    ...rest,
     useHistory: jest.fn(() => ({
       location: {
         pathname: '/'
@@ -52,22 +42,11 @@ jest.mock('react-router', () => {
 })
 
 describe('Mobile Header component ', () => {
-  afterEach(() => {
-    jest.clearAllMocks()
-  })
-
   jest.spyOn(header, 'useHeader').mockReturnValue(useHeaderReturn)
-
   const spyPush = jest.spyOn(history, 'push')
 
-  const spyUseDisclosure = (alterations: Partial<UseDisclosureProps>): void => {
-    const {
-      result: { current }
-    } = renderHook(() => drawer.useDisclosure())
-    jest.spyOn(drawer, 'useDisclosure').mockReturnValue({
-      ...current,
-      ...alterations
-    })
+  const spyUseDisclosure = (alterations: any): void => {
+    jest.spyOn(drawer, 'useDisclosure').mockReturnValue(alterations as any)
   }
 
   const useDisclosureFunctions = {
@@ -85,27 +64,29 @@ describe('Mobile Header component ', () => {
     setRole
   } = useHeaderReturn
 
-  beforeEach(() => {
-    spyUseDisclosure(useDisclosureFunctions)
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
-  const setup = (CUSTOM_STATE = { ...userState } as CustomState) => {
-    const {
-      result: { current: ref }
-    } = renderHook(() => useRef<RefMenuProps>(null))
+  const ref = {
+    current: {
+      openMenu: jest.fn()
+    }
+  }
 
-    const openModalPass = jest.fn()
-
-    const handleMenuClick = jest.fn(() => {
-      act(() => {
-        ref.current?.openMenu()
-      })
+  const handleMenuClick = jest.fn(() => {
+    act(() => {
+      ref.current?.openMenu()
     })
+  })
 
+  const setup = (
+    CUSTOM_STATE = { ...userState } as CustomState<Store.State>
+  ) => {
     const wrapper = render(
       <>
         <MenuButton onClick={handleMenuClick} />
-        <MobileMenu openModalPass={openModalPass} ref={ref} />
+        <MobileMenu openModalPass={jest.fn()} ref={ref} />
       </>,
       {
         reducers: ['tour', 'user', 'profile'],
@@ -114,23 +95,45 @@ describe('Mobile Header component ', () => {
       }
     )
 
-    const [menuButton] = wrapper.getAllByRole('button')
-    return { ...wrapper, handleMenuClick, menuButton }
+    return { ...wrapper, handleMenuClick }
   }
 
-  it('Should have a button called `Estou com uma dúvida`', () => {
-    const { getByText } = setup()
-    const helpButton = getByText(/Estou com uma dúvida/i)
+  it('Should call OpenModalPass when `alterar minha senha` is clicked', () => {
+    spyUseDisclosure(useDisclosureFunctions)
 
-    expect(helpButton).toBeInTheDocument()
+    const openModalPass = jest.fn()
+
+    const { getByText } = render(
+      <ThemeContainer>
+        <MenuButton onClick={handleMenuClick} />
+        <MobileMenu openModalPass={openModalPass} ref={ref} />
+      </ThemeContainer>,
+      {
+        reducers: ['tour', 'user', 'profile'],
+        store,
+        CUSTOM_STATE: { user: userState }
+      }
+    )
+    const alterPass = getByText(/Alterar minha senha/i)
+
+    fireEvent.click(alterPass)
+
+    expect(openModalPass).toHaveBeenCalled()
+  })
+
+  it('Should have a button called `Estou com uma dúvida`', () => {
+    const { queryByText } = setup()
+    const helpButton = queryByText(/Estou com uma dúvida/i)
+
+    expect(helpButton).not.toBeNull()
   })
 
   it('openMenu should call onOpen when isOpen is false', () => {
     const onOpen = jest.fn()
     spyUseDisclosure({ onOpen, isOpen: false })
 
-    const { handleMenuClick, menuButton } = setup()
-
+    const { handleMenuClick, getAllByRole } = setup()
+    const [menuButton] = getAllByRole('button')
     fireEvent.click(menuButton)
 
     expect(handleMenuClick).toHaveBeenCalledTimes(1)
@@ -139,8 +142,10 @@ describe('Mobile Header component ', () => {
   })
 
   it('openMenu should call onClose when isOpen is true', () => {
-    const { handleMenuClick, menuButton } = setup()
+    spyUseDisclosure(useDisclosureFunctions)
 
+    const { handleMenuClick, getAllByRole } = setup()
+    const [menuButton] = getAllByRole('button')
     fireEvent.click(menuButton)
 
     expect(handleMenuClick).toHaveBeenCalledTimes(1)
@@ -151,7 +156,6 @@ describe('Mobile Header component ', () => {
     const { getByText, storeUtils } = setup()
 
     const exitButton = getByText(/Sair/i)
-    expect(exitButton).toBeInTheDocument()
 
     fireEvent.click(exitButton)
 
@@ -194,8 +198,6 @@ describe('Mobile Header component ', () => {
     const { getByText } = setup(profileState)
     const classesButton = getByText(/Minhas turmas/i)
 
-    expect(classesButton).toBeInTheDocument()
-
     fireEvent.click(classesButton)
     expect(spyPush).toHaveBeenCalledWith('/minhas-turmas')
   })
@@ -219,16 +221,17 @@ describe('Mobile Header component ', () => {
     expect(useDisclosureFunctions.onClose).toHaveBeenCalledTimes(1)
   })
 
-  it('Should change the `school` on selector when other `school` is triggered', async () => {
-    const { getByText, findByText } = setup()
+  it('Should change the `school` on selector when other `school` is triggered', () => {
+    spyUseDisclosure(useDisclosureFunctions)
+
+    const { getByText } = setup()
 
     const schoolLabel = defaultValue.school?.label as string
-    const school = await findByText(schoolLabel)
+    const school = getByText(schoolLabel)
 
     fireEvent.mouseDown(school)
 
-    expect(school).toBeInTheDocument()
-    reactEvent.openMenu(school)
+    openMenu(school)
     const otherSchool = getByText(schoolList[0].label)
     expect(otherSchool).toBeInTheDocument()
 
@@ -241,19 +244,17 @@ describe('Mobile Header component ', () => {
     })
   })
 
-  it('Should change the `role` on selector when other `role` is triggered', async () => {
-    const { getByText, findByText } = setup()
+  it('Should change the `role` on selector when other `role` is triggered', () => {
+    const { getByText } = setup()
     const roleLabel = defaultValue.role?.label as string
-    const selectedRole = await findByText(roleLabel)
+    const selectedRole = getByText(roleLabel)
     fireEvent.mouseDown(selectedRole)
 
-    expect(selectedRole).toBeInTheDocument()
-    reactEvent.openMenu(selectedRole)
+    openMenu(selectedRole)
 
     const coordenador = roleList[1]
 
     const otherRole = getByText(coordenador.name)
-    expect(otherRole).toBeInTheDocument()
 
     fireEvent.click(otherRole)
 
@@ -263,26 +264,23 @@ describe('Mobile Header component ', () => {
   it.skip('Should change `Home` button color when pathname is /minhas-turmas', async () => {
     jest.spyOn(reactRouter, 'useHistory').mockReturnValue({
       location: {
-        pathname: '/minhas-turmas'
+        pathname: '/'
       }
     } as any)
     const { getByText } = setup(profileState)
-
     const homeButton = getByText(/Home/i)
-
-    expect(homeButton).toHaveStyle('color: rgb(122, 122, 122)')
+    expect(homeButton).toMatchSnapshot()
   })
 
   it.skip('Should change `Minhas turmas` button color when pathname is `/`', () => {
     jest.spyOn(reactRouter, 'useHistory').mockReturnValue({
       location: {
-        pathname: '/'
+        pathname: '/minhas-turmas'
       }
     } as any)
 
     const { getByText } = setup(profileState)
-    const classesButton = getByText(/Minhas turmas/i)
-
-    expect(classesButton).toHaveStyle('color: rgb(122, 122, 122)')
+    const classes = getByText(/Minhas turmas/i)
+    expect(classes).toMatchSnapshot()
   })
 })

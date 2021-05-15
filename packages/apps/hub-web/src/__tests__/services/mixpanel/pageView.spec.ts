@@ -7,7 +7,6 @@ import '~/services/mixpanel/pageView'
 jest.mock('mixpanel-browser', () => ({
   track: jest.fn()
 }))
-
 describe('testing if mixpanel page viewed functions work properly', () => {
   const pageViewedEvent = 'Page Viewed'
 
@@ -16,7 +15,7 @@ describe('testing if mixpanel page viewed functions work properly', () => {
 
   const pageViewedTestUtils = () => {
     const changedHubTitleEvent = (title: string | undefined) =>
-      new CustomEvent('@hub:title', {
+      new CustomEvent('@psdhub:title', {
         detail: title
       })
 
@@ -47,11 +46,8 @@ describe('testing if mixpanel page viewed functions work properly', () => {
   })
 
   it.skip('MixpanelPageView should dispatch Page Viewed event when application is loaded', () => {
-    const {
-      changedHubTitleEvent,
-      loadWindow,
-      documentLocationInfos
-    } = pageViewedTestUtils()
+    const { changedHubTitleEvent, loadWindow, documentLocationInfos } =
+      pageViewedTestUtils()
     loadWindow()
 
     const title = 'first title'

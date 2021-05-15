@@ -3,8 +3,8 @@ import React, { useContext } from 'react'
 import MatchMediaMock from 'jest-matchmedia-mock'
 import { renderHook } from '@testing-library/react-hooks'
 
-import { fireEvent, render } from '@hub/test-utils'
-import * as hooks from '@hub/common/hooks'
+import { fireEvent, render } from '@psdhub/test-utils'
+import * as hooks from '@psdhub/common/hooks'
 
 import context from '~/components/ModalSupport/context'
 import ModalSupport from '~/components/ModalSupport'

@@ -7,15 +7,17 @@
 <!-- Se possível, complete *todas* as seções conforme descrito. Não remova nenhuma seção. -->
 
 **Mudanças propostas**
+
 <!-- Descreva a mudança abaixo, incluindo justificativa e decisões de design -->
 
 <!-- Inclua "Bug # [número do bug]" se estiver corrigindo um problema existente -->
 
 **Contexto adicional**
+
 <!-- Adicione qualquer outro contexto ou capturas de tela sobre a solicitação de recurso aqui. -->
 
-
 **Check-list do Dev**
+
 <!-- Check list para branch de desenvolvimento. -->
 
 - [ ] Teste unitários, funcionais e ou E2E foram aplicados e abrangem 75%+ do código
@@ -27,6 +29,7 @@
 - [ ] Descrição detalhadas da PR (Adicione mídias como capturas de tela, gifs ou até mesmo pequenos videos)
 
 **Check-list do Aprovador**
+
 <!-- Check list para branch de desenvolvimento. -->
 
 - [ ] O código funciona? função e a lógica estão corretas.
@@ -38,6 +41,6 @@
 - [ ] Ele atende às diretrizes e guias de estilo proposto
 - [ ] Não existe código duplicado
 - [ ] Não existe algum código comentado ou desnecessário
-- [ ] Ñao existe odores de código, áreas cinzentas ou suscetíveis a bugs
+- [ ] Não existe odores de código, áreas cinzentas ou suscetíveis a bugs
 - [ ] O código é o mais modular possível
 - [ ] O código considera as falhas e não apenas o caminho feliz

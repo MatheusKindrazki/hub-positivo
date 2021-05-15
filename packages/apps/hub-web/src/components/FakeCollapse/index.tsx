@@ -3,9 +3,9 @@ import React, { useMemo } from 'react'
 import { Collapse as CollapseUI } from 'react-collapse'
 import classNames from 'classnames'
 
-import { useMediaQuery } from '@hub/common/hooks'
-import Skeleton from '@hub/common/components/Skeleton'
-import { Box, Heading, SimpleGrid } from '@hub/common/components'
+import { useMediaQuery } from '@psdhub/common/hooks'
+import Skeleton from '@psdhub/common/components/Skeleton'
+import { Box, Heading, SimpleGrid } from '@psdhub/common/components'
 
 import CollapseGlobal from './styles'
 

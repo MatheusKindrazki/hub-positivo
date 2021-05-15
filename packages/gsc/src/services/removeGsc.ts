@@ -1,4 +1,4 @@
-import delay from '@hub/common/utils/delay'
+import delay from '@psdhub/common/utils/delay'
 
 import closeModalsGsc from './closeModalGsc'
 

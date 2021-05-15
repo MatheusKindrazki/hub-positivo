@@ -8,16 +8,16 @@ import { useSelector, useDispatch } from 'react-redux'
 import { loading } from '~/store/modules/global/actions'
 import { preAuth } from '~/store/modules/authProduct/actions'
 
-import documentTitle from '@hub/common/utils/documentTitle'
-import createSlug from '@hub/common/utils/createSlug'
-import SearchInput from '@hub/common/components/Search'
+import documentTitle from '@psdhub/common/utils/documentTitle'
+import createSlug from '@psdhub/common/utils/createSlug'
+import SearchInput from '@psdhub/common/components/Search'
 import {
   Box,
   Heading,
   Welcome,
   Collapse,
   CardProduct
-} from '@hub/common/components'
+} from '@psdhub/common/components'
 
 import { toolOpened } from '~/services/mixpanel/toolOpened'
 
@@ -125,6 +125,7 @@ const Home: React.FC = () => {
       </Box>
       <Box as={Container} p="4" maxW="1400px" margin="0 auto">
         <SearchInput
+          placeholder="Buscar soluções"
           backgroundColor="white!important"
           onChange={handleSearch}
         />

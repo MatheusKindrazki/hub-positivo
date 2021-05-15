@@ -2,7 +2,7 @@ import React from 'react'
 
 import * as unform from '@unform/core'
 
-import { fireEvent, render } from '@hub/test-utils'
+import { fireEvent, render } from '@psdhub/test-utils'
 
 import { Form, Input, Button } from '../../components/Form'
 
@@ -23,14 +23,14 @@ describe('Form works properly', () => {
         <Button />
       </Form>
     )
-    const { getByText, getByTestId } = wrapper
+    const { queryByText, getByTestId } = wrapper
 
-    const iconeEsquerdo = getByText('icone teste esquerda')
-    const iconeDireito = getByText('icone teste direita')
+    const iconeEsquerdo = queryByText('icone teste esquerda')
+    const iconeDireito = queryByText('icone teste direita')
 
     const formInput = getByTestId('form-input')
-    expect(iconeEsquerdo).toBeInTheDocument()
-    expect(iconeDireito).toBeInTheDocument()
+    expect(iconeEsquerdo).not.toBeNull()
+    expect(iconeDireito).not.toBeNull()
 
     // testar se componente muda a cor da borda quando focado e desfocado
     formInput.focus()
@@ -60,9 +60,7 @@ describe('Form works properly', () => {
       </Form>
     )
 
-    const inputError = getByTestId('input-error')
-
-    expect(inputError).toBeInTheDocument()
+    expect(getByTestId('input-error')).toBeInTheDocument()
   })
 
   it('Form calls submit with correct values', () => {

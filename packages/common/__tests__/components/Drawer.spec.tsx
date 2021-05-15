@@ -2,7 +2,7 @@ import React from 'react'
 
 import { renderHook } from '@testing-library/react-hooks'
 
-import { render } from '@hub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import Text from '../../components/Text'
 import Drawer, {
@@ -41,15 +41,15 @@ const DrawerComponent = () => {
 
 describe('Testing if Drawer component render correctly', () => {
   it('should render open, as well must render Drawer Header, Body and Footer', () => {
-    const { getByText } = render(<DrawerComponent />)
+    const { queryByText } = render(<DrawerComponent />)
 
-    const headerText = getByText('Header')
-    const bodyText = getByText('Body')
-    const footerText = getByText('Footer')
+    const headerText = queryByText('Header')
+    const bodyText = queryByText('Body')
+    const footerText = queryByText('Footer')
 
-    expect(headerText).toBeInTheDocument()
-    expect(bodyText).toBeInTheDocument()
-    expect(footerText).toBeInTheDocument()
+    expect(headerText).not.toBeNull()
+    expect(bodyText).not.toBeNull()
+    expect(footerText).not.toBeNull()
   })
 
   it('Drawer matches snapshot', () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render, fireEvent } from '@hub/test-utils'
+import { render, fireEvent, waitFor } from '@psdhub/test-utils'
 
 import Tour, { TourProps } from '../../components/Tour'
 
@@ -19,27 +19,21 @@ describe('Testing Tour component and your functionalities', () => {
     expect(content).toBeInTheDocument()
   })
 
-  it('should close the tour when closeButton is clicked', () => {
+  it('should close the tour when closeButton is clicked', async () => {
     tourProps.onClosed = () => {
       tourProps.open = false
       rerender(<Tour {...tourProps} />)
     }
     rerender(<Tour {...tourProps} />)
-    const [leftArrow, firstStep, rightArrow, closeButton] = queryAllByRole(
-      'button'
-    )
-    expect(leftArrow).toBeInTheDocument()
-    expect(firstStep).toBeInTheDocument()
-    expect(rightArrow).toBeInTheDocument()
-    expect(closeButton).toBeInTheDocument()
+    const buttons = queryAllByRole('button')
 
-    fireEvent.click(closeButton)
+    buttons.forEach(element => expect(element).toBeInTheDocument())
+
+    fireEvent.click(buttons[3])
 
     const content = queryByText(tourProps.steps[0].content)
-    expect(content).toBeNull()
-    expect(leftArrow).not.toBeInTheDocument()
-    expect(firstStep).not.toBeInTheDocument()
-    expect(rightArrow).not.toBeInTheDocument()
-    expect(closeButton).not.toBeInTheDocument()
+    await waitFor(() => expect(content).toBeNull())
+
+    buttons.forEach(element => expect(element).not.toBeInTheDocument())
   })
 })

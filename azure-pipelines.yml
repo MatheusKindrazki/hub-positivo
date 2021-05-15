@@ -38,7 +38,7 @@ jobs:
       extraProperties: |
         sonar.sources=packages/apps/hub-web/src/components,packages/apps/hub-web/src/pages,packages/apps/hub-web/src/services,packages/apps/hub-web/src/store/modules,packages/apps/hub-web/src/utils,packages/apps/hub-web/src/validators,packages/apps/hub-web/src/middlewares,packages/apps/hub-web/src/hooks,packages/common/components
         sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,
-        sonar.coverage.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,
+        sonar.coverage.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,**/*.js
         sonar.javascript.lcov.reportPaths=coverage/lcov.info
         sonar.testExecutionReportPaths=test-report.xml
         sonar.test.inclusions=packages/apps/hub-web/src/**/*.spec.tsx,packages/apps/hub-web/src/**/*.spec.ts,packages/common/**/*.spec.tsx,packages/apps/common/**/*.spec.ts
@@ -51,6 +51,7 @@ jobs:
 
   - script: |
       cp $(envFile.secureFilePath) ./packages/apps/hub-web/.env
+      cp $(envFile.secureFilePath) ./packages/apps/easy-auth/.env
     displayName: "Copy env file"
 
   - task: NodeTool@0
@@ -63,7 +64,7 @@ jobs:
 
   - task: Cache@2
     inputs:
-      key: yarn | $(Agent.OS) | yarn.lock
+      key: yarn | $(Agent.OS) | yarn.lock | node_modules
       path: $(YARN_CACHE_FOLDER)
       restoreKeys: |
         yarn | $(Agent.OS)
@@ -80,14 +81,20 @@ jobs:
 
   # - task: SonarCloudAnalyze@1
 
-  # - script: |
-  #     export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release
-  #   displayName: Semantic Release ( generate changelog and build tag )
-  #   condition: eq(variables['Build.SourceBranchName'], 'master')
+  - script: |
+      export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release
+    displayName: Semantic Release ( generate changelog and build tag )
+    condition: eq(variables['Build.SourceBranchName'], 'master')
 
   - script: |
       node ./scripts/update-version.js
     displayName: Updating production version
+
+  - task: Yarn@3
+    displayName: Build the project DEV/MCF
+    condition: eq(variables['Build.SourceBranchName'], 'develop')
+    inputs:
+      arguments: build:easyauth
 
   - task: Yarn@3
     displayName: Build the project

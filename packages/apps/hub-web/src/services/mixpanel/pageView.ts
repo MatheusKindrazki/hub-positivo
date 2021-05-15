@@ -1,6 +1,6 @@
 import mixpanel from 'mixpanel-browser'
 
-import delay from '@hub/common/utils/delay'
+import delay from '@psdhub/common/utils/delay'
 
 import history from '~/services/history'
 

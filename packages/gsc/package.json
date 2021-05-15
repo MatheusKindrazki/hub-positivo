@@ -1,5 +1,5 @@
 {
-  "name": "@hub/gsc",
+  "name": "@psdhub/gsc",
   "version": "1.0.0",
   "main": "src/index.ts",
   "devDependencies": {

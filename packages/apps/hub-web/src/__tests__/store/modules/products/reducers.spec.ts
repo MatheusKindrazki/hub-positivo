@@ -1,5 +1,4 @@
-import products from '~/store/modules/products/reducer'
-import { INITIAL_STATE as initialState } from '~/store/modules/products/reducer'
+import products, { INITIAL_STATE } from '~/store/modules/products/reducer'
 import {
   productRequest,
   productSuccess,
@@ -10,16 +9,15 @@ import {
 import { signOut, withoutAccess } from '~/store/modules/auth/actions'
 
 jest.mock('~/services/mixpanel/clearAll')
-
 describe('authProduct reducer', () => {
   it('returns the initial state when an action type is not passed', () => {
     const result = products(undefined, { type: null })
-    expect(result).toEqual(initialState)
+    expect(result).toEqual(INITIAL_STATE)
   })
 
   it('should change loading to true when a product is requested', () => {
     const payload = { search: 'Provas' }
-    expect(products(initialState, productRequest(payload))).toEqual({
+    expect(products(INITIAL_STATE, productRequest(payload))).toEqual({
       loading: true,
       data: []
     })
@@ -30,7 +28,7 @@ describe('authProduct reducer', () => {
       frameUrl: 'http://produto/teste.com',
       frameName: 'Produto'
     }
-    const result = products(initialState, productSuccess(payload))
+    const result = products(INITIAL_STATE, productSuccess(payload))
     expect(result).toEqual({ loading: false })
   })
 
@@ -53,19 +51,19 @@ describe('authProduct reducer', () => {
         ]
       }
     ]
-    const result = products(initialState, productIntegration(payload))
+    const result = products(INITIAL_STATE, productIntegration(payload))
     expect(result).toEqual({ loading: true, data: payload })
   })
 
   it('should set loading to false and reset data on product failure action', () => {
-    expect(products(initialState, productFailure())).toEqual({
+    expect(products(INITIAL_STATE, productFailure())).toEqual({
       loading: false,
       data: []
     })
   })
 
   it('should set loading to true and reset data on without access action', () => {
-    expect(products(initialState, withoutAccess())).toEqual({
+    expect(products(INITIAL_STATE, withoutAccess())).toEqual({
       loading: true,
       data: []
     })
@@ -76,7 +74,7 @@ describe('authProduct reducer', () => {
       url: 'http://produto/teste.com',
       name: 'Produto'
     }
-    expect(products(initialState, setFrameURL(payload))).toEqual({
+    expect(products(INITIAL_STATE, setFrameURL(payload))).toEqual({
       frameName: 'Produto',
       frameUrl: 'http://produto/teste.com',
       loading: true,
@@ -85,7 +83,7 @@ describe('authProduct reducer', () => {
   })
 
   it('should set loading to true and reset data on sign out action', () => {
-    expect(products(initialState, signOut())).toEqual({
+    expect(products(INITIAL_STATE, signOut())).toEqual({
       loading: true,
       data: []
     })

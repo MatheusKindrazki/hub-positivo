@@ -1,7 +1,7 @@
 import qs from 'qs'
 import { ApiResponse } from 'apisauce'
 
-import { apiEEMAuth, apiEEMInfos } from '@hub/api'
+import { apiEEMAuth, apiEEMInfos } from '@psdhub/api'
 
 export interface EEMProps {
   endpoint: string

@@ -4,23 +4,32 @@ import MatchMediaMock from 'jest-matchmedia-mock'
 
 import { store } from '~/store'
 
-import { fireEvent, render, waitFor } from '@hub/test-utils'
-import * as hooks from '@hub/common/hooks'
-import * as drawer from '@hub/common/components/Drawer'
+import { fireEvent, render } from '@psdhub/test-utils'
+import * as hooks from '@psdhub/common/hooks'
+import * as drawer from '@psdhub/common/components/Drawer'
 
 import history from '~/services/history'
 
+import * as Mobile from '~/components/Header/components/Mobile'
 import Header from '~/components/Header'
 
-// jest.mock('@hub/common/hooks', () => {
-//   const rest = jest.requireActual('@hub/common/hooks')
-//   return { ...rest, useDisclosure: jest.fn(() => ({ isOpen: true })) }
-// })
+jest.mock('~/components/Header/components/Mobile', () => {
+  const rest = jest.requireActual('~/components/Header/components/Mobile')
+  return {
+    __esModule: true,
+    ...rest,
+    default: jest.fn()
+  }
+})
 
-// jest.mock('@hub/common/components/Drawer', () => {
-//   const rest = jest.requireActual('@hub/common/components/Drawer')
-//   return { ...rest, useDisclosure: jest.fn() }
-// })
+jest.mock('~/components/Header/components/Desktop', () => {
+  return {
+    __esModule: true,
+    default: () => {
+      return <div>DesktopMenu</div>
+    }
+  }
+})
 
 jest.mock('react-router', () => {
   const rest = jest.requireActual('react-router')
@@ -33,11 +42,11 @@ jest.mock('react-router', () => {
     }))
   }
 })
-
 describe('Header component ', () => {
   const spyDrawerDisclosure = () => {
     const drawerOnClose = jest.fn()
     const drawerOnOpen = jest.fn()
+
     jest.spyOn(drawer, 'useDisclosure').mockReturnValue({
       isOpen: true,
       onClose: drawerOnClose,
@@ -77,6 +86,34 @@ describe('Header component ', () => {
     jest.clearAllMocks()
   })
 
+  const handleClick = jest.fn()
+
+  jest.spyOn(Mobile, 'default').mockImplementation(
+    ({ openModalPass }) =>
+      (
+        <button
+          onClick={() => {
+            openModalPass()
+          }}
+        >
+          MobileMenu
+        </button>
+      ) as any
+  )
+  jest.spyOn(Mobile, 'MenuButton').mockImplementation(
+    ({ onClick = handleClick }) =>
+      (
+        <button
+          onClick={() => {
+            onClick()
+            // mock responsável por verificarmos de onClick foi chamada
+            handleClick()
+          }}
+        >
+          MenuButton
+        </button>
+      ) as any
+  )
   const useMediaMock = (match: 'mobile' | 'desktop') => {
     const matchmedia = new MatchMediaMock()
     return matchmedia.useMediaQuery(
@@ -86,32 +123,30 @@ describe('Header component ', () => {
 
   it('Should render Desktop Header when min-width is 480px', () => {
     useMediaMock('desktop')
-    const { getByTestId } = setup()
-    const popOverContent = getByTestId('hub-popover-content')
 
-    expect(popOverContent).toBeInTheDocument()
+    const { queryByText } = setup()
+
+    expect(queryByText('DesktopMenu')).toBeInTheDocument()
   })
 
   it('Should render Mobile Header when min-width is 479px', () => {
     useMediaMock('mobile')
 
-    const { getByTestId } = setup()
-    const drawerContent = getByTestId('hub-drawer-content')
+    const { queryByText } = setup()
 
-    expect(drawerContent).toBeInTheDocument()
+    const mobileMenu = queryByText('MobileMenu')
+
+    expect(mobileMenu).not.toBeNull()
   })
 
   it('Should call handleClick when MenuButton is clicked', () => {
     useMediaMock('mobile')
-    const { drawerOnClose } = spyDrawerDisclosure()
-
     const { getAllByRole } = setup()
     const [MenuButton] = getAllByRole('button')
 
     fireEvent.click(MenuButton)
 
-    // função referenciada no ref.openMenu chama a onClose() se o drawer estiver aberto
-    expect(drawerOnClose).toHaveBeenCalledTimes(1)
+    expect(handleClick).toHaveBeenCalledTimes(1)
   })
 
   it('Should redirect to `/` when hub logo is clicked', () => {
@@ -127,12 +162,13 @@ describe('Header component ', () => {
 
   it('Should call openModalPass when `Alterar minha senha` is clicked', async () => {
     const { hookOnOpen } = spyHookDisclosure()
+    useMediaMock('mobile')
 
     const { getByText } = setup()
-    const alterPass = getByText(/Alterar minha senha/i)
+    const simulateOpenModalPass = getByText(/MobileMenu/i)
 
-    fireEvent.click(alterPass)
+    fireEvent.click(simulateOpenModalPass)
 
-    await waitFor(() => expect(hookOnOpen).toHaveBeenCalledTimes(1))
+    expect(hookOnOpen).toHaveBeenCalledTimes(1)
   })
 })

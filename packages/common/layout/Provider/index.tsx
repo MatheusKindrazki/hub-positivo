@@ -2,20 +2,28 @@ import React, { useMemo, useState, useContext } from 'react'
 
 import { ThemeProvider as StyledProvider } from 'styled-components'
 import { ToastContainer } from 'react-toastify'
+import { CacheProvider } from '@emotion/react'
+import createCache from '@emotion/cache'
 
 import { ChakraProvider, CSSReset } from '@chakra-ui/react'
 
 import ThemeContext from './context'
+import { cssKey } from './config'
 import GlobalStyles from '../styles/global'
-import profileColors, {
-  VariantsProps,
-  profileBaseColor
-} from '../styles/colors'
-import { theme as HubTheme } from '../styles'
+import profileColors, { VariantsProps } from '../styles/colors'
+import { theme as HubTheme, Theme } from '../styles'
 
-const ThemeContainer: React.FC = ({ children }) => {
+interface ThemeProps {
+  cssVarPrefix?: string
+  theme?: Partial<Theme>
+}
+
+const ThemeContainer: React.FC<ThemeProps> = ({
+  children,
+  theme,
+  cssVarPrefix
+}) => {
   const [prof, setProfile] = useState<VariantsProps>('default')
-
   const context = useContext(ThemeContext)
 
   context.theme = ({ profile }) => setProfile(profile)
@@ -25,44 +33,42 @@ const ThemeContainer: React.FC = ({ children }) => {
       profile: prof
     }).blue
 
+    const theme = HubTheme(cssVarPrefix)
+
     const hubThemeProfile = {
-      ...HubTheme,
+      ...theme,
       colors: {
-        ...HubTheme.colors,
+        ...theme.colors,
         blue: profileTheme
       }
     }
 
-    // !Apenas para efeito de animação
-    document.documentElement.style.setProperty(
-      '--hub-base-color',
-      profileBaseColor[prof]
-    )
-
     return hubThemeProfile
-  }, [prof])
+  }, [cssVarPrefix, prof])
 
   return (
-    <ChakraProvider theme={renderTheme}>
-      <StyledProvider theme={renderTheme as any}>
-        <CSSReset />
-        <GlobalStyles />
-        {children}
-        <ToastContainer
-          position="bottom-center"
-          autoClose={4000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeButton={false}
-          limit={3}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </StyledProvider>
-    </ChakraProvider>
+    <CacheProvider value={createCache({ key: cssKey })}>
+      <ChakraProvider theme={{ ...renderTheme, ...theme }} resetCSS>
+        <StyledProvider theme={{ ...renderTheme, ...theme }}>
+          <CSSReset />
+          <GlobalStyles />
+          {children}
+          <ToastContainer
+            position="bottom-center"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeButton={false}
+            limit={3}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </StyledProvider>
+      </ChakraProvider>
+    </CacheProvider>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent, waitFor } from '@hub/test-utils'
+import { render, CustomState, fireEvent, waitFor } from '@psdhub/test-utils'
 
 import AlterPass from '~/components/Header/components/AlterPass'
 
@@ -14,7 +14,7 @@ describe('get started', () => {
     jest.restoreAllMocks()
   })
 
-  const setup = (CUSTOM_STATE = {} as CustomState) => {
+  const setup = (CUSTOM_STATE = {} as CustomState<Store.State>) => {
     const onClose = jest.fn()
     const wrapper = render(<AlterPass onClose={onClose} />, {
       store,
@@ -28,7 +28,7 @@ describe('get started', () => {
 
     const cancelButton = wrapper.getByText(cancel, queryConfig)
     const alterButton = wrapper.getByText(alter, queryConfig)
-    const inputs = wrapper.getAllByTestId('form-input')
+    const inputs = wrapper.queryAllByTestId('form-input')
     return {
       ...wrapper,
       onClose,
@@ -42,17 +42,13 @@ describe('get started', () => {
   it('Should throw a `validation` error if the form was submitted without any information', async () => {
     const { alterButton, findByText } = setup()
 
-    expect(alterButton).toBeInTheDocument()
     fireEvent.click(alterButton)
 
-    const passwordError = await findByText(/Campo obrigatório/i)
-    const newPasswordError = await findByText(/Senha Obrigatória/i)
-    const confirmNewPasswordError = await findByText(
-      /Confirmação da senha é obrigatória/i
-    )
-    expect(passwordError).toBeInTheDocument()
-    expect(newPasswordError).toBeInTheDocument()
-    expect(confirmNewPasswordError).toBeInTheDocument()
+    expect(await findByText(/Campo obrigatório/i)).toBeInTheDocument()
+    expect(await findByText(/Senha Obrigatória/i)).toBeInTheDocument()
+    expect(
+      await findByText(/Confirmação da senha é obrigatória/i)
+    ).toBeInTheDocument()
   })
 
   it('Should throw a `generic` error if an error other than` validation` has been thrown', async () => {
@@ -63,18 +59,16 @@ describe('get started', () => {
     })
     fireEvent.click(alterButton)
 
-    const error = await findByText(
-      'Algo deu errado, Verifique seus dados e tente novamente!',
-      queryConfig
-    )
-
-    expect(error).toBeInTheDocument()
+    expect(
+      await findByText(
+        'Algo deu errado, Verifique seus dados e tente novamente!',
+        queryConfig
+      )
+    ).toBeInTheDocument()
   })
 
-  it('Should call `onClose` function when `CANCELAR` is clicked', () => {
+  it('Should call `onClose` function when `CANCELAR` is clicked', async () => {
     const { cancelButton, onClose } = setup()
-
-    expect(cancelButton).toBeInTheDocument()
 
     fireEvent.click(cancelButton)
 
@@ -100,12 +94,12 @@ describe('get started', () => {
           newPassword: password,
           oldPassword: password
         },
-        type: '@user/ USER_PASSWORD_PANEL_REQUEST'
+        type: '@user/USER_PASSWORD_PANEL_REQUEST'
       }
     ])
   })
 
-  it('Should convert input`s type to text when viewPass and viewNewPass are true', () => {
+  it('Should convert input`s type to text when viewPass and viewNewPass are true', async () => {
     const { inputs, getByTestId } = setup()
 
     inputs.forEach(input => {

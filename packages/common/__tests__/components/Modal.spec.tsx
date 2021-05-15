@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render } from '@hub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import Modal from '../../components/Modal'
 
@@ -14,15 +14,15 @@ const modalProps = {
 
 describe('Modal component should work properly', () => {
   const wrapper = render(<Modal {...modalProps} />)
-  const { getByText, queryByText } = wrapper
+  const { queryByText } = wrapper
   it('Should render the children on screen with correctly props', () => {
-    const children = getByText(modalProps.children)
-    const title = getByText(modalProps.title)
-    const footer = getByText(modalProps.footerContent)
+    const children = queryByText(modalProps.children)
+    const title = queryByText(modalProps.title)
+    const footer = queryByText(modalProps.footerContent)
 
-    expect(children).toBeInTheDocument()
-    expect(title).toBeInTheDocument()
-    expect(footer).toBeInTheDocument()
+    expect(children).not.toBeNull()
+    expect(title).not.toBeNull()
+    expect(footer).not.toBeNull()
   })
 
   it('Shoudn`t render the component when prop open is false (closed Model)', () => {

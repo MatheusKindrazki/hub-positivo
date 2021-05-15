@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { classesRequest } from '~/store/modules/myClasses/actions'
 
-import { documentTitle } from '@hub/common/utils'
-import SearchInput from '@hub/common/components/Search'
-import { Heading, Box, Collapse } from '@hub/common/components'
+import { documentTitle } from '@psdhub/common/utils'
+import SearchInput from '@psdhub/common/components/Search'
+import { Heading, Box, Collapse } from '@psdhub/common/components'
 
 import { cardFilter } from '~/utils/cardFilter'
 

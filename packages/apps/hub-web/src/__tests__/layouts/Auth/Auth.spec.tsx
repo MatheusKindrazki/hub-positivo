@@ -2,7 +2,7 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { render } from '@hub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import Auth from '~/layouts/Auth'
 
@@ -16,10 +16,8 @@ describe('Auth`s layout should render without crashing', () => {
       store,
       reducers: ['global']
     })
-    const children = getByText(element)
-    const version = getByText(/1.0/)
 
-    expect(children).toBeInTheDocument()
-    expect(version).toBeInTheDocument()
+    expect(getByText(element)).toBeInTheDocument()
+    expect(getByText(/1.0/)).toBeInTheDocument()
   })
 })

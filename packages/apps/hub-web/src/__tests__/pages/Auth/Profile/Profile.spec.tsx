@@ -1,10 +1,10 @@
 import React from 'react'
 
-import selectEvent from 'react-select-event'
+import { openMenu } from 'react-select-event'
 
 import { store } from '~/store'
 
-import { render, fireEvent, CustomState } from '@hub/test-utils'
+import { render, fireEvent, CustomState } from '@psdhub/test-utils'
 
 import Profile from '~/pages/Auth/Profile'
 
@@ -28,7 +28,7 @@ describe('Profile page should work properly', () => {
     name: 'school_name'
   }
 
-  const CUSTOM_STATE: CustomState = {
+  const CUSTOM_STATE: CustomState<Store.State> = {
     user: {
       info: {
         schools: [school]
@@ -50,9 +50,9 @@ describe('Profile page should work properly', () => {
   }
 
   it('Should render the correct elements on the screen', async () => {
-    const { getByText, select } = setup()
+    const { queryByText, select } = setup()
 
-    const selectTitle = getByText(/Selecione sua escola e acesso/i)
+    const selectTitle = queryByText(/Selecione sua escola e acesso/i)
 
     expect(selectTitle).toBeInTheDocument()
     expect(select).toBeInTheDocument()
@@ -61,27 +61,27 @@ describe('Profile page should work properly', () => {
   it('The component `Select` should work correctly when the user interacts with it', async () => {
     const { findByText, select } = setup()
 
-    selectEvent.openMenu(select)
+    openMenu(select)
 
     const schoolName = await findByText(school.name)
     expect(schoolName).toBeInTheDocument()
   })
 
   it('The `Profile` component should dispatch `@auth/FIRST_ACCESS` when the user chooses an option', async () => {
-    const { getByText, findByText, storeUtils } = setup()
+    const { getByText, findByText, storeUtils, queryByText } = setup()
 
     const { roles } = school
 
     const select = getByText(selectPlaceholder)
 
-    selectEvent.openMenu(select)
+    openMenu(select)
 
     const schoolName = await findByText(school.name)
 
     fireEvent.click(schoolName)
 
     roles.forEach(role => {
-      const element = getByText(role, { exact: false })
+      const element = queryByText(role, { exact: false })
       expect(element).toBeInTheDocument()
     })
 

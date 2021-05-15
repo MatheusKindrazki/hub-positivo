@@ -1,3 +1,4 @@
+import mixpanel from 'mixpanel-browser'
 declare global {
   export interface Window {
     __HUB_USER_INFO__: {
@@ -7,7 +8,13 @@ declare global {
       school: string
       educational_stage: string
     }
+
+    loadMicrofrontend?: () => void
+    unLoadMicrofrontend?: () => void
+
+    mixpanel: typeof mixpanel
     pageviewCount: number
+    firstCallMCF: boolean
   }
 }
 
