@@ -13,7 +13,7 @@ interface MicrofrontendProps {
   onLoaded(): void
 }
 
-postInformations('Dado vindo do hub 123' as any)
+postInformations('@MCF: Dado vindo do hub!' as any)
 
 const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   onLoaded,
