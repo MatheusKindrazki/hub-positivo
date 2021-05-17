@@ -52,8 +52,6 @@ const UpdateSolution: React.FC = () => {
     profilePermissions: oldProfilePermissions
   } = useSelector((state: Store.State) => state.permissions)
 
-  console.log({ oldSchoolPermissions }, { oldProfilePermissions })
-
   const categoryOptions = createOptions(categories)
   const schoolOptions = createOptions(schools)
 
@@ -63,7 +61,6 @@ const UpdateSolution: React.FC = () => {
 
   useEffect(() => {
     const solutionSlug = getSlugFromURL(pathname)
-    console.log('soluao recebida em updatesolution', { solution })
 
     if (!categoryArr || categoryArr?.length === 0) {
       return history.push('/controle-de-acessos')
@@ -106,7 +103,6 @@ const UpdateSolution: React.FC = () => {
 
         return dispatch(accessControlPutRequest(formattedData))
       } catch (err) {
-        console.log({ err })
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)
           formRef?.current?.setErrors(errors)

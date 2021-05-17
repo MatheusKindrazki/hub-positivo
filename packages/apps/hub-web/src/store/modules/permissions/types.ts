@@ -1,3 +1,5 @@
+import { Option } from '~/pages/AccessControl/pages/CreateSolution/selectOptions'
+
 export type Restricao = 'Ocultar' | 'Exibir'
 
 export type SchoolPermissions = {
@@ -46,6 +48,7 @@ export interface SchoolsRestrictionsBySolution {
 
 export interface PermissionsReducer {
   loading: boolean
+  profileOptions: Option[]
   profilePermissions: ProfileLevelsBySolution[] | []
   schoolPermissions: SchoolsRestrictionsBySolution[] | []
 }

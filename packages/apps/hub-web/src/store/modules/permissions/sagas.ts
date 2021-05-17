@@ -21,8 +21,26 @@ import {
   schoolPermissionsBySolutionFailure,
   schoolPermissionsBySolutionSuccess,
   profilePermissionsBySolutionFailure,
-  profilePermissionsBySolutionSuccess
+  profilePermissionsBySolutionSuccess,
+  getAllProfilePermissionsFailure,
+  getAllProfilePermissionsSuccess
 } from './actions'
+
+export function* getAllProfilePermissions(): Generator {
+  const response = yield call(() => {
+    return api.get('PerfilNivelEnsino')
+  })
+
+  const { ok, data } = response as ApiResponse<ProfilePermissions[]>
+
+  if (!ok) {
+    toast.error('Erro ao buscar permissoes de perfil!')
+    return yield put(getAllProfilePermissionsFailure())
+  }
+  return yield put(
+    getAllProfilePermissionsSuccess(data as ProfilePermissions[])
+  )
+}
 
 type UpdateProfilePayload = Payload<ProfilePermissions>
 
@@ -159,6 +177,10 @@ export function* getSchoolPermissionsBySolutionId({
 export default all([
   takeLatest(Actions.PROFILE_PERMISSIONS_REQUEST, profilePermissions),
   takeLatest(Actions.SCHOOL_PERMISSIONS_REQUEST, schoolPermissions),
+  takeLatest(
+    Actions.GETALL_PROFILE_PERMISSIONS_REQUEST,
+    getAllProfilePermissions
+  ),
   takeLatest(
     Actions.PROFILE_PERMISSIONS_BYID_REQUEST,
     getProfilePermissionsBySolutionId

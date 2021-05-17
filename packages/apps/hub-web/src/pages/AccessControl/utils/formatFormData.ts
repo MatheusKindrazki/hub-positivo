@@ -6,13 +6,13 @@ import {
 
 import { SolutionWithCategory } from './getSolutionBySlug'
 
-interface OldProfilePermissions {
+export interface OldProfilePermissions {
   id: string
   idSolucao: string
   idPerfilNivelEnsino: string
 }
 
-interface OldSchoolPermissions {
+export interface OldSchoolPermissions {
   ativo: boolean
   id: string
   idEscola: string
@@ -24,12 +24,11 @@ interface OldSchoolPermissions {
 
 type NewPermissions = string[]
 
-export const formatProfilePermissions = (
+const formatProfilePermissions = (
   oldPermissions: OldProfilePermissions[],
   newPermissions: NewPermissions,
   id: string
 ): ProfilePermissions => {
-  console.log({ oldPermissions })
   const formattedData = {
     remove: {
       idSolucao: id,
@@ -87,13 +86,27 @@ export interface FormData {
   schools: string[]
 }
 
+export const schoolRule = (
+  rule: string
+): { padrao: boolean; restricao: string } => {
+  if (rule === 'todas escolas') {
+    return { padrao: true, restricao: 'Exibir' }
+  } else if (rule === 'apenas') {
+    return { padrao: true, restricao: 'Ocultar' }
+  } else {
+    return { padrao: false, restricao: 'Exibir' }
+  }
+}
+
 export const formatFormData = (
   data: FormData,
   solutionData: SolutionWithCategory | object = { solution: {} },
   { profilePermissions, schoolsPermissions }: Params
 ): any => {
-  let restricao = 'Exibir'
   const { solution } = solutionData as SolutionWithCategory
+
+  const { restricao, padrao } = schoolRule(data.padrao)
+
   const formattedSolution = {
     ...solution,
     idCategoria: data.idCategoria,
@@ -102,23 +115,7 @@ export const formatFormData = (
     link: data.link,
     arquivo: '',
     tipoRenderizacao: data.tipoRenderizacao,
-    padrao: false
-  }
-
-  if (data.padrao === 'todas escolas') {
-    formattedSolution.padrao = true
-    data.schools = []
-  }
-
-  if (data.padrao === 'true') {
-    formattedSolution.padrao = true
-    restricao = 'Ocultar' as Restricao
-    data.schools = []
-  }
-
-  if (data.padrao === 'false') {
-    restricao = 'Exibir' as Restricao
-    data.schools = []
+    padrao
   }
 
   const formattedProfilePermissions = formatProfilePermissions(
@@ -133,7 +130,6 @@ export const formatFormData = (
     solution.id || '',
     restricao as Restricao
   )
-  console.log('SOCORRRROOOOOO', data)
 
   return {
     solution: formattedSolution,

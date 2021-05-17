@@ -20,11 +20,11 @@ export const schoolRestrictionRules = [
   },
   {
     label: 'Apenas',
-    value: 'false'
+    value: 'apenas'
   },
   {
     label: 'Exceto',
-    value: 'true'
+    value: 'exceto'
   }
 ]
 
