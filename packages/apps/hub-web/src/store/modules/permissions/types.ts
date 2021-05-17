@@ -1,3 +1,5 @@
+export type Restricao = 'Ocultar' | 'Exibir'
+
 export type SchoolPermissions = {
   remove: {
     idSolucao: string
@@ -6,7 +8,7 @@ export type SchoolPermissions = {
   create: {
     idSolucao: string
     idsEscolas: string[]
-    restricao?: 'Ocultar' | 'Exibir'
+    restricao?: Restricao
   }
 }
 
@@ -24,4 +26,26 @@ export type ProfilePermissions = {
 export interface GenericApiResponse {
   sucesso: boolean
   mensagem: string
+}
+
+export interface ProfileLevelsBySolution {
+  id: string
+  idSolucao: string
+  idPerfilNivelEnsino: string
+}
+
+export interface SchoolsRestrictionsBySolution {
+  id: string
+  idSolucao: string
+  nomeSolucao: string
+  idEscola: string
+  nomeEscola: string
+  restricao: Restricao
+  ativo: boolean
+}
+
+export interface PermissionsReducer {
+  loading: boolean
+  profilePermissions: ProfileLevelsBySolution[] | []
+  schoolPermissions: SchoolsRestrictionsBySolution[] | []
 }

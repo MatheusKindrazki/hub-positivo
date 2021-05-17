@@ -4,7 +4,7 @@ import {
   targetOptions
 } from '../../utils/createOptions'
 
-interface Option {
+export interface Option {
   label: string
   value: string
 }
@@ -13,6 +13,7 @@ interface Select {
   placeholder: string
   options: Option[]
   label: string
+  isMulti?: boolean
 }
 
 export const selects = (categories: Option[], schools: Option[]): Select[] => [
@@ -26,10 +27,11 @@ export const selects = (categories: Option[], schools: Option[]): Select[] => [
     name: 'profiles',
     placeholder: 'Selecione',
     options: profileOptions,
-    label: 'Perfis e Segmentos'
+    label: 'Perfis e Segmentos',
+    isMulti: true
   },
   {
-    name: 'schools_rule',
+    name: 'padrao',
     placeholder: 'Selecione',
     options: schoolRestrictionRules,
     label: 'Escolas - Regra de restrição'
@@ -44,6 +46,7 @@ export const selects = (categories: Option[], schools: Option[]): Select[] => [
     name: 'schools',
     placeholder: 'Selecione',
     options: schools,
-    label: 'Escolas'
+    label: 'Escolas',
+    isMulti: true
   }
 ]

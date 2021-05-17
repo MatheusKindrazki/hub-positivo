@@ -12,6 +12,7 @@ import solutions from './solutions/reducer'
 import school from './school/reducer'
 import profile from './profile/reducer'
 import products from './products/reducer'
+import permissions from './permissions/reducer'
 import myClasses from './myClasses/reducer'
 import global from './global/reducer'
 import forgotPassword from './forgotPassword/reducer'
@@ -19,6 +20,7 @@ import educationalStage from './educationalStage/reducer'
 import category from './category/reducer'
 import authProduct from './authProduct/reducer'
 import auth from './auth/reducer'
+
 export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
   return combineReducers({
     auth,
@@ -34,6 +36,7 @@ export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
     solutions,
     category,
     school,
+    permissions,
     router: connectRouter(history)
   })
 }

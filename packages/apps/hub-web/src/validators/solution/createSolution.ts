@@ -8,13 +8,13 @@ const schema = Yup.object().shape({
   descricao: Yup.string()
     .min(10, 'Descricao deve ter no mínimo 10 caracteres')
     .max(255, 'Descricao deve ter no máximo 255 caracteres')
-    .required('Campo Obrigatórioso'),
+    .required('Campo Obrigatório'),
   link: Yup.string().url('link deve ser uma URL'),
   idCategoria: Yup.string().required('Campo Obrigatório'),
-  profiles: Yup.string().required('Campo Obrigatório'),
+  profiles: Yup.array(),
   tipoRenderizacao: Yup.string().required('Campo Obrigatório'),
-  schools_rule: Yup.string().required('Campo Obrigatório'),
-  schools: Yup.string().required('Campo Obrigatório')
+  padrao: Yup.string().required('Campo Obrigatório'),
+  schools: Yup.array()
 })
 
 export default schema

@@ -35,7 +35,10 @@ export const columns: Columns[] = [
     property: 'edit',
     header: null,
     render: (e: PutSolutionData) => (
-      <EditButton url={`/controle-de-acessos/editar/${e.slug}`} />
+      <EditButton
+        url={`/controle-de-acessos/editar/${e.slug}`}
+        solutionId={e.id}
+      />
     )
   },
   {

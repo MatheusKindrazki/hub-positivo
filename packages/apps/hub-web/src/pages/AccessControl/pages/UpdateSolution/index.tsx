@@ -5,8 +5,7 @@ import { DropzoneRef } from 'react-dropzone'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-// import { solutionPutRequest } from '~/store/modules/solutions/actions'
-import { postAccessControlData } from '~/store/modules/accessControl/sagas'
+import { AccessControlPutData } from '~/store/modules/accessControl/types'
 import { accessControlPutRequest } from '~/store/modules/accessControl/actions'
 
 import { toast } from '@psdhub/common/utils'
@@ -20,11 +19,10 @@ import {
 import Dropzone from '@psdhub/common/components/Dropzone'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Box, Text, Stack, Button, BarLoader } from '@psdhub/common/components'
-import api from '@psdhub/api'
 
 import history from '~/services/history'
 
-// import solutionInfo from '~/validators/solution/createSolution'
+import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
@@ -33,6 +31,7 @@ import getSolutionBySlug, {
   SolutionWithCategory
 } from '../../utils/getSolutionBySlug'
 import getSlugFromURL from '../../utils/getSlugFromURL'
+import { formatFormData } from '../../utils/formatFormData'
 import createOptions from '../../utils/createOptions'
 
 const UpdateSolution: React.FC = () => {
@@ -48,6 +47,12 @@ const UpdateSolution: React.FC = () => {
   const { categories } = useSelector((state: Store.State) => state.category)
   const { schools } = useSelector((state: Store.State) => state.school)
   const { loading } = useSelector((state: Store.State) => state.global)
+  const {
+    schoolPermissions: oldSchoolPermissions,
+    profilePermissions: oldProfilePermissions
+  } = useSelector((state: Store.State) => state.permissions)
+
+  console.log({ oldSchoolPermissions }, { oldProfilePermissions })
 
   const categoryOptions = createOptions(categories)
   const schoolOptions = createOptions(schools)
@@ -56,23 +61,9 @@ const UpdateSolution: React.FC = () => {
   const dropRef = useRef<DropzoneRef>(null)
   const modalRef = useRef<ModalHandler>(null)
 
-  const logarRestricao = async () => {
-    const restricao = await api.get('Solucao/Restricao')
-    console.log('restricao escolas', restricao)
-  }
-
-  const logarPermissao = async () => {
-    const permissao = await api.get('SolucaoPerfilNivelEnsino', {
-      idSolucao: '0c464a02-d7e1-434a-8c06-38b98cb89b5a'
-    })
-    console.log('permissao perfis', permissao)
-  }
-
   useEffect(() => {
     const solutionSlug = getSlugFromURL(pathname)
     console.log('soluao recebida em updatesolution', { solution })
-    logarRestricao()
-    logarPermissao()
 
     if (!categoryArr || categoryArr?.length === 0) {
       return history.push('/controle-de-acessos')
@@ -87,7 +78,7 @@ const UpdateSolution: React.FC = () => {
         nome: solution?.solution.nome,
         descricao: solution?.solution.descricao,
         link: solution.solution.link,
-        category: solution?.category
+        idCategoria: solution?.category
       })
     }
   }, [categoryArr, dispatch, pathname, solution])
@@ -96,13 +87,26 @@ const UpdateSolution: React.FC = () => {
     async data => {
       formRef?.current?.setErrors({})
       try {
-        // await solutionInfo.validate(data, { abortEarly: false })
+        await solutionInfo.validate(data, { abortEarly: false })
 
-        data.id = solution?.solution.id
-        data.slug = solution?.solution.slug
+        const formattedData: AccessControlPutData = formatFormData(
+          data,
+          solution as SolutionWithCategory,
+          {
+            profilePermissions: {
+              old: oldProfilePermissions,
+              new: data.profiles
+            },
+            schoolsPermissions: {
+              old: oldSchoolPermissions,
+              new: data.schools
+            }
+          }
+        )
 
-        return dispatch(accessControlPutRequest(postAccessControlData))
+        return dispatch(accessControlPutRequest(formattedData))
       } catch (err) {
+        console.log({ err })
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)
           formRef?.current?.setErrors(errors)
@@ -112,7 +116,7 @@ const UpdateSolution: React.FC = () => {
         )
       }
     },
-    [dispatch, solution?.solution.id, solution?.solution.slug]
+    [solution, oldProfilePermissions, oldSchoolPermissions, dispatch]
   )
 
   const openModal = useCallback(() => {
@@ -171,18 +175,11 @@ const UpdateSolution: React.FC = () => {
               {selects(categoryOptions, schoolOptions).map(select => {
                 return (
                   <Box
-                    ml="0px"
                     key={select.name}
                     w={select.name === 'schools' ? '100%' : '48.5%'}
+                    ml="0px"
                   >
-                    <Select
-                      ml="0"
-                      mb="4"
-                      name={select.name}
-                      options={select.options}
-                      label={select.label}
-                      variant="secondary"
-                    />
+                    <Select mb="4" variant="secondary" {...select} />
                   </Box>
                 )
               })}

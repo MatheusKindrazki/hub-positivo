@@ -4,12 +4,11 @@ import { DropzoneRef } from 'react-dropzone'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { solutionPostRequest } from '~/store/modules/solutions/actions'
 import { schoolGetAllRequest } from '~/store/modules/school/actions'
 import { categoryGetAllRequest } from '~/store/modules/category/actions'
+import { accessControlPostRequest } from '~/store/modules/accessControl/actions'
 
 import { toast } from '@psdhub/common/utils'
-import SearchableCheckbox from '@psdhub/common/components/SearchableCheckboxes'
 import {
   FormProps,
   Form,
@@ -28,6 +27,7 @@ import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { selects } from './selectOptions'
+import { formatFormData } from '../../utils/formatFormData'
 import createOptions from '../../utils/createOptions'
 
 const UpdateSolution: React.FC = () => {
@@ -54,16 +54,26 @@ const UpdateSolution: React.FC = () => {
     async data => {
       formRef?.current?.setErrors({})
       try {
-        console.log(data)
         await solutionInfo.validate(data, { abortEarly: false })
 
-        return dispatch(solutionPostRequest(data))
+        const formattedData = formatFormData(data, undefined, {
+          profilePermissions: {
+            old: [],
+            new: data.profiles
+          },
+          schoolsPermissions: {
+            old: [],
+            new: data.schools
+          }
+        })
+
+        return dispatch(accessControlPostRequest(formattedData))
       } catch (err) {
+        console.log(err)
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)
           formRef?.current?.setErrors(errors)
         }
-        console.log(err)
         return toast.error(
           'Algo deu errado, Verifique seus dados e tente novamente!'
         )
@@ -112,7 +122,6 @@ const UpdateSolution: React.FC = () => {
             <Text color="blue.500">Ícone</Text>
             <Dropzone ref={dropRef} />
           </Box>
-
           <Stack
             direction={['column', 'row']}
             wrap="wrap"
@@ -124,23 +133,13 @@ const UpdateSolution: React.FC = () => {
                 <Box
                   key={select.name}
                   w={select.name === 'schools' ? '100%' : '48.5%'}
+                  ml="0px"
                 >
-                  <Select
-                    mb="4"
-                    name={select.name}
-                    options={select.options}
-                    label={select.label}
-                    variant="secondary"
-                  />
+                  <Select mb="4" variant="secondary" {...select} />
                 </Box>
               )
             })}
           </Stack>
-          <SearchableCheckbox
-            w="32%"
-            onChange={e => console.log(e)}
-            options={schoolOptions}
-          />
           <Box
             mt="9"
             flexDir={['row', 'row-reverse']}

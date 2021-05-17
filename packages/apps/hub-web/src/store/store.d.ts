@@ -4,6 +4,7 @@ import { SolutionsReducer } from './modules/solutions/types'
 import { SchoolReducer } from './modules/school/types'
 import { ProfileReducer } from './modules/profile/types'
 import { ProductReducer } from './modules/products/types'
+import { PermissionsReducer } from './modules/permissions/types'
 import { ClassesReducer } from './modules/myClasses/types'
 import { GlobalReducer } from './modules/global/types'
 import { ForgotPasswordReducer } from './modules/forgotPassword/types'
@@ -25,6 +26,7 @@ interface ApplicationState {
   solutions: SolutionsReducer
   category: CategoryReducer
   school: SchoolReducer
+  permissions: PermissionsReducer
 }
 declare global {
   declare namespace Store {
