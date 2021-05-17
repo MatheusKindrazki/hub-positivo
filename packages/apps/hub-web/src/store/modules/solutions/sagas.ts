@@ -6,6 +6,8 @@ import { Action } from 'redux'
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
+import history from '~/services/history'
+
 import {
   Category,
   PutSolutionData,
@@ -25,7 +27,8 @@ import {
   solutionsGetExcludedFailure,
   solutionsGetExcludedSuccess,
   solutionRestaureFailure,
-  solutionRestaureSuccess
+  solutionRestaureSuccess,
+  solutionsGetExcludedRequest
 } from './actions'
 
 export function* createSolution(action: Action): Generator {
@@ -42,7 +45,7 @@ export function* createSolution(action: Action): Generator {
     return yield put(solutionPostFailure())
   }
 
-  toast.success(`Solução criada com sucesso ${data?.dados.id}`)
+  toast.success('Solução criada com sucesso')
   yield put(solutionPostSuccess(data?.dados.id))
   return yield data?.dados.id
 }
@@ -109,7 +112,9 @@ export function* deleteSolution(action: Action): Generator {
   }
 
   toast.success('Solução excluída com sucesso!')
-  return yield put(solutionDeleteSuccess())
+  yield put(solutionsGetExcludedRequest())
+  yield put(solutionDeleteSuccess())
+  history.push('/controle-de-acessos')
 }
 
 export function* restaureSolution(action: Action): Generator {

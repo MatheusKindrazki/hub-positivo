@@ -3,6 +3,6 @@
     "pre-commit": "lint-staged",
     "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
     "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-    "pre-push": "node --expose-gc ./node_modules/.bin/jest -u --logHeapUsage"
+    // "pre-push": "node --expose-gc ./node_modules/.bin/jest -u --logHeapUsage"
   }
 }

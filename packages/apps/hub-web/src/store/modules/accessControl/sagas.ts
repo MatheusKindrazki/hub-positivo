@@ -1,54 +1,20 @@
 import { takeLatest, all, Payload, put, call } from 'redux-saga/effects'
 
+import history from '~/services/history'
+
 import { AccessControlPutData, AccessControlPostData } from './types'
 import { Actions } from './actions'
 import { createSolution } from '../solutions/sagas'
-import { solutionPostRequest, solutionPutRequest } from '../solutions/actions'
+import {
+  solutionPostRequest,
+  solutionPutRequest,
+  solutionsGetRequest
+} from '../solutions/actions'
 import {
   profilePermissionsRequest,
   schoolPermissionsRequest
 } from '../permissions/actions'
 import { loading } from '../global/actions'
-
-export const postAccessControlData: AccessControlPutData = {
-  solution: {
-    id: 'c0b68504-e9bb-4a43-857a-106f805d684e',
-    ativo: false,
-    slug: 'simulado-enem-ctpm-atualizado',
-    idCategoria: '32e4823f-013c-4e66-9e32-2a3498a1f0f7',
-    nome: 'Simulado Enem CTPM',
-    descricao: 'esta solucao é um teste',
-    arquivo: 'string',
-    link: 'https://www.google.com.br',
-    tipoRenderizacao: 'iframe',
-    ordem: 1,
-    padrao: true
-  },
-  schoolPermissions: {
-    remove: {
-      idSolucao: '',
-      idsEscolas: []
-    },
-    create: {
-      idSolucao: '',
-      idsEscolas: [],
-      restricao: 'Ocultar'
-    }
-  },
-  profilePermissions: {
-    create: {
-      idSolucao: '',
-      IdsPerfisNiveisEnsino: []
-    },
-    remove: {
-      idSolucao: '',
-      IdsPerfisNiveisEnsino: []
-    }
-  }
-}
-
-// idsEscolas: ['a3684569-764d-4ad1-b816-9a11736e5adf'],
-// IdsPerfisNiveisEnsino: ['6190aaa0-cbd5-488c-9b49-ab86f52728b1'
 
 type PostAccessControlPayload = Payload<AccessControlPostData>
 
@@ -72,8 +38,9 @@ export function* submitPostAccessControl({
     schoolPermissions.create.idSolucao = id
     schoolPermissions.remove.idSolucao = id
     yield put(schoolPermissionsRequest(schoolPermissions))
-
+    yield put(solutionsGetRequest())
     yield put(loading(false))
+    history.push('/controle-de-acessos')
   }
 }
 
@@ -91,7 +58,9 @@ export function* submitPutAccessControl({
 
   yield put(schoolPermissionsRequest(schoolPermissions))
 
+  yield put(solutionsGetRequest())
   yield put(loading(false))
+  history.push('/controle-de-acessos')
 }
 
 export default all([

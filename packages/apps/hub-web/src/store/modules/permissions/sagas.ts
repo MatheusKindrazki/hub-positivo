@@ -91,7 +91,7 @@ export function* schoolPermissions({
       return yield put(schoolPermissionsFailure())
     }
 
-    return yield put(schoolPermissionsSuccess())
+    yield put(schoolPermissionsSuccess())
   }
 
   // Cria permissoes interrompendo o fluxo caso haja algum erro
@@ -127,7 +127,6 @@ export function* getProfilePermissionsBySolutionId({
   const { ok, data } = response as ApiResponse<ProfileLevelsBySolution[]>
 
   if (!ok) {
-    console.log('erro ao buscas restricoes de perfil: ', response)
     toast.error('Erro ao buscar restrições de perfil desta solução')
     return put(profilePermissionsBySolutionFailure())
   }
