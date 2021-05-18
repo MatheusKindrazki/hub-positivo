@@ -23,7 +23,7 @@ const permissions: ReturnReducer = (state = INITIAL_STATE, action) => {
       }
       case Actions.GETALL_PROFILE_PERMISSIONS_SUCCESS: {
         draft.loading = false
-        draft.schoolPermissions = action.payload
+        draft.profileOptions = action.payload
         break
       }
       case Actions.GETALL_PROFILE_PERMISSIONS_FAILURE: {

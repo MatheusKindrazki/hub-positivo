@@ -38,10 +38,10 @@ export function* submitPostAccessControl({
     schoolPermissions.create.idSolucao = id
     schoolPermissions.remove.idSolucao = id
     yield put(schoolPermissionsRequest(schoolPermissions))
-    yield put(solutionsGetRequest())
-    yield put(loading(false))
-    history.push('/controle-de-acessos')
   }
+  yield put(solutionsGetRequest())
+  yield put(loading(false))
+  history.push('/controle-de-acessos')
 }
 
 type PutAccessControlPayload = Payload<AccessControlPutData>
@@ -58,12 +58,13 @@ export function* submitPutAccessControl({
 
   yield put(schoolPermissionsRequest(schoolPermissions))
 
-  yield put(solutionsGetRequest())
   yield put(loading(false))
+
+  yield put(solutionsGetRequest())
   history.push('/controle-de-acessos')
 }
 
 export default all([
-  takeLatest(Actions.ACCESS_CONTROL_POST_REQUEST, submitPostAccessControl),
-  takeLatest(Actions.ACCESS_CONTROL_PUT_REQUEST, submitPutAccessControl)
+  takeLatest(Actions.ACCESS_CONTROL_PUT_REQUEST, submitPutAccessControl),
+  takeLatest(Actions.ACCESS_CONTROL_POST_REQUEST, submitPostAccessControl)
 ])

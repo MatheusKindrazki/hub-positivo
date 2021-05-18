@@ -35,13 +35,13 @@ const categories: ReturnReducer = (state = INITIAL_STATE, action) => {
 
       case Actions.SOLUTIONS_GET_EXCLUDED_REQUEST: {
         draft.loading = true
-        draft.excludedSolutions = undefined
+        // draft.excludedSolutions = undefined
         break
       }
 
       case Actions.SOLUTIONS_GET_EXCLUDED_FAILURE: {
         draft.loading = false
-        draft.excludedSolutions = undefined
+        // draft.excludedSolutions = undefined
         break
       }
 

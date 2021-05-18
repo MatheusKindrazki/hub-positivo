@@ -164,7 +164,6 @@ export function* getSchoolPermissionsBySolutionId({
   const { ok, data } = response as ApiResponse<SchoolsRestrictionsBySolution[]>
 
   if (!ok) {
-    console.log('erro ao buscas restricoes de escolal: ', response)
     toast.error('Erro ao buscar permissões de escola para esta solucao')
     return yield put(schoolPermissionsBySolutionFailure())
   }

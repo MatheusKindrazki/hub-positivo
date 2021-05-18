@@ -1,5 +1,4 @@
 import {
-  profileOptions,
   schoolRestrictionRules,
   targetOptions
 } from '../../utils/createOptions'
@@ -16,7 +15,11 @@ interface Select {
   isMulti?: boolean
 }
 
-export const selects = (categories: Option[], schools: Option[]): Select[] => [
+export const selects = (
+  categories: Option[],
+  schools: Option[],
+  profiles: Option[]
+): Select[] => [
   {
     name: 'idCategoria',
     placeholder: 'Selecione',
@@ -26,7 +29,7 @@ export const selects = (categories: Option[], schools: Option[]): Select[] => [
   {
     name: 'profiles',
     placeholder: 'Selecione',
-    options: profileOptions,
+    options: profiles,
     label: 'Perfis e Segmentos',
     isMulti: true
   },

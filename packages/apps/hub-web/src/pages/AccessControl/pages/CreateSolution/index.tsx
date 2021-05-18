@@ -38,9 +38,16 @@ const UpdateSolution: React.FC = () => {
 
   const { categories } = useSelector((state: Store.State) => state.category)
   const { schools } = useSelector((state: Store.State) => state.school)
+  const { profileOptions } = useSelector(
+    (state: Store.State) => state.permissions
+  )
 
   const categoryOptions = createOptions(categories)
   const schoolOptions = createOptions(schools)
+  const formattedProfileOptions = profileOptions.map((option: any) => ({
+    label: `${option.perfil} ${option.nivelEnsino}`,
+    value: option.id
+  }))
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
@@ -73,6 +80,7 @@ const UpdateSolution: React.FC = () => {
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)
           formRef?.current?.setErrors(errors)
+          return
         }
         return toast.error(
           'Algo deu errado, Verifique seus dados e tente novamente!'
@@ -128,7 +136,11 @@ const UpdateSolution: React.FC = () => {
             justifyContent="space-between"
             mt="5"
           >
-            {selects(categoryOptions, schoolOptions).map(select => {
+            {selects(
+              categoryOptions,
+              schoolOptions,
+              formattedProfileOptions
+            ).map(select => {
               return (
                 <Box
                   key={select.name}

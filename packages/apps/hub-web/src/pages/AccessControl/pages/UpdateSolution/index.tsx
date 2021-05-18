@@ -106,6 +106,7 @@ const UpdateSolution: React.FC = () => {
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)
           formRef?.current?.setErrors(errors)
+          return
         }
         return toast.error(
           'Algo deu errado, Verifique seus dados e tente novamente!'

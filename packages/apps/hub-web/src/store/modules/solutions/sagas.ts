@@ -20,6 +20,7 @@ import {
   solutionPostFailure,
   solutionsGetFailure,
   solutionsGetSuccess,
+  solutionsGetRequest,
   solutionPutSuccess,
   solutionPutFailure,
   solutionDeleteSuccess,
@@ -51,6 +52,7 @@ export function* createSolution(action: Action): Generator {
 }
 
 export function* getSolutions(): Generator {
+  console.log('FUI CHAMADO HEHEHE')
   const response = yield call(() => {
     return api.get(
       'Categoria/SolucoesPerfisRestricoes',
@@ -112,6 +114,7 @@ export function* deleteSolution(action: Action): Generator {
   }
 
   toast.success('Solução excluída com sucesso!')
+  yield put(solutionsGetRequest())
   yield put(solutionsGetExcludedRequest())
   yield put(solutionDeleteSuccess())
   history.push('/controle-de-acessos')
@@ -137,6 +140,8 @@ export function* restaureSolution(action: Action): Generator {
     return yield put(solutionRestaureFailure())
   }
   toast.success('Solução restaurada com sucesso')
+  yield put(solutionsGetExcludedRequest())
+  yield put(solutionsGetRequest())
   return yield put(solutionRestaureSuccess())
 }
 
@@ -159,6 +164,11 @@ export function* getExcludedSolutions(): Generator {
     return yield put(solutionsGetExcludedFailure())
   }
   return yield put(solutionsGetExcludedSuccess(data))
+}
+
+export function* refreshData(): Generator {
+  console.log('saga de atualizacao foi executada')
+  yield put(solutionsGetRequest())
 }
 
 export default all([
