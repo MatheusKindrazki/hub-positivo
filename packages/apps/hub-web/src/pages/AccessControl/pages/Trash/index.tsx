@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Solution } from '~/store/modules/solutions/types'
-import { solutionsGetExcludedRequest } from '~/store/modules/solutions/actions'
+import { solutionsGetRequest } from '~/store/modules/solutions/actions'
 
 import Table, { Columns } from '@psdhub/common/components/Table'
 import { Box } from '@psdhub/common/components'
@@ -41,13 +41,13 @@ export const columns: Columns[] = [
 ]
 const Trash: React.FC = () => {
   const dispatch = useDispatch()
-  const { excludedSolutions: data, loading: load } = useSelector(
+  const { data, loading: load } = useSelector(
     (state: Store.State) => state.solutions
   )
 
   useEffect(() => {
     if (!data) {
-      dispatch(solutionsGetExcludedRequest())
+      dispatch(solutionsGetRequest('EXCLUIDA'))
     }
   }, [dispatch, data])
 

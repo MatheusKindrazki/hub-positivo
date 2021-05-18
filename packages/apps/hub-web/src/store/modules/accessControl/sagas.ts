@@ -4,12 +4,12 @@ import history from '~/services/history'
 
 import { AccessControlPutData, AccessControlPostData } from './types'
 import { Actions } from './actions'
-import { createSolution } from '../solutions/sagas'
+import { createSolution, updateSolution } from '../solutions/sagas'
+import { solutionPostRequest, solutionPutRequest } from '../solutions/actions'
 import {
-  solutionPostRequest,
-  solutionPutRequest,
-  solutionsGetRequest
-} from '../solutions/actions'
+  profilePermissions as profileSaga,
+  schoolPermissions as schoolSaga
+} from '../permissions/sagas'
 import {
   profilePermissionsRequest,
   schoolPermissionsRequest
@@ -33,13 +33,13 @@ export function* submitPostAccessControl({
   if (id) {
     profilePermissions.create.idSolucao = id
     profilePermissions.remove.idSolucao = id
-    yield put(profilePermissionsRequest(profilePermissions))
-
     schoolPermissions.create.idSolucao = id
     schoolPermissions.remove.idSolucao = id
-    yield put(schoolPermissionsRequest(schoolPermissions))
+    all([
+      yield call(profileSaga, profilePermissionsRequest(profilePermissions)),
+      yield call(schoolSaga, schoolPermissionsRequest(schoolPermissions))
+    ])
   }
-  yield put(solutionsGetRequest())
   yield put(loading(false))
   history.push('/controle-de-acessos')
 }
@@ -52,16 +52,13 @@ export function* submitPutAccessControl({
   const { solution, profilePermissions, schoolPermissions } = payload
   yield put(loading(true))
 
-  yield put(solutionPutRequest(solution))
-
-  yield put(profilePermissionsRequest(profilePermissions))
-
-  yield put(schoolPermissionsRequest(schoolPermissions))
-
+  all([
+    yield call(updateSolution, solutionPutRequest(solution)),
+    yield call(profileSaga, profilePermissionsRequest(profilePermissions)),
+    yield call(schoolSaga, schoolPermissionsRequest(schoolPermissions))
+  ])
   yield put(loading(false))
-
-  yield put(solutionsGetRequest())
-  history.push('/controle-de-acessos')
+  return yield history.push('/controle-de-acessos')
 }
 
 export default all([

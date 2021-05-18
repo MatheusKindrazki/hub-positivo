@@ -1,6 +1,6 @@
 import { ApiResponse } from 'apisauce'
 
-import { call, takeLatest, all, put, Payload } from 'redux-saga/effects'
+import { call, takeLatest, all, put } from 'redux-saga/effects'
 import { Action } from 'redux'
 
 import { toast } from '@psdhub/common/utils'
@@ -8,12 +8,7 @@ import api from '@psdhub/api'
 
 import history from '~/services/history'
 
-import {
-  Category,
-  PutSolutionData,
-  SolutionPutResponse,
-  DeleteResponse
-} from './types'
+import { Category, SolutionPutResponse, DeleteResponse } from './types'
 import {
   Actions,
   solutionPostSuccess,
@@ -25,11 +20,8 @@ import {
   solutionPutFailure,
   solutionDeleteSuccess,
   solutionDeleteFailure,
-  solutionsGetExcludedFailure,
-  solutionsGetExcludedSuccess,
   solutionRestaureFailure,
-  solutionRestaureSuccess,
-  solutionsGetExcludedRequest
+  solutionRestaureSuccess
 } from './actions'
 
 export function* createSolution(action: Action): Generator {
@@ -51,15 +43,14 @@ export function* createSolution(action: Action): Generator {
   return yield data?.dados.id
 }
 
-export function* getSolutions(): Generator {
-  console.log('FUI CHAMADO HEHEHE')
+export function* getSolutions(action: Action): Generator {
   const response = yield call(() => {
     return api.get(
       'Categoria/SolucoesPerfisRestricoes',
       {},
       {
         params: {
-          EstadoSolucao: 'PUBLICADA'
+          EstadoSolucao: action.payload.status
         }
       }
     )
@@ -74,12 +65,12 @@ export function* getSolutions(): Generator {
   return yield put(solutionsGetSuccess(data))
 }
 
-type SolutionPutPayload = Payload<PutSolutionData>
+// type SolutionPutPayload = Payload<PutSolutionData>
 
-export function* updateSolution({ payload }: SolutionPutPayload): Generator {
+export function* updateSolution(action: Action): Generator {
   const response = yield call(async () => {
     return api.put('/Solucao', {
-      ...payload
+      ...action.payload
     })
   })
 
@@ -114,8 +105,6 @@ export function* deleteSolution(action: Action): Generator {
   }
 
   toast.success('Solução excluída com sucesso!')
-  yield put(solutionsGetRequest())
-  yield put(solutionsGetExcludedRequest())
   yield put(solutionDeleteSuccess())
   history.push('/controle-de-acessos')
 }
@@ -140,35 +129,8 @@ export function* restaureSolution(action: Action): Generator {
     return yield put(solutionRestaureFailure())
   }
   toast.success('Solução restaurada com sucesso')
-  yield put(solutionsGetExcludedRequest())
-  yield put(solutionsGetRequest())
+  put(solutionsGetRequest('EXCLUIDA'))
   return yield put(solutionRestaureSuccess())
-}
-
-export function* getExcludedSolutions(): Generator {
-  const response = yield call(() => {
-    return api.get(
-      'Categoria/SolucoesPerfisRestricoes',
-      {},
-      {
-        params: {
-          EstadoSolucao: 'EXCLUIDA'
-        }
-      }
-    )
-  })
-  const { ok, data } = response as ApiResponse<Category[]>
-
-  if (!ok || !data) {
-    toast.error('Erro ao buscar items da lixeira!')
-    return yield put(solutionsGetExcludedFailure())
-  }
-  return yield put(solutionsGetExcludedSuccess(data))
-}
-
-export function* refreshData(): Generator {
-  console.log('saga de atualizacao foi executada')
-  yield put(solutionsGetRequest())
 }
 
 export default all([
@@ -176,6 +138,5 @@ export default all([
   takeLatest(Actions.SOLUTIONS_GET_REQUEST, getSolutions),
   takeLatest(Actions.SOLUTION_PUT_REQUEST, updateSolution),
   takeLatest(Actions.SOLUTION_DELETE_REQUEST, deleteSolution),
-  takeLatest(Actions.SOLUTIONS_GET_EXCLUDED_REQUEST, getExcludedSolutions),
   takeLatest(Actions.SOLUTION_RESTAURE_REQUEST, restaureSolution)
 ])
