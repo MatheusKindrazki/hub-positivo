@@ -54,11 +54,7 @@ const UpdateSolution: React.FC = () => {
   const { profileOptions } = useSelector(
     (state: Store.State) => state.permissions
   )
-  const formattedProfileOptions = profileOptions.map((option: any) => ({
-    label: `${option.perfil} ${option.nivelEnsino}`,
-    value: option.id
-  }))
-
+  const formattedProfileOptions = createOptions(profileOptions)
   const categoryOptions = createOptions(categories)
   const schoolOptions = createOptions(schools)
 
@@ -93,19 +89,21 @@ const UpdateSolution: React.FC = () => {
       try {
         await solutionInfo.validate(data, { abortEarly: false })
 
+        const permissions = {
+          profilePermissions: {
+            old: oldProfilePermissions,
+            new: data.profiles
+          },
+          schoolsPermissions: {
+            old: oldSchoolPermissions,
+            new: data.schools
+          }
+        }
+
         const formattedData: AccessControlPutData = formatFormData(
           data,
           solution as SolutionWithCategory,
-          {
-            profilePermissions: {
-              old: oldProfilePermissions,
-              new: data.profiles
-            },
-            schoolsPermissions: {
-              old: oldSchoolPermissions,
-              new: data.schools
-            }
-          }
+          permissions
         )
 
         return dispatch(accessControlPutRequest(formattedData))
