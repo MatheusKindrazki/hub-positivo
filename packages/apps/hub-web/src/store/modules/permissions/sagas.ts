@@ -1,14 +1,15 @@
 import { ApiResponse } from 'apisauce'
 
 import { call, takeLatest, all, put, Payload } from 'redux-saga/effects'
+import { Action } from 'redux'
 
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
 import {
   GenericApiResponse,
-  ProfilePermissions,
-  SchoolPermissions,
+  // ProfilePermissions,
+  // SchoolPermissions,
   ProfileLevelsBySolution,
   SchoolsRestrictionsBySolution
 } from './types'
@@ -24,12 +25,10 @@ import {
   profilePermissionsBySolutionSuccess
 } from './actions'
 
-type UpdateProfilePayload = Payload<ProfilePermissions>
+// type UpdateProfilePayload = Payload<ProfilePermissions>
 
-export function* profilePermissions({
-  payload
-}: UpdateProfilePayload): Generator {
-  const { create, remove } = payload
+export function* profilePermissions(action: Action): Generator {
+  const { create, remove } = action.payload
 
   if (
     !remove.IdsPerfisNiveisEnsino?.length &&
@@ -69,12 +68,10 @@ export function* profilePermissions({
   return put(profilePermissionsSuccess())
 }
 
-type SchoolPermissionsPayload = Payload<SchoolPermissions>
+// type SchoolPermissionsPayload = Payload<SchoolPermissions>
 
-export function* schoolPermissions({
-  payload
-}: SchoolPermissionsPayload): Generator {
-  const { create, remove } = payload
+export function* schoolPermissions(action: Action): Generator {
+  const { create, remove } = action.payload
 
   if (!remove.idsEscolas?.length && !create.idsEscolas?.length) return
 

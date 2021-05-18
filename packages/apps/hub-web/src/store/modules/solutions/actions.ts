@@ -19,10 +19,6 @@ export const Actions = {
   SOLUTION_DELETE_SUCCESS: '@solutions/SOLUTION_DELETE_SUCCESS',
   SOLUTION_DELETE_FAILURE: '@solutions/SOLUTION_DELETE_FAILURE',
 
-  SOLUTIONS_GET_EXCLUDED_REQUEST: '@solutions/SOLUTIONS_GET_EXCLUDED_REQUEST',
-  SOLUTIONS_GET_EXCLUDED_SUCCESS: '@solutions/SOLUTIONS_GET_EXCLUDED_SUCCESS',
-  SOLUTIONS_GET_EXCLUDED_FAILURE: '@solutions/SOLUTIONS_GET_EXCLUDED_FAILURE',
-
   SOLUTION_RESTAURE_REQUEST: '@solution/SOLUTION_RESTAURE_REQUEST',
   SOLUTION_RESTAURE_SUCCESS: '@solution/SOLUTION_RESTAURE_SUCCESS',
   SOLUTION_RESTAURE_FAILURE: '@solution/SOLUTION_RESTAURE_FAILURE'
@@ -84,9 +80,12 @@ export function solutionPutSuccess(): Action {
   ? Buscando todas as categorias e soluções
 */
 
-export function solutionsGetRequest(): Action {
+export function solutionsGetRequest(status: string): Action {
   return {
-    type: Actions.SOLUTIONS_GET_REQUEST
+    type: Actions.SOLUTIONS_GET_REQUEST,
+    payload: {
+      status
+    }
   }
 }
 
@@ -156,22 +155,3 @@ export function solutionRestaureSuccess(): Action {
 /*
   ? Solicitar soluções excluídas
 */
-
-export function solutionsGetExcludedRequest(): Action {
-  return {
-    type: Actions.SOLUTIONS_GET_EXCLUDED_REQUEST
-  }
-}
-
-export function solutionsGetExcludedFailure(): Action {
-  return {
-    type: Actions.SOLUTIONS_GET_EXCLUDED_FAILURE
-  }
-}
-
-export function solutionsGetExcludedSuccess(data: Category[]): Action {
-  return {
-    type: Actions.SOLUTIONS_GET_EXCLUDED_SUCCESS,
-    payload: data
-  }
-}

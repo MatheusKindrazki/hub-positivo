@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { useHistory } from 'react-router'
 
@@ -51,8 +51,10 @@ export const columns: Columns[] = [
 const mock = [{}, {}, {}, {}, {}, {}, {}]
 
 const AccessControl: React.FC = () => {
-  const [solutions, setSolutions] = useState<CollapseData[] | null>(null)
-  const { data, loading } = useSelector((state: Store.State) => state.solutions)
+  // const [solutions, setSolutions] = useState<CollapseData[] | null>(null)
+  const { data = [], loading } = useSelector(
+    (state: Store.State) => state.solutions
+  )
   const { profile } = useSelector((state: Store.State) => state.profile)
   const history = useHistory()
   const dispatch = useDispatch()
@@ -66,12 +68,8 @@ const AccessControl: React.FC = () => {
   useEffect(() => {
     dispatch(categoryGetAllRequest())
     dispatch(schoolGetAllRequest())
-    if (data?.length) {
-      setSolutions(solutionsTableDataFormat(data))
-    } else {
-      dispatch(solutionsGetRequest())
-    }
-  }, [data, dispatch])
+    dispatch(solutionsGetRequest('PUBLICADA'))
+  }, [dispatch])
 
   return (
     <Container m="auto" maxW="90rem" p="10">
@@ -79,7 +77,7 @@ const AccessControl: React.FC = () => {
       <ModalAddCategory />
       {loading && mock.map((_, i) => <FakeLoadingCollapse key={i} />)}
       {!loading &&
-        solutions?.map(categoria => {
+        solutionsTableDataFormat(data)?.map(categoria => {
           return (
             <Collapse
               defaultIsOpen={false}
