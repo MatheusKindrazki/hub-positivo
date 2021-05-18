@@ -1,6 +1,7 @@
 import { ApiResponse } from 'apisauce'
 
-import { call, takeLatest, all, put, Payload } from 'redux-saga/effects'
+import { call, takeLatest, all, put } from 'redux-saga/effects'
+import { Action } from 'redux'
 
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
@@ -8,7 +9,6 @@ import api from '@psdhub/api'
 import {
   GenericApiResponse,
   ProfilePermissions,
-  SchoolPermissions,
   ProfileLevelsBySolution,
   SchoolsRestrictionsBySolution
 } from './types'
@@ -42,12 +42,8 @@ export function* getAllProfilePermissions(): Generator {
   )
 }
 
-type UpdateProfilePayload = Payload<ProfilePermissions>
-
-export function* profilePermissions({
-  payload
-}: UpdateProfilePayload): Generator {
-  const { create, remove } = payload
+export function* profilePermissions(action: Action): Generator {
+  const { create, remove } = action.payload
 
   if (
     !remove.IdsPerfisNiveisEnsino?.length &&
@@ -87,12 +83,8 @@ export function* profilePermissions({
   return put(profilePermissionsSuccess())
 }
 
-type SchoolPermissionsPayload = Payload<SchoolPermissions>
-
-export function* schoolPermissions({
-  payload
-}: SchoolPermissionsPayload): Generator {
-  const { create, remove } = payload
+export function* schoolPermissions(action: Action): Generator {
+  const { create, remove } = action.payload
 
   if (!remove.idsEscolas?.length && !create.idsEscolas?.length) return
 
@@ -131,14 +123,10 @@ export function* schoolPermissions({
   return yield put(schoolPermissionsSuccess())
 }
 
-export type PermissionsIdPayload = Payload<{ id: string }>
-
-export function* getProfilePermissionsBySolutionId({
-  payload: { id }
-}: PermissionsIdPayload): Generator {
+export function* getProfilePermissionsBySolutionId(action: Action): Generator {
   const response = yield call(() => {
     return api.get('SolucaoPerfilNivelEnsino', {
-      idSolucao: id
+      idSolucao: action.payload.id
     })
   })
 
@@ -154,11 +142,9 @@ export function* getProfilePermissionsBySolutionId({
   )
 }
 
-export function* getSchoolPermissionsBySolutionId({
-  payload: { id }
-}: PermissionsIdPayload): Generator {
+export function* getSchoolPermissionsBySolutionId(action: Action): Generator {
   const response = yield call(() => {
-    return api.get('Solucao/Restricao', { idSolucao: id })
+    return api.get('Solucao/Restricao', { idSolucao: action.payload.id })
   })
 
   const { ok, data } = response as ApiResponse<SchoolsRestrictionsBySolution[]>

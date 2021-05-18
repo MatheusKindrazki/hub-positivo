@@ -51,6 +51,13 @@ const UpdateSolution: React.FC = () => {
     schoolPermissions: oldSchoolPermissions,
     profilePermissions: oldProfilePermissions
   } = useSelector((state: Store.State) => state.permissions)
+  const { profileOptions } = useSelector(
+    (state: Store.State) => state.permissions
+  )
+  const formattedProfileOptions = profileOptions.map((option: any) => ({
+    label: `${option.perfil} ${option.nivelEnsino}`,
+    value: option.id
+  }))
 
   const categoryOptions = createOptions(categories)
   const schoolOptions = createOptions(schools)
@@ -169,7 +176,11 @@ const UpdateSolution: React.FC = () => {
               justifyContent="space-between"
               mt="5"
             >
-              {selects(categoryOptions, schoolOptions).map(select => {
+              {selects(
+                categoryOptions,
+                schoolOptions,
+                formattedProfileOptions
+              ).map(select => {
                 return (
                   <Box
                     key={select.name}

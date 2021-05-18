@@ -5,6 +5,7 @@ import { DropzoneRef } from 'react-dropzone'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { schoolGetAllRequest } from '~/store/modules/school/actions'
+import { getAllProfilePermissionsRequest } from '~/store/modules/permissions/actions'
 import { categoryGetAllRequest } from '~/store/modules/category/actions'
 import { accessControlPostRequest } from '~/store/modules/accessControl/actions'
 
@@ -44,15 +45,13 @@ const UpdateSolution: React.FC = () => {
 
   const categoryOptions = createOptions(categories)
   const schoolOptions = createOptions(schools)
-  const formattedProfileOptions = profileOptions.map((option: any) => ({
-    label: `${option.perfil} ${option.nivelEnsino}`,
-    value: option.id
-  }))
+  const formattedProfileOptions = createOptions(profileOptions)
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
 
   useEffect(() => {
+    dispatch(getAllProfilePermissionsRequest())
     dispatch(categoryGetAllRequest())
     dispatch(schoolGetAllRequest())
   }, [dispatch])

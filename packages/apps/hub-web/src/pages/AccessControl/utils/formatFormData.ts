@@ -92,9 +92,9 @@ export const schoolRule = (
   if (rule === 'todas escolas') {
     return { padrao: true, restricao: 'Exibir' }
   } else if (rule === 'apenas') {
-    return { padrao: true, restricao: 'Ocultar' }
-  } else {
     return { padrao: false, restricao: 'Exibir' }
+  } else {
+    return { padrao: true, restricao: 'Ocultar' }
   }
 }
 
