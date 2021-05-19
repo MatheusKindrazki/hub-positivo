@@ -8,12 +8,9 @@ import { solutionsGetRequest } from '~/store/modules/solutions/actions'
 import Table, { Columns } from '@psdhub/common/components/Table'
 import { Box } from '@psdhub/common/components'
 
-import ModalDeleteSolution from '~/components/ModalDeleteSolution'
-
 import Container from './styles'
 import RestaureSolutionButton from './components/RestaureSolutionButton'
 import EmptyTrash from './components/EmptyTrash'
-import DeleteSolutionButton from './components/DeleteSolutionButton'
 import { trashDataFormat } from '../../utils/trashTableDataFormat'
 import Header from '../../components/Header'
 
@@ -27,12 +24,6 @@ export const columns: Columns[] = [
   { property: 'descricao', header: 'Descrição' },
   { property: 'categoria', header: 'Categoria' },
   { property: 'tipoRenderizacao', header: 'Abrir em...' },
-
-  {
-    property: 'delete',
-    header: null,
-    render: () => <DeleteSolutionButton />
-  },
   {
     property: 'restaure',
     header: null,
@@ -51,7 +42,6 @@ const Trash: React.FC = () => {
 
   return (
     <Container m="auto" maxW="90rem" p="10">
-      <ModalDeleteSolution />
       <Header />
       <Box overflow="auto" bg="white" rounded="md" m="5">
         {!load &&

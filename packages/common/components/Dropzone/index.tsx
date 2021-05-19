@@ -68,7 +68,7 @@ const DropzoneHub = forwardRef<DropzoneHandles>((_props, ref) => {
         </Text>
         <Box>
           {/* utilizando input html pois o chakra nao recebe as props do dropzone */}
-          <input ref={ref} {...getInputProps()} />
+          <input {...getInputProps()} />
         </Box>
       </Box>
     </Box>

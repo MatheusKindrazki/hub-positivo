@@ -51,7 +51,6 @@ export const columns: Columns[] = [
 const mock = [{}, {}, {}, {}, {}, {}, {}]
 
 const AccessControl: React.FC = () => {
-  // const [solutions, setSolutions] = useState<CollapseData[] | null>(null)
   const { data = [], loading } = useSelector(
     (state: Store.State) => state.solutions
   )

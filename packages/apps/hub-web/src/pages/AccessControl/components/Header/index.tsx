@@ -1,13 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { useHistory } from 'react-router'
 
 import { Stack, Button, Box } from '@psdhub/common/components'
 
-import ModalContext from '~/components/ModalAddCategory/context'
+import OptionButton from './components/OptionButton'
 
 const Header: React.FC = () => {
-  const { onOpen } = useContext(ModalContext)
   const { location, push } = useHistory()
 
   return (
@@ -47,34 +46,7 @@ const Header: React.FC = () => {
             LIXEIRA
           </Button>
         </Box>
-        {location.pathname === '/controle-de-acessos' && (
-          <Box>
-            <Button
-              variant="unstyled"
-              m="1"
-              color="blue.500"
-              borderRadius="sm"
-              borderColor="blue.500"
-              borderWidth="thin"
-              minW="11.25rem"
-              onClick={onOpen}
-            >
-              Adicionar Categoria
-            </Button>
-            <Button
-              variant="unstyled"
-              m="1"
-              color="blue.500"
-              borderRadius="sm"
-              borderColor="blue.500"
-              borderWidth="thin"
-              minW="11.25rem"
-              onClick={() => push('/controle-de-acessos/criar')}
-            >
-              Adicionar Solução
-            </Button>
-          </Box>
-        )}
+        {location.pathname === '/controle-de-acessos' && <OptionButton />}
       </Stack>
     </>
   )
