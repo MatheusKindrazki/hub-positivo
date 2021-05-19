@@ -1,3 +1,156 @@
+# [2.0.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.9.1...v2.0.0) (2021-05-15)
+
+
+### Bug Fixes
+
+* adicionando delay na leitura das rotas ([21d1a07](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/21d1a0767557aab7c60a73cbbb14beb21366a5f9))
+* adicionando hash na importação do gsc ([fadd3b8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/fadd3b846c42f0b2f8311e898608c16fbdea5611))
+* adicionando loading ([34dd800](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/34dd800e399f368b1255aa6313ae8fcc5c8ace7c))
+* ajustando bug no select ( opcões sem quebra de linha ) ([71abe58](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/71abe58a5858b88a2d369be2005b0d88982bc4c3))
+* ajustando build do easyauth ([b757e64](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b757e644aeb8b620d706298d7de61f887d8d3d03))
+* ajustando css do toast ([f45b523](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/f45b523eb6dec00946c94eb6ede0a6adbf2e7410))
+* ajustando disparo do idenfity no gsc ([9d084d2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9d084d22d9f638326c230952ea4d0367ce43367d))
+* ajustando effect do dev ([cd18993](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/cd189939838a09e0bcb5fed4342683369a37e5b3))
+* ajustando importações do select ([a0e12a6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/a0e12a6b98555b1d3c17df20a054b6840fea07f3))
+* ajustando mensagem enviada para o Livro ([f347bcf](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/f347bcf4524cb834f7a1827b3ed73d9e599fa9c8))
+* ajustando opacidade do componentes Popover ([4288739](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/4288739fc41fe51e3aa437b40fc79d3aa9122109))
+* ajustando persistor de cores ([ddb509a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ddb509a866058235b7b05eca499c1dc98cd35eaf))
+* ajustando refreshToken para session no mixpanel ([e66a1e2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/e66a1e2d734c24de0d169b9d69b0dde3dd1deff3))
+* ajustando retorno de dados ([e3b9c70](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/e3b9c7078b0238b71dd4935b96e01632682f710a))
+* ajustando tipagem @types/randomstring ([105320f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/105320fbd3bc7b9cb08916b88140bd8e2ee24632))
+* ajustando tipagem global do gsc ([cc50d21](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/cc50d2163dbd802b2821bfc15056caf2def344b0))
+* ajustando url default ([cb81b88](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/cb81b88e63f0f67f8173c2d6196defc3473b34b3))
+* ajustando variaveis de ambiente ([50e5659](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/50e56598946e85a6ba558975da5f9f387fd72b0e))
+* ajustando variaveis do gsc ([0d7d45d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/0d7d45d8a0f239616e6161088af049d6ff08d519))
+* ajuste no codigo mcf ([59ed202](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/59ed20228f7827da52c116c6fb79ccfb96d63c9e))
+* ajuste no webpack ([eed8e59](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/eed8e591eaf3c55ce52a6d650102d6a7a17fbeb3))
+* atualizando barloader ([ed7e38a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ed7e38ae1a052195e10d17639a529b0f0c930594))
+* atualizando comunicators ([ceeedff](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ceeedffe27290b11e29ef65960117026c94c1c4c))
+* corrigindo envio de parametros do GSC ([dec2c6e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/dec2c6e225821dd386578c0042230201542fb4db))
+* desabilitando cookies de subdominio mixpanel ([ddab303](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ddab3038f182c8f96409847bba983eea4282e45d))
+* prevendo reinstancia do gsc de forma desnecessária ([65a712b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/65a712b28bb8707b0957e100db349f7863fdbffe))
+* removendo codigo da home gsc ([5b1e35a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/5b1e35ad61d70394e59279ed2b0b4ad916e9282f))
+* removendo console.log ([a0cc202](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/a0cc2022e81c0020bdb36e6382933e1cd20e7397))
+* removendo console.log ([9371f37](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9371f379b1cfa1811d0d42d30c44410e434a3fda))
+* removendo iframes instanciados pelo GSC ([a96ab0c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/a96ab0ccef112c5fe9e4dc0c056979e698dc3ccc))
+* removendo possibilidade de cache da aplicação ([62491a7](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/62491a74da1d7411016d45e368c7c32f3d191351))
+* **]:** autenticação e seleção de perfil ([54deb56](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/54deb5687156d322b97530987b99d5234b0294c0))
+* adicionando 'ajuste tecnico' para verificação de escolas CTPM ([50f0c7a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/50f0c7ab0fac1aace732965ca1b10ae73b86f1fd))
+* adicionando components externos no webpack ([63d85b5](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/63d85b5e81aa0436474f8d339af82ce0ca757944))
+* adicionando hash na class ([4d1dbca](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/4d1dbca585cf5f5a9290aac354b302b0c9bf9b6a))
+* adicionando importação css toast direta ([739ffca](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/739ffcaf43f1a581b470afd3c49d43b7d5af2855))
+* adicionando variavel para build do html ([1363fcd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1363fcdbc2346d8fc666efdb03b37d176415e771))
+* ajustando css do container ([4d9c97a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/4d9c97a157fae4027e105b1e80f7234d49724381))
+* ajustando estilo do loading mcf ([69f5a65](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/69f5a6590e3e161af9c9c4491ed7f22f05910cf4))
+* ajustando hash ([4865757](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/48657578efaaaa66a4d92bbd56a29dfbae601719))
+* ajustando hash de css class ([e197f24](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/e197f24367b04bf037cb8e9b8088d9ef91885dca))
+* ajustando importação do amplitude ([5f4785e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/5f4785e160e0918efa0b8f74304ad44818753948))
+* ajustando nome do manifest ([3a2df2d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3a2df2dffcdc3d95e44d974846bcceffc0bcfe66))
+* ajustando nomenclaturas ([87386d0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/87386d06c94da07c0973fcf27b113b4bd90f4f6c))
+* ajustando prefixo do select ([4720032](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/47200324ffb34c20ea1fe256d039db0b0cc72fc7))
+* ajustando reset de infos do mixpanel ([02653a7](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/02653a7b585d781d116c66adde3272f018b9a65e))
+* ajustando spec de erros do test ([2efc6b8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2efc6b8f811c138d833c7f4402ec2bff8f565bfd))
+* ajustando tamanho do input ([4ada66d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/4ada66d5c6b5413146113e0633c2b7f03351599c))
+* ajuste de performance nos testes ([8ef56a0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/8ef56a0ca22e70e24a0c2d1b1eb6a10399f42b91))
+* ajuste de tipagem nos testes ([6a7af37](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/6a7af3715df07f21c7eaa2233860436770bad65b))
+* alterando random do cache ([7599684](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/7599684b4e2c07e37559a520212f48e397589220))
+* atribuindo nome randomico caso o css var não seja adicionado ([2b02f14](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2b02f14bd9b7aad34d8505a0df286a9b3a0f0a31))
+* atualizando orquestrador para usar protocolo fetch ([1b98f0b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1b98f0b44f28bd062d8557610dea2c5c42ba0228))
+* atualizando rotas ([0f97c8e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/0f97c8e4afc6df50bfee09f41321a27ffef3a600))
+* compilando css com prefixo do hub ([678c8a6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/678c8a607a55f6bf53527a1e9e62c722e0c6ec1d))
+* condicional para provider common ([97cf3f6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/97cf3f6524a6af4e9b999a57c97297931d534e2c))
+* corrigindo teste no mixpanel ([1fe1a64](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1fe1a644a23b4988176169420ec128977d78fff5))
+* deixando hash apenas de letras minusculas ([93ec5ee](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/93ec5ee32c5b8992b248c08b905ae391c2b5a9c7))
+* deixando prefix opcional ([2ee45d5](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2ee45d5432d8965200703ffe7810a6edf8950cb6))
+* descomentando tipo render wordpress ([53e5627](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/53e562745557b56d0ffc53469fd434fa3672f0d7))
+* recebendo valores diretos no select ([07efed3](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/07efed37e04c1ec198688863bd46fa868301a4db))
+* remove replace .sc ([fda26bc](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/fda26bc8d31758cf3abe33acf1118b0c78c9cf8d))
+* removendo comunicação com mixpanel e gsc ([ba4e97f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ba4e97f573ceec36eef6dba152024a24a83dc69c))
+* removendo ishub condicional ([b49bf9d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b49bf9df5cc6192dfb7bb3f56a6b7717e0b8c0e1))
+* removendo namespace do styled components ([8b5dc8d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/8b5dc8d3dcf9e5daeee4c9dc68efa152b9224fe6))
+* removendo postbuild common ([9b3c173](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9b3c173e355bb0eb27a990f93e2eb31cd4baf7a8))
+* removendo sessionStarted desnecessário ([6f6f60f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/6f6f60f5ca315f2d9dfb9cec0c4e9dacbb3eb034))
+* setando tema light para a aplica ([15076f8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/15076f87d66b7eaff7abe0f6685e6d68302d57c9))
+* split do delay para fechamento do modal ([9dcfdc4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/9dcfdc4f0ac965ef5701826d5ee8154f51bd2ace))
+* styled-components-babel ([0e5b1f0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/0e5b1f0301dc3e2397774fa4f748c5d3404f13e9))
+* voltando instancia do mixpanel ([bcaef96](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/bcaef96379c3e198ea36af517a955daf60922281))
+* **middlewares:** alterado disparo de session started no refresh token ([af667fe](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/af667feae5c9140feee5a28cc415d4645b7c44fd))
+* **tests:** corrigido expect errado no teste do mixpanel/setproperties ([44c9e92](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/44c9e92a2a6b138f7fa4d1a8d25ecf15ffcdea26))
+* **tests:** incluindo type argument nos testes ([79bf783](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/79bf78367e3c94e56a496752bf0b2b226b936bc4))
+
+
+### Build System
+
+* realizando configuração biblioteca common para publicação na npm ([b96a479](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b96a4795a152716039b6c705c77cc36b6d5af0cd))
+
+
+### Features
+
+* adicionando event listner no MCF ([b0ea012](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b0ea012d4490e8c6cf444587f288bb70107faf3c))
+* adicionando feature para instalar peerDependencies automaticamente ([1ee082d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/1ee082d334763044af64ea57fa2292e52815d3ec))
+* adicionando header ([94b108c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/94b108cb7ff72ba653c194b4896573ec4599794f))
+* adicionando logo on ([122e470](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/122e470949aac45380b9b71c9d68a8496a828065))
+* adicionando nivel de ensino mocado para aluno e professor ([3bbfc61](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3bbfc6134bf397bbb6bc2838e7169a530115ae88))
+* adicionando opção de alteração de cores do tema ([3a0cbaa](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3a0cbaa937c9f317852928ff0247d22063eb305c))
+* adicionando select de classe ([afcaee5](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/afcaee53b35f9f27c6a621bfb1b7e31d560c2b1e))
+* adicionar sumario à documentação de testes ([574ed0c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/574ed0cbdb6a4edff4ef3e78b728dc34b9bd598b))
+* alterando cor do header conforme perfil ([71e3a0c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/71e3a0c15784723e7f496a461b6ee9d9f38f53b2))
+* avisando mcf para carregar aplicação ([e836ee4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/e836ee4e1158e2477067f0a5a258263e5d10e49a))
+* corrigir imagens na documentação dos testes ([5afeba1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/5afeba157dd6214d2810b5d51026f9e4be2f9ed5))
+* criando ambiente de easy auth dev ([b52bf77](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b52bf77b3d685de48f2966000e97ff624dea1552))
+* criando arquivos de teste ([46bff45](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/46bff454b3a7b5a85a83173e040d24a22aac273d))
+* criando ciclo de autenticação inicial ([14dc0c9](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/14dc0c9ba2681a2490ccd72a904ba54c0823e352))
+* criando estratégia para fechamento e abertura dos modais ([142a57f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/142a57f34b7c16e6616397d28778f284f1dfc457))
+* criando helpers para comunicação entre microfrontends ([178f352](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/178f3521841d8b54e409bf408f3c40a5c7888c00))
+* criando lib gsc para abertura e fechamento da solução ([724a7a1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/724a7a12a75e905a900001e3659cbecf40ea4a98))
+* Criando modulo sobreposto para microfrontend ([5c07914](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/5c07914138c6f19fa167f4ccbcffc04147626347))
+* criar diretorio de imagens em docs/tests ([3663a5e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3663a5e1f00566ec34a0ed830358918ea210948d))
+* downgrade e ajuste do component select ([54867fe](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/54867fe34e9bc7bb3104706b9a00a5f0d3e7572f))
+* enviando atributos customizados para new relic ([85ecbf5](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/85ecbf56c8fa80fc222e2e16361c39bccadcd7d4))
+* enviando cor primaria para soluçÕes ([c078106](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/c078106f480216085bd8dae4813ff0a679b5dec1))
+* enviando dados para as solucoes ([13e7788](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/13e7788c18a40a11118632077b94ad628cd4498d))
+* escopo global do mixpanel ([de93743](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/de9374352b0f35539ee3f021e3c05ee13f867f6e))
+* estilizando select ([2f3898b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/2f3898b8f94aaa6fc1d9b194eaca8ffd6a1564af))
+* estrutura base no MCF ([477c81b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/477c81b963dbb93956a9b4453a84c6c870f97955))
+* estrutura do contexto ([296816f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/296816f7018e2682a5bcd778f5a116b4fe31fe32))
+* exportando hooks chakra para common ([0997af1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/0997af150c5441b2c0c474bc96e5d623c008aca0))
+* finalizando biblioteca de dados ([7451db9](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/7451db977dc754c214174915e4cedf6a94222dae))
+* fluxo de login completo ([174ef7e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/174ef7ecc2933d31b3b90cd59f01cbffaa2986b3))
+* identificando auth de produtos no new relic ([72403c4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/72403c4c7c8a017f22fb848d4b3b9004e7220922))
+* implementação do new relic ([28fed80](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/28fed808ffd3898fa22e0666c7645550643a5f92))
+* implementacao final do gsc com dados tratados ([d12b19a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d12b19aa5517e787ba4577863765f1319f42b72f))
+* implementando signout ([3892eff](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3892eff3023af4989bccfe6e4247f643e25e2f68))
+* load da aplicação e tratativa de rotas ([b6aebb1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/b6aebb1197ba974cb71f90a8ca65208059d9c45f))
+* prevendo select multiplo ([584318b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/584318b19822239ae92c8b5369ed7bf515467e0d))
+* repassando history para o modulo gsc ([96cf8e8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/96cf8e819d4e82f12cef6678f15c8c26d6402fa7))
+* selecionando perfil e escola no header inject ([4063f6a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/4063f6a6ebc2bf6e059e2e0953e043b0437a95e5))
+* sync do select no form ([d696226](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d6962262f7d7becd3e7dac6ae2512190840defd7))
+* timeout delay, criando função de promise ([6e619ce](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/6e619ce71e57372be8b5e7635c25cf287abcedec))
+* **getsitecontrol:** implementacao inicial do gsc ([d7eb825](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/d7eb825b95e7f8c73fcf58bdb9ee8b59857501ff))
+* **services/getsitecontrol:** getSiteControl onSubmit sendo setado na inicializacao ([f6a4d0a](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/f6a4d0a9936407ffed0c82aa1299641e93369e3e))
+
+
+### Performance Improvements
+
+* adicionando cssVarPrefix no common ([3b8e015](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/3b8e0154583d59e11889c65083da951afdab9b41))
+* ajustando nomes das actions ([cf8ffde](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/cf8ffde021a6591f9cbca2ebb7f7aa791e59a6d3))
+* atualizando bobeirinhas de [@gabryelriba](https://editorati.visualstudio.com/gabryelriba) ([4b20869](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/4b208697a1ad6e7fe6c8515177bffc99826afa1a))
+
+
+### Reverts
+
+* retomada do .husky test ([5c795fe](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/5c795fec63afb9b2222f24dd0347944bfda1b8f4))
+* voltando ao que era ([20d5dd5](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/20d5dd51a27612352aab1479dc65acbf41f854ec))
+* voltando aos testes ([ad9a57b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/ad9a57b05e266df2555ab4a37ddf5cd3d8b1b604))
+* voltando skip ([911b516](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/commit/911b5163debab92cb5b587110ed6d0255ccece71))
+
+
+### BREAKING CHANGES
+
+* Rodar o projeto com @hub/web não será mais possível, o nome da organização foi
+modificada para @psdhub, sendo assim deverá rodar o projeto com @psdhub/web, assim como a importação
+de bibliotecas e componentes exportadas pelo hub
+
 ## [1.9.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v1.9.0...v1.9.1) (2021-05-01)
 
 

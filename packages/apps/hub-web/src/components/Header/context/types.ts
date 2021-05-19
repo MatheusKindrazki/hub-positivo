@@ -1,4 +1,7 @@
-import { RolesProps, SchoolsProps } from '~/utils/prepareSchoolAndRoles'
+import {
+  RolesProps,
+  SchoolsProps
+} from '@psdhub/common/utils/prepareSchoolAndRoles'
 
 export interface ContextHeaderProps {
   schoolList: SchoolsProps[]

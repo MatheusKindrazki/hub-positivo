@@ -7,15 +7,15 @@ import { useSelector, useDispatch } from 'react-redux'
 import { AccessData } from '~/store/modules/auth/types'
 import { preparingUserData } from '~/store/modules/auth/actions'
 
-import documentTitle from '@psdhub/common/utils/documentTitle'
+import {
+  documentTitle,
+  prepareRoles,
+  prepareSchool
+} from '@psdhub/common/utils'
+import ProfileItem, { Icons } from '@psdhub/common/components/ProfileItem'
 import { Box, Heading, Select } from '@psdhub/common/components'
 
-import { prepareRoles, prepareSchool } from '~/utils/prepareSchoolAndRoles'
-
 import useQuery from '~/hooks/useQuery'
-
-import CardBox, { Icons } from './Components/CardBox'
-
 interface SelectItem {
   label: string
   value: string
@@ -74,7 +74,7 @@ const Profile: React.FC = () => {
       {school && (
         <Box mt="3" pt="3">
           {renderProfiles.map((item, i) => (
-            <CardBox
+            <ProfileItem
               key={String(i)}
               icon={item.icon as Icons}
               title={item.name}

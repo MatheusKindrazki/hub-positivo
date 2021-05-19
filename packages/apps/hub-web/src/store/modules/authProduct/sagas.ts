@@ -4,12 +4,10 @@ import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
 
 import { store } from '~/store'
 
-import { toast } from '@psdhub/common/utils'
+import { toast, isMobile } from '@psdhub/common/utils'
 import { apiAuthProduct } from '@psdhub/api'
 
 import history from '~/services/history'
-
-import isMobile from '~/utils/isMobile'
 
 import { loadScripts } from '~/orchestrator'
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
@@ -160,7 +158,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
     user_id: user.info?.guid as string,
     user_name: user.info?.name as string,
     school_id: user.school?.value as string,
-    guid: (data as unknown) as string
+    guid: data as unknown as string
   })
 
   yield put(loading(false))
@@ -170,7 +168,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   let urlAuth = `${payload.url}/${data}/${subpath}`
 
   if (payload.tipoRenderizacao === 'wordpress') {
-    const guid = (data as unknown) as string
+    const guid = data as unknown as string
 
     urlAuth = payload.url.replace('{token}', guid)
 

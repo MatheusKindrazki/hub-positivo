@@ -1,9 +1,7 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useRef, useEffect } from 'react'
 
 import Script from 'react-load-script'
 import Helmet from 'react-helmet'
-import { generate } from 'randomstring'
-
 interface ModulesProps {
   type: string
   url: string
@@ -17,17 +15,13 @@ const LoadModules: React.FC<ModulesProps> = ({
   hash,
   handleLoad
 }) => {
-  const identifyScript = generate(15)
+  const moduleRef = useRef<HTMLScriptElement>(null)
 
   useEffect(() => {
-    const element = document.getElementById(`micro-frontend-${identifyScript}`)
-
     return () => {
-      setTimeout(() => {
-        element?.remove()
-      }, 500)
+      moduleRef.current?.remove()
     }
-  }, [identifyScript])
+  }, [])
 
   if (type === 'css') {
     return (
@@ -38,14 +32,7 @@ const LoadModules: React.FC<ModulesProps> = ({
   }
 
   return (
-    <Script
-      attributes={{
-        id: `micro-frontend-${identifyScript}`,
-        crossOrigin: ''
-      }}
-      onLoad={handleLoad}
-      url={`${url}?hash=${hash}`}
-    />
+    <Script ref={moduleRef} onLoad={handleLoad} url={`${url}?hash=${hash}`} />
   )
 }
 

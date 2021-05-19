@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/common",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "author": "matheuskindrazki",
   "description": "PSD Hub Design Styles Kit",
   "license": "MIT",
@@ -29,7 +29,7 @@
     }
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.4.2",
+    "@chakra-ui/react": "^1.6.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@types/react-collapse": "^5.0.0",
@@ -41,7 +41,7 @@
     "randomstring": "^1.1.5",
     "react-collapse": "^5.1.0",
     "react-select": "https://github.com/MatheusKindrazki/react-select-rewired/archive/refs/tags/1.0.0.tar.gz",
-    "react-spinners": "^0.10.4",
+    "react-spinners": "^0.10.6",
     "react-toastify": "^7.0.3",
     "reactour": "^1.18.0"
   },
