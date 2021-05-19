@@ -41,22 +41,9 @@ export const selects = (
       name: 'profiles',
       placeholder: 'Selecione',
       options: profiles,
-      label: 'Perfis e Segmentos',
+      label: 'Perfis e segmentos',
       isMulti: true,
       w: '48.5%'
-    },
-    {
-      name: 'padrao',
-      placeholder: 'Selecione',
-      options: schoolRestrictionRules,
-      label: 'Escolas - Regra de restrição',
-      w: '48.5%',
-      onChange: (option: Option) => {
-        if (option.value === 'todas escolas') {
-          const padraoRef = ref.current?.getFieldRef('schools')
-          padraoRef.select.clearValue()
-        }
-      }
     },
     {
       name: 'tipoRenderizacao',
@@ -64,6 +51,19 @@ export const selects = (
       options: targetOptions,
       label: 'Abrir em...',
       w: '48.5%'
+    },
+    {
+      name: 'padrao',
+      placeholder: 'Selecione',
+      options: schoolRestrictionRules,
+      label: 'Regra de escolas',
+      w: '48.5%',
+      onChange: (option: Option) => {
+        if (option.value === 'todas escolas') {
+          const padraoRef = ref.current?.getFieldRef('schools')
+          padraoRef.select.clearValue()
+        }
+      }
     },
     {
       name: 'schools',

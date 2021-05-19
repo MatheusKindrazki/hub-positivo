@@ -14,9 +14,9 @@ import {
   Form,
   Input,
   Button as FormButton,
-  Select
+  Select,
+  Dropzone
 } from '@psdhub/common/components/Form'
-import Dropzone, { DropzoneHandles } from '@psdhub/common/components/Dropzone'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Box, Text, Stack, Button, BarLoader } from '@psdhub/common/components'
 
@@ -64,7 +64,6 @@ const UpdateSolution: React.FC = () => {
   }
 
   const formRef = useRef<FormProps>(null)
-  const dropRef = useRef<DropzoneHandles>(null)
   const modalRef = useRef<ModalHandler>(null)
 
   useEffect(() => {
@@ -167,7 +166,7 @@ const UpdateSolution: React.FC = () => {
 
             <Box>
               <Text color="blue.500">Ícone</Text>
-              <Dropzone ref={dropRef} />
+              <Dropzone name="arquivo" />
             </Box>
 
             <Stack
@@ -177,7 +176,6 @@ const UpdateSolution: React.FC = () => {
               mt="5"
             >
               {selects(selectsOptions, formRef).map(select => {
-                console.log('teste', formRef.current?.getFieldValue('padrao'))
                 return (
                   <Box key={select.name} w={select.w} ml="8px">
                     <Select mb="4" variant="secondary" {...select} />
