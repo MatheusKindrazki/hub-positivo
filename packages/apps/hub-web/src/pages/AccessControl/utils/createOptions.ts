@@ -54,12 +54,28 @@ export const schoolRestrictionRules = [
 
 export const targetOptions = [
   {
-    label: 'Mesma pagina',
-    value: 'iframe'
+    label: 'microfrontend',
+    value: 'microfrontend'
   },
   {
-    label: 'Nova aba',
+    label: 'iframeblank',
+    value: 'iframeblank'
+  },
+  {
+    label: 'wordpress',
+    value: 'wordpress'
+  },
+  {
+    label: 'iframenoauth',
+    value: 'iframenoauth'
+  },
+  {
+    label: 'targetblank',
     value: 'targetblank'
+  },
+  {
+    label: 'iframe',
+    value: 'iframe'
   }
 ]
 

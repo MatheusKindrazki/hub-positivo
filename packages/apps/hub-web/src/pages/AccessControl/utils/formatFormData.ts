@@ -1,10 +1,9 @@
+import { Solution } from '~/store/modules/solutions/types'
 import {
   ProfilePermissions,
   SchoolPermissions,
   Restricao
 } from '~/store/modules/permissions/types'
-
-import { SolutionWithCategory } from './getSolutionBySlug'
 
 export interface OldProfilePermissions {
   id: string
@@ -100,12 +99,11 @@ export const schoolRule = (
 
 export const formatFormData = (
   data: FormData,
-  solutionData: SolutionWithCategory | object = { solution: {} },
+  solution: Solution | object = { solution: {} },
   { profilePermissions, schoolsPermissions }: Params
 ): any => {
-  const { solution } = solutionData as SolutionWithCategory
-
   const { restricao, padrao } = schoolRule(data.padrao)
+  const { id } = solution as Solution
 
   const formattedSolution = {
     ...solution,
@@ -121,13 +119,13 @@ export const formatFormData = (
   const formattedProfilePermissions = formatProfilePermissions(
     profilePermissions.old,
     data.profiles,
-    solution.id || ''
+    id || ''
   )
 
   const formattedSchoolPermissions = formatSchoolPermissions(
     schoolsPermissions.old,
     data.schools,
-    solution.id || '',
+    id || '',
     restricao as Restricao
   )
 

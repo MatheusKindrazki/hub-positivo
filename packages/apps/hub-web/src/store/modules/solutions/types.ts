@@ -1,3 +1,5 @@
+import { Option } from '~/pages/AccessControl/pages/CreateSolution/selectOptions'
+
 export interface SolutionsReducer {
   loading: boolean
   data?: Category[]
@@ -26,6 +28,7 @@ export interface Solution {
   escolas: Schools[]
   slug: string
   link?: string
+  category?: Option
 }
 
 export interface PostSolutionData {

@@ -5,6 +5,7 @@ import { DropzoneRef } from 'react-dropzone'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import { Solution } from '~/store/modules/solutions/types'
 import { AccessControlPutData } from '~/store/modules/accessControl/types'
 import { accessControlPutRequest } from '~/store/modules/accessControl/actions'
 
@@ -27,15 +28,13 @@ import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
 import { selects } from '../CreateSolution/selectOptions'
-import getSolutionBySlug, {
-  SolutionWithCategory
-} from '../../utils/getSolutionBySlug'
-import getSlugFromURL from '../../utils/getSlugFromURL'
+import getSolutionBySlug from '../../utils/getSolutionBySlug'
 import { formatFormData } from '../../utils/formatFormData'
 import createOptions from '../../utils/createOptions'
+import autocompleteFormData from '../../utils/autocompleteFormData'
 
 const UpdateSolution: React.FC = () => {
-  const [solution, setSolution] = useState<SolutionWithCategory>()
+  const [solution, setSolution] = useState<Solution>()
 
   const { pathname } = useLocation()
 
@@ -63,28 +62,23 @@ const UpdateSolution: React.FC = () => {
   const modalRef = useRef<ModalHandler>(null)
 
   useEffect(() => {
-    const solutionSlug = getSlugFromURL(pathname)
-
     if (!categoryArr || categoryArr?.length === 0) {
       return history.push('/controle-de-acessos')
     }
 
-    if (solutionSlug && !solution) {
-      setSolution(getSolutionBySlug(categoryArr, solutionSlug))
+    if (!solution) {
+      setSolution(getSolutionBySlug(categoryArr, pathname))
     }
 
     if (solution) {
-      formRef.current?.setData({
-        nome: solution?.solution.nome,
-        descricao: solution?.solution.descricao,
-        link: solution.solution.link,
-        idCategoria: solution?.category
-      })
+      console.log('solucao recebida em update solution: ', solution)
+      autocompleteFormData(solution, formRef, profileOptions)
     }
-  }, [categoryArr, dispatch, pathname, solution])
+  }, [categoryArr, dispatch, pathname, profileOptions, solution])
 
   const handleSubmit = useCallback(
     async data => {
+      console.log('dados do formulario: ', data)
       formRef?.current?.setErrors({})
       try {
         await solutionInfo.validate(data, { abortEarly: false })
@@ -102,7 +96,7 @@ const UpdateSolution: React.FC = () => {
 
         const formattedData: AccessControlPutData = formatFormData(
           data,
-          solution as SolutionWithCategory,
+          solution as Solution,
           permissions
         )
 
@@ -242,10 +236,7 @@ const UpdateSolution: React.FC = () => {
             </Box>
           </Form>
         </Box>
-        <ModalDeleteSolution
-          ref={modalRef}
-          solutionId={solution?.solution.id}
-        />
+        <ModalDeleteSolution ref={modalRef} solutionId={solution?.id} />
       </Box>
     </>
   )
