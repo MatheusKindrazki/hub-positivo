@@ -1,16 +1,13 @@
 import { Permissions } from '~/store/modules/solutions/types'
 
-export const formatPermissions = (data: Permissions[]): string => {
-  const profiles = data.reduce((accumulator, current, index) => {
-    const profile = current.perfil[0] + current.perfil.slice(1).toLowerCase()
-    if (!current.niveisEnsino.length) {
-      accumulator += `${profile}`
-    } else {
-      accumulator += `${profile} (${current.niveisEnsino.toString()})`
-    }
-    accumulator += index + 1 >= data.length ? '' : ', '
+function camelize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+}
 
-    return accumulator
-  }, '')
-  return profiles
+export const formatPermissions = (data: Permissions[]): string => {
+  const profiles = data.map(p =>
+    `${camelize(p.perfil)} (${p.niveisEnsino.join()})`.replace(' ()', '')
+  )
+
+  return profiles.join(', ')
 }

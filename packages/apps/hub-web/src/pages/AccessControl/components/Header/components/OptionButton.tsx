@@ -15,7 +15,7 @@ const styles = {
   borderWidth: 'thin',
   minW: '11.25rem'
 }
-const OptionButton = () => {
+const OptionButton: React.FC = () => {
   const { onOpen } = useContext(ModalContext)
 
   const { push } = useHistory()
