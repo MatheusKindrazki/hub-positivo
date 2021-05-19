@@ -15,13 +15,13 @@ import {
   solutionPostFailure,
   solutionsGetFailure,
   solutionsGetSuccess,
+  solutionsGetRequest,
   solutionPutSuccess,
   solutionPutFailure,
   solutionDeleteSuccess,
   solutionDeleteFailure,
   solutionRestaureFailure,
-  solutionRestaureSuccess,
-  solutionsGetRequest
+  solutionRestaureSuccess
 } from './actions'
 
 export function* createSolution(action: Action): Generator {
@@ -130,6 +130,7 @@ export function* restaureSolution(action: Action): Generator {
   }
   yield put(solutionsGetRequest('EXCLUIDA'))
   toast.success('Solução restaurada com sucesso')
+  put(solutionsGetRequest('EXCLUIDA'))
   return yield put(solutionRestaureSuccess())
 }
 

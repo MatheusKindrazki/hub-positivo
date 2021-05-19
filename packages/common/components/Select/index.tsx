@@ -1,9 +1,8 @@
 import React from 'react'
 
-import { Props } from 'react-select'
-
 import { forwardRef } from '@chakra-ui/react'
 
+import { PropsSelect as Props } from './variants/Normal'
 import options from './options'
 
 export type PropsSelect = Props & {

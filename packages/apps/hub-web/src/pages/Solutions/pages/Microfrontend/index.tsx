@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo, useMemo, useCallback } from 'react'
+import React, { useEffect, useState, useMemo, memo, useCallback } from 'react'
 
 import { generate } from 'randomstring'
 
@@ -13,7 +13,7 @@ interface MicrofrontendProps {
   onLoaded(): void
 }
 
-postInformations('Dado vindo do hub 123' as any)
+postInformations('@MCF: Dado vindo do hub!' as any)
 
 const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   onLoaded,
@@ -45,8 +45,8 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
     })
   }, [])
 
-  const hashUrl = useMemo(() => {
-    return generate(10)
+  const hashRender = useMemo(() => {
+    return generate(20)
   }, [])
 
   return (
@@ -55,7 +55,7 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
       {mcf?.scripts?.map((s, i) => (
         <LoadModules
           handleLoad={handleNumberOfScriptsLoaded}
-          hash={hashUrl}
+          hash={hashRender}
           key={i}
           {...s}
         />

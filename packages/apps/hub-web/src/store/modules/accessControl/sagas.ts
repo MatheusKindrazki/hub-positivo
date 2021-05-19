@@ -39,9 +39,9 @@ export function* submitPostAccessControl({
       yield call(profileSaga, profilePermissionsRequest(profilePermissions)),
       yield call(schoolSaga, schoolPermissionsRequest(schoolPermissions))
     ])
-    yield put(loading(false))
-    history.push('/controle-de-acessos')
   }
+  yield put(loading(false))
+  history.push('/controle-de-acessos')
 }
 
 type PutAccessControlPayload = Payload<AccessControlPutData>
@@ -62,6 +62,6 @@ export function* submitPutAccessControl({
 }
 
 export default all([
-  takeLatest(Actions.ACCESS_CONTROL_POST_REQUEST, submitPostAccessControl),
-  takeLatest(Actions.ACCESS_CONTROL_PUT_REQUEST, submitPutAccessControl)
+  takeLatest(Actions.ACCESS_CONTROL_PUT_REQUEST, submitPutAccessControl),
+  takeLatest(Actions.ACCESS_CONTROL_POST_REQUEST, submitPostAccessControl)
 ])

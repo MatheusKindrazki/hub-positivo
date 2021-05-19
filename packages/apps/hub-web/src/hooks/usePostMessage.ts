@@ -2,8 +2,7 @@ import { useEffect } from 'react'
 
 import { useHistory, useLocation, useParams } from 'react-router-dom'
 
-import { hasJsonStructure } from '~/utils/hasJsonStructure'
-
+import { hasJsonStructure } from '@psdhub/common/utils'
 interface MessageProps {
   event: 'history-change' | undefined
   data: string

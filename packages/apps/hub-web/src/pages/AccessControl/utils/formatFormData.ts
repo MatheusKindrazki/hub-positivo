@@ -1,18 +1,17 @@
+import { Solution } from '~/store/modules/solutions/types'
 import {
   ProfilePermissions,
   SchoolPermissions,
   Restricao
 } from '~/store/modules/permissions/types'
 
-import { SolutionWithCategory } from './getSolutionBySlug'
-
-interface OldProfilePermissions {
+export interface OldProfilePermissions {
   id: string
   idSolucao: string
   idPerfilNivelEnsino: string
 }
 
-interface OldSchoolPermissions {
+export interface OldSchoolPermissions {
   ativo: boolean
   id: string
   idEscola: string
@@ -24,12 +23,11 @@ interface OldSchoolPermissions {
 
 type NewPermissions = string[]
 
-export const formatProfilePermissions = (
+const formatProfilePermissions = (
   oldPermissions: OldProfilePermissions[],
   newPermissions: NewPermissions,
   id: string
 ): ProfilePermissions => {
-  console.log({ oldPermissions })
   const formattedData = {
     remove: {
       idSolucao: id,
@@ -87,13 +85,26 @@ export interface FormData {
   schools: string[]
 }
 
+export const schoolRule = (
+  rule: string
+): { padrao: boolean; restricao: string } => {
+  if (rule === 'todas escolas') {
+    return { padrao: true, restricao: 'Exibir' }
+  } else if (rule === 'apenas') {
+    return { padrao: false, restricao: 'Exibir' }
+  } else {
+    return { padrao: true, restricao: 'Ocultar' }
+  }
+}
+
 export const formatFormData = (
   data: FormData,
-  solutionData: SolutionWithCategory | object = { solution: {} },
+  solution: Solution | object = { solution: {} },
   { profilePermissions, schoolsPermissions }: Params
 ): any => {
-  let restricao = 'Exibir'
-  const { solution } = solutionData as SolutionWithCategory
+  const { restricao, padrao } = schoolRule(data.padrao)
+  const { id } = solution as Solution
+
   const formattedSolution = {
     ...solution,
     idCategoria: data.idCategoria,
@@ -102,38 +113,21 @@ export const formatFormData = (
     link: data.link,
     arquivo: '',
     tipoRenderizacao: data.tipoRenderizacao,
-    padrao: false
-  }
-
-  if (data.padrao === 'todas escolas') {
-    formattedSolution.padrao = true
-    data.schools = []
-  }
-
-  if (data.padrao === 'true') {
-    formattedSolution.padrao = true
-    restricao = 'Ocultar' as Restricao
-    data.schools = []
-  }
-
-  if (data.padrao === 'false') {
-    restricao = 'Exibir' as Restricao
-    data.schools = []
+    padrao
   }
 
   const formattedProfilePermissions = formatProfilePermissions(
     profilePermissions.old,
     data.profiles,
-    solution.id || ''
+    id || ''
   )
 
   const formattedSchoolPermissions = formatSchoolPermissions(
     schoolsPermissions.old,
     data.schools,
-    solution.id || '',
+    id || '',
     restricao as Restricao
   )
-  console.log('SOCORRRROOOOOO', data)
 
   return {
     solution: formattedSolution,

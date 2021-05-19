@@ -44,8 +44,15 @@ export interface SchoolsRestrictionsBySolution {
   ativo: boolean
 }
 
+export interface ProfilePermissionApiData {
+  perfil: string
+  nivelEnsino: string | null
+  id: string
+}
+
 export interface PermissionsReducer {
   loading: boolean
+  profileOptions: ProfilePermissionApiData[]
   profilePermissions: ProfileLevelsBySolution[] | []
   schoolPermissions: SchoolsRestrictionsBySolution[] | []
 }

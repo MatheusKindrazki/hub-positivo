@@ -7,8 +7,6 @@ async function setParamsGsc<T>(data: T): Promise<void> {
     return setParamsGsc(data)
   }
 
-  console.info('GSC: Setando parâmetros')
-
   window.gsc('params', {
     ...data,
     page_view_count: window.pageviewCount

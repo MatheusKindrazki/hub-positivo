@@ -1,6 +1,6 @@
 import { ApiResponse } from 'apisauce'
 
-import { call, takeLatest, all, put, Payload } from 'redux-saga/effects'
+import { call, takeLatest, all, put } from 'redux-saga/effects'
 import { Action } from 'redux'
 
 import { toast } from '@psdhub/common/utils'
@@ -8,8 +8,7 @@ import api from '@psdhub/api'
 
 import {
   GenericApiResponse,
-  // ProfilePermissions,
-  // SchoolPermissions,
+  ProfilePermissions,
   ProfileLevelsBySolution,
   SchoolsRestrictionsBySolution
 } from './types'
@@ -22,10 +21,26 @@ import {
   schoolPermissionsBySolutionFailure,
   schoolPermissionsBySolutionSuccess,
   profilePermissionsBySolutionFailure,
-  profilePermissionsBySolutionSuccess
+  profilePermissionsBySolutionSuccess,
+  getAllProfilePermissionsFailure,
+  getAllProfilePermissionsSuccess
 } from './actions'
 
-// type UpdateProfilePayload = Payload<ProfilePermissions>
+export function* getAllProfilePermissions(): Generator {
+  const response = yield call(() => {
+    return api.get('PerfilNivelEnsino')
+  })
+
+  const { ok, data } = response as ApiResponse<ProfilePermissions[]>
+
+  if (!ok) {
+    toast.error('Erro ao buscar permissoes de perfil!')
+    return yield put(getAllProfilePermissionsFailure())
+  }
+  return yield put(
+    getAllProfilePermissionsSuccess(data as ProfilePermissions[])
+  )
+}
 
 export function* profilePermissions(action: Action): Generator {
   const { create, remove } = action.payload
@@ -68,8 +83,6 @@ export function* profilePermissions(action: Action): Generator {
   return put(profilePermissionsSuccess())
 }
 
-// type SchoolPermissionsPayload = Payload<SchoolPermissions>
-
 export function* schoolPermissions(action: Action): Generator {
   const { create, remove } = action.payload
 
@@ -110,14 +123,10 @@ export function* schoolPermissions(action: Action): Generator {
   return yield put(schoolPermissionsSuccess())
 }
 
-export type PermissionsIdPayload = Payload<{ id: string }>
-
-export function* getProfilePermissionsBySolutionId({
-  payload: { id }
-}: PermissionsIdPayload): Generator {
+export function* getProfilePermissionsBySolutionId(action: Action): Generator {
   const response = yield call(() => {
     return api.get('SolucaoPerfilNivelEnsino', {
-      idSolucao: id
+      idSolucao: action.payload.id
     })
   })
 
@@ -133,17 +142,14 @@ export function* getProfilePermissionsBySolutionId({
   )
 }
 
-export function* getSchoolPermissionsBySolutionId({
-  payload: { id }
-}: PermissionsIdPayload): Generator {
+export function* getSchoolPermissionsBySolutionId(action: Action): Generator {
   const response = yield call(() => {
-    return api.get('Solucao/Restricao', { idSolucao: id })
+    return api.get('Solucao/Restricao', { idSolucao: action.payload.id })
   })
 
   const { ok, data } = response as ApiResponse<SchoolsRestrictionsBySolution[]>
 
   if (!ok) {
-    console.log('erro ao buscas restricoes de escolal: ', response)
     toast.error('Erro ao buscar permissões de escola para esta solucao')
     return yield put(schoolPermissionsBySolutionFailure())
   }
@@ -155,6 +161,10 @@ export function* getSchoolPermissionsBySolutionId({
 export default all([
   takeLatest(Actions.PROFILE_PERMISSIONS_REQUEST, profilePermissions),
   takeLatest(Actions.SCHOOL_PERMISSIONS_REQUEST, schoolPermissions),
+  takeLatest(
+    Actions.GETALL_PROFILE_PERMISSIONS_REQUEST,
+    getAllProfilePermissions
+  ),
   takeLatest(
     Actions.PROFILE_PERMISSIONS_BYID_REQUEST,
     getProfilePermissionsBySolutionId

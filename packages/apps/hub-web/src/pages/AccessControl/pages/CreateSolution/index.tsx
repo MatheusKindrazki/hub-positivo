@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { schoolGetAllRequest } from '~/store/modules/school/actions'
+import { getAllProfilePermissionsRequest } from '~/store/modules/permissions/actions'
 import { categoryGetAllRequest } from '~/store/modules/category/actions'
 import { accessControlPostRequest } from '~/store/modules/accessControl/actions'
 
@@ -14,7 +15,7 @@ import {
   Button as FormButton,
   Select
 } from '@psdhub/common/components/Form'
-import Dropzone, { DropzoneRef } from '@psdhub/common/components/Dropzone'
+import Dropzone, { DropzoneHandles } from '@psdhub/common/components/Dropzone'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Stack } from '@psdhub/common/components/'
 import { Box, Text, Button } from '@psdhub/common/components'
@@ -24,9 +25,10 @@ import history from '~/services/history'
 import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
-import { selects } from './selectOptions'
+import { selects } from './formSelects'
 import { formatFormData } from '../../utils/formatFormData'
 import createOptions from '../../utils/createOptions'
+
 const CreateSolution: React.FC = () => {
   const dispatch = useDispatch()
   const { loading: alterLoading } = useSelector(
@@ -35,18 +37,29 @@ const CreateSolution: React.FC = () => {
 
   const { categories } = useSelector((state: Store.State) => state.category)
   const { schools } = useSelector((state: Store.State) => state.school)
+  const { profileOptions } = useSelector(
+    (state: Store.State) => state.permissions
+  )
 
   const categoryOptions = createOptions(categories)
   const schoolOptions = createOptions(schools)
+  const formattedProfileOptions = createOptions(profileOptions)
+
+  const selectsOptions = {
+    formattedProfileOptions,
+    categoryOptions,
+    schoolOptions
+  }
 
   const formRef = useRef<FormProps>(null)
-  const dropRef = useRef<DropzoneRef>(null)
+  const dropRef = useRef<DropzoneHandles>(null)
 
   useEffect(() => {
-    console.log('REF CREATESOLUTION', { dropRef })
-  }, [dropRef.current?.file])
+    console.log(dropRef.current?.getFiles())
+  }, [dropRef])
 
   useEffect(() => {
+    dispatch(getAllProfilePermissionsRequest())
     dispatch(categoryGetAllRequest())
     dispatch(schoolGetAllRequest())
   }, [dispatch])
@@ -74,6 +87,7 @@ const CreateSolution: React.FC = () => {
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)
           formRef?.current?.setErrors(errors)
+          return
         }
         return toast.error(
           'Algo deu errado, Verifique seus dados e tente novamente!'
@@ -125,17 +139,13 @@ const CreateSolution: React.FC = () => {
           </Box>
           <Stack
             direction={['column', 'row']}
-            wrap="wrap"
             justifyContent="space-between"
+            wrap="wrap"
             mt="5"
           >
-            {selects(categoryOptions, schoolOptions).map(select => {
+            {selects(selectsOptions, formRef).map(select => {
               return (
-                <Box
-                  key={select.name}
-                  w={select.name === 'schools' ? '100%' : '48.5%'}
-                  ml="0px"
-                >
+                <Box key={select.name} w={select.w} ml="8px">
                   <Select mb="4" variant="secondary" {...select} />
                 </Box>
               )

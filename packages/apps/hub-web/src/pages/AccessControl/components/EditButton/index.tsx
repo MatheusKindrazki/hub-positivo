@@ -5,6 +5,7 @@ import { useHistory } from 'react-router'
 import { useDispatch } from 'react-redux'
 
 import {
+  getAllProfilePermissionsRequest,
   profilePermissionsBySolutionRequest,
   schoolRestrictionsBySolutionRequest
 } from '~/store/modules/permissions/actions'
@@ -22,6 +23,7 @@ const EditButton: React.FC<EditButtonProps> = ({ url, solutionId }) => {
   const handleClick = () => {
     dispatch(profilePermissionsBySolutionRequest(solutionId))
     dispatch(schoolRestrictionsBySolutionRequest(solutionId))
+    dispatch(getAllProfilePermissionsRequest())
     history.push(url)
   }
   return (

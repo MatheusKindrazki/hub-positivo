@@ -13,7 +13,7 @@ const Auth: React.FC = ({ children }) => {
 
   return (
     <Container>
-      <BarLoader width="100%" height="4px" loading={loading} />
+      <BarLoader height="4px" loading={loading} />
       <Logo />
       <CardBox mt="2.1875rem" maxWidth="25.9375rem">
         {children}

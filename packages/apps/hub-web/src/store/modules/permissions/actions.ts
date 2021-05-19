@@ -8,20 +8,27 @@ import {
 } from './types'
 
 export const Actions = {
-  PROFILE_PERMISSIONS_REQUEST: '@permissions/PROFILE_PERMISSION_REQUEST',
-  PROFILE_PERMISSIONS_SUCCESS: '@permissions/PROFILE_PERMISSION_SUCCESS',
-  PROFILE_PERMISSIONS_FAILURE: '@permissions/PROFILE_PERMISSION_FAILURE',
+  PROFILE_PERMISSIONS_REQUEST: '@permissions/PROFILE_PERMISSIONS_REQUEST',
+  PROFILE_PERMISSIONS_SUCCESS: '@permissions/PROFILE_PERMISSIONS_SUCCESS',
+  PROFILE_PERMISSIONS_FAILURE: '@permissions/PROFILE_PERMISSIONS_FAILURE',
 
   PROFILE_PERMISSIONS_BYID_REQUEST:
-    '@permissions/PROFILE_PERMISSION_BYID_REQUEST',
+    '@permissions/PROFILE_PERMISSIONS_BYID_REQUEST',
   PROFILE_PERMISSIONS_BYID_SUCCESS:
-    '@permissions/PROFILE_PERMISSION_BYID_SUCCESS',
+    '@permissions/PROFILE_PERMISSIONS_BYID_SUCCESS',
   PROFILE_PERMISSIONS_BYID_FAILURE:
-    '@permissions/PROFILE_PERMISSION_BYID_FAILURE',
+    '@permissions/PROFILE_PERMISSIONS_BYID_FAILURE',
 
-  SCHOOL_PERMISSIONS_REQUEST: '@permissions/SCHOOL_PERMISSION_REQUEST',
-  SCHOOL_PERMISSIONS_SUCCESS: '@permissions/SCHOOL_PERMISSION_SUCCESS',
-  SCHOOL_PERMISSIONS_FAILURE: '@permissions/SCHOOL_PERMISSION_FAILURE',
+  GETALL_PROFILE_PERMISSIONS_REQUEST:
+    '@permissions/GETALL_PROFILE_PERMISSIONS_REQUEST',
+  GETALL_PROFILE_PERMISSIONS_SUCCESS:
+    '@permissions/GETALL_PROFILE_PERMISSIONS_SUCCESS',
+  GETALL_PROFILE_PERMISSIONS_FAILURE:
+    '@permissions/GETALL_PROFILE_PERMISSIONS_FAILURE',
+
+  SCHOOL_PERMISSIONS_REQUEST: '@permissions/SCHOOL_PERMISSIONS_REQUEST',
+  SCHOOL_PERMISSIONS_SUCCESS: '@permissions/SCHOOL_PERMISSIONS_SUCCESS',
+  SCHOOL_PERMISSIONS_FAILURE: '@permissions/SCHOOL_PERMISSIONS_FAILURE',
 
   SCHOOL_PERMISSIONS_BYID_REQUEST:
     '@permissions/SCHOOL_PERMISSION_BYID_REQUEST',
@@ -73,6 +80,29 @@ export const schoolPermissionsSuccess = (): Action => {
 export const schoolPermissionsFailure = (): Action => {
   return {
     type: Actions.SCHOOL_PERMISSIONS_FAILURE
+  }
+}
+
+// ? Actions que buscam todos os dados de perfis e niveis de ensino
+
+export const getAllProfilePermissionsRequest = (): Action => {
+  return {
+    type: Actions.GETALL_PROFILE_PERMISSIONS_REQUEST
+  }
+}
+
+export const getAllProfilePermissionsSuccess = (
+  data: ProfilePermissions[]
+): Action => {
+  return {
+    type: Actions.GETALL_PROFILE_PERMISSIONS_SUCCESS,
+    payload: data
+  }
+}
+
+export const getAllProfilePermissionsFailure = (): Action => {
+  return {
+    type: Actions.GETALL_PROFILE_PERMISSIONS_FAILURE
   }
 }
 

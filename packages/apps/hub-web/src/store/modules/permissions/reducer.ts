@@ -8,7 +8,8 @@ import { Actions } from './actions'
 export const INITIAL_STATE: PermissionsReducer = {
   loading: true,
   schoolPermissions: [],
-  profilePermissions: []
+  profilePermissions: [],
+  profileOptions: []
 }
 
 type ReturnReducer = Reducer<PermissionsReducer>
@@ -16,6 +17,19 @@ type ReturnReducer = Reducer<PermissionsReducer>
 const permissions: ReturnReducer = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
+      case Actions.GETALL_PROFILE_PERMISSIONS_REQUEST: {
+        draft.loading = true
+        break
+      }
+      case Actions.GETALL_PROFILE_PERMISSIONS_SUCCESS: {
+        draft.loading = false
+        draft.profileOptions = action.payload
+        break
+      }
+      case Actions.GETALL_PROFILE_PERMISSIONS_FAILURE: {
+        draft.loading = false
+        break
+      }
       case Actions.PROFILE_PERMISSIONS_BYID_REQUEST: {
         draft.loading = true
         draft.profilePermissions = []

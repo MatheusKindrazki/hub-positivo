@@ -8,11 +8,11 @@ import { Actions } from '~/store/modules/profile/actions'
 import { productRequest } from '~/store/modules/products/actions'
 import { store } from '~/store'
 
-import { EEMConnectGET } from '~/services/eemConnect'
-
 import prepareEducational, {
   ContentResponse
-} from '~/utils/prepareEducationalStage'
+} from '@psdhub/common/utils/prepareEducationalStage'
+
+import { EEMConnectGET } from '~/services/eemConnect'
 
 import { resetProfileLevels, setEducationalLevels } from './actions'
 

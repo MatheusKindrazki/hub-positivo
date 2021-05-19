@@ -1,5 +1,5 @@
 type GSC = 'show' | 'params' | 'onSubmit' | 'trackPage' | 'close'
-interface GSCParams {
+interface GSCParamms {
   is_teacher?: boolean
   is_student?: boolean
   is_coordinator?: boolean

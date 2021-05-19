@@ -4,6 +4,7 @@ import { useLocation } from 'react-router'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import { Solution } from '~/store/modules/solutions/types'
 import { AccessControlPutData } from '~/store/modules/accessControl/types'
 import { accessControlPutRequest } from '~/store/modules/accessControl/actions'
 
@@ -25,16 +26,14 @@ import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
-import { selects } from '../CreateSolution/selectOptions'
-import getSolutionBySlug, {
-  SolutionWithCategory
-} from '../../utils/getSolutionBySlug'
-import getSlugFromURL from '../../utils/getSlugFromURL'
+import { selects } from '../CreateSolution/formSelects'
+import getSolutionBySlug from '../../utils/getSolutionBySlug'
 import { formatFormData } from '../../utils/formatFormData'
 import createOptions from '../../utils/createOptions'
+import autocompleteFormData from '../../utils/autocompleteFormData'
 
 const UpdateSolution: React.FC = () => {
-  const [solution, setSolution] = useState<SolutionWithCategory>()
+  const [solution, setSolution] = useState<Solution>()
 
   const { pathname } = useLocation()
 
@@ -46,69 +45,75 @@ const UpdateSolution: React.FC = () => {
   const { categories } = useSelector((state: Store.State) => state.category)
   const { schools } = useSelector((state: Store.State) => state.school)
   const { loading } = useSelector((state: Store.State) => state.global)
+  const { profileOptions } = useSelector(
+    (state: Store.State) => state.permissions
+  )
   const {
     schoolPermissions: oldSchoolPermissions,
     profilePermissions: oldProfilePermissions
   } = useSelector((state: Store.State) => state.permissions)
 
-  console.log({ oldSchoolPermissions }, { oldProfilePermissions })
-
+  const formattedProfileOptions = createOptions(profileOptions)
   const categoryOptions = createOptions(categories)
   const schoolOptions = createOptions(schools)
+
+  const selectsOptions = {
+    profiles: formattedProfileOptions,
+    categories: categoryOptions,
+    schools: schoolOptions
+  }
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneHandles>(null)
   const modalRef = useRef<ModalHandler>(null)
 
   useEffect(() => {
-    const solutionSlug = getSlugFromURL(pathname)
-    console.log('soluao recebida em updatesolution', { solution })
-
     if (!categoryArr || categoryArr?.length === 0) {
       return history.push('/controle-de-acessos')
     }
 
-    if (solutionSlug && !solution) {
-      setSolution(getSolutionBySlug(categoryArr, solutionSlug))
+    if (!solution) {
+      setSolution(getSolutionBySlug(categoryArr, pathname))
     }
 
     if (solution) {
-      formRef.current?.setData({
-        nome: solution?.solution.nome,
-        descricao: solution?.solution.descricao,
-        link: solution.solution.link,
-        idCategoria: solution?.category
-      })
+      console.log('solucao recebida em update solution: ', solution)
+      autocompleteFormData(solution, formRef, profileOptions)
     }
-  }, [categoryArr, dispatch, pathname, solution])
+
+    console.log(formRef.current?.getFieldRef('padrao').select)
+  }, [categoryArr, dispatch, pathname, profileOptions, solution, formRef])
 
   const handleSubmit = useCallback(
     async data => {
+      console.log('dados do formulario: ', data)
       formRef?.current?.setErrors({})
       try {
         await solutionInfo.validate(data, { abortEarly: false })
 
+        const permissions = {
+          profilePermissions: {
+            old: oldProfilePermissions,
+            new: data.profiles
+          },
+          schoolsPermissions: {
+            old: oldSchoolPermissions,
+            new: data.schools
+          }
+        }
+
         const formattedData: AccessControlPutData = formatFormData(
           data,
-          solution as SolutionWithCategory,
-          {
-            profilePermissions: {
-              old: oldProfilePermissions,
-              new: data.profiles
-            },
-            schoolsPermissions: {
-              old: oldSchoolPermissions,
-              new: data.schools
-            }
-          }
+          solution as Solution,
+          permissions
         )
 
         return dispatch(accessControlPutRequest(formattedData))
       } catch (err) {
-        console.log({ err })
         if (err instanceof ValidationError) {
           const errors = getValidationErrors(err)
           formRef?.current?.setErrors(errors)
+          return
         }
         return toast.error(
           'Algo deu errado, Verifique seus dados e tente novamente!'
@@ -124,7 +129,7 @@ const UpdateSolution: React.FC = () => {
 
   return (
     <>
-      <BarLoader width="100%" height="0.25rem" loading={loading} />
+      <BarLoader height="0.25rem" loading={loading} />
       <Box p={['4', '6']} mt={['0', '4']} w="100%">
         <Breadcrumbs
           data={[
@@ -167,17 +172,14 @@ const UpdateSolution: React.FC = () => {
 
             <Stack
               direction={['column', 'row']}
-              wrap="wrap"
               justifyContent="space-between"
+              wrap="wrap"
               mt="5"
             >
-              {selects(categoryOptions, schoolOptions).map(select => {
+              {selects(selectsOptions, formRef).map(select => {
+                console.log('teste', formRef.current?.getFieldValue('padrao'))
                 return (
-                  <Box
-                    key={select.name}
-                    w={select.name === 'schools' ? '100%' : '48.5%'}
-                    ml="0px"
-                  >
+                  <Box key={select.name} w={select.w} ml="8px">
                     <Select mb="4" variant="secondary" {...select} />
                   </Box>
                 )
@@ -235,10 +237,7 @@ const UpdateSolution: React.FC = () => {
             </Box>
           </Form>
         </Box>
-        <ModalDeleteSolution
-          ref={modalRef}
-          solutionId={solution?.solution.id}
-        />
+        <ModalDeleteSolution ref={modalRef} solutionId={solution?.id} />
       </Box>
     </>
   )
