@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react'
 
-import { DropzoneRef } from 'react-dropzone'
-
 import { useDispatch, useSelector } from 'react-redux'
 
 import { schoolGetAllRequest } from '~/store/modules/school/actions'
@@ -16,7 +14,7 @@ import {
   Button as FormButton,
   Select
 } from '@psdhub/common/components/Form'
-import Dropzone from '@psdhub/common/components/Dropzone'
+import Dropzone, { DropzoneRef } from '@psdhub/common/components/Dropzone'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Stack } from '@psdhub/common/components/'
 import { Box, Text, Button } from '@psdhub/common/components'
@@ -29,8 +27,7 @@ import { getValidationErrors, ValidationError } from '~/validators'
 import { selects } from './selectOptions'
 import { formatFormData } from '../../utils/formatFormData'
 import createOptions from '../../utils/createOptions'
-
-const UpdateSolution: React.FC = () => {
+const CreateSolution: React.FC = () => {
   const dispatch = useDispatch()
   const { loading: alterLoading } = useSelector(
     (state: Store.State) => state.user
@@ -44,6 +41,10 @@ const UpdateSolution: React.FC = () => {
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
+
+  useEffect(() => {
+    console.log('REF CREATESOLUTION', { dropRef })
+  }, [dropRef.current?.file])
 
   useEffect(() => {
     dispatch(categoryGetAllRequest())
@@ -181,4 +182,4 @@ const UpdateSolution: React.FC = () => {
   )
 }
 
-export default UpdateSolution
+export default CreateSolution

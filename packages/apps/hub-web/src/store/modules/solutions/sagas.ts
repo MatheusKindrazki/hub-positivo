@@ -105,7 +105,6 @@ export function* deleteSolution(action: Action): Generator {
   }
 
   toast.success('Solução excluída com sucesso!')
-  yield put(solutionsGetRequest('EXCLUIDA'))
   yield put(solutionDeleteSuccess())
   history.push('/controle-de-acessos')
 }
@@ -129,6 +128,7 @@ export function* restaureSolution(action: Action): Generator {
     toast.error('Erro ao restaurar solução, tente novamente!')
     return yield put(solutionRestaureFailure())
   }
+  yield put(solutionsGetRequest('EXCLUIDA'))
   toast.success('Solução restaurada com sucesso')
   return yield put(solutionRestaureSuccess())
 }

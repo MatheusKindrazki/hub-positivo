@@ -46,10 +46,8 @@ const Trash: React.FC = () => {
   )
 
   useEffect(() => {
-    if (!data) {
-      dispatch(solutionsGetRequest('EXCLUIDA'))
-    }
-  }, [dispatch, data])
+    dispatch(solutionsGetRequest('EXCLUIDA'))
+  }, [dispatch])
 
   return (
     <Container m="auto" maxW="90rem" p="10">

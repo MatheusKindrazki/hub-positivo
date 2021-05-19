@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { useLocation } from 'react-router'
-import { DropzoneRef } from 'react-dropzone'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -16,7 +15,7 @@ import {
   Button as FormButton,
   Select
 } from '@psdhub/common/components/Form'
-import Dropzone from '@psdhub/common/components/Dropzone'
+import Dropzone, { DropzoneHandles } from '@psdhub/common/components/Dropzone'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Box, Text, Stack, Button, BarLoader } from '@psdhub/common/components'
 
@@ -58,7 +57,7 @@ const UpdateSolution: React.FC = () => {
   const schoolOptions = createOptions(schools)
 
   const formRef = useRef<FormProps>(null)
-  const dropRef = useRef<DropzoneRef>(null)
+  const dropRef = useRef<DropzoneHandles>(null)
   const modalRef = useRef<ModalHandler>(null)
 
   useEffect(() => {
