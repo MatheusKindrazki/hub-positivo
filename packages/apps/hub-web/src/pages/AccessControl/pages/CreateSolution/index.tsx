@@ -27,7 +27,7 @@ import history from '~/services/history'
 import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
-import { selects } from './selectOptions'
+import { selects } from './formSelects'
 import { formatFormData } from '../../utils/formatFormData'
 import createOptions from '../../utils/createOptions'
 
@@ -46,6 +46,12 @@ const UpdateSolution: React.FC = () => {
   const categoryOptions = createOptions(categories)
   const schoolOptions = createOptions(schools)
   const formattedProfileOptions = createOptions(profileOptions)
+
+  const selectsOptions = {
+    formattedProfileOptions,
+    categoryOptions,
+    schoolOptions
+  }
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
@@ -131,21 +137,13 @@ const UpdateSolution: React.FC = () => {
           </Box>
           <Stack
             direction={['column', 'row']}
-            wrap="wrap"
             justifyContent="space-between"
+            wrap="wrap"
             mt="5"
           >
-            {selects(
-              categoryOptions,
-              schoolOptions,
-              formattedProfileOptions
-            ).map(select => {
+            {selects(selectsOptions, formRef).map(select => {
               return (
-                <Box
-                  key={select.name}
-                  w={select.name === 'schools' ? '100%' : '48.5%'}
-                  ml="0px"
-                >
+                <Box key={select.name} w={select.w} ml="8px">
                   <Select mb="4" variant="secondary" {...select} />
                 </Box>
               )

@@ -1,4 +1,4 @@
-import { Option } from '~/pages/AccessControl/pages/CreateSolution/selectOptions'
+import { Option } from '~/pages/AccessControl/pages/CreateSolution/formSelects'
 
 export interface SolutionsReducer {
   loading: boolean

@@ -4,10 +4,10 @@ import SwitchUI from '@psdhub/common/components/Switch'
 
 const Switch = styled(SwitchUI)`
   > span {
-    background: ${props => props.theme.colors.gray[450]};
+    background: ${props => props.theme.colors?.gray[400]};
 
     &[data-checked] {
-      background: ${props => props.theme.colors.blue[500]};
+      background: ${props => props.theme.colors?.blue[500]};
     }
   }
 `

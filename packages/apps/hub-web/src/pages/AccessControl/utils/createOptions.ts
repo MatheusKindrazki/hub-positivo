@@ -1,4 +1,4 @@
-import { Option } from '../pages/CreateSolution/selectOptions'
+import { Option } from '../pages/CreateSolution/formSelects'
 
 interface profilesData {
   perfil: string

@@ -27,7 +27,7 @@ import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
-import { selects } from '../CreateSolution/selectOptions'
+import { selects } from '../CreateSolution/formSelects'
 import getSolutionBySlug from '../../utils/getSolutionBySlug'
 import { formatFormData } from '../../utils/formatFormData'
 import createOptions from '../../utils/createOptions'
@@ -46,16 +46,23 @@ const UpdateSolution: React.FC = () => {
   const { categories } = useSelector((state: Store.State) => state.category)
   const { schools } = useSelector((state: Store.State) => state.school)
   const { loading } = useSelector((state: Store.State) => state.global)
+  const { profileOptions } = useSelector(
+    (state: Store.State) => state.permissions
+  )
   const {
     schoolPermissions: oldSchoolPermissions,
     profilePermissions: oldProfilePermissions
   } = useSelector((state: Store.State) => state.permissions)
-  const { profileOptions } = useSelector(
-    (state: Store.State) => state.permissions
-  )
+
   const formattedProfileOptions = createOptions(profileOptions)
   const categoryOptions = createOptions(categories)
   const schoolOptions = createOptions(schools)
+
+  const selectsOptions = {
+    profiles: formattedProfileOptions,
+    categories: categoryOptions,
+    schools: schoolOptions
+  }
 
   const formRef = useRef<FormProps>(null)
   const dropRef = useRef<DropzoneRef>(null)
@@ -74,7 +81,9 @@ const UpdateSolution: React.FC = () => {
       console.log('solucao recebida em update solution: ', solution)
       autocompleteFormData(solution, formRef, profileOptions)
     }
-  }, [categoryArr, dispatch, pathname, profileOptions, solution])
+
+    console.log(formRef.current?.getFieldRef('padrao').select)
+  }, [categoryArr, dispatch, pathname, profileOptions, solution, formRef])
 
   const handleSubmit = useCallback(
     async data => {
@@ -121,7 +130,7 @@ const UpdateSolution: React.FC = () => {
 
   return (
     <>
-      <BarLoader width="100%" height="0.25rem" loading={loading} />
+      <BarLoader height="0.25rem" loading={loading} />
       <Box p={['4', '6']} mt={['0', '4']} w="100%">
         <Breadcrumbs
           data={[
@@ -164,21 +173,14 @@ const UpdateSolution: React.FC = () => {
 
             <Stack
               direction={['column', 'row']}
-              wrap="wrap"
               justifyContent="space-between"
+              wrap="wrap"
               mt="5"
             >
-              {selects(
-                categoryOptions,
-                schoolOptions,
-                formattedProfileOptions
-              ).map(select => {
+              {selects(selectsOptions, formRef).map(select => {
+                console.log('teste', formRef.current?.getFieldValue('padrao'))
                 return (
-                  <Box
-                    key={select.name}
-                    w={select.name === 'schools' ? '100%' : '48.5%'}
-                    ml="0px"
-                  >
+                  <Box key={select.name} w={select.w} ml="8px">
                     <Select mb="4" variant="secondary" {...select} />
                   </Box>
                 )
