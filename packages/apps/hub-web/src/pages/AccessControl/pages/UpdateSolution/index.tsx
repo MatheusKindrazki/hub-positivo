@@ -177,7 +177,7 @@ const UpdateSolution: React.FC = () => {
             >
               {selects(selectsOptions, formRef).map(select => {
                 return (
-                  <Box key={select.name} w={select.w} ml="8px">
+                  <Box key={select.name} w={select.w} ml="0px !important">
                     <Select mb="4" variant="secondary" {...select} />
                   </Box>
                 )
@@ -219,7 +219,6 @@ const UpdateSolution: React.FC = () => {
                 Cancelar
               </Button>
               <Button
-                ml="8px"
                 onClick={openModal}
                 height="14"
                 width={['48.4%', '28']}

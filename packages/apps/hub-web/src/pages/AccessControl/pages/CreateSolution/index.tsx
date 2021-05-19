@@ -13,9 +13,9 @@ import {
   Form,
   Input,
   Button as FormButton,
-  Select
+  Select,
+  Dropzone
 } from '@psdhub/common/components/Form'
-import Dropzone, { DropzoneHandles } from '@psdhub/common/components/Dropzone'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Stack } from '@psdhub/common/components/'
 import { Box, Text, Button } from '@psdhub/common/components'
@@ -46,17 +46,12 @@ const CreateSolution: React.FC = () => {
   const formattedProfileOptions = createOptions(profileOptions)
 
   const selectsOptions = {
-    formattedProfileOptions,
-    categoryOptions,
-    schoolOptions
+    profiles: formattedProfileOptions,
+    categories: categoryOptions,
+    schools: schoolOptions
   }
 
   const formRef = useRef<FormProps>(null)
-  const dropRef = useRef<DropzoneHandles>(null)
-
-  useEffect(() => {
-    console.log(dropRef.current?.getFiles())
-  }, [dropRef])
 
   useEffect(() => {
     dispatch(getAllProfilePermissionsRequest())
@@ -135,7 +130,7 @@ const CreateSolution: React.FC = () => {
 
           <Box>
             <Text color="blue.500">Ícone</Text>
-            <Dropzone ref={dropRef} />
+            <Dropzone name="arquivo" />
           </Box>
           <Stack
             direction={['column', 'row']}
@@ -145,7 +140,7 @@ const CreateSolution: React.FC = () => {
           >
             {selects(selectsOptions, formRef).map(select => {
               return (
-                <Box key={select.name} w={select.w} ml="8px">
+                <Box key={select.name} w={select.w} ml="0px !important">
                   <Select mb="4" variant="secondary" {...select} />
                 </Box>
               )

@@ -19,7 +19,7 @@ interface Select {
   options: Option[]
   label: string
   isMulti?: boolean
-  w?: string
+  w?: string | string[]
   isDisabled?: boolean
   onChange?: (value: any) => void
 }
@@ -35,7 +35,7 @@ export const selects = (
       placeholder: 'Selecione',
       options: categories,
       label: 'Categoria',
-      w: '48.5%'
+      w: ['100%', '100%', '48.5%']
     },
     {
       name: 'profiles',
@@ -43,21 +43,21 @@ export const selects = (
       options: profiles,
       label: 'Perfis e segmentos',
       isMulti: true,
-      w: '48.5%'
+      w: ['100%', '100%', '48.5%']
     },
     {
       name: 'tipoRenderizacao',
       placeholder: 'Selecione',
       options: targetOptions,
       label: 'Abrir em...',
-      w: '48.5%'
+      w: ['100%', '100%', '48.5%']
     },
     {
       name: 'padrao',
       placeholder: 'Selecione',
       options: schoolRestrictionRules,
       label: 'Regra de escolas',
-      w: '48.5%',
+      w: ['100%', '100%', '48.5%'],
       onChange: (option: Option) => {
         if (option.value === 'todas escolas') {
           const padraoRef = ref.current?.getFieldRef('schools')
