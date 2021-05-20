@@ -1,7 +1,8 @@
-import React, { memo, useRef, useEffect } from 'react'
+import React, { memo, useEffect, useMemo } from 'react'
 
 import Script from 'react-load-script'
 import Helmet from 'react-helmet'
+import { generate } from 'randomstring'
 interface ModulesProps {
   type: string
   url: string
@@ -15,24 +16,31 @@ const LoadModules: React.FC<ModulesProps> = ({
   hash,
   handleLoad
 }) => {
-  const moduleRef = useRef<HTMLScriptElement>(null)
+  const moduleId = useMemo(() => {
+    return `hub-mcf-${generate(20)}`
+  }, [])
 
   useEffect(() => {
+    const module = document.getElementById(moduleId)
     return () => {
-      moduleRef.current?.remove()
+      module?.remove()
     }
-  }, [])
+  }, [moduleId])
 
   if (type === 'css') {
     return (
       <Helmet>
-        <link rel="stylesheet" href={`${url}?hash=${hash}`} />
+        <link id={moduleId} rel="stylesheet" href={`${url}?hash=${hash}`} />
       </Helmet>
     )
   }
 
   return (
-    <Script ref={moduleRef} onLoad={handleLoad} url={`${url}?hash=${hash}`} />
+    <Script
+      attributes={{ id: moduleId }}
+      onLoad={handleLoad}
+      url={`${url}?hash=${hash}`}
+    />
   )
 }
 

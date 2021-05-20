@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify'
 import { CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 
-import { ChakraProvider, CSSReset } from '@chakra-ui/react'
+import { ChakraProvider, ColorModeProvider, CSSReset } from '@chakra-ui/react'
 
 import ThemeContext from './context'
 import { cssKey } from './config'
@@ -49,24 +49,28 @@ const ThemeContainer: React.FC<ThemeProps> = ({
   return (
     <CacheProvider value={createCache({ key: cssKey })}>
       <ChakraProvider theme={{ ...renderTheme, ...theme }} resetCSS>
-        <StyledProvider theme={{ ...renderTheme, ...theme }}>
-          <CSSReset />
-          <GlobalStyles />
-          {children}
-          <ToastContainer
-            position="bottom-center"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeButton={false}
-            limit={3}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-        </StyledProvider>
+        <ColorModeProvider
+          options={{ initialColorMode: 'light', useSystemColorMode: false }}
+        >
+          <StyledProvider theme={{ ...renderTheme, ...theme }}>
+            <CSSReset />
+            <GlobalStyles />
+            {children}
+            <ToastContainer
+              position="bottom-center"
+              autoClose={4000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeButton={false}
+              limit={3}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+          </StyledProvider>
+        </ColorModeProvider>
       </ChakraProvider>
     </CacheProvider>
   )

@@ -54,14 +54,12 @@ function normal(data: ThemeStyle): Props['styles'] {
     container: provided => ({
       ...provided,
       color: 'white',
-      'white-space': 'nowrap',
       textTransform: 'capitalize'
     }),
     input: provided => ({
       ...provided,
       color: 'white',
       overflow: 'hidden',
-      'white-space': 'nowrap',
       textTransform: 'capitalize'
     }),
     menu: provided => ({
@@ -82,7 +80,6 @@ function normal(data: ThemeStyle): Props['styles'] {
       color: state.isSelected ? colors.white : colors.black,
       textTransform: 'capitalize',
       wordWrap: 'inherit',
-      whiteSpace: 'break-spaces',
       fontSize: fontSizes.sm,
       fontWeight: 'normal',
       cursor: 'pointer',
@@ -179,7 +176,6 @@ function primary(data: ThemeStyle): Props['styles'] {
       color: colors.white,
       textTransform: 'capitalize',
       wordWrap: 'inherit',
-      whiteSpace: 'break-spaces',
       fontSize: fontSizes.md,
       fontWeight: 'normal',
       cursor: 'pointer',
@@ -274,7 +270,6 @@ function secondary(data: ThemeStyle): Props['styles'] {
       textTransform: 'capitalize',
       fontSize: fontSizes.sm,
       wordWrap: 'inherit',
-      whiteSpace: 'break-spaces',
       fontWeight: 'normal',
       cursor: 'pointer',
       width: '100%',

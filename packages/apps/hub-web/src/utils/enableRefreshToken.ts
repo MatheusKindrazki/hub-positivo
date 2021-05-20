@@ -6,8 +6,11 @@ const enableRefreshToken = (exp: number): boolean => {
   const { enableMiddlewareRefreshToken } = store.getState().global
   const date = new Date().getTime()
 
-  const expirationDateInMs = roundHours({ milliseconds: exp * 1000 }).getTime()
-  const nowInMs = roundHours({ milliseconds: date }).getTime()
+  const expirationDateInMs = roundHours({
+    milliseconds: exp * 1000
+  }).milliseconds
+
+  const nowInMs = roundHours({ milliseconds: date }).milliseconds
 
   if (nowInMs >= expirationDateInMs && enableMiddlewareRefreshToken) {
     return true

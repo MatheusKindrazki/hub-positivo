@@ -61,7 +61,7 @@ export function* productSorting({ payload }: AuthPayload): Generator {
   }
 
   if (tipoRenderizacao === 'targetblank') {
-    window.open(url, '_blank')
+    return window.open(url, '_blank')
   }
 
   if (tipoRenderizacao === 'microfrontend') {
@@ -174,7 +174,13 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
 
     window.open(urlAuth, '_blank')
 
-    return yield put(authProductSuccess())
+    return yield put(
+      authProductSuccess({
+        mcf: false,
+        productData: '',
+        productName: ''
+      })
+    )
   }
 
   history.push(`/solucao/${payload.product}/${subpath}`)

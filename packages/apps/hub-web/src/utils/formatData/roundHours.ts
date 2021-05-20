@@ -1,10 +1,20 @@
 import { startOfHour } from 'date-fns'
 
-interface TesteProps {
+interface DateProps {
   milliseconds: number
 }
-export default (data: TesteProps): Date => {
+
+interface ReturnDateProps extends Date {
+  milliseconds: number
+}
+
+export default (data: DateProps): ReturnDateProps => {
   const formatDate = new Date(data.milliseconds)
 
-  return startOfHour(formatDate)
+  const hour = startOfHour(formatDate)
+
+  return {
+    milliseconds: hour.getTime(),
+    ...hour
+  }
 }
