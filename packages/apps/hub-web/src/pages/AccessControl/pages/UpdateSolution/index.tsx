@@ -18,7 +18,7 @@ import {
   Dropzone
 } from '@psdhub/common/components/Form'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
-import { Box, Text, Stack, Button, BarLoader } from '@psdhub/common/components'
+import { Box, Stack, Button, BarLoader } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
@@ -67,7 +67,7 @@ const UpdateSolution: React.FC = () => {
   const modalRef = useRef<ModalHandler>(null)
 
   useEffect(() => {
-    if (!categoryArr || categoryArr?.length === 0) {
+    if (!categoryArr || !categoryArr?.length) {
       return history.push('/controle-de-acessos')
     }
 
@@ -165,8 +165,7 @@ const UpdateSolution: React.FC = () => {
             </Box>
 
             <Box>
-              <Text color="blue.500">Ícone</Text>
-              <Dropzone name="arquivo" />
+              <Dropzone name="arquivo" label="Ícone" />
             </Box>
 
             <Stack

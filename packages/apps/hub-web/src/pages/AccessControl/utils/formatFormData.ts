@@ -83,6 +83,7 @@ export interface FormData {
   tipoRenderizacao: string
   padrao: string
   schools: string[]
+  arquivo?: string[]
 }
 
 export const schoolRule = (
@@ -111,7 +112,7 @@ export const formatFormData = (
     nome: data.nome,
     descricao: data.descricao,
     link: data.link,
-    arquivo: '',
+    arquivo: data.arquivo && data.arquivo[0],
     tipoRenderizacao: data.tipoRenderizacao,
     padrao
   }

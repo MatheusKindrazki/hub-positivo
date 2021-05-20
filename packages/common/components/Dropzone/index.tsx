@@ -1,23 +1,40 @@
-import React, { forwardRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useImperativeHandle, useState } from 'react'
 
 import { useDropzone } from 'react-dropzone'
 
 import { ImageSquare } from '../Icons/index'
 import { useTheme } from '../../layout/styles'
-import { Box, Text } from '../../components'
+import { Box, Text, Image } from '../../components'
 
 export interface DropzoneHandles {
-  getFiles(): File[]
+  getFiles(): string[]
 }
 
 const DropzoneHub = forwardRef<DropzoneHandles>((_props, ref) => {
+  const [preview, setPreview] = useState('')
   const { colors } = useTheme()
 
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone()
+  const onDrop = (acceptedFiles: File[]) => {
+    setPreview(URL.createObjectURL(acceptedFiles[0]))
+  }
+
+  const {
+    acceptedFiles,
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    isDragAccept,
+    isDragReject
+  } = useDropzone({
+    accept: '.svg',
+    onDrop
+  })
+
+  console.log({ preview })
 
   useImperativeHandle(ref, () => {
     return {
-      getFiles: () => acceptedFiles
+      getFiles: () => acceptedFiles.map(file => URL.createObjectURL(file))
     }
   })
 
@@ -40,36 +57,41 @@ const DropzoneHub = forwardRef<DropzoneHandles>((_props, ref) => {
         d="flex"
         justifyContent="center"
       >
-        <Box
-          as={ImageSquare}
-          color="white"
-          size="3rem"
-          alignSelf="center"
-          justifySelf="center"
-        />
+        {!preview ? (
+          <Box
+            as={ImageSquare}
+            color="white"
+            size="3rem"
+            alignSelf="center"
+            justifySelf="center"
+          />
+        ) : (
+          <Image src={preview} />
+        )}
       </Box>
-      <Box
-        w="14rem"
-        ml="1rem"
-        d="flex"
-        flexDir="column"
-        justifyContent="space-around"
-      >
-        <Text fontWeight="400" fontSize="1.1rem">
-          Arraste e solte uma imagem para usar como ícone ou
-        </Text>
-        <Text
-          cursor="grab"
-          textColor={`${colors.blue[500]}`}
-          fontWeight="400"
-          fontSize="1.1rem"
-        >
-          busque em seus arquivos
-        </Text>
-        <Box>
-          {/* utilizando input html pois o chakra nao recebe as props do dropzone */}
-          <input {...getInputProps()} />
-        </Box>
+      <Box w="50%" ml="4" d="flex" flexDir="column">
+        {!isDragActive && (
+          <>
+            <Text>Arraste e solte uma imagem para usar como ícone ou</Text>
+            <Text textColor={`${colors.blue[500]}`}>
+              busque em seus arquivos
+            </Text>
+          </>
+        )}
+
+        {/* utilizando input html pois o chakra nao recebe as props do dropzone */}
+        <input {...getInputProps()} />
+        {isDragAccept && <Text>O arquivo é compatível</Text>}
+        {isDragReject && (
+          <Text
+            d="block"
+            mt="20px"
+            textColor={`${colors.red[500]}`}
+            fontWeight="400"
+          >
+            O ícone deve ter a extensão .svg
+          </Text>
+        )}
       </Box>
     </Box>
   )

@@ -77,6 +77,7 @@ export function* updateSolution(action: Action): Generator {
   const { ok, data } = response as ApiResponse<SolutionPutResponse>
 
   if (!ok || !data?.sucesso) {
+    console.log(data)
     toast.error(
       'Erro ao atualizar solução, atualize a página e tente novamente'
     )

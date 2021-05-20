@@ -18,7 +18,7 @@ import {
 } from '@psdhub/common/components/Form'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Stack } from '@psdhub/common/components/'
-import { Box, Text, Button } from '@psdhub/common/components'
+import { Box, Button } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
@@ -65,7 +65,7 @@ const CreateSolution: React.FC = () => {
       try {
         await solutionInfo.validate(data, { abortEarly: false })
 
-        const formattedData = formatFormData(data, undefined, {
+        const permissions = {
           profilePermissions: {
             old: [],
             new: data.profiles
@@ -74,7 +74,9 @@ const CreateSolution: React.FC = () => {
             old: [],
             new: data.schools
           }
-        })
+        }
+
+        const formattedData = formatFormData(data, undefined, permissions)
 
         return dispatch(accessControlPostRequest(formattedData))
       } catch (err) {
@@ -129,8 +131,7 @@ const CreateSolution: React.FC = () => {
           </Box>
 
           <Box>
-            <Text color="blue.500">Ícone</Text>
-            <Dropzone name="arquivo" />
+            <Dropzone name="arquivo" label="Ícone" />
           </Box>
           <Stack
             direction={['column', 'row']}
