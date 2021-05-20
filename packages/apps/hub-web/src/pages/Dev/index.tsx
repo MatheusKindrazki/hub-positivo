@@ -2,11 +2,14 @@ import React, { useRef, useCallback, useState } from 'react'
 
 import { store } from '~/store'
 
-import SelectTree from '@psdhub/common/components/SelectTree'
+import SelectTree, {
+  SelectTreeProps
+} from '@psdhub/common/components/SelectTree'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
 
+let teste: SelectTreeProps['']
 const DevHub: React.FC = () => {
   const [loading, setLoading] = useState(false)
 
@@ -76,10 +79,7 @@ const DevHub: React.FC = () => {
             mb="5"
           />
 
-          <SelectTree
-            variant="normal"
-            options={[{ value: 'assd', label: 'asasd' }]}
-          />
+          <SelectTree variant="normal" options={[{}]} />
 
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>
