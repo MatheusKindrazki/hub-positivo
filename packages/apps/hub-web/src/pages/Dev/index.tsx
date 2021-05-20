@@ -2,6 +2,7 @@ import React, { useRef, useCallback, useState } from 'react'
 
 import { store } from '~/store'
 
+import SelectTree from '@psdhub/common/components/SelectTree'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
@@ -73,6 +74,11 @@ const DevHub: React.FC = () => {
             placeholder="Url para redirecionamento"
             defaultValue="http://localhost:3000/#/auth"
             mb="5"
+          />
+
+          <SelectTree
+            variant="normal"
+            options={[{ value: 'assd', label: 'asasd' }]}
           />
 
           <Button isLoading={loading}>Entrar na solução</Button>
