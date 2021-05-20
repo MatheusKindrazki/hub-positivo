@@ -11,7 +11,7 @@ import ThemeContext from '@psdhub/common/layout/Provider/context'
 
 import history from '~/services/history'
 
-import UpdateSolution from '~/pages/AccessControl/pages/UpdateSolution'
+// import UpdateSolution from '~/pages/AccessControl/pages/UpdateSolution'
 
 import Route from './Route'
 
@@ -27,8 +27,8 @@ const ChangePassword = React.lazy(() => import('~/pages/Auth/ChangePassword'))
 const ForgotPassword = React.lazy(() => import('~/pages/Auth/ForgotPassword'))
 const AccessControl = React.lazy(() => import('~/pages/AccessControl'))
 const Trash = React.lazy(() => import('~/pages/AccessControl/pages/Trash'))
-const CreateSolution = React.lazy(
-  () => import('~/pages/AccessControl/pages/CreateSolution')
+const SubmitSolution = React.lazy(
+  () => import('~/pages/AccessControl/pages/SubmitSolution')
 )
 
 const Solutions = React.lazy(() => import('~/pages/Solutions'))
@@ -67,12 +67,12 @@ const Routes: React.FC = () => {
             <Route path="/alterar-senha" component={ChangePassword} />
             <Route
               path="/controle-de-acessos/criar"
-              component={CreateSolution}
+              component={SubmitSolution}
               isPrivate
             />
             <Route
               path="/controle-de-acessos/editar/:slug"
-              component={UpdateSolution}
+              component={SubmitSolution}
               isPrivate
             />
             <Route
