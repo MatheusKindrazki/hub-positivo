@@ -14,8 +14,8 @@ import { Collapse } from '@psdhub/common/components'
 
 import ModalAddCategory from '~/components/ModalAddCategory'
 
-import { solutionsTableDataFormat } from './utils/solutionsTableDataFormat'
 import Container from './styles'
+import { solutionsTableDataFormat } from './components/Table/utils/solutionsTableDataFormat'
 import Table, { TableSolution } from './components/Table'
 import Switch from './components/Switch'
 import Header from './components/Header'
