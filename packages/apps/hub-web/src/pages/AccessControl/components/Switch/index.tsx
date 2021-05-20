@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 
 import { useDispatch } from 'react-redux'
 
@@ -18,10 +18,13 @@ const Switch: React.FC<SwitchProps> = ({ data }) => {
   const { ativo } = data
   const [isChecked, setIsChecked] = useState(ativo)
 
-  const handleCheck = async (check: boolean) => {
-    dispatch(solutionPutRequest({ ...data, ativo: !check }))
-    setIsChecked(!check)
-  }
+  const handleCheck = useCallback(
+    (check: boolean) => {
+      dispatch(solutionPutRequest({ ...data, ativo: !check }))
+      setIsChecked(!check)
+    },
+    [dispatch, data]
+  )
   return (
     <SwitchUI
       padding="1"
