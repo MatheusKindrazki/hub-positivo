@@ -4,15 +4,16 @@ import { useField } from '@unform/core'
 
 import { FormControl, FormLabel } from '@chakra-ui/react'
 
-import DropzoneHub, { DropzoneHandles } from '../../Dropzone'
+import DropzoneHub, { DropzoneHandlers } from '../../Dropzone'
 
 interface Props {
   name: string
   label?: string
+  preview?: string
 }
 
-const Dropzone: React.FC<Props> = ({ name, label }) => {
-  const dropRef = useRef<DropzoneHandles>(null)
+const Dropzone: React.FC<Props> = ({ name, label, preview }) => {
+  const dropRef = useRef<DropzoneHandlers>(null)
 
   const { fieldName, registerField } = useField(name)
 
@@ -31,7 +32,7 @@ const Dropzone: React.FC<Props> = ({ name, label }) => {
           {label}
         </FormLabel>
       )}
-      <DropzoneHub ref={dropRef} />
+      <DropzoneHub ref={dropRef} previewUrl={preview || ''} />
     </FormControl>
   )
 }

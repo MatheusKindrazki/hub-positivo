@@ -165,7 +165,11 @@ const UpdateSolution: React.FC = () => {
             </Box>
 
             <Box>
-              <Dropzone name="arquivo" label="Ícone" />
+              <Dropzone
+                name="arquivo"
+                label="Ícone"
+                preview={solution?.arquivo || ''}
+              />
             </Box>
 
             <Stack

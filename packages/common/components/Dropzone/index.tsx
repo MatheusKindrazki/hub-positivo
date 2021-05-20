@@ -1,100 +1,102 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useState
+} from 'react'
 
 import { useDropzone } from 'react-dropzone'
 
-import { ImageSquare } from '../Icons/index'
+import { PreviewContainer, Container } from './styles'
+import UploadMessage from './components/UploadMessage'
+import ImagePreview from './components/ImagePreview'
 import { useTheme } from '../../layout/styles'
-import { Box, Text, Image } from '../../components'
+import { Box } from '../../components'
 
-export interface DropzoneHandles {
+export interface DropzoneHandlers {
   getFiles(): string[]
 }
+export interface DropzoneProps {
+  previewUrl: string
+}
 
-const DropzoneHub = forwardRef<DropzoneHandles>((_props, ref) => {
-  const [preview, setPreview] = useState('')
-  const { colors } = useTheme()
+export interface PreviewObject {
+  url: string
+  name: string
+  size: number
+}
+const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
+  ({ previewUrl }, ref) => {
+    const [preview, setPreview] = useState<PreviewObject>()
+    const { colors } = useTheme()
 
-  const onDrop = (acceptedFiles: File[]) => {
-    setPreview(URL.createObjectURL(acceptedFiles[0]))
-  }
+    useEffect(() => {
+      if (previewUrl) {
+        setPreview({
+          url: previewUrl,
+          name: '',
+          size: 0
+        })
+      }
+    }, [previewUrl])
 
-  const {
-    acceptedFiles,
-    getRootProps,
-    getInputProps,
-    isDragActive,
-    isDragAccept,
-    isDragReject
-  } = useDropzone({
-    accept: '.svg',
-    onDrop
-  })
+    const onDrop = useCallback((acceptedFiles: File[]) => {
+      setPreview({
+        url: URL.createObjectURL(acceptedFiles[0]),
+        name: acceptedFiles[0].name,
+        size: acceptedFiles[0].size
+      })
+    }, [])
 
-  console.log({ preview })
+    const resetIcon = useCallback(() => {
+      setPreview({
+        url: '',
+        name: '',
+        size: 0
+      })
+    }, [])
 
-  useImperativeHandle(ref, () => {
-    return {
-      getFiles: () => acceptedFiles.map(file => URL.createObjectURL(file))
-    }
-  })
+    const {
+      acceptedFiles,
+      getRootProps,
+      getInputProps,
+      isDragReject,
+      isDragActive
+    } = useDropzone({
+      accept: '.svg',
+      onDrop
+    })
 
-  return (
-    <Box
-      d="flex"
-      p="1rem"
-      border={`1px solid ${colors.gray[500]}`}
-      borderRadius="8px"
-      boxSizing="border-box"
-      bg={colors.gray[200]}
-      {...getRootProps({ className: 'hub-dropzone' })}
-    >
-      <Box
-        mr="1.2rem"
-        w="7rem"
-        h="7rem"
-        backgroundColor={colors.blue[500]}
-        borderRadius="8px"
-        d="flex"
-        justifyContent="center"
+    useImperativeHandle(ref, () => {
+      return {
+        getFiles: () => acceptedFiles.map(file => URL.createObjectURL(file))
+      }
+    })
+
+    return (
+      <Container
+        reject={isDragReject}
+        colors={colors}
+        previewUrl={preview?.url as string}
+        // desabilita dropzone caso ja tenha uma imagem em tela
+        {...(preview?.url ? null : getRootProps({ className: 'hub-dropzone' }))}
       >
-        {!preview ? (
-          <Box
-            as={ImageSquare}
-            color="white"
-            size="3rem"
-            alignSelf="center"
-            justifySelf="center"
+        <PreviewContainer colors={colors}>
+          <ImagePreview src={preview?.url} />
+        </PreviewContainer>
+        <Box w="80%" ml="4" d="flex" flexDir="column">
+          <UploadMessage
+            active={isDragActive}
+            reject={isDragReject}
+            preview={preview as PreviewObject}
+            callback={resetIcon}
           />
-        ) : (
-          <Image src={preview} />
-        )}
-      </Box>
-      <Box w="50%" ml="4" d="flex" flexDir="column">
-        {!isDragActive && (
-          <>
-            <Text>Arraste e solte uma imagem para usar como ícone ou</Text>
-            <Text textColor={`${colors.blue[500]}`}>
-              busque em seus arquivos
-            </Text>
-          </>
-        )}
-
-        {/* utilizando input html pois o chakra nao recebe as props do dropzone */}
-        <input {...getInputProps()} />
-        {isDragAccept && <Text>O arquivo é compatível</Text>}
-        {isDragReject && (
-          <Text
-            d="block"
-            mt="20px"
-            textColor={`${colors.red[500]}`}
-            fontWeight="400"
-          >
-            O ícone deve ter a extensão .svg
-          </Text>
-        )}
-      </Box>
-    </Box>
-  )
-})
+          <input {...getInputProps()} />
+        </Box>
+      </Container>
+    )
+  }
+)
 
 export default DropzoneHub

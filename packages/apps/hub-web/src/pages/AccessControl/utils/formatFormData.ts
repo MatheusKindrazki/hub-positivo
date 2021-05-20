@@ -105,6 +105,10 @@ export const formatFormData = (
 ): any => {
   const { restricao, padrao } = schoolRule(data.padrao)
   const { id } = solution as Solution
+  const { arquivo: oldIcon } = solution as Solution
+  const { arquivo: newIcon } = data
+
+  const arquivo = newIcon?.length ? newIcon[0] : oldIcon
 
   const formattedSolution = {
     ...solution,
@@ -112,8 +116,8 @@ export const formatFormData = (
     nome: data.nome,
     descricao: data.descricao,
     link: data.link,
-    arquivo: data.arquivo && data.arquivo[0],
     tipoRenderizacao: data.tipoRenderizacao,
+    arquivo,
     padrao
   }
 
