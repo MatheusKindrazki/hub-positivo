@@ -21,7 +21,10 @@ import {
   solutionDeleteSuccess,
   solutionDeleteFailure,
   solutionRestaureFailure,
-  solutionRestaureSuccess
+  solutionRestaureSuccess,
+  solutionGetExcludedFailure,
+  solutionGetExcludedSuccess,
+  solutionGetExcludedRequest
 } from './actions'
 
 export function* createSolution(action: Action): Generator {
@@ -43,14 +46,16 @@ export function* createSolution(action: Action): Generator {
   return yield data?.dados.id
 }
 
-export function* getSolutions(action: Action): Generator {
+export function* getSolutions(): Generator {
+  console.log('SOCORRO FU CHAMADO ERRADO')
+
   const response = yield call(() => {
     return api.get(
       'Categoria/SolucoesPerfisRestricoes',
       {},
       {
         params: {
-          EstadoSolucao: action.payload.status
+          EstadoSolucao: 'PUBLICADA'
         }
       }
     )
@@ -65,8 +70,29 @@ export function* getSolutions(action: Action): Generator {
   return yield put(solutionsGetSuccess(data))
 }
 
-// type SolutionPutPayload = Payload<PutSolutionData>
+export function* getExcludedSolutions(): Generator {
+  console.log('SOCORRO FU CHAMADO')
+  const response = yield call(() => {
+    return api.get(
+      'Categoria/SolucoesPerfisRestricoes',
+      {},
+      {
+        params: {
+          EstadoSolucao: 'EXCLUIDA'
+        }
+      }
+    )
+  })
 
+  const { ok, data } = response as ApiResponse<Category[]>
+  console.log('SOCORRO', data, ok)
+
+  if (!ok) {
+    toast.error('Erro ao buscar as itens da lixeira!')
+    return yield put(solutionGetExcludedFailure())
+  }
+  return yield put(solutionGetExcludedSuccess(data))
+}
 export function* updateSolution(action: Action): Generator {
   const response = yield call(async () => {
     return api.put('/Solucao', {
@@ -107,6 +133,8 @@ export function* deleteSolution(action: Action): Generator {
 
   toast.success('Solução excluída com sucesso!')
   yield put(solutionDeleteSuccess())
+  yield put(solutionsGetRequest())
+  yield put(solutionGetExcludedRequest())
   history.push('/controle-de-acessos')
 }
 
@@ -129,9 +157,8 @@ export function* restaureSolution(action: Action): Generator {
     toast.error('Erro ao restaurar solução, tente novamente!')
     return yield put(solutionRestaureFailure())
   }
-  yield put(solutionsGetRequest('EXCLUIDA'))
+  yield put(solutionGetExcludedRequest())
   toast.success('Solução restaurada com sucesso')
-  put(solutionsGetRequest('EXCLUIDA'))
   return yield put(solutionRestaureSuccess())
 }
 
@@ -140,5 +167,6 @@ export default all([
   takeLatest(Actions.SOLUTIONS_GET_REQUEST, getSolutions),
   takeLatest(Actions.SOLUTION_PUT_REQUEST, updateSolution),
   takeLatest(Actions.SOLUTION_DELETE_REQUEST, deleteSolution),
-  takeLatest(Actions.SOLUTION_RESTAURE_REQUEST, restaureSolution)
+  takeLatest(Actions.SOLUTION_RESTAURE_REQUEST, restaureSolution),
+  takeLatest(Actions.SOLUTIONS_GET_EXCLUDED_REQUEST, getExcludedSolutions)
 ])

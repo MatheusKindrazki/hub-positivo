@@ -39,7 +39,7 @@ const UpdateSolution: React.FC = () => {
 
   const dispatch = useDispatch()
 
-  const { data: categoryArr } = useSelector(
+  const { publicadas: categoryArr } = useSelector(
     (state: Store.State) => state.solutions
   )
   const { categories } = useSelector((state: Store.State) => state.category)

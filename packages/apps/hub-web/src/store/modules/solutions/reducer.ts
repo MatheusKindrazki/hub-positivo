@@ -7,12 +7,13 @@ import { Actions } from './actions'
 
 export const INITIAL_STATE: SolutionsReducer = {
   loading: true,
-  data: undefined
+  publicadas: undefined,
+  excluidas: undefined
 }
 
 type ReturnReducer = Reducer<SolutionsReducer>
 
-const categories: ReturnReducer = (state = INITIAL_STATE, action) => {
+const solutions: ReturnReducer = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
       case Actions.SOLUTIONS_GET_REQUEST: {
@@ -22,13 +23,29 @@ const categories: ReturnReducer = (state = INITIAL_STATE, action) => {
 
       case Actions.SOLUTIONS_GET_SUCCESS: {
         draft.loading = false
-        draft.data = action.payload
+        draft.publicadas = action.payload
         break
       }
 
       case Actions.SOLUTIONS_GET_FAILURE: {
         draft.loading = false
-        draft.data = undefined
+        draft.publicadas = undefined
+        break
+      }
+      case Actions.SOLUTIONS_GET_EXCLUDED_REQUEST: {
+        draft.loading = true
+        break
+      }
+
+      case Actions.SOLUTIONS_GET_EXCLUDED_SUCCESS: {
+        draft.loading = false
+        draft.excluidas = action.payload
+        break
+      }
+
+      case Actions.SOLUTIONS_GET_EXCLUDED_FAILURE: {
+        draft.loading = false
+        draft.excluidas = undefined
         break
       }
       default:
@@ -36,4 +53,4 @@ const categories: ReturnReducer = (state = INITIAL_STATE, action) => {
   })
 }
 
-export default categories
+export default solutions
