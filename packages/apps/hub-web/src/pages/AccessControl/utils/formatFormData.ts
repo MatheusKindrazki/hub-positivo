@@ -110,7 +110,7 @@ export const formatFormData = (
   const { arquivo: oldIcon } = solution as Solution
   const { arquivo: newIcon } = data
 
-  const arquivo = newIcon?.length ? newIcon[0] : oldIcon
+  const arquivo = newIcon?.length ? newIcon : oldIcon
 
   const slug = createSlug(data.nome)
 
