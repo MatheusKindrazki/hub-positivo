@@ -5,6 +5,8 @@ import {
   Restricao
 } from '~/store/modules/permissions/types'
 
+import { createSlug } from '@psdhub/common/utils'
+
 export interface OldProfilePermissions {
   id: string
   idSolucao: string
@@ -110,6 +112,8 @@ export const formatFormData = (
 
   const arquivo = newIcon?.length ? newIcon[0] : oldIcon
 
+  const slug = createSlug(data.nome)
+
   const formattedSolution = {
     ...solution,
     idCategoria: data.idCategoria,
@@ -118,7 +122,8 @@ export const formatFormData = (
     link: data.link,
     tipoRenderizacao: data.tipoRenderizacao,
     arquivo,
-    padrao
+    padrao,
+    slug
   }
 
   const formattedProfilePermissions = formatProfilePermissions(

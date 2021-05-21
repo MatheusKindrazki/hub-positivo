@@ -61,8 +61,12 @@ export const selects = (
       onChange: (option: Option) => {
         if (option.value === 'todas escolas') {
           const schoolsRef = ref.current?.getFieldRef('schools')
-          schoolsRef.select.clearValue()
+          schoolsRef.select.inputRef.setAttribute('disabled', true)
+          console.log(schoolsRef)
+          return schoolsRef.select.clearValue()
         }
+        const schoolsRef = ref.current?.getFieldRef('schools')
+        schoolsRef.select.inputRef.removeAttribute('disabled')
       }
     },
     {
