@@ -64,8 +64,6 @@ const autocomplete = (
 
   const profiles = createOptions(permissions)
 
-  console.log({ schools }, { profiles })
-
   ref.current?.setData({
     nome: solution?.nome,
     descricao: solution?.descricao,

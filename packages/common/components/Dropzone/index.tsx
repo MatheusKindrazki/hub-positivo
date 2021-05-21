@@ -15,7 +15,7 @@ import { useTheme } from '../../layout/styles'
 import { Box } from '../../components'
 
 export interface DropzoneHandlers {
-  getFiles(): string[]
+  getFiles(): string | string[] | void
 }
 export interface DropzoneProps {
   preview?: Preview
@@ -37,16 +37,18 @@ const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
     const { url, fileName } = preview as Preview
 
     useEffect(() => {
-      if (url) {
+      if (typeof url === 'string') {
         setIcon({ url: url, name: `${fileName}.svg` })
       }
     }, [url, fileName])
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
-      setIcon({
-        url: URL.createObjectURL(acceptedFiles[0]),
-        name: acceptedFiles[0].name
-      })
+      if (acceptedFiles.length) {
+        setIcon({
+          url: URL.createObjectURL(acceptedFiles[0]),
+          name: acceptedFiles[0].name
+        })
+      }
     }, [])
 
     const resetIcon = useCallback(() => {
@@ -61,15 +63,23 @@ const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
       getRootProps,
       getInputProps,
       isDragReject,
-      isDragActive
+      isDragActive,
+      isDragAccept
     } = useDropzone({
-      accept: '.svg',
+      accept: 'image/svg+xml',
       onDrop
     })
 
     useImperativeHandle(ref, () => {
       return {
-        getFiles: () => acceptedFiles.map(file => URL.createObjectURL(file))
+        getFiles: () => {
+          if (acceptedFiles.length > 1) {
+            return acceptedFiles.map(file => URL.createObjectURL(file))
+          }
+          if (acceptedFiles.length) {
+            return URL.createObjectURL(acceptedFiles[0])
+          }
+        }
       }
     })
 
@@ -87,7 +97,7 @@ const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
         <Box w="80%" ml="4" d="flex" flexDir="column">
           <UploadMessage
             active={isDragActive}
-            reject={isDragReject}
+            reject={!isDragAccept}
             preview={icon as Icon}
             callback={resetIcon}
           />

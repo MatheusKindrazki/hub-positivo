@@ -17,7 +17,13 @@ const Header: React.FC = () => {
             variant="unstyled"
             m="1"
             p="3"
-            color="blue.500"
+            pb="8"
+            fontWeight="500"
+            textColor={
+              location.pathname === '/controle-de-acessos'
+                ? 'blue.500'
+                : 'gray.500'
+            }
             borderBottomWidth="0.1875rem"
             borderBottomRadius="none"
             borderColor={
@@ -33,7 +39,13 @@ const Header: React.FC = () => {
             m="1"
             variant="unstyled"
             p="3"
-            color="blue.500"
+            pb="8"
+            fontWeight="500"
+            textColor={
+              location.pathname === '/controle-de-acessos/lixeira'
+                ? 'blue.500'
+                : 'gray.500'
+            }
             borderBottomWidth="0.1875rem"
             borderBottomRadius="none"
             borderColor={

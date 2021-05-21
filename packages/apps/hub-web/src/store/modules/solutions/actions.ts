@@ -33,7 +33,6 @@ export const Actions = {
 */
 
 export function solutionPostRequest(solution: PostSolutionData): Action {
-  console.log('solutionPostRequest', solution)
   return {
     type: Actions.SOLUTION_POST_REQUEST,
     payload: {
