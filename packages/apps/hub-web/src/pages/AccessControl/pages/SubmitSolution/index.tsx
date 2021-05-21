@@ -20,7 +20,7 @@ import {
   Dropzone
 } from '@psdhub/common/components/Form'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
-import { Box, Text, Stack, Button, BarLoader } from '@psdhub/common/components'
+import { Box, Stack, Button, BarLoader } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
@@ -170,8 +170,14 @@ const SubmitSolution: React.FC = () => {
             </Box>
 
             <Box>
-              <Text color="blue.500">Ícone</Text>
-              <Dropzone name="arquivo" />
+              <Dropzone
+                name="arquivo"
+                label="Ícone"
+                preview={{
+                  url: solution?.arquivo || '',
+                  fileName: solution?.slug || ''
+                }}
+              />
             </Box>
 
             <Stack

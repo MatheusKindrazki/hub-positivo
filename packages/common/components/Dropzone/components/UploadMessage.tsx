@@ -2,13 +2,13 @@ import React from 'react'
 
 import { Text, Stack } from '@psdhub/common/components'
 
-import { PreviewObject } from '..'
+import { Icon } from '..'
 
 interface UploadMessageProps {
   active: boolean
   reject: boolean
   callback: () => void
-  preview?: PreviewObject
+  preview?: Icon
 }
 
 const UploadMessage: React.FC<UploadMessageProps> = ({

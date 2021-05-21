@@ -9,7 +9,10 @@ import DropzoneHub, { DropzoneHandlers } from '../../Dropzone'
 interface Props {
   name: string
   label?: string
-  preview?: string
+  preview?: {
+    url: string
+    fileName: string
+  }
 }
 
 const Dropzone: React.FC<Props> = ({ name, label, preview }) => {
@@ -32,7 +35,7 @@ const Dropzone: React.FC<Props> = ({ name, label, preview }) => {
           {label}
         </FormLabel>
       )}
-      <DropzoneHub ref={dropRef} previewUrl={preview || ''} />
+      <DropzoneHub ref={dropRef} preview={preview} />
     </FormControl>
   )
 }

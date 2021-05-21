@@ -4,7 +4,7 @@ import { Box } from '@psdhub/common/components'
 
 interface ContainerProps {
   reject: boolean
-  previewUrl: string
+  url: string
   colors: any
 }
 
@@ -18,13 +18,12 @@ padding: 1rem;
 border: ${props =>
   props?.reject
     ? `2px solid ${props.colors.red[500]};`
-    : props.previewUrl
+    : props.url
     ? `2px solid ${props.colors.gray[100]};`
     : `2px dashed ${props.colors.gray[100]};`}
 border-radius: 8px;
 box-sizing: border-box;
-background-color: ${props =>
-  props.previewUrl ? 'white' : props.colors.gray[200]};
+background-color: ${props => (props.url ? 'white' : props.colors.gray[200])};
 `
 
 export const PreviewContainer = styled(Box)<PreviewContainerProps>`

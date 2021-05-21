@@ -14,7 +14,11 @@ const schema = Yup.object().shape({
   profiles: Yup.array(),
   tipoRenderizacao: Yup.string().required('Campo Obrigatório'),
   padrao: Yup.string().required('Campo Obrigatório'),
-  schools: Yup.array()
+  schools: Yup.array().when('padrao', {
+    is: 'exceto' || 'apenas',
+    then: Yup.array().required(),
+    otherwise: Yup.array().notRequired()
+  })
 })
 
 export default schema
