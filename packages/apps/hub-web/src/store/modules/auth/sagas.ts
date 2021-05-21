@@ -28,6 +28,7 @@ import { changeSchool, ApiChange } from '~/services/eemIntegration'
 import { EEMConnectPost } from '~/services/eemConnect'
 
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
+import roundHours from '~/utils/formatData/roundHours'
 
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
 
@@ -195,9 +196,13 @@ export function* checkingExpiringToken({
 
   const date = new Date().getTime()
 
-  const now = Math.round(date / 1000)
+  const { milliseconds: expToken } = roundHours({
+    milliseconds: exp * 1000
+  })
 
-  if (now >= exp) {
+  const { milliseconds: nowInMs } = roundHours({ milliseconds: date })
+
+  if (nowInMs >= expToken) {
     return yield put(refreshTokenRequest())
   }
 
@@ -261,7 +266,13 @@ export function* refreshToken(): Generator {
 
   yield put(reducedTokenEEM(access_token))
 
-  const user = decode(data?.access_token as string) as { exp: number }
+  const user = decode(data?.access_token as string) as {
+    exp: number
+    sub: string
+  }
+
+  // ? Identifica o usuário no mixpanel
+  mixpanelIdentifyUser({ guid: user.sub })
 
   yield put(
     refreshTokenSuccess({

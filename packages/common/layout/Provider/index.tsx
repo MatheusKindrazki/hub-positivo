@@ -2,6 +2,7 @@ import React, { useMemo, useState, useContext } from 'react'
 
 import { ThemeProvider as StyledProvider } from 'styled-components'
 import { ToastContainer } from 'react-toastify'
+import { merge } from 'lodash'
 import { CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 
@@ -33,23 +34,23 @@ const ThemeContainer: React.FC<ThemeProps> = ({
       profile: prof
     }).blue
 
-    const theme = HubTheme(cssVarPrefix)
+    const defaultTheme = HubTheme(cssVarPrefix)
 
     const hubThemeProfile = {
-      ...theme,
+      ...defaultTheme,
       colors: {
-        ...theme.colors,
+        ...defaultTheme.colors,
         blue: profileTheme
       }
     }
 
-    return hubThemeProfile
-  }, [cssVarPrefix, prof])
+    return merge(hubThemeProfile, theme)
+  }, [cssVarPrefix, prof, theme])
 
   return (
     <CacheProvider value={createCache({ key: cssKey })}>
-      <ChakraProvider theme={{ ...renderTheme, ...theme }} resetCSS>
-        <StyledProvider theme={{ ...renderTheme, ...theme }}>
+      <ChakraProvider theme={renderTheme} resetCSS>
+        <StyledProvider theme={renderTheme}>
           <CSSReset />
           <GlobalStyles />
           {children}
