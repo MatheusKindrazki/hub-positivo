@@ -15,9 +15,9 @@ const schema = Yup.object().shape({
   tipoRenderizacao: Yup.string().required('Campo Obrigatório'),
   padrao: Yup.string().required('Campo Obrigatório'),
   schools: Yup.array().when('padrao', {
-    is: 'exceto' || 'apenas',
-    then: Yup.array().required(),
-    otherwise: Yup.array().notRequired()
+    is: 'todas escolas',
+    then: Yup.array().notRequired(),
+    otherwise: Yup.array().min(1, 'Selecione pelo menos uma escola').required()
   })
 })
 

@@ -53,7 +53,9 @@ const autocomplete = (
   }
 
   const padrao = solution.padrao
-    ? { label: 'Exceto', value: 'exceto' }
+    ? !solution.escolas.length
+      ? { label: 'Todas Escolas', value: 'todas escolas' }
+      : { label: 'Exceto', value: 'exceto' }
     : { label: 'Apenas', value: 'apenas' }
 
   const schools = createOptions(solution.escolas)
