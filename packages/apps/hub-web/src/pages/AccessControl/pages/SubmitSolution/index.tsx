@@ -27,11 +27,8 @@ import history from '~/services/history'
 import solutionInfo from '~/validators/solution/createSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
-import {
-  ModalDeleteSolution,
-  ModalHandler
-} from '../UpdateSolution/ModalDelete'
-import { selects } from '../CreateSolution/formSelects'
+import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
+import { selects } from './formSelects'
 import getSolutionBySlug from '../../utils/getSolutionBySlug'
 import { formatFormData } from '../../utils/formatFormData'
 import createOptions from '../../utils/createOptions'

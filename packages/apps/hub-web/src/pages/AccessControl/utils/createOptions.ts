@@ -1,5 +1,4 @@
-import { Option } from '../pages/CreateSolution/formSelects'
-
+import { Option } from '~/store/modules/solutions/types'
 interface profilesData {
   perfil: string
   nivelEnsino: string

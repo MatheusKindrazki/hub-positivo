@@ -1,5 +1,3 @@
-import { Option } from '~/pages/AccessControl/pages/CreateSolution/formSelects'
-
 export interface SolutionsReducer {
   loading: boolean
   publicadas?: Category[]
@@ -12,6 +10,11 @@ export interface Category {
   nome: string
   cor?: string
   solucoes: Solution[]
+}
+
+export interface Option {
+  value: string
+  label: string
 }
 
 export interface Solution {
