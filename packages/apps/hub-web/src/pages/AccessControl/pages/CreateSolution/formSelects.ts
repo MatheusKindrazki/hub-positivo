@@ -20,7 +20,7 @@ interface Select {
   label: string
   isMulti?: boolean
   w?: string | string[]
-  isDisabled?: boolean
+  isDisabled?: boolean | undefined
   onChange?: (value: any) => void
 }
 
@@ -60,8 +60,8 @@ export const selects = (
       w: ['100%', '100%', '48.5%'],
       onChange: (option: Option) => {
         if (option.value === 'todas escolas') {
-          const padraoRef = ref.current?.getFieldRef('schools')
-          padraoRef.select.clearValue()
+          const schoolsRef = ref.current?.getFieldRef('schools')
+          schoolsRef.select.clearValue()
         }
       }
     },

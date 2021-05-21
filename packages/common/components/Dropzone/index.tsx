@@ -18,42 +18,41 @@ export interface DropzoneHandlers {
   getFiles(): string[]
 }
 export interface DropzoneProps {
-  previewUrl: string
+  preview?: Preview
 }
 
-export interface PreviewObject {
+interface Preview {
+  url: string
+  fileName: string
+}
+export interface Icon {
   url: string
   name: string
-  size: number
 }
 const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
-  ({ previewUrl }, ref) => {
-    const [preview, setPreview] = useState<PreviewObject>()
+  ({ preview }, ref) => {
+    const [icon, setIcon] = useState<Icon>()
     const { colors } = useTheme()
 
+    const { url, fileName } = preview as Preview
+
     useEffect(() => {
-      if (previewUrl) {
-        setPreview({
-          url: previewUrl,
-          name: '',
-          size: 0
-        })
+      if (url) {
+        setIcon({ url: url, name: `${fileName}.svg` })
       }
-    }, [previewUrl])
+    }, [url, fileName])
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
-      setPreview({
+      setIcon({
         url: URL.createObjectURL(acceptedFiles[0]),
-        name: acceptedFiles[0].name,
-        size: acceptedFiles[0].size
+        name: acceptedFiles[0].name
       })
     }, [])
 
     const resetIcon = useCallback(() => {
-      setPreview({
+      setIcon({
         url: '',
-        name: '',
-        size: 0
+        name: ''
       })
     }, [])
 
@@ -78,18 +77,18 @@ const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
       <Container
         reject={isDragReject}
         colors={colors}
-        previewUrl={preview?.url as string}
+        url={icon?.url as string}
         // desabilita dropzone caso ja tenha uma imagem em tela
-        {...(preview?.url ? null : getRootProps({ className: 'hub-dropzone' }))}
+        {...(icon?.url ? null : getRootProps({ className: 'hub-dropzone' }))}
       >
         <PreviewContainer colors={colors}>
-          <ImagePreview src={preview?.url} />
+          <ImagePreview src={icon?.url} />
         </PreviewContainer>
         <Box w="80%" ml="4" d="flex" flexDir="column">
           <UploadMessage
             active={isDragActive}
             reject={isDragReject}
-            preview={preview as PreviewObject}
+            preview={icon as Icon}
             callback={resetIcon}
           />
           <input {...getInputProps()} />
