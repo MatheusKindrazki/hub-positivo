@@ -17,12 +17,11 @@ const UploadMessage: React.FC<UploadMessageProps> = ({
   preview,
   callback
 }) => {
-  console.log({ reject }, { active })
   return (
     <>
       {active && reject && (
         <Text d="block" mt="20px" textColor="red.500" fontWeight="400">
-          A imagem deve ter o formato SVG!
+          A imagem deve ser em formato SVG.
         </Text>
       )}
       {!active && !preview?.url && (

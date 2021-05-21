@@ -47,8 +47,6 @@ export function* createSolution(action: Action): Generator {
 }
 
 export function* getSolutions(): Generator {
-  console.log('SOCORRO FU CHAMADO ERRADO')
-
   const response = yield call(() => {
     return api.get(
       'Categoria/SolucoesPerfisRestricoes',
@@ -71,7 +69,6 @@ export function* getSolutions(): Generator {
 }
 
 export function* getExcludedSolutions(): Generator {
-  console.log('SOCORRO FU CHAMADO')
   const response = yield call(() => {
     return api.get(
       'Categoria/SolucoesPerfisRestricoes',
@@ -85,8 +82,6 @@ export function* getExcludedSolutions(): Generator {
   })
 
   const { ok, data } = response as ApiResponse<Category[]>
-  console.log('SOCORRO', data, ok)
-
   if (!ok) {
     toast.error('Erro ao buscar as itens da lixeira!')
     return yield put(solutionGetExcludedFailure())
@@ -103,7 +98,6 @@ export function* updateSolution(action: Action): Generator {
   const { ok, data } = response as ApiResponse<SolutionPutResponse>
 
   if (!ok || !data?.sucesso) {
-    console.log(data)
     toast.error(
       'Erro ao atualizar solução, atualize a página e tente novamente'
     )

@@ -78,8 +78,6 @@ const UpdateSolution: React.FC = () => {
       console.log('solucao recebida em update solution: ', solution)
       autocompleteFormData(solution, formRef, profileOptions)
     }
-
-    console.log(formRef.current?.getFieldRef('padrao').select)
   }, [categoryArr, dispatch, pathname, profileOptions, solution, formRef])
 
   const handleSubmit = useCallback(
