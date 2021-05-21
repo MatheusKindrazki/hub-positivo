@@ -74,7 +74,7 @@ export const ModalDeleteSolution = React.forwardRef<ModalHandler, ModalProps>(
             </Button>
             <Button
               my="1rem"
-              colorScheme="blue.500"
+              colorScheme="blue"
               fontWeight="500"
               w="48%"
               h="48px"
