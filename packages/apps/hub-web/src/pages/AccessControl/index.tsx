@@ -51,7 +51,7 @@ export const columns: Columns[] = [
 const mock = [{}, {}, {}, {}, {}, {}, {}]
 
 const AccessControl: React.FC = () => {
-  const { data = [], loading } = useSelector(
+  const { publicadas = [], loading } = useSelector(
     (state: Store.State) => state.solutions
   )
   const { profile } = useSelector((state: Store.State) => state.profile)
@@ -65,10 +65,13 @@ const AccessControl: React.FC = () => {
   }, [profile, history])
 
   useEffect(() => {
+    console.log({ publicadas }, loading)
     dispatch(categoryGetAllRequest())
     dispatch(schoolGetAllRequest())
-    dispatch(solutionsGetRequest('PUBLICADA'))
-  }, [dispatch])
+    if (!publicadas.length) {
+      dispatch(solutionsGetRequest())
+    }
+  }, [dispatch, publicadas])
 
   return (
     <Container m="auto" maxW="90rem" p="10">
@@ -76,7 +79,7 @@ const AccessControl: React.FC = () => {
       <ModalAddCategory />
       {loading && mock.map((_, i) => <FakeLoadingCollapse key={i} />)}
       {!loading &&
-        solutionsTableDataFormat(data)?.map(categoria => {
+        solutionsTableDataFormat(publicadas)?.map(categoria => {
           return (
             <Collapse
               defaultIsOpen={false}

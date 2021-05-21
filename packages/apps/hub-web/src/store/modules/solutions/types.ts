@@ -2,8 +2,8 @@ import { Option } from '~/pages/AccessControl/pages/CreateSolution/formSelects'
 
 export interface SolutionsReducer {
   loading: boolean
-  data?: Category[]
-  excludedSolutions?: Category[]
+  publicadas?: Category[]
+  excluidas?: Category[]
 }
 export interface Category {
   id: string

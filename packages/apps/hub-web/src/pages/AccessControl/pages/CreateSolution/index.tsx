@@ -13,8 +13,8 @@ import {
   Form,
   Input,
   Button as FormButton,
-  Select,
-  Dropzone
+  Select
+  // Dropzone
 } from '@psdhub/common/components/Form'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Stack } from '@psdhub/common/components/'
@@ -130,9 +130,7 @@ const CreateSolution: React.FC = () => {
             />
           </Box>
 
-          <Box>
-            <Dropzone name="arquivo" label="Ícone" />
-          </Box>
+          <Box>{/* <Dropzone name="arquivo" label="Ícone" /> */}</Box>
           <Stack
             direction={['column', 'row']}
             justifyContent="space-between"

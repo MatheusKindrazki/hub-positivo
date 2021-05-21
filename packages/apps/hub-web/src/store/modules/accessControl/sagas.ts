@@ -6,7 +6,11 @@ import { AccessControlPutData, AccessControlPostData } from './types'
 import { Actions } from './actions'
 import { PostSolutionData, PutSolutionData } from '../solutions/types'
 import { createSolution, updateSolution } from '../solutions/sagas'
-import { solutionPostRequest, solutionPutRequest } from '../solutions/actions'
+import {
+  solutionPostRequest,
+  solutionPutRequest,
+  solutionsGetRequest
+} from '../solutions/actions'
 import {
   profilePermissions as profileSaga,
   schoolPermissions as schoolSaga
@@ -44,6 +48,7 @@ export function* submitSolution({ payload, type }: SubmitSolution): Generator {
     yield call(schoolSaga, schoolPermissionsRequest(schoolPermissions))
   ])
 
+  yield put(solutionsGetRequest())
   yield put(loading(false))
   return yield history.push('/controle-de-acessos')
 }
