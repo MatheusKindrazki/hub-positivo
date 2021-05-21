@@ -158,6 +158,7 @@ export function* restaureSolution(action: Action): Generator {
     return yield put(solutionRestaureFailure())
   }
   yield put(solutionGetExcludedRequest())
+  yield put(solutionsGetRequest())
   toast.success('Solução restaurada com sucesso')
   return yield put(solutionRestaureSuccess())
 }

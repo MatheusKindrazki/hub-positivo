@@ -14,8 +14,8 @@ import {
   Form,
   Input,
   Button as FormButton,
-  Select,
-  Dropzone
+  Select
+  // Dropzone
 } from '@psdhub/common/components/Form'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Box, Stack, Button, BarLoader } from '@psdhub/common/components'
@@ -165,11 +165,11 @@ const UpdateSolution: React.FC = () => {
             </Box>
 
             <Box>
-              <Dropzone
+              {/* <Dropzone
                 name="arquivo"
                 label="Ícone"
                 preview={solution?.arquivo || ''}
-              />
+              /> */}
             </Box>
 
             <Stack
