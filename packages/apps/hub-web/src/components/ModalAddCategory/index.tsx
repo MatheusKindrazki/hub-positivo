@@ -33,6 +33,7 @@ const ModalSupport: React.FC = () => {
       try {
         await categoryValidator.validate(data, { abortEarly: false })
         dispatch(categoryPostRequest(data))
+        onClose()
       } catch (e) {
         if (e instanceof ValidationError) {
           const errors = getValidationErrors(e)
@@ -42,7 +43,7 @@ const ModalSupport: React.FC = () => {
         toast.error('Algo deu errado, tente novamente!')
       }
     },
-    [dispatch]
+    [dispatch, onClose]
   )
 
   return (

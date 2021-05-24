@@ -25,14 +25,16 @@ const Solution: React.FC<SolutionProps> = ({
       <Box m="2" w="5">
         {order}
       </Box>
-      <Image
-        src={file}
-        w="40px"
-        h="40px"
-        background="blue.500"
-        borderRadius="md"
-        padding="2"
-      />
+      {file && (
+        <Image
+          src={file}
+          w="40px"
+          h="40px"
+          background="blue.500"
+          borderRadius="md"
+          padding="2"
+        />
+      )}
       <Box textAlign="start" m="2">
         {solution}
       </Box>

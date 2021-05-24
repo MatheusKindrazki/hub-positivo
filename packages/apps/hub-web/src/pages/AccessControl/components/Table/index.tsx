@@ -64,7 +64,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                 <Tbody {...provided.droppableProps} ref={provided.innerRef}>
                   {items.map((e: any, index) => (
                     <Draggable
-                      isDragDisabled
+                      // isDragDisabled
                       key={index}
                       index={index}
                       draggableId={index.toString() || ''}
@@ -91,6 +91,10 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                                 key={i}
                                 alignItems="center"
                                 justifyContent="center"
+                                borderBottomColor={
+                                  s.isDragging ? 'transparent' : 'gray.200'
+                                }
+                                borderBottomWidth="0.0625rem"
                               >
                                 {c?.render ? c.render(e.data) : e[c.property]}
                               </Td>

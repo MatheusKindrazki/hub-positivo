@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 
 import { useDispatch } from 'react-redux'
 
-import { PutSolutionData } from '~/store/modules/solutions/types'
+// import { PutSolutionData } from '~/store/modules/solutions/types'
 import { solutionPutRequest } from '~/store/modules/solutions/actions'
 
 import { SwitchProps as SwitchPropsUI } from '@psdhub/common/components/Switch'
@@ -10,7 +10,7 @@ import { SwitchProps as SwitchPropsUI } from '@psdhub/common/components/Switch'
 import SwitchUI from './styles'
 
 export interface SwitchProps extends SwitchPropsUI {
-  data: PutSolutionData
+  data: any
 }
 
 const Switch: React.FC<SwitchProps> = ({ data }) => {

@@ -10,10 +10,14 @@ const styles = {
   variant: 'unstyled',
   m: '1',
   color: 'blue.500',
-  borderRadius: 'sm',
   borderColor: 'blue.500',
   borderWidth: 'thin',
-  minW: '11.25rem'
+  minW: '11.25rem',
+  p: '3',
+  size: 'lg',
+  fontSize: 'sm',
+  fontWeigth: '500',
+  borderRadius: '0.5rem'
 }
 const OptionButton: React.FC = () => {
   const { onOpen } = useContext(ModalContext)
@@ -21,26 +25,12 @@ const OptionButton: React.FC = () => {
   const { push } = useHistory()
   return (
     <Box>
-      <Button
-        {...styles}
-        p="3"
-        size="lg"
-        fontSize="sm"
-        fontWeight="500"
-        textTransform="uppercase"
-        borderRadius="8px"
-        onClick={onOpen}
-      >
+      <Button textTransform="uppercase" {...styles} onClick={onOpen}>
         Adicionar Categoria
       </Button>
       <Button
-        {...styles}
-        p="3"
-        size="lg"
-        fontSize="sm"
-        fontWeight="500"
         textTransform="uppercase"
-        borderRadius="8px"
+        {...styles}
         onClick={() => push('/controle-de-acessos/criar')}
       >
         Adicionar Solução
