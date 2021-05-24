@@ -6,6 +6,7 @@ interface ContainerProps {
   reject: boolean
   url: string
   colors: any
+  error: boolean
 }
 
 interface PreviewContainerProps {
@@ -16,8 +17,8 @@ export const Container = styled(Box)<ContainerProps>`
 display: flex;
 padding: 1rem;
 border: ${props =>
-  props?.reject
-    ? `2px solid ${props.colors.red[500]};`
+  props?.reject || props?.error
+    ? `2px solid ${props.colors.red[300]};`
     : props.url
     ? `2px solid ${props.colors.gray[100]};`
     : `2px dashed ${props.colors.gray[100]};`}

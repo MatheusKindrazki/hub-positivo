@@ -24,7 +24,10 @@ import { Box, Stack, Button, BarLoader } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
-import solutionInfo from '~/validators/solution/createSolution'
+import {
+  updateSolution,
+  createSolution
+} from '~/validators/solution/submitSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
@@ -88,7 +91,9 @@ const SubmitSolution: React.FC = () => {
       console.log('dados do formulario: ', data)
       formRef?.current?.setErrors({})
       try {
-        await solutionInfo.validate(data, { abortEarly: false })
+        page === 'criar'
+          ? await createSolution.validate(data, { abortEarly: false })
+          : await updateSolution.validate(data, { abortEarly: false })
 
         const permissions = {
           profilePermissions: {

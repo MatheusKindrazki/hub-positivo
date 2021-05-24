@@ -8,6 +8,8 @@ import React, {
 
 import { useDropzone } from 'react-dropzone'
 
+import { FormHelperText } from '@chakra-ui/react'
+
 import { PreviewContainer, Container } from './styles'
 import UploadMessage from './components/UploadMessage'
 import ImagePreview from './components/ImagePreview'
@@ -18,6 +20,7 @@ export interface DropzoneHandlers {
   getFiles(): string | string[] | void
 }
 export interface DropzoneProps {
+  error: string | undefined
   preview?: Preview
 }
 
@@ -30,7 +33,7 @@ export interface Icon {
   name: string
 }
 const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
-  ({ preview }, ref) => {
+  ({ preview, error }, ref) => {
     const [icon, setIcon] = useState<Icon>()
     const { colors } = useTheme()
 
@@ -86,6 +89,7 @@ const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
 
     return (
       <Container
+        error={!!error}
         reject={isDragReject}
         colors={colors}
         url={icon?.url as string}
@@ -103,6 +107,15 @@ const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
             callback={resetIcon}
           />
           <input {...getInputProps()} />
+          {error && (
+            <FormHelperText
+              fontSize="medium"
+              data-testid="input-error"
+              color="red.300"
+            >
+              {error}
+            </FormHelperText>
+          )}
         </Box>
       </Container>
     )
