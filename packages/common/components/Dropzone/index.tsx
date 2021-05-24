@@ -51,13 +51,6 @@ const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
       }
     }, [])
 
-    const resetIcon = useCallback(() => {
-      setIcon({
-        url: '',
-        name: ''
-      })
-    }, [])
-
     const {
       acceptedFiles,
       getRootProps,
@@ -69,6 +62,14 @@ const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
       accept: 'image/svg+xml',
       onDrop
     })
+
+    const resetIcon = useCallback(() => {
+      acceptedFiles.pop()
+      setIcon({
+        url: '',
+        name: ''
+      })
+    }, [acceptedFiles])
 
     useImperativeHandle(ref, () => {
       return {
@@ -88,7 +89,7 @@ const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
         reject={isDragReject}
         colors={colors}
         url={icon?.url as string}
-        // desabilita dropzone caso ja tenha uma imagem em tela
+        // desabilita dropzone caso haja uma imagem em tela
         {...(icon?.url ? null : getRootProps({ className: 'hub-dropzone' }))}
       >
         <PreviewContainer colors={colors}>
