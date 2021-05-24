@@ -18,7 +18,7 @@ interface Props {
 const Dropzone: React.FC<Props> = ({ name, label, preview }) => {
   const dropRef = useRef<DropzoneHandlers>(null)
 
-  const { fieldName, registerField } = useField(name)
+  const { fieldName, registerField, error } = useField(name)
 
   useEffect(() => {
     registerField({
@@ -35,7 +35,7 @@ const Dropzone: React.FC<Props> = ({ name, label, preview }) => {
           {label}
         </FormLabel>
       )}
-      <DropzoneHub ref={dropRef} preview={preview} />
+      <DropzoneHub ref={dropRef} preview={preview} error={error} />
     </FormControl>
   )
 }
