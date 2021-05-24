@@ -44,7 +44,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
     const reorderedList = reorder(list, source.index, destination.index)
 
     setItems(reorderedList)
-    console.log({ list })
+
     dispatch(
       solutionPostReorderRequest(
         reorderedList.map((l, i) => ({ id: l.data.id, ordem: i + 1 }))
@@ -64,11 +64,13 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
               borderColor="gray.400"
               rounded="md"
             >
-              <TableUI size="md" varitant="unstyled">
+              <TableUI size="md">
                 <Thead>
                   <Tr>
                     {columns?.map(({ header }, index) => (
-                      <Th key={index}>{header}</Th>
+                      <Th textTransform="capitalize" key={index} fontSize="sm">
+                        {header}
+                      </Th>
                     ))}
                   </Tr>
                 </Thead>
@@ -104,15 +106,20 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                                 borderBottomWidth="0.0625rem"
                               >
                                 {i === 0 && (
-                                  <GrabIcon
-                                    {...provided.dragHandleProps}
-                                    float={['left']}
-                                    mt="2"
-                                  />
+                                  <Box
+                                    float="left"
+                                    d="flex"
+                                    m="2"
+                                    alignItems="center"
+                                  >
+                                    <GrabIcon
+                                      {...provided.dragHandleProps}
+                                      p="1"
+                                    />
+                                    <Box>{index + 1}</Box>
+                                  </Box>
                                 )}
-                                {c?.render
-                                  ? c.render({ ...e.data })
-                                  : e[c.property]}
+                                {c.render ? c.render(e.data) : e[c.property]}
                               </Td>
                             )
                           })}

@@ -17,7 +17,6 @@ export const solutionsTableDataFormat = (data: Category[]): CollapseData[] => {
           solution: (
             <SolutionData
               solution={solucao.nome}
-              order={solucao.ordem}
               file={solucao.arquivo}
               activated={solucao.ativo}
             />

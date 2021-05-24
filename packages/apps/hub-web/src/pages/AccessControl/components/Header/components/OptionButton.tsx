@@ -22,7 +22,7 @@ const styles = {
   p: '3',
   size: 'lg',
   fontSize: 'sm',
-  fontWeigth: '500',
+  fontWeight: 500,
   borderRadius: '0.5rem'
 }
 const OptionButton: React.FC = () => {

@@ -160,15 +160,13 @@ export function* restaureSolution(action: Action): Generator {
   return yield put(solutionRestaureSuccess())
 }
 export function* reorderSolutions(action: Action): Generator {
-  console.log({ TESTEEEE: action.payload })
   const response = yield call(() => {
     return api.post('Solucao/ReordenaCards', action.payload)
   })
 
-  const { ok, data } = response as ApiResponse<any>
-  console.log({ ok, data })
+  const { ok } = response as ApiResponse<any>
   if (!ok) {
-    toast.error('Erro ao reorder soluções, tente novamente!')
+    toast.error('Nenhuma solução foi reordenada, tente novamente!')
     return yield put(solutionPostReorderFailure())
   }
 
