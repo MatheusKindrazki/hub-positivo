@@ -19,6 +19,8 @@ import { Box } from '@psdhub/common/components/'
 
 import { reoderList as reorder } from '~/utils/reorderList'
 
+import GrabIcon from '~/components/GrabIcon'
+
 import TableUI from './styles'
 
 export interface TableSolution {
@@ -62,7 +64,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
               borderColor="gray.400"
               rounded="md"
             >
-              <TableUI size="md">
+              <TableUI size="md" varitant="unstyled">
                 <Thead>
                   <Tr>
                     {columns?.map(({ header }, index) => (
@@ -80,7 +82,6 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                       {(provided, s) => (
                         <Tr
                           {...provided.draggableProps}
-                          {...provided.dragHandleProps}
                           ref={provided.innerRef}
                           style={{
                             ...provided.draggableProps.style,
@@ -97,14 +98,21 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                             return (
                               <Td
                                 key={i}
-                                alignItems="center"
-                                justifyContent="center"
                                 borderBottomColor={
                                   s.isDragging ? 'transparent' : 'gray.200'
                                 }
                                 borderBottomWidth="0.0625rem"
                               >
-                                {c?.render ? c.render(e.data) : e[c.property]}
+                                {i === 0 && (
+                                  <GrabIcon
+                                    {...provided.dragHandleProps}
+                                    float={['left']}
+                                    mt="2"
+                                  />
+                                )}
+                                {c?.render
+                                  ? c.render({ ...e.data })
+                                  : e[c.property]}
                               </Td>
                             )
                           })}

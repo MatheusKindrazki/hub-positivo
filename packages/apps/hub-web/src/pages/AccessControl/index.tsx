@@ -12,8 +12,6 @@ import { categoryGetAllRequest } from '~/store/modules/category/actions'
 import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
 
-// import ModalAddCategory from '~/components/ModalAddCategory'
-
 import Container from './styles'
 import { solutionsTableDataFormat } from './components/Table/utils/solutionsTableDataFormat'
 import Table, { TableSolution } from './components/Table'

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Flex, Box, Image } from '@psdhub/common/components'
 
-import GrabIcon from '~/components/GrabIcon'
+// import GrabIcon from '~/components/GrabIcon'
 
 interface SolutionProps {
   solution: string
@@ -19,9 +19,6 @@ const Solution: React.FC<SolutionProps> = ({
 }) => {
   return (
     <Flex alignItems="center" opacity={activated ? '1' : '0.5'}>
-      <Box>
-        <GrabIcon />
-      </Box>
       <Box m="2" w="5">
         {order}
       </Box>
