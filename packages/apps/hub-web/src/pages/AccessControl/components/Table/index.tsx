@@ -8,7 +8,10 @@ import {
 } from 'react-beautiful-dnd'
 import classNames from 'classnames'
 
+import { useDispatch } from 'react-redux'
+
 import { PutSolutionData } from '~/store/modules/solutions/types'
+import { solutionPostReorderRequest } from '~/store/modules/solutions/actions'
 
 import { Tr, Thead, Th, Td, Tbody } from '@psdhub/common/components/Table'
 import type { TableProps } from '@psdhub/common/components/Table'
@@ -17,6 +20,7 @@ import { Box } from '@psdhub/common/components/'
 import { reoderList as reorder } from '~/utils/reorderList'
 
 import TableUI from './styles'
+
 export interface TableSolution {
   solution: React.ReactNode | string
   profile: string
@@ -25,6 +29,7 @@ export interface TableSolution {
 }
 
 const Table: React.FC<TableProps> = ({ columns, data }) => {
+  const dispatch = useDispatch()
   const [items, setItems] = useState<TableSolution[]>(data)
 
   const onDragEnd = (result: DropResult, list: TableSolution[]) => {
@@ -32,13 +37,17 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
       return
     }
 
-    const reorderList = reorder(
-      list,
-      result.source.index,
-      result.destination.index
-    )
+    const { source, destination } = result
 
-    setItems(reorderList)
+    const reorderedList = reorder(list, source.index, destination.index)
+
+    setItems(reorderedList)
+    console.log({ list })
+    dispatch(
+      solutionPostReorderRequest(
+        reorderedList.map((l, i) => ({ id: l.data.id, ordem: i + 1 }))
+      )
+    )
   }
 
   return (

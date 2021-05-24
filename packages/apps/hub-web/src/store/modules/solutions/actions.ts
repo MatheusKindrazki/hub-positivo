@@ -1,6 +1,11 @@
 import { Action } from 'redux'
 
-import { Category, PostSolutionData, PutSolutionData } from './types'
+import {
+  Category,
+  PostSolutionData,
+  PutSolutionData,
+  ReorderSolution
+} from './types'
 
 export const Actions = {
   SOLUTION_POST_REQUEST: '@solutions/SOLUTION_POST_REQUEST',
@@ -25,7 +30,11 @@ export const Actions = {
 
   SOLUTIONS_GET_EXCLUDED_REQUEST: '@solution/SOLUTION_GET_EXCLUDED_REQUEST',
   SOLUTIONS_GET_EXCLUDED_SUCCESS: '@solution/SOLUTION_GET_EXCLUDED_SUCCESS',
-  SOLUTIONS_GET_EXCLUDED_FAILURE: '@solution/SOLUTION_GET_EXCLUDED_FAILURE'
+  SOLUTIONS_GET_EXCLUDED_FAILURE: '@solution/SOLUTION_GET_EXCLUDED_FAILURE',
+
+  SOLUTIONS_POST_REORDER_REQUEST: '@solution/SOLUTIONS_POST_REORDER_REQUEST',
+  SOLUTIONS_POST_REORDER_SUCCESS: '@solution/SOLUTIONS_POST_REORDER_SUCCESS',
+  SOLUTIONS_POST_REORDER_FAILURE: '@solution/SOLUTIONS_POST_REORDER_FAILURE'
 }
 
 /*
@@ -172,5 +181,27 @@ export function solutionGetExcludedSuccess(excluidas?: Category[]): Action {
   return {
     type: Actions.SOLUTIONS_GET_EXCLUDED_SUCCESS,
     payload: excluidas
+  }
+}
+
+/*
+  ? Reordenar soluções
+*/
+export function solutionPostReorderRequest(data: ReorderSolution[]): Action {
+  return {
+    type: Actions.SOLUTIONS_POST_REORDER_REQUEST,
+    payload: data
+  }
+}
+
+export function solutionPostReorderFailure(): Action {
+  return {
+    type: Actions.SOLUTIONS_POST_REORDER_FAILURE
+  }
+}
+
+export function solutionPostReorderSuccess(): Action {
+  return {
+    type: Actions.SOLUTIONS_POST_REORDER_SUCCESS
   }
 }

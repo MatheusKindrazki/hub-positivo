@@ -24,7 +24,9 @@ import {
   solutionRestaureSuccess,
   solutionGetExcludedFailure,
   solutionGetExcludedSuccess,
-  solutionGetExcludedRequest
+  solutionGetExcludedRequest,
+  solutionPostReorderFailure,
+  solutionPostReorderSuccess
 } from './actions'
 
 export function* createSolution(action: Action): Generator {
@@ -65,6 +67,7 @@ export function* getSolutions(): Generator {
     toast.error('Erro ao buscar as produtos por categoria!')
     return yield put(solutionsGetFailure())
   }
+
   return yield put(solutionsGetSuccess(data))
 }
 
@@ -156,12 +159,28 @@ export function* restaureSolution(action: Action): Generator {
   toast.success('Solução restaurada com sucesso')
   return yield put(solutionRestaureSuccess())
 }
+export function* reorderSolutions(action: Action): Generator {
+  console.log({ TESTEEEE: action.payload })
+  const response = yield call(() => {
+    return api.post('Solucao/ReordenaCards', action.payload)
+  })
 
+  const { ok, data } = response as ApiResponse<any>
+  console.log({ ok, data })
+  if (!ok) {
+    toast.error('Erro ao reorder soluções, tente novamente!')
+    return yield put(solutionPostReorderFailure())
+  }
+
+  toast.success('Soluções reordenadas com sucesso')
+  return yield put(solutionPostReorderSuccess())
+}
 export default all([
   takeLatest(Actions.SOLUTION_POST_REQUEST, createSolution),
   takeLatest(Actions.SOLUTIONS_GET_REQUEST, getSolutions),
   takeLatest(Actions.SOLUTION_PUT_REQUEST, updateSolution),
   takeLatest(Actions.SOLUTION_DELETE_REQUEST, deleteSolution),
   takeLatest(Actions.SOLUTION_RESTAURE_REQUEST, restaureSolution),
-  takeLatest(Actions.SOLUTIONS_GET_EXCLUDED_REQUEST, getExcludedSolutions)
+  takeLatest(Actions.SOLUTIONS_GET_EXCLUDED_REQUEST, getExcludedSolutions),
+  takeLatest(Actions.SOLUTIONS_POST_REORDER_REQUEST, reorderSolutions)
 ])

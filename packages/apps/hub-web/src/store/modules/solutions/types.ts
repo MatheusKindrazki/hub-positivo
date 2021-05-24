@@ -72,3 +72,8 @@ export interface Schools {
   idEscola: string
   nome: string
 }
+
+export interface ReorderSolution {
+  id: string
+  ordem: number
+}
