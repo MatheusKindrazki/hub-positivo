@@ -40,9 +40,9 @@ const OptionButton: React.FC = () => {
         textTransform="uppercase"
         {...styles}
         onClick={() => {
-          dispatch(schoolGetAllRequest)
-          dispatch(getAllProfilePermissionsRequest)
-          dispatch(categoryGetAllRequest)
+          dispatch(schoolGetAllRequest())
+          dispatch(getAllProfilePermissionsRequest())
+          dispatch(categoryGetAllRequest())
           push('/controle-de-acessos/criar')
         }}
       >
