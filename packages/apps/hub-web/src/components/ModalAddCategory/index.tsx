@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useCallback } from 'react'
+import React, { useRef, useCallback, useImperativeHandle } from 'react'
 
 import { useDispatch } from 'react-redux'
 
@@ -13,17 +13,20 @@ import { Box, Button, Stack } from '@psdhub/common/components'
 import categoryValidator from '~/validators/accessControl/newCategory'
 import { getValidationErrors, ValidationError } from '~/validators'
 
-import ModalContext from './context'
+export interface ModalHandler {
+  onOpen: () => void
+}
 
-const ModalSupport: React.FC = () => {
+const ModalSupport = React.forwardRef<ModalHandler>((_, ref) => {
   const dispatch = useDispatch()
   const formRef = useRef<FormProps>(null)
-  const context = useContext(ModalContext)
 
   const { isOpen, onClose, onOpen } = useDisclosure()
-
-  context.onClose = () => onClose()
-  context.onOpen = () => onOpen()
+  useImperativeHandle(ref, () => {
+    return {
+      onOpen
+    }
+  })
 
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
@@ -84,6 +87,6 @@ const ModalSupport: React.FC = () => {
       </Modal>
     </Box>
   )
-}
+})
 
 export default ModalSupport

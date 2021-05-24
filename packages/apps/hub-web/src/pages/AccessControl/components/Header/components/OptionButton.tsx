@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useRef, useCallback } from 'react'
 
 import { useHistory } from 'react-router'
 
@@ -10,7 +10,7 @@ import { categoryGetAllRequest } from '~/store/modules/category/actions'
 
 import { Button, Box } from '@psdhub/common/components'
 
-import ModalContext from '~/components/ModalAddCategory/context'
+import ModalAddCategory, { ModalHandler } from '~/components/ModalAddCategory'
 
 const styles = {
   variant: 'unstyled',
@@ -26,14 +26,19 @@ const styles = {
   borderRadius: '0.5rem'
 }
 const OptionButton: React.FC = () => {
-  const { onOpen } = useContext(ModalContext)
-
   const dispatch = useDispatch()
+  const modalRef = useRef<ModalHandler>(null)
+
+  const openModal = useCallback(() => {
+    modalRef.current?.onOpen()
+  }, [])
 
   const { push } = useHistory()
   return (
     <Box>
-      <Button textTransform="uppercase" {...styles} onClick={onOpen}>
+      <ModalAddCategory ref={modalRef} />
+
+      <Button textTransform="uppercase" {...styles} onClick={openModal}>
         Adicionar Categoria
       </Button>
       <Button

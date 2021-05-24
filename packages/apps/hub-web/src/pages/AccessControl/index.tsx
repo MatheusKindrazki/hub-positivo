@@ -12,7 +12,7 @@ import { categoryGetAllRequest } from '~/store/modules/category/actions'
 import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
 
-import ModalAddCategory from '~/components/ModalAddCategory'
+// import ModalAddCategory from '~/components/ModalAddCategory'
 
 import Container from './styles'
 import { solutionsTableDataFormat } from './components/Table/utils/solutionsTableDataFormat'
@@ -65,7 +65,6 @@ const AccessControl: React.FC = () => {
   }, [profile, history])
 
   useEffect(() => {
-    console.log({ publicadas }, loading)
     dispatch(categoryGetAllRequest())
     dispatch(schoolGetAllRequest())
     if (!publicadas.length) {
@@ -76,7 +75,6 @@ const AccessControl: React.FC = () => {
   return (
     <Container m="auto" maxW="90rem" p="10">
       <Header />
-      <ModalAddCategory />
       {loading && mock.map((_, i) => <FakeLoadingCollapse key={i} />)}
       {!loading &&
         solutionsTableDataFormat(publicadas)?.map(categoria => {
