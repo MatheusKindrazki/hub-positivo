@@ -2,6 +2,12 @@ import React, { useContext } from 'react'
 
 import { useHistory } from 'react-router'
 
+import { useDispatch } from 'react-redux'
+
+import { schoolGetAllRequest } from '~/store/modules/school/actions'
+import { getAllProfilePermissionsRequest } from '~/store/modules/permissions/actions'
+import { categoryGetAllRequest } from '~/store/modules/category/actions'
+
 import { Button, Box } from '@psdhub/common/components'
 
 import ModalContext from '~/components/ModalAddCategory/context'
@@ -22,6 +28,8 @@ const styles = {
 const OptionButton: React.FC = () => {
   const { onOpen } = useContext(ModalContext)
 
+  const dispatch = useDispatch()
+
   const { push } = useHistory()
   return (
     <Box>
@@ -31,7 +39,12 @@ const OptionButton: React.FC = () => {
       <Button
         textTransform="uppercase"
         {...styles}
-        onClick={() => push('/controle-de-acessos/criar')}
+        onClick={() => {
+          dispatch(schoolGetAllRequest)
+          dispatch(getAllProfilePermissionsRequest)
+          dispatch(categoryGetAllRequest)
+          push('/controle-de-acessos/criar')
+        }}
       >
         Adicionar Solução
       </Button>
