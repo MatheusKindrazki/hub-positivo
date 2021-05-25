@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 import {
   DragDropContext,
@@ -12,10 +12,7 @@ import classNames from 'classnames'
 import { useDispatch } from 'react-redux'
 
 import { PutSolutionData } from '~/store/modules/solutions/types'
-import {
-  solutionPostReorderRequest
-  // solutionPutRequest
-} from '~/store/modules/solutions/actions'
+import { solutionPostReorderRequest } from '~/store/modules/solutions/actions'
 
 import { Tr, Thead, Th, Td, Tbody } from '@psdhub/common/components/Table'
 import type { TableProps } from '@psdhub/common/components/Table'
@@ -23,9 +20,11 @@ import { Box } from '@psdhub/common/components/'
 
 import { reoderList as reorder } from '~/utils/reorderList'
 
-import GrabIcon from '~/components/GrabIcon'
+// import GrabIcon from '~/components/GrabIcon'
 
 import TableUI from './styles'
+import Order from '../Order'
+
 export interface TableSolution {
   solution: React.ReactNode | string
   profile: string
@@ -55,12 +54,11 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
     )
   }
 
-  const onChangeSwitch = (index: number) => {
-    console.log('TESTE', index)
+  const onChangeSwitch = useCallback((solutionIndex: number) => {
     const solucoes = items
-    solucoes[index].data.ativo = !solucoes[index].data.ativo
+    solucoes[solutionIndex].data.ativo = !solucoes[solutionIndex].data.ativo
     setItems(() => [...solucoes])
-  }
+  }, [])
 
   useEffect(() => {
     console.log({ items })
@@ -81,19 +79,23 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
               <TableUI size="md" variant="simple">
                 <Thead>
                   <Tr>
-                    {columns?.map(({ header }, index) => (
-                      <Th textTransform="capitalize" key={index} fontSize="sm">
+                    {columns?.map(({ header }, solutionIndex) => (
+                      <Th
+                        textTransform="capitalize"
+                        key={solutionIndex}
+                        fontSize="sm"
+                      >
                         {header}
                       </Th>
                     ))}
                   </Tr>
                 </Thead>
                 <Tbody {...provided.droppableProps} ref={provided.innerRef}>
-                  {items.map((e: any, index: any) => (
+                  {items.map((e: any, solutionIndex: number) => (
                     <Draggable
-                      key={index}
-                      index={index}
-                      draggableId={index.toString() || ''}
+                      key={solutionIndex}
+                      index={solutionIndex}
+                      draggableId={solutionIndex.toString() || ''}
                     >
                       {(provided, s) => (
                         <Tr
@@ -102,18 +104,23 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                           style={{
                             ...provided.draggableProps.style,
                             display: s.isDragging ? 'table' : 'table-row',
-                            opacity: items[index].data.ativo ? '1' : '0.5'
+                            opacity: items[solutionIndex].data.ativo
+                              ? '1'
+                              : '0.5'
                           }}
-                          key={index}
+                          key={solutionIndex}
                           className={classNames({
-                            'hub-table-even': index % 2 === 0,
-                            'hub-table-odd': index % 2 !== 0,
+                            'hub-table-even': solutionIndex % 2 === 0,
+                            'hub-table-odd': solutionIndex % 2 !== 0,
                             'table-row': true
                           })}
                         >
                           {columns?.map((c, i) => {
                             return (
                               <Td
+                                style={{
+                                  minWidth: i in [0, 1, 2] ? '200px' : ''
+                                }}
                                 key={i}
                                 borderBottomColor={
                                   s.isDragging ? 'transparent' : 'gray.200'
@@ -121,24 +128,16 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                                 borderBottomWidth="0.0625rem"
                               >
                                 {i === 0 && (
-                                  <Box
-                                    float="left"
-                                    d="flex"
-                                    m="2"
-                                    alignItems="center"
-                                  >
-                                    <GrabIcon
-                                      {...provided.dragHandleProps}
-                                      p="1"
-                                    />
-                                    <Box>{index + 1}</Box>
-                                  </Box>
+                                  <Order
+                                    dragHandleProps={provided.dragHandleProps}
+                                    order={solutionIndex + 1}
+                                  />
                                 )}
                                 {c.render
                                   ? c.render({
                                       ...e.data,
-                                      onChangeSwitch,
-                                      index
+                                      index: solutionIndex,
+                                      onChangeSwitch
                                     })
                                   : e[c.property]}
                               </Td>

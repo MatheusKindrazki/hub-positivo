@@ -28,7 +28,7 @@ const Solution: React.FC<SolutionProps> = ({ solution, file }) => {
           padding="2"
         />
       )}
-      <Box textAlign="start" m="2">
+      <Box textAlign="start" ml="1">
         {solution}
       </Box>
     </Flex>

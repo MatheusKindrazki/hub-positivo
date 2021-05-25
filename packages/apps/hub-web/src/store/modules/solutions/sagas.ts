@@ -99,7 +99,6 @@ export function* updateSolution(action: Action): Generator {
   })
 
   const { ok, data } = response as ApiResponse<SolutionPutResponse>
-  console.log({ ok, data })
 
   if (!ok || !data?.sucesso) {
     toast.error(
@@ -171,7 +170,6 @@ export function* reorderSolutions(action: Action): Generator {
     return yield put(solutionPostReorderFailure())
   }
 
-  toast.success('Soluções reordenadas com sucesso')
   return yield put(solutionPostReorderSuccess())
 }
 export default all([
