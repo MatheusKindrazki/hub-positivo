@@ -4,12 +4,12 @@ import { Flex, Box, Image } from '@psdhub/common/components'
 interface SolutionProps {
   solution: string
   file: string
-  activated: boolean
+  activated?: boolean
 }
 
-const Solution: React.FC<SolutionProps> = ({ solution, file, activated }) => {
+const Solution: React.FC<SolutionProps> = ({ solution, file }) => {
   return (
-    <Flex alignItems="center" opacity={activated ? '1' : '0.5'}>
+    <Flex alignItems="center">
       {file ? (
         <Image
           src={file}

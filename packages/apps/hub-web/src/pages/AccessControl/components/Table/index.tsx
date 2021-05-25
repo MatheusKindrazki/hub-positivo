@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable indent */
+import React, { useState, useEffect } from 'react'
 
 import {
   DragDropContext,
@@ -11,7 +12,10 @@ import classNames from 'classnames'
 import { useDispatch } from 'react-redux'
 
 import { PutSolutionData } from '~/store/modules/solutions/types'
-import { solutionPostReorderRequest } from '~/store/modules/solutions/actions'
+import {
+  solutionPostReorderRequest
+  // solutionPutRequest
+} from '~/store/modules/solutions/actions'
 
 import { Tr, Thead, Th, Td, Tbody } from '@psdhub/common/components/Table'
 import type { TableProps } from '@psdhub/common/components/Table'
@@ -22,7 +26,6 @@ import { reoderList as reorder } from '~/utils/reorderList'
 import GrabIcon from '~/components/GrabIcon'
 
 import TableUI from './styles'
-
 export interface TableSolution {
   solution: React.ReactNode | string
   profile: string
@@ -52,6 +55,17 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
     )
   }
 
+  const onChangeSwitch = (index: number) => {
+    console.log('TESTE', index)
+    const solucoes = items
+    solucoes[index].data.ativo = !solucoes[index].data.ativo
+    setItems(() => [...solucoes])
+  }
+
+  useEffect(() => {
+    console.log({ items })
+  }, [items])
+
   return (
     <DragDropContext onDragEnd={e => onDragEnd(e, items)}>
       <Droppable droppableId="accessControl">
@@ -64,7 +78,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
               borderColor="gray.400"
               rounded="md"
             >
-              <TableUI size="md">
+              <TableUI size="md" variant="simple">
                 <Thead>
                   <Tr>
                     {columns?.map(({ header }, index) => (
@@ -75,7 +89,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                   </Tr>
                 </Thead>
                 <Tbody {...provided.droppableProps} ref={provided.innerRef}>
-                  {items.map((e: any, index) => (
+                  {items.map((e: any, index: any) => (
                     <Draggable
                       key={index}
                       index={index}
@@ -87,7 +101,8 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                           ref={provided.innerRef}
                           style={{
                             ...provided.draggableProps.style,
-                            display: s.isDragging ? 'table' : 'table-row'
+                            display: s.isDragging ? 'table' : 'table-row',
+                            opacity: items[index].data.ativo ? '1' : '0.5'
                           }}
                           key={index}
                           className={classNames({
@@ -119,7 +134,13 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                                     <Box>{index + 1}</Box>
                                   </Box>
                                 )}
-                                {c.render ? c.render(e.data) : e[c.property]}
+                                {c.render
+                                  ? c.render({
+                                      ...e.data,
+                                      onChangeSwitch,
+                                      index
+                                    })
+                                  : e[c.property]}
                               </Td>
                             )
                           })}

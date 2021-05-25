@@ -99,6 +99,7 @@ export function* updateSolution(action: Action): Generator {
   })
 
   const { ok, data } = response as ApiResponse<SolutionPutResponse>
+  console.log({ ok, data })
 
   if (!ok || !data?.sucesso) {
     toast.error(
