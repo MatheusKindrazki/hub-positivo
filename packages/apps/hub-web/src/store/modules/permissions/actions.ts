@@ -4,7 +4,8 @@ import {
   SchoolPermissions,
   ProfilePermissions,
   ProfileLevelsBySolution,
-  SchoolsRestrictionsBySolution
+  SchoolsRestrictionsBySolution,
+  ProfilePermissionApiData
 } from './types'
 
 export const Actions = {
@@ -92,7 +93,7 @@ export const getAllProfilePermissionsRequest = (): Action => {
 }
 
 export const getAllProfilePermissionsSuccess = (
-  data: ProfilePermissions[]
+  data: ProfilePermissionApiData[]
 ): Action => {
   return {
     type: Actions.GETALL_PROFILE_PERMISSIONS_SUCCESS,
@@ -133,7 +134,7 @@ export const profilePermissionsBySolutionSuccess = (
 }
 
 // ? Actions que disparam ações referentes às restricoes das escolas por solução
-export const schoolRestrictionsBySolutionRequest = (id: string): Action => {
+export const schoolPermissionsBySolutionRequest = (id: string): Action => {
   return {
     type: Actions.SCHOOL_PERMISSIONS_BYID_REQUEST,
     payload: {

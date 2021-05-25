@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import {
   getAllProfilePermissionsRequest,
   profilePermissionsBySolutionRequest,
-  schoolRestrictionsBySolutionRequest
+  schoolPermissionsBySolutionRequest
 } from '~/store/modules/permissions/actions'
 
 import { Box } from '@psdhub/common/components'
@@ -22,7 +22,7 @@ const EditButton: React.FC<EditButtonProps> = ({ url, solutionId }) => {
   const history = useHistory()
   const handleClick = () => {
     dispatch(profilePermissionsBySolutionRequest(solutionId))
-    dispatch(schoolRestrictionsBySolutionRequest(solutionId))
+    dispatch(schoolPermissionsBySolutionRequest(solutionId))
     dispatch(getAllProfilePermissionsRequest())
     history.push(url)
   }
