@@ -2,13 +2,12 @@ import React from 'react'
 
 import classNames from 'classnames'
 
-import { Table as TableUI, TableProps as Props } from '@chakra-ui/react'
-
 import Tr from './Tr'
 import Thead from './Thead'
 import Th from './Th'
 import Td from './Td'
 import Tbody from './Tbody'
+import TableUI, { TableProps as Props } from './TableUI'
 
 export type Data = any
 export interface Columns {
@@ -55,4 +54,4 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
 }
 
 export default Table
-export { Thead, Td, Th, Tr, Tbody }
+export { Thead, Td, Th, Tr, Tbody, TableUI }
