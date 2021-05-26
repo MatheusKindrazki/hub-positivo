@@ -32,7 +32,7 @@ import {
 export function* createSolution(action: Action): Generator {
   const response = yield call(() => {
     return api.post('Solucao', {
-      ...action.payload.solution
+      ...action.payload
     })
   })
 

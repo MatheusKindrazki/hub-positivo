@@ -44,9 +44,7 @@ export const Actions = {
 export function solutionPostRequest(solution: PostSolutionData): Action {
   return {
     type: Actions.SOLUTION_POST_REQUEST,
-    payload: {
-      solution
-    }
+    payload: solution
   }
 }
 
