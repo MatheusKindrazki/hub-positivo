@@ -27,13 +27,13 @@ export function accessControlPostRequest(
 
 export function accessControlPostFailure(): Action {
   return {
-    type: Actions.ACCESS_CONTROL_POST_SUCCESS
+    type: Actions.ACCESS_CONTROL_POST_FAILURE
   }
 }
 
 export function accessControlPostSuccess(): Action {
   return {
-    type: Actions.ACCESS_CONTROL_POST_FAILURE
+    type: Actions.ACCESS_CONTROL_POST_SUCCESS
   }
 }
 
@@ -48,12 +48,12 @@ export function accessControlPutRequest(
 
 export function accessControlPutFailure(): Action {
   return {
-    type: Actions.ACCESS_CONTROL_PUT_SUCCESS
+    type: Actions.ACCESS_CONTROL_PUT_FAILURE
   }
 }
 
 export function accessControlPutSuccess(): Action {
   return {
-    type: Actions.ACCESS_CONTROL_PUT_FAILURE
+    type: Actions.ACCESS_CONTROL_PUT_SUCCESS
   }
 }
