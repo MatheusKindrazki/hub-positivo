@@ -8,9 +8,9 @@ import api from '@psdhub/api'
 
 import {
   GenericApiResponse,
-  ProfilePermissions,
   ProfileLevelsBySolution,
-  SchoolsRestrictionsBySolution
+  SchoolsRestrictionsBySolution,
+  ProfilePermissionApiData
 } from './types'
 import {
   Actions,
@@ -31,14 +31,14 @@ export function* getAllProfilePermissions(): Generator {
     return api.get('PerfilNivelEnsino')
   })
 
-  const { ok, data } = response as ApiResponse<ProfilePermissions[]>
+  const { ok, data } = response as ApiResponse<ProfilePermissionApiData[]>
 
   if (!ok) {
     toast.error('Erro ao buscar permissoes de perfil!')
     return yield put(getAllProfilePermissionsFailure())
   }
   return yield put(
-    getAllProfilePermissionsSuccess(data as ProfilePermissions[])
+    getAllProfilePermissionsSuccess(data as ProfilePermissionApiData[])
   )
 }
 
