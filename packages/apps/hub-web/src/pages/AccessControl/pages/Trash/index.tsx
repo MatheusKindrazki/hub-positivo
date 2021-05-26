@@ -37,11 +37,10 @@ const Trash: React.FC = () => {
   )
 
   useEffect(() => {
-    console.log({ data })
     if (!data?.length) {
       dispatch(solutionGetExcludedRequest())
     }
-  }, [dispatch])
+  }, [dispatch, data])
 
   return (
     <Container m="auto" maxW="90rem" p="10">

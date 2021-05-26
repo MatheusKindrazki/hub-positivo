@@ -29,6 +29,7 @@ const Switch: React.FC<SwitchProps> = ({ data, onChangeSwitch, index }) => {
       key={id}
       defaultChecked={ativo === true}
       padding="1"
+      opacity="1!important"
       className="solution-switch"
       onChange={onChange}
     />

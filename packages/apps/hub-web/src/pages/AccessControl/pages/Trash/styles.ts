@@ -8,6 +8,10 @@ const Container = styled(Box)`
       th {
         background: ${props => props.theme.colors.blue[500]};
         color: white;
+        width: 25%;
+      }
+      td {
+        width: 25%;
       }
     }
   }

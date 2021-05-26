@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { Flex, Box, Image } from '@psdhub/common/components'
+import { Stack, Box, Image, Text } from '@psdhub/common/components'
+
 interface SolutionProps {
   solution: string
   file: string
@@ -9,7 +10,7 @@ interface SolutionProps {
 
 const Solution: React.FC<SolutionProps> = ({ solution, file }) => {
   return (
-    <Flex alignItems="center">
+    <Stack alignItems="center" direction="row" spacing="1">
       {file ? (
         <Image
           src={file}
@@ -28,10 +29,10 @@ const Solution: React.FC<SolutionProps> = ({ solution, file }) => {
           padding="2"
         />
       )}
-      <Box textAlign="start" ml="1">
+      <Text maxW="75%" alignContent="center" noOfLines={1}>
         {solution}
-      </Box>
-    </Flex>
+      </Text>
+    </Stack>
   )
 }
 

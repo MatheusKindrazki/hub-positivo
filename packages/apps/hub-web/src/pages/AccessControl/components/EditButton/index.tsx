@@ -34,6 +34,7 @@ const EditButton: React.FC<EditButtonProps> = ({ url, solutionId }) => {
       cursor="pointer"
       as="a"
       onClick={() => handleClick()}
+      opacity="1!important"
     >
       EDITAR
     </Box>
