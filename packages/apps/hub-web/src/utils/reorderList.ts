@@ -1,4 +1,4 @@
-function reoderList<T>(list: T[], startIndex: number, endIndex: number): T[] {
+function reorderList<T>(list: T[], startIndex: number, endIndex: number): T[] {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)
@@ -6,4 +6,4 @@ function reoderList<T>(list: T[], startIndex: number, endIndex: number): T[] {
   return result
 }
 
-export { reoderList }
+export { reorderList }

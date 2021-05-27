@@ -17,7 +17,7 @@ import { Tr, Thead, Th, Td, Tbody } from '@psdhub/common/components/Table'
 import type { TableProps } from '@psdhub/common/components/Table'
 import { Box } from '@psdhub/common/components/'
 
-import { reoderList as reorder } from '~/utils/reorderList'
+import { reorderList as reorder } from '~/utils/reorderList'
 
 import GrabIcon from '~/components/GrabIcon'
 
