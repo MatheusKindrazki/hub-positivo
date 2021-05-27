@@ -11,11 +11,16 @@ describe('category reducer', () => {
     expect(result).toEqual(INITIAL_STATE)
   })
 
-  it('should return change loading to true when a product is requested', () => {
+  it('should change loading to true and reset data when categories are requested', () => {
     expect(category(INITIAL_STATE, categoryGetAllRequest())).toEqual({
       loading: true,
       categories: []
     })
+  })
+
+  it('loading is set to false and data reseted on failure action', () => {
+    const result = category(INITIAL_STATE, categoryGetAllFailure())
+    expect(result).toEqual({ loading: false, categories: [] })
   })
 
   it('loading is set to false on success action', () => {
@@ -35,10 +40,5 @@ describe('category reducer', () => {
     ]
     const result = category(INITIAL_STATE, categoryGetAllSuccess(payload))
     expect(result).toEqual({ loading: false, categories: payload })
-  })
-
-  it('loading is set to false on failure action', () => {
-    const result = category(INITIAL_STATE, categoryGetAllFailure())
-    expect(result).toEqual({ loading: false })
   })
 })
