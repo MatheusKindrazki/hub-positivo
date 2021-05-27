@@ -30,12 +30,12 @@ import {
 } from '~/validators/solution/submitSolution'
 import { getValidationErrors, ValidationError } from '~/validators'
 
+import { formatFormData } from './utils/formatFormData'
+import createOptions from './utils/createOptions'
+import autocompleteFormData from './utils/autocompleteFormData'
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
 import { selects } from './formSelects'
 import getSolutionBySlug from '../../utils/getSolutionBySlug'
-import { formatFormData } from '../../utils/formatFormData'
-import createOptions from '../../utils/createOptions'
-import autocompleteFormData from '../../utils/autocompleteFormData'
 
 const SubmitSolution: React.FC = () => {
   const [solution, setSolution] = useState<Solution>()
