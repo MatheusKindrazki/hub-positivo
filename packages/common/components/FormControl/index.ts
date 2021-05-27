@@ -1,5 +1,5 @@
 import { FormControl, FormControlProps } from '@chakra-ui/react'
 
-export { FormControlProps }
+export type { FormControlProps }
 
 export default FormControl

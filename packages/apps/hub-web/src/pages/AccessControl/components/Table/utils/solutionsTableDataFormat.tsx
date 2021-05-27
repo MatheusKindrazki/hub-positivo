@@ -2,11 +2,11 @@ import React from 'react'
 
 import { Category } from '~/store/modules/solutions/types'
 
-import SolutionData from '~/pages/AccessControl/components/Solution'
 import { CollapseData } from '~/pages/AccessControl'
 
 import { formatSchoolsRestrictions } from './formatSchoolsRestrictions'
 import { formatPermissionsToString } from './formatPermissions'
+import SolutionData from '../components/Solution'
 
 export const solutionsTableDataFormat = (data: Category[]): CollapseData[] => {
   return data.map(categoria => {

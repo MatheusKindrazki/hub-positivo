@@ -68,6 +68,7 @@ const ModalSupport = React.forwardRef<ModalHandler>((_, ref) => {
               name="nome"
               placeholder="Digite aqui o título da nova categoria"
               type="text"
+              data-testid="modal-addCategory"
             />
             <Stack
               mt="1.5rem"

@@ -1,6 +1,6 @@
 import { Category } from '~/store/modules/solutions/types'
 
-import { TableData } from '../pages/Trash'
+import { TableData } from '../index'
 
 export const trashDataFormat = (data: Category[]): TableData[] => {
   return data.reduce((accumulator: TableData[], category) => {

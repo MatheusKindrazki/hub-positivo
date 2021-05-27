@@ -2,10 +2,7 @@ import { Option } from '~/store/modules/solutions/types'
 
 import { FormProps } from '@psdhub/common/components/Form'
 
-import {
-  schoolRestrictionRules,
-  targetOptions
-} from '../../utils/createOptions'
+import { schoolRestrictionRules, targetOptions } from './utils/createOptions'
 
 interface Options {
   [key: string]: Option[]

@@ -14,11 +14,11 @@ import { Collapse } from '@psdhub/common/components'
 
 import Container from './styles'
 import { solutionsTableDataFormat } from './components/Table/utils/solutionsTableDataFormat'
+import Switch from './components/Table/components/Switch'
+import EditButton from './components/Table/components/EditButton'
 import Table, { TableSolution } from './components/Table'
-import Switch from './components/Switch'
 import Header from './components/Header'
 import FakeLoadingCollapse from './components/FakeLoading'
-import EditButton from './components/EditButton'
 
 export interface CollapseData {
   nome: string
