@@ -18,7 +18,7 @@ const mockedTypes = {
   ACCESS_CONTROL_PUT_FAILURE: '@accessControl/ACCESS_CONTROL_PUT_FAILURE'
 }
 
-describe('solutions action creators should work properly', () => {
+describe('accessControl action creators should work properly', () => {
   describe('accessControlPost actions should have correct types and payloads', () => {
     it('should create a request action with correct permissions on accessControlPostRequest', () => {
       const mockedData = {
