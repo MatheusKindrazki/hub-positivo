@@ -8,13 +8,13 @@ import { solutionGetExcludedRequest } from '~/store/modules/solutions/actions'
 import Table, { Columns } from '@psdhub/common/components/Table'
 import { Box } from '@psdhub/common/components'
 
+import { trashDataFormat } from './utils/trashTableDataFormat'
 import Container from './styles'
 import RestaureSolutionButton from './components/RestaureSolutionButton'
 import EmptyTrash from './components/EmptyTrash'
-import { trashDataFormat } from '../../utils/trashTableDataFormat'
 import Header from '../../components/Header'
 
-export interface TableData extends Solution {
+export interface TableData extends Omit<Solution, 'category'> {
   categoria: string
   tipoRenderizacao: 'Nova janela' | 'Mesma janela'
 }
