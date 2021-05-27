@@ -42,7 +42,9 @@ export const columns: Columns[] = [
   {
     property: 'active',
     header: null,
-    render: (e: PutSolutionData) => <Switch data={e} />
+    render: (e: any) => (
+      <Switch data={e} onChangeSwitch={e.onChangeSwitch} index={e.index} />
+    )
   }
 ]
 

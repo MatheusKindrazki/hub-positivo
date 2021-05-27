@@ -170,7 +170,6 @@ export function* reorderSolutions(action: Action): Generator {
     return yield put(solutionPostReorderFailure())
   }
 
-  toast.success('Soluções reordenadas com sucesso')
   return yield put(solutionPostReorderSuccess())
 }
 export default all([
