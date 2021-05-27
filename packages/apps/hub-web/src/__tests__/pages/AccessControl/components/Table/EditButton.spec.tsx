@@ -10,7 +10,7 @@ import EditButton from '~/pages/AccessControl/components/Table/components/EditBu
 
 jest.mock('react-router')
 
-describe('', () => {
+describe('EditButton AccessControl component', () => {
   const dispatch = jest.fn()
   const push = jest.fn()
 

@@ -5,7 +5,7 @@ import * as redux from 'react-redux'
 import { render, fireEvent } from '@psdhub/test-utils'
 
 import Switch from '~/pages/AccessControl/components/Table/components/Switch'
-describe('', () => {
+describe('Switch AccessControl component', () => {
   const dispatch = jest.fn()
 
   beforeEach(() => {

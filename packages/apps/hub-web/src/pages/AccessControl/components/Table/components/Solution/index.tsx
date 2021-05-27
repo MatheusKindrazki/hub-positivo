@@ -19,6 +19,7 @@ const Solution: React.FC<SolutionProps> = ({ solution, file }) => {
           background="blue.500"
           borderRadius="md"
           padding="2"
+          alt="Imagem da solução"
         />
       ) : (
         <Box
