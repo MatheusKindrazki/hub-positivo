@@ -39,7 +39,6 @@ const SearchableSelect: React.FC<SearchableSelectProps> = ({
     const res = data.filter(data =>
       data.label.toLowerCase().includes(search.toLowerCase())
     )
-    console.log(res)
     return res
   }
 
