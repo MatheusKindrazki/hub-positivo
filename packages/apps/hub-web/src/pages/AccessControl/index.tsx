@@ -10,6 +10,7 @@ import { schoolGetAllRequest } from '~/store/modules/school/actions'
 import { categoryGetAllRequest } from '~/store/modules/category/actions'
 
 import { Columns } from '@psdhub/common/components/Table'
+import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Collapse } from '@psdhub/common/components'
 
 import Container from './styles'
@@ -72,6 +73,7 @@ const AccessControl: React.FC = () => {
 
   return (
     <Container m="auto" maxW="90rem" p="10">
+      <Breadcrumbs data={[{ title: 'Controle de Acessos' }]} />
       <Header />
       {loading &&
         accessControlCollapse.map((_, i) => <FakeLoadingCollapse key={i} />)}

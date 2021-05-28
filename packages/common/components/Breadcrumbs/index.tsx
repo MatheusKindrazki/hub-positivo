@@ -15,7 +15,7 @@ interface BreadcrumbsProps {
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ data }) => {
   return (
-    <Box d="flex" flexDir="row" ml={['0', '12vw']}>
+    <Box d="flex" flexDir="row" ml="0" mb="7" color="gray.600">
       <Breadcrumb
         fontSize={['large', 'x-large']}
         spacing={['0.5', '1']}
