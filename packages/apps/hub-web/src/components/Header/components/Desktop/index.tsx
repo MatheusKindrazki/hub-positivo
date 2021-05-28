@@ -78,19 +78,19 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
           >
             Fazer tour
           </Button>
-          <Button
-            id="header-suporte"
-            fontSize="0.875rem"
-            backgroundColor="white"
-            fontWeight="bold"
-            color="blue.500"
-            onClick={onOpen}
-            mx="1"
-          >
-            Estou com uma dúvida
-          </Button>
         </>
       )}
+      <Button
+        id="header-suporte"
+        fontSize="0.875rem"
+        backgroundColor="white"
+        fontWeight="bold"
+        color="blue.500"
+        onClick={onOpen}
+        mx="1"
+      >
+        Estou com uma dúvida
+      </Button>
       <Popover
         onClose={handleClosed}
         onOpen={menuOpen}
