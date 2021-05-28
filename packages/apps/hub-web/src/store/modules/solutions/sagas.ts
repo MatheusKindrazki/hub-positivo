@@ -86,7 +86,7 @@ export function* getExcludedSolutions(): Generator {
 
   const { ok, data } = response as ApiResponse<Category[]>
   if (!ok) {
-    toast.error('Erro ao buscar as itens da lixeira!')
+    toast.error('Erro ao buscar os itens da lixeira!')
     return yield put(solutionGetExcludedFailure())
   }
   return yield put(solutionGetExcludedSuccess(data))
@@ -129,8 +129,12 @@ export function* deleteSolution(action: Action): Generator {
 
   toast.success('Solução excluída com sucesso!')
   yield put(solutionDeleteSuccess())
-  yield put(solutionsGetRequest())
-  yield put(solutionGetExcludedRequest())
+
+  yield all([
+    yield call(() => getSolutions()),
+    yield call(() => getExcludedSolutions())
+  ])
+
   history.push('/controle-de-acessos')
 }
 

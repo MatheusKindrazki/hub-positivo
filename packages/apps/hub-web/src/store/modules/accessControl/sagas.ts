@@ -42,18 +42,16 @@ export function* submitSolution({ payload, type }: SubmitSolution): Generator {
     }
 
     profilePermissions.create.idSolucao = id
-    profilePermissions.remove.idSolucao = id
     schoolPermissions.create.idSolucao = id
-    schoolPermissions.remove.idSolucao = id
   }
 
   if (type === Actions.ACCESS_CONTROL_PUT_REQUEST) {
     yield call(updateSolution, solutionPutRequest(solution as PutSolutionData))
   }
 
-  all([
-    yield call(profileSaga, profilePermissionsRequest(profilePermissions)),
-    yield call(schoolSaga, schoolPermissionsRequest(schoolPermissions))
+  yield all([
+    call(profileSaga, profilePermissionsRequest(profilePermissions)),
+    call(schoolSaga, schoolPermissionsRequest(schoolPermissions))
   ])
 
   yield put(solutionsGetRequest())
