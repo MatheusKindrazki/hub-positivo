@@ -63,7 +63,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
 
   return (
     <DragDropContext onDragEnd={e => onDragEnd(e, items)}>
-      <Droppable droppableId="accessControl">
+      <Droppable droppableId="accessControl" ignoreContainerClipping>
         {provided => {
           return (
             <Box
@@ -101,7 +101,8 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                           ref={provided.innerRef}
                           style={{
                             ...provided.draggableProps.style,
-                            display: s.isDragging ? 'table' : 'table-row'
+                            display: s.isDragging ? 'table' : 'table-row',
+                            backgroundColor: 'white'
                           }}
                           key={solutionIndex}
                           className={classNames({

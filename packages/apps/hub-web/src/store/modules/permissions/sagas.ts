@@ -79,7 +79,6 @@ export function* profilePermissions(action: Action): Generator {
     }
   }
 
-  toast.success('Permissoes de perfil atualizadas com sucesso!')
   return put(profilePermissionsSuccess())
 }
 
@@ -119,7 +118,6 @@ export function* schoolPermissions(action: Action): Generator {
     }
   }
 
-  toast.success('Restrições atualizadas com sucesso')
   return yield put(schoolPermissionsSuccess())
 }
 

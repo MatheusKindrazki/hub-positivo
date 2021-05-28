@@ -22,6 +22,8 @@ import {
   solutionPostReorderSuccess
 } from '~/store/modules/solutions/actions'
 
+import { categoriesApiReturnData } from '~/__mocks__/store'
+
 const mockedTypes = {
   SOLUTION_POST_REQUEST: '@solutions/SOLUTION_POST_REQUEST',
   SOLUTION_POST_SUCCESS: '@solutions/SOLUTION_POST_SUCCESS',
@@ -130,49 +132,13 @@ describe('solutions action creators should work properly', () => {
       expect(solutionsGetRequest()).toEqual(expectedAction)
     })
     it('should create a success action with correct type on solutionsGetSuccess', () => {
-      const mockedData = [
-        {
-          id: 'string',
-          ordem: 1,
-          ativo: true,
-          nome: 'string',
-          cor: 'string',
-          solucoes: [
-            {
-              id: 'fake solution id',
-              nome: 'fake solution',
-              slug: 'fake-solution',
-              descricao: 'fake description',
-              arquivo: 'http://fakeiconurl.com',
-              link: 'http://fakesolutionurl.com',
-              idCategoria: 'fake category',
-              tipoRenderizacao: 'microfrontend',
-              ordem: 1,
-              padrao: false,
-              ativo: true,
-              permissoes: [
-                {
-                  id: 'fake permission id',
-                  perfil: 'professor',
-                  niveisEnsino: ['EF1', 'EF2', 'EM']
-                }
-              ],
-              escolas: [
-                {
-                  id: 'fake school permission id',
-                  idEscola: 'fake school id',
-                  nome: 'fake school'
-                }
-              ]
-            }
-          ]
-        }
-      ]
       const expectedAction = {
         type: mockedTypes.SOLUTIONS_GET_SUCCESS,
-        payload: mockedData
+        payload: categoriesApiReturnData
       }
-      expect(solutionsGetSuccess(mockedData)).toEqual(expectedAction)
+      expect(solutionsGetSuccess(categoriesApiReturnData)).toEqual(
+        expectedAction
+      )
     })
     it('should create a failure action with correct type on solutionsGetFailure', () => {
       const expectedAction = {

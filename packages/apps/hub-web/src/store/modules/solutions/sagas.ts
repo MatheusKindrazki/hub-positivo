@@ -106,7 +106,6 @@ export function* updateSolution(action: Action): Generator {
     )
     return put(solutionPutFailure())
   }
-  toast.success('Informações de solução atualizada com sucesso')
   return yield put(solutionPutSuccess())
 }
 
