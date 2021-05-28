@@ -9,7 +9,7 @@ export const updateSolution = Yup.object().shape({
     .min(10, 'Descricao deve ter no mínimo 10 caracteres')
     .max(255, 'Descricao deve ter no máximo 255 caracteres')
     .required('Campo Obrigatório'),
-  link: Yup.string().url('link deve ser uma URL'),
+  link: Yup.string().url('link deve ser uma URL').required(),
   idCategoria: Yup.string().required('Campo Obrigatório'),
   profiles: Yup.array(),
   tipoRenderizacao: Yup.string().required('Campo Obrigatório'),
@@ -30,7 +30,7 @@ export const createSolution = Yup.object().shape({
     .min(10, 'Descricao deve ter no mínimo 10 caracteres')
     .max(255, 'Descricao deve ter no máximo 255 caracteres')
     .required('Campo Obrigatório'),
-  link: Yup.string().url('link deve ser uma URL'),
+  link: Yup.string().url('link deve ser uma URL').required(),
   idCategoria: Yup.string().required('Campo Obrigatório'),
   profiles: Yup.array(),
   tipoRenderizacao: Yup.string().required('Campo Obrigatório'),
