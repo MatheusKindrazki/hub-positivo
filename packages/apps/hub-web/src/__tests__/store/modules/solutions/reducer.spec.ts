@@ -1,4 +1,4 @@
-import category, { INITIAL_STATE } from '~/store/modules/solutions/reducer'
+import solutions, { INITIAL_STATE } from '~/store/modules/solutions/reducer'
 import {
   solutionsGetRequest,
   solutionsGetSuccess,
@@ -12,23 +12,23 @@ import { categoriesApiReturnData } from '~/__mocks__/store'
 
 describe('solutions reducer', () => {
   it('returns the initial state when an action type is not passed', () => {
-    const result = category(undefined, { type: null })
+    const result = solutions(undefined, { type: null })
     expect(result).toEqual(INITIAL_STATE)
   })
 
   it('should change loading to true when solutions are requested', () => {
-    expect(category(INITIAL_STATE, solutionsGetRequest())).toEqual({
+    expect(solutions(INITIAL_STATE, solutionsGetRequest())).toEqual({
       loading: true
     })
   })
 
   it('loading is set to false and data undefined on failure action', () => {
-    const result = category(INITIAL_STATE, solutionsGetFailure())
+    const result = solutions(INITIAL_STATE, solutionsGetFailure())
     expect(result).toEqual({ loading: false, publicadas: undefined })
   })
 
   it('loading is set to false on success action', () => {
-    const result = category(
+    const result = solutions(
       INITIAL_STATE,
       solutionsGetSuccess(categoriesApiReturnData)
     )
@@ -39,7 +39,7 @@ describe('solutions reducer', () => {
   })
 
   it('should change loading to true and reset data when categories are requested', () => {
-    expect(category(INITIAL_STATE, solutionGetExcludedRequest())).toEqual({
+    expect(solutions(INITIAL_STATE, solutionGetExcludedRequest())).toEqual({
       loading: true,
       excluidas: undefined,
       publicadas: undefined
@@ -47,7 +47,7 @@ describe('solutions reducer', () => {
   })
 
   it('loading is set to false and data reseted on failure action', () => {
-    const result = category(INITIAL_STATE, solutionGetExcludedFailure())
+    const result = solutions(INITIAL_STATE, solutionGetExcludedFailure())
     expect(result).toEqual({
       loading: false,
       excluidas: undefined,
@@ -56,7 +56,7 @@ describe('solutions reducer', () => {
   })
 
   it('loading is set to false on success action', () => {
-    const result = category(
+    const result = solutions(
       INITIAL_STATE,
       solutionGetExcludedSuccess(categoriesApiReturnData)
     )
