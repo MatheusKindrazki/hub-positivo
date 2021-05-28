@@ -1,5 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react'
 
+import { useLocation } from 'react-router'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour } from '~/store/modules/tour/actions'
@@ -25,6 +27,7 @@ interface ModalProps {
 }
 
 const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
+  const { pathname } = useLocation()
   const dispatch = useDispatch()
   const { onOpen } = useContext(ModalSupportContext)
 
@@ -62,28 +65,32 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Button
-        disabled={!steps?.length}
-        fontSize="0.875rem"
-        backgroundColor="white"
-        fontWeight="bold"
-        color="blue.500"
-        onClick={handleOpenTour}
-        mx="1"
-      >
-        Fazer tour
-      </Button>
-      <Button
-        id="header-suporte"
-        fontSize="0.875rem"
-        backgroundColor="white"
-        fontWeight="bold"
-        color="blue.500"
-        onClick={onOpen}
-        mx="1"
-      >
-        Estou com uma dúvida
-      </Button>
+      {pathname === '/' && (
+        <>
+          <Button
+            disabled={!steps?.length}
+            fontSize="0.875rem"
+            backgroundColor="white"
+            fontWeight="bold"
+            color="blue.500"
+            onClick={handleOpenTour}
+            mx="1"
+          >
+            Fazer tour
+          </Button>
+          <Button
+            id="header-suporte"
+            fontSize="0.875rem"
+            backgroundColor="white"
+            fontWeight="bold"
+            color="blue.500"
+            onClick={onOpen}
+            mx="1"
+          >
+            Estou com uma dúvida
+          </Button>
+        </>
+      )}
       <Popover
         onClose={handleClosed}
         onOpen={menuOpen}
@@ -162,6 +169,21 @@ const DesktopMenu: React.FC<ModalProps> = ({ openModalPass }) => {
             />
           </Box>
           <MenuDivider />
+          {guid === 'ADMINISTRADOR' && (
+            <Box px="5" pt="5">
+              <Button
+                onClick={() => {
+                  history.push('/controle-de-acessos')
+                  menuClose()
+                }}
+                variant="link"
+                color="gray.500"
+                fontSize="0.875rem"
+              >
+                Controle de acessos
+              </Button>
+            </Box>
+          )}
           {guid === 'PROFESSOR' && (
             <Box px="5" py="3" pt="5">
               <Button

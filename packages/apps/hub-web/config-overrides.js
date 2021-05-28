@@ -1,6 +1,6 @@
-var path = require('path');
+var path = require('path')
 
-const { override, babelInclude, addBabelPlugin } = require('customize-cra');
+const { override, babelInclude, addBabelPlugin } = require('customize-cra')
 
 module.exports = function (config, env) {
   const rewired = Object.assign(
@@ -10,13 +10,13 @@ module.exports = function (config, env) {
         path.resolve('src'),
         path.resolve('../../common'),
         path.resolve('../../helpers'),
-        path.resolve('../../gsc'),
+        path.resolve('../../gsc')
       ]),
       addBabelPlugin([
         'babel-plugin-root-import',
         {
-          rootPathSuffix: 'src',
-        },
+          rootPathSuffix: 'src'
+        }
       ]),
       addBabelPlugin([
         'babel-plugin-styled-components',
@@ -27,17 +27,17 @@ module.exports = function (config, env) {
           displayName: false,
           namespace: 'hub',
           transpileTemplateLiterals: false
-        },
+        }
       ])
     )(config, env)
-  );
+  )
 
-  if(process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== 'development') {
     rewired.externals = {
       react: 'React',
       'react-dom': 'ReactDOM'
     }
   }
 
-  return rewired;
-};
+  return rewired
+}

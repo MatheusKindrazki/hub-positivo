@@ -1,0 +1,38 @@
+[
+  {
+    "id": "string",
+    "ordem": 1,
+    "ativo": true,
+    "nome": "string",
+    "cor": "string",
+    "solucoes": [
+      {
+        "id": "fake solution id",
+        "nome": "fake solution",
+        "slug": "fake-solution",
+        "descricao": "fake description",
+        "arquivo": "http://fakeiconurl.com",
+        "link": "http://fakesolutionurl.com",
+        "idCategoria": "fake category",
+        "tipoRenderizacao": "microfrontend",
+        "ordem": 1,
+        "padrao": false,
+        "ativo": true,
+        "permissoes": [
+          {
+            "id": "fake permission id",
+            "perfil": "professor",
+            "niveisEnsino": ["EF1", "EF2", "EM"]
+          }
+        ],
+        "escolas": [
+          {
+            "id": "fake school permission id",
+            "idEscola": "fake school id",
+            "nome": "fake school"
+          }
+        ]
+      }
+    ]
+  }
+]
