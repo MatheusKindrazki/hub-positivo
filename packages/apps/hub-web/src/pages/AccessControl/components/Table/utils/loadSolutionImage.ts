@@ -6,7 +6,7 @@ export const loadSolutionImage = (
   const image = new Image()
 
   image.src = src
-  if (image.width === 0) {
+  if (image.width === 0 || image.height === 0) {
     return FailComponent
   } else {
     return SuccessComponent

@@ -20,7 +20,9 @@ const SuccessImage = (file: string): React.ReactElement => {
 const FailImage = (): React.ReactElement => {
   return <Image {...imageStyles} src={imageIcon} background="transparent" />
 }
+
 const Solution: React.FC<SolutionProps> = ({ solution, file }) => {
+  console.log({ file })
   return (
     <Stack alignItems="center" direction="row" spacing="1">
       {loadSolutionImage(file, SuccessImage(file), FailImage())}
