@@ -51,7 +51,7 @@ export function* createSolution(action: Action): Generator {
 export function* getSolutions(): Generator {
   const response = yield call(() => {
     return api.get(
-      'Categoria/SolucoesPerfisRestricoes',
+      'categoria/solucoesPerfisRestricoes',
       {},
       {
         params: {
@@ -74,7 +74,7 @@ export function* getSolutions(): Generator {
 export function* getExcludedSolutions(): Generator {
   const response = yield call(() => {
     return api.get(
-      'Categoria/SolucoesPerfisRestricoes',
+      'categoria/solucoesPerfisRestricoes',
       {},
       {
         params: {
@@ -93,7 +93,7 @@ export function* getExcludedSolutions(): Generator {
 }
 export function* updateSolution(action: Action): Generator {
   const response = yield call(async () => {
-    return api.put('/Solucao', {
+    return api.put('/solucao', {
       ...action.payload
     })
   })
@@ -112,7 +112,7 @@ export function* updateSolution(action: Action): Generator {
 
 export function* deleteSolution(action: Action): Generator {
   const response = yield call(() => {
-    return api.delete('Solucao/ExcluiCard', {
+    return api.delete('solucao/excluiCard', {
       idCard: action.payload.id
     })
   })
@@ -161,7 +161,7 @@ export function* restoreSolution(action: Action): Generator {
 }
 export function* reorderSolutions(action: Action): Generator {
   const response = yield call(() => {
-    return api.post('Solucao/ReordenaCards', action.payload)
+    return api.post('solucao/reordenaCards', action.payload)
   })
 
   const { ok } = response as ApiResponse<any>
