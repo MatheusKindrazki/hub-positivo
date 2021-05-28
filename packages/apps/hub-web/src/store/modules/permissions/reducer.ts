@@ -6,7 +6,7 @@ import { PermissionsReducer } from './types'
 import { Actions } from './actions'
 
 export const INITIAL_STATE: PermissionsReducer = {
-  loading: true,
+  loading: false,
   schoolPermissions: [],
   profilePermissions: [],
   profileOptions: []
