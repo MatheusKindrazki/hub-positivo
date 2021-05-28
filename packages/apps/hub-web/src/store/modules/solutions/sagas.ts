@@ -20,8 +20,8 @@ import {
   solutionPutFailure,
   solutionDeleteSuccess,
   solutionDeleteFailure,
-  solutionRestaureFailure,
-  solutionRestaureSuccess,
+  restoreSolutionFailure,
+  restoreSolutionSuccess,
   solutionGetExcludedFailure,
   solutionGetExcludedSuccess,
   solutionGetExcludedRequest,
@@ -135,7 +135,7 @@ export function* deleteSolution(action: Action): Generator {
   history.push('/controle-de-acessos')
 }
 
-export function* restaureSolution(action: Action): Generator {
+export function* restoreSolution(action: Action): Generator {
   const response = yield call(() => {
     return api.put(
       '/Solucao/RecuperaSolucaoDaLixeira',
@@ -152,12 +152,12 @@ export function* restaureSolution(action: Action): Generator {
 
   if (!ok) {
     toast.error('Erro ao restaurar solução, tente novamente!')
-    return yield put(solutionRestaureFailure())
+    return yield put(restoreSolutionFailure())
   }
   yield put(solutionGetExcludedRequest())
   yield put(solutionsGetRequest())
   toast.success('Solução restaurada com sucesso')
-  return yield put(solutionRestaureSuccess())
+  return yield put(restoreSolutionSuccess())
 }
 export function* reorderSolutions(action: Action): Generator {
   const response = yield call(() => {
@@ -177,7 +177,7 @@ export default all([
   takeLatest(Actions.SOLUTIONS_GET_REQUEST, getSolutions),
   takeLatest(Actions.SOLUTION_PUT_REQUEST, updateSolution),
   takeLatest(Actions.SOLUTION_DELETE_REQUEST, deleteSolution),
-  takeLatest(Actions.SOLUTION_RESTAURE_REQUEST, restaureSolution),
+  takeLatest(Actions.RESTORE_SOLUTION_REQUEST, restoreSolution),
   takeLatest(Actions.SOLUTIONS_GET_EXCLUDED_REQUEST, getExcludedSolutions),
   takeLatest(Actions.SOLUTIONS_POST_REORDER_REQUEST, reorderSolutions)
 ])

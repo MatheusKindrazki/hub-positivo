@@ -4,10 +4,13 @@ import { useHistory } from 'react-router'
 
 import { Stack, Button, Box } from '@psdhub/common/components'
 
-import OptionButton from './components/OptionButton'
+import { useColorByLocation } from '~/hooks/useColorByLocation'
 
+import OptionButton from './components/OptionButton'
 const Header: React.FC = () => {
   const { location, push } = useHistory()
+  const { color } = useColorByLocation()
+  const { accessControl } = color()
 
   return (
     <>
@@ -19,11 +22,7 @@ const Header: React.FC = () => {
             p="3"
             pb="8"
             fontWeight="500"
-            textColor={
-              location.pathname === '/controle-de-acessos'
-                ? 'blue.500'
-                : 'gray.500'
-            }
+            textColor={accessControl.home}
             borderBottomWidth="0.1875rem"
             borderBottomRadius="none"
             borderColor={
@@ -41,11 +40,7 @@ const Header: React.FC = () => {
             p="3"
             pb="8"
             fontWeight="500"
-            textColor={
-              location.pathname === '/controle-de-acessos/lixeira'
-                ? 'blue.500'
-                : 'gray.500'
-            }
+            textColor={accessControl.trash}
             borderBottomWidth="0.1875rem"
             borderBottomRadius="none"
             borderColor={

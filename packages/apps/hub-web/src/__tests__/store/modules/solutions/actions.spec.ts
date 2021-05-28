@@ -11,9 +11,9 @@ import {
   solutionDeleteRequest,
   solutionDeleteFailure,
   solutionDeleteSuccess,
-  solutionRestaureRequest,
-  solutionRestaureFailure,
-  solutionRestaureSuccess,
+  restoreSolutionRequest,
+  restoreSolutionFailure,
+  restoreSolutionSuccess,
   solutionGetExcludedRequest,
   solutionGetExcludedFailure,
   solutionGetExcludedSuccess,
@@ -39,9 +39,9 @@ const mockedTypes = {
   SOLUTION_DELETE_SUCCESS: '@solutions/SOLUTION_DELETE_SUCCESS',
   SOLUTION_DELETE_FAILURE: '@solutions/SOLUTION_DELETE_FAILURE',
 
-  SOLUTION_RESTAURE_REQUEST: '@solution/SOLUTION_RESTAURE_REQUEST',
-  SOLUTION_RESTAURE_SUCCESS: '@solution/SOLUTION_RESTAURE_SUCCESS',
-  SOLUTION_RESTAURE_FAILURE: '@solution/SOLUTION_RESTAURE_FAILURE',
+  RESTORE_SOLUTION_REQUEST: '@solution/RESTORE_SOLUTION_REQUEST',
+  RESTORE_SOLUTION_SUCCESS: '@solution/RESTORE_SOLUTION_SUCCESS',
+  RESTORE_SOLUTION_FAILURE: '@solution/RESTORE_SOLUTION_FAILURE',
 
   SOLUTIONS_GET_EXCLUDED_REQUEST: '@solution/SOLUTION_GET_EXCLUDED_REQUEST',
   SOLUTIONS_GET_EXCLUDED_SUCCESS: '@solution/SOLUTION_GET_EXCLUDED_SUCCESS',
@@ -207,28 +207,28 @@ describe('solutions action creators should work properly', () => {
     })
   })
 
-  describe('solutionRestaure actions should have correct types and payloads', () => {
-    it('should create a request action with correct permissions on solutionRestaureRequest', () => {
+  describe('restoreSolution actions should have correct types and payloads', () => {
+    it('should create a request action with correct permissions on restoreSolutionRequest', () => {
       const mockedId = 'fakeSolutionId'
       const expectedAction = {
-        type: mockedTypes.SOLUTION_RESTAURE_REQUEST,
+        type: mockedTypes.RESTORE_SOLUTION_REQUEST,
         payload: {
           id: mockedId
         }
       }
-      expect(solutionRestaureRequest(mockedId)).toEqual(expectedAction)
+      expect(restoreSolutionRequest(mockedId)).toEqual(expectedAction)
     })
-    it('should create a success action with correct type on solutionRestaureSuccess', () => {
+    it('should create a success action with correct type on restoreSolutionSuccess', () => {
       const expectedAction = {
-        type: mockedTypes.SOLUTION_RESTAURE_SUCCESS
+        type: mockedTypes.RESTORE_SOLUTION_SUCCESS
       }
-      expect(solutionRestaureSuccess()).toEqual(expectedAction)
+      expect(restoreSolutionSuccess()).toEqual(expectedAction)
     })
-    it('should create a failure action with correct type on solutionRestaureFailure', () => {
+    it('should create a failure action with correct type on restoreSolutionFailure', () => {
       const expectedAction = {
-        type: mockedTypes.SOLUTION_RESTAURE_FAILURE
+        type: mockedTypes.RESTORE_SOLUTION_FAILURE
       }
-      expect(solutionRestaureFailure()).toEqual(expectedAction)
+      expect(restoreSolutionFailure()).toEqual(expectedAction)
     })
   })
 

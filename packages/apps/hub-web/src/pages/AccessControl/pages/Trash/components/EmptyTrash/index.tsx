@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Box, Stack, Image, Text } from '@psdhub/common/components'
 
-import lookingForIcon from './lookingForIcon.svg'
+import { lookingForIcon } from '~/assets'
 
 const EmptyTrash: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const EmptyTrash: React.FC = () => {
     >
       <Box>
         <Image
-          alt="Ícone de cérebro procurando por algo"
+          alt="Ícone de cérebro procurando por algo e não encontrando nada"
           src={lookingForIcon}
         />
       </Box>

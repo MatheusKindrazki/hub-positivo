@@ -24,9 +24,9 @@ export const Actions = {
   SOLUTION_DELETE_SUCCESS: '@solutions/SOLUTION_DELETE_SUCCESS',
   SOLUTION_DELETE_FAILURE: '@solutions/SOLUTION_DELETE_FAILURE',
 
-  SOLUTION_RESTAURE_REQUEST: '@solution/SOLUTION_RESTAURE_REQUEST',
-  SOLUTION_RESTAURE_SUCCESS: '@solution/SOLUTION_RESTAURE_SUCCESS',
-  SOLUTION_RESTAURE_FAILURE: '@solution/SOLUTION_RESTAURE_FAILURE',
+  RESTORE_SOLUTION_REQUEST: '@solution/RESTORE_SOLUTION_REQUEST',
+  RESTORE_SOLUTION_SUCCESS: '@solution/RESTORE_SOLUTION_SUCCESS',
+  RESTORE_SOLUTION_FAILURE: '@solution/RESTORE_SOLUTION_FAILURE',
 
   SOLUTIONS_GET_EXCLUDED_REQUEST: '@solution/SOLUTION_GET_EXCLUDED_REQUEST',
   SOLUTIONS_GET_EXCLUDED_SUCCESS: '@solution/SOLUTION_GET_EXCLUDED_SUCCESS',
@@ -138,24 +138,24 @@ export function solutionDeleteSuccess(): Action {
   ? Restaurar da lixeira uma solução
 */
 
-export function solutionRestaureRequest(id: string): Action {
+export function restoreSolutionRequest(id: string): Action {
   return {
-    type: Actions.SOLUTION_RESTAURE_REQUEST,
+    type: Actions.RESTORE_SOLUTION_REQUEST,
     payload: {
       id
     }
   }
 }
 
-export function solutionRestaureFailure(): Action {
+export function restoreSolutionFailure(): Action {
   return {
-    type: Actions.SOLUTION_RESTAURE_FAILURE
+    type: Actions.RESTORE_SOLUTION_FAILURE
   }
 }
 
-export function solutionRestaureSuccess(): Action {
+export function restoreSolutionSuccess(): Action {
   return {
-    type: Actions.SOLUTION_RESTAURE_SUCCESS
+    type: Actions.RESTORE_SOLUTION_SUCCESS
   }
 }
 
