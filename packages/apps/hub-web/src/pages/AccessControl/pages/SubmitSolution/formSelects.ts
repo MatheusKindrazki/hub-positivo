@@ -18,6 +18,21 @@ interface Select {
   onChange?: (value: any) => void
 }
 
+const handleSelectedOption = (
+  option: Option,
+  formRef: React.RefObject<FormProps>
+) => {
+  const schoolSelectRef = formRef.current?.getFieldRef('schools')
+  const { select } = schoolSelectRef
+  const { inputRef } = select
+
+  if (option.value === 'todas escolas') {
+    inputRef.setAttribute('disabled', true)
+    return select.clearValue()
+  }
+  inputRef.removeAttribute('disabled')
+}
+
 export const selects = (
   options: Options,
   ref: React.RefObject<FormProps>
@@ -52,15 +67,7 @@ export const selects = (
       options: schoolRestrictionRules,
       label: 'Regra de escolas',
       w: ['100%', '100%', '48.5%'],
-      onChange: (option: Option) => {
-        if (option.value === 'todas escolas') {
-          const schoolsRef = ref.current?.getFieldRef('schools')
-          schoolsRef.select.inputRef.setAttribute('disabled', true)
-          return schoolsRef.select.clearValue()
-        }
-        const schoolsRef = ref.current?.getFieldRef('schools')
-        schoolsRef.select.inputRef.removeAttribute('disabled')
-      }
+      onChange: option => handleSelectedOption(option, ref)
     },
     {
       name: 'schools',

@@ -33,7 +33,6 @@ export default (prefix?: string): Theme => {
         200: '#ECEFF1',
         300: '#F4F6F8',
         400: '#E5E5E5',
-        450: '#B0BEC5',
         500: '#7A7A7A',
         600: '#3C3C3C',
         700: '#202024',

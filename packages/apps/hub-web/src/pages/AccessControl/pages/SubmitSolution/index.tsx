@@ -134,15 +134,16 @@ const SubmitSolution: React.FC = () => {
     <>
       <BarLoader height="0.25rem" loading={loading} />
       <Box p={['4', '6']} mt={['0', '4']} w="100%">
-        <Breadcrumbs
-          data={[
-            { title: 'Controle de Acessos', href: '/#/controle-de-acessos' },
-            {
-              title: page === 'criar' ? 'Criar Solução' : 'Editar Solução'
-            }
-          ]}
-        />
-
+        <Box ml={['0', '12vw']}>
+          <Breadcrumbs
+            data={[
+              { title: 'Controle de Acessos', href: '/#/controle-de-acessos' },
+              {
+                title: page === 'criar' ? 'Criar Solução' : 'Editar Solução'
+              }
+            ]}
+          />
+        </Box>
         <Box w={['100%', '45%']} m="auto" mt="12">
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Box d="flex" flexDir="column" mb="6">
