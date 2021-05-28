@@ -52,6 +52,7 @@ const AccessControl: React.FC = () => {
   const { publicadas = [], loading } = useSelector(
     (state: Store.State) => state.solutions
   )
+
   const { profile } = useSelector((state: Store.State) => state.profile)
   const history = useHistory()
   const dispatch = useDispatch()
@@ -71,19 +72,19 @@ const AccessControl: React.FC = () => {
   }, [dispatch, publicadas])
 
   return (
-    <Container m="auto" maxW="90rem" p="10">
+    <Container m="auto" maxW="90rem" p="10" bg="gray.300">
       <Header />
       {loading &&
         accessControlCollapse.map((_, i) => <FakeLoadingCollapse key={i} />)}
       {!loading &&
-        solutionsTableDataFormat(publicadas)?.map(categoria => {
+        solutionsTableDataFormat(publicadas)?.map((categoria, index) => {
           return (
             <Collapse
               defaultIsOpen={true}
               grid={false}
               key={categoria.nome}
               nome={categoria.nome}
-              id="1"
+              id={categoria.nome + index.toString()}
               cor="white"
               css={{
                 background: 'white',
