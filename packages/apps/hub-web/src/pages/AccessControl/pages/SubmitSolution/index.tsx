@@ -81,14 +81,12 @@ const SubmitSolution: React.FC = () => {
     }
 
     if (solution) {
-      console.log('solucao recebida em submit solution: ', solution)
       autocompleteFormData(solution, formRef, profileOptions)
     }
   }, [categoryArr, dispatch, pathname, profileOptions, solution, formRef])
 
   const handleSubmit = useCallback(
     async data => {
-      console.log('dados do formulario: ', data)
       formRef?.current?.setErrors({})
       try {
         page === 'criar'

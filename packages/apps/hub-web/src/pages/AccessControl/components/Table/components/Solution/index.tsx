@@ -1,37 +1,31 @@
 import React from 'react'
 
-import { Flex, Box, Image } from '@psdhub/common/components'
+import { Stack, Image, Text } from '@psdhub/common/components'
+
+import { imageSquare } from '~/assets'
+
+import { imageStyles } from './styles'
+
 interface SolutionProps {
   solution: string
   file: string
-  activated: boolean
+  activated?: boolean
 }
 
-const Solution: React.FC<SolutionProps> = ({ solution, file, activated }) => {
+const Solution: React.FC<SolutionProps> = ({ solution, file }) => {
   return (
-    <Flex alignItems="center" opacity={activated ? '1' : '0.5'}>
-      {file ? (
-        <Image
-          src={file}
-          w="40px"
-          h="40px"
-          background="blue.500"
-          borderRadius="md"
-          padding="2"
-        />
-      ) : (
-        <Box
-          w="40px"
-          h="40px"
-          background="blue.500"
-          borderRadius="md"
-          padding="2"
-        />
-      )}
-      <Box textAlign="start" m="2">
+    <Stack alignItems="center" direction="row" spacing="1">
+      <Image
+        {...imageStyles}
+        fallbackSrc={imageSquare}
+        src={file}
+        background="blue.500"
+        padding="2"
+      />
+      <Text maxW="75%" alignContent="center" noOfLines={1}>
         {solution}
-      </Box>
-    </Flex>
+      </Text>
+    </Stack>
   )
 }
 

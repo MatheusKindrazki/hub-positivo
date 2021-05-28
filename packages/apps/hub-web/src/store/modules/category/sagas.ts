@@ -19,7 +19,7 @@ type CategoryPostPayload = Payload<CategoryPostData>
 
 export function* createCategory({ payload }: CategoryPostPayload): Generator {
   const response = yield call(async () => {
-    return api.post('/Categoria', payload)
+    return api.post('/categoria', payload)
   })
 
   const { ok, data } = response as ApiResponse<CategoryPostResponse>
@@ -37,7 +37,7 @@ export function* getCategories(): Generator {
   yield put(loading(true))
 
   const response = yield call(() => {
-    return api.get('Categoria')
+    return api.get('categoria')
   })
 
   const { ok, data } = response as ApiResponse<Category[]>

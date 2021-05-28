@@ -2,20 +2,18 @@ import React, { useCallback } from 'react'
 
 import { useDispatch } from 'react-redux'
 
-import { solutionRestaureRequest } from '~/store/modules/solutions/actions'
+import { restoreSolutionRequest } from '~/store/modules/solutions/actions'
 
 import { Button } from '@psdhub/common/components'
 
-interface RestaureSolutionButtonProps {
+interface RestoreSolutionProps {
   id: string
 }
-const RestaureSolutionButton: React.FC<RestaureSolutionButtonProps> = ({
-  id
-}) => {
+const RestoreSolutionButton: React.FC<RestoreSolutionProps> = ({ id }) => {
   const dispatch = useDispatch()
 
   const handleClick = useCallback(() => {
-    dispatch(solutionRestaureRequest(id))
+    dispatch(restoreSolutionRequest(id))
   }, [dispatch, id])
 
   return (
@@ -25,4 +23,4 @@ const RestaureSolutionButton: React.FC<RestaureSolutionButtonProps> = ({
   )
 }
 
-export default RestaureSolutionButton
+export default RestoreSolutionButton

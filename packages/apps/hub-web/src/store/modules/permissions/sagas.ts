@@ -28,7 +28,7 @@ import {
 
 export function* getAllProfilePermissions(): Generator {
   const response = yield call(() => {
-    return api.get('PerfilNivelEnsino')
+    return api.get('perfilNivelEnsino')
   })
 
   const { ok, data } = response as ApiResponse<ProfilePermissionApiData[]>
@@ -54,7 +54,7 @@ export function* profilePermissions(action: Action): Generator {
 
   if (remove.IdsPerfisNiveisEnsino?.length) {
     const removeResponse = yield call(() => {
-      return api.delete('SolucaoPerfilNivelEnsino', {}, { data: remove })
+      return api.delete('solucaoPerfilNivelEnsino', {}, { data: remove })
     })
 
     const { ok: removeOk } = removeResponse as ApiResponse<GenericApiResponse>
@@ -67,7 +67,7 @@ export function* profilePermissions(action: Action): Generator {
 
   if (create.IdsPerfisNiveisEnsino?.length) {
     const createResponse = yield call(() => {
-      return api.post('SolucaoPerfilNivelEnsino', {
+      return api.post('solucaoPerfilNivelEnsino', {
         ...create
       })
     })
@@ -79,7 +79,6 @@ export function* profilePermissions(action: Action): Generator {
     }
   }
 
-  toast.success('Permissoes de perfil atualizadas com sucesso!')
   return put(profilePermissionsSuccess())
 }
 
@@ -91,7 +90,7 @@ export function* schoolPermissions(action: Action): Generator {
   // Remove permissoes interrompendo o fluxo caso haja algum erro
   if (remove.idsEscolas?.length) {
     const deleteResponse = yield call(() => {
-      return api.delete('Solucao/Restricao', {}, { data: remove })
+      return api.delete('solucao/Restricao', {}, { data: remove })
     })
 
     const { ok: removeOk } = deleteResponse as ApiResponse<GenericApiResponse>
@@ -107,7 +106,7 @@ export function* schoolPermissions(action: Action): Generator {
   // Cria permissoes interrompendo o fluxo caso haja algum erro
   if (create.idsEscolas?.length) {
     const postResponse = yield call(() => {
-      return api.post('Solucao/Restricao', {
+      return api.post('solucao/restricao', {
         ...create
       })
     })
@@ -119,13 +118,12 @@ export function* schoolPermissions(action: Action): Generator {
     }
   }
 
-  toast.success('Restrições atualizadas com sucesso')
   return yield put(schoolPermissionsSuccess())
 }
 
 export function* getProfilePermissionsBySolutionId(action: Action): Generator {
   const response = yield call(() => {
-    return api.get('SolucaoPerfilNivelEnsino', {
+    return api.get('solucaoPerfilNivelEnsino', {
       idSolucao: action.payload.id
     })
   })
@@ -144,7 +142,7 @@ export function* getProfilePermissionsBySolutionId(action: Action): Generator {
 
 export function* getSchoolPermissionsBySolutionId(action: Action): Generator {
   const response = yield call(() => {
-    return api.get('Solucao/Restricao', { idSolucao: action.payload.id })
+    return api.get('solucao/restricao', { idSolucao: action.payload.id })
   })
 
   const { ok, data } = response as ApiResponse<SchoolsRestrictionsBySolution[]>

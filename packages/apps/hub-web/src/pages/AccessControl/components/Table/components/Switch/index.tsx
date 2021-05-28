@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 
 import { useDispatch } from 'react-redux'
 
@@ -11,32 +11,26 @@ import SwitchUI from './styles'
 
 export interface SwitchProps extends SwitchPropsUI {
   data: PutSolutionData
+  index: number
+  onChangeSwitch(index: number): void
 }
 
-const Switch: React.FC<SwitchProps> = ({ data }) => {
+const Switch: React.FC<SwitchProps> = ({ data, onChangeSwitch, index }) => {
   const dispatch = useDispatch()
-  const { ativo } = data
-  const [isChecked, setIsChecked] = useState(ativo)
-  const [isDisabled, setIsDisabled] = useState(false)
+  const { id, ativo } = data
 
-  const handleCheck = useCallback(
-    (check: boolean) => {
-      dispatch(solutionPutRequest({ ...data, ativo: !check }))
-      setIsDisabled(true)
-      setIsChecked(!check)
-      setTimeout(() => {
-        setIsDisabled(false)
-      }, 3000)
-    },
-    [dispatch, data]
-  )
+  const onChange = () => {
+    onChangeSwitch(index)
+    dispatch(solutionPutRequest({ ...data, ativo: !ativo }))
+  }
+
   return (
     <SwitchUI
-      isDisabled={isDisabled}
+      key={id}
+      defaultChecked={ativo === true}
       padding="1"
-      isChecked={isChecked}
-      onChange={() => handleCheck(isChecked)}
       className="solution-switch"
+      onChange={onChange}
     />
   )
 }

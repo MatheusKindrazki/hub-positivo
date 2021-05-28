@@ -36,9 +36,12 @@ const Home: React.FC = () => {
 
   const [search, setSearchValue] = useState('')
 
-  const { info: user, avatar, school: useSchool } = useSelector(
-    (state: Store.State) => state.user
-  )
+  const {
+    info: user,
+    avatar,
+    school: useSchool
+  } = useSelector((state: Store.State) => state.user)
+
   const { name: nameProfile } = useSelector(
     (state: Store.State) => state.profile
   )

@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify'
+
 import { takeLatest, all, put, call } from 'redux-saga/effects'
 
 import history from '~/services/history'
@@ -33,6 +35,12 @@ export function* submitSolution({ payload, type }: SubmitSolution): Generator {
       createSolution,
       solutionPostRequest(solution as PostSolutionData)
     )) as string
+
+    if (!id) {
+      toast.error('Erro ao criar solução, tente novamente')
+      return history.push('/controle-de-acessos')
+    }
+
     profilePermissions.create.idSolucao = id
     profilePermissions.remove.idSolucao = id
     schoolPermissions.create.idSolucao = id

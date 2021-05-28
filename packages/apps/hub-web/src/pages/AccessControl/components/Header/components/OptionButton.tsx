@@ -12,19 +12,8 @@ import { Button, Box } from '@psdhub/common/components'
 
 import ModalAddCategory, { ModalHandler } from '~/components/ModalAddCategory'
 
-const styles = {
-  variant: 'unstyled',
-  m: '1',
-  color: 'blue.500',
-  borderColor: 'blue.500',
-  borderWidth: 'thin',
-  minW: '11.25rem',
-  p: '3',
-  size: 'lg',
-  fontSize: 'sm',
-  fontWeight: 500,
-  borderRadius: '0.5rem'
-}
+import { buttonStyles } from './styles'
+
 const OptionButton: React.FC = () => {
   const dispatch = useDispatch()
   const modalRef = useRef<ModalHandler>(null)
@@ -38,12 +27,12 @@ const OptionButton: React.FC = () => {
     <Box>
       <ModalAddCategory ref={modalRef} />
 
-      <Button textTransform="uppercase" {...styles} onClick={openModal}>
+      <Button textTransform="uppercase" {...buttonStyles} onClick={openModal}>
         Adicionar Categoria
       </Button>
       <Button
         textTransform="uppercase"
-        {...styles}
+        {...buttonStyles}
         onClick={() => {
           dispatch(schoolGetAllRequest())
           dispatch(getAllProfilePermissionsRequest())

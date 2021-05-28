@@ -10,7 +10,7 @@ import { Box } from '@psdhub/common/components'
 
 import { trashDataFormat } from './utils/trashTableDataFormat'
 import Container from './styles'
-import RestaureSolutionButton from './components/RestaureSolutionButton'
+import RestoreSolutionButton from './components/RestoreSolutionButton'
 import EmptyTrash from './components/EmptyTrash'
 import Header from '../../components/Header'
 
@@ -25,9 +25,9 @@ export const columns: Columns[] = [
   { property: 'categoria', header: 'Categoria' },
   { property: 'tipoRenderizacao', header: 'Abrir em...' },
   {
-    property: 'restaure',
+    property: 'restore',
     header: null,
-    render: (e: TableData) => <RestaureSolutionButton id={e.id} />
+    render: (e: TableData) => <RestoreSolutionButton id={e.id} />
   }
 ]
 const Trash: React.FC = () => {
@@ -37,11 +37,10 @@ const Trash: React.FC = () => {
   )
 
   useEffect(() => {
-    console.log({ data })
     if (!data?.length) {
       dispatch(solutionGetExcludedRequest())
     }
-  }, [dispatch])
+  }, [dispatch, data])
 
   return (
     <Container m="auto" maxW="90rem" p="10">

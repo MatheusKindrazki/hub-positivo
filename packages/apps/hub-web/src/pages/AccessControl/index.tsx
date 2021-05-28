@@ -13,6 +13,7 @@ import { Columns } from '@psdhub/common/components/Table'
 import { Collapse } from '@psdhub/common/components'
 
 import Container from './styles'
+import { accessControlCollapse } from './mock.json'
 import { solutionsTableDataFormat } from './components/Table/utils/solutionsTableDataFormat'
 import Switch from './components/Table/components/Switch'
 import EditButton from './components/Table/components/EditButton'
@@ -42,12 +43,11 @@ export const columns: Columns[] = [
   {
     property: 'active',
     header: null,
-    render: (e: PutSolutionData) => <Switch data={e} />
+    render: (e: any) => (
+      <Switch data={e} onChangeSwitch={e.onChangeSwitch} index={e.index} />
+    )
   }
 ]
-
-const mock = [{}, {}, {}, {}, {}, {}, {}]
-
 const AccessControl: React.FC = () => {
   const { publicadas = [], loading } = useSelector(
     (state: Store.State) => state.solutions
@@ -73,12 +73,13 @@ const AccessControl: React.FC = () => {
   return (
     <Container m="auto" maxW="90rem" p="10">
       <Header />
-      {loading && mock.map((_, i) => <FakeLoadingCollapse key={i} />)}
+      {loading &&
+        accessControlCollapse.map((_, i) => <FakeLoadingCollapse key={i} />)}
       {!loading &&
         solutionsTableDataFormat(publicadas)?.map(categoria => {
           return (
             <Collapse
-              defaultIsOpen={false}
+              defaultIsOpen={true}
               grid={false}
               key={categoria.nome}
               nome={categoria.nome}

@@ -13,7 +13,7 @@ export function* getSchools(): Generator {
   yield put(loading(true))
 
   const response = yield call(() => {
-    return api.get('Escola')
+    return api.get('escola')
   })
 
   const { ok, data } = response as ApiResponse<School[]>
