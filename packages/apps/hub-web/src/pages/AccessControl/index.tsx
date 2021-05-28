@@ -79,7 +79,7 @@ const AccessControl: React.FC = () => {
         solutionsTableDataFormat(publicadas)?.map(categoria => {
           return (
             <Collapse
-              defaultIsOpen={false}
+              defaultIsOpen={true}
               grid={false}
               key={categoria.nome}
               nome={categoria.nome}
