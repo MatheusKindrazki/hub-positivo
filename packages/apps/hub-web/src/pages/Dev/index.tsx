@@ -2,14 +2,12 @@ import React, { useRef, useCallback, useState } from 'react'
 
 import { store } from '~/store'
 
-import SelectTree, {
-  SelectTreeProps
-} from '@psdhub/common/components/SelectTree'
+// import SelectTree from '@psdhub/common/components/SelectTree'
+import SelectTree from '@psdhub/common/components/Select'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
 
-let teste: SelectTreeProps['']
 const DevHub: React.FC = () => {
   const [loading, setLoading] = useState(false)
 
@@ -78,8 +76,46 @@ const DevHub: React.FC = () => {
             defaultValue="http://localhost:3000/#/auth"
             mb="5"
           />
+          {/*
+          <SelectTree variant="normal" options={[{
+            label: 'ola',
+            value: 'olamundo',
+            options: [{
 
-          <SelectTree variant="normal" options={[{}]} />
+            }]
+          }]} /> */}
+
+          <SelectTree
+            variant="normal"
+            divider
+            options={[
+              {
+                options: [
+                  {
+                    label: 'brasil',
+                    value: '123'
+                  }
+                ]
+              },
+              {
+                options: [
+                  {
+                    label: 'brasil',
+                    value: '123'
+                  }
+                ]
+              },
+
+              {
+                options: [
+                  {
+                    label: 'brasil',
+                    value: '123'
+                  }
+                ]
+              }
+            ]}
+          />
 
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>

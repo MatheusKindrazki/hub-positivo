@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import { Props, mergeStyles } from 'react-select'
 
 import { Theme } from '@psdhub/common/layout/styles'
