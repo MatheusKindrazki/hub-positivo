@@ -2,10 +2,11 @@ import React, { useMemo, useState, useContext } from 'react'
 
 import { ThemeProvider as StyledProvider } from 'styled-components'
 import { ToastContainer } from 'react-toastify'
+import { merge } from 'lodash'
 import { CacheProvider } from '@emotion/react'
 import createCache from '@emotion/cache'
 
-import { ChakraProvider, ColorModeProvider, CSSReset } from '@chakra-ui/react'
+import { ChakraProvider, CSSReset } from '@chakra-ui/react'
 
 import ThemeContext from './context'
 import { cssKey } from './config'
@@ -33,44 +34,40 @@ const ThemeContainer: React.FC<ThemeProps> = ({
       profile: prof
     }).blue
 
-    const theme = HubTheme(cssVarPrefix)
+    const defaultTheme = HubTheme(cssVarPrefix)
 
     const hubThemeProfile = {
-      ...theme,
+      ...defaultTheme,
       colors: {
-        ...theme.colors,
+        ...defaultTheme.colors,
         blue: profileTheme
       }
     }
 
-    return hubThemeProfile
-  }, [cssVarPrefix, prof])
+    return merge(hubThemeProfile, theme)
+  }, [cssVarPrefix, prof, theme])
 
   return (
     <CacheProvider value={createCache({ key: cssKey })}>
-      <ChakraProvider theme={{ ...renderTheme, ...theme }} resetCSS>
-        <ColorModeProvider
-          options={{ initialColorMode: 'light', useSystemColorMode: false }}
-        >
-          <StyledProvider theme={{ ...renderTheme, ...theme }}>
-            <CSSReset />
-            <GlobalStyles />
-            {children}
-            <ToastContainer
-              position="bottom-center"
-              autoClose={4000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeButton={false}
-              limit={3}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-            />
-          </StyledProvider>
-        </ColorModeProvider>
+      <ChakraProvider theme={renderTheme} resetCSS>
+        <StyledProvider theme={renderTheme}>
+          <CSSReset />
+          <GlobalStyles />
+          {children}
+          <ToastContainer
+            position="bottom-center"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeButton={false}
+            limit={3}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </StyledProvider>
       </ChakraProvider>
     </CacheProvider>
   )

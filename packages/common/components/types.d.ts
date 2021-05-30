@@ -1,23 +1,27 @@
-import { AvatarProps } from './Avatar'
-import { BadgeProps } from './Badge'
-import { BoxProps } from './Box'
-import { ButtonProps } from './Button'
-import { CardProps } from './CardBox'
-import { CollapseProps } from './Collapse'
-import { FlexProps } from './Flex'
-import { HeadingProps } from './Heading'
-import { ImageProps } from './Image'
-import { InputProps } from './Input'
-import { ModalProps } from './Modal'
-import { SearchProps } from './Search'
-import { PropsSelect } from './Select'
-import { SimpleGridProps } from './SimpleGrid'
-import { SkeletonProps, SkeletonTextProps } from './Skeleton'
-import { SpinnerProps } from './SpinnerLoader'
-import { TextProps } from './Text'
-import { TooltipProps } from './Tooltip'
-import { StepsTour, TourProps } from './Tour'
 import { WelcomeProps } from './Welcome'
+import { StepsTour, TourProps } from './Tour'
+import { TooltipProps } from './Tooltip'
+import { TextProps } from './Text'
+import { TableProps } from './Table'
+import { SwitchProps } from './Switch'
+import { SpinnerProps } from './SpinnerLoader'
+import { SkeletonProps, SkeletonTextProps } from './Skeleton'
+import { SimpleGridProps } from './SimpleGrid'
+import { PropsSelect } from './Select'
+import { SearchProps } from './Search'
+import { ModalProps } from './Modal'
+import { InputProps } from './Input'
+import { ImageProps } from './Image'
+import { HeadingProps } from './Heading'
+import { FormLabelProps } from './FormLabel'
+import { FormControlProps } from './FormControl'
+import { FlexProps } from './Flex'
+import { CollapseProps } from './Collapse'
+import { CardProps } from './CardBox'
+import { ButtonProps } from './Button'
+import { BoxProps } from './Box'
+import { BadgeProps } from './Badge'
+import { AvatarProps } from './Avatar'
 
 declare global {
   declare namespace Hub {
@@ -41,5 +45,9 @@ declare global {
     export { WelcomeProps }
     export { ModalProps }
     export { SkeletonProps, SkeletonTextProps }
+    export { FormLabelProps as LabelProps }
+    export { SwitchProps }
+    export { TableProps }
+    export { FormControlProps }
   }
 }

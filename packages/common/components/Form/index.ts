@@ -1,9 +1,12 @@
-import { Form } from '@unform/web'
+import { Form as UnForm } from '@unform/web'
 import { FormHandles } from '@unform/core'
+
+import { chakra } from '@chakra-ui/react'
 
 export { default as Input } from './Input'
 export { default as Button } from './Button'
 export { default as Select } from './Select'
+export { default as Dropzone } from './Dropzone'
 
-export { Form }
+export const Form = chakra(UnForm)
 export type { FormHandles as FormProps }

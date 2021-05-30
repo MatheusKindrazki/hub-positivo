@@ -22,6 +22,7 @@ import api from '@psdhub/api'
 
 import sessionStarted from '~/services/mixpanel/sessionStarted'
 import mixpanelIdentifyUser from '~/services/mixpanel/identifyUser'
+// import mixpanelJoinAnonymousData from '~/services/mixpanel/generateAlias'
 import history from '~/services/history'
 import { changeSchool, ApiChange } from '~/services/eemIntegration'
 import { EEMConnectPost } from '~/services/eemConnect'
@@ -84,6 +85,8 @@ export function* signIn({ payload }: SignInPayload): Generator {
   api.setHeaders({
     Authorization: `Bearer ${data?.access_token}`
   })
+
+  // mixpanelJoinAnonymousData({ guid: user?.sub as string })
 
   // ? Identifica o usuário no mixpanel
   mixpanelIdentifyUser({ guid: user?.sub as string })

@@ -11,6 +11,8 @@ import ThemeContext from '@psdhub/common/layout/Provider/context'
 
 import history from '~/services/history'
 
+// import UpdateSolution from '~/pages/AccessControl/pages/UpdateSolution'
+
 import Route from './Route'
 
 // ? Importação das páginas
@@ -23,6 +25,11 @@ const ForgotFail = React.lazy(() => import('~/pages/Auth/ForgotFail'))
 const ExpiredToken = React.lazy(() => import('~/pages/Auth/ExpiredToken'))
 const ChangePassword = React.lazy(() => import('~/pages/Auth/ChangePassword'))
 const ForgotPassword = React.lazy(() => import('~/pages/Auth/ForgotPassword'))
+const AccessControl = React.lazy(() => import('~/pages/AccessControl'))
+const Trash = React.lazy(() => import('~/pages/AccessControl/pages/Trash'))
+const SubmitSolution = React.lazy(
+  () => import('~/pages/AccessControl/pages/SubmitSolution')
+)
 
 const Solutions = React.lazy(() => import('~/pages/Solutions'))
 
@@ -58,6 +65,27 @@ const Routes: React.FC = () => {
             />
             <Route path="/token-expirado" component={ExpiredToken} />
             <Route path="/alterar-senha" component={ChangePassword} />
+            <Route
+              path="/controle-de-acessos/criar"
+              component={SubmitSolution}
+              isPrivate
+            />
+            <Route
+              path="/controle-de-acessos/editar/:slug"
+              component={SubmitSolution}
+              isPrivate
+            />
+            <Route
+              path="/controle-de-acessos"
+              exact
+              component={AccessControl}
+              isPrivate
+            />
+            <Route
+              path="/controle-de-acessos/lixeira"
+              component={Trash}
+              isPrivate
+            />
 
             <Route path="/" exact component={Home} isPrivate />
 
