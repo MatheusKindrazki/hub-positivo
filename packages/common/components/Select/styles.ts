@@ -295,4 +295,99 @@ function secondary(data: ThemeStyle): Props['styles'] {
   })
 }
 
-export { normal, primary, secondary }
+function checkbox(data: ThemeStyle): Props['styles'] {
+  const { theme, error, inputHeight } = data
+
+  const { colors, shadows, fontSizes } = theme
+
+  const height = inputHeight || 48
+
+  const styled: Props['styles'] = {
+    control: (provided, state) => ({
+      ...provided,
+      cursor: 'pointer',
+      color: colors.white,
+      minHeight: height,
+      fontSize: fontSizes.sm,
+      borderRadius: 8,
+      backgroundColor: colors.white,
+      boxShadow: state.isFocused
+        ? `0 0 0 1px ${colors.blue[500]}`
+        : provided.boxShadow,
+      borderColor: state.isFocused ? colors.blue[500] : colors.gray[400],
+      '&:hover': {
+        borderColor: colors.blue[500]
+      },
+
+      svg: {
+        transform: state.isFocused ? 'rotate(180deg)' : 'none'
+      }
+    }),
+    valueContainer: provided => ({
+      ...provided,
+      flexWrap: 'initial'
+    }),
+    clearIndicator: () => ({
+      display: 'none'
+    }),
+    indicatorSeparator: () => ({
+      opacity: 0
+    }),
+    indicatorsContainer: () => ({
+      svg: {
+        fill: colors.blue[500],
+        transition: 'all .2s linear'
+      }
+    }),
+    container: provided => ({
+      ...provided,
+      color: 'white',
+      textTransform: 'capitalize'
+    }),
+    input: provided => ({
+      ...provided,
+      textTransform: 'capitalize'
+    }),
+    menu: provided => ({
+      ...provided,
+      backgroundColor: colors.white,
+      borderRadius: 4,
+      overflow: 'hidden',
+      textTransform: 'capitalize',
+      zIndex: 99,
+      boxShadow: shadows['dark-lg'],
+      borderWidth: 1,
+      borderColor: colors.gray[100]
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? colors.gray[300] : 'transparent',
+      color: state.isSelected ? colors.white : colors.black,
+      textTransform: 'capitalize',
+      fontSize: fontSizes.sm,
+      wordWrap: 'inherit',
+      fontWeight: 'normal',
+      cursor: 'pointer',
+      width: '100%',
+
+      '&:active': {
+        color: colors.white,
+        backgroundColor: colors.gray[400]
+      },
+      '&:focus': {
+        color: colors.white,
+        backgroundColor: colors.gray[400]
+      }
+    })
+  }
+
+  return mergeStyles(styled, {
+    control: provided => ({
+      ...provided,
+      boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
+      borderColor: error ? colors.red[300] : provided.borderColor
+    })
+  })
+}
+
+export { normal, primary, secondary, checkbox }

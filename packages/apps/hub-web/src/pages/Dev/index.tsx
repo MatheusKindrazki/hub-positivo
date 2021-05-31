@@ -76,44 +76,15 @@ const DevHub: React.FC = () => {
             defaultValue="http://localhost:3000/#/auth"
             mb="5"
           />
-          {/*
-          <SelectTree variant="normal" options={[{
-            label: 'ola',
-            value: 'olamundo',
-            options: [{
-
-            }]
-          }]} /> */}
 
           <SelectTree
-            variant="normal"
-            divider
+            variant="checkbox"
+            isMulti
+            defaultValue={{ label: 'Brasil de mais', value: 'brasil' }}
+            onChange={e => console.log(e)}
             options={[
-              {
-                options: [
-                  {
-                    label: 'brasil',
-                    value: '123'
-                  }
-                ]
-              },
-              {
-                options: [
-                  {
-                    label: 'brasil',
-                    value: '123'
-                  }
-                ]
-              },
-
-              {
-                options: [
-                  {
-                    label: 'brasil',
-                    value: '123'
-                  }
-                ]
-              }
+              { label: 'Brasil de mais', value: 'brasil' },
+              { label: 'Brasil de mais', value: 'brassssil' }
             ]}
           />
 

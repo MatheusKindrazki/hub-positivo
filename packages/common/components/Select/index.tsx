@@ -7,7 +7,7 @@ import options from './options'
 import Divider from '../Divider'
 
 export interface PropsSelect extends Props {
-  variant: 'normal' | 'primary' | 'secondary'
+  variant: 'normal' | 'primary' | 'secondary' | 'checkbox'
   error?: boolean
   divider?: boolean
 }

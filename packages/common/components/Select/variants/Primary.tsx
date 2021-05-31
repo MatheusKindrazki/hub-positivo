@@ -15,7 +15,7 @@ export type PropsSelect = Props & {
   error?: boolean
   isMulti?: boolean
 }
-const HubSelect = forwardRef<PropsSelect, 'select'>((props, ref) => {
+const HubSelectPrimary = forwardRef<PropsSelect, 'select'>((props, ref) => {
   const { className, inputHeight, styles, error, isMulti, ...rest } = props
 
   const theme = useTheme()
@@ -38,4 +38,4 @@ const HubSelect = forwardRef<PropsSelect, 'select'>((props, ref) => {
   )
 })
 
-export default HubSelect
+export default HubSelectPrimary
