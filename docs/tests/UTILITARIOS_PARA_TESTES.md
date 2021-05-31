@@ -63,7 +63,7 @@ Se pudéssemos definir essa funcionalidade em uma frase, com certeza seria: **ut
 
 O "Render com contexto" — nomenclatura utilizada por convenção pela comunidade React — é uma função responsável por renderizar uma página ou componente React com o contexto da aplicação, ou seja, todas as informações que é minimamente necessária para gerar uma renderização específica!
 
-Com o intuito de não deixar as coisas muito complexas, demonstraremos apenas como funciona sua utilização, porém, sua implementação está disponível em _packages/test-utils/index.tsx._
+Com o intuito de não deixar as coisas muito complexas, demonstraremos apenas como funciona sua utilização, porém, sua implementação está disponível em _packages/libs/test-utils/index.tsx._
 
 **Veja abaixo como renderizar uma página que necessita de um contexto previamente definido:**
 
