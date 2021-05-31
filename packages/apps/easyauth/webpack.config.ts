@@ -12,7 +12,7 @@ const config: any = {
 
   entry: path.resolve(__dirname, 'src', 'index.tsx'),
   output: {
-    path: path.resolve(__dirname, '..', 'hub-web', 'public'),
+    path: path.resolve(__dirname, '..', 'web', 'public'),
     filename: 'bundle.js'
   },
   devServer: {

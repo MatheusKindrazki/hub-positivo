@@ -56,9 +56,8 @@ describe('Select renders without crashing', () => {
     fireEvent.mouseDown(getByText('option3'))
 
     const option3 = 2
-    const optionSelected = container.getElementsByClassName('hub__option')[
-      option3
-    ]
+    const optionSelected =
+      container.getElementsByClassName('hub__option')[option3]
     expect(optionSelected).toHaveStyle(`background-color: ${colors.blue[500]};`)
     expect(options.length).toBe(3)
   })
@@ -81,9 +80,8 @@ describe('Select renders without crashing', () => {
     fireEvent.mouseDown(getByText('option2'))
 
     const option2 = 1
-    const optionSelected = container.getElementsByClassName('hub__option')[
-      option2
-    ]
+    const optionSelected =
+      container.getElementsByClassName('hub__option')[option2]
 
     expect(optionSelected).toHaveStyle(`background-color: ${colors.blue[400]};`)
     expect(options.length).toBe(3)

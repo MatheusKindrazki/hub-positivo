@@ -16,7 +16,7 @@
 
 # Começando com os Mocks
 
-Com diretório disponível em _packages/apps/hub-web/src/**mocks**_, os mocks são arquivos gerados para auxiliar no teste de funções e componentes que necessitam de informações específicas para serem testados.
+Com diretório disponível em _packages/apps/web/src/**mocks**_, os mocks são arquivos gerados para auxiliar no teste de funções e componentes que necessitam de informações específicas para serem testados.
 
 Em alguns casos, por exemplo, precisa-se renderizar uma página com informações pré-definidas (como informações de usuário, escolas, etc.), e esses mocks servem como uma forma de centralizar essas informações em um só lugar, evitando duplicação de código e, dessa forma, deixando os testes mais legíveis e limpos.
 
@@ -43,7 +43,7 @@ Em alguns casos, por exemplo, precisa-se renderizar uma página com informaçõe
 }
 ```
 
-_Trecho disponível em: packages/apps/hub-web/src/**mocks**/store/user.mock.json_
+_Trecho disponível em: packages/apps/web/src/**mocks**/store/user.mock.json_
 
 Através desse **mock**, poupamos que seja escrito um `[json](https://www.json.org/json-en.html)` que simula as informações de usuário em diversas funções e componentes que precisam dessas informações bem definidas. **É só importar e usar!**
 
@@ -75,7 +75,7 @@ render(<Home />, {
 })
 ```
 
-_Trecho disponível em packages/apps/hub-web/**tests**/pages/Home.spec.tsx_
+_Trecho disponível em packages/apps/web/**tests**/pages/Home.spec.tsx_
 
 ### Parâmetros da função render modificada
 
@@ -141,7 +141,7 @@ const defaultItemsInState: CustomState = {
 }
 ```
 
-_Trecho disponível em packages/apps/hub-web/**tests**/pages/Home.spec.tsx (Remodulado para fins didáticos)_
+_Trecho disponível em packages/apps/web/**tests**/pages/Home.spec.tsx (Remodulado para fins didáticos)_
 
 Neste trecho criamos um objeto para organizar o estado que se repete em toda renderização, inserimos um estado inicial para user, profile e products (reducers) dentro do objeto para ser utilizado dentro do setup.
 
@@ -163,7 +163,7 @@ const setup = (contextConfig: CustomState = {}) => {
 }
 ```
 
-_Trecho disponível em packages/apps/hub-web/**tests**/pages/Home.spec.tsx_
+_Trecho disponível em packages/apps/web/**tests**/pages/Home.spec.tsx_
 
 Este setup é criado antes de qualquer teste. Por convenção, colocamos tudo que se repete entre os testes, além de receber por parâmetro algo que pode ser customizado em cada chamada, neste caso somente o estado inicial que será inserido do `CUSTOM_STATE`, ficando a critério de quem chama o setup inserir algo nesta chave.
 
@@ -207,6 +207,6 @@ jest.mock('~/hooks/useQuery', () => {
 })
 ```
 
-_Trecho disponível em packages/apps/hub-web/**tests**/pages/Auth/ChangePassword.spec.tsx_
+_Trecho disponível em packages/apps/web/**tests**/pages/Auth/ChangePassword.spec.tsx_
 
 Aqui estamos substituindo o método `get` retornado pelo hook `useQuery` por uma função mockada, fazendo com que possamos fazer asserções em cima dela e impedindo que o escopo de teste vaze para contextos não desejados.

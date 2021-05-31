@@ -55,14 +55,8 @@ describe('Mobile Header component ', () => {
     isOpen: true
   }
 
-  const {
-    defaultValue,
-    resetInfo,
-    schoolList,
-    roleList,
-    setSchool,
-    setRole
-  } = useHeaderReturn
+  const { defaultValue, resetInfo, schoolList, roleList, setSchool, setRole } =
+    useHeaderReturn
 
   afterEach(() => {
     jest.clearAllMocks()

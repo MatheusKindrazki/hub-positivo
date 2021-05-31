@@ -8,7 +8,7 @@ interface UseQueryProps {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useQuery: UseQueryProps = (): any => {
-  return (new URLSearchParams(useLocation().search) as unknown) as UseQueryProps
+  return new URLSearchParams(useLocation().search) as unknown as UseQueryProps
 }
 
 export default useQuery
