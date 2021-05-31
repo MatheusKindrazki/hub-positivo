@@ -20,7 +20,7 @@ import {
   CustomState,
   CustomRenderResult
 } from './types'
-import history from '../apps/hub-web/src/services/history'
+import history from '../apps/web/src/services/history'
 
 const sagaMiddleware = createSagaMiddleware()
 const middlewares = [sagaMiddleware, routerMiddleware(history)]

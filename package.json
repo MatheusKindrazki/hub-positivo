@@ -18,7 +18,8 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "packages/apps/*"
+      "packages/apps/*",
+      "packages/libs/*"
     ]
   },
   "scripts": {
@@ -28,9 +29,9 @@
     "test:coverage": "jest --collectCoverage -u --testResultsProcessor=jest-sonar-reporter --maxWorkers=2 && coverage-badges",
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
-    "build:easyauth": "npm run --prefix packages/apps/easy-auth build",
+    "build:easyauth": "npm run --prefix packages/apps/easyauth build",
     "prebuild:web": "npm run --prefix packages/helpers build",
-    "build:web": "npm run --prefix packages/apps/hub-web build",
+    "build:web": "npm run --prefix packages/apps/web build",
     "postbuild:web": "node scripts/replace-in-files.js hub",
     "build:common": "npm run --prefix packages/common build",
     "release": "HUSKY_SKIP_HOOKS=1 semantic-release"

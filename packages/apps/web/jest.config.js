@@ -4,7 +4,7 @@ module.exports = {
   displayName: name,
   name,
   preset: 'ts-jest',
-  setupFilesAfterEnv: ['../../test-utils/setup.ts'],
+  setupFilesAfterEnv: ['../../libs/test-utils/setup.ts'],
   moduleNameMapper: {
     '~(.*)$': '<rootDir>/src/$1'
   },

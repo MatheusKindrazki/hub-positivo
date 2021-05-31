@@ -85,9 +85,9 @@ yarn install
 
 _Se finalizado sem erros, todas as dependências foram instaladas com sucesso._
 
-### 2.1. Instalando as dependências individuais no hub-web
+### 2.1. Instalando as dependências individuais no web
 
-Para instalar uma dependência individual do hub-web:
+Para instalar uma dependência individual do web:
 
 ```bash
 yarn workspace @psdhub/web add NOME_DA_DEPENDÊNCIA
@@ -95,7 +95,7 @@ yarn workspace @psdhub/web add NOME_DA_DEPENDÊNCIA
 
 # Removendo dependências
 
-Para remover uma dependência individual do hub-web:
+Para remover uma dependência individual do web:
 
 ```bash
 yarn workspace @psdhub/web remove NOME_DA_DEPENDÊNCIA
@@ -105,7 +105,7 @@ yarn workspace @psdhub/web remove NOME_DA_DEPENDÊNCIA
 
 Antes de inicializar, precisa-se que as [\*\*variáveis de ambiente](https://dev.to/guiselair/utilizando-variaveis-de-ambiente-com-create-react-app-5ckc)\*\* sejam configuradas no repositório. Elas, por padrão, não vêm configuradas na clonagem do repositório remoto.
 
-No diretório `packages/apps/hub-web/src` existe um arquivo nomeado `.env.exemple` . Nele há um exemplo das variáveis de ambientes necessárias para que o projeto funcione. **Preencha todas as variáveis.**
+No diretório `packages/apps/web/src` existe um arquivo nomeado `.env.exemple` . Nele há um exemplo das variáveis de ambientes necessárias para que o projeto funcione. **Preencha todas as variáveis.**
 
 Em seguida, renomeie o arquivo `.env.exemple` para `.env.development.local` ou simplesmente crie um arquivo com o nome `.env.development.local` e copie as variáveis de ambiente preenchidas para ele.
 
@@ -137,7 +137,7 @@ packages
     │   └── src
     ├── apps
     │   ├── header-inject
-    │   └── hub-web
+    │   └── web
     │       ├── public
     │       └── src
     │           ├── assets
@@ -212,7 +212,7 @@ Para estilização dos componentes React, o projeto utiliza duas principais depe
 
 [Chakra UI](https://chakra-ui.com/docs/getting-started) é uma biblioteca de componentes simples, modular e acessível que fornece os blocos de construção de que uma aplicação precisa para construir suas aplicações React.
 
-O hub-web utiliza majoritariamente esta biblioteca para fazer o encapsulamento de estilos e temas nos componentes React da aplicação. Isso dar-se pela facilitação da estilização dos mesmos no próprio escopo do componente (através de props). Veja um exemplo de uso abaixo:
+O web utiliza majoritariamente esta biblioteca para fazer o encapsulamento de estilos e temas nos componentes React da aplicação. Isso dar-se pela facilitação da estilização dos mesmos no próprio escopo do componente (através de props). Veja um exemplo de uso abaixo:
 
 **\*Trecho de código 1**:\*
 
@@ -256,7 +256,7 @@ No diretório `*packages/common*` está disponível a grande maioria dos compone
 ...
 ```
 
-_Código disponível em `packages/apps/hub-web/src/pages/Auth/ForgotPassword/index.tsx`_
+_Código disponível em `packages/apps/web/src/pages/Auth/ForgotPassword/index.tsx`_
 
 Após importar o componente **Box** para utilização na página de Forgot Password, é possível observar que a estilização é feita através de props que, ao chegar no componente genérico, será interpretado como `{ ...rest }` , ou seja, sendo possível a utilização de quaisquer estilos não previamente definidos, deixando o componente totalmente reutilizável.
 
@@ -266,7 +266,7 @@ Após importar o componente **Box** para utilização na página de Forgot Passw
 
 [Styled Components](https://styled-components.com/docs) é uma biblioteca para React e React Native que permite a utilização de estilos ao nível de componente em uma aplicação. Eles são escritos em uma mistura de JavaScript com CSS.
 
-No hub-web a styled-components é utilizada nos casos em que a estilização através do [Chacka UI]() fica muito verbosa. Nestes casos, como boa prática, cria-se um arquivo chamado `styles.ts` para criação dos estilos. Após isso, faz-se a utilização dele através do encapsulamento dos componentes que devem ser afetados por sua estilização, como mostra o Trecho de código 4, que importa os estilos do Trecho de código 3.
+No web a styled-components é utilizada nos casos em que a estilização através do [Chacka UI]() fica muito verbosa. Nestes casos, como boa prática, cria-se um arquivo chamado `styles.ts` para criação dos estilos. Após isso, faz-se a utilização dele através do encapsulamento dos componentes que devem ser afetados por sua estilização, como mostra o Trecho de código 4, que importa os estilos do Trecho de código 3.
 
 **Trecho de código 3:**
 
@@ -291,7 +291,7 @@ export const Container = styled.div`
 `
 ```
 
-_Código disponível em `packages/apps/hub-web/src/layouts/Auth/styles.ts`_
+_Código disponível em `packages/apps/web/src/layouts/Auth/styles.ts`_
 
 Este código demonstra a criação de um componente `Container` que utiliza como base uma `div` que possui toda a estilização descrita no escopo que está entre as crases ( **`** ).
 
@@ -308,7 +308,7 @@ Este código demonstra a criação de um componente `Container` que utiliza como
 ...
 ```
 
-_Código disponível em `packages/apps/hub-web/src/layouts/Auth/index.tsx`_
+_Código disponível em `packages/apps/web/src/layouts/Auth/index.tsx`_
 
 Neste trecho demonstra-se como o `Container` criado no [Trecho de código 3]() encapsula todos os componentes que deseja-se estilizar. Simples e limpo.
 

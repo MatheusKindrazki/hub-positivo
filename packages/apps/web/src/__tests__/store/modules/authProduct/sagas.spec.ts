@@ -143,9 +143,9 @@ describe('Testing productSorting saga flow', () => {
   })
 
   it('productSorting should early return when no auth, profile or user info is available', async () => {
-    mockState.auth = (undefined as unknown) as any
-    mockState.profile = (undefined as unknown) as any
-    mockState.user = (undefined as unknown) as any
+    mockState.auth = undefined as unknown as any
+    mockState.profile = undefined as unknown as any
+    mockState.user = undefined as unknown as any
 
     await runSaga(store, productSorting, mockedPayload).toPromise()
 
@@ -254,9 +254,9 @@ describe('testing authProductGUID saga flow', () => {
   })
 
   it('productSorting should early return when no auth, profile or user info is available', async () => {
-    mockState.auth = (undefined as unknown) as any
-    mockState.profile = (undefined as unknown) as any
-    mockState.user = (undefined as unknown) as any
+    mockState.auth = undefined as unknown as any
+    mockState.profile = undefined as unknown as any
+    mockState.user = undefined as unknown as any
 
     await runSaga(store, authProductGUID, mockedPayload).toPromise()
 

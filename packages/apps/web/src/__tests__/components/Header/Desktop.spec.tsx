@@ -53,14 +53,8 @@ describe('Desktop Header component', () => {
     return { ...wrapper, popOverTrigger, popOverContent, blurEffect }
   }
 
-  const {
-    defaultValue,
-    resetInfo,
-    schoolList,
-    roleList,
-    setSchool,
-    setRole
-  } = useHeaderReturn
+  const { defaultValue, resetInfo, schoolList, roleList, setSchool, setRole } =
+    useHeaderReturn
 
   it('Should dispatch a `@tour/OPEN_TOUR` action when `Fazer tour` button is clicked', async () => {
     const { getByText, storeUtils } = setup({
