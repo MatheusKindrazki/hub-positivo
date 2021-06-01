@@ -235,19 +235,6 @@ describe('solutions sagas work properly', () => {
         Promise.resolve<any>(mockedApiResponses.success)
       )
 
-    // // encontrar melhor maneira de mockar as outras sagas que serao chamadas por esta saga
-    // const mockedGetSolutions = jest.fn()
-    // const mockedGetExcludedSolutions = jest.fn()
-
-    // jest.mock('~/store/modules/solutions/sagas', () => {
-    //   const rest = jest.requireActual('~/store/modules/solutions/sagas')
-    //   return {
-    //     ...rest,
-    //     getSolutions: () => mockedGetSolutions,
-    //     getExcludedSolutions: () => mockedGetExcludedSolutions
-    //   }
-    // })
-
     await runSaga(
       store,
       deleteSolution,
@@ -258,8 +245,6 @@ describe('solutions sagas work properly', () => {
       idCard: solutionId
     })
     expect(dispatchedActions).toContainObject(solutionDeleteSuccess())
-    // expect(mockedGetSolutions).toHaveBeenCalled()
-    // expect(mockedGetExcludedSolutions).toHaveBeenCalled()
   })
   it('deleteSolution should call toast error when api returns with an error', async () => {
     const solutionId = 'fake solution id'
