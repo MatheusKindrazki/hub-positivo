@@ -104,7 +104,7 @@ export function* updateSolution(action: Action): Generator {
     toast.error(
       'Erro ao atualizar solução, atualize a página e tente novamente'
     )
-    return put(solutionPutFailure())
+    return yield put(solutionPutFailure())
   }
   return yield put(solutionPutSuccess())
 }
