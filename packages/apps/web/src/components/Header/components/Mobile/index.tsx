@@ -155,7 +155,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               left="0"
               width="100%"
             >
-              {steps?.length && (
+              {steps?.length && location.pathname === '/' && (
                 <Button
                   onClick={handleOpenTour}
                   variant="link"

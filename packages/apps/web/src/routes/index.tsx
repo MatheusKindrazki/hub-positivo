@@ -11,8 +11,6 @@ import ThemeContext from '@psdhub/common/layout/Provider/context'
 
 import history from '~/services/history'
 
-// import UpdateSolution from '~/pages/AccessControl/pages/UpdateSolution'
-
 import Route from './Route'
 
 // ? Importação das páginas
