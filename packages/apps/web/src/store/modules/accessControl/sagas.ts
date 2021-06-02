@@ -22,7 +22,7 @@ import {
   schoolPermissionsRequest
 } from '../permissions/actions'
 import { loading } from '../global/actions'
-interface SubmitSolution {
+export interface SubmitSolution {
   payload: AccessControlPostData | AccessControlPutData
   type: string
 }
@@ -38,7 +38,7 @@ export function* submitSolution({ payload, type }: SubmitSolution): Generator {
 
     if (!id) {
       toast.error('Erro ao criar solução, tente novamente')
-      return history.push('/controle-de-acessos')
+      return yield history.push('/controle-de-acessos')
     }
 
     profilePermissions.create.idSolucao = id

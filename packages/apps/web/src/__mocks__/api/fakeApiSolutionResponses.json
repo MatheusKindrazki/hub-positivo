@@ -1,0 +1,147 @@
+{
+  "mockedApiPostSolutionResponse": {
+    "success": {
+      "ok": true,
+      "data": {
+        "dados": {
+          "id": "fake id"
+        }
+      }
+    },
+    "error": {
+      "ok": false,
+      "data": {
+        "sucesso": false,
+        "mensagem": "erro ao criar solucao"
+      }
+    }
+  },
+  "mockedApiGetCategoriesResponse": {
+    "success": {
+      "ok": true,
+      "data": [
+        {
+          "id": "fake category id",
+          "ordem": 1,
+          "ativo": true,
+          "nome": "Mocked Category",
+          "solucoes": [
+            {
+              "id": "fake solution id",
+              "slug": "mocked-solution",
+              "nome": "Mocked Solution",
+              "descricao": "This is a mocked solution",
+              "arquivo": "https://fakeicon.com",
+              "tipoRenderizacao": "targetblank",
+              "ativo": true,
+              "padrao": true,
+              "ordem": 2,
+              "permissoes": [
+                {
+                  "id": "fake permission id",
+                  "perfil": "Professor",
+                  "niveisEnsino": ["EF1", "EF2", "EM"]
+                }
+              ],
+              "escolas": [
+                {
+                  "id": "fake school restriction id",
+                  "idEscola": "fake school id",
+                  "nome": "Mocked School"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "error": {
+      "ok": false,
+      "data": {
+        "sucesso": false,
+        "mensagem": "erro ao criar solucao"
+      }
+    }
+  },
+  "mockedApiGetExcludedResponse": {
+    "success": {
+      "ok": true,
+      "data": [
+        {
+          "id": "fake category id",
+          "ordem": 1,
+          "ativo": true,
+          "nome": "Mocked Category",
+          "solucoes": [
+            {
+              "id": "fake solution id",
+              "slug": "mocked-solution",
+              "nome": "Mocked Solution",
+              "descricao": "This is a mocked solution",
+              "arquivo": "https://fakeicon.com",
+              "tipoRenderizacao": "targetblank",
+              "ativo": true,
+              "padrao": true,
+              "ordem": 2,
+              "permissoes": [
+                {
+                  "id": "fake permission id",
+                  "perfil": "Professor",
+                  "niveisEnsino": ["EF1", "EF2", "EM"]
+                }
+              ],
+              "escolas": [
+                {
+                  "id": "fake school restriction id",
+                  "idEscola": "fake school id",
+                  "nome": "Mocked School"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "error": {
+      "ok": false,
+      "data": {
+        "sucesso": false,
+        "mensagem": "erro ao criar solucao"
+      }
+    }
+  },
+  "mockedApiPutSolutionResponse": {
+    "success": {
+      "ok": true,
+      "data": {
+        "sucesso": true
+      }
+    },
+    "error": {
+      "ok": false,
+      "data": {
+        "sucesso": false
+      }
+    }
+  },
+  "mockedApiResponses": {
+    "success": {
+      "ok": true,
+      "data": {
+        "mensagem": "solucao atualizada com sucesso"
+      }
+    },
+    "error": {
+      "generic": {
+        "ok": false,
+        "data": null
+      },
+      "activeSoluction": {
+        "ok": false,
+        "data": {
+          "mensagem": "Não é possível excluir uma solução ativa"
+        }
+      }
+    }
+  }
+}

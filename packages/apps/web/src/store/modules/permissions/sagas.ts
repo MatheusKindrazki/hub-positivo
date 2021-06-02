@@ -79,7 +79,7 @@ export function* profilePermissions(action: Action): Generator {
     }
   }
 
-  return put(profilePermissionsSuccess())
+  return yield put(profilePermissionsSuccess())
 }
 
 export function* schoolPermissions(action: Action): Generator {
@@ -132,7 +132,7 @@ export function* getProfilePermissionsBySolutionId(action: Action): Generator {
 
   if (!ok) {
     toast.error('Erro ao buscar restrições de perfil desta solução')
-    return put(profilePermissionsBySolutionFailure())
+    return yield put(profilePermissionsBySolutionFailure())
   }
 
   return yield put(

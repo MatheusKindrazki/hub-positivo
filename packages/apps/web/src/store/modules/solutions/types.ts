@@ -41,7 +41,7 @@ export interface PostSolutionData {
   link: string
   idCategoria: string
   tipoRenderizacao: string
-  ordem: number
+  ordem?: number
   padrao: boolean
 }
 
