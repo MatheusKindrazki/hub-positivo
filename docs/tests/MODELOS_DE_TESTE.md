@@ -138,7 +138,7 @@ it('Should dispatch an `@user/USER_PASSWORD_PANEL_REQUEST` action if the form ha
 })
 ```
 
-_Disponível em packages/apps/src/**tests**/components/Header/AlterPass.spec.tsx_
+_Disponível em packages/apps/web/src/**tests**/components/Header/AlterPass.spec.tsx_
 
 Este teste passa pelo componente de alteração de senha, que está presente no Header do Hub, inserindo um `password` válido genérico para a tentativa de trocar a senha.
 
@@ -190,7 +190,7 @@ it('should dispatch @auth/SIGN_IN REQUEST with the right payload if the user dat
 /// ...continua
 ```
 
-_Disponível em:_ _packages/apps/src/**tests**/pages/Auth/Profile/SignIn.spec.tsx_
+_Disponível em:_ _packages/apps/web/src/**tests**/pages/Auth/SignIn.spec.tsx_
 
 Como é possível observar, inicia-se os testes chamando os mocks de usuário e logo em seguida busca-se pelos elementos em tela.
 
