@@ -132,39 +132,35 @@ O projeto foi construído em arquitetura monorepo. O que implica na união de to
 Com exclusão da pasta node_modules, o diagrama abaixo ilustra a organização dos diretórios do projeto:
 
 ```bash
-packages
-    ├── api
-    │   └── src
-    ├── apps
-    │   ├── header-inject
-    │   └── web
-    │       ├── public
-    │       └── src
-    │           ├── assets
-    │           ├── components
-    │           ├── hooks
-    │           ├── layouts
-    │           ├── pages
-    │           ├── routes
-    │           ├── services
-    │           ├── store
-    │           ├── styles
-    │           ├── @types
-    │           ├── utils
-    │           └── validators
-    ├── common
-    │   ├── components
-    │   ├── hooks
-    │   ├── layout
-    │   └── utils
-    └── eslint
+Packages
+├── apps
+│   ├── api  
+│   ├── easyauth
+│   ├── gsc
+│   └── web
+│  
+├── common
+│   ├── components
+│   ├── hooks
+│   ├── layout
+│   ├── __tests__
+│   ├── @types
+│   └── utils
+│  
+└── libs
+    ├── eslint
+    ├── helpers
+    ├── hub-scripts
+    └── test-utils
 ```
 
-Na composição das pastas podemos identificar pontos importantes a serem ressaltados. A pasta _common_ guarda os recursos reutilizáveis do monorepo, como componentes e hooks genéricos que são utilizados por outras soluções além do Hub.
+Podemos notar, no formato da estrutura, que existem três pastas principais dentro de packages, são elas:
 
-No diretório _api_ temos a configuração das chamadas às APIS utilizadas no funcionamento do Hub, através do _[axios](https://www.npmjs.com/package/axios)._
+_Apps_, que guarda as aplicações que compõem o hub, sendo elas o nosso módulo de requests à API com _[axios](https://www.npmjs.com/package/axios)_, módulo de testes com configuração personalizada de perfil, Get Site Control para exibição de pop ups externos e coleta de dados e por fim Web, onde se encontra de fato a aplicação do Hub, vale ressaltar que a pasta _web_ tem o seu diretório próprio de testes.
 
-Na pasta _apps_ temos os arquivos relacionados ao Hub como solução individual, que se integram entre si mas não são exportados para outras soluções que compõem o monorepo.
+_Common,_ onde se encontram os arquivos "em comum" da nossa estrutura monorepo, ou seja, nessa pasta guardamos lógica genérica e reutilizável, de modo que tanto o hub como as outras partes do monorepo possam fazer uso destes arquivos.
+
+_Libs_, onde estão os auxiliares do projeto. Nesta pasta há nossa configuração de linter, utilitários para implementação de microfrontends, os scripts utilizados no Hub e os utilitários importados nos testes do projeto.
 
 # Principais dependências
 
