@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Stack, Divider, Box } from '..'
 
-import LogoVersion from './components/LogoVersion'
+import FooterLogo from './components/FooterLogo'
 import Column, { ColumnProps } from './components/FooterColumn'
 
 export const FooterData = [
@@ -57,7 +57,7 @@ const Footer: React.FC<FooterProps> = ({ columns }) => {
       <Divider mb="3" />
 
       <Stack flexDir="row" justifyContent="space-evenly">
-        <LogoVersion />
+        <FooterLogo />
         {columns.map(column => (
           <Column
             key={column.title}
