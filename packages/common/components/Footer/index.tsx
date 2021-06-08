@@ -54,7 +54,7 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ columns }) => {
   return (
     <Box width="80%" m="auto">
-      <Divider />
+      <Divider mb="3" />
 
       <Stack flexDir="row" justifyContent="space-evenly">
         <LogoVersion />
