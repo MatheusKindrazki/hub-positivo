@@ -80,14 +80,14 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ columns }) => {
-  const [isDesktop] = useMediaQuery('(min-width: 990px)')
+  const [isDesktop] = useMediaQuery('(min-width: 1280px)')
 
   return (
     <SimpleGrid
-      columns={[1, 1, 1, 4]}
+      columns={[1, 1, 1, 1, 6]}
       bg="white"
       px={['4', '4', '4', '5%']}
-      py="2rem"
+      py="1rem"
       boxShadow="base"
     >
       <LogoVersion />
@@ -100,7 +100,7 @@ const Footer: React.FC<FooterProps> = ({ columns }) => {
           />
         ))
       ) : (
-        <SimpleGrid columns={[1, 3]}>
+        <SimpleGrid columns={[1, 2, 3, 5]}>
           {columns.map(column => (
             <Column
               key={column.title}
