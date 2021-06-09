@@ -17,7 +17,7 @@ const FooterItem: React.FC<ItemProps> = ({ data }) => {
       {data?.href && data.ativo && (
         <ListItem textColor="gray.600" fontWeight="400" mb="2">
           <Link href={data.href} fontWeight="400" color="gray.600">
-            {data?.name}
+            {data.name}
           </Link>
         </ListItem>
       )}

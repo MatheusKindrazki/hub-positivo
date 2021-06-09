@@ -11,6 +11,7 @@ import configureStore from 'redux-mock-store'
 import './setup'
 
 import { ApplicationState } from '@psdhub/web/src/store/store'
+import history from '@psdhub/web/src/services/history'
 import ThemeProviderHub from '@psdhub/common/layout/Provider'
 
 import {
@@ -20,7 +21,6 @@ import {
   CustomState,
   CustomRenderResult
 } from './types'
-import history from '../apps/web/src/services/history'
 
 const sagaMiddleware = createSagaMiddleware()
 const middlewares = [sagaMiddleware, routerMiddleware(history)]
