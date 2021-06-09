@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 
 import { useMediaQuery } from '@psdhub/common/layout'
 
-import LogoVersion from './components/LogoVersion'
+import LogoVersion from './components/FooterLogo'
 import Column, { ColumnProps } from './components/FooterColumn'
 import SimpleGrid from '../SimpleGrid'
 import Divider from '../Divider'
