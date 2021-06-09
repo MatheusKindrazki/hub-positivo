@@ -32,6 +32,7 @@ const Footer: React.FC<FooterProps> = ({ columns }) => {
           {isDesktop ? (
             columns.map(column => (
               <Column
+                ativo={column.ativo}
                 key={column.title}
                 title={column.title}
                 items={column.items}
@@ -41,6 +42,7 @@ const Footer: React.FC<FooterProps> = ({ columns }) => {
             <SimpleGrid columns={responsiveGridColumns}>
               {columns.map(column => (
                 <Column
+                  ativo={column.ativo}
                   key={column.title}
                   title={column.title}
                   items={column.items}

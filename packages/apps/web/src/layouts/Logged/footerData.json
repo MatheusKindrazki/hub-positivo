@@ -1,54 +1,63 @@
- [
+[
   {
     "title": "suporte",
+    "ativo": true,
     "items": [
-      {"name": "FAQ", "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU" },
-      {"name": "Telefone: 0800 591 1510" },
-      {"name": "email: atendimento@spe.com.br" }
+      {
+        "name": "FAQ",
+        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "ativo": true
+      },
+      { "name": "Telefone: 0800 591 1510", "ativo": true },
+      { "name": "email: atendimento@spe.com.br", "ativo": true }
     ]
   },
   {
     "title": "Jurídico",
+    "ativo": true,
     "items": [
       {
-       "name": "Copyright",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU"
+        "name": "Copyright",
+        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "ativo": true
       },
       {
-       "name": "Termos de uso",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU"
+        "name": "Termos de uso",
+        "ativo": true,
+        "modal": {
+          "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "title": "Termos de uso"
+        }
       },
       {
-       "name": "Política de privacidade",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU"
+        "name": "Política de privacidade",
+        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "ativo": true
       }
     ]
   },
   {
     "title": "Redes Sociais",
+    "ativo": true,
     "items": [
       {
-       "name": "Instagram",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU"
+        "name": "Instagram",
+        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "ativo": true
       },
       {
-       "name": "Facebook",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU"
+        "name": "Facebook",
+        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "ativo": true
+      },
+      {
+        "name": "Youtube",
+        "ativo": true,
+        "modal": {
+          "content": "testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3...",
+          "title": "Teste de modal"
+        }
       }
-    ]
-  },
-  {
-    "title": "Redes Sociais",
-    "items": [
-      {
-       "name": "Instagram",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU"
-      },
-      {
-       "name": "Facebook",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU"
-      },
-      {"name": "Youtube", "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU" }
     ]
   }
 ]

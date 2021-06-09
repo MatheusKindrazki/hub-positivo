@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 import { ListItem, Link } from '@chakra-ui/react'
 
+import { ModalHandler, FooterModal } from '../FooterModal'
 import { item } from '../FooterColumn'
 
 interface ItemProps {
@@ -9,9 +10,11 @@ interface ItemProps {
 }
 
 const FooterItem: React.FC<ItemProps> = ({ data }) => {
+  const modalRef = useRef<ModalHandler>(null)
+
   return (
     <>
-      {data?.href && (
+      {data?.href && data.ativo && (
         <ListItem textColor="gray.600" fontWeight="400" mb="2">
           <Link href={data.href} fontWeight="400" color="gray.600">
             {data?.name}
@@ -19,11 +22,20 @@ const FooterItem: React.FC<ItemProps> = ({ data }) => {
         </ListItem>
       )}
 
-      {!data?.href && (
-        <ListItem textColor="gray.600" fontWeight="400" mb="2">
+      {!data?.href && data.ativo && (
+        <ListItem
+          textColor="gray.600"
+          fontWeight="400"
+          mb="2"
+          onClick={modalRef.current?.onOpen}
+          _hover={
+            data?.modal && { textDecoration: 'underline', cursor: 'pointer' }
+          }
+        >
           {data?.name}
         </ListItem>
       )}
+      {data?.modal && <FooterModal ref={modalRef} modal={data.modal} />}
     </>
   )
 }
