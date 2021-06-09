@@ -11,17 +11,17 @@ interface ItemProps {
 const FooterItem: React.FC<ItemProps> = ({ data }) => {
   return (
     <>
-      {data?.href && (
+      {data.href && (
         <ListItem textColor="gray.600" fontWeight="400" mb="2">
           <Link href={data.href} fontWeight="400" color="gray.600">
-            {data?.name}
+            {data.name}
           </Link>
         </ListItem>
       )}
 
-      {!data?.href && (
+      {!data.href && (
         <ListItem textColor="gray.600" fontWeight="400" mb="2">
-          {data?.name}
+          {data.name}
         </ListItem>
       )}
     </>

@@ -12,7 +12,6 @@ export interface ColumnProps {
 export interface item {
   name: string
   href?: string
-  value?: string
 }
 
 const Column: React.FC<ColumnProps> = ({ title, items }) => {
