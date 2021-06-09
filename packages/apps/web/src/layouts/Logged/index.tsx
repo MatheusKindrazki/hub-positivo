@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { openTour, postTourViewed } from '~/store/modules/tour/actions'
 
 import Tour from '@psdhub/common/components/Tour'
-import Footer, { FooterData } from '@psdhub/common/components/Footer'
+import Footer from '@psdhub/common/components/Footer'
 import { BarLoader } from '@psdhub/common/components'
 
 import setUserProperties from '~/services/mixpanel/setProperties'
@@ -16,6 +16,7 @@ import ModalNoClass from '~/components/ModalNoClass'
 import Header from '~/components/Header'
 
 import { Container } from './styles'
+import FooterData from './footerData.json'
 
 const dispatchEvent = debounce(() => setUserProperties(), 1000)
 

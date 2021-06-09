@@ -21,8 +21,9 @@ const FooterLogo: React.FC<BoxProps> = props => {
         pl={[0, 3, 3, 3, 0]}
         fontSize="1rem"
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-        tincidunt mollis mollis. Vestibulum at quam nisi.
+        O Hub é a Home Page do Positivo On. Esta página serve, de maneira
+        unificada, todas as soluções didáticas oferecidas para você em uma única
+        página.
       </Text>
     </Box>
   )
