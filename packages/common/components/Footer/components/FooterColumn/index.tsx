@@ -17,7 +17,8 @@ export interface item {
 
 const Column: React.FC<ColumnProps> = ({ title, items }) => {
   return (
-    <List>
+    // tem alguma coisa colocando margin top na primeira coluna do footer so consegui arrumar usando !important
+    <List px="12" mt="0px">
       <Text
         textTransform="capitalize"
         fontWeight="700"

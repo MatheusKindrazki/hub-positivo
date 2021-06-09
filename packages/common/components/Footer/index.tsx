@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { Stack, Divider, Box } from '..'
+import { Divider } from '..'
 
+import { ColumnsContainer, FooterContainer } from './styles'
 import FooterLogo from './components/FooterLogo'
 import Column, { ColumnProps } from './components/FooterColumn'
 
@@ -44,6 +45,34 @@ export const FooterData = [
       },
       { name: 'Youtube', href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU' }
     ]
+  },
+  {
+    title: 'Redes Sociais',
+    items: [
+      {
+        name: 'Instagram',
+        href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU'
+      },
+      {
+        name: 'Facebook',
+        href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU'
+      },
+      { name: 'Youtube', href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU' }
+    ]
+  },
+  {
+    title: 'Redes Sociais',
+    items: [
+      {
+        name: 'Instagram',
+        href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU'
+      },
+      {
+        name: 'Facebook',
+        href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU'
+      },
+      { name: 'Youtube', href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU' }
+    ]
   }
 ]
 
@@ -53,11 +82,11 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ columns }) => {
   return (
-    <Box width="80%" m="auto">
-      <Divider mb="3" />
+    <FooterContainer length={columns.length}>
+      <Divider mb="3" w="100%" />
 
-      <Stack flexDir="row" justifyContent="space-evenly">
-        <FooterLogo />
+      <FooterLogo columnsLength={columns.length} />
+      <ColumnsContainer length={columns.length}>
         {columns.map(column => (
           <Column
             key={column.title}
@@ -65,8 +94,8 @@ const Footer: React.FC<FooterProps> = ({ columns }) => {
             items={column.items}
           />
         ))}
-      </Stack>
-    </Box>
+      </ColumnsContainer>
+    </FooterContainer>
   )
 }
 
