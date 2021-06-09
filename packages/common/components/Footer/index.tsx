@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { useMediaQuery } from '@psdhub/common/layout'
 
@@ -69,6 +69,10 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ columns }) => {
   const [isDesktop] = useMediaQuery('(min-width: 96em)')
+
+  const responsiveGridColumns = useMemo(() => {
+    return columns.length === 4 ? [1, 2, 4] : [1, 2, columns.length]
+  }, [columns])
   return (
     <>
       <Divider h="0.5" bg="gray.100" />
@@ -89,7 +93,7 @@ const Footer: React.FC<FooterProps> = ({ columns }) => {
               />
             ))
           ) : (
-            <SimpleGrid columns={[1, 2, 4]}>
+            <SimpleGrid columns={responsiveGridColumns}>
               {columns.map(column => (
                 <Column
                   key={column.title}
