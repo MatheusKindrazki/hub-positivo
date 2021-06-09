@@ -10,13 +10,19 @@ const FooterLogo: React.FC<BoxProps> = props => {
       p="1"
       {...props}
       d="flex"
-      flexDir={['column', 'row', 'row', 'column']}
-      alignItems={['start', 'center', 'center', 'start']}
+      flexDir={['column', 'row', 'row', 'row', 'column']}
+      alignItems={['start', 'center', 'center', 'center', 'start']}
     >
       <Box as={LogoOn} />
-      <Text as="span" w="90%" textAlign="justify" pl={[0, 3, 3, 0]}>
+      <Text
+        as="span"
+        w="90%"
+        textAlign="justify"
+        pl={[0, 3, 3, 3, 0]}
+        fontSize="1rem"
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-        tincidunt mollis mollis. Vestibulum at quam nisi.s
+        tincidunt mollis mollis. Vestibulum at quam nisi.
       </Text>
     </Box>
   )
