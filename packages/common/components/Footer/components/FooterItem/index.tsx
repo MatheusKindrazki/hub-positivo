@@ -9,7 +9,6 @@ interface ItemProps {
 }
 
 const FooterItem: React.FC<ItemProps> = ({ data }) => {
-  console.log(data)
   return (
     <>
       {data?.href && (

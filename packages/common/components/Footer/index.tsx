@@ -44,6 +44,34 @@ export const FooterData = [
         href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU'
       }
     ]
+  },
+  {
+    title: 'Redes Sociais',
+    items: [
+      {
+        name: 'Instagram',
+        href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU'
+      },
+      {
+        name: 'Facebook',
+        href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU'
+      },
+      { name: 'Youtube', href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU' }
+    ]
+  },
+  {
+    title: 'Redes Sociais',
+    items: [
+      {
+        name: 'Instagram',
+        href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU'
+      },
+      {
+        name: 'Facebook',
+        href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU'
+      },
+      { name: 'Youtube', href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU' }
+    ]
   }
 ]
 

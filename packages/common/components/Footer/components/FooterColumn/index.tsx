@@ -22,7 +22,7 @@ const Column: React.FC<ColumnProps> = ({ title, items }) => {
         textTransform="capitalize"
         fontWeight="700"
         textColor="gray.600"
-        mb="2"
+        mb="3"
       >
         {title}
       </Text>
