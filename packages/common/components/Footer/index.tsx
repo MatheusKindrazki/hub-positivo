@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { Stack, Divider, Box } from '..'
+import { useMediaQuery } from '@psdhub/common/layout'
 
 import LogoVersion from './components/LogoVersion'
 import Column, { ColumnProps } from './components/FooterColumn'
+import SimpleGrid from '../SimpleGrid'
 
 export const FooterData = [
   {
@@ -41,8 +42,7 @@ export const FooterData = [
       {
         name: 'Facebook',
         href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU'
-      },
-      { name: 'Youtube', href: 'https://www.youtube.com/watch?v=g-RNLG9E4FU' }
+      }
     ]
   }
 ]
@@ -52,21 +52,37 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ columns }) => {
-  return (
-    <Box width="80%" m="auto">
-      <Divider mb="3" />
+  const [isDesktop] = useMediaQuery('(min-width: 990px)')
 
-      <Stack flexDir="row" justifyContent="space-evenly">
-        <LogoVersion />
-        {columns.map(column => (
+  return (
+    <SimpleGrid
+      columns={[1, 1, 1, 4]}
+      bg="white"
+      px={['4', '4', '4', '5%']}
+      py="2rem"
+      boxShadow="base"
+    >
+      <LogoVersion />
+      {isDesktop ? (
+        columns.map(column => (
           <Column
             key={column.title}
             title={column.title}
             items={column.items}
           />
-        ))}
-      </Stack>
-    </Box>
+        ))
+      ) : (
+        <SimpleGrid columns={[1, 3]}>
+          {columns.map(column => (
+            <Column
+              key={column.title}
+              title={column.title}
+              items={column.items}
+            />
+          ))}
+        </SimpleGrid>
+      )}
+    </SimpleGrid>
   )
 }
 

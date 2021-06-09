@@ -17,7 +17,7 @@ export interface item {
 
 const Column: React.FC<ColumnProps> = ({ title, items }) => {
   return (
-    <List>
+    <List minH="8.5rem" m="1">
       <Text
         textTransform="capitalize"
         fontWeight="700"
