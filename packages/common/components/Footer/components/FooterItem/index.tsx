@@ -11,10 +11,11 @@ interface ItemProps {
 
 const FooterItem: React.FC<ItemProps> = ({ data }) => {
   const modalRef = useRef<ModalHandler>(null)
+  console.log(modalRef)
 
   return (
     <>
-      {data?.href && data.ativo && (
+      {data.href && data.ativo && (
         <ListItem textColor="gray.600" fontWeight="400" mb="2">
           <Link href={data.href} fontWeight="400" color="gray.600">
             {data.name}
@@ -22,20 +23,20 @@ const FooterItem: React.FC<ItemProps> = ({ data }) => {
         </ListItem>
       )}
 
-      {!data?.href && data.ativo && (
+      {!data.href && data.ativo && (
         <ListItem
           textColor="gray.600"
           fontWeight="400"
           mb="2"
-          onClick={modalRef.current?.onOpen}
+          onClick={data.modal && modalRef.current?.onOpen}
           _hover={
-            data?.modal && { textDecoration: 'underline', cursor: 'pointer' }
+            data.modal && { textDecoration: 'underline', cursor: 'pointer' }
           }
         >
-          {data?.name}
+          {data.name}
         </ListItem>
       )}
-      {data?.modal && <FooterModal ref={modalRef} modal={data.modal} />}
+      {data.modal && <FooterModal ref={modalRef} modal={data.modal} />}
     </>
   )
 }

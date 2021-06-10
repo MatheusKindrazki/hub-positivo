@@ -2,7 +2,8 @@ import React from 'react'
 
 import MatchMediaMock from 'jest-matchmedia-mock'
 
-import { render } from '@psdhub/test-utils'
+import { render, waitFor } from '@psdhub/test-utils'
+import * as hooks from '@psdhub/common/hooks'
 
 import { List } from '@chakra-ui/react'
 
@@ -14,30 +15,40 @@ import Footer from '../../components/Footer/'
 const footerData = [
   {
     title: 'suporte',
-    items: [{ name: 'email: atendimento@spe.com.br' }]
+    ativo: true,
+    items: [
+      { name: 'email: atendimento@spe.com.br', ativo: true },
+      { name: 'non active item', ativo: false }
+    ]
   },
   {
     title: 'Jurídico',
+    ativo: true,
     items: [
       {
-        name: 'Copyright'
+        name: 'Copyright',
+        ativo: true
       }
     ]
   },
   {
     title: 'Redes Sociais',
+    ativo: true,
     items: [
       {
         name: 'Instagram',
+        ativo: true,
         href: 'href_test_ig'
       }
     ]
   },
   {
     title: 'Saiba mais',
+    ativo: true,
     items: [
       {
         name: 'Instagram',
+        ativo: true,
         href: 'href_test_ig'
       }
     ]
@@ -46,47 +57,67 @@ const footerData = [
 
 describe('FooterItem renders without crashing', () => {
   it('Should render /name/ on screen with a href link', () => {
-    const name = 'item name'
-    const href = 'item_href'
+    const mockedData = { name: 'item name', href: 'item_href', ativo: true }
     const { queryByText } = render(
       <List>
-        <FooterItem data={{ name, href }} />
+        <FooterItem data={mockedData} />
       </List>
     )
-    const element = queryByText(name)
+    const element = queryByText(mockedData.name)
     expect(element).not.toBeNull()
-    expect(element).toHaveAttribute('href', href)
+    expect(element).toHaveAttribute('href', mockedData.href)
   })
 
   it('Should render /name/ on screen without a href link', () => {
-    const name = 'item name'
+    const mockedData = { name: 'item name', ativo: true }
     const { queryByText } = render(
       <List>
-        <FooterItem data={{ name }} />
+        <FooterItem data={mockedData} />
       </List>
     )
-    const element = queryByText(name)
+    const element = queryByText(mockedData.name)
     expect(element).not.toBeNull()
     expect(element).not.toHaveAttribute('href')
+  })
+
+  it('Shouldnt render item with no props', () => {
+    const mockedData = {}
+    const { queryByRole } = render(
+      <List>
+        <FooterItem data={mockedData as any} />
+      </List>
+    )
+    const item = queryByRole('listitem')
+    expect(item).toBeNull()
   })
 })
 
 describe('FooterColumn renders without crashing', () => {
   it('Should render /title/ prop', () => {
-    const title = 'Footer Column'
-    const item = footerData[0].items
-    const { queryByText } = render(<FooterColumn items={item} title={title} />)
+    const mockedData = {
+      title: 'Footer Column',
+      items: footerData[0].items,
+      ativo: true
+    }
+    const { queryByText } = render(<FooterColumn {...mockedData} />)
 
-    const element = queryByText(title)
-    expect(element).toBeInTheDocument()
+    expect(queryByText(mockedData.title)).toBeInTheDocument()
   })
 
-  it('Should match snapshot', () => {
-    const wrapper = render(
-      <FooterColumn items={footerData[0].items} title={'title'} />
+  it('Shouldnt render a non active column', () => {
+    const { queryByText } = render(
+      <FooterColumn items={footerData[0].items} title={'title'} ativo={false} />
     )
 
-    expect(wrapper).toMatchSnapshot()
+    expect(queryByText('title')).toBe(null)
+  })
+
+  it('Shouldnt render a non active item', () => {
+    const { queryByText } = render(
+      <FooterColumn items={footerData[0].items} title={'title'} ativo={true} />
+    )
+
+    expect(queryByText('non active item')).toBe(null)
   })
 })
 
@@ -110,5 +141,64 @@ describe('Footer component should work properly', () => {
     matchMedia.useMediaQuery('(min-width: 15em)')
     const wrapper = render(<Footer columns={footerData} />)
     expect(wrapper).toMatchSnapshot()
+  })
+})
+
+describe('FooterModal component should work properly', () => {
+  // mock do user disclosure para que o modal renderize inicialmente aberto
+  jest.spyOn(hooks, 'useDisclosure').mockImplementation(() => ({
+    isOpen: true,
+    isControlled: true,
+    onClose: () => {
+      jest.fn()
+    },
+    onOpen: () => {
+      jest.fn()
+    },
+    onToggle: () => {
+      jest.fn()
+    },
+    getButtonProps: () => {
+      jest.fn()
+    },
+    getDisclosureProps: () => {
+      jest.fn()
+    }
+  }))
+  const itemWithModal = {
+    name: 'item with modal',
+    ativo: true,
+    modal: {
+      content: 'this is a fake content for testing purposes',
+      title: 'fake modal'
+    }
+  }
+  it('Should render title and text content on desktop screen', async () => {
+    jest.spyOn(hooks, 'useMediaQuery').mockReturnValue([true])
+    const { getByText } = render(
+      <List>
+        <FooterItem data={itemWithModal} />
+      </List>
+    )
+    await waitFor(() => {
+      expect(
+        getByText('this is a fake content for testing purposes')
+      ).toBeInTheDocument()
+      expect(getByText('fake modal')).toBeInTheDocument()
+    })
+  })
+
+  it('Should render title and text content on mobile screen', () => {
+    jest.spyOn(hooks, 'useMediaQuery').mockReturnValue([false])
+    const { getByText } = render(
+      <List>
+        <FooterItem data={itemWithModal} />
+      </List>
+    )
+
+    expect(
+      getByText('this is a fake content for testing purposes')
+    ).toBeInTheDocument()
+    expect(getByText('fake modal')).toBeInTheDocument()
   })
 })
