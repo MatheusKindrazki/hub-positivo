@@ -8,12 +8,12 @@
         "href": "https://suporte.positivoon.com.br/portal/pt/home",
         "ativo": true
       },
-      { "name": "0800 591 1510", "ativo": true },
       {
         "name": "atendimento@spe.com.br",
         "ativo": true,
         "href": "mailto:atendimento@spe.com.br"
-      }
+      },
+      { "name": "0800 591 1510", "ativo": true }
     ]
   },
   {
@@ -22,8 +22,11 @@
     "items": [
       {
         "name": "Copyright",
-        "href": "https://www.google.com",
-        "ativo": true
+        "ativo": true,
+        "modal": {
+          "content": "texto de conteudo de Copyright",
+          "title": "Copyright"
+        }
       },
       {
         "name": "Termos de uso",
@@ -35,8 +38,11 @@
       },
       {
         "name": "Política de privacidade",
-        "href": "https://www.google.com",
-        "ativo": true
+        "ativo": true,
+        "modal": {
+          "content": "texto de conteudo de politica de privacidade",
+          "title": "Termos de uso"
+        }
       }
     ]
   },

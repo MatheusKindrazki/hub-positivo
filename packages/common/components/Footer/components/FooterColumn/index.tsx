@@ -1,8 +1,7 @@
 import React from 'react'
 
-import { List, Text } from '@chakra-ui/react'
-
 import FooterItem from '../FooterItem'
+import { List, ListItem } from '../../../'
 
 export interface ColumnProps {
   title: string
@@ -22,14 +21,14 @@ const Column: React.FC<ColumnProps> = ({ title, items, ativo }) => {
     <>
       {ativo && (
         <List minH={[null, '8.5rem']} m="1" mt="3">
-          <Text
+          <ListItem
             textTransform="capitalize"
             fontWeight="700"
             textColor="gray.600"
             mb="3"
           >
             {title}
-          </Text>
+          </ListItem>
           {items.map(item => {
             if (!item.ativo) return
             return <FooterItem data={item} key={item.name} />

@@ -12,9 +12,9 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ columns }) => {
   return (
-    <>
+    <Box mt="1rem">
       <Divider h="0.5" bg="gray.100" />
-      <Box width="100%" bg="white" py="2rem">
+      <Box width="100%" bg="white" py="1rem">
         <LogoVersion />
         <SimpleGrid
           columns={[1, 2, 2, columns.length <= 3 ? columns.length : 4]}
@@ -32,7 +32,7 @@ const Footer: React.FC<FooterProps> = ({ columns }) => {
           ))}
         </SimpleGrid>
       </Box>
-    </>
+    </Box>
   )
 }
 
