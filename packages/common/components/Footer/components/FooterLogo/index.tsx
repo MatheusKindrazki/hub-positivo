@@ -7,10 +7,10 @@ import { BoxProps } from '../../../Box'
 const FooterLogo: React.FC<BoxProps> = props => {
   return (
     <Box
+      p="1"
       maxW="1400px"
       w={['90%']}
       m="auto"
-      p="1"
       {...props}
       d="flex"
       flexDir={['column', 'row']}
