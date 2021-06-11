@@ -72,7 +72,7 @@ Com diversos componentes e páginas, o hub utiliza de testes unitários e end-to
 
 ### Common
 
-Nos **commons**, módulo da aplicação que disponibiliza utilitários comuns entre a aplicação, estão a grande maioria dos componentes importados pelo Chakra-ui. Utiliza-se [snapshots](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2) para o teste de componentes mais simples — como é o caso de um Button — e, para casos mais complexos, que possuem lógica mais presente, utiliza-se da [simulação do comportamento do usuário](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2).
+Nos **common**, módulo da aplicação que disponibiliza utilitários comuns entre a aplicação, estão a grande maioria dos componentes importados pelo Chakra-ui. Utiliza-se [snapshots](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2) para o teste de componentes mais simples — como é o caso de um Button — e, para casos mais complexos, que possuem lógica mais presente, utiliza-se da [simulação do comportamento do usuário](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2).
 
 #### Teste com snapshot
 
@@ -109,7 +109,7 @@ Este modelo de teste são utilizados em componentes que utilizam alguma lógica 
 
 ### Hub Web
 
-Os componentes presentes no Hub não fogem muito do escopo dos [commons](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2), mas alguns diretórios utilizam de diversas funções e módulos disponíveis no repositório, fazendo com que seus testes sejam mais complexos. A partir daqui, sugere-se que a seção de **mocks** e **setup de testes** esteja bem compreendida.
+Os componentes presentes no Hub não fogem muito do escopo dos [common](https://www.notion.so/Come-ando-com-os-testes-2a64aef7be704547877fc346e9a8faa2), mas alguns diretórios utilizam de diversas funções e módulos disponíveis no repositório, fazendo com que seus testes sejam mais complexos. A partir daqui, sugere-se que a seção de **mocks** e **setup de testes** esteja bem compreendida.
 
 ```jsx
 it('Should dispatch an `@user/USER_PASSWORD_PANEL_REQUEST` action if the form has been submitted with correct data', async () => {
@@ -138,7 +138,7 @@ it('Should dispatch an `@user/USER_PASSWORD_PANEL_REQUEST` action if the form ha
 })
 ```
 
-_Disponível em packages/apps/src/**tests**/components/Header/AlterPass.spec.tsx_
+_Disponível em packages/apps/web/src/**tests**/components/Header/AlterPass.spec.tsx_
 
 Este teste passa pelo componente de alteração de senha, que está presente no Header do Hub, inserindo um `password` válido genérico para a tentativa de trocar a senha.
 
@@ -190,7 +190,7 @@ it('should dispatch @auth/SIGN_IN REQUEST with the right payload if the user dat
 /// ...continua
 ```
 
-_Disponível em:_ _packages/apps/src/**tests**/pages/Auth/Profile/SignIn.spec.tsx_
+_Disponível em:_ _packages/apps/web/src/**tests**/pages/Auth/SignIn.spec.tsx_
 
 Como é possível observar, inicia-se os testes chamando os mocks de usuário e logo em seguida busca-se pelos elementos em tela.
 
