@@ -59,5 +59,29 @@
         }
       }
     ]
+  },
+  {
+    "title": "Redes Sociais",
+    "ativo": true,
+    "items": [
+      {
+        "name": "Instagram",
+        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "ativo": true
+      },
+      {
+        "name": "Facebook",
+        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "ativo": true
+      },
+      {
+        "name": "Youtube",
+        "ativo": true,
+        "modal": {
+          "content": "testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3...",
+          "title": "Teste de modal"
+        }
+      }
+    ]
   }
 ]

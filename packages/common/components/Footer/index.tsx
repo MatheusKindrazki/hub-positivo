@@ -1,6 +1,4 @@
-import React, { useMemo } from 'react'
-
-import { useMediaQuery } from '@psdhub/common/layout'
+import React from 'react'
 
 import LogoVersion from './components/FooterLogo'
 import Column, { ColumnProps } from './components/FooterColumn'
@@ -13,43 +11,26 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ columns }) => {
-  const [isDesktop] = useMediaQuery('(min-width: 96em)')
-
-  const responsiveGridColumns = useMemo(() => {
-    return columns.length >= 4 ? [1, 2, 4] : [1, 2, columns.length]
-  }, [columns])
   return (
     <>
       <Divider h="0.5" bg="gray.100" />
       <Box width="100%" bg="white">
+        <LogoVersion />
         <SimpleGrid
-          columns={[1, 1, 1, 1, 1, columns.length + 1]}
+          columns={[1, 2, 2, columns.length <= 3 ? 2 : 4]}
           py="1rem"
-          w="90%"
+          maxW="1400px"
+          w={['90%']}
           m="auto"
         >
-          <LogoVersion />
-          {isDesktop ? (
-            columns.map((column, i) => (
-              <Column
-                ativo={column.ativo}
-                key={column.title + i}
-                title={column.title}
-                items={column.items}
-              />
-            ))
-          ) : (
-            <SimpleGrid columns={responsiveGridColumns}>
-              {columns.map((column, i) => (
-                <Column
-                  ativo={column.ativo}
-                  key={column.title + i}
-                  title={column.title}
-                  items={column.items}
-                />
-              ))}
-            </SimpleGrid>
-          )}
+          {columns.map((column, i) => (
+            <Column
+              ativo={column.ativo}
+              key={column.title + i}
+              title={column.title}
+              items={column.items}
+            />
+          ))}
         </SimpleGrid>
       </Box>
     </>
