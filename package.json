@@ -30,7 +30,7 @@
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "build:easyauth": "npm run --prefix packages/apps/easyauth build",
-    "prebuild:web": "npm run --prefix packages/helpers build",
+    "prebuild:web": "npm run --prefix packages/libs/helpers build",
     "build:web": "npm run --prefix packages/apps/web build",
     "postbuild:web": "node scripts/replace-in-files.js hub",
     "build:common": "npm run --prefix packages/common build",
