@@ -2,7 +2,9 @@ import React, { useImperativeHandle } from 'react'
 
 import { useDisclosure, useMediaQuery } from '@psdhub/common/hooks'
 import Modal from '@psdhub/common/components/Modal'
-import { Text, Button, Box } from '@psdhub/common/components'
+import { Text, Button } from '@psdhub/common/components'
+
+import { Container } from './styles'
 
 export interface ModalHandler {
   onOpen: () => void
@@ -36,25 +38,7 @@ export const FooterModal = React.forwardRef<ModalHandler, ModalProps>(
             isOpen={isOpen}
             onClose={onClose}
           >
-            <Box
-              maxH={'20rem'}
-              overflowY="scroll"
-              css={{
-                '&::-webkit-scrollbar': {
-                  width: '8px'
-                },
-                '&::-webkit-scrollbar-track': {
-                  width: '10px'
-                },
-                '&::-webkit-scrollbar-thumb': {
-                  background: 'rgb(60, 60, 60, 0.3)',
-                  borderRadius: '8px'
-                },
-                '&::-webkit-scrollbar-button': {
-                  height: 'auto'
-                }
-              }}
-            >
+            <Container>
               <Text
                 mr="1.2rem"
                 fontSize="1rem"
@@ -63,7 +47,7 @@ export const FooterModal = React.forwardRef<ModalHandler, ModalProps>(
               >
                 {content}
               </Text>
-            </Box>
+            </Container>
             <Button
               colorScheme="blue"
               textTransform="uppercase"
