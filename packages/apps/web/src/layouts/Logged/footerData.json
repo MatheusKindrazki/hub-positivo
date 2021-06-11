@@ -4,11 +4,11 @@
     "ativo": true,
     "items": [
       {
-        "name": "FAQ",
+        "name": "Dúvidas Frequentes",
         "href": "https://suporte.positivoon.com.br/portal/pt/home",
         "ativo": true
       },
-      { "name": "T0800 591 1510", "ativo": true },
+      { "name": "0800 591 1510", "ativo": true },
       {
         "name": "atendimento@spe.com.br",
         "ativo": true,

@@ -1,9 +1,8 @@
 import React, { useRef } from 'react'
 
-import { ListItem, Link } from '@chakra-ui/react'
-
 import { ModalHandler, FooterModal } from '../FooterModal'
 import { item } from '../FooterColumn'
+import { ListItem, Link } from '../../../'
 
 interface ItemProps {
   data: item
