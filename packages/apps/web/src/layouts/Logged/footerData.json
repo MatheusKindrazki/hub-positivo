@@ -5,7 +5,7 @@
     "items": [
       {
         "name": "FAQ",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "href": "https://www.google.com",
         "ativo": true
       },
       { "name": "Telefone: 0800 591 1510", "ativo": true },
@@ -18,20 +18,20 @@
     "items": [
       {
         "name": "Copyright",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "href": "https://www.google.com",
         "ativo": true
       },
       {
         "name": "Termos de uso",
         "ativo": true,
         "modal": {
-          "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac ipsum a nisi consectetur efficitur. Vestibulum viverra, tortor ac euismod finibus, velit metus egestas nibh, a lacinia eros nisi vitae urna. Maecenas et ornare ante. Proin pulvinar felis dui. Fusce pretium eu massa sed efficitur. Sed eu lacinia sem, id ullamcorper diam. Aenean semper enim ullamcorper neque vestibulum ultrices. Cras tempor facilisis nibh, vitae facilisis turpis euismod sed. Maecenas quis consequat urna. Curabitur vestibulum tellus et purus pharetra auctor. Proin sed ante ac nibh suscipit lobortis. Sed eu magna leo. Mauris vitae mi rhoncus, vestibulum lacus vitae, posuere. Ut purus augue, malesuada in lacus at, finibus laoreet mauris. Nam in augue sit amet tortor ullamcorper blandit sit amet sed nibh. Cras laoreet nibh vel est vehicula ultricies. Sed tincidunt tincidunt nulla, id condimentum erat malesuada et. Ut finibus nisl vel velit elementum egestas. Curabitur pulvinar vitae arcu vitae pharetra. Ut sollicitudin vulputate pulvinar. Etiam et magna sit amet sem pulvinar pellentesque. Sed vehicula pretium ipsum, quis lacinia quam.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac ipsum a nisi consectetur efficitur. Vestibulum viverra, tortor ac euismod finibus, velit metus egestas nibh, a lacinia eros nisi vitae urna. Maecenas et ornare ante. Proin pulvinar felis dui. Fusce pretium eu massa sed efficitur. Sed eu lacinia sem, id ullamcorper diam. Aenean semper enim ullamcorper neque vestibulum ultrices. Cras tempor facilisis nibh, vitae facilisis turpis euismod sed. Maecenas quis consequat urna. Curabitur vestibulum tellus et purus pharetra auctor. Proin sed ante ac nibh suscipit lobortis. Sed eu magna leo. Mauris vitae mi rhoncus, vestibulum lacus vitae, posuere. Ut purus augue, malesuada in lacus at, finibus laoreet mauris. Nam in augue sit amet tortor ullamcorper blandit sit amet sed nibh. Cras laoreet nibh vel est vehicula ultricies. Sed tincidunt tincidunt nulla, id condimentum erat malesuada et. Ut finibus nisl vel velit elementum egestas. Curabitur pulvinar vitae arcu vitae pharetra. Ut sollicitudin vulputate pulvinar. Etiam et magna sit amet sem pulvinar pellentesque. Sed vehicula pretium ipsum, quis lacinia quam. finibus, velit metus egestas nibh, a lacinia eros nisi vitae urna. Maecenas et ornare ante. Proin pulvinar felis dui. Fusce pretium eu massa sed efficitur. Sed eu lacinia sem, id ullamcorper diam. Aenean semper enim ullamcorper neque vestibulum ultrices. Cras tempor facilisis nibh, vitae facilisis turpis euismod sed. Maecenas quis consequat urna. Curabitur vestibulum tellus et purus pharetra auctor. Proin sed ante ac nibh suscipit lobortis. Sed eu magna leo. Mauris vitae mi rhoncus, vestibulum lacus vitae, posuere. Ut purus augue, malesuada in lacus at, finibus laoreet mauris. Nam in augue sit amet tortor ullamcorper blandit sit amet sed nibh. Cras laoreet nibh vel est vehicula ultricies. Sed tincidunt tincidunt nulla, id condimentum erat malesuada et. Ut finibus nisl vel velit elementum egestas. Curabitur pulvinar vitae arcu vitae pharetra. Ut sollicitudin vulputate pulvinar. Etiam et magna sit amet sem pulvinar pellentesque. Sed vehicula pretium ipsum, quis lacinia quam.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac ipsum a nisi consectetur efficitur. Vestibulum viverra, tortor ac euismod finibus, velit metus egestas nibh, a lacinia eros nisi vitae urna. Maecenas et ornare ante. Proin pulvinar felis dui. Fusce pretium eu massa sed efficitur. Sed eu lacinia sem, id ullamcorper diam. Aenean semper enim ullamcorper neque vestibulum ultrices.",
           "title": "Termos de uso"
         }
       },
       {
         "name": "Política de privacidade",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "href": "https://www.google.com",
         "ativo": true
       }
     ]
@@ -42,21 +42,18 @@
     "items": [
       {
         "name": "Instagram",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "href": "https://www.google.com",
         "ativo": true
       },
       {
         "name": "Facebook",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
+        "href": "https://www.google.com",
         "ativo": true
       },
       {
         "name": "Youtube",
         "ativo": true,
-        "modal": {
-          "content": "testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3...",
-          "title": "Teste de modal"
-        }
+        "href": "https://www.youtube.com/c/SistemaPositivodeEnsino"
       }
     ]
   }

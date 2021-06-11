@@ -2,8 +2,7 @@ import React, { useImperativeHandle } from 'react'
 
 import { useDisclosure, useMediaQuery } from '@psdhub/common/hooks'
 import Modal from '@psdhub/common/components/Modal'
-import Divider from '@psdhub/common/components/Divider'
-import { Text } from '@psdhub/common/components'
+import { Text, Button, Box } from '@psdhub/common/components'
 
 export interface ModalHandler {
   onOpen: () => void
@@ -33,15 +32,47 @@ export const FooterModal = React.forwardRef<ModalHandler, ModalProps>(
             title={title}
             isCentered
             autoFocus
-            maxW={isDesktop ? '26.5rem' : '20rem'}
+            maxW={isDesktop ? '32rem' : '20rem'}
             isOpen={isOpen}
             onClose={onClose}
           >
-            <Divider />
-
-            <Text mt="1.1rem" fontSize="1rem" lineHeight="20px" w="100%">
-              {content}
-            </Text>
+            <Box
+              maxH={'20rem'}
+              overflowY="scroll"
+              css={{
+                '&::-webkit-scrollbar': {
+                  width: '8px'
+                },
+                '&::-webkit-scrollbar-track': {
+                  width: '10px'
+                },
+                '&::-webkit-scrollbar-thumb': {
+                  background: 'rgb(60, 60, 60, 0.3)',
+                  borderRadius: '8px'
+                },
+                '&::-webkit-scrollbar-button': {
+                  height: 'auto'
+                }
+              }}
+            >
+              <Text
+                mr="1.2rem"
+                fontSize="1rem"
+                lineHeight="20px"
+                textAlign="justify"
+              >
+                {content}
+              </Text>
+            </Box>
+            <Button
+              colorScheme="blue"
+              textTransform="uppercase"
+              mt="8"
+              onClick={onClose}
+              float="right"
+            >
+              Ok
+            </Button>
           </Modal>
         )}
       </>
