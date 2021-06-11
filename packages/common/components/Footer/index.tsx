@@ -17,7 +17,7 @@ const Footer: React.FC<FooterProps> = ({ columns }) => {
       <Box width="100%" bg="white">
         <LogoVersion />
         <SimpleGrid
-          columns={[1, 2, 2, columns.length <= 3 ? 2 : 4]}
+          columns={[1, 2, 2, columns.length <= 3 ? columns.length : 4]}
           maxW="1400px"
           w={['90%']}
           m="auto"
