@@ -28,14 +28,7 @@ const Select = forwardRef<PropsSelect, 'select'>((props, ref) => {
   const RenderSelect = options[variant]
 
   if (divider) {
-    return (
-      <RenderSelect
-        components={{ GroupHeading }}
-        defaultMenuIsOpen={true}
-        ref={ref}
-        {...props}
-      />
-    )
+    return <RenderSelect components={{ GroupHeading }} ref={ref} {...props} />
   }
 
   return <RenderSelect defaultMenuIsOpen={true} ref={ref} {...props} />

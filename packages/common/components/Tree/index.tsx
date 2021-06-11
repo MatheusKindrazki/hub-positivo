@@ -1,29 +1,39 @@
-// import React, { useMemo } from 'react';
+import React from 'react'
 
-// // import { Container } from './styles';
+import renderOptions, { RenderOptionsProps } from './utils/renderOptions'
 
-// const Tree: React.FC = () => {
-//   // renderOptions = (items = [], level = 0) => {
-//   //     level++
-//   //     return items.map(item => {
-//   //       return [
-//   //         <option
-//   //           disabled={item.disabled && item.disabled === true}
-//   //           className={`${this.props.className}__option-${level}`}
-//   //           key={item.id}
-//   //           value={item.id}
-//   //         >
-//   //           {this.props.spaceSymbol.repeat(level)}
-//   //           {item.name}
-//   //         </option>,
-//   //         item.children && item.children.length
-//   //           ? this.renderOptions(item.children, level)
-//   //           : null
-//   //       ]
-//   //     })
-//   //   }
+const Tree: React.FC = () => {
+  const handleClick = (data: any) => {
+    console.log(data)
+  }
 
-//   return <div />;
-// }
+  const data: RenderOptionsProps = {
+    level: 0,
+    items: [
+      {
+        label: 'teste',
+        value: '1',
+        options: [
+          {
+            label: 'teste dentro',
+            value: '123'
+          },
+          {
+            label: 'teste dentro',
+            value: '123456',
+            options: [
+              {
+                label: 'teste dentro',
+                value: '123456789'
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 
-// export default Tree;
+  return renderOptions(data, handleClick)
+}
+
+export default Tree

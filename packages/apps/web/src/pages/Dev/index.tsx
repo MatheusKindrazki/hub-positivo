@@ -3,7 +3,7 @@ import React, { useRef, useCallback, useState } from 'react'
 import { store } from '~/store'
 
 // import SelectTree from '@psdhub/common/components/SelectTree'
-import SelectTree from '@psdhub/common/components/Select'
+import Tree from '@psdhub/common/components/Tree'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
@@ -77,7 +77,7 @@ const DevHub: React.FC = () => {
             mb="5"
           />
 
-          <SelectTree
+          {/* <SelectTree
             variant="checkbox"
             isMulti
             defaultValue={{ label: 'Brasil de mais', value: 'brasil' }}
@@ -86,7 +86,9 @@ const DevHub: React.FC = () => {
               { label: 'Brasil de mais', value: 'brasil' },
               { label: 'Brasil de mais', value: 'brassssil' }
             ]}
-          />
+          /> */}
+
+          <Tree />
 
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>
