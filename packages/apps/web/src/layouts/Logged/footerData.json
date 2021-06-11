@@ -5,11 +5,15 @@
     "items": [
       {
         "name": "FAQ",
-        "href": "https://www.google.com",
+        "href": "https://suporte.positivoon.com.br/portal/pt/home",
         "ativo": true
       },
-      { "name": "Telefone: 0800 591 1510", "ativo": true },
-      { "name": "email: atendimento@spe.com.br", "ativo": true }
+      { "name": "T0800 591 1510", "ativo": true },
+      {
+        "name": "atendimento@spe.com.br",
+        "ativo": true,
+        "href": "mailto:atendimento@spe.com.br"
+      }
     ]
   },
   {
@@ -42,42 +46,23 @@
     "items": [
       {
         "name": "Instagram",
-        "href": "https://www.google.com",
+        "href": "https://www.instagram.com/sistemapositivodeensino",
         "ativo": true
       },
       {
         "name": "Facebook",
-        "href": "https://www.google.com",
+        "href": "https://www.facebook.com/sistemapositivodeensinooficial",
         "ativo": true
       },
       {
         "name": "Youtube",
         "ativo": true,
         "href": "https://www.youtube.com/c/SistemaPositivodeEnsino"
-      }
-    ]
-  },
-  {
-    "title": "Redes Sociais",
-    "ativo": true,
-    "items": [
-      {
-        "name": "Instagram",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
-        "ativo": true
       },
       {
-        "name": "Facebook",
-        "href": "https://www.youtube.com/watch?v=g-RNLG9E4FU",
-        "ativo": true
-      },
-      {
-        "name": "Youtube",
+        "name": "LinkedIn",
         "ativo": true,
-        "modal": {
-          "content": "testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3... testando modal 1, 2, 3...",
-          "title": "Teste de modal"
-        }
+        "href": "https://www.linkedin.com/company/sistemapositivo"
       }
     ]
   }
