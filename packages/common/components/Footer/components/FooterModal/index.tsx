@@ -42,7 +42,7 @@ export const FooterModal = React.forwardRef<ModalHandler, ModalProps>(
               <Text
                 mr="1.2rem"
                 fontSize="1rem"
-                lineHeight="20px"
+                lineHeight="1.25rem"
                 textAlign="justify"
               >
                 {content}
