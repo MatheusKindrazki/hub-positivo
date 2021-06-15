@@ -15,40 +15,40 @@ import Footer from '../../components/Footer/'
 const footerData = [
   {
     title: 'suporte',
-    ativo: true,
+    active: true,
     items: [
-      { name: 'email: atendimento@spe.com.br', ativo: true },
-      { name: 'non active item', ativo: false }
+      { name: 'email: atendimento@spe.com.br', active: true },
+      { name: 'non active item', active: false }
     ]
   },
   {
     title: 'Jurídico',
-    ativo: true,
+    active: true,
     items: [
       {
         name: 'Copyright',
-        ativo: true
+        active: true
       }
     ]
   },
   {
     title: 'Redes Sociais',
-    ativo: true,
+    active: true,
     items: [
       {
         name: 'Instagram',
-        ativo: true,
+        active: true,
         href: 'href_test_ig'
       }
     ]
   },
   {
     title: 'Saiba mais',
-    ativo: true,
+    active: true,
     items: [
       {
         name: 'Instagram',
-        ativo: true,
+        active: true,
         href: 'href_test_ig'
       }
     ]
@@ -57,7 +57,7 @@ const footerData = [
 
 describe('FooterItem renders without crashing', () => {
   it('Should render /name/ on screen with a href link', () => {
-    const mockedData = { name: 'item name', href: 'item_href', ativo: true }
+    const mockedData = { name: 'item name', href: 'item_href', active: true }
     const { queryByText } = render(
       <List>
         <FooterItem data={mockedData} />
@@ -69,7 +69,7 @@ describe('FooterItem renders without crashing', () => {
   })
 
   it('Should render /name/ on screen without a href link', () => {
-    const mockedData = { name: 'item name', ativo: true }
+    const mockedData = { name: 'item name', active: true }
     const { queryByText } = render(
       <List>
         <FooterItem data={mockedData} />
@@ -97,7 +97,7 @@ describe('FooterColumn renders without crashing', () => {
     const mockedData = {
       title: 'Footer Column',
       items: footerData[0].items,
-      ativo: true
+      active: true
     }
     const { queryByText } = render(<FooterColumn {...mockedData} />)
 
@@ -106,7 +106,11 @@ describe('FooterColumn renders without crashing', () => {
 
   it('Shouldnt render a non active column', () => {
     const { queryByText } = render(
-      <FooterColumn items={footerData[0].items} title={'title'} ativo={false} />
+      <FooterColumn
+        items={footerData[0].items}
+        title={'title'}
+        active={false}
+      />
     )
 
     expect(queryByText('title')).toBe(null)
@@ -114,7 +118,7 @@ describe('FooterColumn renders without crashing', () => {
 
   it('Shouldnt render a non active item', () => {
     const { queryByText } = render(
-      <FooterColumn items={footerData[0].items} title={'title'} ativo={true} />
+      <FooterColumn items={footerData[0].items} title={'title'} active={true} />
     )
 
     expect(queryByText('non active item')).toBe(null)
@@ -167,7 +171,7 @@ describe('FooterModal component should work properly', () => {
   }))
   const itemWithModal = {
     name: 'item with modal',
-    ativo: true,
+    active: true,
     modal: {
       content: 'this is a fake content for testing purposes',
       title: 'fake modal'
