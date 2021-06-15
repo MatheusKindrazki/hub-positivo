@@ -1,25 +1,26 @@
 import React from 'react'
 
+import { List, ListItem } from '@psdhub/common/components'
+
 import FooterItem from '../FooterItem'
-import { List, ListItem } from '../../../'
 
 export interface ColumnProps {
   title: string
-  active: boolean
+  ativo: boolean
   items: item[]
 }
 
 export interface item {
   name: string
-  active: boolean
+  ativo: boolean
   href?: string
   modal?: { title: string; content: string }
 }
 
-const Column: React.FC<ColumnProps> = ({ title, items, active }) => {
+const Column: React.FC<ColumnProps> = ({ title, items, ativo }) => {
   return (
     <>
-      {active && (
+      {ativo && (
         <List minH={[null, '8.5rem']} m="1" mt="3">
           <ListItem
             textTransform="capitalize"
@@ -30,7 +31,7 @@ const Column: React.FC<ColumnProps> = ({ title, items, active }) => {
             {title}
           </ListItem>
           {items.map(item => {
-            if (!item.active) return
+            if (!item.ativo) return
             return <FooterItem data={item} key={item.name} />
           })}
         </List>

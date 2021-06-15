@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
 
+import { ListItem, Link, Text } from '@psdhub/common/components'
+
 import { ModalHandler, FooterModal } from '../FooterModal'
 import { item } from '../FooterColumn'
-import { ListItem, Link, Text } from '../../../'
 
 interface ItemProps {
   data: item
@@ -13,7 +14,7 @@ const FooterItem: React.FC<ItemProps> = ({ data }) => {
 
   return (
     <>
-      {data.href && data.active && (
+      {data.href && data.ativo && (
         <ListItem textColor="gray.600" fontWeight="400" mb="2">
           <Link
             display="inline-block"
@@ -30,7 +31,7 @@ const FooterItem: React.FC<ItemProps> = ({ data }) => {
         </ListItem>
       )}
 
-      {!data.href && data.active && (
+      {!data.href && data.ativo && (
         <ListItem textColor="gray.600" fontWeight="400" mb="2">
           <Text
             display="inline-block"

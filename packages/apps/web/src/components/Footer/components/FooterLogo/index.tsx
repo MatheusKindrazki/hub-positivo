@@ -1,9 +1,8 @@
 import React from 'react'
 
 import LogoOn from '@psdhub/web/src/components/LogoOn'
-
-import { Box } from '../../../index'
-import { BoxProps } from '../../../Box'
+import { BoxProps } from '@psdhub/common/components/Box'
+import { Box } from '@psdhub/common/components'
 const FooterLogo: React.FC<BoxProps> = props => {
   return (
     <Box
