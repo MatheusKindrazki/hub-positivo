@@ -14,7 +14,7 @@ const FooterItem: React.FC<ItemProps> = ({ data }) => {
 
   return (
     <>
-      {data.href && data.ativo && (
+      {data.href && data.active && (
         <ListItem textColor="gray.600" fontWeight="400" mb="2">
           <Link
             display="inline-block"
@@ -31,7 +31,7 @@ const FooterItem: React.FC<ItemProps> = ({ data }) => {
         </ListItem>
       )}
 
-      {!data.href && data.ativo && (
+      {!data.href && data.active && (
         <ListItem textColor="gray.600" fontWeight="400" mb="2">
           <Text
             display="inline-block"
