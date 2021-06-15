@@ -6,21 +6,21 @@ import FooterItem from '../FooterItem'
 
 export interface ColumnProps {
   title: string
-  ativo: boolean
+  active: boolean
   items: item[]
 }
 
 export interface item {
   name: string
-  ativo: boolean
+  active: boolean
   href?: string
   modal?: { title: string; content: string }
 }
 
-const Column: React.FC<ColumnProps> = ({ title, items, ativo }) => {
+const Column: React.FC<ColumnProps> = ({ title, items, active }) => {
   return (
     <>
-      {ativo && (
+      {active && (
         <List minH={[null, '8.5rem']} m="1" mt="3">
           <ListItem
             textTransform="capitalize"
@@ -31,7 +31,7 @@ const Column: React.FC<ColumnProps> = ({ title, items, ativo }) => {
             {title}
           </ListItem>
           {items.map(item => {
-            if (!item.ativo) return
+            if (!item.active) return
             return <FooterItem data={item} key={item.name} />
           })}
         </List>
