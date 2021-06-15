@@ -4,7 +4,7 @@ import { Option } from '~/store/modules/solutions/types'
 
 import { X } from '@psdhub/common/components/Icons'
 import { Select } from '@psdhub/common/components/Form'
-import { Box, Text } from '@psdhub/common/components'
+import { Box, Stack, Text } from '@psdhub/common/components'
 
 import { PropsSelect } from '~/../../../common/components/Select/variants/Secondary'
 
@@ -24,10 +24,12 @@ const SchoolSelector: React.FC<SchoolSelectorProps> = ({
 }) => {
   const [selectedSchools, setSelectedSchools] = useState<string[]>([])
 
-  useEffect(() => {}, [selectedSchools])
+  useEffect(() => {
+    console.log('schoolSelector mounted')
+  }, [selectedSchools])
 
   return (
-    <>
+    <Box mb="1rem">
       <Select
         variant="secondary"
         name={name}
@@ -35,21 +37,40 @@ const SchoolSelector: React.FC<SchoolSelectorProps> = ({
         label={label}
         options={options}
         {...rest}
-        onChange={e =>
-          setSelectedSchools([...selectedSchools, e?.label as string])
-        }
+        onChange={(e: any) => {
+          if (!e) return
+          setSelectedSchools(e.map((option: any) => option.label))
+        }}
       />
-      {selectedSchools.length &&
+      {!!selectedSchools.length &&
         selectedSchools.map((school, i) => (
-          <Box key={school}>
-            <Text>{school}</Text>
+          <Stack
+            p="1rem"
+            backgroundColor="white"
+            borderTopRadius="6px"
+            key={school}
+            w="100%"
+            flexWrap="wrap"
+            flexDir="row"
+            justifyContent="space-between"
+            borderBottom={selectedSchools.length > 1 ? 'solid 1px gray' : ''}
+          >
+            <Text color="gray.600">{school}</Text>
             <Box
+              color="gray.500"
+              alignSelf="center"
+              justifySelf="flex-end"
               as={X}
-              onClick={() => setSelectedSchools(selectedSchools.splice(i, 1))}
+              onClick={() => {
+                const schools = [...selectedSchools]
+                schools.splice(i, 1)
+                setSelectedSchools(schools)
+                console.log({ schools }, { selectedSchools })
+              }}
             />
-          </Box>
+          </Stack>
         ))}
-    </>
+    </Box>
   )
 }
 
