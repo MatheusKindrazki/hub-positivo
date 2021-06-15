@@ -10,7 +10,6 @@ interface ItemProps {
 
 const FooterItem: React.FC<ItemProps> = ({ data }) => {
   const modalRef = useRef<ModalHandler>(null)
-  console.log(modalRef)
 
   return (
     <>
