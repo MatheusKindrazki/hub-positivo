@@ -36,6 +36,7 @@ import autocompleteFormData from './utils/autocompleteFormData'
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
 import { selects } from './formSelects'
 import getSolutionBySlug from '../../utils/getSolutionBySlug'
+import SchoolSelector from '../../components/SchoolSelector'
 
 const SubmitSolution: React.FC = () => {
   const [solution, setSolution] = useState<Solution>()
@@ -191,6 +192,9 @@ const SubmitSolution: React.FC = () => {
               {selects(selectsOptions, formRef).map(select => {
                 return (
                   <Box key={select.name} w={select.w} ml="0px !important">
+                    {select.name === 'schools' && (
+                      <SchoolSelector mb="4" variant="secondary" {...select} />
+                    )}
                     <Select mb="4" variant="secondary" {...select} />
                   </Box>
                 )

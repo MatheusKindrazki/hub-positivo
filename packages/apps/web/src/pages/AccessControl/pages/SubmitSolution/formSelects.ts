@@ -74,6 +74,8 @@ export const selects = (
       placeholder: 'Selecione',
       options: schools,
       label: 'Escolas',
+      onChange: option =>
+        console.log(option, ref.current?.getFieldValue('schools')),
       isMulti: true,
       w: '100%'
     }
