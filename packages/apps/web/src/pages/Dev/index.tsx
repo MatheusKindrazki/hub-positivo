@@ -90,6 +90,7 @@ const DevHub: React.FC = () => {
 
           <Tree
             defaultOptions={['asdasd', 'asdas2222']}
+            isCollapse
             options={[
               {
                 label: 'Ola mundo',
