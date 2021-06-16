@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 import { Checkbox, Stack } from '@chakra-ui/react'
+
+import { getChecked, setChecked } from './utils/getObject'
 
 export interface ITreeNode {
   label: string
@@ -10,17 +12,31 @@ export interface ITreeNode {
 }
 
 interface IProps {
-  data: Array<ITreeNode>
+  options: Array<ITreeNode>
+  defaultOptions?: string[]
 }
 
 const CustomTreeView: React.FC<IProps> = ({
-  data: json
-}: IProps): JSX.Element => {
+  options,
+  defaultOptions
+}: IProps) => {
   const [data, setData] = useState<Array<ITreeNode>>([])
 
   useEffect(() => {
-    setData(json)
-  }, [json])
+    if (defaultOptions) {
+      const checkedOptions = setChecked(defaultOptions, options)
+
+      setData(checkedOptions)
+      return
+    }
+
+    setData(options)
+  }, [options, defaultOptions])
+
+  const handleCheckedValue = useCallback(data => {
+    const teste = getChecked(data)
+    console.log(teste, 'brasil')
+  }, [])
 
   const changeNode = (
     nodeData: Array<ITreeNode>,
@@ -97,8 +113,6 @@ const CustomTreeView: React.FC<IProps> = ({
     const onClickParent = (event: React.ChangeEvent<HTMLInputElement>) => {
       event.stopPropagation()
 
-      console.log(event, item)
-
       let nextStatus
       if (!item.isChecked) {
         nextStatus = 1
@@ -117,6 +131,7 @@ const CustomTreeView: React.FC<IProps> = ({
         }
       }
       setData([...data])
+      handleCheckedValue([...data])
     }
 
     return (
@@ -142,7 +157,6 @@ const CustomTreeView: React.FC<IProps> = ({
       </>
     ))
   }
-
   return <>{getTreeWidget(data)}</>
 }
 

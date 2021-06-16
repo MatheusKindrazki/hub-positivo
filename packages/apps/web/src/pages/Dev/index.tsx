@@ -89,10 +89,33 @@ const DevHub: React.FC = () => {
           /> */}
 
           <Tree
-            data={[
+            defaultOptions={['1', '2', '3', '4']}
+            options={[
               {
                 label: 'Ola mundo',
-                value: '123'
+                value: '123',
+                options: [
+                  {
+                    label: '1',
+                    value: '1'
+                  },
+                  {
+                    label: '2',
+                    value: '2'
+                  },
+                  {
+                    label: '3',
+                    value: '3'
+                  },
+                  {
+                    label: '4',
+                    value: '4'
+                  }
+                ]
+              },
+              {
+                label: 'asdasd',
+                value: 'asdasd'
               }
             ]}
           />
