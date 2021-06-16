@@ -1,4 +1,5 @@
 export { default as Box } from './Box'
+export { default as Tree } from './Tree'
 export { default as Text } from './Text'
 export { default as Flex } from './Flex'
 export { default as Menu } from './Menu'

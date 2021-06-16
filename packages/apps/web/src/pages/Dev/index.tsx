@@ -2,8 +2,7 @@ import React, { useRef, useCallback, useState } from 'react'
 
 import { store } from '~/store'
 
-// import SelectTree from '@psdhub/common/components/SelectTree'
-import Tree from '@psdhub/common/components/Tree'
+import SelectTree from '@psdhub/common/components/SelectTree'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
@@ -77,69 +76,14 @@ const DevHub: React.FC = () => {
             mb="5"
           />
 
-          {/* <SelectTree
-            variant="checkbox"
-            isMulti
+          <SelectTree
+            variant="normal"
             defaultValue={{ label: 'Brasil de mais', value: 'brasil' }}
             onChange={e => console.log(e)}
             options={[
               { label: 'Brasil de mais', value: 'brasil' },
               { label: 'Brasil de mais', value: 'brassssil' }
             ]}
-          /> */}
-
-          <Tree
-            defaultOptions={['asdasd', 'asdas2222']}
-            isCollapse
-            options={[
-              {
-                label: 'Ola mundo',
-                value: 'dad-123',
-                options: [
-                  {
-                    label: '1',
-                    value: '1',
-                    options: [
-                      {
-                        label: 'brasil',
-                        value: 'brasil123'
-                      },
-                      {
-                        label: 'brasil',
-                        value: 'qualquercoisa-brasil11111',
-                        options: [
-                          {
-                            label: 'asdas2222',
-                            value: 'asdas2222'
-                          },
-                          {
-                            label: 'EU SOU O FILHO',
-                            value: 'filho'
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    label: '2',
-                    value: '2'
-                  },
-                  {
-                    label: '3',
-                    value: '3'
-                  },
-                  {
-                    label: '4',
-                    value: '4'
-                  }
-                ]
-              },
-              {
-                label: 'asdasd',
-                value: 'asdasd'
-              }
-            ]}
-            onChange={e => console.log(e)}
           />
 
           <Button isLoading={loading}>Entrar na solução</Button>

@@ -70,7 +70,9 @@ const CustomTreeView: React.FC<Props> = props => {
         isIndeterminate={![0, 1].includes(item.isChecked)}
         onChange={e => onClickParent(e)}
       >
-        <Text fontSize={props.fontSize}>{item.label}</Text>
+        <Text color="black" fontSize={props.fontSize}>
+          {item.label}
+        </Text>
       </Checkbox>
     )
   }

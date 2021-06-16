@@ -1,33 +1,16 @@
 import React from 'react'
 
-import { MenuListComponentProps, GroupTypeBase } from 'react-select'
-
-import { Box } from '@psdhub/common/components'
-
-export type OptionTreeViewProps = {
-  label: string
-  value: string
-  options?: OptionTreeViewProps[]
-}
-
-export type MenuListProps = React.ComponentType<
-  MenuListComponentProps<
-    {
-      label: string
-      value: string
-      options?: OptionTreeViewProps[]
-    },
-    false,
-    GroupTypeBase<OptionTreeViewProps>
-  >
->
+import { MenuListProps } from './types'
+import Tree, { TreeNode } from '../../../Tree'
+import { Box } from '../../../'
 
 const MenuList: MenuListProps = props => {
   console.log(props.options)
 
   return (
-    <Box>
-      <Box>{props.children}</Box>
+    <Box px="3">
+      <Tree {...props} options={props.options as TreeNode[]} />
+      {/* <Box>{props.children}</Box> */}
     </Box>
   )
 }

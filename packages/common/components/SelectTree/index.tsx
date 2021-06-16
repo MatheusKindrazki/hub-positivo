@@ -2,12 +2,14 @@ import React from 'react'
 
 import { forwardRef } from '@chakra-ui/react'
 
-import MenuList, { OptionTreeViewProps } from './components/MenuList'
+import { OptionTreeViewProps } from './components/MenuList/types'
+import MenuList from './components/MenuList'
 import SelectHub, { PropsSelect } from '../Select'
 
 type PropsSelectOmitOptions = Exclude<PropsSelect, 'options'>
 export interface Props extends PropsSelectOmitOptions {
   options?: OptionTreeViewProps[]
+  variant: Exclude<PropsSelectOmitOptions['variant'], 'checkbox'>
 }
 
 const Select = forwardRef<Props, 'select'>((props, ref) => {
