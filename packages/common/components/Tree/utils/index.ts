@@ -1,0 +1,6 @@
+export { default as onGetPath } from './getPath'
+export { default as changeNode } from './changeNode'
+export { default as onChildClick } from './childClick'
+export { default as onSetCheckParent } from './checkParent'
+export { default as getObjectValues } from './getObjectValues'
+export { default as handleClickParents } from './handleClickParents'
