@@ -9,18 +9,22 @@ import { useDisclosure } from '../../../../hooks'
 
 export interface TreeItensProps {
   parent: TreeNode
+  level: number
   isCollapse?: boolean
+  defaultIsOpen?: boolean
   getCheckbox(item: TreeNode): void
-  getTreeWidget(options: Array<TreeNode>): React.ReactNode
+  getTreeWidget(options: Array<TreeNode>, level: number): React.ReactNode
 }
 
 const TreeItens: React.FC<TreeItensProps> = ({
-  getTreeWidget,
-  getCheckbox,
+  level,
+  parent,
   isCollapse,
-  parent
+  getCheckbox,
+  getTreeWidget,
+  defaultIsOpen
 }) => {
-  const { isOpen, onToggle } = useDisclosure()
+  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen })
 
   const isCollapseOpen = useMemo(() => {
     if (!isCollapse) return true
@@ -32,12 +36,12 @@ const TreeItens: React.FC<TreeItensProps> = ({
       <Box
         d="flex"
         justifyContent="space-between"
-        className="hub-tree-item"
+        className={`hub-tree-level-${level}`}
         alignItems="center"
         py="2"
       >
         {getCheckbox(parent)}
-        {isCollapse && !!parent.options?.length ? (
+        {isCollapse && !!parent?.options?.length ? (
           <Box
             data-testid="collapse-box"
             as={CaretDown}
@@ -55,7 +59,7 @@ const TreeItens: React.FC<TreeItensProps> = ({
       <Collapse in={isCollapseOpen} animateOpacity>
         {parent.options && (
           <Stack pl={6} mt={1} spacing={1}>
-            {getTreeWidget(parent.options)}
+            {getTreeWidget(parent.options, level + 1)}
           </Stack>
         )}
       </Collapse>

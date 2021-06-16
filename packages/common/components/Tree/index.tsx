@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
 import { handleClickParents, getObjectValues, setDefaultValues } from './utils'
+import { Container } from './styles'
 import TreeItens from './components/Itens'
+import Text, { TextProps } from '../Text'
 import Checkbox from '../Checkbox'
 
 export interface TreeNode {
@@ -15,17 +17,23 @@ export interface Props {
   options: Array<TreeNode>
   prefixIgnore?: string
   isCollapse?: boolean
+  size?: 'sm' | 'md' | 'lg'
+  fontSize?: TextProps['fontSize']
+  defaultIsOpen?: boolean
   defaultOptions?: string[]
   onChange?: (checked: string[], raw: Array<TreeNode>) => void
 }
 
-const CustomTreeView: React.FC<Props> = ({
-  options,
-  defaultOptions,
-  isCollapse,
-  prefixIgnore,
-  onChange
-}: Props) => {
+const CustomTreeView: React.FC<Props> = props => {
+  const {
+    options,
+    isCollapse,
+    defaultIsOpen,
+    defaultOptions,
+    prefixIgnore,
+    onChange
+  } = props
+
   const [data, setData] = useState<Array<TreeNode>>([])
 
   useEffect(() => {
@@ -57,28 +65,31 @@ const CustomTreeView: React.FC<Props> = ({
 
     return (
       <Checkbox
+        size={props.size || 'lg'}
         isChecked={item.isChecked === 1}
         isIndeterminate={![0, 1].includes(item.isChecked)}
         onChange={e => onClickParent(e)}
       >
-        {item.label}
+        <Text fontSize={props.fontSize}>{item.label}</Text>
       </Checkbox>
     )
   }
 
-  const getTreeWidget = (options: Array<TreeNode>) => {
+  const getTreeWidget = (options: Array<TreeNode>, level: number) => {
     return options.map((parent: TreeNode, index: number) => (
       <TreeItens
         key={index}
+        level={level}
         parent={parent}
         getCheckbox={getCheckbox}
         getTreeWidget={getTreeWidget}
         isCollapse={isCollapse}
+        defaultIsOpen={defaultIsOpen}
       />
     ))
   }
 
-  return <>{getTreeWidget(data)}</>
+  return <Container>{getTreeWidget(data, 1)}</Container>
 }
 
 export default CustomTreeView
