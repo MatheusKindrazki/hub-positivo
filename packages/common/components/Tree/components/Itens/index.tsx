@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-import { Collapse } from 'react-collapse'
+import { Collapse } from '@chakra-ui/react'
 
 import { TreeNode } from '../../index'
 import { Box, Stack } from '../../../index'
@@ -29,7 +29,13 @@ const TreeItens: React.FC<TreeItensProps> = ({
   }, [isCollapse, isOpen])
   return (
     <>
-      <Box d="flex" justifyContent="space-between" alignItems="center" py="2">
+      <Box
+        d="flex"
+        justifyContent="space-between"
+        className="hub-tree-item"
+        alignItems="center"
+        py="2"
+      >
         {getCheckbox(parent)}
         {isCollapse && !!parent.options?.length ? (
           <Box
@@ -46,7 +52,7 @@ const TreeItens: React.FC<TreeItensProps> = ({
           />
         ) : null}
       </Box>
-      <Collapse isOpened={isCollapseOpen}>
+      <Collapse in={isCollapseOpen} animateOpacity>
         {parent.options && (
           <Stack pl={6} mt={1} spacing={1}>
             {getTreeWidget(parent.options)}
