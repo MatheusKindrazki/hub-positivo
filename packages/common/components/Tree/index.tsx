@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
-import { Checkbox, Stack } from '@chakra-ui/react'
-
 import { handleClickParents, getObjectValues, setDefaultValues } from './utils'
+import TreeItens from './components/Itens'
+import Checkbox from '../Checkbox'
 
 export interface TreeNode {
   label: string
@@ -11,9 +11,10 @@ export interface TreeNode {
   isChecked?: number
 }
 
-interface Props {
+export interface Props {
   options: Array<TreeNode>
   prefixIgnore?: string
+  isCollapse?: boolean
   defaultOptions?: string[]
   onChange?: (checked: string[], raw: Array<TreeNode>) => void
 }
@@ -21,6 +22,7 @@ interface Props {
 const CustomTreeView: React.FC<Props> = ({
   options,
   defaultOptions,
+  isCollapse,
   prefixIgnore,
   onChange
 }: Props) => {
@@ -65,15 +67,14 @@ const CustomTreeView: React.FC<Props> = ({
   }
 
   const getTreeWidget = (options: Array<TreeNode>) => {
-    return options.map((parent: TreeNode) => (
-      <>
-        {getCheckbox(parent)}
-        {parent.options && (
-          <Stack pl={6} mt={1} spacing={1}>
-            {getTreeWidget(parent.options)}
-          </Stack>
-        )}
-      </>
+    return options.map((parent: TreeNode, index: number) => (
+      <TreeItens
+        key={index}
+        parent={parent}
+        getCheckbox={getCheckbox}
+        getTreeWidget={getTreeWidget}
+        isCollapse={isCollapse}
+      />
     ))
   }
 

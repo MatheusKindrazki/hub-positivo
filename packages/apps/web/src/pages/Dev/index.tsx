@@ -89,7 +89,7 @@ const DevHub: React.FC = () => {
           /> */}
 
           <Tree
-            defaultOptions={['asdasd']}
+            defaultOptions={['asdasd', 'asdas2222']}
             options={[
               {
                 label: 'Ola mundo',
