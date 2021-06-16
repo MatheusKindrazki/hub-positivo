@@ -89,13 +89,10 @@ const DevHub: React.FC = () => {
           /> */}
 
           <Tree
-            json={[
+            data={[
               {
-                name: 'brasil',
-                children: [
-                  { name: 'brasil 123', children: [] },
-                  { name: 'brasil 1234', children: [] }
-                ]
+                label: 'Ola mundo',
+                value: '123'
               }
             ]}
           />
