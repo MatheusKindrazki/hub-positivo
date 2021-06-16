@@ -16,17 +16,14 @@ function getChecked(array: TreeNode[], prefixIgnore?: string): any {
   return values
 }
 
-function setChecked(defaultOptions: string[], array: any[]): any {
-  const options: any = []
-  array.some(function iter(a) {
+function setChecked(defaultOptions: string[], array: TreeNode[]): any {
+  return array.map(function iter(a) {
     if (defaultOptions.includes(a.value)) a.isChecked = 1
+
+    Array.isArray(a.options) && a.options.map(iter)
 
     return a
   })
-
-  console.log(options)
-
-  return []
 }
 
 export { getChecked, setChecked }

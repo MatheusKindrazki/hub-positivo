@@ -27,12 +27,12 @@ const CustomTreeView: React.FC<Props> = ({
   const [data, setData] = useState<Array<TreeNode>>([])
 
   useEffect(() => {
-    // if (defaultOptions) {
-    //   const checkedOptions = setChecked(defaultOptions, options)
+    if (defaultOptions) {
+      const checkedOptions = setChecked(defaultOptions, options)
 
-    //   setData(checkedOptions)
-    //   return
-    // }
+      setData(checkedOptions)
+      return
+    }
 
     setData(options)
   }, [options, defaultOptions])

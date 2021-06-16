@@ -89,8 +89,8 @@ const DevHub: React.FC = () => {
           /> */}
 
           <Tree
-            defaultOptions={['1', '2', '3', '4']}
-            // prefixIgnore="dad"
+            prefixIgnore="qualquercoisa"
+            defaultOptions={['asdas2222', 'filho']}
             options={[
               {
                 label: 'Ola mundo',
@@ -106,11 +106,15 @@ const DevHub: React.FC = () => {
                       },
                       {
                         label: 'brasil',
-                        value: 'brasil11111',
+                        value: 'qualquercoisa-brasil11111',
                         options: [
                           {
                             label: 'asdas2222',
                             value: 'asdas2222'
+                          },
+                          {
+                            label: 'EU SOU O FILHO',
+                            value: 'filho'
                           }
                         ]
                       }
