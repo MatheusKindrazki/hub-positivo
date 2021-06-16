@@ -88,7 +88,17 @@ const DevHub: React.FC = () => {
             ]}
           /> */}
 
-          <Tree />
+          <Tree
+            json={[
+              {
+                name: 'brasil',
+                children: [
+                  { name: 'brasil 123', children: [] },
+                  { name: 'brasil 1234', children: [] }
+                ]
+              }
+            ]}
+          />
 
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>
