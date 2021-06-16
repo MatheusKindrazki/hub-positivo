@@ -90,7 +90,7 @@ const DevHub: React.FC = () => {
 
           <Tree
             defaultOptions={['1', '2', '3', '4']}
-            prefixIgnore="dad"
+            // prefixIgnore="dad"
             options={[
               {
                 label: 'Ola mundo',
