@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 
 import { Checkbox, Stack } from '@chakra-ui/react'
 
-import { handleClickParents, getObjectValues } from './utils'
+import { handleClickParents, getObjectValues, setDefaultValues } from './utils'
 
 export interface TreeNode {
   label: string
@@ -27,6 +27,8 @@ const CustomTreeView: React.FC<Props> = ({
   const [data, setData] = useState<Array<TreeNode>>([])
 
   useEffect(() => {
+    setDefaultValues(defaultOptions, options)
+
     setData(options)
   }, [options, defaultOptions])
 

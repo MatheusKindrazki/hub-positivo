@@ -1,7 +1,9 @@
 import { TreeNode } from '../index'
 import { onChildClick, onGetPath, onSetCheckParent } from '.'
 
-const handleClickParents = (data: TreeNode[], item: TreeNode): void => {
+const handleClickParents = (data: TreeNode[], item?: TreeNode): void => {
+  if (!item) return
+
   let nextStatus
   if (!item.isChecked) {
     nextStatus = 1
