@@ -90,14 +90,31 @@ const DevHub: React.FC = () => {
 
           <Tree
             defaultOptions={['1', '2', '3', '4']}
+            prefixIgnore="dad"
             options={[
               {
                 label: 'Ola mundo',
-                value: '123',
+                value: 'dad-123',
                 options: [
                   {
                     label: '1',
-                    value: '1'
+                    value: '1',
+                    options: [
+                      {
+                        label: 'brasil',
+                        value: 'brasil123'
+                      },
+                      {
+                        label: 'brasil',
+                        value: 'brasil11111',
+                        options: [
+                          {
+                            label: 'asdas2222',
+                            value: 'asdas2222'
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     label: '2',
@@ -118,6 +135,7 @@ const DevHub: React.FC = () => {
                 value: 'asdasd'
               }
             ]}
+            onChange={e => console.log(e)}
           />
 
           <Button isLoading={loading}>Entrar na solução</Button>

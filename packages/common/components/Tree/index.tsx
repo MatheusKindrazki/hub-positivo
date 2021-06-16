@@ -4,43 +4,49 @@ import { Checkbox, Stack } from '@chakra-ui/react'
 
 import { getChecked, setChecked } from './utils/getObject'
 
-export interface ITreeNode {
+export interface TreeNode {
   label: string
   value: string
-  options?: Array<ITreeNode>
+  options?: Array<TreeNode>
   isChecked?: number
 }
 
-interface IProps {
-  options: Array<ITreeNode>
+interface Props {
+  options: Array<TreeNode>
+  prefixIgnore?: string
   defaultOptions?: string[]
+  onChange?: (checked: string[], raw: Array<TreeNode>) => void
 }
 
-const CustomTreeView: React.FC<IProps> = ({
+const CustomTreeView: React.FC<Props> = ({
   options,
-  defaultOptions
-}: IProps) => {
-  const [data, setData] = useState<Array<ITreeNode>>([])
+  defaultOptions,
+  prefixIgnore,
+  onChange
+}: Props) => {
+  const [data, setData] = useState<Array<TreeNode>>([])
 
   useEffect(() => {
-    if (defaultOptions) {
-      const checkedOptions = setChecked(defaultOptions, options)
+    // if (defaultOptions) {
+    //   const checkedOptions = setChecked(defaultOptions, options)
 
-      setData(checkedOptions)
-      return
-    }
+    //   setData(checkedOptions)
+    //   return
+    // }
 
     setData(options)
   }, [options, defaultOptions])
 
-  const handleCheckedValue = useCallback(data => {
-    const teste = getChecked(data)
-    console.log(teste, 'brasil')
-  }, [])
+  const handleCheckedValue = useCallback(
+    values => {
+      onChange && onChange(getChecked(values, prefixIgnore), data)
+    },
+    [data, onChange, prefixIgnore]
+  )
 
   const changeNode = (
-    nodeData: Array<ITreeNode>,
-    item: ITreeNode,
+    nodeData: Array<TreeNode>,
+    item: TreeNode,
     state: number
   ) => {
     for (let i = 0; i < nodeData.length; i++) {
@@ -54,7 +60,7 @@ const CustomTreeView: React.FC<IProps> = ({
     }
   }
 
-  const onChildClick = (item: ITreeNode, state: number) => {
+  const onChildClick = (item: TreeNode, state: number) => {
     changeNode(data, item, state)
 
     if (item.options) {
@@ -64,7 +70,7 @@ const CustomTreeView: React.FC<IProps> = ({
     }
   }
 
-  const onGetPath = (data: Array<ITreeNode>, item: ITreeNode) => {
+  const onGetPath = (data: Array<TreeNode>, item: TreeNode) => {
     let i
     for (i = 0; i < data.length; i++) {
       if (data[i].value === item.value) {
@@ -81,17 +87,17 @@ const CustomTreeView: React.FC<IProps> = ({
   }
 
   const onSetCheckParent = (
-    data: Array<ITreeNode>,
+    data: Array<TreeNode>,
     deep: number,
     path: Array<number>
   ) => {
-    let head: ITreeNode = {
+    let head: TreeNode = {
       label: '',
       value: '',
       options: data
     }
     for (let i = 0; i < deep; i++) {
-      head = head.options?.length ? head.options[path[i]] : []
+      head = head.options?.length ? head.options[path[i]] : head
     }
     let status = head?.options?.every(item => item.isChecked === 0)
     if (status) {
@@ -106,7 +112,7 @@ const CustomTreeView: React.FC<IProps> = ({
     }
   }
 
-  const getCheckbox = (item: ITreeNode) => {
+  const getCheckbox = (item: TreeNode) => {
     if (!item.isChecked) {
       item.isChecked = 0
     }
@@ -145,8 +151,8 @@ const CustomTreeView: React.FC<IProps> = ({
     )
   }
 
-  const getTreeWidget = (options: Array<ITreeNode>) => {
-    return options.map((parent: ITreeNode) => (
+  const getTreeWidget = (options: Array<TreeNode>) => {
+    return options.map((parent: TreeNode) => (
       <>
         {getCheckbox(parent)}
         {parent.options && (
@@ -157,6 +163,7 @@ const CustomTreeView: React.FC<IProps> = ({
       </>
     ))
   }
+
   return <>{getTreeWidget(data)}</>
 }
 
