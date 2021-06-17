@@ -13,8 +13,10 @@ import setUserProperties from '~/services/mixpanel/setProperties'
 
 import ModalNoClass from '~/components/ModalNoClass'
 import Header from '~/components/Header'
+import Footer from '~/components/Footer'
 
 import { Container } from './styles'
+import FooterData from './footerData.json'
 
 const dispatchEvent = debounce(() => setUserProperties(), 1000)
 
@@ -44,6 +46,7 @@ const Dashboard: React.FC = ({ children }) => {
       )}
       <Header />
       {children}
+      <Footer columns={FooterData} />
     </Container>
   )
 }
