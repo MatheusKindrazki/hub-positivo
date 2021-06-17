@@ -2,23 +2,28 @@ import React, { useEffect, useState, useMemo, memo, useCallback } from 'react'
 
 import { generate } from 'randomstring'
 
-import { postInformations } from '@psdhub/helpers'
+import { store } from '~/store'
+
+import { useTheme } from '@psdhub/common/layout/styles'
 import { Box } from '@psdhub/common/components'
 
 import { ReturnScripts } from '~/orchestrator'
 
+import communicatorMCF from './communicator'
 import LoadModules from '../../components/LoadModules'
 interface MicrofrontendProps {
   data: any // deverá ser any, pois a tipagem virá do componente filho
   onLoaded(): void
 }
 
-postInformations('@MCF: Dado vindo do hub!' as any)
-
 const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   onLoaded,
   data
 }) => {
+  const { colors } = useTheme()
+
+  communicatorMCF(store.getState(), colors)
+
   const [scriptsLength, setScriptsLength] = useState(0)
 
   const mcf = useMemo(() => {
