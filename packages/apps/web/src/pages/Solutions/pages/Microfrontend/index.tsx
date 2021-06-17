@@ -32,17 +32,21 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   }, [data])
 
   useEffect(() => {
-    const quantityScripts = mcf?.scripts?.map(i => i.type !== 'css')
-
-    if (quantityScripts?.length === scriptsLength) {
-      startApp()
-
-      onLoaded()
-    }
-
     return () => {
       stopApp()
     }
+  }, [])
+
+  useEffect(() => {
+    const quantityScripts = mcf?.scripts?.filter(i => i.type !== 'css')
+
+    if (window.loadedMicroFrontend) return
+
+    if (quantityScripts?.length !== scriptsLength) return
+
+    startApp()
+
+    onLoaded()
   }, [mcf, onLoaded, scriptsLength])
 
   const handleNumberOfScriptsLoaded = useCallback(() => {

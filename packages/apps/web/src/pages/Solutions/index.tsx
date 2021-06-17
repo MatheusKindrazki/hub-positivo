@@ -39,7 +39,13 @@ const Solutions: React.FC = () => {
         <Loading loading={loading} />
       </Box>
       {productData && (
-        <RenderPage data={productData} onLoaded={() => setLoading(false)} />
+        <RenderPage
+          data={productData}
+          onLoaded={() => {
+            console.log('REMOVENDO LOADING')
+            setLoading(false)
+          }}
+        />
       )}
     </Container>
   )
