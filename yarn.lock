@@ -18177,6 +18177,11 @@ wildcard@^2.0.0:
   resolved "https://registry.yarnpkg.com/wildcard/-/wildcard-2.0.0.tgz#a77d20e5200c6faaac979e4b3aadc7b3dd7f8fec"
   integrity sha512-JcKqAHLPxcdb9KM49dufGXn2x3ssnfjbcaQdLlfZsL9rH9wgDQjUtDxbo8NE0F6SFvydeu1VhZe7hZuHsB2/pw==
 
+windowed-observable@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/windowed-observable/-/windowed-observable-0.4.2.tgz#ece37a81490583dbc25baa94bd4dd4c2587a4b07"
+  integrity sha512-M8+Biq1fN4F72/R/W105g2TBB4ZRUXwWsWV9C44wDtsPmZdVmqeEaznq1XGxVT6YP+L0vL60LJ4LPq8yjn2WGw==
+
 word-wrap@^1.0.3, word-wrap@^1.2.3, word-wrap@~1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
@@ -18353,11 +18358,6 @@ worker-rpc@^0.1.0:
   integrity sha512-P1WjMrUB3qgJNI9jfmpZ/htmBEjFh//6l/5y8SD9hg1Ef5zTTVVoRjTrTEzPrNBQvmhMxkoTsjOXN10GWU7aCg==
   dependencies:
     microevent.ts "~0.1.1"
-
-worky@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/worky/-/worky-1.0.0.tgz#182718cd880fe1140ea8d8b0696b567c41296c1d"
-  integrity sha1-GCcYzYgP4RQOqNiwaWtWfEEpbB0=
 
 wrap-ansi@^5.1.0:
   version "5.1.0"

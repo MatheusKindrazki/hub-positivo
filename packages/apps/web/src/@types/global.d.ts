@@ -9,6 +9,8 @@ declare global {
       educational_stage: string
     }
 
+    worky: any
+
     loadMicrofrontend?: () => void
     unLoadMicrofrontend?: () => void
 

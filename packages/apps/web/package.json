@@ -48,7 +48,6 @@
     "redux-saga": "^1.1.3",
     "styled-components": "^5.3.0",
     "ts-debounce": "^2.3.0",
-    "worky": "^1.0.0",
     "yup": "^0.32.8"
   },
   "browserslist": {
