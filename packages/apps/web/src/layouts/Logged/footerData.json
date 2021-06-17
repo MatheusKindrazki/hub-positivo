@@ -1,0 +1,75 @@
+[
+  {
+    "title": "suporte",
+    "active": true,
+    "items": [
+      {
+        "name": "Dúvidas Frequentes",
+        "href": "https://suporte.positivoon.com.br/portal/pt/home",
+        "active": true
+      },
+      {
+        "name": "atendimento@spe.com.br",
+        "active": true,
+        "href": "mailto:atendimento@spe.com.br"
+      },
+      { "name": "0800 591 1510", "active": true }
+    ]
+  },
+  {
+    "title": "Jurídico",
+    "active": true,
+    "items": [
+      {
+        "name": "Copyright",
+        "active": true,
+        "modal": {
+          "content": "texto de conteudo de Copyright",
+          "title": "Copyright"
+        }
+      },
+      {
+        "name": "Termos de uso",
+        "active": true,
+        "modal": {
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac ipsum a nisi consectetur efficitur. Vestibulum viverra, tortor ac euismod finibus, velit metus egestas nibh, a lacinia eros nisi vitae urna. Maecenas et ornare ante. Proin pulvinar felis dui. Fusce pretium eu massa sed efficitur. Sed eu lacinia sem, id ullamcorper diam. Aenean semper enim ullamcorper neque vestibulum ultrices. Cras tempor facilisis nibh, vitae facilisis turpis euismod sed. Maecenas quis consequat urna. Curabitur vestibulum tellus et purus pharetra auctor. Proin sed ante ac nibh suscipit lobortis. Sed eu magna leo. Mauris vitae mi rhoncus, vestibulum lacus vitae, posuere. Ut purus augue, malesuada in lacus at, finibus laoreet mauris. Nam in augue sit amet tortor ullamcorper blandit sit amet sed nibh. Cras laoreet nibh vel est vehicula ultricies. Sed tincidunt tincidunt nulla, id condimentum erat malesuada et. Ut finibus nisl vel velit elementum egestas. Curabitur pulvinar vitae arcu vitae pharetra. Ut sollicitudin vulputate pulvinar. Etiam et magna sit amet sem pulvinar pellentesque. Sed vehicula pretium ipsum, quis lacinia quam.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac ipsum a nisi consectetur efficitur. Vestibulum viverra, tortor ac euismod finibus, velit metus egestas nibh, a lacinia eros nisi vitae urna. Maecenas et ornare ante. Proin pulvinar felis dui. Fusce pretium eu massa sed efficitur. Sed eu lacinia sem, id ullamcorper diam. Aenean semper enim ullamcorper neque vestibulum ultrices. Cras tempor facilisis nibh, vitae facilisis turpis euismod sed. Maecenas quis consequat urna. Curabitur vestibulum tellus et purus pharetra auctor. Proin sed ante ac nibh suscipit lobortis. Sed eu magna leo. Mauris vitae mi rhoncus, vestibulum lacus vitae, posuere. Ut purus augue, malesuada in lacus at, finibus laoreet mauris. Nam in augue sit amet tortor ullamcorper blandit sit amet sed nibh. Cras laoreet nibh vel est vehicula ultricies. Sed tincidunt tincidunt nulla, id condimentum erat malesuada et. Ut finibus nisl vel velit elementum egestas. Curabitur pulvinar vitae arcu vitae pharetra. Ut sollicitudin vulputate pulvinar. Etiam et magna sit amet sem pulvinar pellentesque. Sed vehicula pretium ipsum, quis lacinia quam. finibus, velit metus egestas nibh, a lacinia eros nisi vitae urna. Maecenas et ornare ante. Proin pulvinar felis dui. Fusce pretium eu massa sed efficitur. Sed eu lacinia sem, id ullamcorper diam. Aenean semper enim ullamcorper neque vestibulum ultrices. Cras tempor facilisis nibh, vitae facilisis turpis euismod sed. Maecenas quis consequat urna. Curabitur vestibulum tellus et purus pharetra auctor. Proin sed ante ac nibh suscipit lobortis. Sed eu magna leo. Mauris vitae mi rhoncus, vestibulum lacus vitae, posuere. Ut purus augue, malesuada in lacus at, finibus laoreet mauris. Nam in augue sit amet tortor ullamcorper blandit sit amet sed nibh. Cras laoreet nibh vel est vehicula ultricies. Sed tincidunt tincidunt nulla, id condimentum erat malesuada et. Ut finibus nisl vel velit elementum egestas. Curabitur pulvinar vitae arcu vitae pharetra. Ut sollicitudin vulputate pulvinar. Etiam et magna sit amet sem pulvinar pellentesque. Sed vehicula pretium ipsum, quis lacinia quam.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac ipsum a nisi consectetur efficitur. Vestibulum viverra, tortor ac euismod finibus, velit metus egestas nibh, a lacinia eros nisi vitae urna. Maecenas et ornare ante. Proin pulvinar felis dui. Fusce pretium eu massa sed efficitur. Sed eu lacinia sem, id ullamcorper diam. Aenean semper enim ullamcorper neque vestibulum ultrices.",
+          "title": "Termos de uso"
+        }
+      },
+      {
+        "name": "Política de privacidade",
+        "active": true,
+        "modal": {
+          "content": "texto de conteudo de politica de privacidade",
+          "title": "Termos de uso"
+        }
+      }
+    ]
+  },
+  {
+    "title": "Redes Sociais",
+    "active": true,
+    "items": [
+      {
+        "name": "Instagram",
+        "href": "https://www.instagram.com/sistemapositivodeensino",
+        "active": true
+      },
+      {
+        "name": "Facebook",
+        "href": "https://www.facebook.com/sistemapositivodeensinooficial",
+        "active": true
+      },
+      {
+        "name": "Youtube",
+        "active": true,
+        "href": "https://www.youtube.com/c/SistemaPositivodeEnsino"
+      },
+      {
+        "name": "LinkedIn",
+        "active": true,
+        "href": "https://www.linkedin.com/company/sistemapositivo"
+      }
+    ]
+  }
+]

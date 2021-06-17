@@ -5,26 +5,26 @@ import { Text, Stack } from '@psdhub/common/components'
 import { Icon } from '..'
 
 interface UploadMessageProps {
-  active: boolean
+  ativo: boolean
   reject: boolean
   callback: () => void
   preview?: Icon
 }
 
 const UploadMessage: React.FC<UploadMessageProps> = ({
-  active,
+  ativo,
   reject,
   preview,
   callback
 }) => {
   return (
     <>
-      {active && reject && (
+      {ativo && reject && (
         <Text d="block" mt="20px" textColor="red.500" fontWeight="400">
           A imagem deve ser em formato SVG.
         </Text>
       )}
-      {!active && !preview?.url && (
+      {!ativo && !preview?.url && (
         <Stack>
           <Text w="40%">
             Arraste e solte uma imagem para usar como ícone ou
