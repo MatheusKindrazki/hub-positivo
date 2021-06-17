@@ -9,6 +9,7 @@ import { Box } from '@psdhub/common/components'
 
 import { ReturnScripts } from '~/orchestrator'
 
+import { startApp, stopApp } from './utils/startStop'
 import communicatorMCF from './communicator'
 import LoadModules from '../../components/LoadModules'
 interface MicrofrontendProps {
@@ -34,13 +35,13 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
     const quantityScripts = mcf?.scripts?.map(i => i.type !== 'css')
 
     if (quantityScripts?.length === scriptsLength) {
-      window.loadMicrofrontend && window.loadMicrofrontend()
+      startApp()
 
       onLoaded()
     }
 
     return () => {
-      window.unLoadMicrofrontend && window?.unLoadMicrofrontend()
+      stopApp()
     }
   }, [mcf, onLoaded, scriptsLength])
 
