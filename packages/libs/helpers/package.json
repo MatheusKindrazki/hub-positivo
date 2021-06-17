@@ -1,7 +1,11 @@
 {
   "name": "@psdhub/helpers",
-  "version": "1.2.2",
-  "main": "src/index.ts",
+  "version": "1.2.4",
+  "main": "build/index.js",
+  "module": "build/index.es.js",
+  "files": [
+    "build"
+  ],
   "author": "matheuskindrazki",
   "description": "Communicator end-to-end between solutions and PSD hub",
   "license": "MIT",
@@ -10,12 +14,14 @@
   },
   "scripts": {
     "prebuild": "rm -rf build",
-    "build": "tsc -p .",
-    "postbuild": "cp package.json build && node scripts/update-json.js"
+    "build": "rollup -c"
   },
-  "files": [
-    "*"
-  ],
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "rollup": "^2.52.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.30.0"
+  }
 }
