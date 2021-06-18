@@ -11,6 +11,7 @@ import { preAuth } from '~/store/modules/authProduct/actions'
 import documentTitle from '@psdhub/common/utils/documentTitle'
 import createSlug from '@psdhub/common/utils/createSlug'
 import SearchInput from '@psdhub/common/components/Search'
+import Datepicker from '@psdhub/common/components/Datepicker'
 import {
   Box,
   Heading,
@@ -126,6 +127,7 @@ const Home: React.FC = () => {
           </Box>
         </Box>
       </Box>
+      <Datepicker />
       <Box as={Container} p="4" maxW="1400px" margin="0 auto">
         <SearchInput
           placeholder="Buscar soluções"
