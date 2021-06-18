@@ -4,7 +4,7 @@ export const SHARED = '__shared__'
 export const OBSERVERS = '__observers__'
 
 export type EventsArray<T = any> = Array<T>
-export type Observer<T = any> = (data: T | Array<T> | undefined) => void
+export type Observer<T = any> = (data: T | undefined) => void
 export type ObserversArray<T = any> = Array<Observer<T>>
 
 declare global {
@@ -76,30 +76,19 @@ export default class ObservableMCF<T = any> {
 
   dispatch = this.publish
 
-  subscribe(
-    observer: Observer<T>,
-    options: SubscriptionOptions = { latest: false, every: false }
-  ): void {
-    const { every, latest } = options
-
+  subscribe(data: Observer<T>): void {
     const events = this.events
-    const hasOptions = latest || every
-    if (hasOptions && events.length > 0) {
-      if (latest) {
-        const lastEvent = events[events.length - 1]
-        observer(lastEvent)
-      }
 
-      if (every) {
-        observer(events)
-      }
+    if (events.length > 0) {
+      const lastEvent = events[events.length - 1]
+      data(lastEvent)
     }
 
-    this.observers = this.observers.concat(observer)
+    this.observers = this.observers.concat(data)
   }
 
-  unsubscribe(observer: Observer<T>): void {
-    this.observers = this.observers.filter(obs => obs !== observer)
+  unsubscribe(data: Observer<T>): void {
+    this.observers = this.observers.filter(obs => obs !== data)
   }
 
   clear(): void {
