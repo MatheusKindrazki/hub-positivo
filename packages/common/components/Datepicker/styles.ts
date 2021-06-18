@@ -3,9 +3,18 @@ import styled from 'styled-components'
 import { Box } from '..'
 
 const Container = styled(Box)`
+  margin: 10px;
+
+  .react-datepicker__day--range-end {
+    border-radius: 0 8px 8px 0 !important;
+  }
+
+  .react-datepicker__day--range-start {
+    border-radius: 8px 0 0 8px !important;
+  }
+
   .datepicker-day {
-    border-left-radius: 8px;
-    border-right-radius: 8px;
+    border-radius: 0;
     font-family: 'TTNORMS';
     font-weight: 400;
     color: #3c3c3c;
@@ -17,11 +26,12 @@ const Container = styled(Box)`
   .react-datepicker__navigation-icon {
     ::before {
       border-color: ${({ theme }) => theme.colors.blue[500]};
+      top: 0.9375rem;
     }
   }
 
   .datepicker-day:hover {
-    border-radius: 8px;
+    border-radius: 0;
   }
 
   .datepicker-week-day {
@@ -33,7 +43,7 @@ const Container = styled(Box)`
   }
 
   .datepicker-calendar {
-    margin: 10px;
+    margin: auto;
     border: 1px solid #e5e5e5;
     border-radius: 0.5rem;
   }
