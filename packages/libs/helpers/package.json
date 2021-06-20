@@ -14,6 +14,7 @@
     "lib"
   ],
   "scripts": {
+    "postinstall": "npm run build",
     "prebuild": "rm -rf lib",
     "build": "rollup -c",
     "postbuild": "javascript-obfuscator ./lib --compact true"
