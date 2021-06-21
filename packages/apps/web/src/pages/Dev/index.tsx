@@ -74,7 +74,6 @@ const DevHub: React.FC = () => {
             defaultValue="http://localhost:3000/#/auth"
             mb="5"
           />
-
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>
       </Box>
