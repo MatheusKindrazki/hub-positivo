@@ -7,6 +7,7 @@ export { default as Input } from './Input'
 export { default as Button } from './Button'
 export { default as Select } from './Select'
 export { default as Dropzone } from './Dropzone'
+export { default as Datepicker } from './Datepicker'
 
 export const Form = chakra(UnForm)
 export type { FormHandles as FormProps }
