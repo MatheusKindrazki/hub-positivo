@@ -2,23 +2,29 @@ import React, { useEffect, useState, useMemo, memo, useCallback } from 'react'
 
 import { generate } from 'randomstring'
 
-import { postInformations } from '@psdhub/helpers'
+import { store } from '~/store'
+
+import { useTheme } from '@psdhub/common/layout/styles'
 import { Box } from '@psdhub/common/components'
 
 import { ReturnScripts } from '~/orchestrator'
 
+import { startApp, stopApp } from './utils/startStop'
+import communicatorMCF from './communicator'
 import LoadModules from '../../components/LoadModules'
 interface MicrofrontendProps {
   data: any // deverá ser any, pois a tipagem virá do componente filho
   onLoaded(): void
 }
 
-postInformations('@MCF: Dado vindo do hub!' as any)
-
 const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   onLoaded,
   data
 }) => {
+  const { colors } = useTheme()
+
+  communicatorMCF(store.getState(), colors)
+
   const [scriptsLength, setScriptsLength] = useState(0)
 
   const mcf = useMemo(() => {
@@ -26,17 +32,21 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   }, [data])
 
   useEffect(() => {
-    const quantityScripts = mcf?.scripts?.map(i => i.type !== 'css')
-
-    if (quantityScripts?.length === scriptsLength) {
-      window.loadMicrofrontend && window.loadMicrofrontend()
-
-      onLoaded()
-    }
-
     return () => {
-      window.unLoadMicrofrontend && window?.unLoadMicrofrontend()
+      stopApp()
     }
+  }, [])
+
+  useEffect(() => {
+    const quantityScripts = mcf?.scripts?.filter(i => i.type !== 'css')
+
+    if (window.loadedMicroFrontend) return
+
+    if (quantityScripts?.length !== scriptsLength) return
+
+    startApp()
+
+    onLoaded()
   }, [mcf, onLoaded, scriptsLength])
 
   const handleNumberOfScriptsLoaded = useCallback(() => {

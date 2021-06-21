@@ -6,7 +6,7 @@ const LogoOn: React.FC = () => {
   const { colors } = useTheme()
 
   return (
-    <svg width="60" height="118" viewBox="0 0 1045.49 543.6">
+    <svg width="50" height="50" viewBox="0 0 1045.49 543.6">
       <g id="Layer_2" data-name="Layer 2">
         <g id="Camada_1" data-name="Camada 1">
           <path

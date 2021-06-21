@@ -1,4 +1,4 @@
-import { postInformations, SendInfos } from '@psdhub/helpers'
+import { getInformations, SendInfos, PostFnProps } from '@psdhub/helpers'
 import createColors from '@psdhub/common/layout/styles/colors'
 
 import { SignInSuccess, LoggedData } from '../@types/auth'
@@ -17,12 +17,15 @@ function useSendAllInfos(e: SendAllProps): void {
 
   console.info('@HUB: Enviando dados para a solução')
 
+  const observable = getInformations as PostFnProps
+
   const prepareData: SendInfos = {
     reduced_token: e.reducedToken,
     token: e.data?.token as string,
     user_info: { ...(e.data?.info as SendInfos['user_info']) },
     logged_in: {
-      profile: e.loggedData.selected_profile.id,
+      profile: e.loggedData.selected_profile.id as string,
+      profileTheme: profile,
       school: {
         class: e.class as string,
         id: e.loggedData.selected_school.id,
@@ -32,7 +35,7 @@ function useSendAllInfos(e: SendAllProps): void {
     primary_color: colors.blue
   }
 
-  postInformations(prepareData)
+  observable.publish(prepareData)
 }
 
 export { useSendAllInfos as sendAllInfos }
