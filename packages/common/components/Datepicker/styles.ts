@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Box } from '..'
 const Container = styled(Box)`
   /* REGRAS PARA FUNCIONAMENTO DE BORDER-RADIUS DINÂMICOS */
-  .react-datepicker__month:not(:hover) {
+  all .react-datepicker__month:not(:hover) {
     .react-datepicker__day--keyboard-selected {
       &:not(.react-datepicker__day--range-end) {
         border-radius: 0.5rem !important;
