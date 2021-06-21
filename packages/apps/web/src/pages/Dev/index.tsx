@@ -2,7 +2,7 @@ import React, { useRef, useCallback, useState } from 'react'
 
 import { store } from '~/store'
 
-import PerPage from '@psdhub/common/components/PerPage'
+import NavColumn from '@psdhub/common/components/NavColumn'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
@@ -76,12 +76,7 @@ const DevHub: React.FC = () => {
             mb="5"
           />
 
-          <PerPage
-            title="Itens por página"
-            itens={[10, 20, 30, 40, 50]}
-            currentItem={10}
-            onClick={() => console.log('teste')}
-          />
+          <NavColumn>Exibindo X de X colunas</NavColumn>
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>
       </Box>
