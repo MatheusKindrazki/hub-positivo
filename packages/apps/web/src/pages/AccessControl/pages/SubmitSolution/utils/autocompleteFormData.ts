@@ -71,7 +71,7 @@ const autocomplete = (
     idCategoria: solution?.category,
     tipoRenderizacao,
     padrao,
-    schools: [...schools],
+    schools: schools,
     profiles: profiles
   })
 }
