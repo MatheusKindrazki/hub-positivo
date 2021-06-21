@@ -33,10 +33,10 @@ import { getValidationErrors, ValidationError } from '~/validators'
 import { formatFormData } from './utils/formatFormData'
 import createOptions from './utils/createOptions'
 import autocompleteFormData from './utils/autocompleteFormData'
+import SchoolList, { SchoolListHandler } from './SchoolList'
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
 import { selects } from './formSelects'
 import getSolutionBySlug from '../../utils/getSolutionBySlug'
-import SchoolList, { SchoolListHandler } from '../../components/SchoolList'
 
 const SubmitSolution: React.FC = () => {
   const [solution, setSolution] = useState<Solution>()

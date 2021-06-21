@@ -3,7 +3,7 @@ import { Option } from '~/store/modules/solutions/types'
 import { FormProps } from '@psdhub/common/components/Form'
 
 import { schoolRestrictionRules, targetOptions } from './utils/createOptions'
-import { SchoolListHandler } from '../../components/SchoolList'
+import { SchoolListHandler } from './SchoolList'
 
 interface Options {
   [key: string]: Option[]
