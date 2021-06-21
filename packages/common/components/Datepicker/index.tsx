@@ -30,11 +30,11 @@ const Datepicker: React.FC<Props> = ({ ...props }) => {
         monthsShown={2}
         selectsRange
         locale={pt}
-        dateFormat="Pp"
         inline
         dayClassName={() => 'datepicker-day'}
         weekDayClassName={() => 'datepicker-week-day'}
         calendarClassName={'datepicker-calendar'}
+        formatWeekDay={nameOfDay => nameOfDay.substr(0, 1).toUpperCase()}
       />
     </Container>
   )
