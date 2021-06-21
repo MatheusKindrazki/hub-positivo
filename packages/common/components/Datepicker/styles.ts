@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 import { Box } from '..'
-
 const Container = styled(Box)`
+  margin: 0.625rem;
+
   .react-datepicker__day {
     border-radius: 0;
     font-family: 'TTNORMS';
@@ -39,9 +40,7 @@ const Container = styled(Box)`
 
   .react-datepicker__day--selected {
     border-radius: 0.5rem;
-    /* &:hover {
-      border-radius: 0.5rem !important;
-    } */
+
     .react-datepicker__day--selecting-range-start {
       border-radius: 0.5rem 0 0 0.5rem !important;
     }
@@ -63,7 +62,7 @@ const Container = styled(Box)`
   }
 
   .react-datepicker__day--outside-month {
-    color: ${({ theme }) => theme.colors.gray[500]};
+    color: #7a7a7a;
   }
 
   .react-datepicker__day:hover {
@@ -76,12 +75,12 @@ const Container = styled(Box)`
     height: 2.5rem;
     text-align: center;
     line-height: 2.5rem;
-    color: ${({ theme }) => theme.colors.gray[500]};
+    color: #7a7a7a;
   }
 
   .datepicker-calendar {
     margin: auto;
-    border: 0.0625rem solid ${({ theme }) => theme.colors.gray[400]};
+    border: 0.0625rem solid #e5e5e5;
     border-radius: 0.5rem;
   }
 
@@ -93,7 +92,7 @@ const Container = styled(Box)`
   .react-datepicker__current-month {
     font-family: 'TTNORMS';
     font-weight: 700;
-    color: ${({ theme }) => theme.colors.black[600]};
+    color: #3c3c3c;
     font-size: 1rem;
   }
 `
