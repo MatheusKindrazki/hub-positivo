@@ -23,7 +23,7 @@ const Datepicker: React.FC<Props> = ({ ...props }) => {
   }
 
   return (
-    <Container>
+    <Container mb="0.5rem">
       <ReactDatePicker
         {...props}
         selected={startDate}
