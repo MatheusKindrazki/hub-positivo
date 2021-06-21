@@ -17,6 +17,8 @@ const Datepicker: React.FC<Props> = ({ name, label }) => {
 
   const { fieldName, registerField, error } = useField(name)
 
+  console.log({ error })
+
   useEffect(() => {
     registerField({
       name: fieldName,

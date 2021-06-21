@@ -18,8 +18,8 @@ type DatepickerProps = Partial<ReactDatePickerProps>
 
 const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
   (props, ref) => {
-    const [start, setStart] = useState(new Date())
-    const [end, setEnd] = useState(new Date())
+    const [start, setStart] = useState<Date | null>(null)
+    const [end, setEnd] = useState<Date | null>(null)
 
     const [isDesktop] = useMediaQuery('(min-width: 615px)')
     const onChange = (dates: any) => {
@@ -35,8 +35,8 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
             return { start, end }
           }
         },
-        setData: ({ start, end }) => {
-          if (start && end) {
+        setData: range => {
+          if (range?.start && range?.end) {
             setStart(start)
             setEnd(end)
           }
