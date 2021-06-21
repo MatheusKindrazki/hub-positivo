@@ -11,9 +11,18 @@ const Container = styled(Box)`
 
   .react-datepicker__day--range-start {
     border-radius: 8px 0 0 8px !important;
+    transition: border-radius 0.1s ease-in-out;
   }
 
-  .datepicker-day {
+  .react-datepicker__day--range-start.react-datepicker__day--range-end {
+    border-radius: 8px !important;
+  }
+
+  .react-datepicker__week {
+    margin: 0.05rem;
+  }
+
+  .react-datepicker__day {
     border-radius: 0;
     font-family: 'TTNORMS';
     font-weight: 400;
@@ -30,16 +39,21 @@ const Container = styled(Box)`
     }
   }
 
-  .datepicker-day:hover {
+  .react-datepicker__day--outside-month {
+    color: #7a7a7a;
+  }
+
+  .react-datepicker__day:hover {
     border-radius: 0;
   }
 
-  .datepicker-week-day {
+  .react-datepicker__day-name {
     margin: 0;
     width: 2.5rem;
     height: 2.5rem;
     text-align: center;
     line-height: 2.5rem;
+    color: #7a7a7a;
   }
 
   .datepicker-calendar {

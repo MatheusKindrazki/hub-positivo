@@ -9,6 +9,7 @@ import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker'
 import pt from 'date-fns/locale/pt-BR'
 
 import 'react-datepicker/dist/react-datepicker.css'
+import { useMediaQuery } from '@psdhub/common/hooks'
 
 import Container from './styles'
 
@@ -24,6 +25,8 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
   (props, ref) => {
     const [start, setStart] = useState(new Date())
     const [end, setEnd] = useState(new Date())
+
+    const [isDesktop] = useMediaQuery('(min-width: 615px)')
     const onChange = (dates: any) => {
       const [start, end] = dates
       setStart(start)
@@ -58,12 +61,10 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
           onChange={onChange}
           startDate={start}
           endDate={end}
-          monthsShown={2}
           selectsRange
           locale={pt}
           inline
-          dayClassName={() => 'datepicker-day'}
-          weekDayClassName={() => 'datepicker-week-day'}
+          monthsShown={isDesktop ? 2 : 1}
           calendarClassName={'datepicker-calendar'}
           formatWeekDay={nameOfDay => nameOfDay.substr(0, 1).toUpperCase()}
         />
