@@ -17,7 +17,8 @@ import {
   Input,
   Button as FormButton,
   Select,
-  Dropzone
+  Dropzone,
+  Datepicker
 } from '@psdhub/common/components/Form'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Box, Stack, Button, BarLoader } from '@psdhub/common/components'
@@ -170,6 +171,8 @@ const SubmitSolution: React.FC = () => {
                 placeholder="Insira o Link de acesso a solução"
               />
             </Box>
+
+            <Datepicker name="datas" label="datas" />
 
             <Box>
               <Dropzone

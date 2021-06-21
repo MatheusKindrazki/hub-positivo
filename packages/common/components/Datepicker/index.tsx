@@ -14,7 +14,9 @@ export interface DatepickerHandlers {
   setData(range: DateRange): void
 }
 
-type DatepickerProps = Partial<ReactDatePickerProps>
+interface DatepickerProps extends Partial<ReactDatePickerProps> {
+  error?: string
+}
 
 const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
   (props, ref) => {

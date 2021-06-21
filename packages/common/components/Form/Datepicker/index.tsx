@@ -17,8 +17,6 @@ const Datepicker: React.FC<Props> = ({ name, label }) => {
 
   const { fieldName, registerField, error } = useField(name)
 
-  console.log({ error })
-
   useEffect(() => {
     registerField({
       name: fieldName,
@@ -36,7 +34,7 @@ const Datepicker: React.FC<Props> = ({ name, label }) => {
           {label}
         </FormLabel>
       )}
-      <DatepickerHub ref={datepickerRef} />
+      <DatepickerHub ref={datepickerRef} error={error} />
       {error && <Text color="red.500">{error}</Text>}
     </FormControl>
   )
