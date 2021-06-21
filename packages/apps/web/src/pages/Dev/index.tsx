@@ -2,14 +2,13 @@ import React, { useRef, useCallback, useState } from 'react'
 
 import { store } from '~/store'
 
-import Pagination from '@psdhub/common/components/Pagination'
+import Tag from '@psdhub/common/components/Tag'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
 
 const DevHub: React.FC = () => {
   const [loading, setLoading] = useState(false)
-  const [page, setPage] = useState(1)
 
   const formRef = useRef<FormProps>(null)
 
@@ -77,8 +76,10 @@ const DevHub: React.FC = () => {
             mb="5"
           />
 
-          <Pagination currentPage={page} goToPage={setPage} totalPages={100} />
-
+          <Tag> Lorem Ipsum Dolor</Tag>
+          <Tag onClose={() => console.log('fechou')}>
+            Lorem Ipsum Dolor asd asd asd asd asd as da sdasd
+          </Tag>
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>
       </Box>
