@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useState
-} from 'react'
+import React, { forwardRef, useImperativeHandle, useState } from 'react'
 
 import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker'
 import pt from 'date-fns/locale/pt-BR'
@@ -33,8 +28,6 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
       setEnd(end)
     }
 
-    useEffect(() => {}, [start, end])
-
     useImperativeHandle(ref, () => {
       return {
         getData: () => {
@@ -43,7 +36,6 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
           }
         },
         setData: ({ start, end }) => {
-          console.log(start, end)
           if (start && end) {
             setStart(start)
             setEnd(end)
@@ -57,8 +49,8 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
         <ReactDatePicker
           {...props}
           ref={ref as any}
-          selected={start}
           onChange={onChange}
+          selected={start}
           startDate={start}
           endDate={end}
           selectsRange
