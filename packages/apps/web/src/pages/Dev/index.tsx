@@ -2,12 +2,14 @@ import React, { useRef, useCallback, useState } from 'react'
 
 import { store } from '~/store'
 
+import Pagination from '@psdhub/common/components/Pagination'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
 
 const DevHub: React.FC = () => {
   const [loading, setLoading] = useState(false)
+  const [page, setPage] = useState(1)
 
   const formRef = useRef<FormProps>(null)
 
@@ -74,6 +76,8 @@ const DevHub: React.FC = () => {
             defaultValue="http://localhost:3000/#/auth"
             mb="5"
           />
+
+          <Pagination currentPage={page} goToPage={setPage} totalPages={100} />
 
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>
