@@ -52,7 +52,7 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
           {...props}
           ref={ref as any}
           onChange={onChange}
-          selected={start}
+          selected={null}
           startDate={start}
           endDate={end}
           selectsRange
