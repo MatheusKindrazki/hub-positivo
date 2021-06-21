@@ -5,15 +5,7 @@ import { Box } from '..'
 const Container = styled(Box)`
   margin: 10px;
 
-  .react-datepicker__day--range-end {
-    border-radius: 0 8px 8px 0 !important;
-  }
-
-  .react-datepicker__day--range-start {
-    border-radius: 8px 0 0 8px !important;
-  }
-
-  .datepicker-day {
+  .react-datepicker__day {
     border-radius: 0;
     font-family: 'TTNORMS';
     font-weight: 400;
@@ -23,6 +15,10 @@ const Container = styled(Box)`
     margin: 0;
   }
 
+  .react-datepicker__day:hover {
+    border-radius: 0;
+  }
+
   .react-datepicker__navigation-icon {
     ::before {
       border-color: ${({ theme }) => theme.colors.blue[500]};
@@ -30,11 +26,8 @@ const Container = styled(Box)`
     }
   }
 
-  .datepicker-day:hover {
-    border-radius: 0;
-  }
-
-  .datepicker-week-day {
+  .react-datepicker__day-name {
+    color: #7a7a7a;
     margin: 0;
     width: 2.5rem;
     height: 2.5rem;
@@ -48,9 +41,15 @@ const Container = styled(Box)`
     border-radius: 0.5rem;
   }
 
-  .react-datepicker__day--in-range {
-    color: white;
-    background: ${({ theme }) => theme.colors.blue[500]};
+  .react-datepicker__week {
+    .react-datepicker__day--in-range {
+      background: ${({ theme }) => theme.colors.blue[500]};
+      color: white;
+    }
+
+    div &:first {
+      background: red !important;
+    }
   }
 
   .react-datepicker__header {
