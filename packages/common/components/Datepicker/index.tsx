@@ -47,7 +47,7 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
     })
 
     return (
-      <Container mb="0.5rem">
+      <Container mb="0.5rem" minW={isDesktop ? '38.4375rem' : '19.25rem'}>
         <ReactDatePicker
           {...props}
           ref={ref as any}
