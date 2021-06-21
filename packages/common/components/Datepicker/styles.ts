@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { Box } from '..'
 const Container = styled(Box)`
   /* REGRAS PARA FUNCIONAMENTO DE BORDER-RADIUS DINÂMICOS */
-  all .react-datepicker__month:not(:hover) {
+  .datepicker-calendar:not(:hover) {
     .react-datepicker__day--keyboard-selected {
-      &:not(.react-datepicker__day--range-end) {
+      &:not(.react-datepicker__day--range-end, .react-datepicker__day--range-start) {
         border-radius: 0.5rem !important;
       }
     }
@@ -114,6 +114,7 @@ const Container = styled(Box)`
 
   .react-datepicker__day--today {
     &:not(.react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range) {
+      background: white;
       color: ${({ theme }) => theme.colors.blue[500]};
       height: 2.5rem;
       &:after {
