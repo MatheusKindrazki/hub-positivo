@@ -4,7 +4,7 @@ import { useLocation } from 'react-router'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Solution } from '~/store/modules/solutions/types'
+import { Solution, Option } from '~/store/modules/solutions/types'
 import {
   accessControlPutRequest,
   accessControlPostRequest
@@ -36,7 +36,7 @@ import autocompleteFormData from './utils/autocompleteFormData'
 import { ModalDeleteSolution, ModalHandler } from './ModalDelete'
 import { selects } from './formSelects'
 import getSolutionBySlug from '../../utils/getSolutionBySlug'
-import SchoolSelector from '../../components/SchoolSelector'
+import SchoolList, { SchoolListHandler } from '../../components/SchoolList'
 
 const SubmitSolution: React.FC = () => {
   const [solution, setSolution] = useState<Solution>()
@@ -71,8 +71,10 @@ const SubmitSolution: React.FC = () => {
 
   const formRef = useRef<FormProps>(null)
   const modalRef = useRef<ModalHandler>(null)
+  const schoolListRef = useRef<SchoolListHandler>(null)
 
   useEffect(() => {
+    console.log('schools ref', formRef.current?.getFieldRef('schools'))
     if (!categoryArr || categoryArr?.length === 0) {
       return history.push('/controle-de-acessos')
     }
@@ -189,12 +191,23 @@ const SubmitSolution: React.FC = () => {
               wrap="wrap"
               mt="5"
             >
-              {selects(selectsOptions, formRef).map(select => {
+              {selects(selectsOptions, formRef, schoolListRef).map(select => {
+                if (select.name === 'schools') {
+                  return (
+                    <Box key={select.name} w={select.w} ml="0px !important">
+                      <Select mb="4" variant="secondary" {...select} />
+                      <SchoolList
+                        ref={schoolListRef}
+                        onDelete={(options: Option[]) => {
+                          formRef.current?.setFieldValue('schools', options)
+                        }}
+                      />
+                    </Box>
+                  )
+                }
+
                 return (
                   <Box key={select.name} w={select.w} ml="0px !important">
-                    {select.name === 'schools' && (
-                      <SchoolSelector mb="4" variant="secondary" {...select} />
-                    )}
                     <Select mb="4" variant="secondary" {...select} />
                   </Box>
                 )

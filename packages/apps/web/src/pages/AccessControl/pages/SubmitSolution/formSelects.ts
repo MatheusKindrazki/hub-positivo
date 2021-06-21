@@ -3,6 +3,7 @@ import { Option } from '~/store/modules/solutions/types'
 import { FormProps } from '@psdhub/common/components/Form'
 
 import { schoolRestrictionRules, targetOptions } from './utils/createOptions'
+import { SchoolListHandler } from '../../components/SchoolList'
 
 interface Options {
   [key: string]: Option[]
@@ -35,7 +36,8 @@ const handleSelectedOption = (
 
 export const selects = (
   options: Options,
-  ref: React.RefObject<FormProps>
+  ref: React.RefObject<FormProps>,
+  schoolList: React.RefObject<SchoolListHandler>
 ): Select[] => {
   const { categories, schools, profiles } = options
   return [
@@ -74,9 +76,13 @@ export const selects = (
       placeholder: 'Selecione',
       options: schools,
       label: 'Escolas',
-      onChange: option =>
-        console.log(option, ref.current?.getFieldValue('schools')),
       isMulti: true,
+      onChange: options => {
+        if (options?.length) {
+          return schoolList.current?.setValue(options)
+        }
+        schoolList.current?.setValue([])
+      },
       w: '100%'
     }
   ]
