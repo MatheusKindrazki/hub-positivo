@@ -9,9 +9,10 @@ import { forwardRef } from '@chakra-ui/react'
 import { secondary } from '../styles'
 import { prefixClass } from '../options'
 
-export type PropsSelect = Props & {
+export type PropsSelect<T> = Props & {
   inputHeight?: number
   styles?: Props['styles']
+  defaultValue?: T
   error?: boolean
   isMulti?: boolean
 }

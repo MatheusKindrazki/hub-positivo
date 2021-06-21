@@ -4,15 +4,19 @@ import { forwardRef } from '@chakra-ui/react'
 
 import { OptionTreeViewProps } from './components/MenuList/types'
 import MenuList from './components/MenuList'
-import SelectHub, { PropsSelect } from '../Select'
+import { PropsSelect } from '../Select/variants/Normal'
+import options from '../Select/options'
 
-type PropsSelectOmitOptions = Exclude<PropsSelect, 'options'>
-export interface Props extends PropsSelectOmitOptions {
+export type OmitDefaultValue = Omit<PropsSelect<any>, 'defaultValue'>
+export interface Props extends OmitDefaultValue {
   options?: OptionTreeViewProps[]
-  variant: Exclude<PropsSelectOmitOptions['variant'], 'checkbox'>
+  defaultValue?: string[]
+  variant: 'normal' | 'primary' | 'secondary'
 }
 
 const Select = forwardRef<Props, 'select'>((props, ref) => {
+  const SelectHub = options[props.variant]
+
   return (
     <SelectHub
       defaultMenuIsOpen

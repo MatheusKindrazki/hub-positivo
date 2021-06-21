@@ -26,9 +26,10 @@ export type OptionCheckboxProps = React.ComponentType<
   OptionProps<Values, false, GroupTypeBase<Values>>
 >
 
-export type PropsSelect = Props & {
+export type PropsSelect<T> = Props & {
   inputHeight?: number
   styles?: Props['styles']
+  defaultValue?: T
   error?: boolean
   isMulti?: boolean
 }

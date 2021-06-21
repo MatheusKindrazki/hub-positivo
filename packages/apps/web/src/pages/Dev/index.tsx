@@ -78,7 +78,7 @@ const DevHub: React.FC = () => {
 
           <SelectTree
             variant="normal"
-            defaultValue={{ label: 'Brasil de mais', value: 'brasil' }}
+            defaultValue={['olamundo']}
             onChange={e => console.log(e)}
             options={[
               { label: 'Brasil de mais', value: 'brasil' },
