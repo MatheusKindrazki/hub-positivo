@@ -107,8 +107,28 @@ const Container = styled(Box)`
   .react-datepicker__current-month {
     font-family: 'TTNORMS';
     font-weight: 700;
-    color: ${({ theme }) => theme.colors.black[600]};
+    color: ${({ theme }) => theme.colors.gray[600]};
     font-size: 1rem;
+    text-transform: capitalize;
+  }
+
+  .react-datepicker__day--today {
+    &:not(.react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range) {
+      color: ${({ theme }) => theme.colors.blue[500]};
+      height: 2.5rem;
+      &:after {
+        width: 0.25rem;
+        height: 0.25rem;
+        border-radius: 50%;
+        content: '';
+        justify-content: center;
+        display: block;
+        left: 45%;
+        bottom: 0.625rem;
+        position: relative;
+        background: ${({ theme }) => theme.colors.blue[500]};
+      }
+    }
   }
 `
 
