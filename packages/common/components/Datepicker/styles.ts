@@ -6,7 +6,7 @@ const Container = styled(Box)`
   .react-datepicker__day {
     border-radius: 0;
     &:not(.react-datepicker__day--in-range, .react-datepicker__day--in-selecting-range) {
-      border-radius: 0.5rem;
+      border-radius: 0.5rem 0 0 0.5rem !important;
     }
     font-family: 'TTNORMS';
     font-weight: 400;
