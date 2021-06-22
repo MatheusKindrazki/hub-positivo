@@ -100,6 +100,7 @@ const Container = styled(Box)`
   .datepicker-calendar {
     border: 0.0625rem solid #7a7a7a;
     padding: 1px;
+    border-radius: 0.5rem;
   }
 
   .react-datepicker__header {
