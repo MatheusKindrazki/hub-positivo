@@ -67,11 +67,14 @@ const Container = styled(Box)`
   .react-datepicker__week {
     margin: 0.05rem;
   }
+  .react-datepicker__navigation {
+    width: 4.0625rem;
+  }
 
   .react-datepicker__navigation-icon {
     ::before {
+      top: 1.3rem;
       border-color: ${({ theme }) => theme.colors.blue[500]};
-      top: 0.9375rem;
     }
   }
 
@@ -88,20 +91,21 @@ const Container = styled(Box)`
   .react-datepicker__day-name {
     margin: 0;
     width: 2.5rem;
-    height: 2.5rem;
+    height: 1rem;
     text-align: center;
-    line-height: 2.5rem;
+    line-height: 1rem;
     color: ${({ theme }) => theme.colors.gray[500]};
   }
 
   .datepicker-calendar {
-    border: 0.0625rem solid #e5e5e5;
-    border-radius: 0.5rem;
+    border: 0.0625rem solid #7a7a7a;
+    padding: 1px;
   }
 
   .react-datepicker__header {
     border: 0;
     background: white;
+    border-radius: 0;
   }
 
   .react-datepicker__current-month {
@@ -110,6 +114,7 @@ const Container = styled(Box)`
     color: ${({ theme }) => theme.colors.gray[600]};
     font-size: 1rem;
     text-transform: capitalize;
+    margin-bottom: 1rem;
   }
 
   .react-datepicker__day--today {
@@ -130,6 +135,10 @@ const Container = styled(Box)`
         background: ${({ theme }) => theme.colors.blue[500]};
       }
     }
+  }
+
+  .react-datepicker__month-container {
+    padding: 0.5rem;
   }
 `
 

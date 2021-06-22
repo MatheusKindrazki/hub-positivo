@@ -23,7 +23,7 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
     const [start, setStart] = useState<Date | null>(null)
     const [end, setEnd] = useState<Date | null>(null)
 
-    const [isDesktop] = useMediaQuery('(min-width: 615px)')
+    const [isDesktop] = useMediaQuery('(min-width: 620px)')
     const onChange = (dates: any) => {
       const [start, end] = dates
       setStart(start)
@@ -47,7 +47,7 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
     })
 
     return (
-      <Container mb="0.5rem" minW={isDesktop ? '38.4375rem' : '19.25rem'}>
+      <Container minW={isDesktop ? '40.625rem' : '19.25rem'}>
         <ReactDatePicker
           {...props}
           ref={ref as any}
@@ -61,6 +61,7 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
           monthsShown={isDesktop ? 2 : 1}
           calendarClassName={'datepicker-calendar'}
           formatWeekDay={nameOfDay => nameOfDay.substr(0, 1).toUpperCase()}
+          dateFormatCalendar="MMMM"
         />
       </Container>
     )
