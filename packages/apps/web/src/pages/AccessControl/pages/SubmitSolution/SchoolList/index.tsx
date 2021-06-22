@@ -1,9 +1,19 @@
-import React, { useState, forwardRef, useImperativeHandle } from 'react'
+import React, {
+  useState,
+  forwardRef,
+  useImperativeHandle,
+  useCallback
+} from 'react'
 
 import { Option } from '~/store/modules/solutions/types'
 
-import { X } from '@psdhub/common/components/Icons'
-import { Box, Stack, Text } from '@psdhub/common/components'
+import { useDisclosure } from '@psdhub/common/hooks'
+import { Box, Button, Text } from '@psdhub/common/components'
+
+import { SlideFade } from '@chakra-ui/react'
+
+import { Container } from './styles'
+import AnimatedFade from './components/AnimatedFade'
 
 export interface SchoolListHandler {
   setValue: (value: Option[]) => void
@@ -27,35 +37,53 @@ const SchoolList = forwardRef<SchoolListHandler, SchoolListProps>(
       }
     })
 
+    const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
+
+    const deleteOne = useCallback(
+      (index: number) => {
+        const schools = [...selectedSchools]
+        schools.splice(index, 1)
+        setSelectedSchools(schools)
+        onDelete(schools)
+      },
+      [onDelete, selectedSchools]
+    )
+
+    const deleteAll = useCallback(() => {
+      onClose()
+      setTimeout(() => {
+        setSelectedSchools([])
+        onDelete([])
+        onOpen()
+      }, 300)
+    }, [onClose, onDelete, onOpen])
+
     return (
-      <Box mb="1rem" borderTopRadius="6px" borderBottomRadius="6px">
-        {!!selectedSchools.length &&
-          selectedSchools.map((school, i) => (
-            <Stack
-              p="1rem"
-              backgroundColor="white"
-              key={school.label}
-              w="100%"
-              flexWrap="wrap"
-              flexDir="row"
-              justifyContent="space-between"
-              borderBottom="solid 1px gray"
-            >
-              <Text color="gray.600">{school.label}</Text>
-              <Box
-                color="gray.500"
-                alignSelf="center"
-                justifySelf="flex-end"
-                as={X}
-                onClick={() => {
-                  const schools = [...selectedSchools]
-                  schools.splice(i, 1)
-                  setSelectedSchools(schools)
-                  onDelete(schools)
-                }}
-              />
-            </Stack>
-          ))}
+      <Box d="flex" flexDir="column">
+        <SlideFade offsetY="0" offsetX="-300px" in={isOpen}>
+          {!!selectedSchools.length &&
+            selectedSchools.map((school, i) => (
+              <Container key={school.value} boxShadow="md">
+                <AnimatedFade onDelete={() => deleteOne(i)}>
+                  <Text color="gray.600">{school.label}</Text>
+                </AnimatedFade>
+              </Container>
+            ))}
+        </SlideFade>
+        {!!selectedSchools.length && (
+          <Button
+            py="1.5rem"
+            mt="1rem"
+            alignSelf="flex-end"
+            variant="ghost"
+            textTransform="uppercase"
+            color="blue.500"
+            onClick={deleteAll}
+            _hover={{ background: 'gray.400' }}
+          >
+            Apagar tudo
+          </Button>
+        )}
       </Box>
     )
   }
