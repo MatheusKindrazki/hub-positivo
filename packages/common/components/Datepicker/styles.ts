@@ -5,7 +5,6 @@ import { Box } from '..'
 const Container = styled(Box)`
   /* REGRAS PARA FUNCIONAMENTO DE BORDER-RADIUS DINÂMICOS */
   .react-datepicker__day {
-    color: ${({ theme }) => theme.colors.gray[600]};
     border-radius: 0;
     &:not(.react-datepicker__day--in-range, .react-datepicker__day--in-selecting-range) {
       border-radius: 0.5rem 0 0 0.5rem !important;
@@ -42,27 +41,20 @@ const Container = styled(Box)`
   }
   .react-datepicker__navigation {
     width: 4.0625rem;
+    height: 3rem;
   }
 
   .react-datepicker__navigation-icon {
     ::before {
-      top: 1.3rem;
+      top: 0.9rem;
       border-color: ${({ theme }) => theme.colors.blue[500]};
+      border-radius: 2px;
+      border-width: 2px 2px 0 0;
     }
   }
 
   .react-datepicker__day:hover {
     border-radius: 0;
-  }
-
-  .react-datepicker__day--keyboard-selected {
-    &:not(.react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range) {
-      background: white;
-      color: ${({ theme }) => theme.colors.gray[600]};
-      &: hover {
-        background: #f0f0f0;
-      }
-    }
   }
 
   .react-datepicker__day--outside-month {
@@ -79,7 +71,7 @@ const Container = styled(Box)`
   }
 
   .datepicker-calendar {
-    border: 0.0625rem solid ${({ theme }) => theme.colors.gray[400]};
+    border: 0.0625rem solid ${({ theme }) => theme.colors.gray[500]};
     padding: 1px;
     border-radius: 0.5rem;
   }
