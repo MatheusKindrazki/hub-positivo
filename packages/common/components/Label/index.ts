@@ -1,5 +1,5 @@
 import { FormLabel, FormLabelProps } from '@chakra-ui/react'
 
-export { FormLabelProps }
+export type { FormLabelProps }
 
 export default FormLabel

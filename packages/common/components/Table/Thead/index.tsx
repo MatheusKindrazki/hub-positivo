@@ -6,6 +6,6 @@ const Thead: React.FC<TableHeadProps> = ({ children, ...rest }) => {
   return <TableHead {...rest}>{children}</TableHead>
 }
 
-export { TableHeadProps }
+export type { TableHeadProps }
 
 export default Thead

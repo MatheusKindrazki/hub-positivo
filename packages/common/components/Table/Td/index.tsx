@@ -6,6 +6,6 @@ const Td: React.FC<TableCellProps> = ({ children, ...rest }) => {
   return <TableData {...rest}>{children}</TableData>
 }
 
-export { TableCellProps }
+export type { TableCellProps }
 
 export default Td

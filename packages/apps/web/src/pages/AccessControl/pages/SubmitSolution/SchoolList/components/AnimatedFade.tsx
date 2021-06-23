@@ -20,6 +20,7 @@ const AnimatedFade: React.FC<AnimatedFadeProps> = ({ children, onDelete }) => {
       <Box display="flex" justifyContent="space-between">
         {children}
         <DeleteButton
+          data-testid="delete-btn"
           justifySelf="flex-end"
           size="20px"
           as={X}
