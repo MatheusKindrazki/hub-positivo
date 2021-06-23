@@ -3,8 +3,9 @@ import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker'
 import pt from 'date-fns/locale/pt-BR'
 
-import 'react-datepicker/dist/react-datepicker.css'
 import { useMediaQuery } from '@psdhub/common/hooks'
+
+import 'react-datepicker/dist/react-datepicker.css'
 
 import Container from './styles'
 
@@ -24,6 +25,7 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
     const [end, setEnd] = useState<Date | null>(null)
 
     const [isDesktop] = useMediaQuery('(min-width: 620px)')
+
     const onChange = (dates: any) => {
       const [start, end] = dates
       setStart(start)
@@ -38,10 +40,9 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
           }
         },
         setData: range => {
-          console.log({ range })
-          if (range?.start && range?.end) {
-            setStart(range?.start)
-            setEnd(range?.end)
+          if (range.start && range.end) {
+            setStart(range.start)
+            setEnd(range.end)
           }
         }
       }
