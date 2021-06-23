@@ -34,7 +34,7 @@ const Select = forwardRef<PropsSelect, 'select'>((props, ref) => {
     return <RenderSelect components={{ GroupHeading }} ref={ref} {...props} />
   }
 
-  return <RenderSelect defaultMenuIsOpen={true} ref={ref} {...props} />
+  return <RenderSelect ref={ref} {...props} />
 })
 
 export default Select
