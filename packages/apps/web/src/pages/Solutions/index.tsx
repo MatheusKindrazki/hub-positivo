@@ -35,14 +35,16 @@ const Solutions: React.FC = () => {
 
   return (
     <Container className="hub-solution-container">
-      <Box className="hub-login-container">
+      <Box
+        d={!loading ? 'none!important' : 'block'}
+        className="hub-login-container"
+      >
         <Loading loading={loading} />
       </Box>
       {productData && (
         <RenderPage
           data={productData}
           onLoaded={() => {
-            console.log('REMOVENDO LOADING')
             setLoading(false)
           }}
         />
