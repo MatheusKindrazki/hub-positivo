@@ -5,6 +5,7 @@ import { Box } from '..'
 const Container = styled(Box)`
   /* REGRAS PARA FUNCIONAMENTO DE BORDER-RADIUS DINÂMICOS */
   .react-datepicker__day {
+    color: ${({ theme }) => theme.colors.gray[600]};
     border-radius: 0;
     &:not(.react-datepicker__day--in-range, .react-datepicker__day--in-selecting-range) {
       border-radius: 0.5rem 0 0 0.5rem !important;
@@ -54,6 +55,16 @@ const Container = styled(Box)`
     border-radius: 0;
   }
 
+  .react-datepicker__day--keyboard-selected {
+    &:not(.react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range) {
+      background: white;
+      color: ${({ theme }) => theme.colors.gray[600]};
+      &: hover {
+        background: #f0f0f0;
+      }
+    }
+  }
+
   .react-datepicker__day--outside-month {
     color: ${({ theme }) => theme.colors.gray[500]};
   }
@@ -68,7 +79,7 @@ const Container = styled(Box)`
   }
 
   .datepicker-calendar {
-    border: 0.0625rem solid ${({ theme }) => theme.colors.gray[500]};
+    border: 0.0625rem solid ${({ theme }) => theme.colors.gray[400]};
     padding: 1px;
     border-radius: 0.5rem;
   }
