@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-// import 'react-datepicker/dist/react-datepicker.css'
 import { Box } from '..'
 const Container = styled(Box)`
   /* REGRAS PARA FUNCIONAMENTO DE BORDER-RADIUS DINÂMICOS */
