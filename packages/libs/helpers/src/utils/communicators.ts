@@ -1,28 +1,15 @@
-import { InformationsProps, SendInfos } from './types'
+import { SendInfos, InformationsProps } from './types'
+import ObservableMCF from './observer'
 
-export const getCommunicatorName = '@psdhub:informations:get'
-export const postCommunicatorName = '@psdhub:informations:post'
+const observable = new ObservableMCF<SendInfos>('hub-infos')
 
-const getInformations = <T>(data: InformationsProps): void | T => {
-  const getEvent = new CustomEvent(getCommunicatorName)
-
-  document.dispatchEvent(getEvent)
-
-  document.addEventListener(postCommunicatorName, (e: CustomEventInit) => {
-    data(e.detail as SendInfos)
-  })
-
-  return data({} as SendInfos)
+type HubFN = Omit<typeof observable, 'publish' | 'dispatch' | 'clear'> & {
+  subscribe(data: InformationsProps): void
+  unsubscribe(data: InformationsProps): void
 }
 
-const postInformations = (data: SendInfos): void => {
-  const getEvent = new CustomEvent(postCommunicatorName, { detail: data })
+export type PostFnProps = typeof observable
 
-  document.dispatchEvent(getEvent)
+const getInformations = observable as HubFN
 
-  document.addEventListener(getCommunicatorName, () => {
-    document.dispatchEvent(getEvent)
-  })
-}
-
-export { getInformations, postInformations }
+export { getInformations }

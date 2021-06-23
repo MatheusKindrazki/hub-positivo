@@ -1,21 +1,30 @@
 {
   "name": "@psdhub/helpers",
-  "version": "1.2.2",
-  "main": "src/index.ts",
+  "version": "1.4.0",
   "author": "matheuskindrazki",
   "description": "Communicator end-to-end between solutions and PSD hub",
   "license": "MIT",
   "engines": {
     "node": "^10.12.0 || >=12.0.0"
   },
-  "scripts": {
-    "prebuild": "rm -rf build",
-    "build": "tsc -p .",
-    "postbuild": "cp package.json build && node scripts/update-json.js"
-  },
+  "main": "lib/index-obfuscated.js",
+  "module": "lib/index-obfuscated.es.js",
+  "types": "lib/index.d.ts",
   "files": [
-    "*"
+    "lib"
   ],
-  "dependencies": {},
-  "devDependencies": {}
+  "scripts": {
+    "postinstall": "npm run build",
+    "prebuild": "rm -rf lib",
+    "build": "rollup -c",
+    "postbuild": "javascript-obfuscator ./lib --compact true"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "javascript-obfuscator": "^2.15.4",
+    "rollup": "^2.52.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.30.0"
+  }
 }

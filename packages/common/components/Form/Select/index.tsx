@@ -44,7 +44,7 @@ const Select: React.FC<Props> = ({ name, mb, label, ...rest }) => {
       setValue: (ref: any, value) => {
         if (!value) return ''
 
-        ref.state.value = { ...value }
+        ref.select.setValue(value)
       }
     })
   }, [fieldName, registerField, rest.isMulti])

@@ -2,6 +2,7 @@ import React, { useRef, useCallback, useState } from 'react'
 
 import { store } from '~/store'
 
+import Select from '@psdhub/common/components/NewSelect'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
@@ -51,7 +52,6 @@ const DevHub: React.FC = () => {
 
     setLoading(false)
   }, [])
-
   return (
     <Box
       w="100%"
@@ -74,6 +74,8 @@ const DevHub: React.FC = () => {
             defaultValue="http://localhost:3000/#/auth"
             mb="5"
           />
+
+          <Select />
 
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>

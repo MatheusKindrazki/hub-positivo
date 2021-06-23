@@ -1,6 +1,6 @@
 import { User } from '~/store/modules/user/types'
 
-import { postInformations } from '@psdhub/helpers'
+import { getInformations, PostFnProps } from '@psdhub/helpers'
 import { Theme } from '@psdhub/common/layout/styles'
 
 type NonNullable<T> = Exclude<T, null | undefined> // Remove null and undefined from T
@@ -19,7 +19,9 @@ function communicatorMCF(data: Store.State, colors: Theme['colors']): void {
 
   const user_info = info as NoUndefinedField<User>
 
-  postInformations({
+  const observable = getInformations as PostFnProps
+
+  observable.publish({
     primary_color,
     reduced_token: reduced_token as string,
     token: token as string,
@@ -35,4 +37,5 @@ function communicatorMCF(data: Store.State, colors: Theme['colors']): void {
     }
   })
 }
+
 export default communicatorMCF

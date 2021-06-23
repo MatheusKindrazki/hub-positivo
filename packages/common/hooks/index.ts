@@ -7,18 +7,22 @@ import {
   useColorMode,
   useEventListener,
   useToken,
-  useOutsideClick
+  useMergeRefs,
+  useOutsideClick,
+  forwardRef
 } from '@chakra-ui/react'
 
 import { useToast } from './toast'
 
 export {
   useDisclosure,
+  forwardRef,
   useBreakpoint,
   useToast,
   useMediaQuery,
   useColorMode,
   useEventListener,
+  useMergeRefs,
   useBoolean,
   useClipboard,
   useToken,
