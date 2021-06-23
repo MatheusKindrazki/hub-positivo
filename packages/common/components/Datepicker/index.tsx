@@ -26,7 +26,7 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
 
     const [isDesktop] = useMediaQuery('(min-width: 620px)')
 
-    const onChange = (dates: any) => {
+    const onChange = (dates: [Date, Date]) => {
       const [start, end] = dates
       setStart(start)
       setEnd(end)
