@@ -18,7 +18,8 @@ export const updateSolution = Yup.object().shape({
     is: 'todas escolas',
     then: Yup.array().notRequired(),
     otherwise: Yup.array().min(1, 'Selecione pelo menos uma escola').required()
-  })
+  }),
+  datas: Yup.object().required('Campo Obrigatório')
 })
 
 export const createSolution = Yup.object().shape({
