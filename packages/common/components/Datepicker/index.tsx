@@ -40,7 +40,7 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
           }
         },
         setData: range => {
-          if (range.start && range.end) {
+          if (range?.start && range?.end) {
             setStart(range.start)
             setEnd(range.end)
           }
