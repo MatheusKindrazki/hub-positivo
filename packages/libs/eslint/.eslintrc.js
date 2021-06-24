@@ -65,7 +65,7 @@ module.exports = {
           '/^~/components/',
           '/^~/assets/',
           '/^~/',
-          ['parent', 'sibling', 'index']
+          ['parent', 'sibling', 'index'],
         ],
         'alphabetize': { 'order': 'desc', 'ignoreCase': true }
       }

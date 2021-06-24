@@ -3,6 +3,7 @@ import {
   useBreakpoint,
   useMediaQuery,
   useBoolean,
+  useTheme,
   useClipboard,
   useColorMode,
   useEventListener,
@@ -12,6 +13,7 @@ import {
   forwardRef
 } from '@chakra-ui/react'
 
+import useOnClickOutside from './useOnClickOutside'
 import { useToast } from './toast'
 
 export {
@@ -19,7 +21,9 @@ export {
   forwardRef,
   useBreakpoint,
   useToast,
+  useTheme,
   useMediaQuery,
+  useOnClickOutside,
   useColorMode,
   useEventListener,
   useMergeRefs,

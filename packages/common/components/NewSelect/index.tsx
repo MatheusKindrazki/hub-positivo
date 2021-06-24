@@ -1,39 +1,75 @@
-import React, { useRef, memo } from 'react'
+import React, { useRef, useMemo } from 'react'
 
 import classNames from 'classnames'
 
-import { useMergeRefs, useDisclosure, forwardRef } from '@psdhub/common/hooks'
-import { Box, Text } from '@psdhub/common/components'
+import {
+  useMergeRefs,
+  useDisclosure,
+  useOnClickOutside,
+  forwardRef
+} from '@psdhub/common/hooks'
+import { Box } from '@psdhub/common/components'
 
-import { chakra, ChakraComponent } from '@chakra-ui/react'
+import { Fade } from '@chakra-ui/react'
 
-export interface NewSelectProps extends ChakraComponent<'div'> {}
+import variants from './variants'
+import { NewSelectProps } from './types'
+import { Container } from './styles'
+import { Control, Icon, InputSelect, NotFound } from './components'
 
-const NewSelect = forwardRef<NewSelectProps, 'select'>((props, ref) => {
-  const { className } = props
+const NewSelect = forwardRef<NewSelectProps, 'input'>((props, ref) => {
+  const { className, defaultIsOpen, options, variant, controlStyle } = props
 
   const selectRef = useRef<HTMLDivElement>(null)
+
   const refs = useMergeRefs(selectRef, ref)
 
-  const { isOpen, onToggle } = useDisclosure()
+  const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen: true })
+
+  const optionsRender = useMemo(() => {
+    return options
+  }, [options])
+
+  const RenderOptions = variants[variant]
+
+  useOnClickOutside(selectRef, onClose)
   return (
-    <Box ref={refs} className={classNames(className, { 'hub-select': true })}>
+    <Container
+      ref={refs}
+      className={classNames(className, { 'hub-select': true })}
+    >
       <Box
-        tabIndex={0}
-        className="hub-select-header"
+        className="hub-select-container"
         role="button"
+        w="inherit"
         onKeyPress={onToggle}
         onClick={onToggle}
       >
-        <Box className="dd-header__title">
-          <Text className="dd-header__title--bold">Select</Text>
+        <Box className="hub-header-control">
+          <InputSelect
+            variant={variant}
+            icon={<Icon open={isOpen} />}
+            placeholder={props.placeholder}
+            readOnly
+            {...controlStyle}
+          />
         </Box>
-        <Box className="dd-header__action">
-          <Text>{isOpen ? 'Close' : 'Open'}</Text>
-        </Box>
+        {isOpen && (
+          <Fade in={isOpen}>
+            <Control className="hub-header-content">
+              {optionsRender?.length ? (
+                <RenderOptions {...props} />
+              ) : (
+                <NotFound text={props.notFoundText} />
+              )}
+            </Control>
+          </Fade>
+        )}
       </Box>
-    </Box>
+    </Container>
   )
 })
 
-export default chakra(memo(NewSelect))
+export type { NewSelectProps }
+
+export default NewSelect

@@ -2,6 +2,7 @@ import React, { useRef, useCallback, useState } from 'react'
 
 import { store } from '~/store'
 
+// import SelectSelect from '@psdhub/common/components/Select'
 import Select from '@psdhub/common/components/NewSelect'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
@@ -74,9 +75,14 @@ const DevHub: React.FC = () => {
             defaultValue="http://localhost:3000/#/auth"
             mb="5"
           />
-
-          <Select />
-
+          <Select
+            variant="normal"
+            options={[
+              { label: 'teste', value: '1234' },
+              { label: 'teste 123', value: 'ola mundo' }
+            ]}
+          />
+          {/* <SelectSelect  defaultValue /> */}
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>
       </Box>
