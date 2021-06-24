@@ -28,6 +28,7 @@ const Trash = React.lazy(() => import('~/pages/AccessControl/pages/Trash'))
 const SubmitSolution = React.lazy(
   () => import('~/pages/AccessControl/pages/SubmitSolution')
 )
+const Report = React.lazy(() => import('~/pages/Report/Layout'))
 
 const Solutions = React.lazy(() => import('~/pages/Solutions'))
 
@@ -79,6 +80,8 @@ const Routes: React.FC = () => {
               component={AccessControl}
               isPrivate
             />
+
+            <Route path="/relatorios" exact component={Report} isPrivate />
             <Route
               path="/controle-de-acessos/lixeira"
               component={Trash}
