@@ -173,7 +173,6 @@ const SubmitSolution: React.FC = () => {
                 placeholder="Insira o Link de acesso a solução"
               />
             </Box>
-
             <Box>
               <Dropzone
                 name="arquivo"
