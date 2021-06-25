@@ -26,22 +26,23 @@ export type OptionCheckboxProps = React.ComponentType<
   OptionProps<Values, false, GroupTypeBase<Values>>
 >
 
-export type PropsSelect<T> = Props & {
+export type PropsSelect = Props & {
   inputHeight?: number
   styles?: Props['styles']
-  defaultValue?: T
   error?: boolean
   isMulti?: boolean
 }
 
+const RewriteBox = Box as any
+
 const Option: OptionCheckboxProps = props => {
   return (
     <>
-      <Box as={components.Option} p="9" {...props}>
+      <RewriteBox as={components.Option} p="9" {...props}>
         <Radio size="md" name={props?.label} isChecked={props.isSelected}>
           <Text color="black">{props?.label}</Text>
         </Radio>
-      </Box>
+      </RewriteBox>
       {props.data?.divider && <Divider borderColor="gray.400" />}
     </>
   )

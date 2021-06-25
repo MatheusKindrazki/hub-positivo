@@ -1,14 +1,12 @@
 import React from 'react'
 
-import { Props as RSProps } from 'react-select'
-
 import { forwardRef } from '@chakra-ui/react'
 
 import { PropsSelect as Props } from './variants/Normal'
 import options from './options'
 import Divider from '../Divider'
 
-export interface PropsSelect extends Props<RSProps['defaultValue']> {
+export interface PropsSelect extends Props {
   variant: 'normal' | 'primary' | 'secondary' | 'checkbox'
   error?: boolean
   divider?: boolean
