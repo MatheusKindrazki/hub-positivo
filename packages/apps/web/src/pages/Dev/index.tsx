@@ -2,8 +2,8 @@ import React, { useRef, useCallback, useState } from 'react'
 
 import { store } from '~/store'
 
-import Select from '@psdhub/common/components/NewSelect'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
+import Datepicker from '@psdhub/common/components/Datepicker'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
 
@@ -75,7 +75,7 @@ const DevHub: React.FC = () => {
             mb="5"
           />
 
-          <Select />
+          <Datepicker />
 
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>
