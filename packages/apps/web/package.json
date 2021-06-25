@@ -29,7 +29,6 @@
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.1",
-    "react-dropzone": "^11.3.2",
     "react-google-recaptcha": "^2.1.0",
     "react-headroom": "^3.1.0",
     "react-helmet": "^6.1.0",
