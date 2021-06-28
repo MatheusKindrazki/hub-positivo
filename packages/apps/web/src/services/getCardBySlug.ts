@@ -36,10 +36,16 @@ async function getCardBySlug(
     }
   )
 
-  const { ok, data: responseData } = response as ApiResponse<Product>
+  type RewriteProduct = Product & {
+    mensagem: string
+  }
+
+  const { ok, data: responseData } = response as ApiResponse<RewriteProduct>
 
   if (!ok) {
-    toast.error('Sinto muito, você não tem acesso a esta solução.')
+    const message = responseData?.mensagem as string
+
+    toast.error(message)
 
     return
   }
