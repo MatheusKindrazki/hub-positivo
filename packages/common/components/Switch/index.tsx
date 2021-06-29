@@ -16,5 +16,5 @@ const Switch: React.FC<SwitchProps> = ({ children, className, ...rest }) => {
   )
 }
 
-export { SwitchProps }
+export type { SwitchProps }
 export default Switch

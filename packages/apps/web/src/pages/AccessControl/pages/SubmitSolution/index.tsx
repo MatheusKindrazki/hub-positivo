@@ -74,7 +74,6 @@ const SubmitSolution: React.FC = () => {
   const schoolListRef = useRef<SchoolListHandler>(null)
 
   useEffect(() => {
-    console.log('schools ref', formRef.current?.getFieldRef('schools'))
     if (!categoryArr || categoryArr?.length === 0) {
       return history.push('/controle-de-acessos')
     }
