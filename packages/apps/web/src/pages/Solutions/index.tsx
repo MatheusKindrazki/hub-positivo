@@ -23,6 +23,10 @@ const Solutions: React.FC = () => {
 
   useEffect(() => {
     documentTitle(productName || 'Carregando Solução')
+
+    return () => {
+      window.firstCallMCF = false
+    }
   }, [productData, productName])
 
   if (!productData && !window.firstCallMCF) {
