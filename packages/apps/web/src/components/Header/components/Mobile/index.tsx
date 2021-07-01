@@ -211,7 +211,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               >
                 Home
               </Button>
-              {guid === 'ADMINISTRADOR' && (
+              {/* {guid === 'ADMINISTRADOR' && (
                 <Button
                   onClick={() => history.push('/controle-de-acessos')}
                   color={
@@ -225,7 +225,7 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
                 >
                   Controle de acessos
                 </Button>
-              )}
+              )} */}
               {guid === 'PROFESSOR' && (
                 <Button
                   onClick={() => {
