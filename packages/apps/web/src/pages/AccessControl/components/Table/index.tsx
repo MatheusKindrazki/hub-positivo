@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, memo } from 'react'
 
 import {
   DragDropContext,
@@ -164,4 +164,4 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
   )
 }
 
-export default Table
+export default memo(Table)

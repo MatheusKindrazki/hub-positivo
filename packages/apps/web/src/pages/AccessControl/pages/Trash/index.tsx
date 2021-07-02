@@ -32,15 +32,14 @@ export const columns: Columns[] = [
 ]
 const Trash: React.FC = () => {
   const dispatch = useDispatch()
+
   const { excluidas: data, loading: load } = useSelector(
     (state: Store.State) => state.solutions
   )
 
   useEffect(() => {
-    if (!data?.length) {
-      dispatch(solutionGetExcludedRequest())
-    }
-  }, [dispatch, data])
+    dispatch(solutionGetExcludedRequest())
+  }, [dispatch])
 
   return (
     <Container m="auto" maxW="90rem" p="10">

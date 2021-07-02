@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { memo, useEffect } from 'react'
 
 import { useHistory } from 'react-router'
 
@@ -102,4 +102,4 @@ const AccessControl: React.FC = () => {
   )
 }
 
-export default AccessControl
+export default memo(AccessControl)

@@ -89,6 +89,7 @@ const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
 
     return (
       <Container
+        className={!!preview && 'preview'}
         error={!!error}
         reject={isDragReject}
         colors={colors}

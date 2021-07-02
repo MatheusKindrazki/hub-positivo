@@ -38,6 +38,7 @@ const UploadMessage: React.FC<UploadMessageProps> = ({
           <Text
             cursor="pointer"
             w="14"
+            mt="0"
             onClick={callback}
             fontWeight="400"
             textColor="blue.500"

@@ -248,6 +248,7 @@ const SubmitSolution: React.FC = () => {
               </Button>
               {page === 'editar' && (
                 <Button
+                  type="button"
                   onClick={openModal}
                   height="14"
                   width={['48.4%', '28']}
@@ -256,6 +257,7 @@ const SubmitSolution: React.FC = () => {
                   textTransform="uppercase"
                   colorScheme="red.500"
                   color="red.500"
+                  marginTop=""
                   marginRight={['0', 'auto']}
                 >
                   Excluir
