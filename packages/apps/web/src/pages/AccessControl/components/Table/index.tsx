@@ -140,6 +140,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                                   )}
                                   {c.render
                                     ? c.render({
+                                        ...e,
                                         ...e.data,
                                         index: solutionIndex,
                                         onChangeSwitch

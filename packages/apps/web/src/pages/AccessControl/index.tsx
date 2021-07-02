@@ -11,7 +11,7 @@ import { categoryGetAllRequest } from '~/store/modules/category/actions'
 
 import { Columns } from '@psdhub/common/components/Table'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
-import { Collapse } from '@psdhub/common/components'
+import { Collapse, Text, Tooltip } from '@psdhub/common/components'
 
 import Container from './styles'
 import { accessControlCollapse } from './mock.json'
@@ -30,7 +30,28 @@ export interface CollapseData {
 export const columns: Columns[] = [
   { property: 'solution', header: 'Solução' },
   { property: 'profile', header: 'Perfis' },
-  { property: 'schools', header: 'Escolas' },
+  {
+    property: 'schools',
+    header: 'Escolas',
+    render: (e: TableSolution): React.ReactNode => {
+      const schools = e?.schools as string
+      return (
+        <Tooltip
+          padding="10px"
+          hasArrow
+          maxW="500px"
+          w="100%"
+          isDisabled={schools.length < 140}
+          fontSize="sm"
+          bg="blue.500"
+          label={schools}
+          aria-label={schools}
+        >
+          <Text noOfLines={4}>{schools}</Text>
+        </Tooltip>
+      )
+    }
+  },
   {
     property: 'edit',
     header: null,
@@ -67,10 +88,8 @@ const AccessControl: React.FC = () => {
   useEffect(() => {
     dispatch(categoryGetAllRequest())
     dispatch(schoolGetAllRequest())
-    if (!publicadas.length) {
-      dispatch(solutionsGetRequest())
-    }
-  }, [dispatch, publicadas])
+    dispatch(solutionsGetRequest())
+  }, [dispatch])
 
   return (
     <Container m="auto" maxW="90rem" p="10">
