@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react'
 
 import useOnClickOutside from './useOnClickOutside'
+import useDebounce from './useDebounce'
 import { useToast } from './toast'
 
 export {
@@ -24,6 +25,7 @@ export {
   useTheme,
   useMediaQuery,
   useOnClickOutside,
+  useDebounce,
   useColorMode,
   useEventListener,
   useMergeRefs,

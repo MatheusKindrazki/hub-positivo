@@ -5,6 +5,8 @@ import classNames from 'classnames'
 import { useDisclosure } from '@psdhub/common/hooks'
 import { Box, Button } from '@psdhub/common/components'
 
+import Control from './Control'
+
 const NewSelect: React.FC = () => {
   const { isOpen, onToggle } = useDisclosure()
 
@@ -17,9 +19,9 @@ const NewSelect: React.FC = () => {
     <Box className="hub-wrapper">
       <Button type="button" className="hub-header" onClick={toggleList}>
         <Box as="p" className="hub-header-title">
-          Titulo
+          <Control searchable={e => console.log(e)} />
         </Box>
-        <Box>Titulo</Box>
+        <Box>Icone</Box>
       </Button>
       {isOpen && (
         <Box
