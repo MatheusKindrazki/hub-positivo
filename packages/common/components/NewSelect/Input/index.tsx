@@ -8,8 +8,8 @@ import React, {
 } from 'react'
 
 import { useDebounce } from '@psdhub/common/hooks'
-import { Input } from '@psdhub/common/components'
 
+import { Input } from './styles'
 export interface InputHandler {
   onClear: () => void
   onFocus: () => void
@@ -18,6 +18,7 @@ export interface InputHandler {
 
 interface InputProps {
   searchable?: (string: string) => void
+  placeholder: string
 }
 
 const InputSelect = forwardRef<InputHandler, InputProps>((props, ref) => {
@@ -45,7 +46,13 @@ const InputSelect = forwardRef<InputHandler, InputProps>((props, ref) => {
     }
   }))
 
-  return <Input ref={inputRef} onChange={debouncedValue} />
+  return (
+    <Input
+      ref={inputRef}
+      placeholder={props.placeholder}
+      onChange={debouncedValue}
+    />
+  )
 })
 
 export default memo(InputSelect)

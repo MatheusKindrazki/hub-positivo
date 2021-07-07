@@ -6,9 +6,12 @@ import InputSearch, { InputHandler } from '../Input'
 interface ControleProps {
   searchable?: (string: string) => void
   focus?: boolean
+  placeholder?: string
 }
 
 const Control: React.FC<ControleProps> = props => {
+  const { placeholder = 'Selecione' } = props
+
   const inputRef = useRef<InputHandler>(null)
 
   props?.focus && inputRef.current?.onFocus()
@@ -20,9 +23,15 @@ const Control: React.FC<ControleProps> = props => {
 
   return (
     <Box class="hub-control">
-      <Box>
-        <InputSearch ref={inputRef} searchable={e => console.log(e)} />
-      </Box>
+      {props.searchable ? (
+        <InputSearch
+          ref={inputRef}
+          placeholder={placeholder}
+          searchable={e => console.log(e)}
+        />
+      ) : (
+        <Box as="span">{placeholder}</Box>
+      )}
     </Box>
   )
 }

@@ -4,7 +4,8 @@ type EventListener = MouseEvent | TouchEvent
 
 function useOnClickOutside<T extends HTMLElement = HTMLElement>(
   ref: RefObject<T>,
-  handler: (event: EventListener) => void
+  handler: (event: EventListener) => void,
+  option: 'click' | 'mousedown' = 'mousedown'
 ): void {
   useEffect(() => {
     const listener = (event: EventListener) => {
@@ -17,14 +18,14 @@ function useOnClickOutside<T extends HTMLElement = HTMLElement>(
       handler(event)
     }
 
-    document.addEventListener('mousedown', listener)
+    document.addEventListener(option, listener)
     document.addEventListener('touchstart', listener)
 
     return () => {
-      document.removeEventListener('mousedown', listener)
+      document.removeEventListener(option, listener)
       document.removeEventListener('touchstart', listener)
     }
-  }, [handler, ref])
+  }, [handler, option, ref])
 }
 
 export default useOnClickOutside

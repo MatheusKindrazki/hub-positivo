@@ -1,38 +1,44 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef } from 'react'
 
 import classNames from 'classnames'
 
-import { useDisclosure } from '@psdhub/common/hooks'
+import { useDisclosure, useOnClickOutside } from '@psdhub/common/hooks'
 import { Box } from '@psdhub/common/components'
 
 import { Container } from './styles'
+import Icon from './Icon'
 import Control from './Control'
+import ContainerOptions from './ContainerOptions'
 
 const NewSelect: React.FC = () => {
-  const { isOpen, onToggle } = useDisclosure()
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const { isOpen, onToggle, onClose } = useDisclosure()
 
   const toggleList = useCallback(() => {
     onToggle()
     console.log('teste')
   }, [onToggle])
 
+  useOnClickOutside(containerRef, onClose, 'click')
+
   return (
-    <Container className="hub-wrapper">
+    <Container ref={containerRef} className="hub-wrapper">
       <Box role="button" className="hub-header" onClick={toggleList}>
-        <Box as="p" className="hub-header-title">
+        <Box className="hub-header-title">
           <Control focus={isOpen} searchable={e => console.log(e)} />
         </Box>
-        <Box>Icone</Box>
+        <Icon open={isOpen} />
       </Box>
       {isOpen && (
-        <Box
+        <ContainerOptions
           className={classNames({
             'header-list': true,
             searchable: true
           })}
         >
           Brasil
-        </Box>
+        </ContainerOptions>
       )}
     </Container>
   )
