@@ -1,21 +1,30 @@
-import React, { useRef } from 'react'
+import React, { useRef, memo } from 'react'
 
-import { useDebounce } from '@psdhub/common/hooks'
-import { Box, Input } from '@psdhub/common/components'
+import { Box } from '@psdhub/common/components'
 
+import InputSearch, { InputHandler } from '../Input'
 interface ControleProps {
   searchable?: (string: string) => void
+  focus?: boolean
 }
 
-const Control: React.FC<ControleProps> = ({ searchable }) => {
-  const inputRef = useRef<HTMLInputElement>(null)
+const Control: React.FC<ControleProps> = props => {
+  const inputRef = useRef<InputHandler>(null)
 
-  const debouncedValue = useDebounce(e => {
-    console.log(e)
-  }, 500)
+  props?.focus && inputRef.current?.onFocus()
+
+  if (!props?.focus) {
+    inputRef.current?.onBlur()
+    inputRef.current?.onClear()
+  }
+
   return (
-    <Box>{searchable && <Input ref={inputRef} onClick={debouncedValue} />}</Box>
+    <Box class="hub-control">
+      <Box>
+        <InputSearch ref={inputRef} searchable={e => console.log(e)} />
+      </Box>
+    </Box>
   )
 }
 
-export default Control
+export default memo(Control)

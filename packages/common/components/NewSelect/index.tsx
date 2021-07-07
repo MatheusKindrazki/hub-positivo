@@ -3,8 +3,9 @@ import React, { useCallback } from 'react'
 import classNames from 'classnames'
 
 import { useDisclosure } from '@psdhub/common/hooks'
-import { Box, Button } from '@psdhub/common/components'
+import { Box } from '@psdhub/common/components'
 
+import { Container } from './styles'
 import Control from './Control'
 
 const NewSelect: React.FC = () => {
@@ -16,13 +17,13 @@ const NewSelect: React.FC = () => {
   }, [onToggle])
 
   return (
-    <Box className="hub-wrapper">
-      <Button type="button" className="hub-header" onClick={toggleList}>
+    <Container className="hub-wrapper">
+      <Box role="button" className="hub-header" onClick={toggleList}>
         <Box as="p" className="hub-header-title">
-          <Control searchable={e => console.log(e)} />
+          <Control focus={isOpen} searchable={e => console.log(e)} />
         </Box>
         <Box>Icone</Box>
-      </Button>
+      </Box>
       {isOpen && (
         <Box
           className={classNames({
@@ -33,7 +34,7 @@ const NewSelect: React.FC = () => {
           Brasil
         </Box>
       )}
-    </Box>
+    </Container>
   )
 }
 

@@ -3,6 +3,7 @@ import React, { useRef, useCallback, useState } from 'react'
 import { store } from '~/store'
 
 import NewSelect from '@psdhub/common/components/NewSelect'
+import { Activity } from '@psdhub/common/components/Icons'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
@@ -73,6 +74,22 @@ const DevHub: React.FC = () => {
             placeholder="Url para redirecionamento"
             defaultValue="http://localhost:3000/#/auth"
             mb="5"
+          />
+
+          <Input
+            mb="4"
+            name="password"
+            placeholder="Digite sua senha"
+            autoComplete="current-password"
+            data-testid="password"
+            iconRight={
+              <Box
+                data-testid="view-button"
+                as={Activity}
+                color="gray.500"
+                size="19px"
+              />
+            }
           />
 
           <NewSelect />
