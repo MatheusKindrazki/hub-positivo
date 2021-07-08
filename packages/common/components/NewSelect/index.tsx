@@ -1,32 +1,42 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useRef, useContext, memo } from 'react'
 
 import classNames from 'classnames'
 
 import { useDisclosure, useOnClickOutside } from '@psdhub/common/hooks'
 import { Box } from '@psdhub/common/components'
 
+import { SelectProps, TreeNode } from './types'
 import { Container } from './styles'
-import Icon from './Icon'
-import Control from './Control'
-import ContainerOptions from './ContainerOptions'
+import SelectContext from './context'
+import options from './components/Variants/options'
+import { Icon, Control, ContainerOptions } from './components'
 
-const NewSelect: React.FC = () => {
+const NewSelect: React.FC<SelectProps<'normal'>> = props => {
+  const context = useContext(SelectContext)
+
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const { isOpen, onToggle, onClose } = useDisclosure()
+  const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen: true })
 
   const toggleList = useCallback(() => {
     onToggle()
-    console.log('teste')
   }, [onToggle])
 
+  context.onClose = onClose
+
+  context.onChange = (checked: string[], raw: TreeNode[]) => {
+    context.state = { checked, raw }
+  }
+
   useOnClickOutside(containerRef, onClose, 'click')
+
+  const Variant = options[props.variant || 'normal']
 
   return (
     <Container ref={containerRef} className="hub-wrapper">
       <Box role="button" className="hub-header" onClick={toggleList}>
         <Box className="hub-header-title">
-          <Control focus={isOpen} searchable={e => console.log(e)} />
+          <Control focus={isOpen} />
         </Box>
         <Icon open={isOpen} />
       </Box>
@@ -37,11 +47,11 @@ const NewSelect: React.FC = () => {
             searchable: true
           })}
         >
-          Brasil
+          <Variant />
         </ContainerOptions>
       )}
     </Container>
   )
 }
 
-export default NewSelect
+export default memo(NewSelect)

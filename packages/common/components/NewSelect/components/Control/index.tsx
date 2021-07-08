@@ -1,8 +1,10 @@
-import React, { useRef, memo } from 'react'
+import React, { useRef, memo, useMemo, useContext } from 'react'
 
 import { Box } from '@psdhub/common/components'
 
 import InputSearch, { InputHandler } from '../Input'
+import SelectContext from '../../context'
+
 interface ControleProps {
   searchable?: (string: string) => void
   focus?: boolean
@@ -10,6 +12,8 @@ interface ControleProps {
 }
 
 const Control: React.FC<ControleProps> = props => {
+  const { state } = useContext(SelectContext)
+
   const { placeholder = 'Selecione' } = props
 
   const inputRef = useRef<InputHandler>(null)
@@ -21,16 +25,22 @@ const Control: React.FC<ControleProps> = props => {
     inputRef.current?.onClear()
   }
 
+  const renderValue = useMemo(() => {
+    return state?.checked?.join(',') || placeholder
+  }, [state, placeholder])
+
+  console.log('render')
+
   return (
-    <Box class="hub-control">
+    <Box className="hub-control">
       {props.searchable ? (
         <InputSearch
           ref={inputRef}
-          placeholder={placeholder}
+          placeholder={renderValue}
           searchable={e => console.log(e)}
         />
       ) : (
-        <Box as="span">{placeholder}</Box>
+        <Box as="span">{renderValue}</Box>
       )}
     </Box>
   )
