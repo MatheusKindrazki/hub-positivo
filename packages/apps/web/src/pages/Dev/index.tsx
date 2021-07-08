@@ -92,7 +92,10 @@ const DevHub: React.FC = () => {
             }
           />
 
-          <NewSelect />
+          <NewSelect
+            variant="normal"
+            options={[{ label: 'mama', value: 'ola mundo' }]}
+          />
 
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>

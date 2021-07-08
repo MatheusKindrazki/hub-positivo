@@ -7,6 +7,7 @@ export interface SelectContextProps {
   onChange: (checked: string[], raw: TreeNode[]) => void
 
   state: StateRef
+  options: TreeNode[]
 }
 
 const SelectContext = createContext({} as SelectContextProps)

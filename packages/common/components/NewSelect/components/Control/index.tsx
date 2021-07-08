@@ -29,8 +29,6 @@ const Control: React.FC<ControleProps> = props => {
     return state?.checked?.join(',') || placeholder
   }, [state, placeholder])
 
-  console.log('render')
-
   return (
     <Box className="hub-control">
       {props.searchable ? (

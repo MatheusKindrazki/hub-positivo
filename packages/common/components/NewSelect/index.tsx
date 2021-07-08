@@ -23,6 +23,7 @@ const NewSelect: React.FC<SelectProps<'normal'>> = props => {
   }, [onToggle])
 
   context.onClose = onClose
+  context.options = props.options
 
   context.onChange = (checked: string[], raw: TreeNode[]) => {
     context.state = { checked, raw }

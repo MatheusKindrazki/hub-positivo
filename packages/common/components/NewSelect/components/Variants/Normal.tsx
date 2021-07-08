@@ -18,7 +18,8 @@ const VariantNormal: React.FC = () => {
 
   return (
     <Tree
-      options={[{ label: 'teste', value: 'teste' }]}
+      options={context.options || []}
+      defaultOptions={context?.state?.checked}
       onChange={handleSelect}
     />
   )
