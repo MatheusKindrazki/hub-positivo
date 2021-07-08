@@ -26,6 +26,8 @@ const NewSelect: React.FC<SelectProps<'normal'>> = props => {
   context.options = props.options
 
   context.onChange = (checked: string[], raw: TreeNode[]) => {
+    console.log(checked, raw)
+
     context.state = { checked, raw }
   }
 

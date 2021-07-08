@@ -8,8 +8,15 @@ export interface SelectContextProps {
 
   state: StateRef
   options: TreeNode[]
+  isMulti?: boolean
 }
 
-const SelectContext = createContext({} as SelectContextProps)
+const SelectContext = createContext({
+  isMulti: false,
+  state: {
+    checked: [] as string[],
+    raw: [] as TreeNode[]
+  }
+} as SelectContextProps)
 
 export default SelectContext
