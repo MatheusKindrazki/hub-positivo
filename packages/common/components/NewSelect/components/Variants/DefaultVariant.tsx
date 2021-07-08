@@ -4,7 +4,11 @@ import Tree, { TreeNode } from '@psdhub/common/components/Tree'
 
 import SelectContext from '../../context'
 
-const VariantNormal: React.FC = () => {
+interface Props {
+  className?: string
+}
+
+const DefaultVariant: React.FC<Props> = props => {
   const context = useContext(SelectContext)
 
   const handleSelect = useCallback(
@@ -18,6 +22,7 @@ const VariantNormal: React.FC = () => {
 
   return (
     <Tree
+      {...props}
       options={context.options || []}
       defaultOptions={context?.state?.checked}
       onChange={handleSelect}
@@ -25,4 +30,4 @@ const VariantNormal: React.FC = () => {
   )
 }
 
-export default memo(VariantNormal)
+export default memo(DefaultVariant)

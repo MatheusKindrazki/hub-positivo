@@ -1,11 +1,9 @@
-import VariantNormal from './Normal'
+import DefaultVariant from './DefaultVariant'
 
-const variants = {
-  normal: VariantNormal,
-  primary: VariantNormal,
-  secondary: VariantNormal,
-  checkbox: VariantNormal,
-  treeview: VariantNormal
+export default {
+  normal: DefaultVariant,
+  primary: DefaultVariant,
+  secondary: DefaultVariant,
+  checkbox: DefaultVariant,
+  treeview: DefaultVariant
 }
-
-export default variants
