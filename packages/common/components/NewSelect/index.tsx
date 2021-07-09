@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useContext, memo } from 'react'
+import React, { useRef, useContext, memo } from 'react'
 
 import classNames from 'classnames'
 
@@ -11,19 +11,16 @@ import SelectContext from './context'
 import options from './components/Variants/options'
 import { Icon, Control, ContainerOptions } from './components'
 
-const NewSelect: React.FC<SelectProps<'normal'>> = props => {
+const Select: React.FC<SelectProps> = props => {
   const context = useContext(SelectContext)
 
   const containerRef = useRef<HTMLDivElement>(null)
 
   const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen: true })
 
-  const toggleList = useCallback(() => {
-    onToggle()
-  }, [onToggle])
-
   context.onClose = onClose
   context.options = props.options
+  context.isMulti = props.isMulti
 
   context.onChange = (checked: string[], raw: TreeNode[]) => {
     console.log(checked, raw)
@@ -36,9 +33,9 @@ const NewSelect: React.FC<SelectProps<'normal'>> = props => {
   const Variant = options[props.variant || 'normal']
 
   return (
-    <Container ref={containerRef} className="hub-wrapper">
-      <Box role="button" className="hub-header" onClick={toggleList}>
-        <Box className="hub-header-title">
+    <Container ref={containerRef} className="hub-select-wrapper">
+      <Box role="button" className="hub-select-header" onClick={onToggle}>
+        <Box className="hub-select-header-title">
           <Control focus={isOpen} />
         </Box>
         <Icon open={isOpen} />
@@ -46,7 +43,7 @@ const NewSelect: React.FC<SelectProps<'normal'>> = props => {
       {isOpen && (
         <ContainerOptions
           className={classNames({
-            'header-list': true,
+            'header-select-list': true,
             searchable: true
           })}
         >
@@ -57,4 +54,4 @@ const NewSelect: React.FC<SelectProps<'normal'>> = props => {
   )
 }
 
-export default memo(NewSelect)
+export default memo(Select)

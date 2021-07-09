@@ -5,9 +5,10 @@ import classNames from 'classnames'
 import { getObjectValues } from '@psdhub/common/components/Tree/utils'
 import { Box, Text } from '@psdhub/common/components'
 
-import { handleParents } from '../../utils'
-import { TreeNode } from '../../types'
-import SelectContext from '../../context'
+import { ContainerOptions } from './styles'
+import { handleParents } from '../../../utils'
+import { TreeNode } from '../../../types'
+import SelectContext from '../../../context'
 
 const DefaultVariant: React.FC = () => {
   const { options, state, isMulti, ...context } = useContext(SelectContext)
@@ -25,16 +26,17 @@ const DefaultVariant: React.FC = () => {
   const checkSelectedItem = (item: TreeNode) => {
     const findIndex = state.raw.findIndex(i => i.value === item.value)
 
-    return findIndex === -1
+    return findIndex !== -1
   }
 
   return (
-    <Box className="hub-options">
+    <ContainerOptions className="hub-select-options">
       {options?.map((option, index) => (
         <Box
           key={index}
           className={classNames({
-            active: checkSelectedItem(option)
+            active: checkSelectedItem(option),
+            'hub-select-item': true
           })}
           role="button"
           onClick={() => handleClick(option)}
@@ -42,7 +44,7 @@ const DefaultVariant: React.FC = () => {
           <Text color="black">{option.label}</Text>
         </Box>
       ))}
-    </Box>
+    </ContainerOptions>
   )
 }
 

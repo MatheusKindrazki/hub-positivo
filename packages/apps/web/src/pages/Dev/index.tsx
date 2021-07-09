@@ -93,8 +93,12 @@ const DevHub: React.FC = () => {
           />
 
           <NewSelect
+            isMulti
             variant="normal"
-            options={[{ label: 'mama', value: 'ola mundo' }]}
+            options={[
+              { label: 'mama', value: 'ola mundo' },
+              { label: 'teste 123', value: 'olaa mundo' }
+            ]}
           />
 
           <Button isLoading={loading}>Entrar na solução</Button>

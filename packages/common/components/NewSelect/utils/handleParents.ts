@@ -6,7 +6,17 @@ const handleParents = (
   isMulti?: boolean
 ): TreeNode[] => {
   if (isMulti) {
-    console.log('fazer')
+    const index = data.findIndex(i => i.value === item.value)
+
+    if (index !== -1) {
+      const selectedItemsCopy = [...data]
+
+      selectedItemsCopy.splice(index, 1)
+
+      return selectedItemsCopy
+    } else {
+      return [...data, item]
+    }
   }
 
   data = [item]

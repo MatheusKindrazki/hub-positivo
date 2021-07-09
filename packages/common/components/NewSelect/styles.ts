@@ -11,9 +11,9 @@ export const Container = styled(Box)`
 
   max-width: 100%;
 
-  font-size: ${({ theme }) => theme.fontSizes.sm};
+  font-size: ${({ theme }) => theme.fontSizes.md};
 
-  .hub-header {
+  .hub-select-header {
     position: relative;
     background: white;
     outline: none;
@@ -33,7 +33,7 @@ export const Container = styled(Box)`
     justify-content: flex-start;
     align-items: center;
 
-    .hub-header-title {
+    .hub-select-header-title {
       width: 100%;
     }
   }

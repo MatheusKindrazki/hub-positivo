@@ -12,14 +12,11 @@ export const Container = styled(Box)`
   max-height: 150px;
   background: white;
   margin-top: 8px;
-  padding: ${({ theme }) => theme.space[2]};
-
-  padding-left: ${({ theme }) => theme.space[4]};
-  padding-right: ${({ theme }) => theme.space[4]};
+  overflow: hidden;
 
   border: 1px solid;
   border-radius: ${({ theme }) => theme.radii.md};
-  border-color: ${({ theme }) => theme.colors.gray[400]};
+  border-color: ${({ theme }) => theme.colors.gray[100]};
 
   box-shadow: ${({ theme }) => theme.shadows['dark-lg']};
 `
