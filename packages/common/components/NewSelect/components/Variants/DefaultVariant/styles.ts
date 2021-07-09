@@ -19,6 +19,11 @@ export const ContainerOptions = styled(Box)`
       * {
         color: white;
       }
+      border-bottom: 1px solid ${({ theme }) => theme.colors.blue[300]};
+
+      &:last-child {
+        border: none !important;
+      }
     }
   }
 `

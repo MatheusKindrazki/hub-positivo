@@ -7,11 +7,12 @@ import { Container } from './styles'
 
 export interface IconProps {
   open: boolean
+  onClick(): void
 }
 
-const Icon: React.FC<IconProps> = ({ open }) => {
+const Icon: React.FC<IconProps> = ({ open, onClick }) => {
   return (
-    <Container open={open}>
+    <Container role="button" open={open} onClick={onClick}>
       <Box
         as={CaretDown}
         size={20}

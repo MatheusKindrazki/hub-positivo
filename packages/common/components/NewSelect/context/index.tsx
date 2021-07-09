@@ -4,7 +4,6 @@ import { TreeNode, StateRef } from '../types'
 
 export interface SelectContextProps {
   onClose(): void
-  onClear(): void
   onChange: (checked: string[], raw: TreeNode[]) => void
 
   state: StateRef

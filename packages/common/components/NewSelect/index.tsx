@@ -9,7 +9,7 @@ import { SelectProps, TreeNode } from './types'
 import { Container } from './styles'
 import SelectContext from './context'
 import options from './components/Variants/options'
-import { Icon, Control, ContainerOptions } from './components'
+import { Icon, Control, ContainerOptions, ClearAll } from './components'
 
 const Select: React.FC<SelectProps> = props => {
   const context = useContext(SelectContext)
@@ -23,8 +23,6 @@ const Select: React.FC<SelectProps> = props => {
   context.isMulti = props.isMulti
 
   context.onChange = (checked: string[], raw: TreeNode[]) => {
-    console.log(checked, raw)
-
     context.state = { checked, raw }
   }
 
@@ -34,11 +32,16 @@ const Select: React.FC<SelectProps> = props => {
 
   return (
     <Container ref={containerRef} className="hub-select-wrapper">
-      <Box role="button" className="hub-select-header" onClick={onToggle}>
-        <Box className="hub-select-header-title">
+      <Box className="hub-select-header">
+        <Box
+          role="button"
+          className="hub-select-header-title"
+          onClick={onToggle}
+        >
           <Control focus={isOpen} />
         </Box>
-        <Icon open={isOpen} />
+        {props.clearable && <ClearAll />}
+        <Icon onClick={onToggle} open={isOpen} />
       </Box>
       {isOpen && (
         <ContainerOptions
