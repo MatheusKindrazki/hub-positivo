@@ -1,35 +1,40 @@
-import React, { useRef, useContext, memo } from 'react'
+import React, { useRef, useContext, memo, forwardRef } from 'react'
 
 import classNames from 'classnames'
 
 import { useDisclosure, useOnClickOutside } from '@psdhub/common/hooks'
 import { Box } from '@psdhub/common/components'
 
-import { SelectProps, TreeNode } from './types'
+import syncPropsContext from './utils/syncPropsContext'
+import { SelectProps, TreeNode, SelectRefProps } from './types'
 import { Container } from './styles'
+import useConnectRefToContext from './hooks/useConnectRefToContext'
 import SelectContext from './context'
 import options from './components/Variants/options'
 import { Icon, Control, ContainerOptions, ClearAll } from './components'
 
-const Select: React.FC<SelectProps> = props => {
+const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
+  const { defaultIsOpen } = props
+
   const context = useContext(SelectContext)
 
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen: true })
-
-  context.onClose = onClose
-  context.options = props.options
-  context.isMulti = props.isMulti
+  const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen })
 
   context.onChange = (checked: string[], raw: TreeNode[]) => {
     context.state = { checked, raw }
-  }
 
-  useOnClickOutside(containerRef, onClose, 'click')
+    props.onChange && props.onChange(checked, raw)
+  }
 
   const Variant = options[props.variant || 'normal']
 
+  context.onClose = onClose
+
+  syncPropsContext(props, context)
+  useOnClickOutside(containerRef, onClose, 'click')
+  useConnectRefToContext(context, ref)
   return (
     <Container ref={containerRef} className="hub-select-wrapper">
       <Box className="hub-select-header">
@@ -55,6 +60,8 @@ const Select: React.FC<SelectProps> = props => {
       )}
     </Container>
   )
-}
+})
+
+export type { SelectRefProps, SelectProps }
 
 export default memo(Select)
