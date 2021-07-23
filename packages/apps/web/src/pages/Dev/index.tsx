@@ -94,10 +94,11 @@ const DevHub: React.FC = () => {
 
           <NewSelect
             isMulti
+            defaultValue={['ola mundo']}
             variant="normal"
             options={[
               { label: 'mama', value: 'ola mundo' },
-              { label: 'teste 123', value: 'olaa mundo' }
+              { label: 'teste 123', value: 'olaaaaasasd mundo' }
             ]}
           />
 

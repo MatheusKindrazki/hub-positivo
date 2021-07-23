@@ -6,6 +6,7 @@ import { useDisclosure, useOnClickOutside } from '@psdhub/common/hooks'
 import { Box } from '@psdhub/common/components'
 
 import syncPropsContext from './utils/syncPropsContext'
+import markCheckedItens from './utils/markCheckedItens'
 import { SelectProps, TreeNode, SelectRefProps } from './types'
 import { Container } from './styles'
 import useConnectRefToContext from './hooks/useConnectRefToContext'
@@ -29,8 +30,9 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
   }
 
   const Variant = options[props.variant || 'normal']
-
   context.onClose = onClose
+
+  markCheckedItens(props.defaultValue || [], context)
 
   syncPropsContext(props, context)
   useOnClickOutside(containerRef, onClose, 'click')

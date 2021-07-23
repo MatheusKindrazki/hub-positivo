@@ -4,6 +4,7 @@ import { TreeNode, StateRef } from '../types'
 
 export interface SelectContextProps {
   onClose(): void
+  refresh(): void
   onChange: (checked: string[], raw: TreeNode[]) => void
 
   state: StateRef
@@ -12,7 +13,6 @@ export interface SelectContextProps {
   clearable?: boolean
   isSearchable?: boolean
   className?: string
-  defaultValue?: string[]
   noOptionsMessage?: React.ReactNode
 }
 
@@ -24,7 +24,8 @@ const SelectContext = createContext({
   state: {
     checked: [] as string[],
     raw: [] as TreeNode[]
-  }
+  },
+  refresh: () => {}
 } as SelectContextProps)
 
 export default SelectContext

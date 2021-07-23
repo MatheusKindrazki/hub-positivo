@@ -1,5 +1,6 @@
 import React, { useImperativeHandle } from 'react'
 
+import markCheckedItens from '../utils/markCheckedItens'
 import { SelectRefProps } from '../types'
 import { SelectContextProps } from '../context'
 
@@ -15,7 +16,7 @@ function useConnectRefToContext(context: ContextProps, ref: RefProps): void {
       return data
     },
     setValue: checked => {
-      context.defaultValue = checked
+      markCheckedItens(checked, context)
     }
   }))
 }

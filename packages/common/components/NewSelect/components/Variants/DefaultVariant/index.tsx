@@ -29,6 +29,10 @@ const DefaultVariant: React.FC = () => {
     return findIndex !== -1
   }
 
+  context.refresh = () => {
+    console.log('brasil')
+  }
+
   return (
     <ContainerOptions className="hub-select-options">
       {options?.map((option, index) => (
