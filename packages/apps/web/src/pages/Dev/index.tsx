@@ -10,7 +10,6 @@ import { apiAuthProduct } from '@psdhub/api'
 
 const DevHub: React.FC = () => {
   const [loading, setLoading] = useState(false)
-
   const formRef = useRef<FormProps>(null)
 
   const handleSubmit = useCallback(async data => {
@@ -53,6 +52,7 @@ const DevHub: React.FC = () => {
 
     setLoading(false)
   }, [])
+
   return (
     <Box
       w="100%"

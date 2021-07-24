@@ -33,6 +33,6 @@ export interface StateRef {
 }
 export interface SelectRefProps {
   value: TreeNode[]
-  setValue?: (values: string[]) => void
-  getValue?: () => { checked: string[]; raw: TreeNode[] }
+  setValue: (values: string[]) => void
+  getValue: () => { checked: string[]; raw: TreeNode[] }
 }

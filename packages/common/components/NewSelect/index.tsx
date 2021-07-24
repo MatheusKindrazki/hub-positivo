@@ -20,22 +20,19 @@ import useConnectRefToContext from './hooks/useConnectRefToContext'
 import SelectContext from './context'
 import options from './components/Variants/options'
 import { Icon, Control, ContainerOptions, ClearAll } from './components'
+
 const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
   const defaultValue = useRef(props.defaultValue)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const [, forceUpdate] = useReducer(x => x + 1, 0)
   const { defaultIsOpen } = props
 
   const context = useContext(SelectContext)
 
-  context.refresh = () => {
-    console.log('refresh')
-    forceUpdate()
-  }
-
-  const containerRef = useRef<HTMLDivElement>(null)
-
   const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen })
+
+  context.refresh = () => forceUpdate()
 
   context.onChange = (checked: string[], raw: TreeNode[]) => {
     context.state = { checked, raw }
@@ -69,7 +66,7 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
       {isOpen && (
         <ContainerOptions
           className={classNames({
-            'header-select-list': true,
+            'hub-select-list': true,
             searchable: true
           })}
         >
