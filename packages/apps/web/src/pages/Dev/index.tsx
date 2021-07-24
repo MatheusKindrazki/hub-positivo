@@ -1,5 +1,7 @@
 import React, { useRef, useCallback, useState } from 'react'
 
+import faker from 'faker'
+
 import { store } from '~/store'
 
 import NewSelect from '@psdhub/common/components/NewSelect'
@@ -7,6 +9,11 @@ import { Activity } from '@psdhub/common/components/Icons'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
+
+const data = new Array(100).fill({}).map(() => ({
+  label: faker.lorem.sentence(),
+  value: faker.datatype.uuid()
+}))
 
 const DevHub: React.FC = () => {
   const [loading, setLoading] = useState(false)
@@ -52,7 +59,6 @@ const DevHub: React.FC = () => {
 
     setLoading(false)
   }, [])
-
   return (
     <Box
       w="100%"
@@ -95,12 +101,9 @@ const DevHub: React.FC = () => {
           <NewSelect
             isMulti
             isBadge
-            defaultValue={['ola mundo']}
+            defaultValue={[data[0]?.value]}
             variant="normal"
-            options={[
-              { label: 'mama', value: 'ola mundo' },
-              { label: 'teste 123', value: 'olaaaaasasd mundo' }
-            ]}
+            options={data}
           />
 
           <Button isLoading={loading}>Entrar na solução</Button>
