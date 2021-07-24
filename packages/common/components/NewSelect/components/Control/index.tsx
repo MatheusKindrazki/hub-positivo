@@ -3,6 +3,7 @@ import React, { useRef, useMemo, useContext } from 'react'
 import { Box } from '@psdhub/common/components'
 
 import InputSearch, { InputHandler } from '../Input'
+import Badges from '../Badges'
 import SelectContext from '../../context'
 
 interface ControleProps {
@@ -12,7 +13,7 @@ interface ControleProps {
 }
 
 const Control: React.FC<ControleProps> = props => {
-  const { state } = useContext(SelectContext)
+  const { state, isBadge } = useContext(SelectContext)
 
   const { placeholder = 'Selecione' } = props
 
@@ -29,19 +30,29 @@ const Control: React.FC<ControleProps> = props => {
     return state?.checked?.join(',') || placeholder
   }, [state, placeholder])
 
-  return (
-    <Box className="hub-control">
-      {props.searchable ? (
+  const renderComponent = useMemo(() => {
+    if (!isBadge && !props.searchable) {
+      return <Box as="span">{renderValue}</Box>
+    }
+
+    if (props.focus) {
+      return (
         <InputSearch
           ref={inputRef}
           placeholder={renderValue}
           searchable={e => console.log(e)}
         />
-      ) : (
-        <Box as="span">{renderValue}</Box>
-      )}
-    </Box>
-  )
+      )
+    }
+
+    if (!state?.checked?.length) {
+      return <Box as="span">{renderValue}</Box>
+    }
+
+    return <Badges itens={state?.checked} />
+  }, [isBadge, props.focus, props.searchable, renderValue, state?.checked])
+
+  return <Box className="hub-control">{renderComponent}</Box>
 }
 
 export default Control

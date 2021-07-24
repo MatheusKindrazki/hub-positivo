@@ -12,6 +12,7 @@ export interface SelectProps<T extends Variants = 'normal'> {
   defaultIsOpen?: boolean
   clearable?: boolean
   isSearchable?: boolean
+  isBadge?: boolean
   className?: string
   defaultValue?: string[]
   noOptionsMessage?: React.ReactNode

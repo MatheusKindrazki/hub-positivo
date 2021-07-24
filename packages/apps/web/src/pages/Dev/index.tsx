@@ -94,6 +94,7 @@ const DevHub: React.FC = () => {
 
           <NewSelect
             isMulti
+            isBadge
             defaultValue={['ola mundo']}
             variant="normal"
             options={[

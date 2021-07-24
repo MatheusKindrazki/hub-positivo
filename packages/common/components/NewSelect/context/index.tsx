@@ -10,6 +10,7 @@ export interface SelectContextProps {
   state: StateRef
   options: TreeNode[]
   isMulti?: boolean
+  isBadge?: boolean
   clearable?: boolean
   isSearchable?: boolean
   className?: string
@@ -19,6 +20,7 @@ export interface SelectContextProps {
 const SelectContext = createContext({
   isMulti: false,
   clearable: false,
+  isBadge: false,
   isSearchable: false,
   noOptionsMessage: 'Nada encontrado =(',
   state: {
