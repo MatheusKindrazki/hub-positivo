@@ -16,8 +16,6 @@ function markCheckedItens(itens: string[], context: SelectContextProps): void {
   }
 
   context.refresh()
-
-  console.log(context.state)
 }
 
 export default markCheckedItens

@@ -1,4 +1,4 @@
-import React, { useRef, memo, useMemo, useContext } from 'react'
+import React, { useRef, useMemo, useContext } from 'react'
 
 import { Box } from '@psdhub/common/components'
 
@@ -44,4 +44,4 @@ const Control: React.FC<ControleProps> = props => {
   )
 }
 
-export default memo(Control)
+export default Control
