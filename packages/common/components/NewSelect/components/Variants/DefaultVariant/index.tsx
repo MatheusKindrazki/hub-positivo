@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, memo } from 'react'
 
 import classNames from 'classnames'
 
@@ -23,7 +23,17 @@ const DefaultVariant: React.FC = () => {
     context.onClose()
   }
 
-  console.log(options)
+  const checkSelectedItem = (item: TreeNode) => {
+    const isChecked = state.raw.find(i => {
+      if (i.value === item.value) {
+        return i.isChecked
+      }
+
+      return false
+    })
+
+    return isChecked
+  }
 
   return (
     <ContainerOptions className="hub-select-options">
@@ -31,7 +41,7 @@ const DefaultVariant: React.FC = () => {
         <Box
           key={index}
           className={classNames({
-            active: option.isChecked,
+            active: checkSelectedItem(option),
             'hub-select-item': true
           })}
           role="button"
@@ -44,4 +54,4 @@ const DefaultVariant: React.FC = () => {
   )
 }
 
-export default DefaultVariant
+export default memo(DefaultVariant)
