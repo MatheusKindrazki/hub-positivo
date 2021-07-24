@@ -4,6 +4,7 @@ import { Box } from '@psdhub/common/components'
 
 import InputSearch, { InputHandler } from '../Input'
 import Badges from '../Badges'
+import { getLabelsOrValues } from '../../utils'
 import SelectContext from '../../context'
 
 interface ControleProps {
@@ -27,7 +28,8 @@ const Control: React.FC<ControleProps> = props => {
   }
 
   const renderValue = useMemo(() => {
-    return state?.checked?.join(',') || placeholder
+    const checked = getLabelsOrValues(state.raw, 'label')?.join(',')
+    return checked || placeholder
   }, [state, placeholder])
 
   const renderComponent = useMemo(() => {
@@ -49,8 +51,8 @@ const Control: React.FC<ControleProps> = props => {
       return <Box as="span">{renderValue}</Box>
     }
 
-    return <Badges itens={state?.checked} />
-  }, [isBadge, props.focus, props.searchable, renderValue, state?.checked])
+    return <Badges itens={getLabelsOrValues(state.raw, 'label')} />
+  }, [isBadge, props.focus, props.searchable, renderValue, state])
 
   return <Box className="hub-control">{renderComponent}</Box>
 }

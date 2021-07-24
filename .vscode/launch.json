@@ -10,14 +10,13 @@
       "request": "attach",
       "port": 9222,
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}/packages/apps/hub-web"
+      "webRoot": "${workspaceFolder}/packages/apps/web"
     },
     {
-      "type": "edge",
+      "type": "devtools-for-chrome",
       "request": "launch",
-      "name": "Iniciar o Edge em relação a localhost",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}/packages/apps/hub-web"
+      "name": "Launch Chrome DevTools",
+      "webRoot": "${workspaceFolder}/packages/apps/web/public/index.html"
     }
   ]
 }
