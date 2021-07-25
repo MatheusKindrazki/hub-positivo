@@ -13,6 +13,7 @@ export interface SelectContextProps {
   isBadge?: boolean
   clearable?: boolean
   isSearchable?: boolean
+  labelLength?: number
   className?: string
   noOptionsMessage?: React.ReactNode
 }
