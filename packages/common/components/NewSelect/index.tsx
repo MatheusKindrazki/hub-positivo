@@ -7,6 +7,7 @@ import React, {
   useReducer
 } from 'react'
 
+import CustomScroll from 'react-custom-scroll'
 import classNames from 'classnames'
 
 import { useDisclosure, useOnClickOutside } from '@psdhub/common/hooks'
@@ -70,7 +71,11 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
             searchable: true
           })}
         >
-          <Variant />
+          <CustomScroll allowOuterScroll flex="1">
+            <div className="hub-content">
+              <Variant />
+            </div>
+          </CustomScroll>
         </ContainerOptions>
       )}
     </Container>

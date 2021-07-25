@@ -9,10 +9,8 @@ export const Container = styled(Box)`
 
   width: inherit;
   height: auto;
-  max-height: 150px;
   background: white;
   margin-top: 8px;
-  overflow: hidden;
 
   border: 1px solid;
   border-radius: ${({ theme }) => theme.radii.md};

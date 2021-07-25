@@ -42,6 +42,7 @@
     "polished": "^4.1.0",
     "randomstring": "^1.1.5",
     "react-collapse": "^5.1.0",
+    "react-custom-scroll": "^4.3.0",
     "react-datepicker": "^4.1.1",
     "react-dropzone": "^11.3.2",
     "react-select": "^4.3.1",
@@ -50,12 +51,13 @@
     "reactour": "^1.18.0"
   },
   "devDependencies": {
-    "@psdhub/test-utils": "*",
     "@psdhub/common": "*",
+    "@psdhub/test-utils": "*",
     "@types/classnames": "^2.2.11",
     "@types/node": "^14.14.25",
     "@types/randomstring": "^1.1.6",
     "@types/react": "^17.0.1",
+    "@types/react-custom-scroll": "^4.3.1",
     "@types/react-dom": "^17.0.0",
     "@types/react-select": "^4.0.15",
     "@types/reactour": "^1.18.0",
