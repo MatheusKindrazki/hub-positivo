@@ -3725,6 +3725,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-custom-scroll@^4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@types/react-custom-scroll/-/react-custom-scroll-4.3.1.tgz#d1aee10de2701a3b65d61200a22491421889a55d"
+  integrity sha512-KalMNXBVqyQM8Mx8z4jJemscVCN+m4lx71a00E9eQE7kxZjBmehltTVA4uunuvXqUFsFtKTNAdZfy27KykB/7A==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-datepicker@^3.1.8":
   version "3.1.8"
   resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-3.1.8.tgz#642b0d5f2c30f53d7940b1771d5fb11b646bb7fb"
