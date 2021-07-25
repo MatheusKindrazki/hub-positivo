@@ -6,6 +6,7 @@ export default (props: SelectProps, context: SelectContextProps): void => {
   context.isMulti = props.isMulti
   context.isBadge = props.isBadge
   context.clearable = props.clearable
+  context.labelLength = props.labelLength
   context.isSearchable = props.isSearchable
   context.noOptionsMessage = props.noOptionsMessage
 }

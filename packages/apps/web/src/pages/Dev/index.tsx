@@ -100,6 +100,7 @@ const DevHub: React.FC = () => {
 
           <NewSelect
             isMulti
+            labelLength={5}
             isBadge
             defaultValue={[data[0]?.value]}
             variant="normal"
