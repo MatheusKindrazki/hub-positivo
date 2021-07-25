@@ -25,7 +25,7 @@ export const Container = styled(Box)`
     border-color: ${({ theme }) => theme.colors.gray[400]};
 
     padding-inline-start: ${({ theme }) => theme.space[4]};
-    padding-inline-end: ${({ theme }) => theme.space[10]};
+    padding-inline-end: ${({ theme }) => theme.space[8]};
 
     height: 3rem;
 

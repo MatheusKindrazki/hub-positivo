@@ -5,7 +5,7 @@ import Box from '@psdhub/common/components/Box'
 export const Container = styled(Box)`
   position: absolute;
 
-  z-index: 2;
+  z-index: 5;
 
   width: inherit;
   height: auto;

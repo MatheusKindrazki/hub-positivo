@@ -1,4 +1,4 @@
-import React, { useContext, memo } from 'react'
+import React, { useContext } from 'react'
 
 import classNames from 'classnames'
 
@@ -20,7 +20,7 @@ const DefaultVariant: React.FC = () => {
 
     context.onChange(getObjectValues(items), items)
 
-    context.onClose()
+    context.refresh()
   }
 
   const checkSelectedItem = (item: TreeNode) => {
@@ -47,11 +47,13 @@ const DefaultVariant: React.FC = () => {
           role="button"
           onClick={() => handleClick(option)}
         >
-          <Text color="black">{option.label}</Text>
+          <Text pointerEvents="none" color="black">
+            {option.label}
+          </Text>
         </Box>
       ))}
     </ContainerOptions>
   )
 }
 
-export default memo(DefaultVariant)
+export default DefaultVariant

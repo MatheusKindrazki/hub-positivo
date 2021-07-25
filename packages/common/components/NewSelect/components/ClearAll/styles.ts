@@ -7,7 +7,7 @@ interface ContainerIconProps {
 }
 
 export const ContainerIcon = styled(Box)<ContainerIconProps>`
-  width: 2rem;
+  width: 1.5rem;
   height: 3rem;
   z-index: 2;
 
@@ -18,12 +18,12 @@ export const ContainerIcon = styled(Box)<ContainerIconProps>`
 
   opacity: 0;
   pointer-events: none;
-  cursor: none;
 
   ${props =>
     props.active &&
     css`
       opacity: 1;
       pointer-events: all;
+      cursor: pointer;
     `}
 `

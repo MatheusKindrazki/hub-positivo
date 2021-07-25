@@ -39,6 +39,10 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
     context.state = { checked, raw }
 
     props.onChange && props.onChange(checked, raw)
+
+    if (props.closeOnSelect) {
+      onClose()
+    }
   }
 
   const Variant = options[props.variant || 'normal']
@@ -58,6 +62,7 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
           role="button"
           className="hub-select-header-title"
           onClick={onToggle}
+          maxW={props.clearable ? 'calc(100% - 1.5rem)' : '100%'}
         >
           <Control focus={isOpen} />
         </Box>

@@ -37,11 +37,11 @@ const Control: React.FC<ControleProps> = props => {
       return <Box as="span">{renderValue}</Box>
     }
 
-    if (props.focus) {
+    if (props.focus && props.searchable) {
       return (
         <InputSearch
           ref={inputRef}
-          placeholder={renderValue}
+          placeholder="Pesquisar"
           searchable={e => console.log(e)}
         />
       )

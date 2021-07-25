@@ -13,11 +13,12 @@ interface BadgeProps extends Props {
 const Badges: React.FC<BadgeProps> = ({ itens, ...props }) => {
   const { labelLength } = useContext(SelectContext)
   return (
-    <Box d="flex" noOfLines={1}>
+    <Box d="flex" w="100%" overflow="hidden" pointerEvents="none">
       {itens.map((item, index) => (
         <HubBadge
           mx={index !== 0 ? '2px' : '0'}
           color="blue.300"
+          colorScheme="facebook"
           key={index}
           {...props}
         >

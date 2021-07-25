@@ -12,6 +12,7 @@ export interface SelectProps<T extends Variants = 'normal'> {
   defaultIsOpen?: boolean
   clearable?: boolean
   isSearchable?: boolean
+  closeOnSelect?: boolean
   labelLength?: number
   isBadge?: boolean
   className?: string
