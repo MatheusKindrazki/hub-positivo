@@ -1,27 +1,14 @@
-import React, {
-  memo,
-  useRef,
-  forwardRef,
-  ChangeEvent,
-  useCallback,
-  useImperativeHandle
-} from 'react'
+import React, { memo, useRef, useEffect, ChangeEvent, useCallback } from 'react'
 
 import { useDebounce } from '@psdhub/common/hooks'
 
 import { Input } from './styles'
-export interface InputHandler {
-  onClear: () => void
-  onFocus: () => void
-  onBlur: () => void
-}
-
 interface InputProps {
   searchable?: (string: string) => void
   placeholder: string
 }
 
-const InputSelect = forwardRef<InputHandler, InputProps>((props, ref) => {
+const InputSelect: React.FC<InputProps> = props => {
   const { searchable } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -36,15 +23,15 @@ const InputSelect = forwardRef<InputHandler, InputProps>((props, ref) => {
     inputRef.current.value = ''
   }, [])
 
-  useImperativeHandle(ref, () => ({
-    onClear,
-    onFocus: () => {
-      inputRef.current?.focus()
-    },
-    onBlur: () => {
-      inputRef.current?.blur()
+  useEffect(() => {
+    if (!inputRef.current) return
+
+    inputRef.current.focus()
+
+    return () => {
+      onClear()
     }
-  }))
+  }, [onClear])
 
   return (
     <Input
@@ -53,6 +40,6 @@ const InputSelect = forwardRef<InputHandler, InputProps>((props, ref) => {
       onChange={debouncedValue}
     />
   )
-})
+}
 
 export default memo(InputSelect)

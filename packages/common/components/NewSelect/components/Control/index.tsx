@@ -1,8 +1,8 @@
-import React, { useRef, useMemo, useContext } from 'react'
+import React, { useMemo, useContext } from 'react'
 
 import { Box } from '@psdhub/common/components'
 
-import InputSearch, { InputHandler } from '../Input'
+import InputSearch from '../Input'
 import Badges from '../Badges'
 import { getLabelsOrValues } from '../../utils'
 import SelectContext from '../../context'
@@ -14,18 +14,9 @@ interface ControleProps {
 }
 
 const Control: React.FC<ControleProps> = props => {
-  const { state, isBadge } = useContext(SelectContext)
+  const { state, isBadge, isSearchable } = useContext(SelectContext)
 
   const { placeholder = 'Selecione' } = props
-
-  const inputRef = useRef<InputHandler>(null)
-
-  props?.focus && inputRef.current?.onFocus()
-
-  if (!props?.focus) {
-    inputRef.current?.onBlur()
-    inputRef.current?.onClear()
-  }
 
   const renderValue = useMemo(() => {
     const checked = getLabelsOrValues(state.raw, 'label')?.join(',')
@@ -33,15 +24,18 @@ const Control: React.FC<ControleProps> = props => {
   }, [state, placeholder])
 
   const renderComponent = useMemo(() => {
-    if (!isBadge && !props.searchable) {
-      return <Box as="span">{renderValue}</Box>
+    if (!isBadge && !isSearchable) {
+      return (
+        <Box as="span" noOfLines={1}>
+          {renderValue}
+        </Box>
+      )
     }
 
-    if (props.focus && props.searchable) {
+    if (isSearchable && props.focus) {
       return (
         <InputSearch
-          ref={inputRef}
-          placeholder="Pesquisar"
+          placeholder={!isBadge ? renderValue : 'Digite para buscar'}
           searchable={e => console.log(e)}
         />
       )
@@ -52,7 +46,7 @@ const Control: React.FC<ControleProps> = props => {
     }
 
     return <Badges itens={getLabelsOrValues(state.raw, 'label')} />
-  }, [isBadge, props.focus, props.searchable, renderValue, state])
+  }, [isBadge, isSearchable, props.focus, renderValue, state])
 
   return <Box className="hub-control">{renderComponent}</Box>
 }

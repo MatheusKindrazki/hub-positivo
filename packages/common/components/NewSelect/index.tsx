@@ -27,7 +27,7 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [, forceUpdate] = useReducer(x => x + 1, 0)
-  const { defaultIsOpen } = props
+  const { defaultIsOpen, placeholder } = props
 
   const context = useContext(SelectContext)
 
@@ -64,7 +64,7 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
           onClick={onToggle}
           maxW={props.clearable ? 'calc(100% - 1.5rem)' : '100%'}
         >
-          <Control focus={isOpen} />
+          <Control placeholder={placeholder} focus={isOpen} />
         </Box>
         {props.clearable && <ClearAll />}
         <Icon onClick={onToggle} open={isOpen} />

@@ -14,6 +14,6 @@ export const Input = styled.input`
   pointer-events: none;
 
   &::placeholder {
-    color: inherit;
+    color: ${props => props.theme.colors.gray[500]};
   }
 `

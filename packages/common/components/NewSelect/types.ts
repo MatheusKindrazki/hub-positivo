@@ -16,6 +16,7 @@ export interface SelectProps<T extends Variants = 'normal'> {
   labelLength?: number
   isBadge?: boolean
   className?: string
+  placeholder?: string
   defaultValue?: string[]
   noOptionsMessage?: React.ReactNode
   onChange?: (checked: string[], raw: TreeNode[]) => void
