@@ -1,5 +1,7 @@
 import React, { useMemo, useContext } from 'react'
 
+import { useTransition } from 'react-spring'
+
 import { Box } from '@psdhub/common/components'
 
 import InputSearch from '../Input'
@@ -16,6 +18,12 @@ interface ControleProps {
 const Control: React.FC<ControleProps> = props => {
   const { state, isBadge, isSearchable } = useContext(SelectContext)
 
+  const transition = useTransition(props.focus, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    to: { opacity: 1 }
+  })
+
   const { placeholder = 'Selecione' } = props
 
   const renderValue = useMemo(() => {
@@ -24,7 +32,7 @@ const Control: React.FC<ControleProps> = props => {
   }, [state, placeholder])
 
   const renderComponent = useMemo(() => {
-    if (!isBadge && !isSearchable) {
+    if (!isBadge && !props.focus) {
       return (
         <Box as="span" noOfLines={1}>
           {renderValue}
@@ -32,12 +40,16 @@ const Control: React.FC<ControleProps> = props => {
       )
     }
 
-    if (isSearchable && props.focus) {
-      return (
-        <InputSearch
-          placeholder={!isBadge ? renderValue : 'Digite para buscar'}
-          searchable={e => console.log(e)}
-        />
+    if (isSearchable) {
+      return transition(
+        (style, item) =>
+          item && (
+            <InputSearch
+              style={style}
+              placeholder={!isBadge ? renderValue : 'Digite para buscar'}
+              searchable={e => console.log(e)}
+            />
+          )
       )
     }
 
@@ -46,7 +58,7 @@ const Control: React.FC<ControleProps> = props => {
     }
 
     return <Badges itens={getLabelsOrValues(state.raw, 'label')} />
-  }, [isBadge, isSearchable, props.focus, renderValue, state])
+  }, [isBadge, isSearchable, props.focus, renderValue, state, transition])
 
   return <Box className="hub-control">{renderComponent}</Box>
 }

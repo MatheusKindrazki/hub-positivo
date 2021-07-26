@@ -4,6 +4,7 @@ import { useDebounce } from '@psdhub/common/hooks'
 
 import { Input } from './styles'
 interface InputProps {
+  style?: any
   searchable?: (string: string) => void
   placeholder: string
 }
@@ -36,6 +37,7 @@ const InputSelect: React.FC<InputProps> = props => {
   return (
     <Input
       ref={inputRef}
+      style={props?.style}
       placeholder={props.placeholder}
       onChange={debouncedValue}
     />
