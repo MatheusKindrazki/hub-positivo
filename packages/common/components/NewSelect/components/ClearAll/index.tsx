@@ -14,6 +14,8 @@ const ClearAll: React.FC = () => {
     context.refresh()
   }, [context])
 
+  console.log(context.state?.checked)
+
   return (
     <ContainerIcon
       active={!!context.state?.checked?.length}

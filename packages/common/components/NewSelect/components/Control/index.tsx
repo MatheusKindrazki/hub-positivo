@@ -2,6 +2,7 @@ import React, { useMemo, useContext } from 'react'
 
 import { useTransition, config } from 'react-spring'
 
+import { truncateString } from '@psdhub/common/utils/truncateString'
 import { Box } from '@psdhub/common/components'
 
 import InputSearch from '../Input'
@@ -16,7 +17,8 @@ interface ControleProps {
 }
 
 const Control: React.FC<ControleProps> = props => {
-  const { state, isBadge, isSearchable } = useContext(SelectContext)
+  const { state, isBadge, isSearchable, labelLength } =
+    useContext(SelectContext)
 
   const fadeInTransition = useTransition(props.focus, {
     from: { opacity: 0 },
@@ -30,15 +32,18 @@ const Control: React.FC<ControleProps> = props => {
 
   const renderValue = useMemo(() => {
     const checked = getLabelsOrValues(state.raw, 'label')?.join(',')
-    return checked || placeholder
-  }, [state, placeholder])
+
+    if (!checked) return placeholder
+
+    return labelLength ? truncateString(checked, labelLength) : checked
+  }, [state.raw, placeholder, labelLength])
 
   const renderComponent = useMemo(() => {
     if (!isBadge && !props.focus) {
       return <Box noOfLines={1}>{renderValue}</Box>
     }
 
-    if (isSearchable) {
+    if (isSearchable && props.focus) {
       return fadeInTransition(
         (style, item) =>
           item && (
@@ -58,7 +63,11 @@ const Control: React.FC<ControleProps> = props => {
     return <Badges itens={getLabelsOrValues(state.raw, 'label')} />
   }, [isBadge, isSearchable, props.focus, renderValue, state, fadeInTransition])
 
-  return <Box className="hub-control">{renderComponent}</Box>
+  return (
+    <Box pointerEvents="none" className="hub-control">
+      {renderComponent}
+    </Box>
+  )
 }
 
 export default Control
