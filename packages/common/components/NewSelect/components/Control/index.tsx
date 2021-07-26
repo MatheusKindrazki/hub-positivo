@@ -31,11 +31,17 @@ const Control: React.FC<ControleProps> = props => {
   const { placeholder = 'Selecione' } = props
 
   const renderValue = useMemo(() => {
-    const checked = getLabelsOrValues(state.raw, 'label')?.join(',')
+    const checked = getLabelsOrValues(state.raw, 'label')
 
-    if (!checked) return placeholder
+    if (!checked.length) return placeholder
 
-    return labelLength ? truncateString(checked, labelLength) : checked
+    return checked
+      .map((item: string) => {
+        if (!labelLength) return item
+
+        return truncateString(item, labelLength)
+      })
+      .join(', ')
   }, [state.raw, placeholder, labelLength])
 
   const renderComponent = useMemo(() => {

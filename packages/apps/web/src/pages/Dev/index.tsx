@@ -100,10 +100,10 @@ const DevHub: React.FC = () => {
 
           <NewSelect
             isMulti
-            isBadge
+            // isBadge
             isSearchable
             clearable
-            // labelLength={10}
+            labelLength={10}
             defaultValue={[data[0]?.value]}
             variant="normal"
             options={data}
