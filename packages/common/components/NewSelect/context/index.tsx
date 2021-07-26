@@ -16,7 +16,7 @@ export interface SelectContextProps {
   isSearchable?: boolean
   labelLength?: number
   className?: string
-  noOptionsMessage?: React.ReactNode
+  noOptionsMessage?: React.FC
 }
 
 const SelectContext = createContext({
@@ -24,7 +24,6 @@ const SelectContext = createContext({
   clearable: false,
   isBadge: false,
   isSearchable: false,
-  noOptionsMessage: 'Nada encontrado =(',
   state: {
     checked: [] as string[],
     raw: [] as TreeNode[]

@@ -6,6 +6,7 @@ import { getObjectValues } from '@psdhub/common/components/Tree/utils'
 import { Box, Text } from '@psdhub/common/components'
 
 import { ContainerOptions } from './styles'
+import NotFound from '../../NotFound'
 import { handleParents, filterRecursive } from '../../../utils'
 import { TreeNode } from '../../../types'
 import SelectContext from '../../../context'
@@ -13,7 +14,7 @@ import SelectContext from '../../../context'
 const DefaultVariant: React.FC = () => {
   const context = useContext(SelectContext)
 
-  const { options, state, isMulti } = context
+  const { options, state, isMulti, noOptionsMessage } = context
 
   const [renderedOptions, setRenderedOptions] = useState(options)
 
@@ -48,21 +49,25 @@ const DefaultVariant: React.FC = () => {
 
   return (
     <ContainerOptions className="hub-select-options">
-      {renderedOptions?.map((option, index) => (
-        <Box
-          key={index}
-          className={classNames({
-            active: checkSelectedItem(option),
-            'hub-select-item': true
-          })}
-          role="button"
-          onClick={() => handleClick(option)}
-        >
-          <Text pointerEvents="none" color="black">
-            {option.label}
-          </Text>
-        </Box>
-      ))}
+      {renderedOptions?.length ? (
+        renderedOptions.map((option, index) => (
+          <Box
+            key={index}
+            className={classNames({
+              active: checkSelectedItem(option),
+              'hub-select-item': true
+            })}
+            role="button"
+            onClick={() => handleClick(option)}
+          >
+            <Text pointerEvents="none" color="black">
+              {option.label}
+            </Text>
+          </Box>
+        ))
+      ) : (
+        <NotFound noOptionsMessage={noOptionsMessage} />
+      )}
     </ContainerOptions>
   )
 }
