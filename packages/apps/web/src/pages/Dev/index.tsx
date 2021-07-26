@@ -100,7 +100,7 @@ const DevHub: React.FC = () => {
 
           <NewSelect
             isMulti
-            // isBadge
+            isBadge
             isSearchable
             clearable
             labelLength={10}

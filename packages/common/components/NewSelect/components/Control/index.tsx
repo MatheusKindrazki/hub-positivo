@@ -28,7 +28,9 @@ const Control: React.FC<ControleProps> = props => {
     delay: 200
   })
 
-  const { placeholder = 'Selecione' } = props
+  const { placeholder = 'Selecione', searchable } = props
+
+  if (!props.focus) searchable && searchable('')
 
   const renderValue = useMemo(() => {
     const checked = getLabelsOrValues(state.raw, 'label')
@@ -56,7 +58,7 @@ const Control: React.FC<ControleProps> = props => {
             <InputSearch
               style={style}
               placeholder={'Digite para buscar'}
-              searchable={e => console.log(e)}
+              searchable={searchable}
             />
           )
       )
@@ -67,7 +69,15 @@ const Control: React.FC<ControleProps> = props => {
     }
 
     return <Badges itens={getLabelsOrValues(state.raw, 'label')} />
-  }, [isBadge, isSearchable, props.focus, renderValue, state, fadeInTransition])
+  }, [
+    isBadge,
+    props.focus,
+    isSearchable,
+    state,
+    renderValue,
+    fadeInTransition,
+    searchable
+  ])
 
   return (
     <Box pointerEvents="none" className="hub-control">

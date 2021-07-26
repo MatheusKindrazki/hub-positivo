@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import classNames from 'classnames'
 
@@ -6,12 +6,16 @@ import { getObjectValues } from '@psdhub/common/components/Tree/utils'
 import { Box, Text } from '@psdhub/common/components'
 
 import { ContainerOptions } from './styles'
-import { handleParents } from '../../../utils'
+import { handleParents, filterRecursive } from '../../../utils'
 import { TreeNode } from '../../../types'
 import SelectContext from '../../../context'
 
 const DefaultVariant: React.FC = () => {
-  const { options, state, isMulti, ...context } = useContext(SelectContext)
+  const context = useContext(SelectContext)
+
+  const { options, state, isMulti } = context
+
+  const [renderedOptions, setRenderedOptions] = useState(options)
 
   const handleClick = (item: TreeNode) => {
     const prepareItem = { ...item, isChecked: 1 }
@@ -35,9 +39,16 @@ const DefaultVariant: React.FC = () => {
     return isChecked
   }
 
+  context.searchable = (e: string) => {
+    if (!e) return setRenderedOptions(options)
+
+    const filteredOptions = filterRecursive<TreeNode>(options, e)
+    setRenderedOptions(filteredOptions)
+  }
+
   return (
     <ContainerOptions className="hub-select-options">
-      {options?.map((option, index) => (
+      {renderedOptions?.map((option, index) => (
         <Box
           key={index}
           className={classNames({

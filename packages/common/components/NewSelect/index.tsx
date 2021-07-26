@@ -52,6 +52,8 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
     markCheckedItens(defaultValue.current || [], context)
   }, [context])
 
+  const handleInputChange = (e: string) => context.searchable(e)
+
   syncPropsContext(props, context)
   useOnClickOutside(containerRef, onClose, 'click')
   useConnectRefToContext(context, ref)
@@ -64,7 +66,11 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
           onClick={onToggle}
           maxW={props.clearable ? 'calc(100% - 1.5rem)' : '100%'}
         >
-          <Control placeholder={placeholder} focus={isOpen} />
+          <Control
+            searchable={handleInputChange}
+            placeholder={placeholder}
+            focus={isOpen}
+          />
         </Box>
         {props.clearable && <ClearAll />}
         <Icon onClick={onToggle} open={isOpen} />
