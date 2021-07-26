@@ -36,7 +36,7 @@ const TreeItens: React.FC<TreeItensProps> = ({
       <Box
         d="flex"
         justifyContent="space-between"
-        className={`hub-tree-level-${level}`}
+        className={`hub-tree hub-tree-level-${level}`}
         alignItems="center"
         py="2"
       >

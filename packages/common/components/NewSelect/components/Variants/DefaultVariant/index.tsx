@@ -66,7 +66,7 @@ const DefaultVariant: React.FC = () => {
           </Box>
         ))
       ) : (
-        <NotFound noOptionsMessage={noOptionsMessage} />
+        <NotFound noOptionsMessage={noOptionsMessage as React.FC} />
       )}
     </ContainerOptions>
   )

@@ -5,13 +5,13 @@ export type Variants =
   | 'checkbox'
   | 'treeview'
 
-export interface SelectProps<T extends Variants = 'normal'> {
+export interface SelectProps {
   /**
    * Usado para definir qual o componente será usado como Select.
    * @example
    * variant = "normal"
    */
-  variant: T
+  variant: Variants
   /**
    * Valores a serem selecionados.
    * @example
@@ -19,9 +19,10 @@ export interface SelectProps<T extends Variants = 'normal'> {
    *
    * @description
    * O valor "options" dentro do array e utilizado apenas para a variant do tipo "treeview".
+   * "isChecked " não é obrigatório, mas é utilizado para definir o estado da opção.
    *
    */
-  options: Array<Options<T>>
+  options: Array<TreeNode>
   isMulti?: boolean
   defaultIsOpen?: boolean
   clearable?: boolean
@@ -35,9 +36,6 @@ export interface SelectProps<T extends Variants = 'normal'> {
   noOptionsMessage?: React.ReactNode
   onChange?: (checked: string[], raw: TreeNode[]) => void
 }
-
-type Options<T> = T extends 'treeview' ? TreeNode : Omit<TreeNode, 'isChecked'>
-
 export interface TreeNode {
   label: string
   value: string
