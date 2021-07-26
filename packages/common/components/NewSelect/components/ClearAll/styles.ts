@@ -7,9 +7,9 @@ interface ContainerIconProps {
 }
 
 export const ContainerIcon = styled(Box)<ContainerIconProps>`
-  width: 1.5rem;
+  width: 2.3rem;
   height: 3rem;
-  z-index: 2;
+  z-index: 4;
 
   display: flex;
   justify-content: center;
