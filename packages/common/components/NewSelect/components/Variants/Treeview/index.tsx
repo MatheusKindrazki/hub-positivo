@@ -1,30 +1,27 @@
-import React, { useContext, useCallback, memo } from 'react'
+import React, { useContext, useMemo } from 'react'
 
-import Tree, { TreeNode } from '@psdhub/common/components/Tree'
+import Tree from '@psdhub/common/components/Tree'
 
 import { ContainerOptions } from './styles'
 import SelectContext from '../../../context'
 
 const DefaultVariant: React.FC = props => {
-  const context = useContext(SelectContext)
+  const { options, state, onChange } = useContext(SelectContext)
 
-  const handleSelect = useCallback(
-    (checked: string[], raw: TreeNode[]) => {
-      context.onChange(checked, raw)
-    },
-    [context]
-  )
+  const renderDefaultOptions = useMemo(() => {
+    return state.checked
+  }, [state.checked])
 
   return (
     <ContainerOptions>
       <Tree
         {...props}
-        options={context.options || []}
-        defaultOptions={context?.state?.checked}
-        onChange={handleSelect}
+        options={options}
+        defaultOptions={renderDefaultOptions}
+        onChange={onChange}
       />
     </ContainerOptions>
   )
 }
 
-export default memo(DefaultVariant)
+export default DefaultVariant

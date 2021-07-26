@@ -1,4 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useLayoutEffect,
+  memo
+} from 'react'
 
 import { handleClickParents, getObjectValues, setDefaultValues } from './utils'
 import { Container } from './styles'
@@ -25,6 +32,8 @@ export interface Props {
 }
 
 const CustomTreeView: React.FC<Props> = props => {
+  const enableChange = useRef(false)
+
   const {
     options,
     isCollapse,
@@ -36,11 +45,19 @@ const CustomTreeView: React.FC<Props> = props => {
 
   const [data, setData] = useState<Array<TreeNode>>([])
 
-  useEffect(() => {
-    setDefaultValues(defaultOptions, options)
+  setDefaultValues(defaultOptions, options)
 
+  useEffect(() => {
     setData(options)
-  }, [options, defaultOptions])
+  }, [options])
+
+  useLayoutEffect(() => {
+    enableChange.current = true
+
+    return () => {
+      enableChange.current = false
+    }
+  }, [])
 
   const handleCheckedValue = useCallback(
     values => {
@@ -60,7 +77,11 @@ const CustomTreeView: React.FC<Props> = props => {
       handleClickParents(data, item)
 
       setData([...data])
-      handleCheckedValue([...data])
+
+      if (enableChange.current) {
+        console.log('handleCheckedValue')
+        handleCheckedValue([...data])
+      }
     }
 
     return (
@@ -94,4 +115,4 @@ const CustomTreeView: React.FC<Props> = props => {
   return <Container>{getTreeWidget(data, 1)}</Container>
 }
 
-export default CustomTreeView
+export default memo(CustomTreeView)

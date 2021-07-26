@@ -10,7 +10,7 @@ import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
 
-const data = new Array(100).fill({}).map(() => ({
+const data = new Array(10).fill({}).map(() => ({
   label: faker.lorem.sentence(),
   value: faker.datatype.uuid()
 }))
