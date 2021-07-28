@@ -11,7 +11,7 @@ import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
 
 const data = new Array(100).fill({}).map(() => ({
-  label: faker.lorem.sentence(),
+  label: faker.name.firstName(),
   value: faker.datatype.uuid()
 }))
 
@@ -105,7 +105,7 @@ const DevHub: React.FC = () => {
             clearable
             labelLength={10}
             defaultValue={[data[0]?.value]}
-            variant="checkbox"
+            variant="normal"
             options={data}
           />
 
