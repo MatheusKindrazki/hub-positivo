@@ -54,10 +54,6 @@ const CustomTreeView: React.FC<Props> = props => {
 
   useEffect(() => {
     setData(options)
-
-    return () => {
-      isLoadDefaultValue = false
-    }
   }, [options])
 
   useLayoutEffect(() => {
