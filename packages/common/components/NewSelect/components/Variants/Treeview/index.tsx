@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from 'react'
+import React, { useContext, useState, useLayoutEffect } from 'react'
 
 import Tree from '@psdhub/common/components/Tree'
 
@@ -14,10 +14,9 @@ const DefaultVariant: React.FC = props => {
   const { options, state, onChange, noOptionsMessage } = context
 
   const [renderedOptions, setRenderedOptions] = useState(options)
-
-  const renderDefaultOptions = useMemo(() => {
-    return state.checked
-  }, [state.checked])
+  const [renderDefaultOptions, setRenderDefaultOptions] = useState(
+    state.checked
+  )
 
   context.searchable = (e: string) => {
     if (!e) return setRenderedOptions(options)
@@ -26,15 +25,21 @@ const DefaultVariant: React.FC = props => {
     setRenderedOptions(filteredOptions)
   }
 
+  useLayoutEffect(() => {
+    setRenderDefaultOptions(state.checked)
+  }, [state.checked])
+
   return (
     <ContainerOptions>
       {renderedOptions?.length ? (
-        <Tree
-          {...props}
-          options={renderedOptions}
-          defaultOptions={renderDefaultOptions}
-          onChange={onChange}
-        />
+        <>
+          <Tree
+            {...props}
+            options={renderedOptions}
+            defaultOptions={renderDefaultOptions}
+            onChange={onChange}
+          />
+        </>
       ) : (
         <NotFound noOptionsMessage={noOptionsMessage as React.FC} />
       )}

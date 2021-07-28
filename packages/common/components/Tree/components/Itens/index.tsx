@@ -56,13 +56,13 @@ const TreeItens: React.FC<TreeItensProps> = ({
           />
         ) : null}
       </Box>
-      <Collapse in={isCollapseOpen} animateOpacity>
-        {parent.options && (
+      {parent.options && (
+        <Collapse in={isCollapseOpen} animateOpacity>
           <Stack pl={6} mt={1} spacing={1}>
             {getTreeWidget(parent.options, level + 1)}
           </Stack>
-        )}
-      </Collapse>
+        </Collapse>
+      )}
     </>
   )
 }

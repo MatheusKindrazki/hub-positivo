@@ -84,7 +84,6 @@ const CustomTreeView: React.FC<Props> = props => {
       setData([...data])
 
       if (enableChange.current) {
-        console.log('handleCheckedValue')
         handleCheckedValue([...data])
       }
     }

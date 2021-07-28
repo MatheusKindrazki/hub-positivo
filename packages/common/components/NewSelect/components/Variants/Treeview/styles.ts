@@ -8,6 +8,8 @@ export const ContainerOptions = styled(Box)`
     padding-left: ${({ theme }) => theme.space[4]};
     padding-right: ${({ theme }) => theme.space[4]};
 
+    border: none;
+
     transition: all 0.3s ease-in-out;
 
     * {
