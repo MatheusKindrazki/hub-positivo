@@ -4,6 +4,7 @@ import { X } from '@psdhub/common/components/Icons'
 import Box from '@psdhub/common/components/Box'
 
 import { ContainerIcon } from './styles'
+import { resetAll } from '../../utils'
 import SelectContext from '../../context'
 
 const ClearAll: React.FC = () => {
@@ -11,6 +12,9 @@ const ClearAll: React.FC = () => {
 
   const handleClearAll = useCallback(() => {
     context.onChange([], [])
+
+    resetAll(context.options)
+
     context.refresh()
   }, [context])
 

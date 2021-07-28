@@ -1,13 +1,12 @@
 import { setDefaultValues } from '@psdhub/common/components/Tree/utils'
 
-import { getLabelsOrValues } from '../utils'
-import { TreeNode } from '../types'
+import { getLabelsOrValues, resetAll } from '../utils'
 import { SelectContextProps } from '../context'
 function markCheckedItens(itens: string[], context: SelectContextProps): void {
   const options = context.options || []
 
-  // adiciona isChecked para todos os itens
-  addIsChecked(options)
+  // adiciona/reseta isChecked para todos os itens
+  resetAll(options)
 
   setDefaultValues(itens, options)
 
@@ -18,14 +17,4 @@ function markCheckedItens(itens: string[], context: SelectContextProps): void {
 
   context.refresh()
 }
-
-const addIsChecked = (options: TreeNode[]): void => {
-  options.forEach(option => {
-    option.isChecked = 0
-    if (option.options?.length) {
-      addIsChecked(option.options)
-    }
-  })
-}
-
 export default markCheckedItens

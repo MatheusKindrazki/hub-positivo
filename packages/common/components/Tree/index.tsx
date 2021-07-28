@@ -31,6 +31,8 @@ export interface Props {
   onChange?: (checked: string[], raw: Array<TreeNode>) => void
 }
 
+let isLoadDefaultValue = false
+
 const CustomTreeView: React.FC<Props> = props => {
   const enableChange = useRef(false)
 
@@ -45,10 +47,17 @@ const CustomTreeView: React.FC<Props> = props => {
 
   const [data, setData] = useState<Array<TreeNode>>([])
 
-  setDefaultValues(defaultOptions, options)
+  if (!isLoadDefaultValue && defaultOptions?.length) {
+    setDefaultValues(defaultOptions, options)
+    isLoadDefaultValue = true
+  }
 
   useEffect(() => {
     setData(options)
+
+    return () => {
+      isLoadDefaultValue = false
+    }
   }, [options])
 
   useLayoutEffect(() => {
