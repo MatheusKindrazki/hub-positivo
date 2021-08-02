@@ -17,6 +17,7 @@ export interface SelectProps {
    * "isChecked " não é obrigatório, mas é utilizado para definir o estado da opção.
    *
    */
+  name?: string
   options: Array<TreeNode>
   isMulti?: boolean
   hideSelected?: boolean
