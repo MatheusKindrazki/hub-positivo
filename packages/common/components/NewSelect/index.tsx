@@ -67,6 +67,7 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
           maxW={props.clearable ? 'calc(100% - 1.5rem)' : '100%'}
         >
           <Control
+            hideSelected={props.hideSelected}
             searchable={handleInputChange}
             placeholder={placeholder}
             focus={isOpen}

@@ -14,6 +14,7 @@ interface ControleProps {
   searchable?: (string: string) => void
   focus?: boolean
   placeholder?: string
+  hideSelected?: boolean
 }
 
 const Control: React.FC<ControleProps> = props => {
@@ -28,7 +29,7 @@ const Control: React.FC<ControleProps> = props => {
     delay: 200
   })
 
-  const { placeholder = 'Selecione', searchable } = props
+  const { placeholder = 'Selecione', searchable, hideSelected } = props
 
   if (!props.focus) searchable && searchable('')
 
@@ -37,6 +38,14 @@ const Control: React.FC<ControleProps> = props => {
 
     if (!checked.length) return placeholder
 
+    if (hideSelected) {
+      if (checked.length === 1) {
+        return '1 item selecionado'
+      }
+
+      return `${checked.length} itens selecionados`
+    }
+
     return checked
       .map((item: string) => {
         if (!labelLength) return item
@@ -44,10 +53,14 @@ const Control: React.FC<ControleProps> = props => {
         return truncateString(item, labelLength)
       })
       .join(', ')
-  }, [state.raw, placeholder, labelLength])
+  }, [state.raw, placeholder, labelLength, hideSelected])
 
   const renderComponent = useMemo(() => {
     if (!isBadge && !props.focus) {
+      return <Box noOfLines={1}>{renderValue}</Box>
+    }
+
+    if (hideSelected && !props.focus) {
       return <Box noOfLines={1}>{renderValue}</Box>
     }
 

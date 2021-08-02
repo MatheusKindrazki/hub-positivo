@@ -25,6 +25,7 @@ export interface SelectProps {
    */
   options: Array<TreeNode>
   isMulti?: boolean
+  hideSelected?: boolean
   defaultIsOpen?: boolean
   clearable?: boolean
   isSearchable?: boolean
