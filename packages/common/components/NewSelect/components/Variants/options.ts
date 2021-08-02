@@ -1,4 +1,5 @@
 import Treeview from './Treeview'
+import Radio from './Radio'
 import DefaultVariant from './DefaultVariant'
 
 export default {
@@ -6,5 +7,6 @@ export default {
   primary: DefaultVariant,
   secondary: DefaultVariant,
   checkbox: Treeview,
+  radio: Radio,
   treeview: Treeview
 }

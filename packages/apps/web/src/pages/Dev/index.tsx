@@ -105,7 +105,7 @@ const DevHub: React.FC = () => {
             clearable
             labelLength={10}
             defaultValue={[data[0]?.value]}
-            variant="checkbox"
+            variant="radio"
             options={data}
           />
 

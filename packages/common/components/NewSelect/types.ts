@@ -1,5 +1,6 @@
 export type Variants =
   | 'normal'
+  | 'radio'
   | 'primary'
   | 'secondary'
   | 'checkbox'

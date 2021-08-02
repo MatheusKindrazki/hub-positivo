@@ -2,20 +2,19 @@ import React, { useContext } from 'react'
 
 import classNames from 'classnames'
 
-import { Box, Text } from '@psdhub/common/components'
+import { Radio, Box, Text } from '@psdhub/common/components'
 
 import { ContainerOptions } from './styles'
 import { useCheckedLogic } from '../logic'
 import NotFound from '../../NotFound'
 import SelectContext from '../../../context'
 
-const DefaultVariant: React.FC = () => {
+const RadioVariant: React.FC = () => {
   const context = useContext(SelectContext)
 
   const logic = useCheckedLogic(context)
 
-  const { handleClick, noOptionsMessage, renderedOptions } = logic
-
+  const { noOptionsMessage, handleClick, renderedOptions } = logic
   return (
     <ContainerOptions className="hub-select-options">
       {renderedOptions?.length ? (
@@ -23,15 +22,22 @@ const DefaultVariant: React.FC = () => {
           <Box
             key={index}
             className={classNames({
-              active: logic.checkSelectedItem(option),
               'hub-select-item': true
             })}
-            role="button"
-            onClick={() => handleClick(option)}
+            onClick={() => handleClick(option, true)}
           >
-            <Text pointerEvents="none" color="black">
-              {option.label}
-            </Text>
+            <Radio
+              value={option.label}
+              isChecked={!!logic.checkSelectedItem(option)}
+              className={classNames({
+                active: logic.checkSelectedItem(option)
+              })}
+              size="md"
+            >
+              <Text pointerEvents="none" color="black">
+                {option.label}
+              </Text>
+            </Radio>
           </Box>
         ))
       ) : (
@@ -41,4 +47,4 @@ const DefaultVariant: React.FC = () => {
   )
 }
 
-export default DefaultVariant
+export default RadioVariant
