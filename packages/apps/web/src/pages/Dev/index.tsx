@@ -105,8 +105,8 @@ const DevHub: React.FC = () => {
             isSearchable
             clearable
             labelLength={10}
-            defaultValue={[data[0]?.value]}
-            variant="radio"
+            defaultValue={data.map(e => e.value)}
+            variant="checkbox"
             options={data}
           />
 

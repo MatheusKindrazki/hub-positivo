@@ -9,8 +9,8 @@ import { StateRef, TreeNode } from '@psdhub/common/components/NewSelect/types'
 import { SelectContextProps } from '@psdhub/common/components/NewSelect/context'
 
 interface ReturnData {
-  handleClick: (item: TreeNode | TreeNode[], disableIsMulti?: boolean) => void
-  checkSelectedItem: (item: TreeNode) => TreeNode | undefined
+  handleClick(item: TreeNode | TreeNode[], disableIsMulti?: boolean): void
+  checkSelectedItem(item: TreeNode): TreeNode | undefined
   noOptionsMessage: FC | undefined
   renderedOptions: TreeNode[]
   defaultChecked: StateRef

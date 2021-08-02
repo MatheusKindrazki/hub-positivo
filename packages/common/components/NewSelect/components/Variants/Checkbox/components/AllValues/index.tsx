@@ -3,7 +3,7 @@ import React from 'react'
 import classNames from 'classnames'
 
 import { TreeNode } from '@psdhub/common/components/Tree'
-import { Box, Radio, Text, Divider } from '@psdhub/common/components'
+import { Box, Checkbox, Text, Divider } from '@psdhub/common/components'
 
 interface AllValuesProps {
   index: number
@@ -29,20 +29,20 @@ const AllValues: React.FC<AllValuesProps> = ({
       className={classNames({
         'hub-select-item': true
       })}
+      onClick={() => handleClick(values as TreeNode[], true)}
     >
-      <Radio
+      <Checkbox
         value={markChecked?.join(',')}
         isChecked={allChecked}
         className={classNames({
           active: false
         })}
         size="md"
-        onClick={() => handleClick(values as TreeNode[], true)}
       >
         <Text pointerEvents="none" color="black">
           Selecionar Todos
         </Text>
-      </Radio>
+      </Checkbox>
       <Divider mt="2" mb="-2" borderColor="gray.400" />
     </Box>
   )

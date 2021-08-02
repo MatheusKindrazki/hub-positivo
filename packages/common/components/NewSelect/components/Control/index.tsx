@@ -85,6 +85,7 @@ const Control: React.FC<ControleProps> = props => {
   }, [
     isBadge,
     props.focus,
+    hideSelected,
     isSearchable,
     state,
     renderValue,
