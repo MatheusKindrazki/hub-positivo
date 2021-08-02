@@ -12,7 +12,17 @@ import { apiAuthProduct } from '@psdhub/api'
 
 const data = new Array(100).fill({}).map(() => ({
   label: faker.name.firstName(),
-  value: faker.datatype.uuid()
+  value: faker.datatype.uuid(),
+  options: [
+    {
+      label: faker.name.firstName(),
+      value: faker.datatype.uuid()
+    },
+    {
+      label: faker.name.firstName(),
+      value: faker.datatype.uuid()
+    }
+  ]
 }))
 
 const DevHub: React.FC = () => {
@@ -99,15 +109,12 @@ const DevHub: React.FC = () => {
           />
 
           <NewSelect
+            // hideSelected
             isMulti
-            isBadge
-            hideSelected
             isSearchable
             clearable
-            allSelectMessage="Todos"
-            labelLength={10}
-            defaultValue={data.map(e => e.value)}
-            variant="checkbox"
+            // defaultValue={data.map(e => e.value)}
+            variant="treeview"
             options={data}
           />
 

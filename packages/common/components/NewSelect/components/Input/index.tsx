@@ -1,4 +1,4 @@
-import React, { memo, useRef, useEffect, ChangeEvent, useCallback } from 'react'
+import React, { memo, useRef, useEffect, useCallback } from 'react'
 
 import { useDebounce } from '@psdhub/common/hooks'
 
@@ -14,8 +14,10 @@ const InputSelect: React.FC<InputProps> = props => {
 
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const debouncedValue = useDebounce((e: ChangeEvent<HTMLInputElement>) => {
-    searchable && searchable(e.target.value)
+  const debouncedValue = useDebounce(() => {
+    const value = inputRef?.current?.value || ''
+
+    searchable && searchable(value)
   }, 700)
 
   const onClear = useCallback(() => {
