@@ -9,12 +9,14 @@ interface AllValuesProps {
   index: number
   isChecked: string[]
   values?: TreeNode[]
+  text?: string
   handleClick: (items: TreeNode[], disableIsMulti?: boolean) => void
 }
 
 const AllValues: React.FC<AllValuesProps> = ({
   values,
   index,
+  text = 'Selecionar todos',
   isChecked,
   handleClick
 }) => {
@@ -40,7 +42,7 @@ const AllValues: React.FC<AllValuesProps> = ({
         onClick={() => handleClick(values as TreeNode[], true)}
       >
         <Text pointerEvents="none" color="black">
-          Selecionar Todos
+          {text}
         </Text>
       </Radio>
       <Divider mt="2" mb="-2" borderColor="gray.400" />

@@ -27,12 +27,14 @@ const RadioVariant: React.FC = () => {
             <AllValues
               index={999}
               values={renderedOptions}
+              text={logic.allSelectMessage}
               isChecked={context.state.checked}
               handleClick={(all: TreeNode[]) => handleClick(all, true)}
             />
           )}
           {renderedOptions.map((option, index) => (
             <Box
+              role="button"
               key={index}
               className={classNames({
                 'hub-select-item': true
@@ -41,6 +43,7 @@ const RadioVariant: React.FC = () => {
             >
               <Checkbox
                 value={option.label}
+                pointerEvents="none"
                 isChecked={!!logic.checkSelectedItem(option)}
                 className={classNames({
                   active: logic.checkSelectedItem(option)

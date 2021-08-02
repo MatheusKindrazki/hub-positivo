@@ -9,12 +9,14 @@ interface AllValuesProps {
   index: number
   isChecked: string[]
   values?: TreeNode[]
+  text?: string
   handleClick: (items: TreeNode[], disableIsMulti?: boolean) => void
 }
 
 const AllValues: React.FC<AllValuesProps> = ({
   values,
   index,
+  text = 'Selecionar todos',
   isChecked,
   handleClick
 }) => {
@@ -22,9 +24,12 @@ const AllValues: React.FC<AllValuesProps> = ({
 
   const allChecked = isChecked.length === markChecked?.length
 
+  const isIndeterminate = isChecked?.length > 0 && !allChecked
+
   return (
     <Box
       key={index}
+      role="button"
       mt="1"
       className={classNames({
         'hub-select-item': true
@@ -33,15 +38,15 @@ const AllValues: React.FC<AllValuesProps> = ({
     >
       <Checkbox
         value={markChecked?.join(',')}
+        isIndeterminate={isIndeterminate}
         isChecked={allChecked}
         className={classNames({
           active: false
         })}
         size="md"
+        pointerEvents="none"
       >
-        <Text pointerEvents="none" color="black">
-          Selecionar Todos
-        </Text>
+        <Text color="black">{text}</Text>
       </Checkbox>
       <Divider mt="2" mb="-2" borderColor="gray.400" />
     </Box>

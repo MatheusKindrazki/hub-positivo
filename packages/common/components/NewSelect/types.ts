@@ -1,10 +1,4 @@
-export type Variants =
-  | 'normal'
-  | 'radio'
-  | 'primary'
-  | 'secondary'
-  | 'checkbox'
-  | 'treeview'
+export type Variants = 'normal' | 'radio' | 'checkbox' | 'treeview'
 
 export interface SelectProps {
   /**
@@ -36,6 +30,7 @@ export interface SelectProps {
   placeholder?: string
   defaultValue?: string[]
   noOptionsMessage?: React.FC
+  allSelectMessage?: string
   onChange?: (checked: string[], raw: TreeNode[]) => void
 }
 export interface TreeNode {

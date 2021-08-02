@@ -14,10 +14,12 @@ interface ReturnData {
   noOptionsMessage: FC | undefined
   renderedOptions: TreeNode[]
   defaultChecked: StateRef
+  allSelectMessage?: string
 }
 
 const useCheckedLogic = (context: SelectContextProps): ReturnData => {
-  const { options, state, isMulti, noOptionsMessage } = context
+  const { options, state, isMulti, noOptionsMessage, allSelectMessage } =
+    context
 
   const [renderedOptions, setRenderedOptions] = useState(options)
 
@@ -69,6 +71,7 @@ const useCheckedLogic = (context: SelectContextProps): ReturnData => {
     handleClick,
     checkSelectedItem,
     noOptionsMessage,
+    allSelectMessage,
     defaultChecked,
     renderedOptions
   }

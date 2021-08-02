@@ -104,6 +104,7 @@ const DevHub: React.FC = () => {
             hideSelected
             isSearchable
             clearable
+            allSelectMessage="Todos"
             labelLength={10}
             defaultValue={data.map(e => e.value)}
             variant="checkbox"

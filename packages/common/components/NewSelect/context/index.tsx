@@ -16,6 +16,7 @@ export interface SelectContextProps {
   isSearchable?: boolean
   labelLength?: number
   className?: string
+  allSelectMessage?: string
   noOptionsMessage?: React.FC
 }
 

@@ -8,5 +8,6 @@ export default (props: SelectProps, context: SelectContextProps): void => {
   context.clearable = props.clearable
   context.labelLength = props.labelLength
   context.isSearchable = props.isSearchable
+  context.allSelectMessage = props.allSelectMessage
   context.noOptionsMessage = props.noOptionsMessage
 }
