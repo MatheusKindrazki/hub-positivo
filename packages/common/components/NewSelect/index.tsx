@@ -38,7 +38,14 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
       closeOnSelect={props.closeOnSelect}
       onChange={props.onChange}
     >
-      <Container ref={containerRef} className="hub-select-wrapper">
+      <Container
+        ref={containerRef}
+        className={classNames({
+          'hub-select-wrapper': true,
+          active: isOpen
+        })}
+        error={props.error}
+      >
         <Box className="hub-select-header">
           <Box
             role="button"

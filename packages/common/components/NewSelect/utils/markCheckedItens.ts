@@ -2,6 +2,7 @@ import { setDefaultValues } from '@psdhub/common/components/Tree/utils'
 
 import { getLabelsOrValues, resetAll } from '../utils'
 import { SelectContextProps } from '../context/types'
+
 function markCheckedItens(itens: string[], context: SelectContextProps): void {
   const options = context.options || []
 

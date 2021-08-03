@@ -3014,6 +3014,33 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.10.2.tgz#0798c03351f0dea1a5a4cabddf26a55a7cbee590"
   integrity sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==
 
+"@psdhub/common@*":
+  version "1.9.8"
+  resolved "https://registry.yarnpkg.com/@psdhub/common/-/common-1.9.8.tgz#8ba89b2eac661c72f680095120fbaa7ae0f7792e"
+  integrity sha512-vYB1I9UJ9xGhA1WuHvzTNu6AD5y8l/sboRYgrPP1hAPESixteo479k7s8y0q4C+AcOIv+uXIdBQsL2pcoeLE8g==
+  dependencies:
+    "@chakra-ui/react" "^1.6.1"
+    "@emotion/react" "^11"
+    "@emotion/styled" "^11"
+    "@types/react-collapse" "^5.0.0"
+    "@types/react-datepicker" "^3.1.8"
+    "@unform/core" "^2.1.5"
+    "@unform/web" "^2.1.5"
+    framer-motion "^4"
+    lodash "^4.17.21"
+    phosphor-react "^1.1.2"
+    polished "^4.1.0"
+    randomstring "^1.1.5"
+    react-collapse "^5.1.0"
+    react-custom-scroll "^4.3.0"
+    react-datepicker "^4.1.1"
+    react-dropzone "^11.3.2"
+    react-select "^4.3.1"
+    react-spinners "^0.10.6"
+    react-spring "^9.2.4"
+    react-toastify "^7.0.3"
+    reactour "^1.18.0"
+
 "@reach/alert@0.13.2":
   version "0.13.2"
   resolved "https://registry.yarnpkg.com/@reach/alert/-/alert-0.13.2.tgz#71c4a848d51341f1d6d9eaae060975391c224870"

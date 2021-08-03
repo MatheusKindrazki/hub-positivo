@@ -1,8 +1,12 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Box } from '@psdhub/common/components'
 
-export const Container = styled(Box)`
+interface ContainerProps {
+  error?: boolean
+}
+
+export const Container = styled(Box)<ContainerProps>`
   position: relative;
   background: transparent;
   outline: none;
@@ -12,6 +16,14 @@ export const Container = styled(Box)`
   max-width: 100%;
 
   font-size: ${({ theme }) => theme.fontSizes.md};
+
+  &:focus,
+  &.active {
+    .hub-select-header {
+      border-color: ${({ theme }) => theme.colors.blue[500]};
+      box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.blue[500]};
+    }
+  }
 
   .hub-select-header {
     position: relative;
@@ -23,6 +35,18 @@ export const Container = styled(Box)`
 
     border-radius: ${({ theme }) => theme.radii.md};
     border-color: ${({ theme }) => theme.colors.gray[400]};
+
+    transition: all 0.2s ease-in-out;
+
+    ${({ error }) =>
+      error &&
+      css`
+        border-color: ${({ theme }) => theme.colors.red[300]};
+      `}
+
+    &:hover {
+      border-color: ${({ theme }) => theme.colors.blue[500]};
+    }
 
     padding-inline-start: ${({ theme }) => theme.space[4]};
     padding-inline-end: ${({ theme }) => theme.space[8]};
