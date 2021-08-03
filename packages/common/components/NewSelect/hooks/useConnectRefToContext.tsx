@@ -11,6 +11,14 @@ function useConnectRefToContext(context: ContextProps, ref: RefProps): void {
   useImperativeHandle(ref, () => {
     return {
       getValue: () => context.getState(),
+      clearAll: () => {
+        context.setState({
+          checked: [],
+          raw: []
+        })
+
+        context.refresh()
+      },
       setValue: checked => {
         markCheckedItens(checked, context)
       }
