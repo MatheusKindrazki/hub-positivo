@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { animated } from 'react-spring'
 
-export const Input = styled(animated.input)`
+export const Input = styled.input`
   /* position: absolute; */
   outline: none;
   width: 100%;

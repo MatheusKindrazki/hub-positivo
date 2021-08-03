@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useReducer } from 'react'
+import React, { useLayoutEffect } from 'react'
 
 import { useOnClickOutside } from '@psdhub/common/hooks'
 
@@ -18,8 +18,6 @@ interface LogicScopeProps extends SelectProps {
 const LogicScope: React.FC<LogicScopeProps> = ({ children, ...props }) => {
   const { value, containerRef, onClose, selectRef } = props
 
-  const [, forceUpdate] = useReducer(x => x + 1, 0)
-
   const context = useSelect()
 
   useLayoutEffect(() => {
@@ -29,8 +27,6 @@ const LogicScope: React.FC<LogicScopeProps> = ({ children, ...props }) => {
   syncPropsContext(props, context)
   useOnClickOutside(containerRef, onClose, 'click')
   useConnectRefToContext(context, selectRef)
-
-  context.refresh = () => forceUpdate()
 
   return <>{children}</>
 }

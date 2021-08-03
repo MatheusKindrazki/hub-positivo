@@ -15,6 +15,7 @@ const INITIAL_STATE: SelectContextProps = {
   isBadge: false,
   isSearchable: false,
   options: [],
+  setState: () => {},
   onChange: () => {},
   getState: () => ({
     checked: [],
@@ -36,14 +37,21 @@ const SelectProvider: React.FC<SelectProviderProps> = ({
     checked: [] as string[]
   })
 
+  const [, forceUpdate] = useReducer(x => x + 1, 0)
+
   const context = useSelect()
+
+  const getState = useCallback(() => {
+    return storeValuables.current
+  }, [])
+
+  const setState = useCallback((data: StateRef) => {
+    storeValuables.current = data
+  }, [])
 
   const onChange = useCallback(
     (checked: string[], raw: TreeNode[]) => {
-      storeValuables.current = {
-        checked,
-        raw
-      }
+      setState({ checked, raw })
 
       props.onChange && props.onChange(checked, raw)
 
@@ -51,27 +59,15 @@ const SelectProvider: React.FC<SelectProviderProps> = ({
         props.onClose()
       }
     },
-    [props]
+    [props, setState]
   )
-
-  const getState = useCallback(() => {
-    return storeValuables.current
-  }, [])
-
-  const setState = useCallback((data: StateRef) => {
-    const { checked, raw } = data
-
-    storeValuables.current = {
-      checked,
-      raw
-    }
-  }, [])
 
   return (
     <SelectContext.Provider
       value={{
         ...context,
         onChange,
+        refresh: forceUpdate,
         getState,
         setState,
         onClose: props.onClose

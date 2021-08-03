@@ -1,4 +1,4 @@
-import React, { useRef, memo, forwardRef, useReducer } from 'react'
+import React, { useRef, memo, forwardRef } from 'react'
 
 import CustomScroll from 'react-custom-scroll'
 import classNames from 'classnames'
@@ -22,7 +22,6 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
   const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen })
 
   const Variant = options[props.variant || 'normal']
-
   return (
     <SelectProvider
       onClose={onClose}

@@ -11,7 +11,10 @@ const ClearAll: React.FC = () => {
   const context = useSelect()
 
   const handleClearAll = useCallback(() => {
-    context.onChange([], [])
+    context.setState({
+      checked: [],
+      raw: []
+    })
 
     resetAll(context.options)
 
@@ -20,7 +23,7 @@ const ClearAll: React.FC = () => {
 
   return (
     <ContainerIcon
-      active={!!context.getState()?.checked?.length}
+      active={!!context.getState().checked.length}
       onClick={handleClearAll}
     >
       <Box as={X} size={15} color="blue.500" className="hub-select-clear" />
