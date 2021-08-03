@@ -22,6 +22,7 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
   const { defaultIsOpen, placeholder } = props
   const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen })
   const Variant = options[variant]
+
   return (
     <SelectProvider
       onClose={onClose}

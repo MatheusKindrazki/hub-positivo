@@ -35,7 +35,8 @@ const Select: React.FC<Props> = ({ name, mb, label, ...rest }) => {
         if (!value) return ''
 
         ref.setValue(value)
-      }
+      },
+      clearValue: ref => ref.clearAll()
     })
   }, [fieldName, registerField, rest.isMulti])
 
@@ -60,5 +61,7 @@ const Select: React.FC<Props> = ({ name, mb, label, ...rest }) => {
     </FormControl>
   )
 }
+
+export type { Props, SelectRefProps }
 
 export default Select

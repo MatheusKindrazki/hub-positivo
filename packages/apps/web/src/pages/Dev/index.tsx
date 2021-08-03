@@ -1,7 +1,5 @@
 import React, { useRef, useCallback, useState } from 'react'
 
-import faker from 'faker'
-
 import { store } from '~/store'
 
 import { Activity } from '@psdhub/common/components/Icons'
@@ -10,30 +8,10 @@ import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
 
-const data = new Array(100).fill({}).map(() => ({
-  label: faker.name.firstName(),
-  value: faker.datatype.uuid(),
-  options: [
-    {
-      label: faker.name.firstName(),
-      value: faker.datatype.uuid()
-    },
-    {
-      label: faker.name.firstName(),
-      value: faker.datatype.uuid()
-    }
-  ]
-}))
-
 const DevHub: React.FC = () => {
   const [loading, setLoading] = useState(false)
-  const formRef = useRef<FormProps>(null)
 
-  setTimeout(() => {
-    formRef.current?.setData({
-      product: ['A']
-    })
-  }, 3000)
+  const formRef = useRef<FormProps>(null)
 
   const handleSubmit = useCallback(async data => {
     console.log('meus dados', data)
@@ -123,9 +101,18 @@ const DevHub: React.FC = () => {
             isMulti
             isSearchable
             clearable
-            // defaultValue={data.map(e => e.value)}
-            variant="treeview"
-            options={data}
+            defaultValue={['2']}
+            variant="checkbox"
+            options={[
+              {
+                label: 'Ensino Médio',
+                value: '1'
+              },
+              {
+                label: 'Ensino Fundamental',
+                value: '2'
+              }
+            ]}
           />
 
           <NewSelect
@@ -133,8 +120,8 @@ const DevHub: React.FC = () => {
             isMulti
             isSearchable
             clearable
-            variant="treeview"
-            defaultValue={['B']}
+            defaultValue={['A']}
+            variant="checkbox"
             options={[
               { label: 'A', value: 'A' },
               { label: 'B', value: 'B' }
