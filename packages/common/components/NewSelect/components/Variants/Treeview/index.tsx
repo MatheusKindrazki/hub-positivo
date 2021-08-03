@@ -11,11 +11,11 @@ import { useSelect } from '../../../context'
 const DefaultVariant: React.FC = props => {
   const context = useSelect()
 
-  const { options, state, onChange, noOptionsMessage } = context
+  const { options, getState, onChange, noOptionsMessage } = context
 
   const [renderedOptions, setRenderedOptions] = useState(options)
   const [renderDefaultOptions, setRenderDefaultOptions] = useState(
-    state.checked
+    getState().checked
   )
 
   context.searchable = (e: string) => {
@@ -26,8 +26,8 @@ const DefaultVariant: React.FC = props => {
   }
 
   useLayoutEffect(() => {
-    setRenderDefaultOptions(state.checked)
-  }, [state.checked])
+    setRenderDefaultOptions(getState().checked)
+  }, [getState])
 
   return (
     <ContainerOptions>

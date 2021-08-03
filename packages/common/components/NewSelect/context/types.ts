@@ -5,8 +5,8 @@ interface SelectContextProps {
   refresh(): void
   searchable: (value: string) => void
   onChange: (checked: string[], raw: TreeNode[]) => void
-
-  state: StateRef
+  getState(): StateRef
+  setState(data: StateRef): void
   options: TreeNode[]
   isMulti?: boolean
   isBadge?: boolean

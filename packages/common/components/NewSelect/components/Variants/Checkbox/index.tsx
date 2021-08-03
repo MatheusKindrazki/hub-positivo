@@ -28,7 +28,7 @@ const RadioVariant: React.FC = () => {
               index={999}
               values={renderedOptions}
               text={logic.allSelectMessage}
-              isChecked={context.state.checked}
+              isChecked={context.getState().checked}
               handleClick={(all: TreeNode[]) => handleClick(all, true)}
             />
           )}

@@ -4,8 +4,8 @@ import faker from 'faker'
 
 import { store } from '~/store'
 
-import NewSelect from '@psdhub/common/components/NewSelect'
 import { Activity } from '@psdhub/common/components/Icons'
+import NewSelect from '@psdhub/common/components/Form/NewSelect'
 import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
@@ -30,6 +30,8 @@ const DevHub: React.FC = () => {
   const formRef = useRef<FormProps>(null)
 
   const handleSubmit = useCallback(async data => {
+    console.log('meus dados', data)
+
     setLoading(true)
 
     const auth = store.getState().auth
@@ -65,7 +67,9 @@ const DevHub: React.FC = () => {
 
     const produceUrl = `${data.url}/${response.data}`
 
-    window.open(produceUrl, '_blank')
+    console.log(produceUrl)
+
+    // window.open(produceUrl, '_blank')
 
     setLoading(false)
   }, [])
@@ -109,6 +113,7 @@ const DevHub: React.FC = () => {
           />
 
           <NewSelect
+            name="educationalStage"
             isMulti
             isSearchable
             clearable
@@ -118,6 +123,7 @@ const DevHub: React.FC = () => {
           />
 
           <NewSelect
+            name="product"
             isMulti
             isSearchable
             clearable

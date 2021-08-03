@@ -11,10 +11,10 @@ function markCheckedItens(itens: string[], context: SelectContextProps): void {
 
   setDefaultValues(itens, options)
 
-  context.state = {
+  context.setState({
     checked: getLabelsOrValues(options),
     raw: options
-  }
+  })
 
   context.refresh()
 }

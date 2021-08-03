@@ -17,7 +17,8 @@ interface ControleProps {
 }
 
 const Control: React.FC<ControleProps> = props => {
-  const { state, isBadge, isSearchable, labelLength, searchable } = useSelect()
+  const { getState, isBadge, isSearchable, labelLength, searchable } =
+    useSelect()
 
   const fadeInTransition = useTransition(props.focus, {
     from: { opacity: 0 },
@@ -31,8 +32,8 @@ const Control: React.FC<ControleProps> = props => {
 
   if (!props.focus) searchable && searchable('')
 
-  const renderValue = useMemo(() => {
-    const checked = getLabelsOrValues(state.raw, 'label')
+  const renderValue = () => {
+    const checked = getLabelsOrValues(getState().raw, 'label')
 
     if (!checked.length) return placeholder
 
@@ -51,15 +52,17 @@ const Control: React.FC<ControleProps> = props => {
         return truncateString(item, labelLength)
       })
       .join(', ')
-  }, [state.raw, placeholder, labelLength, hideSelected])
+  }
 
-  const renderComponent = useMemo(() => {
+  const renderComponent = () => {
+    const values = getState()
+
     if (!isBadge && !props.focus) {
-      return <Box noOfLines={1}>{renderValue}</Box>
+      return <Box noOfLines={1}>{renderValue()}</Box>
     }
 
     if (hideSelected && !props.focus) {
-      return <Box noOfLines={1}>{renderValue}</Box>
+      return <Box noOfLines={1}>{renderValue()}</Box>
     }
 
     if (isSearchable && props.focus) {
@@ -75,25 +78,16 @@ const Control: React.FC<ControleProps> = props => {
       )
     }
 
-    if (!state?.checked?.length) {
-      return <Box as="span">{renderValue}</Box>
+    if (!values.checked?.length) {
+      return <Box as="span">{renderValue()}</Box>
     }
 
-    return <Badges itens={getLabelsOrValues(state.raw, 'label')} />
-  }, [
-    isBadge,
-    props.focus,
-    hideSelected,
-    isSearchable,
-    state,
-    renderValue,
-    fadeInTransition,
-    searchable
-  ])
+    return <Badges itens={getLabelsOrValues(values.raw, 'label')} />
+  }
 
   return (
     <Box pointerEvents="none" className="hub-control">
-      {renderComponent}
+      {renderComponent()}
     </Box>
   )
 }

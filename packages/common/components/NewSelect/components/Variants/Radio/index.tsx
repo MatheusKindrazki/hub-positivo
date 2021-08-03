@@ -19,6 +19,7 @@ const RadioVariant: React.FC = () => {
   const logic = useCheckedLogic(context)
 
   const { noOptionsMessage, handleClick, renderedOptions } = logic
+
   return (
     <ContainerOptions className="hub-select-options">
       {renderedOptions?.length ? (
@@ -28,7 +29,7 @@ const RadioVariant: React.FC = () => {
               index={999}
               text={logic.allSelectMessage}
               values={renderedOptions}
-              isChecked={context.state.checked}
+              isChecked={context.getState().checked}
               handleClick={(all: TreeNode[]) => handleClick(all, true)}
             />
           )}

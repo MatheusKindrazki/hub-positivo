@@ -46,7 +46,6 @@ export interface StateRef {
   raw: TreeNode[]
 }
 export interface SelectRefProps {
-  value: TreeNode[]
   setValue: (values: string[]) => void
   getValue: () => { checked: string[]; raw: TreeNode[] }
 }

@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react'
 
-import { OptionTypeBase } from 'react-select'
 import { useField } from '@unform/core'
 
 import {
@@ -28,8 +27,9 @@ const Select: React.FC<Props> = ({ name, mb, label, ...rest }) => {
       name: fieldName,
       ref: selectRef.current,
       getValue: ref => {
-        console.log(ref)
-        return []
+        const getValues = ref.getValue()
+
+        return getValues
       },
       setValue: (ref: any, value) => {
         if (!value) return ''

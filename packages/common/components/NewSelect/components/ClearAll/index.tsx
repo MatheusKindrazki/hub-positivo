@@ -20,7 +20,7 @@ const ClearAll: React.FC = () => {
 
   return (
     <ContainerIcon
-      active={!!context.state?.checked?.length}
+      active={!!context.getState()?.checked?.length}
       onClick={handleClearAll}
     >
       <Box as={X} size={15} color="blue.500" className="hub-select-clear" />

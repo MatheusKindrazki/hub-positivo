@@ -19,7 +19,7 @@ interface ReturnData {
 }
 
 const useCheckedLogic = (context: SelectContextProps): ReturnData => {
-  const { options, state, isMulti, noOptionsMessage, allSelectMessage } =
+  const { options, getState, isMulti, noOptionsMessage, allSelectMessage } =
     context
 
   const [renderedOptions, setRenderedOptions] = useState(options)
@@ -37,7 +37,7 @@ const useCheckedLogic = (context: SelectContextProps): ReturnData => {
 
       const enableIsMulti = !disableIsMulti && isMulti
 
-      items = handleParents(state.raw, prepareItem, enableIsMulti)
+      items = handleParents(getState().raw, prepareItem, enableIsMulti)
     }
 
     context.onChange(getObjectValues(items), items)
@@ -46,7 +46,7 @@ const useCheckedLogic = (context: SelectContextProps): ReturnData => {
   }
 
   const checkSelectedItem = (item: TreeNode) => {
-    const isChecked = state.raw.find(i => {
+    const isChecked = getState().raw.find(i => {
       if (i.value === item.value) {
         return i.isChecked
       }
@@ -65,8 +65,8 @@ const useCheckedLogic = (context: SelectContextProps): ReturnData => {
   }
 
   const defaultChecked = useMemo(() => {
-    return state
-  }, [state])
+    return getState()
+  }, [getState])
 
   return {
     handleClick,

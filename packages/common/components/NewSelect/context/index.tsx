@@ -1,24 +1,25 @@
 import React, {
   createContext,
   useCallback,
-  useState,
+  useRef,
   useReducer,
   useContext
 } from 'react'
 
 import { SelectContextProps, SelectProviderProps, TreeNode } from './types'
+import { StateRef } from '../types'
 
 const INITIAL_STATE: SelectContextProps = {
   isMulti: false,
   clearable: false,
   isBadge: false,
   isSearchable: false,
-  state: {
-    checked: [] as string[],
-    raw: [] as TreeNode[]
-  },
   options: [],
   onChange: () => {},
+  getState: () => ({
+    checked: [],
+    raw: []
+  }),
   onClose: () => {},
   refresh: () => {},
   searchable: _ => {}
@@ -30,18 +31,19 @@ const SelectProvider: React.FC<SelectProviderProps> = ({
   children,
   ...props
 }) => {
-  const context = useSelect()
-
-  const [, forceUpdate] = useReducer(x => x + 1, 0)
-
-  const [storeValuables, setStoreValuables] = useState({
+  const storeValuables = useRef({
     raw: [] as TreeNode[],
     checked: [] as string[]
   })
 
+  const context = useSelect()
+
   const onChange = useCallback(
     (checked: string[], raw: TreeNode[]) => {
-      setStoreValuables({ checked, raw })
+      storeValuables.current = {
+        checked,
+        raw
+      }
 
       props.onChange && props.onChange(checked, raw)
 
@@ -52,13 +54,26 @@ const SelectProvider: React.FC<SelectProviderProps> = ({
     [props]
   )
 
+  const getState = useCallback(() => {
+    return storeValuables.current
+  }, [])
+
+  const setState = useCallback((data: StateRef) => {
+    const { checked, raw } = data
+
+    storeValuables.current = {
+      checked,
+      raw
+    }
+  }, [])
+
   return (
     <SelectContext.Provider
       value={{
         ...context,
         onChange,
-        state: storeValuables,
-        refresh: forceUpdate,
+        getState,
+        setState,
         onClose: props.onClose
       }}
     >
