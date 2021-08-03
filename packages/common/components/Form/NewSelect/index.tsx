@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 
+import { OptionTypeBase } from 'react-select'
 import { useField } from '@unform/core'
 
 import {
@@ -27,16 +28,14 @@ const Select: React.FC<Props> = ({ name, mb, label, ...rest }) => {
       name: fieldName,
       ref: selectRef.current,
       getValue: ref => {
-        const getValues = ref.getValue()
-
-        return getValues
+        console.log(ref)
+        return []
       },
       setValue: (ref: any, value) => {
         if (!value) return ''
 
-        ref.setValue(value)
-      },
-      clearValue: ref => ref.clearAll()
+        ref.select.setValue(value)
+      }
     })
   }, [fieldName, registerField, rest.isMulti])
 
@@ -61,7 +60,5 @@ const Select: React.FC<Props> = ({ name, mb, label, ...rest }) => {
     </FormControl>
   )
 }
-
-export type { Props, SelectRefProps }
 
 export default Select

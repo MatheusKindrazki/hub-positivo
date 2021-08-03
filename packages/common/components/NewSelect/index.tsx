@@ -29,36 +29,26 @@ const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
       closeOnSelect={props.closeOnSelect}
       onChange={props.onChange}
     >
-      <LogicScope
-        containerRef={containerRef}
-        value={defaultValue.current}
-        onClose={onClose}
-        selectRef={ref}
-        {...props}
+      <Container
+        ref={containerRef}
+        className={classNames({
+          'hub-select-wrapper': true,
+          active: isOpen
+        })}
+        error={props.error}
       >
-        <Container
-          ref={containerRef}
-          className={classNames({
-            'hub-select-wrapper': true,
-            active: isOpen
-          })}
-          error={props.error}
-        >
-          <Box className="hub-select-header">
-            <Box
-              role="button"
-              className="hub-select-header-title"
-              onClick={onToggle}
-              maxW={props.clearable ? 'calc(100% - 1.5rem)' : '100%'}
-            >
-              <Control
-                hideSelected={props.hideSelected}
-                placeholder={placeholder}
-                focus={isOpen}
-              />
-            </Box>
-            {props.clearable && <ClearAll />}
-            <Icon onClick={onToggle} open={isOpen} />
+        <Box className="hub-select-header">
+          <Box
+            role="button"
+            className="hub-select-header-title"
+            onClick={onToggle}
+            maxW={props.clearable ? 'calc(100% - 1.5rem)' : '100%'}
+          >
+            <Control
+              hideSelected={props.hideSelected}
+              placeholder={placeholder}
+              focus={isOpen}
+            />
           </Box>
           {isOpen && (
             <ContainerOptions

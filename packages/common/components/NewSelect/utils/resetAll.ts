@@ -1,20 +1,14 @@
 import { TreeNode } from '../types'
 
-const resetAll = (options: TreeNode[]): Promise<void> => {
-  let count = 0
-  return new Promise(resolve => {
-    options.forEach(async option => {
-      count++
+const resetAll = (options: TreeNode[]): void => {
+  options.forEach(option => {
+    if (option?.isChecked !== undefined) {
       option.isChecked = 0
+    }
 
-      if (option?.options?.length) {
-        await resetAll(option.options)
-      }
-
-      if (count === options.length) {
-        resolve()
-      }
-    })
+    if (option?.options?.length) {
+      resetAll(option.options)
+    }
   })
 }
 export default resetAll
