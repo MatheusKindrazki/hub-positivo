@@ -109,13 +109,23 @@ const DevHub: React.FC = () => {
           />
 
           <NewSelect
-            // hideSelected
             isMulti
             isSearchable
             clearable
             // defaultValue={data.map(e => e.value)}
             variant="treeview"
             options={data}
+          />
+
+          <NewSelect
+            isMulti
+            isSearchable
+            clearable
+            variant="treeview"
+            options={[
+              { label: 'A', value: 'A' },
+              { label: 'B', value: 'B' }
+            ]}
           />
 
           <Button isLoading={loading}>Entrar na solução</Button>

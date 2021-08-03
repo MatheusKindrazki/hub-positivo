@@ -1,4 +1,4 @@
-import React, { useContext, useState, useLayoutEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 
 import Tree from '@psdhub/common/components/Tree'
 
@@ -6,10 +6,10 @@ import { ContainerOptions } from './styles'
 import NotFound from '../../NotFound'
 import { filterRecursive } from '../../../utils'
 import { TreeNode } from '../../../types'
-import SelectContext from '../../../context'
+import { useSelect } from '../../../context'
 
 const DefaultVariant: React.FC = props => {
-  const context = useContext(SelectContext)
+  const context = useSelect()
 
   const { options, state, onChange, noOptionsMessage } = context
 

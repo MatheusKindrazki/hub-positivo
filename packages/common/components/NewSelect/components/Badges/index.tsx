@@ -1,17 +1,17 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { truncateString } from '@psdhub/common/utils/truncateString'
 import Box from '@psdhub/common/components/Box'
 import HubBadge, { BadgeProps as Props } from '@psdhub/common/components/Badge'
 
-import SelectContext from '../../context'
+import { useSelect } from '../../context'
 
 interface BadgeProps extends Props {
   itens: string[]
 }
 
 const Badges: React.FC<BadgeProps> = ({ itens, ...props }) => {
-  const { labelLength } = useContext(SelectContext)
+  const { labelLength } = useSelect()
   return (
     <Box d="flex" w="100%" overflow="hidden" pointerEvents="none">
       {itens.map((item, index) => (

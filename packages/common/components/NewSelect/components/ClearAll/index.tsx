@@ -1,14 +1,14 @@
-import React, { useContext, useCallback } from 'react'
+import React, { useCallback } from 'react'
 
 import { X } from '@psdhub/common/components/Icons'
 import Box from '@psdhub/common/components/Box'
 
 import { ContainerIcon } from './styles'
 import { resetAll } from '../../utils'
-import SelectContext from '../../context'
+import { useSelect } from '../../context'
 
 const ClearAll: React.FC = () => {
-  const context = useContext(SelectContext)
+  const context = useSelect()
 
   const handleClearAll = useCallback(() => {
     context.onChange([], [])

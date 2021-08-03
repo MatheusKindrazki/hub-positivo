@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from 'react'
+import React, { useMemo } from 'react'
 
 import { useTransition, config } from 'react-spring'
 
@@ -8,18 +8,16 @@ import { Box } from '@psdhub/common/components'
 import InputSearch from '../Input'
 import Badges from '../Badges'
 import { getLabelsOrValues } from '../../utils'
-import SelectContext from '../../context'
+import { useSelect } from '../../context'
 
 interface ControleProps {
-  searchable?: (string: string) => void
   focus?: boolean
   placeholder?: string
   hideSelected?: boolean
 }
 
 const Control: React.FC<ControleProps> = props => {
-  const { state, isBadge, isSearchable, labelLength } =
-    useContext(SelectContext)
+  const { state, isBadge, isSearchable, labelLength, searchable } = useSelect()
 
   const fadeInTransition = useTransition(props.focus, {
     from: { opacity: 0 },
@@ -29,7 +27,7 @@ const Control: React.FC<ControleProps> = props => {
     delay: 200
   })
 
-  const { placeholder = 'Selecione', searchable, hideSelected } = props
+  const { placeholder = 'Selecione', hideSelected } = props
 
   if (!props.focus) searchable && searchable('')
 

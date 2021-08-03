@@ -1,26 +1,14 @@
-import { createContext } from 'react'
+import React, {
+  createContext,
+  useCallback,
+  useState,
+  useReducer,
+  useContext
+} from 'react'
 
-import { TreeNode, StateRef } from '../types'
+import { SelectContextProps, SelectProviderProps, TreeNode } from './types'
 
-export interface SelectContextProps {
-  onClose(): void
-  refresh(): void
-  searchable: (value: string) => void
-  onChange: (checked: string[], raw: TreeNode[]) => void
-
-  state: StateRef
-  options: TreeNode[]
-  isMulti?: boolean
-  isBadge?: boolean
-  clearable?: boolean
-  isSearchable?: boolean
-  labelLength?: number
-  className?: string
-  allSelectMessage?: string
-  noOptionsMessage?: React.FC
-}
-
-const SelectContext = createContext({
+const INITIAL_STATE: SelectContextProps = {
   isMulti: false,
   clearable: false,
   isBadge: false,
@@ -29,8 +17,66 @@ const SelectContext = createContext({
     checked: [] as string[],
     raw: [] as TreeNode[]
   },
+  options: [],
+  onChange: () => {},
+  onClose: () => {},
   refresh: () => {},
   searchable: _ => {}
-} as SelectContextProps)
+}
 
-export default SelectContext
+const SelectContext = createContext(INITIAL_STATE)
+
+const SelectProvider: React.FC<SelectProviderProps> = ({
+  children,
+  ...props
+}) => {
+  const context = useSelect()
+
+  const [, forceUpdate] = useReducer(x => x + 1, 0)
+
+  const [storeValuables, setStoreValuables] = useState({
+    raw: [] as TreeNode[],
+    checked: [] as string[]
+  })
+
+  const onChange = useCallback(
+    (checked: string[], raw: TreeNode[]) => {
+      setStoreValuables({ checked, raw })
+
+      props.onChange && props.onChange(checked, raw)
+
+      if (props.closeOnSelect) {
+        props.onClose()
+      }
+    },
+    [props]
+  )
+
+  return (
+    <SelectContext.Provider
+      value={{
+        ...context,
+        onChange,
+        state: storeValuables,
+        refresh: forceUpdate,
+        onClose: props.onClose
+      }}
+    >
+      {children}
+    </SelectContext.Provider>
+  )
+}
+
+function useSelect(): SelectContextProps {
+  const context = useContext(SelectContext)
+
+  if (!context) {
+    throw new Error('SelectContext not found')
+  }
+
+  return context
+}
+
+export { useSelect }
+
+export default SelectProvider

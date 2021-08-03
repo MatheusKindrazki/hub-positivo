@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import classNames from 'classnames'
 
@@ -7,10 +7,10 @@ import { Box, Text } from '@psdhub/common/components'
 import { ContainerOptions } from './styles'
 import { useCheckedLogic } from '../logic'
 import NotFound from '../../NotFound'
-import SelectContext from '../../../context'
+import { useSelect } from '../../../context'
 
 const DefaultVariant: React.FC = () => {
-  const context = useContext(SelectContext)
+  const context = useSelect()
 
   const logic = useCheckedLogic(context)
 

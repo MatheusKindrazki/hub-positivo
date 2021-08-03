@@ -18,7 +18,7 @@ const InputSelect: React.FC<InputProps> = props => {
     const value = inputRef?.current?.value || ''
 
     searchable && searchable(value)
-  }, 700)
+  }, 400)
 
   const onClear = useCallback(() => {
     if (!inputRef.current) return

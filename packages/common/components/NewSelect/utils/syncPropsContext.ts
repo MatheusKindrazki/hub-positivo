@@ -1,5 +1,5 @@
 import { SelectProps } from '../types'
-import { SelectContextProps } from '../context'
+import { SelectContextProps } from '../context/types'
 
 export default (props: SelectProps, context: SelectContextProps): void => {
   context.options = props.options

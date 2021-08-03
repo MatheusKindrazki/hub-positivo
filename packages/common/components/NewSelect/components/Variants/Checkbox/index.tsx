@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import classNames from 'classnames'
 
@@ -8,11 +8,11 @@ import { ContainerOptions } from './styles'
 import AllValues from './components/AllValues'
 import { useCheckedLogic } from '../logic'
 import NotFound from '../../NotFound'
-import SelectContext from '../../../context'
+import { useSelect } from '../../../context'
 import { TreeNode } from '../../../../Tree'
 
 const RadioVariant: React.FC = () => {
-  const context = useContext(SelectContext)
+  const context = useSelect()
 
   const { isMulti } = context
 

@@ -6,7 +6,8 @@ import {
   filterRecursive
 } from '@psdhub/common/components/NewSelect/utils'
 import { StateRef, TreeNode } from '@psdhub/common/components/NewSelect/types'
-import { SelectContextProps } from '@psdhub/common/components/NewSelect/context'
+
+import { SelectContextProps } from '../../../context/types'
 
 interface ReturnData {
   handleClick(item: TreeNode | TreeNode[], disableIsMulti?: boolean): void
