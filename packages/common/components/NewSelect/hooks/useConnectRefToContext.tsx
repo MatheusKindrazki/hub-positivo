@@ -19,7 +19,7 @@ function useConnectRefToContext(context: ContextProps, ref: RefProps): void {
 
         context.refresh()
       },
-      setValue: checked => {
+      setValue: async checked => {
         markCheckedItens(checked, context)
       }
     }

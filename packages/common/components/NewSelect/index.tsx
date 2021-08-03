@@ -1,4 +1,4 @@
-import React, { useRef, memo, forwardRef } from 'react'
+import React, { useRef, useState, memo, forwardRef } from 'react'
 
 import CustomScroll from 'react-custom-scroll'
 import classNames from 'classnames'
@@ -14,14 +14,14 @@ import options from './components/Variants/options'
 import { Icon, Control, ContainerOptions, ClearAll } from './components'
 
 const Select = forwardRef<SelectRefProps, SelectProps>((props, ref) => {
+  const [variant] = useState(props.variant || 'normal')
   const defaultValue = useRef(props.defaultValue)
 
   const containerRef = useRef<HTMLDivElement>(null)
 
   const { defaultIsOpen, placeholder } = props
   const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen })
-
-  const Variant = options[props.variant || 'normal']
+  const Variant = options[variant]
   return (
     <SelectProvider
       onClose={onClose}

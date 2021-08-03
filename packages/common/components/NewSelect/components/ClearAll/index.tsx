@@ -10,13 +10,13 @@ import { useSelect } from '../../context'
 const ClearAll: React.FC = () => {
   const context = useSelect()
 
-  const handleClearAll = useCallback(() => {
+  const handleClearAll = useCallback(async () => {
     context.setState({
       checked: [],
       raw: []
     })
 
-    resetAll(context.options)
+    await resetAll(context.options)
 
     context.refresh()
   }, [context])

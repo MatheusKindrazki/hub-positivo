@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useLayoutEffect } from 'react'
 
 import { useOnClickOutside } from '@psdhub/common/hooks'
@@ -21,8 +22,10 @@ const LogicScope: React.FC<LogicScopeProps> = ({ children, ...props }) => {
   const context = useSelect()
 
   useLayoutEffect(() => {
-    markCheckedItens(value || [], context)
-  }, [context, value])
+    if (value?.length) {
+      markCheckedItens(value || [], context)
+    }
+  }, [value])
 
   syncPropsContext(props, context)
   useOnClickOutside(containerRef, onClose, 'click')

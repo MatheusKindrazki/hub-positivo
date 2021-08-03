@@ -29,6 +29,12 @@ const DevHub: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const formRef = useRef<FormProps>(null)
 
+  setTimeout(() => {
+    formRef.current?.setData({
+      product: ['A']
+    })
+  }, 3000)
+
   const handleSubmit = useCallback(async data => {
     console.log('meus dados', data)
 
@@ -128,6 +134,7 @@ const DevHub: React.FC = () => {
             isSearchable
             clearable
             variant="treeview"
+            defaultValue={['B']}
             options={[
               { label: 'A', value: 'A' },
               { label: 'B', value: 'B' }

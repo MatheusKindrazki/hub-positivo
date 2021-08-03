@@ -1,6 +1,11 @@
 import React, { useState, useLayoutEffect } from 'react'
 
+import { setDefaultValues } from '@psdhub/common/components/Tree/utils'
 import Tree from '@psdhub/common/components/Tree'
+import {
+  getLabelsOrValues,
+  resetAll
+} from '@psdhub/common/components/NewSelect/utils'
 
 import { ContainerOptions } from './styles'
 import NotFound from '../../NotFound'
@@ -26,8 +31,21 @@ const DefaultVariant: React.FC = props => {
   }
 
   useLayoutEffect(() => {
-    setRenderDefaultOptions(getState().checked)
-  }, [getState])
+    setDefaultValue()
+
+    async function setDefaultValue() {
+      await resetAll(options)
+
+      setDefaultValues(getState().checked, options)
+
+      context.setState({
+        checked: getLabelsOrValues(options),
+        raw: options
+      })
+
+      setRenderDefaultOptions(getState().checked)
+    }
+  }, [context, getState, options])
 
   return (
     <ContainerOptions>

@@ -3,13 +3,17 @@ import { setDefaultValues } from '@psdhub/common/components/Tree/utils'
 import { getLabelsOrValues, resetAll } from '../utils'
 import { SelectContextProps } from '../context/types'
 
-function markCheckedItens(itens: string[], context: SelectContextProps): void {
+async function markCheckedItens(
+  itens: string[],
+  context: SelectContextProps
+): Promise<void> {
   const options = context.options || []
 
   if (!itens.length) return
 
   // adiciona/reseta isChecked para todos os itens
-  resetAll(options)
+
+  await resetAll(options)
 
   setDefaultValues(itens, options)
 
