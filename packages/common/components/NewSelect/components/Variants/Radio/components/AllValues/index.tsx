@@ -27,7 +27,7 @@ const AllValues: React.FC<AllValuesProps> = ({
   return (
     <Box
       key={index}
-      mt="1"
+      pt="1"
       className={classNames({
         'hub-select-item': true
       })}

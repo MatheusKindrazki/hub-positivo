@@ -10,4 +10,5 @@ export default (props: SelectProps, context: SelectContextProps): void => {
   context.isSearchable = props.isSearchable
   context.allSelectMessage = props.allSelectMessage
   context.noOptionsMessage = props.noOptionsMessage
+  context.placeholderPersist = props.placeholderPersist
 }

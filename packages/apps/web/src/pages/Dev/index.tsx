@@ -101,6 +101,7 @@ const DevHub: React.FC = () => {
             isMulti
             isSearchable
             clearable
+            placeholderPersist
             defaultValue={['2']}
             variant="checkbox"
             options={[

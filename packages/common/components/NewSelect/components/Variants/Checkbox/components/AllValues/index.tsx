@@ -30,7 +30,7 @@ const AllValues: React.FC<AllValuesProps> = ({
     <Box
       key={index}
       role="button"
-      mt="1"
+      pt="1"
       className={classNames({
         'hub-select-item': true
       })}

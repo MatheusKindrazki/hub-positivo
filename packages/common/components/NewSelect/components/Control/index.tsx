@@ -15,8 +15,14 @@ interface ControleProps {
 }
 
 const Control: React.FC<ControleProps> = props => {
-  const { getState, isBadge, isSearchable, labelLength, searchable } =
-    useSelect()
+  const {
+    getState,
+    isBadge,
+    isSearchable,
+    labelLength,
+    searchable,
+    placeholderPersist
+  } = useSelect()
 
   const { placeholder = 'Selecione', hideSelected } = props
 
@@ -25,7 +31,7 @@ const Control: React.FC<ControleProps> = props => {
   const renderValue = () => {
     const checked = getLabelsOrValues(getState().raw, 'label')
 
-    if (!checked.length) return placeholder
+    if (!checked.length || placeholderPersist) return placeholder
 
     if (hideSelected) {
       if (checked.length === 1) {
@@ -45,12 +51,22 @@ const Control: React.FC<ControleProps> = props => {
   }
 
   const renderComponent = () => {
+    const isDataSelect = getState().raw.length > 0
+
     if (!isBadge && !props.focus) {
-      return <Box noOfLines={1}>{renderValue()}</Box>
+      return (
+        <Box noOfLines={1} color={!isDataSelect ? 'gray.500' : 'black'}>
+          {renderValue()}
+        </Box>
+      )
     }
 
     if (hideSelected && !props.focus) {
-      return <Box noOfLines={1}>{renderValue()}</Box>
+      return (
+        <Box noOfLines={1} color={!isDataSelect ? 'gray.500' : 'black'}>
+          {renderValue()}
+        </Box>
+      )
     }
 
     if (isSearchable && props.focus) {
@@ -62,8 +78,12 @@ const Control: React.FC<ControleProps> = props => {
       )
     }
 
-    if (!getState().checked?.length) {
-      return <Box as="span">{renderValue()}</Box>
+    if (!isDataSelect) {
+      return (
+        <Box as="span" color={!isDataSelect ? 'gray.500' : 'black'}>
+          {renderValue()}
+        </Box>
+      )
     }
 
     return <Badges itens={getLabelsOrValues(getState().raw, 'label')} />

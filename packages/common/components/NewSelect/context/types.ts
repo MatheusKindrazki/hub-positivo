@@ -15,6 +15,7 @@ interface SelectContextProps {
   labelLength?: number
   className?: string
   allSelectMessage?: string
+  placeholderPersist?: boolean
   noOptionsMessage?: React.FC
 }
 

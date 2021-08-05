@@ -27,12 +27,13 @@ export interface SelectProps {
   closeOnSelect?: boolean
   labelLength?: number
   isBadge?: boolean
+  error?: boolean
   className?: string
   placeholder?: string
   defaultValue?: string[]
   noOptionsMessage?: React.FC
   allSelectMessage?: string
-  error?: boolean
+  placeholderPersist?: boolean
   onChange?: (checked: string[], raw: TreeNode[]) => void
 }
 export interface TreeNode {

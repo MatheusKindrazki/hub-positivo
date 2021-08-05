@@ -23,8 +23,6 @@ const INITIAL_STATE: SelectContextProps = {
   }),
   onClose: () => {},
   refresh: () => {},
-  onChange: () => {},
-  onClose: () => {},
   searchable: _ => {}
 }
 
