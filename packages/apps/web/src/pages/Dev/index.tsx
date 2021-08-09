@@ -4,7 +4,13 @@ import { store } from '~/store'
 
 import { Activity } from '@psdhub/common/components/Icons'
 import NewSelect from '@psdhub/common/components/Form/NewSelect'
-import { Input, Form, FormProps, Button } from '@psdhub/common/components/Form'
+import {
+  Input,
+  Form,
+  FormProps,
+  Button,
+  Datepicker
+} from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
 
@@ -128,6 +134,8 @@ const DevHub: React.FC = () => {
               { label: 'B', value: 'B' }
             ]}
           />
+
+          <Datepicker name="ola" />
 
           <Button isLoading={loading}>Entrar na solução</Button>
         </Form>
