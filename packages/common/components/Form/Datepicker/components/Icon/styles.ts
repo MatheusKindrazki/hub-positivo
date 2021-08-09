@@ -1,10 +1,8 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import Box from '@psdhub/common/components/Box'
 
-import { IconProps } from '.'
-
-export const Container = styled(Box)<IconProps>`
+export const Container = styled(Box)`
   position: absolute;
   right: 0;
   top: 0;
@@ -20,10 +18,4 @@ export const Container = styled(Box)<IconProps>`
 
   transform: rotate(0);
   transition: all 0.2s linear;
-
-  ${props =>
-    props.open &&
-    css`
-      transform: rotate(-180deg);
-    `}
 `
