@@ -15,18 +15,14 @@ interface ControleProps {
 }
 
 const Control: React.FC<ControleProps> = props => {
-  const {
-    getState,
-    isBadge,
-    isSearchable,
-    labelLength,
-    searchable,
-    placeholderPersist
-  } = useSelect()
+  const context = useSelect()
+
+  const { getState, isBadge, isSearchable, labelLength, placeholderPersist } =
+    context
 
   const { placeholder = 'Selecione', hideSelected } = props
 
-  if (!props.focus) searchable && searchable('')
+  if (!props.focus) context?.searchable('')
 
   const renderValue = () => {
     const checked = getLabelsOrValues(getState().raw, 'label')
@@ -70,12 +66,7 @@ const Control: React.FC<ControleProps> = props => {
     }
 
     if (isSearchable && props.focus) {
-      return (
-        <InputSearch
-          placeholder={'Digite para buscar'}
-          searchable={searchable}
-        />
-      )
+      return <InputSearch placeholder={'Digite para buscar'} />
     }
 
     if (!isDataSelect) {

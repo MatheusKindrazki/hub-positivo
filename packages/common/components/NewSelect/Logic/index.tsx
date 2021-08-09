@@ -8,6 +8,7 @@ import markCheckedItens from '../utils/markCheckedItens'
 import { SelectProps, SelectRefProps } from '../types'
 import useConnectRefToContext from '../hooks/useConnectRefToContext'
 import { useSelect } from '../context'
+import useKeyPress from '../../../hooks/useKeyPress'
 
 interface LogicScopeProps extends SelectProps {
   value?: string[]
@@ -30,6 +31,8 @@ const LogicScope: React.FC<LogicScopeProps> = ({ children, ...props }) => {
   syncPropsContext(props, context)
   useOnClickOutside(containerRef, onClose, 'click')
   useConnectRefToContext(context, selectRef)
+
+  useKeyPress(containerRef, () => context.onInputFocus())
 
   return <>{children}</>
 }

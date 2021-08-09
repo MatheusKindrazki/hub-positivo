@@ -4,7 +4,7 @@ export const Input = styled.input`
   /* position: absolute; */
   outline: none;
 
-  background: red;
+  background: transparent;
   left: 0;
   margin: auto 0;
   border: none;

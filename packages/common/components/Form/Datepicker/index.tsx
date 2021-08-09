@@ -34,7 +34,17 @@ const Datepicker: React.FC<Props> = ({
     registerField({
       name: fieldName,
       ref: datepickerRef.current,
-      getValue: () => date,
+      getValue: () => {
+        if (!date.length) return undefined
+
+        const start = format(date[0], 'MM/dd/yyyy')
+        const end = format(date[1], 'MM/dd/yyyy')
+
+        return {
+          checked: [`de ${start} a ${end}`],
+          raw: [date[0], date[1]]
+        }
+      },
       setValue: (_ref, value) => setDate(value as any)
     })
   }, [fieldName, registerField, date])

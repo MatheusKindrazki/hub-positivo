@@ -17,6 +17,8 @@ const INITIAL_STATE: SelectContextProps = {
   options: [],
   setState: () => {},
   onChange: () => {},
+  onInputFocus: () => {},
+  onInputBlur: () => {},
   getState: () => ({
     checked: [],
     raw: []
