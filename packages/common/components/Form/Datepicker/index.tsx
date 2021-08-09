@@ -1,15 +1,16 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useCallback, useState } from 'react'
 
-import { format } from 'date-fns'
+import { format, isDate } from 'date-fns'
 import { useField } from '@unform/core'
 
-import { useDisclosure, useOnClickOutside } from '@psdhub/common/hooks'
 import { Box } from '@psdhub/common/components'
+
+import { Popover, PopoverTrigger, PopoverContent } from '@chakra-ui/react'
 
 import { Container } from './styles'
 import Icon from './components/Icon'
 import ContainerOptions from './components/ContainerOptions'
-import DatepickerHub, { DatepickerHandlers, DateRange } from '../../Datepicker'
+import DatepickerHub, { DatepickerHandlers } from '../../Datepicker'
 
 interface Props {
   name: string
@@ -22,85 +23,103 @@ const Datepicker: React.FC<Props> = ({
   hideSelected,
   placeholder = 'Selecione uma data'
 }) => {
+  const [startDate, setStartDate] = useState<Date | null>(null)
+  const [endDate, setEndDate] = useState<Date | null>(null)
+
   const datepickerRef = useRef<DatepickerHandlers>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [date, setDate] = useState([] as Date[])
-
-  const { isOpen, onToggle, onClose } = useDisclosure()
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const { fieldName, registerField } = useField(name)
+
+  const handleRenderValue = useCallback(
+    (dates: [Date, Date]) => {
+      const [start, end] = dates
+
+      if (!start && !end) return placeholder
+
+      if (hideSelected) return placeholder
+
+      const formatStart = isDate(start)
+        ? format(start as Date, 'dd/MM/yyyy')
+        : 'dd/MM/yyyy'
+
+      const formatEnd = isDate(end)
+        ? format(end as Date, 'dd/MM/yyyy')
+        : 'dd/MM/yyyy'
+
+      if (inputRef.current) {
+        inputRef.current.value = `de ${formatStart} a ${formatEnd}`
+      }
+    },
+    [hideSelected, placeholder]
+  )
 
   useEffect(() => {
     registerField({
       name: fieldName,
       ref: datepickerRef.current,
       getValue: () => {
-        if (!date.length) return undefined
+        if (!startDate && !endDate) return undefined
 
-        const start = format(date[0], 'MM/dd/yyyy')
-        const end = format(date[1], 'MM/dd/yyyy')
+        const start = format(startDate as Date, 'MM/dd/yyyy')
+        const end = format(endDate as Date, 'MM/dd/yyyy')
 
         return {
           checked: [`de ${start} a ${end}`],
-          raw: [date[0], date[1]]
+          raw: [startDate, endDate]
         }
       },
-      setValue: (_ref, value) => setDate(value as any)
+      setValue: (_ref, value) => {
+        const dates = value as any
+        setStartDate(dates[0])
+        setEndDate(dates[1])
+
+        handleRenderValue(dates)
+      }
     })
-  }, [fieldName, registerField, date])
+  }, [endDate, startDate, fieldName, handleRenderValue, registerField])
 
-  const renderValues = () => {
-    if (isOpen || !date.length) return placeholder
+  const handleSelectDates = useCallback(dates => {
+    handleRenderValue(dates)
 
-    if (hideSelected) return placeholder
+    const [start, end] = dates
 
-    const start = format(date[0], 'MM/dd/yyyy')
-    const end = format(date[1], 'MM/dd/yyyy')
+    setStartDate(start)
 
-    return (
-      <Box d="inline" as="span">
-        <Box fontWeight="400" as="span" color="gray.500">
-          de
-        </Box>{' '}
-        {start}{' '}
-        <Box fontWeight="400" as="span" color="gray.500">
-          a
-        </Box>{' '}
-        {end}
-      </Box>
-    )
-  }
-
-  useEffect(() => {
-    if (isOpen) {
-      datepickerRef.current?.setData({
-        start: date[0] || undefined,
-        end: date[1] || undefined
-      })
-    }
-  }, [date, isOpen])
-
-  useOnClickOutside(containerRef, onClose, 'click')
+    setEndDate(end)
+  }, [])
 
   return (
     <Container ref={containerRef}>
-      <Box className="hub-date-picker-header">
-        <Box
-          role="button"
-          className="hub-date-picker-header-title"
-          onClick={onToggle}
-        >
-          <Box pointerEvents="none" className="hub-control">
-            {renderValues()}
+      <Popover isLazy>
+        <PopoverTrigger>
+          <Box className="hub-date-picker-header">
+            <Box role="button" className="hub-date-picker-header-title">
+              <Box pointerEvents="none" className="hub-control">
+                <input ref={inputRef} defaultValue={placeholder} type="text" />
+              </Box>
+            </Box>
+            <Icon />
           </Box>
-        </Box>
-        <Icon />
-      </Box>
-      {isOpen && (
-        <ContainerOptions className="datepicker-dropdown">
-          <DatepickerHub ref={datepickerRef} />
-        </ContainerOptions>
-      )}
+        </PopoverTrigger>
+        <PopoverContent
+          w="auto"
+          _focus={{ outline: 'none', boxShadow: 'none' }}
+          outline="none"
+          boxShadow="none"
+          bg="transparent"
+          border="none"
+        >
+          <ContainerOptions className="datepicker-dropdown">
+            <DatepickerHub
+              startDate={startDate}
+              endDate={endDate}
+              onChange={handleSelectDates}
+            />
+          </ContainerOptions>
+        </PopoverContent>
+      </Popover>
     </Container>
   )
 }

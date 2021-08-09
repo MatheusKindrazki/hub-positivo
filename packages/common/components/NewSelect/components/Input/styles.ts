@@ -12,8 +12,7 @@ export const Input = styled.input`
   height: inherit;
   z-index: 0;
 
-  cursor: zoom-in;
-  /* pointer-events: none; */
+  pointer-events: none;
 
   z-index: 9999;
 

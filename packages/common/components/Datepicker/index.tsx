@@ -51,12 +51,12 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
     return (
       <Container>
         <ReactDatePicker
-          {...props}
           ref={ref as any}
           onChange={onChange}
           selected={null}
           startDate={start}
           endDate={end}
+          {...props}
           selectsRange
           locale={pt}
           inline
