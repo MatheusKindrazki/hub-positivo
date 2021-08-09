@@ -3,7 +3,8 @@ import styled from 'styled-components'
 export const Input = styled.input`
   /* position: absolute; */
   outline: none;
-  width: 100%;
+
+  background: red;
   left: 0;
   margin: auto 0;
   border: none;
@@ -11,7 +12,10 @@ export const Input = styled.input`
   height: inherit;
   z-index: 0;
 
-  pointer-events: none;
+  cursor: zoom-in;
+  /* pointer-events: none; */
+
+  z-index: 9999;
 
   &::placeholder {
     color: ${props => props.theme.colors.gray[500]};

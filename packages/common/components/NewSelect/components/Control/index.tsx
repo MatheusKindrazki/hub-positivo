@@ -90,7 +90,7 @@ const Control: React.FC<ControleProps> = props => {
   }
 
   return (
-    <Box pointerEvents="none" className="hub-control">
+    <Box pointerEvents={props.focus ? 'all' : 'none'} className="hub-control">
       {renderComponent()}
     </Box>
   )

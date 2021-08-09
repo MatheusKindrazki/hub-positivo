@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 
 import { format } from 'date-fns'
 import { useField } from '@unform/core'
@@ -24,8 +24,9 @@ const Datepicker: React.FC<Props> = ({
 }) => {
   const datepickerRef = useRef<DatepickerHandlers>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const [date, setDate] = useState([] as Date[])
 
-  const { isOpen, onToggle, onClose } = useDisclosure({ defaultIsOpen: true })
+  const { isOpen, onToggle, onClose } = useDisclosure()
 
   const { fieldName, registerField } = useField(name)
 
@@ -33,45 +34,41 @@ const Datepicker: React.FC<Props> = ({
     registerField({
       name: fieldName,
       ref: datepickerRef.current,
-      getValue: () => datepickerRef.current?.getData(),
-      setValue: (_ref, value) => {
-        if (Array.isArray(value)) {
-          datepickerRef.current?.setData({
-            start: value[0],
-            end: value[1]
-          })
-
-          return
-        }
-
-        datepickerRef.current?.setData(value as DateRange)
-      }
+      getValue: () => date,
+      setValue: (_ref, value) => setDate(value as any)
     })
-  }, [fieldName, registerField])
+  }, [fieldName, registerField, date])
 
   const renderValues = () => {
-    const date = datepickerRef.current?.getData()
-
-    if (isOpen || !date) return placeholder
+    if (isOpen || !date.length) return placeholder
 
     if (hideSelected) return placeholder
 
-    const start = format(date.start, 'MM/dd/yyyy')
-    const end = format(date.end, 'MM/dd/yyyy')
+    const start = format(date[0], 'MM/dd/yyyy')
+    const end = format(date[1], 'MM/dd/yyyy')
 
     return (
       <Box d="inline" as="span">
-        de{' '}
-        <Box fontWeight="500" as="span">
-          {start}
+        <Box fontWeight="400" as="span" color="gray.500">
+          de
         </Box>{' '}
-        a{' '}
-        <Box fontWeight="500" as="span">
-          {end}
-        </Box>
+        {start}{' '}
+        <Box fontWeight="400" as="span" color="gray.500">
+          a
+        </Box>{' '}
+        {end}
       </Box>
     )
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      datepickerRef.current?.setData({
+        start: date[0] || undefined,
+        end: date[1] || undefined
+      })
+    }
+  }, [date, isOpen])
 
   useOnClickOutside(containerRef, onClose, 'click')
 

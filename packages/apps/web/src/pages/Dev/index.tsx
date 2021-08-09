@@ -18,6 +18,11 @@ const DevHub: React.FC = () => {
   const [loading, setLoading] = useState(false)
 
   const formRef = useRef<FormProps>(null)
+  setTimeout(() => {
+    formRef.current?.setData({
+      ola: [new Date(), new Date()]
+    })
+  }, 2000)
 
   const handleSubmit = useCallback(async data => {
     console.log('meus dados', data)
