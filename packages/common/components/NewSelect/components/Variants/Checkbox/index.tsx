@@ -12,6 +12,7 @@ import { useSelect } from '../../../context'
 import { TreeNode } from '../../../../Tree'
 
 const RadioVariant: React.FC = () => {
+  // const storeValuesRef = useRef({options:})
   const context = useSelect()
 
   const { isMulti } = context
@@ -39,12 +40,14 @@ const RadioVariant: React.FC = () => {
               className={classNames({
                 'hub-select-item': true
               })}
-              onClick={() => handleClick(option, false)}
             >
               <Checkbox
                 value={option.label}
-                pointerEvents="none"
-                isChecked={!!logic.checkSelectedItem(option)}
+                w="100%"
+                h="100%"
+                onChange={() => handleClick(option, false)}
+                defaultChecked={!!logic.checkSelectedItem(option)}
+                // isChecked={!!logic.checkSelectedItem(option)}
                 className={classNames({
                   active: logic.checkSelectedItem(option)
                 })}

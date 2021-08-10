@@ -34,7 +34,9 @@ const AllValues: React.FC<AllValuesProps> = ({
       className={classNames({
         'hub-select-item': true
       })}
-      onClick={() => handleClick(values as TreeNode[], true)}
+      onClick={() =>
+        handleClick(!allChecked ? (values as TreeNode[]) : [], true)
+      }
     >
       <Checkbox
         value={markChecked?.join(',')}

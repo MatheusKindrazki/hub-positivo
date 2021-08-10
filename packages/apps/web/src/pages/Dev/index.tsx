@@ -1,5 +1,7 @@
 import React, { useRef, useCallback, useState } from 'react'
 
+import faker from 'faker'
+
 import { store } from '~/store'
 
 import { Activity } from '@psdhub/common/components/Icons'
@@ -13,6 +15,11 @@ import {
 } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
+
+const data = new Array(100).fill({}).map(() => ({
+  value: faker.datatype.uuid(),
+  label: faker.name.firstName()
+}))
 
 const DevHub: React.FC = () => {
   const [loading, setLoading] = useState(false)
@@ -113,18 +120,8 @@ const DevHub: React.FC = () => {
             isSearchable
             clearable
             placeholderPersist
-            defaultValue={['2']}
             variant="checkbox"
-            options={[
-              {
-                label: 'Ensino Médio',
-                value: '1'
-              },
-              {
-                label: 'Ensino Fundamental',
-                value: '2'
-              }
-            ]}
+            options={data}
           />
 
           <NewSelect
