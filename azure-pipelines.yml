@@ -9,24 +9,13 @@ name: $(date:yyyyMMdd)$(rev:.r)
 
 variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
-<<<<<<< HEAD
-=======
-  uiSource: 'src'
-  uiBuild: '$(uiSource)/build'
->>>>>>> 9b78b526 (ci: removendo step de zip da pipeline)
   ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
     stageName: prod
   ${{ if eq(variables['Build.SourceBranchName'], 'develop') }}:
     stageName: dev
-<<<<<<< HEAD
   ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/release') }}:
     stageName: hml
   ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix') }}:
-=======
-  ${{ if eq(variables['Build.SourceBranchName'], 'refs/heads/release') }}:
-    stageName: hml
-  ${{ if eq(variables['Build.SourceBranchName'], 'refs/heads/hotfix') }}:
->>>>>>> 9b78b526 (ci: removendo step de zip da pipeline)
     stageName: hml
 
 pool:
