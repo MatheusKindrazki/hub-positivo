@@ -2,19 +2,20 @@ trigger:
   branches:
     include:
     - refs/heads/develop
-    - refs/heads/homolog
-    - refs/heads/master
+    - refs/heads/release/*
+    - refs/heads/hotfix/*
+    - refs/heads/main
 name: $(date:yyyyMMdd)$(rev:.r)
 
 variables:
   YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
-  uiSource: 'src'
-  uiBuild: '$(uiSource)/build'
-  ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+  ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
     stageName: prod
   ${{ if eq(variables['Build.SourceBranchName'], 'develop') }}:
     stageName: dev
-  ${{ if eq(variables['Build.SourceBranchName'], 'homolog') }}:
+  ${{ if eq(variables['Build.SourceBranchName'], 'refs/heads/release/*') }}:
+    stageName: hml
+  ${{ if eq(variables['Build.SourceBranchName'], 'refs/heads/hotfix/*') }}:
     stageName: hml
 
 pool:
@@ -74,13 +75,6 @@ jobs:
   - script: yarn --frozen-lockfile
     displayName: Installing project dependencies
 
-  # - task: Yarn@3
-  #   displayName: Running the project tests
-  #   inputs:
-  #     arguments: test:coverage
-
-  # - task: SonarCloudAnalyze@1
-
   - script: |
       export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release
     displayName: Semantic Release ( generate changelog and build tag )
@@ -101,14 +95,15 @@ jobs:
     inputs:
       arguments: build:web
 
-  - task: ArchiveFiles@2
-    displayName: Archive files
+  - task: CopyFiles@2
     inputs:
-      rootFolderOrFile: $(System.DefaultWorkingDirectory)/packages/apps/web/build
-      includeRootFolder: false
+      sourceFolder: '$(System.DefaultWorkingDirectory)/packages/apps/web/build'
+      contents: '**'
+      targetFolder: $(Build.ArtifactStagingDirectory)/dist
+    displayName: 'Copy dist'
 
   - task: PublishBuildArtifacts@1
-    displayName: 'Publish artifacts: hub'
     inputs:
-      ArtifactName: devhubdigital
-      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)/dist'
+      artifactName: dist
+    displayName: 'Publish dist artifact'
