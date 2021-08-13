@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 1rem;
 
   margin-bottom: 2rem;
 
-  @media (min-width: 1400px) {
+  @media (min-width: 1200px) {
     margin: 0 auto;
     margin-bottom: 5rem;
   }
@@ -14,16 +14,18 @@ export const Container = styled.div`
   padding-top: 1.5rem;
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: bold;
+    @media (min-width: 768px) {
+      font-size: 2rem;
+    }
   }
 `
 
 export const Main = styled.div`
   margin-top: 1.125rem;
-  padding: 1.0625rem;
-  padding-top: 1.5rem;
+  padding: 2rem;
 
   background-color: white;
   border-radius: 8px;
@@ -80,6 +82,18 @@ export const Main = styled.div`
     td,
     th {
       border: none;
+    }
+  }
+
+  ol {
+    margin-left: 2.5rem;
+    list-style-type: upper-roman;
+
+    li {
+      margin-bottom: 1rem;
+      &:last-child {
+        margin-bottom: 1.5rem;
+      }
     }
   }
 `
