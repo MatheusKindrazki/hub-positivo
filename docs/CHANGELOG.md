@@ -1,3 +1,19 @@
+# [2.2.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.1.1...v2.2.0) (2021-08-13)
+
+
+### Bug Fixes
+
+* re-adicionando admin no build ([5d96c36](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/5d96c365fe6d423c67390615865da31b93b74e5e))
+
+
+### Features
+
+* adicionando tooltip ([1c045ac](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/1c045ac3da893ef01ae6a9fd7d78c25980f11314))
+* criando pagina de Aviso de privacidade ([fe95c27](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/fe95c2796ba393b4d9ad14197d75b7c6dc1b2f0b))
+* criando pagina de termos de uso ([eb01111](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/eb01111565a9909a80236a847ab3395d65ae0907))
+* criando paginas de termos de uso ([3258aec](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/3258aec86630d8ec730b0ee21aaf65c79259df83))
+* criando politica de privacidade ([5dd183c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/5dd183c381ec93d4168f7a701d2465c211987b2c))
+
 ## [2.1.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.1.0...v2.1.1) (2021-08-13)
 
 
