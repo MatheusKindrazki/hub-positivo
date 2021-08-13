@@ -11,24 +11,11 @@ import ThemeContext from '@psdhub/common/layout/Provider/context'
 
 import history from '~/services/history'
 
+import routes from './routes'
 import Route from './Route'
-
-// ? Importação das páginas
-const Home = React.lazy(() => import('~/pages/Home'))
-const DevHub = React.lazy(() => import('~/pages/Dev'))
-const SignIn = React.lazy(() => import('~/pages/Auth/SignIn'))
-const Profile = React.lazy(() => import('~/pages/Auth/Profile'))
-const MyClasses = React.lazy(() => import('~/pages/MyClasses'))
-const ForgotFail = React.lazy(() => import('~/pages/Auth/ForgotFail'))
-const ExpiredToken = React.lazy(() => import('~/pages/Auth/ExpiredToken'))
-const ChangePassword = React.lazy(() => import('~/pages/Auth/ChangePassword'))
-const ForgotPassword = React.lazy(() => import('~/pages/Auth/ForgotPassword'))
-const Solutions = React.lazy(() => import('~/pages/Solutions'))
 
 const Routes: React.FC = () => {
   const { colorProfile } = useSelector((state: Store.State) => state.profile)
-  const { guid } = useSelector((state: Store.State) => state.profile)
-
   const { setColorMode } = useColorMode()
 
   setColorMode('light')
@@ -47,32 +34,9 @@ const Routes: React.FC = () => {
           basename={process.env.REACT_APP_PATHNAME_RESOLVE}
         >
           <Switch>
-            <Route path="/login" component={SignIn} />
-            <Route path="/perfil" component={Profile} />
-            <Route path="/esqueci-minha-senha/falhou" component={ForgotFail} />
-            <Route
-              path="/esqueci-minha-senha"
-              exact
-              component={ForgotPassword}
-            />
-            <Route path="/token-expirado" component={ExpiredToken} />
-            <Route path="/alterar-senha" component={ChangePassword} />
-            <Route path="/" exact component={Home} isPrivate />
-
-            <Route
-              path={['/solucao/:solution/:subpath+', '/solucao/:solution']}
-              component={Solutions}
-              isPrivate
-            />
-
-            {guid === 'PROFESSOR' && (
-              <Route path="/minhas-turmas" component={MyClasses} isPrivate />
-            )}
-
-            {process.env.REACT_APP_NODE_ENV === 'development' && (
-              <Route path="/dev" component={DevHub} isPrivate />
-            )}
-
+            {routes.map((route, index) => (
+              <Route key={index} {...route} />
+            ))}
             <Redirect to="/" from="*" />
           </Switch>
         </HashRouter>
