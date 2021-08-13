@@ -1,3 +1,11 @@
+## [2.1.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.1.0...v2.1.1) (2021-08-13)
+
+
+### Bug Fixes
+
+* ajustando branch default & realizando logout do usuário ([996ccf1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/996ccf134d23e0e854206f95177988e678285277))
+* buscando email do usuário de salas na api ([ea9cac7](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/ea9cac7dcf564abd0b5140ddda7aaf0ab7dffd39))
+
 # [2.1.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/HubDigitalFront/compare/v2.0.0...v2.1.0) (2021-07-02)
 
 
