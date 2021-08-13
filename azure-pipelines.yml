@@ -13,9 +13,9 @@ variables:
     stageName: prod
   ${{ if eq(variables['Build.SourceBranchName'], 'develop') }}:
     stageName: dev
-  ${{ if eq(variables['Build.SourceBranchName'], 'refs/heads/release/*') }}:
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/release') }}:
     stageName: hml
-  ${{ if eq(variables['Build.SourceBranchName'], 'refs/heads/hotfix/*') }}:
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix') }}:
     stageName: hml
 
 pool:
