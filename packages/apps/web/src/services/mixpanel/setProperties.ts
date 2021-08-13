@@ -23,6 +23,8 @@ const setProperties = (): void => {
 
   const { activeStages, selected_educational_stage } = educationalStage()
 
+  const first_name = user?.name?.split(' ')[0]
+
   const sendProps = {
     ...activeProfiles,
     ...activeStages,
@@ -32,10 +34,13 @@ const setProperties = (): void => {
 
     user_id: user?.guid,
     user_login: user?.username,
+    first_name,
+
     // ? palavra reservada mixpanel
     $name: user?.name,
     user_name: user?.name,
     user_mail: user?.email,
+    email_salas: user?.email_salas,
 
     selected_role: profile.name,
     roles_list: profileNames,
