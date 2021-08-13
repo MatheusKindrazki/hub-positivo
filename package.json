@@ -34,7 +34,7 @@
     "build:web": "npm run --prefix packages/apps/web build",
     "postbuild:web": "node scripts/replace-in-files.js hub",
     "build:common": "npm run --prefix packages/common build",
-    "release": "HUSKY_SKIP_HOOKS=1 semantic-release"
+    "release": "HUSKY_SKIP_HOOKS=1 semantic-release --branches main"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",

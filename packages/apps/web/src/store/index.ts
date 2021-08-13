@@ -19,7 +19,7 @@ const encrypted = encryptTransform({
 const persistName = process.env.REACT_APP_PERSIST_NAME || '@PSD:HUB'
 
 const persistConfig = {
-  key: persistName,
+  key: `_${persistName}_`,
   storage,
   whitelist: ['auth', 'user', 'profile', 'educationalStage'],
   transforms: [encrypted]

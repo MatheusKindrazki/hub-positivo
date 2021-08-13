@@ -1,8 +1,5 @@
 {
-  "debug": true,
-  "release": {
-    "branch": "main"
-  },
+  "branches": ["main","master", "next"],
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
