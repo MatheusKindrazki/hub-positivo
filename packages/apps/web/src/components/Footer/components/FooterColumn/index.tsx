@@ -14,6 +14,7 @@ export interface item {
   name: string
   active: boolean
   href?: string
+  internalPage?: boolean
   modal?: { title: string; content: string }
 }
 

@@ -7,6 +7,7 @@ const DevHub = React.lazy(() => import('~/pages/Dev'))
 const SignIn = React.lazy(() => import('~/pages/Auth/SignIn'))
 const Profile = React.lazy(() => import('~/pages/Auth/Profile'))
 const MyClasses = React.lazy(() => import('~/pages/MyClasses'))
+const TermsOfUse = React.lazy(() => import('~/pages/TermsOfUse'))
 const ForgotFail = React.lazy(() => import('~/pages/Auth/ForgotFail'))
 const ExpiredToken = React.lazy(() => import('~/pages/Auth/ExpiredToken'))
 const ChangePassword = React.lazy(() => import('~/pages/Auth/ChangePassword'))
@@ -59,5 +60,11 @@ export default [
     path: ['/solucao/:solution/:subpath+', '/solucao/:solution'],
     isPrivate: true,
     component: Solutions
+  },
+  {
+    path: '/termos-de-uso',
+    isPrivate: false,
+    exact: false,
+    component: TermsOfUse
   }
 ]

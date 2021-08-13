@@ -9,9 +9,9 @@
         "active": true
       },
       {
-        "name": "atendimento@spe.com.br",
+        "name": "atendimento@sistemapositivo.com.br",
         "active": true,
-        "href": "mailto:atendimento@spe.com.br"
+        "href": "mailto:atendimento@sistemapositivo.com.br"
       },
       { "name": "0800 591 1510", "active": true }
     ]
@@ -21,16 +21,16 @@
     "active": true,
     "items": [
       {
-        "name": "Copyright",
-        "active": true,
-        "internalPage": true,
-        "href": "/copyright"
-      },
-      {
         "name": "Termos de uso",
         "active": true,
         "internalPage": true,
         "href": "/termos-de-uso"
+      },
+      {
+        "name": "Aviso de privacidade",
+        "active": true,
+        "internalPage": true,
+        "href": "/aviso-de-privacidade"
       },
       {
         "name": "Política de privacidade",

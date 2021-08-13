@@ -1,5 +1,7 @@
 import React, { useRef } from 'react'
 
+import { Link as RLink } from 'react-router-dom'
+
 import { ListItem, Link, Text } from '@psdhub/common/components'
 
 import { ModalHandler, FooterModal } from '../FooterModal'
@@ -17,8 +19,10 @@ const FooterItem: React.FC<ItemProps> = ({ data }) => {
       {data.href && data.active && (
         <ListItem textColor="gray.600" fontWeight="400" mb="2">
           <Link
+            as={data.internalPage ? RLink : undefined}
+            to={data.href}
             display="inline-block"
-            target="_blank"
+            target={!data.internalPage ? '_blank' : '_self'}
             href={data.href}
             fontWeight="400"
             color="gray.600"
