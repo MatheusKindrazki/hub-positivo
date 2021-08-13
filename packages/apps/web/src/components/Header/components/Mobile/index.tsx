@@ -211,21 +211,6 @@ const MobileMenu = React.forwardRef<RefMenuProps, MenuProps>(
               >
                 Home
               </Button>
-              {guid === 'ADMINISTRADOR' && (
-                <Button
-                  onClick={() => history.push('/controle-de-acessos')}
-                  color={
-                    location.pathname === '/controle-de-acessos'
-                      ? 'blue.500'
-                      : 'gray.500'
-                  }
-                  fontSize="0.875rem"
-                  variant="ghost"
-                  ml="-10px"
-                >
-                  Controle de acessos
-                </Button>
-              )}
               {guid === 'PROFESSOR' && (
                 <Button
                   onClick={() => {
