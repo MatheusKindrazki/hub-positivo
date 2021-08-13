@@ -1,7 +1,7 @@
 {
   "debug": true,
   "release": {
-    "branches": ["main"]
+    "branch": "main"
   },
   "plugins": [
     "@semantic-release/commit-analyzer",
