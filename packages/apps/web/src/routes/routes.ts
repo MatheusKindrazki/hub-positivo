@@ -8,6 +8,8 @@ const SignIn = React.lazy(() => import('~/pages/Auth/SignIn'))
 const Profile = React.lazy(() => import('~/pages/Auth/Profile'))
 const MyClasses = React.lazy(() => import('~/pages/MyClasses'))
 const TermsOfUse = React.lazy(() => import('~/pages/TermsOfUse'))
+const PrivacyPolicy = React.lazy(() => import('~/pages/PrivacyPolicy'))
+const PrivacyStatement = React.lazy(() => import('~/pages/PrivacyStatement'))
 const ForgotFail = React.lazy(() => import('~/pages/Auth/ForgotFail'))
 const ExpiredToken = React.lazy(() => import('~/pages/Auth/ExpiredToken'))
 const ChangePassword = React.lazy(() => import('~/pages/Auth/ChangePassword'))
@@ -63,8 +65,20 @@ export default [
   },
   {
     path: '/termos-de-uso',
-    isPrivate: false,
+    isPrivate: true,
     exact: false,
     component: TermsOfUse
+  },
+  {
+    path: '/aviso-de-privacidade',
+    isPrivate: true,
+    exact: false,
+    component: PrivacyStatement
+  },
+  {
+    path: '/politica-de-privacidade',
+    isPrivate: true,
+    exact: false,
+    component: PrivacyPolicy
   }
 ]

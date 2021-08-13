@@ -6,7 +6,7 @@ import { Container, Main } from './styles'
 
 // h1 => h2 =>  h3 => h4 => p
 
-const TermsOfUse: React.FC = () => {
+const PrivacyPolicy: React.FC = () => {
   return (
     <Container>
       <h1>Page title</h1>
@@ -55,4 +55,4 @@ const TermsOfUse: React.FC = () => {
   )
 }
 
-export default TermsOfUse
+export default PrivacyPolicy
