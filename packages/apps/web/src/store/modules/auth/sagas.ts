@@ -18,11 +18,10 @@ import { store } from '~/store'
 
 import capitalize from '@psdhub/common/utils/capitalize'
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import api, { apiAuthProduct } from '@psdhub/api'
 
 import sessionStarted from '~/services/mixpanel/sessionStarted'
 import mixpanelIdentifyUser from '~/services/mixpanel/identifyUser'
-// import mixpanelJoinAnonymousData from '~/services/mixpanel/generateAlias'
 import history from '~/services/history'
 import { changeSchool, ApiChange } from '~/services/eemIntegration'
 import { EEMConnectPost } from '~/services/eemConnect'
@@ -57,8 +56,8 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
   yield put(signInRequestLoading())
 
-  const response = yield call(() => {
-    return EEMConnectPost({
+  const response = yield call(async () => {
+    return await EEMConnectPost({
       endpoint: 'connect/token',
       data: {
         ...payload,
@@ -86,7 +85,16 @@ export function* signIn({ payload }: SignInPayload): Generator {
     Authorization: `Bearer ${data?.access_token}`
   })
 
-  // mixpanelJoinAnonymousData({ guid: user?.sub as string })
+  apiAuthProduct.setHeaders({
+    Authorization: `Bearer ${data?.access_token}`
+  })
+
+  const getMailClass = yield call(async () => {
+    const url = '/api/SalasVirtuais/Email/' + user?.sub
+    return await apiAuthProduct.get(url)
+  })
+
+  const { data: userMailClass } = getMailClass as ApiResponse<string>
 
   // ? Identifica o usuário no mixpanel
   mixpanelIdentifyUser({ guid: user?.sub as string })
@@ -104,6 +112,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
         ...user,
         guid: user?.sub,
         username: user?.username,
+        email_salas: userMailClass as string,
         name: capitalize(user?.name as string)
       }
     })

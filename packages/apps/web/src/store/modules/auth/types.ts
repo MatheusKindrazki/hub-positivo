@@ -43,6 +43,7 @@ export interface SignInSuccess {
     username: string
     schools?: Schools[]
     email: string
+    email_salas: string
   }
 }
 export interface Schools {
