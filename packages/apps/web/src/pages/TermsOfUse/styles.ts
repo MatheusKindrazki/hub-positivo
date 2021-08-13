@@ -96,4 +96,8 @@ export const Main = styled.div`
       }
     }
   }
+
+  a {
+    color: ${({ theme }) => theme.colors.blue[500]};
+  }
 `

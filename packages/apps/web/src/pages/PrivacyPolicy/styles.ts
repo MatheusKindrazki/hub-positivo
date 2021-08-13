@@ -102,4 +102,7 @@ export const Main = styled.div`
   ul {
     list-style-type: decimal;
   }
+  a {
+    color: ${({ theme }) => theme.colors.blue[500]};
+  }
 `
