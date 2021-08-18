@@ -59,7 +59,7 @@ export function* alterPasswordPanel({
   payload
 }: AlterPasswordPanelPayload): Generator {
   const { info: user } = store.getState().user
-  const { token } = store.getState().auth
+  const { reduced_token } = store.getState().auth
 
   const guid = user?.guid
 
@@ -67,7 +67,7 @@ export function* alterPasswordPanel({
     return apiEEMAuth.put(`/api/v1/users/${guid}/change-password`, payload, {
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        Authorization: token
+        Authorization: reduced_token
       }
     })
   })
