@@ -1,3 +1,10 @@
+## [2.2.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.2.0...v2.2.1) (2021-08-18)
+
+
+### Bug Fixes
+
+* utilizando reduced token em requests que utilizavam token completo ([7958272](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/7958272dc8d6b7e182c245dd48b267ac96685de9))
+
 # [2.2.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.1.1...v2.2.0) (2021-08-13)
 
 
