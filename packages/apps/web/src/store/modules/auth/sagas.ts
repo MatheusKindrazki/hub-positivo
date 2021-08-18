@@ -81,14 +81,6 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
   const user = decode(data?.access_token as string) as any
 
-  api.setHeaders({
-    Authorization: `Bearer ${data?.access_token}`
-  })
-
-  apiAuthProduct.setHeaders({
-    Authorization: `Bearer ${data?.access_token}`
-  })
-
   const getMailClass = yield call(async () => {
     const url = '/api/SalasVirtuais/Email/' + user?.sub
     return await apiAuthProduct.get(url)
@@ -148,9 +140,17 @@ export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
 
   const { access_token } = response as ApiChange
 
+  api.setHeaders({
+    Authorization: `Bearer ${access_token}`
+  })
+
+  apiAuthProduct.setHeaders({
+    Authorization: `Bearer ${access_token}`
+  })
+
   const { info: user, school } = store.getState().user
 
-  const user_reduced = decode(access_token as string) as any
+  const { user_reduced } = decode(access_token as string) as any
 
   if (user_reduced?.sub && user?.guid !== user_reduced?.sub) {
     const sc = school?.label as string
@@ -197,7 +197,7 @@ export function* checkingExpiringToken({
     return yield put(signOut())
   }
 
-  const { exp, reduced_token, token } = payload.auth
+  const { exp, reduced_token } = payload.auth
 
   const { info: user } = payload.user
 
@@ -218,7 +218,7 @@ export function* checkingExpiringToken({
   yield put(loading(true))
 
   api.setHeaders({
-    Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${reduced_token}`
   })
 
   yield put(reducedTokenEEM(reduced_token))

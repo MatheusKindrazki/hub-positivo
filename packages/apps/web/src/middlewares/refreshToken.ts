@@ -17,7 +17,7 @@ import { EEMConnectPost } from '~/services/eemConnect'
 import { enableRefreshToken } from '~/utils/enableRefreshToken'
 
 export default async (): Promise<boolean> => {
-  const { exp, refresh_token } = store.getState().auth
+  const { exp, refresh_token, reduced_token } = store.getState().auth
 
   if (enableRefreshToken(exp)) {
     store.dispatch({
@@ -50,15 +50,15 @@ export default async (): Promise<boolean> => {
     }
 
     api.setHeaders({
-      Authorization: `Bearer ${data?.access_token || ''}`
+      Authorization: `Bearer ${reduced_token || ''}`
     })
 
-    const user = decode(data?.access_token as string) as { exp: number }
+    const user = decode(reduced_token as string) as { exp: number }
 
     store.dispatch({
       type: AuthActions.REFRESH_TOKEN_SUCCESS,
       payload: {
-        token: data?.access_token,
+        token: reduced_token,
         refresh_token: data?.refresh_token,
         exp: user?.exp
       }

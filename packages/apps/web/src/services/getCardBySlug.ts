@@ -16,10 +16,10 @@ async function getCardBySlug(
   data: CarBySlugProps
 ): Promise<Product | undefined> {
   if (!data.slug) return
-  const { token } = store.getState().auth
+  const { reduced_token } = store.getState().auth
 
   api.setHeaders({
-    Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${reduced_token}`
   })
 
   const response = await api.get(
@@ -31,7 +31,7 @@ async function getCardBySlug(
     },
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${reduced_token}`
       }
     }
   )
