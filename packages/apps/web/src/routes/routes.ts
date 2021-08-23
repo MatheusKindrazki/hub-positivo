@@ -25,7 +25,7 @@ export default [
   {
     path: '/esqueci-minha-senha',
     isPrivate: false,
-    exact: true,
+    exact: false,
     component: ForgotFail
   },
   {
