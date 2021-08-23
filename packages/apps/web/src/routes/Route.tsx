@@ -16,9 +16,11 @@ const Logged = React.lazy(() => import('~/layouts/Logged'))
 const Solutions = React.lazy(() => import('~/layouts/Solutions'))
 interface RouteProps extends RoutePropsWouter {
   isPrivate?: boolean
+  byPass?: boolean
 }
 const Route: React.FC<RouteProps> = ({
   isPrivate = false,
+  byPass = false,
   component,
   ...rest
 }) => {
@@ -28,27 +30,29 @@ const Route: React.FC<RouteProps> = ({
 
   const { signed } = store.getState().auth
 
-  let RenderLayout = signed ? Logged : Auth
+  let RenderLayout = signed || byPass ? Logged : Auth
 
   if (pathname.includes('solucao')) {
     RenderLayout = Solutions
   }
 
-  if (!signed && isPrivate) {
-    if (pathname.includes('solucao')) {
-      return <Redirect to={`/login?redirect=${pathname}`} />
+  if (!byPass) {
+    if (!signed && isPrivate) {
+      if (pathname.includes('solucao')) {
+        return <Redirect to={`/login?redirect=${pathname}`} />
+      }
+      return <Redirect to="/login" />
     }
-    return <Redirect to="/login" />
-  }
 
-  if (signed && !isPrivate) {
-    const search = searchQuery()
-    const redirectTo = search.get('redirect') || undefined
+    if (signed && !isPrivate) {
+      const search = searchQuery()
+      const redirectTo = search.get('redirect') || undefined
 
-    if (redirectTo) {
-      return <Redirect to={redirectTo} />
+      if (redirectTo) {
+        return <Redirect to={redirectTo} />
+      }
+      return <Redirect to="/" />
     }
-    return <Redirect to="/" />
   }
 
   return (

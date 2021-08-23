@@ -78,6 +78,7 @@ export default [
   {
     path: '/politica-de-privacidade',
     isPrivate: true,
+    byPass: true,
     exact: false,
     component: PrivacyPolicy
   }

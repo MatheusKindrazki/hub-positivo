@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, Suspense } from 'react'
 
-import { Switch, HashRouter, Redirect } from 'react-router-dom'
+import { Switch, HashRouter } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 
 import { useSelector } from 'react-redux'
@@ -10,6 +10,8 @@ import { useColorMode } from '@psdhub/common/layout/styles'
 import ThemeContext from '@psdhub/common/layout/Provider/context'
 
 import history from '~/services/history'
+
+import NotFound from '~/pages/404'
 
 import routes from './routes'
 import Route from './Route'
@@ -37,7 +39,8 @@ const Routes: React.FC = () => {
             {routes.map((route, index) => (
               <Route key={index} {...route} />
             ))}
-            <Redirect to="/" from="*" />
+
+            <Route component={NotFound} byPass />
           </Switch>
         </HashRouter>
       </ConnectedRouter>
