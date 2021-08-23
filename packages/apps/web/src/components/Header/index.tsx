@@ -2,6 +2,8 @@ import React, { useCallback, useRef } from 'react'
 
 import Headroom from 'react-headroom'
 
+import { useSelector } from 'react-redux'
+
 import { useMediaQuery, useDisclosure } from '@psdhub/common/hooks'
 import { Box, Button, Modal } from '@psdhub/common/components'
 
@@ -13,7 +15,10 @@ import { HeaderProvider } from './context'
 import MobileMenu, { MenuButton, RefMenuProps } from './components/Mobile'
 import DesktopMenu from './components/Desktop'
 import AlterPass from './components/AlterPass'
+
 const Header: React.FC = () => {
+  const { signed } = useSelector((state: Store.State) => state.auth)
+
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const menuRef = useRef<RefMenuProps>(null)
@@ -43,7 +48,7 @@ const Header: React.FC = () => {
             alignItems="center"
             justifyContent="space-between"
           >
-            {!isDesktop && <MenuButton onClick={handleClick} />}
+            {!isDesktop && signed ? <MenuButton onClick={handleClick} /> : null}
             <Button
               background="transparent"
               outline="none"
@@ -55,7 +60,7 @@ const Header: React.FC = () => {
             </Button>
           </Box>
 
-          {isDesktop ? (
+          {signed && isDesktop ? (
             <DesktopMenu openModalPass={onOpen} />
           ) : (
             <MobileMenu

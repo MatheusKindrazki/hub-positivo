@@ -65,21 +65,16 @@ export default [
   },
   {
     path: '/termos-de-uso',
-    isPrivate: true,
-    exact: false,
+    byPass: true,
     component: TermsOfUse
   },
   {
     path: '/aviso-de-privacidade',
-    isPrivate: true,
-    exact: false,
+    byPass: true,
     component: PrivacyStatement
   },
   {
     path: '/politica-de-privacidade',
-    isPrivate: true,
-    byPass: true,
-    exact: false,
     component: PrivacyPolicy
   }
 ]
