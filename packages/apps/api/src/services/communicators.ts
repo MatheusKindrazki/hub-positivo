@@ -1,6 +1,8 @@
 import { create } from 'apisauce'
 
-import { AxiosInstance, axios } from './retry'
+import axiosRetry, { AxiosInstance } from './retry'
+
+const axios = axiosRetry()
 
 const timeout = 2000
 
