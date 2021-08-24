@@ -9,6 +9,7 @@ module.exports = function (config, env) {
       babelInclude([
         path.resolve('src'),
         path.resolve('../../common'),
+        path.resolve('../api'),
         path.resolve('../gsc')
       ]),
       addBabelPlugin([
