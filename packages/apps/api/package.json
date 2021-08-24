@@ -5,5 +5,8 @@
   "dependencies": {
     "apisauce": "^2.1.1",
     "axios-retry": "^3.1.9"
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^1.20.0"
   }
 }

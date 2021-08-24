@@ -1,7 +1,7 @@
 import retry from 'axios-retry'
 import { AxiosInstance } from 'axios'
 
-const statusCodeCondition = [500, 502, 503, 504]
+export const statusCodeCondition = [500, 502, 503, 504]
 
 function axiosRetry(instance: AxiosInstance): void {
   retry(instance, {
