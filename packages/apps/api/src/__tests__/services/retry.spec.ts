@@ -11,14 +11,16 @@ describe('Api retry', () => {
     apiRetry(axios)
 
     const mock = new MockAdapter(axios)
+    mock.onGet('/').reply(400)
 
-    mock.onGet('/').reply(200)
+    try {
+      await axios.get('/')
+    } catch (error) {
+      const { response } = error
+      const responseConfig = response.config['axios-retry'] as any
 
-    const response = await axios.get('/')
-
-    const responseConfig = response.config['axios-retry'] as any
-
-    expect(response.status).toBe(200)
-    expect(responseConfig.retryCount).toBe(0)
+      expect(response.status).toBe(400)
+      expect(responseConfig.retryCount).toBe(0)
+    }
   })
 })
