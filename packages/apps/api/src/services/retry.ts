@@ -1,10 +1,10 @@
 import retry from 'axios-retry'
-import axios, { AxiosInstance, AxiosStatic } from 'axios'
+import { AxiosInstance } from 'axios'
 
 const statusCodeCondition = [500, 502, 503, 504]
 
-function axiosRetry(): AxiosStatic {
-  retry(axios, {
+function axiosRetry(instance: AxiosInstance): void {
+  retry(instance, {
     retries: 3,
     retryDelay: (retryCount: number) => {
       console.log('caiu aqui', retryCount)
@@ -14,10 +14,6 @@ function axiosRetry(): AxiosStatic {
       return statusCodeCondition.includes(error.response.status)
     }
   })
-
-  return axios
 }
-
-export type { AxiosInstance }
 
 export default axiosRetry

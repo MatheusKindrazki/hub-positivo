@@ -1,10 +1,9 @@
-import { create } from 'apisauce'
+import axios, { AxiosInstance } from 'axios'
+import { create, ApisauceInstance, ApiResponse } from 'apisauce'
 
-import axiosRetry, { AxiosInstance } from './retry'
+import apiRetry from './retry'
 
-const axios = axiosRetry()
-
-const timeout = 2000
+const timeout = 4000
 
 const communicationURLs = {
   default: process.env.REACT_APP_API_URL,
@@ -37,8 +36,10 @@ export function getCommunicator(key: Variant): AxiosInstance {
   return communicators[key]
 }
 
-export function getInstance(key?: Variant): any {
+export function getInstance(key?: Variant): ApisauceInstance {
   const communicator = getCommunicator(key || 'default')
+
+  apiRetry(communicator)
 
   const apisauceInstance = create({
     baseURL: undefined,
@@ -47,3 +48,4 @@ export function getInstance(key?: Variant): any {
 
   return apisauceInstance
 }
+export type { ApiResponse }
