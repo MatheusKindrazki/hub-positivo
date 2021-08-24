@@ -7,7 +7,6 @@ function axiosRetry(instance: AxiosInstance): void {
   retry(instance, {
     retries: 3,
     retryDelay: (retryCount: number) => {
-      console.log('caiu aqui', retryCount)
       return retryCount * 1000
     },
     retryCondition: (error: any) => {
