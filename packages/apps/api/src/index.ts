@@ -1,5 +1,7 @@
 import axios from 'apisauce'
 
+export * from './services/communicators'
+
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL
 })
