@@ -1,7 +1,7 @@
 import qs from 'qs'
 import { ApiResponse } from 'apisauce'
 
-import { apiEEMAuth, apiEEMInfos } from '@psdhub/api'
+import { apiEEMInfos, getInstance } from '@psdhub/api'
 
 export interface EEMProps {
   endpoint: string
@@ -33,12 +33,14 @@ async function EEMConnectPost<T>(attributes: EEMProps): ReturnConnect<T> {
     scope: process.env.REACT_APP_API_AUTH_SCOPE
   }
 
-  apiEEMAuth.setHeaders({
+  const api = getInstance('auth')
+
+  api.setHeaders({
     'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
     accept: '*/*'
   })
 
-  return await apiEEMAuth.post(endpoint, qs.stringify(sendInfo))
+  return await api.post(endpoint, qs.stringify(sendInfo))
 }
 
 async function EEMConnectGET<T, A = unknown>(
