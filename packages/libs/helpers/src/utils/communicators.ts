@@ -1,4 +1,5 @@
 import { SendInfos, InformationsProps } from './types'
+import { forceRefreshToken } from './refreshToken'
 import ObservableMCF from './observer'
 
 const observable = new ObservableMCF<SendInfos>('hub-infos')
@@ -11,5 +12,4 @@ type HubFN = Omit<typeof observable, 'publish' | 'dispatch' | 'clear'> & {
 export type PostFnProps = typeof observable
 
 const getInformations = observable as HubFN
-
-export { getInformations }
+export { getInformations, forceRefreshToken }
