@@ -25,7 +25,7 @@ export interface EEMPropsInfo<T> {
 type ReturnConnect<T> = Promise<ApiResponse<T>>
 
 async function EEMConnectPost<T>(attributes: EEMProps): ReturnConnect<T> {
-  const { data, endpoint, type } = attributes
+  const { data, endpoint, type = 'auth' } = attributes
 
   const sendInfo = {
     ...data,
