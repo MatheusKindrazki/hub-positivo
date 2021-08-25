@@ -14,12 +14,14 @@
     "lib"
   ],
   "scripts": {
+    "build": "rollup -c",
     "postbuild": "javascript-obfuscator ./lib --compact true && node scripts/prepare-publish.js",
-    "postinstall": "npm run build",
-    "build": "rollup -c"
+    "postinstall": "npm run build"
   },
   "dependencies": {
-    "rollup": "^2.52.1"
+    "rollup": "^2.52.1",
+    "build": "rollup -c",
+    "postbuild": "javascript-obfuscator ./lib --compact true && node scripts/prepare-publish.js"
   },
   "devDependencies": {
     "rollup": "^2.52.1",
