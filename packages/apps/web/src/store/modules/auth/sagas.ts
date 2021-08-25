@@ -1,5 +1,4 @@
 import { decode } from 'jsonwebtoken'
-import { ApiResponse } from 'apisauce'
 
 import { all, call, delay, takeLatest, Payload, put } from 'redux-saga/effects'
 
@@ -18,7 +17,11 @@ import { store } from '~/store'
 
 import capitalize from '@psdhub/common/utils/capitalize'
 import { toast } from '@psdhub/common/utils'
-import api, { apiAuthProduct } from '@psdhub/api'
+import api, {
+  apiAuthProduct,
+  ApiResponse,
+  statusCodeCondition
+} from '@psdhub/api'
 
 import sessionStarted from '~/services/mixpanel/sessionStarted'
 import mixpanelIdentifyUser from '~/services/mixpanel/identifyUser'
@@ -66,7 +69,14 @@ export function* signIn({ payload }: SignInPayload): Generator {
     })
   })
 
-  const { data, ok } = response as ApiResponse<AuthApi>
+  const { data, ok, status } = response as ApiResponse<AuthApi>
+
+  if (statusCodeCondition.includes(status as number)) {
+    // possivel nome: NobreakAccess
+    // yield put()
+
+    return yield put(signInFailure())
+  }
 
   if (!ok) {
     const genericMessage =

@@ -6,7 +6,7 @@ import {
   ApiErrorResponse
 } from 'apisauce'
 
-import apiRetry, { orRetry } from './retry'
+import apiRetry from './retry'
 
 const timeout = 4000
 
@@ -54,6 +54,6 @@ export function getInstance(key?: Variant): ApisauceInstance {
   return apisauceInstance
 }
 
-export { orRetry }
+export * from './retry'
 
 export type { ApisauceInstance, ApiResponse, ApiErrorResponse }
