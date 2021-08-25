@@ -72,6 +72,10 @@ export default class ObservableMCF<T = any> {
     this.observers.forEach((observer: Observer<T>) => observer(data))
 
     this.events.push(data)
+
+    this.observers?.forEach((observer: Observer<T>) => {
+      observer(data)
+    })
   }
 
   dispatch = this.publish
