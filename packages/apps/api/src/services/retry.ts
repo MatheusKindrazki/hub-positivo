@@ -1,11 +1,15 @@
 import retry from 'axios-retry'
 import { AxiosInstance } from 'axios'
 
+import { orRetry } from './retryValidator'
+
 export const statusCodeCondition = [500, 502, 503, 504]
+
+export const retries = 3
 
 function axiosRetry(instance: AxiosInstance): void {
   retry(instance, {
-    retries: 3,
+    retries,
     retryDelay: (retryCount: number) => {
       return retryCount * 1000
     },
@@ -14,5 +18,7 @@ function axiosRetry(instance: AxiosInstance): void {
     }
   })
 }
+
+export { orRetry }
 
 export default axiosRetry

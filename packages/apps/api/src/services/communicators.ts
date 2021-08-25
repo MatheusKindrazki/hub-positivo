@@ -1,7 +1,12 @@
 import axios, { AxiosInstance } from 'axios'
-import { create, ApisauceInstance, ApiResponse } from 'apisauce'
+import {
+  create,
+  ApisauceInstance,
+  ApiResponse,
+  ApiErrorResponse
+} from 'apisauce'
 
-import apiRetry from './retry'
+import apiRetry, { orRetry } from './retry'
 
 const timeout = 4000
 
@@ -48,4 +53,7 @@ export function getInstance(key?: Variant): ApisauceInstance {
 
   return apisauceInstance
 }
-export type { ApiResponse }
+
+export { orRetry }
+
+export type { ApisauceInstance, ApiResponse, ApiErrorResponse }
