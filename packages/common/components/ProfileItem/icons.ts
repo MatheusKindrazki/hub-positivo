@@ -5,7 +5,7 @@ import {
   Users,
   Pencil,
   Archive,
-  Pedestrian,
+  UsersFour,
   Browsers
 } from '../Icons'
 
@@ -14,7 +14,7 @@ const types = {
   gestor: Briefcase,
   administrador: Briefcase,
   coordenador: ClipboardText,
-  colaborador: Pedestrian,
+  colaborador: UsersFour,
   professor: Pencil,
   aluno: BookBookmark,
   editor: Browsers,
