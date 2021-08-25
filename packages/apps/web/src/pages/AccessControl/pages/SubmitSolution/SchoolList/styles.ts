@@ -27,7 +27,7 @@ export const Container = styled(Box)`
 export const DeleteButton = styled(Box)`
   color: #7a7a7a;
   align-self: center;
-  justif-yself: flex-end;
+  justify-self: flex-end;
   &:hover {
     cursor: pointer;
     color: #3c3c3c;

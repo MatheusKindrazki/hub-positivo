@@ -18,17 +18,18 @@ const AnimatedFade: React.FC<AnimatedFadeProps> = ({ children, onDelete }) => {
   return (
     <SlideFade offsetY="-40px" in={isOpen}>
       <Box display="flex" justifyContent="space-between">
-        {children}
-        <DeleteButton
-          data-testid="delete-btn"
-          justifySelf="flex-end"
-          size="20px"
-          as={X}
-          onClick={() => {
-            onToggle()
-            setTimeout(() => onDelete(), 150)
-          }}
-        />
+        <>
+          {children}
+          <DeleteButton
+            as={X}
+            data-testid="delete-btn"
+            size="20px"
+            onClick={() => {
+              onToggle()
+              setTimeout(() => onDelete(), 150)
+            }}
+          />
+        </>
       </Box>
     </SlideFade>
   )
