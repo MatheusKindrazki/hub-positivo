@@ -38,4 +38,12 @@ function communicatorMCF(data: Store.State, colors: Theme['colors']): void {
   })
 }
 
+function clearData(): void {
+  const observable = getInformations as PostFnProps
+
+  observable.clear()
+}
+
+export { clearData }
+
 export default communicatorMCF
