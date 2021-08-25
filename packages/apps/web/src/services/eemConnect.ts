@@ -1,9 +1,10 @@
 import qs from 'qs'
 import { ApiResponse } from 'apisauce'
 
-import { apiEEMInfos, getInstance } from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 export interface EEMProps {
+  type?: 'auth' | 'info'
   endpoint: string
   data: {
     grant_type: 'change_school' | 'password' | 'refresh_token'
@@ -24,7 +25,7 @@ export interface EEMPropsInfo<T> {
 type ReturnConnect<T> = Promise<ApiResponse<T>>
 
 async function EEMConnectPost<T>(attributes: EEMProps): ReturnConnect<T> {
-  const { data, endpoint } = attributes
+  const { data, endpoint, type } = attributes
 
   const sendInfo = {
     ...data,
@@ -33,7 +34,7 @@ async function EEMConnectPost<T>(attributes: EEMProps): ReturnConnect<T> {
     scope: process.env.REACT_APP_API_AUTH_SCOPE
   }
 
-  const api = getInstance('auth')
+  const api = type === 'auth' ? getInstance('auth') : getInstance('eem')
 
   api.setHeaders({
     'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
@@ -48,7 +49,9 @@ async function EEMConnectGET<T, A = unknown>(
 ): Promise<ApiResponse<A>> {
   const { data, endpoint, token } = attributes
 
-  return apiEEMInfos.get(endpoint, data, {
+  const api = getInstance('eem')
+
+  return api.get(endpoint, data, {
     headers: { Authorization: token }
   })
 }
