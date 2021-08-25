@@ -10,7 +10,8 @@ import { Box } from '@psdhub/common/components'
 import { ReturnScripts } from '~/orchestrator'
 
 import { startApp, stopApp } from './utils/startStop'
-import communicatorMCF from './communicator'
+import useRefreshToken from './hooks/useRefreshToken'
+import communicatorMCF, { clearData } from './communicator'
 import LoadModules from '../../components/LoadModules'
 interface MicrofrontendProps {
   data: any // deverá ser any, pois a tipagem virá do componente filho
@@ -23,6 +24,8 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
 }) => {
   const { colors } = useTheme()
 
+  useRefreshToken(startApp)
+
   communicatorMCF(store.getState(), colors)
 
   const [scriptsLength, setScriptsLength] = useState(0)
@@ -34,6 +37,7 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   useEffect(() => {
     return () => {
       stopApp()
+      clearData()
     }
   }, [])
 
