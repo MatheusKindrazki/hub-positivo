@@ -1,6 +1,10 @@
 {
   "name": "@psdhub/helpers",
+<<<<<<< HEAD
   "version": "1.5.3",
+=======
+  "version": "1.5.2",
+>>>>>>> refactor: adicionando rollup como dependencia obrigatoria
   "author": "matheuskindrazki",
   "description": "Communicator end-to-end between solutions and PSD hub",
   "license": "MIT",
@@ -14,8 +18,17 @@
     "lib"
   ],
   "scripts": {
+<<<<<<< HEAD
     "build": "rollup -c",
     "postbuild": "javascript-obfuscator ./lib --compact true && node scripts/prepare-publish.js"
+=======
+    "postinstall": "npm run build",
+    "build": "rollup -c",
+    "postbuild": "javascript-obfuscator ./lib --compact true & node scripts/prepare-publish.js"
+  },
+  "dependencies": {
+    "rollup": "^2.52.1"
+>>>>>>> refactor: adicionando rollup como dependencia obrigatoria
   },
   "devDependencies": {
     "rollup": "^2.52.1",
