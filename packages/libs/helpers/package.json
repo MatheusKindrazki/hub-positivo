@@ -1,14 +1,7 @@
 {
   "name": "@psdhub/helpers",
-<<<<<<< HEAD
-<<<<<<< HEAD
   "version": "1.5.3",
-=======
   "version": "1.5.2",
->>>>>>> refactor: adicionando rollup como dependencia obrigatoria
-=======
-  "version": "1.5.3",
->>>>>>> chore: removendo postinstall do helpers
   "author": "matheuskindrazki",
   "description": "Communicator end-to-end between solutions and PSD hub",
   "license": "MIT",
@@ -22,22 +15,14 @@
     "lib"
   ],
   "scripts": {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "build": "rollup -c",
     "postbuild": "javascript-obfuscator ./lib --compact true && node scripts/prepare-publish.js"
-=======
     "postinstall": "npm run build",
     "build": "rollup -c",
     "postbuild": "javascript-obfuscator ./lib --compact true & node scripts/prepare-publish.js"
   },
   "dependencies": {
     "rollup": "^2.52.1"
->>>>>>> refactor: adicionando rollup como dependencia obrigatoria
-=======
-    "build": "rollup -c",
-    "postbuild": "javascript-obfuscator ./lib --compact true && node scripts/prepare-publish.js"
->>>>>>> chore: removendo postinstall do helpers
   },
   "devDependencies": {
     "rollup": "^2.52.1",
