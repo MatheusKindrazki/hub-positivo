@@ -24,7 +24,7 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
 }) => {
   const { colors } = useTheme()
 
-  useRefreshToken(startApp)
+  useRefreshToken()
 
   communicatorMCF(store.getState(), colors)
 
