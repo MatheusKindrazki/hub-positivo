@@ -48,7 +48,8 @@ const Dashboard: React.FC = ({ children }) => {
       )}
       <Header />
       <main className="hub-main-class">
-        {nobreak ? <ModalAlternativeAccess /> : children}
+        {nobreak && <ModalAlternativeAccess />}
+        {children}
       </main>
       <Footer columns={footerData} />
     </Container>

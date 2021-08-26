@@ -6,11 +6,12 @@ import { getTourRequest } from '~/store/modules/tour/actions'
 import { store } from '~/store'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import { getInstance, statusCodeCondition } from '@psdhub/api'
 
 import { CardProduct } from './types'
 import { Actions, productSuccess } from './actions'
 import { mhundArvoreIntegration } from '../productIntegrations/actions'
+import { noBreakAccessEnable } from '../noBreakAccess/actions'
 import { enableRefreshTokenMiddleware, loading } from '../global/actions'
 import { withoutAccess } from '../auth/actions'
 
@@ -32,6 +33,8 @@ export function* getProducts(): Generator {
     }
   }
 
+  const api = getInstance()
+
   const response = yield call(async () => {
     return api.get(`Categoria/Solucoes/Perfil/${guid}`, {
       NivelEnsino: level,
@@ -40,6 +43,11 @@ export function* getProducts(): Generator {
   })
 
   const { ok, data, status } = response as ApiResponse<CardProduct[]>
+
+  if (statusCodeCondition.includes(status as number)) {
+    yield put(noBreakAccessEnable())
+    return yield put(loading(false))
+  }
 
   if (!ok && status !== 401) {
     toast.error('Erro ao buscar soluções, tente novamente mais tarde!')
