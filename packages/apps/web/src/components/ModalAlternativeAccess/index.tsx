@@ -9,6 +9,8 @@ import { useDisclosure, useMediaQuery } from '@psdhub/common/hooks'
 import Modal from '@psdhub/common/components/Modal'
 import { Box, Button, Text, Link } from '@psdhub/common/components'
 
+import { noBreak, EventData } from '~/services/mixpanel/noBreak'
+
 import GlobalStyles from './styles'
 import salas from './salas.svg'
 import LinkButton from './components/LinkButton'
@@ -29,6 +31,18 @@ const ModalAlternativeAccess: React.FC = () => {
     dispatch(noBreakAccessDisable({ user_login }))
     dispatch(signOut())
   }, [dispatch, user_login])
+
+  const handleRedirect = useCallback(
+    (url: string, type: EventData['type']) => {
+      noBreak({
+        type,
+        user_login
+      })
+
+      window.open(url, '_blank')
+    },
+    [user_login]
+  )
 
   return (
     <>
@@ -57,7 +71,12 @@ const ModalAlternativeAccess: React.FC = () => {
             <LinkButton title="Salas Virtuais" image={salas}>
               Acesse{' '}
               <Link
-                href="https://meet.google.com"
+                onClick={() =>
+                  handleRedirect(
+                    'https://meet.google.com',
+                    'No Break Meet Accessed'
+                  )
+                }
                 color="blue.500"
                 fontWeight="600"
               >
@@ -71,7 +90,12 @@ const ModalAlternativeAccess: React.FC = () => {
             <LinkButton title="Avaliações" image={avaliacao}>
               Acesse{' '}
               <Link
-                href="https://plus-app.studos.com.br"
+                onClick={() =>
+                  handleRedirect(
+                    'https://plus-app.studos.com.br',
+                    'No Break Studos Accessed'
+                  )
+                }
                 color="blue.500"
                 fontWeight="600"
               >

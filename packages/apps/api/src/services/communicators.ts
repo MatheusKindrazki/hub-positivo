@@ -54,8 +54,6 @@ export function getCommunicator(key: Variant): ApisauceInstance {
   return communicators[key]
 }
 
-console.log(communicators)
-
 export function getInstance(key?: Variant): ApisauceInstance {
   const communicator = getCommunicator(key || 'default')
 
