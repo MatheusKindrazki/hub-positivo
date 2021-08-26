@@ -4,7 +4,7 @@ import { all, takeLatest, call, put } from 'redux-saga/effects'
 
 import { store } from '~/store'
 
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import { StepsTour, StepsTourResponseApi } from './types'
 import {
@@ -36,6 +36,8 @@ export function* getTour(): Generator {
     query = `?perfil=${guid}`
   }
 
+  const api = getInstance('default')
+
   const response = yield call(() => {
     return api.get(`/Tour/Steps${query}`)
   })
@@ -57,6 +59,8 @@ export function* getTour(): Generator {
 }
 
 export function* getViewed(): Generator {
+  const api = getInstance('default')
+
   const response = yield call(() => {
     return api.get('/Tour')
   })
@@ -71,6 +75,8 @@ export function* getViewed(): Generator {
 }
 
 export function* postTour(): Generator {
+  const api = getInstance('default')
+
   yield put(openTour(false))
 
   const { guid } = store.getState().profile
