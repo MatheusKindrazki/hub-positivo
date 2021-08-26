@@ -49,7 +49,7 @@ const ModalAlternativeAccess: React.FC = () => {
             mas enquanto isso siga o passo-a-passo para acessar nossas soluções:
           </Text>
 
-          <Box mt="4">
+          <Box mt="6">
             <LinkButton title="Salas Virtuais" image={salas}>
               Acesse{' '}
               <Link
