@@ -45,7 +45,11 @@ export function* getProducts(): Generator {
   const { ok, data, status } = response as ApiResponse<CardProduct[]>
 
   if (statusCodeCondition.includes(status as number)) {
-    yield put(noBreakAccessEnable())
+    yield put(
+      noBreakAccessEnable({
+        user_login: user?.username || ''
+      })
+    )
     return yield put(loading(false))
   }
 
