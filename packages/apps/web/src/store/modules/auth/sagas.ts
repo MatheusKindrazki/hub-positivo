@@ -17,7 +17,8 @@ import { store } from '~/store'
 
 import capitalize from '@psdhub/common/utils/capitalize'
 import { toast } from '@psdhub/common/utils'
-import api, {
+import {
+  getInstance,
   apiAuthProduct,
   ApiResponse,
   statusCodeCondition
@@ -152,6 +153,8 @@ export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
 
   const { access_token } = response as ApiChange
 
+  const api = getInstance('default')
+
   api.setHeaders({
     Authorization: `Bearer ${access_token}`
   })
@@ -229,6 +232,8 @@ export function* checkingExpiringToken({
 
   yield put(loading(true))
 
+  const api = getInstance('default')
+
   api.setHeaders({
     Authorization: `Bearer ${reduced_token}`
   })
@@ -272,6 +277,8 @@ export function* refreshToken(): Generator {
 
     return history.push('/login')
   }
+
+  const api = getInstance('default')
 
   api.setHeaders({
     Authorization: `Bearer ${data?.access_token}`

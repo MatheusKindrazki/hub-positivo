@@ -4,7 +4,7 @@ import { Product } from '~/store/modules/products/types'
 import { store } from '~/store'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 interface CarBySlugProps {
   slug?: string
@@ -17,6 +17,8 @@ async function getCardBySlug(
 ): Promise<Product | undefined> {
   if (!data.slug) return
   const { reduced_token } = store.getState().auth
+
+  const api = getInstance('default')
 
   api.setHeaders({
     Authorization: `Bearer ${reduced_token}`

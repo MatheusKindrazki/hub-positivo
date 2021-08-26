@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios'
+import axios from 'axios'
 import {
   create,
   ApisauceInstance,
@@ -25,11 +25,12 @@ type StringPropsKeys<T extends { [key: string]: any }> = {
 
 export type Variant = keyof StringPropsKeys<typeof communicationURLs>
 interface CommunicationService {
-  [key: string]: AxiosInstance
+  [key: string]: any
 }
 
 const communicators: CommunicationService = {}
 
+// cria comunicação utilizando o axios
 Object.entries(communicationURLs).forEach(([key, url]) => {
   communicators[key] = axios.create({
     baseURL: url,
@@ -37,13 +38,8 @@ Object.entries(communicationURLs).forEach(([key, url]) => {
   })
 })
 
-export function getCommunicator(key: Variant): AxiosInstance {
-  return communicators[key]
-}
-
-export function getInstance(key?: Variant): ApisauceInstance {
-  const communicator = getCommunicator(key || 'default')
-
+// Converte o comunicador para um apiSauce
+Object.entries(communicators).forEach(([key, communicator]) => {
   apiRetry(communicator)
 
   const apisauceInstance = create({
@@ -51,7 +47,19 @@ export function getInstance(key?: Variant): ApisauceInstance {
     axiosInstance: communicator
   })
 
-  return apisauceInstance
+  communicators[key] = apisauceInstance
+})
+
+export function getCommunicator(key: Variant): ApisauceInstance {
+  return communicators[key]
+}
+
+console.log(communicators)
+
+export function getInstance(key?: Variant): ApisauceInstance {
+  const communicator = getCommunicator(key || 'default')
+
+  return communicator
 }
 
 export * from './retry'

@@ -7,7 +7,7 @@ import { Actions as AuthActions } from '~/store/modules/auth/actions'
 import { store } from '~/store'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import sessionStarted from '~/services/mixpanel/sessionStarted'
 import clearMixPanelSession from '~/services/mixpanel/clearAll'
@@ -48,6 +48,8 @@ export default async (): Promise<boolean> => {
 
       clearMixPanelSession()
     }
+
+    const api = getInstance('default')
 
     api.setHeaders({
       Authorization: `Bearer ${reduced_token || ''}`
