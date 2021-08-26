@@ -12,7 +12,7 @@ const pageViewedEvent = 'Page Viewed'
 
 const firstTitle = document.title
 
-const ignoreTitle = ['Carregando Solução', firstTitle]
+const ignoreTitle = ['Carregando Solução', 'Acesso Alternativo', firstTitle]
 
 window.addEventListener('load', () => listenerHubTitle())
 

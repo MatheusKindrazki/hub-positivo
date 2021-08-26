@@ -75,6 +75,8 @@ export function* signIn({ payload }: SignInPayload): Generator {
   if (statusCodeCondition.includes(status as number)) {
     yield put(noBreakAccessEnable())
 
+    history.push('/acesso-alternativo')
+
     return yield put(signInFailure())
   }
 

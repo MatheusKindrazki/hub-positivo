@@ -39,8 +39,6 @@ const Dashboard: React.FC = ({ children }) => {
     dispatch(postTourViewed())
   }, [dispatch, viewed])
 
-  console.log(nobreak)
-
   return (
     <Container>
       <ModalNoClass />
