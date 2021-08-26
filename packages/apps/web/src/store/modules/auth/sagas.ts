@@ -74,7 +74,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
   const { data, ok, status } = response as ApiResponse<AuthApi>
 
   if (statusCodeCondition.includes(status as number)) {
-    yield put(noBreakAccessEnable())
+    yield put(noBreakAccessEnable({ user_login: payload.username }))
 
     history.push('/acesso-alternativo')
 
