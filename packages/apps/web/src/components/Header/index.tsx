@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useMemo, useRef } from 'react'
 
 import Headroom from 'react-headroom'
 
@@ -18,6 +18,7 @@ import AlterPass from './components/AlterPass'
 
 const Header: React.FC = () => {
   const { signed } = useSelector((state: Store.State) => state.auth)
+  const { nobreak } = useSelector((state: Store.State) => state.noBreakAccess)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -27,6 +28,12 @@ const Header: React.FC = () => {
   const handleClick = useCallback(() => {
     menuRef.current?.openMenu()
   }, [])
+
+  const enableMenu = useMemo(() => {
+    if (nobreak) return false
+
+    return signed
+  }, [nobreak, signed])
 
   return (
     <HeaderProvider>
@@ -48,7 +55,9 @@ const Header: React.FC = () => {
             alignItems="center"
             justifyContent="space-between"
           >
-            {!isDesktop && signed ? <MenuButton onClick={handleClick} /> : null}
+            {!isDesktop && enableMenu ? (
+              <MenuButton onClick={handleClick} />
+            ) : null}
             <Button
               background="transparent"
               outline="none"
@@ -60,7 +69,7 @@ const Header: React.FC = () => {
             </Button>
           </Box>
 
-          {signed && isDesktop ? (
+          {enableMenu && isDesktop ? (
             <DesktopMenu openModalPass={onOpen} />
           ) : (
             <MobileMenu

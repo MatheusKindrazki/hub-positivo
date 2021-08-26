@@ -13,6 +13,7 @@ import school from './school/reducer'
 import profile from './profile/reducer'
 import products from './products/reducer'
 import permissions from './permissions/reducer'
+import noBreakAccess from './noBreakAccess/reducer'
 import myClasses from './myClasses/reducer'
 import global from './global/reducer'
 import forgotPassword from './forgotPassword/reducer'
@@ -37,6 +38,7 @@ export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
     category,
     school,
     permissions,
+    noBreakAccess,
     router: connectRouter(history)
   })
 }

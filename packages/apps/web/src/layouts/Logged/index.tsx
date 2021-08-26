@@ -12,6 +12,7 @@ import { BarLoader } from '@psdhub/common/components'
 import setUserProperties from '~/services/mixpanel/setProperties'
 
 import ModalNoClass from '~/components/ModalNoClass'
+import ModalAlternativeAccess from '~/components/ModalAlternativeAccess'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 
@@ -26,6 +27,7 @@ const Dashboard: React.FC = ({ children }) => {
   useEffect(() => dispatchEvent())
 
   const { loading } = useSelector((state: Store.State) => state.global)
+  const { nobreak } = useSelector((state: Store.State) => state.noBreakAccess)
 
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
@@ -37,6 +39,8 @@ const Dashboard: React.FC = ({ children }) => {
     dispatch(postTourViewed())
   }, [dispatch, viewed])
 
+  console.log(nobreak)
+
   return (
     <Container>
       <ModalNoClass />
@@ -45,7 +49,9 @@ const Dashboard: React.FC = ({ children }) => {
         <Tour onClosed={handleClosedTour} open={open} steps={steps} />
       )}
       <Header />
-      {children}
+      <main className="hub-main-class">
+        {nobreak ? <ModalAlternativeAccess /> : children}
+      </main>
       <Footer columns={footerData} />
     </Container>
   )

@@ -50,6 +50,7 @@ import {
   refreshTokenSuccess,
   reducedTokenEEM
 } from './actions'
+import { noBreakAccessEnable } from '../noBreakAccess/actions'
 
 type SignInPayload = Payload<SignInRequest>
 
@@ -72,8 +73,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
   const { data, ok, status } = response as ApiResponse<AuthApi>
 
   if (statusCodeCondition.includes(status as number)) {
-    // possivel nome: NobreakAccess
-    // yield put()
+    yield put(noBreakAccessEnable())
 
     return yield put(signInFailure())
   }

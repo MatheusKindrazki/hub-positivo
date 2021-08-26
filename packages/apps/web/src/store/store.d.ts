@@ -5,6 +5,7 @@ import { SchoolReducer } from './modules/school/types'
 import { ProfileReducer } from './modules/profile/types'
 import { ProductReducer } from './modules/products/types'
 import { PermissionsReducer } from './modules/permissions/types'
+import { NoBreakReducer } from './modules/noBreakAccess/types'
 import { ClassesReducer } from './modules/myClasses/types'
 import { GlobalReducer } from './modules/global/types'
 import { ForgotPasswordReducer } from './modules/forgotPassword/types'
@@ -26,6 +27,7 @@ interface ApplicationState {
   solutions: SolutionsReducer
   category: CategoryReducer
   school: SchoolReducer
+  noBreakAccess: NoBreakReducer
   permissions: PermissionsReducer
 }
 declare global {
