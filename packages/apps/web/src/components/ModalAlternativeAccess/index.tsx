@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { noBreakAccessDisable } from '~/store/modules/noBreakAccess/actions'
 import { signOut } from '~/store/modules/auth/actions'
@@ -19,12 +19,16 @@ const ModalAlternativeAccess: React.FC = () => {
 
   const { isOpen } = useDisclosure({ defaultIsOpen: true })
 
+  const { user_login = '' } = useSelector(
+    (state: Store.State) => state.noBreakAccess
+  )
+
   const [isDesktop] = useMediaQuery('(min-width: 768px)')
 
   const handleSignOut = useCallback(() => {
-    dispatch(noBreakAccessDisable())
+    dispatch(noBreakAccessDisable({ user_login }))
     dispatch(signOut())
-  }, [dispatch])
+  }, [dispatch, user_login])
 
   return (
     <>
