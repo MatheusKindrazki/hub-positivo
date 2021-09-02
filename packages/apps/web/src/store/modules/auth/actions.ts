@@ -23,6 +23,8 @@ export const Actions = {
 
   SIGN_OUT: '@auth/SIGN_OUT',
 
+  RESET_LOADING: '@auth/RESET_LOADING',
+
   REDUCED_TOKEN_EEM: '@auth/REDUCED_TOKEN_EEM',
 
   REHYDRATE: 'persist/REHYDRATE'
@@ -54,6 +56,12 @@ export function signInSuccess(data: SignInSuccess): Action {
 export function signInFailure(): Action {
   return {
     type: Actions.SIGN_IN_FAILURE
+  }
+}
+
+export function resetLoading(): Action {
+  return {
+    type: Actions.RESET_LOADING
   }
 }
 /*

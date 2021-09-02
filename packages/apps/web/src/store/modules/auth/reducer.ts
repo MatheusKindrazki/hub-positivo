@@ -84,6 +84,12 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         break
       }
 
+      case Actions.RESET_LOADING: {
+        draft.loading = false
+
+        break
+      }
+
       case Actions.SIGN_OUT: {
         draft.signed = false
         draft.token = null

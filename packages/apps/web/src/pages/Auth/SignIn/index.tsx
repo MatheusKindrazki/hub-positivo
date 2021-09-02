@@ -12,7 +12,7 @@ import lscache from 'lscache'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { signInRequest } from '~/store/modules/auth/actions'
+import { signInRequest, resetLoading } from '~/store/modules/auth/actions'
 
 import documentTitle from '@psdhub/common/utils/documentTitle'
 import { toast } from '@psdhub/common/utils'
@@ -55,11 +55,15 @@ const SignIn: React.FC = () => {
   )
 
   useEffect(() => {
+    dispatch(resetLoading())
+  }, [dispatch])
+
+  useEffect(() => {
     lscache.flushExpired()
     if (signInStrike) {
       setDisableSubmit(checkForStrikes())
     }
-  }, [signInStrike])
+  }, [dispatch, signInStrike])
 
   const handleSubmit = useCallback(
     async data => {
