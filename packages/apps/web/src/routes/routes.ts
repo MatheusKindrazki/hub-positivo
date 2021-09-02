@@ -15,6 +15,7 @@ const ExpiredToken = React.lazy(() => import('~/pages/Auth/ExpiredToken'))
 const ChangePassword = React.lazy(() => import('~/pages/Auth/ChangePassword'))
 const ForgotPassword = React.lazy(() => import('~/pages/Auth/ForgotPassword'))
 const Solutions = React.lazy(() => import('~/pages/Solutions'))
+const NoBreakAccess = React.lazy(() => import('~/pages/NoBreakAccess'))
 
 const { guid } = store.getState().profile
 
@@ -25,8 +26,7 @@ export default [
   {
     path: '/esqueci-minha-senha',
     isPrivate: false,
-    byPass: false,
-    exact: true,
+    exact: false,
     component: ForgotPassword
   },
   {
@@ -66,20 +66,22 @@ export default [
   },
   {
     path: '/termos-de-uso',
-    isPrivate: true,
-    exact: false,
+    byPass: true,
     component: TermsOfUse
   },
   {
     path: '/aviso-de-privacidade',
-    isPrivate: true,
-    exact: false,
+    byPass: true,
     component: PrivacyStatement
   },
   {
     path: '/politica-de-privacidade',
-    isPrivate: true,
-    exact: false,
+    byPass: true,
     component: PrivacyPolicy
+  },
+  {
+    path: '/acesso-alternativo',
+    byPass: true,
+    component: NoBreakAccess
   }
 ]
