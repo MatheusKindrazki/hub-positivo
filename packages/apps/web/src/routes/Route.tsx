@@ -30,10 +30,14 @@ const Route: React.FC<RouteProps> = ({
 
   const { signed } = store.getState().auth
 
-  let RenderLayout = signed || byPass ? Logged : Auth
+  let RenderLayout = signed ? Logged : Auth
 
   if (pathname.includes('solucao')) {
     RenderLayout = Solutions
+  }
+
+  if (byPass) {
+    RenderLayout = Logged
   }
 
   if (!byPass) {

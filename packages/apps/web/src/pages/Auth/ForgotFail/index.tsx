@@ -2,8 +2,6 @@ import React from 'react'
 
 import { useHistory } from 'react-router-dom'
 
-import { useSelector } from 'react-redux'
-
 import documentTitle from '@psdhub/common/utils/documentTitle'
 import { Box, Text, Button } from '@psdhub/common/components'
 
@@ -12,13 +10,7 @@ import GoBack from '~/components/GoBack'
 const ForgotPasswordFail: React.FC = () => {
   documentTitle('Esqueci minha senha')
 
-  const { sendViewToken } = useSelector(
-    (state: Store.State) => state.forgotPassword
-  )
-
   const history = useHistory()
-
-  if (!sendViewToken) history.push('/login')
 
   const handleGoBack = () => history.goBack()
 
