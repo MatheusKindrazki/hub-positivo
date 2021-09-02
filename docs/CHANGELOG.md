@@ -1,3 +1,36 @@
+# [2.3.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.2.1...v2.3.0) (2021-09-02)
+
+
+### Bug Fixes
+
+* ajustando comunicador das API, setando token ([53b6064](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/53b60640044787ff9580199c24e0ee85b5fb8794))
+* ajustando envio do user login na falha da busca dos cards ([72143ec](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/72143ec8f19d9ed879d160b6093e0cd0bbd84730))
+* ajustando erro de 401 ([944f8df](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/944f8df49052ee7885b718caef016fddc28681f7))
+* ajustando erro na biblioteca de icones ([206c4a4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/206c4a4e0304322a5290619c2dd64a2cb8e88505))
+* ajustando paginas LGPD para acesso a qualquer ambiente ([7427a01](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/7427a010de0d826d470ff6523495dbea78b13623))
+* ajustando rota de esqueci minha senha ([bdfb7df](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/bdfb7dfbaa705a7cad9433e350ba5d742569d7c4))
+* ajuste de recuperação de senha ([4e1d520](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/4e1d520036458afad545d58ba3b04428a34184c9))
+
+
+### Features
+
+* adicionando envio do user_login para mixpanel ([9c91e33](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/9c91e333ef14d3bfdc4b5ae98f0eacf4d374f850))
+* adicionando limpeza de dados no comunicador MCF ([919850f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/919850fe01f1265d9bd522fbdb4454c8edf707b1))
+* comunicando mixpanel da ativação/desativação do nobreak ([1208a19](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/1208a194a96d9bc2f90667a10e04d0b97e9f3a2b))
+* construindo rota de acesso-alternativo ([011f1ff](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/011f1ff8b31b6234ad47acdd91033c11fff67a44))
+* criando comunicador mixpanel para eventos de acesso alternativo ([7dd9461](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/7dd94612dad8e126cf30a6128f13bfd74c991afa))
+* criando customEvent na dom para disparo do refreshToken ([0494b6e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/0494b6e9c8763f7132f2080fde77bc7cb36398ce))
+* criando estrutura do saga de nobreak˜ ([8f481a9](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/8f481a98e65093c93826598a52f1e9af2eea7296))
+* criando função que anuncia o retry ([e1dccd2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/e1dccd27be802ba7d6728a93c3115c6d0b8f4aa6))
+* criando função que limpa todos os storages do dominio ([d8a05e7](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/d8a05e7f6165fb9a4acbb1f68d02ff245f697dc4))
+* criando pagina 404 ([446e39f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/446e39f680c19e185ba1e3d8c60beab370c1aa55))
+* criando rotina de bypass das rotas ([1723699](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/172369981fa0c19840771d63772f4dc3d1cb35dc))
+* finalizando botão de acesso ([677ac53](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/677ac5366185ab6e90ed26ab94322edb29d00bb0))
+* identificando qual acesso alternativo o usuário selecionou ([4b2ef4c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/4b2ef4c920310f926437ffe18582b00303f681ea))
+* importando função na inicialização do projeto ([59bf75b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/59bf75b921e0b9bde3ab188865f32f10c70bb2b2))
+* mostrando modal caso api esteja fora do AR ([9c34f5b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/9c34f5b8f4f76dadd370630b664220e8b7a2fe4f))
+* ouvindo refreshToken disparado pela aplicação filha ([5437f15](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/5437f156900290acfdc8404fbe13176f3ca6a12a))
+
 ## [2.2.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.2.0...v2.2.1) (2021-08-18)
 
 
