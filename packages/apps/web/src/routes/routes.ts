@@ -6,6 +6,7 @@ const Home = React.lazy(() => import('~/pages/Home'))
 const DevHub = React.lazy(() => import('~/pages/Dev'))
 const SignIn = React.lazy(() => import('~/pages/Auth/SignIn'))
 const Profile = React.lazy(() => import('~/pages/Auth/Profile'))
+const AcceptTerms = React.lazy(() => import('~/pages/AcceptTerms'))
 const MyClasses = React.lazy(() => import('~/pages/MyClasses'))
 const TermsOfUse = React.lazy(() => import('~/pages/TermsOfUse'))
 const PrivacyPolicy = React.lazy(() => import('~/pages/PrivacyPolicy'))
@@ -23,6 +24,12 @@ export default [
   { path: '/', isPrivate: true, exact: true, component: Home },
   { path: '/login', isPrivate: false, exact: false, component: SignIn },
   { path: '/perfil', isPrivate: false, exact: false, component: Profile },
+  {
+    path: '/aceite-de-termos',
+    isPrivate: false,
+    exact: false,
+    component: AcceptTerms
+  },
   {
     path: '/esqueci-minha-senha',
     isPrivate: false,
