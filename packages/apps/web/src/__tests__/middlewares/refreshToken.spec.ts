@@ -4,8 +4,6 @@ import { waitFor } from '@testing-library/react'
 import { RefreshTokenApi } from '~/store/modules/auth/types'
 import { store } from '~/store'
 
-import hubApi from '@psdhub/api'
-
 import history from '~/services/history'
 import * as api from '~/services/eemConnect'
 
@@ -14,7 +12,8 @@ import refreshToken from '~/middlewares/refreshToken'
 const mockedState = {
   auth: {
     exp: 1,
-    refresh_token: 'refresh-token-test'
+    refresh_token: 'refresh-token-test',
+    reduced_token: 'reduced-token-test'
   },
   global: {
     enableMiddlewareRefreshToken: true
@@ -37,7 +36,7 @@ const mockedOkApiResponse: ApiOkResponse<RefreshTokenApi> = {
   originalError: null,
   data: {
     access_token: 'this-is-a-test-token',
-    refresh_token: 'test-refresh-token',
+    refresh_token: 'reduced-token-test',
     exp: 0
   }
 }
@@ -79,7 +78,9 @@ jest.mock('~/services/eemConnect', () => ({
 }))
 
 describe('RefreshToken should work properly', () => {
-  beforeEach(() => jest.clearAllMocks())
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
 
   it('should dispatch no action when token is expired', async () => {
     const spyDispatch = jest.spyOn(store, 'dispatch')
@@ -101,8 +102,8 @@ describe('RefreshToken should work properly', () => {
     const refreshTokenSuccessAction = {
       payload: {
         exp: undefined,
-        refresh_token: 'test-refresh-token',
-        token: 'this-is-a-test-token'
+        refresh_token: 'reduced-token-test',
+        token: 'reduced-token-test'
       },
       type: '@auth/REFRESH_TOKEN_SUCCESS'
     }
@@ -129,17 +130,12 @@ describe('RefreshToken should work properly', () => {
     jest.spyOn(api, 'EEMConnectPost').mockResolvedValue(mockedErrorApiResponse)
     const spyPush = jest.spyOn(history, 'push')
 
-    const spySetHeaders = jest.spyOn(hubApi, 'setHeaders')
-
     refreshToken()
 
     await waitFor(() => {
       expect(spyDispatch).toHaveBeenNthCalledWith(1, refreshTokenAction)
       expect(spyDispatch).toHaveBeenNthCalledWith(2, refreshTokenFailureAction)
       expect(spyPush).toHaveBeenCalledWith('/login')
-      expect(spySetHeaders).toHaveBeenCalledWith({
-        Authorization: 'Bearer '
-      })
     })
   })
 })

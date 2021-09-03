@@ -14,7 +14,8 @@ describe('Mixpanel Services', () => {
 
     expect(mockMixPanel).toBeCalledWith('mix-panel-mock-key', {
       batch_requests: true,
-      cookie_domain: 'localhost'
+      cookie_domain: 'localhost',
+      cross_subdomain_cookie: false
     })
   })
 

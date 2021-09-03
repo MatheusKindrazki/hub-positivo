@@ -1,6 +1,6 @@
 import qs from 'qs'
 
-import { apiEEMAuth, apiEEMInfos } from '@psdhub/api'
+import * as api from '@psdhub/api'
 
 import {
   EEMConnectPost,
@@ -8,6 +8,8 @@ import {
   EEMProps,
   EEMPropsInfo
 } from '~/services/eemConnect'
+
+import { waitFor } from '~/../../../libs/test-utils'
 
 const mockedPostData: EEMProps = {
   endpoint: 'testpoint',
@@ -32,18 +34,30 @@ const mockedGetData: EEMPropsInfo<T> = {
     test: true
   }
 }
+
+jest.mock('@psdhub/api')
+
 describe('EEMConnectPost should work properly', () => {
-  afterEach(() => jest.resetAllMocks())
+  const mockedGet = jest.fn()
+  const mockedPost = jest.fn()
+  const mockedSetHeaders = jest.fn()
+
+  jest.spyOn(api, 'getInstance').mockImplementation(
+    () =>
+      ({
+        get: mockedGet,
+        post: mockedPost,
+        setHeaders: mockedSetHeaders
+      } as any)
+  )
 
   it('EEMConnectPost should set headers then send a post request', () => {
-    const postSpy = jest.spyOn(apiEEMAuth, 'post')
-    const setHeadersSpy = jest.spyOn(apiEEMAuth, 'post')
     const stringfiedData = qs.stringify(mockedPostData.data)
 
     EEMConnectPost(mockedPostData)
 
-    expect(setHeadersSpy).toHaveBeenCalled()
-    expect(postSpy).toHaveBeenCalledWith(
+    expect(mockedSetHeaders).toHaveBeenCalled()
+    expect(mockedPost).toHaveBeenCalledWith(
       mockedPostData.endpoint,
       stringfiedData
     )
@@ -53,10 +67,8 @@ describe('EEMConnectPost should work properly', () => {
     const { endpoint, data, token } = mockedGetData
     const mockedHeaders = { headers: { Authorization: token } }
 
-    const getSpy = jest.spyOn(apiEEMInfos, 'get')
+    await waitFor(() => EEMConnectGET(mockedGetData))
 
-    EEMConnectGET(mockedGetData)
-
-    expect(getSpy).toHaveBeenCalledWith(endpoint, data, mockedHeaders)
+    expect(mockedGet).toHaveBeenCalledWith(endpoint, data, mockedHeaders)
   })
 })

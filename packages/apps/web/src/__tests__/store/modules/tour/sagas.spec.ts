@@ -10,7 +10,7 @@ import {
   openTour
 } from '~/store/modules/tour/actions'
 
-import api from '@psdhub/api'
+import * as api from '@psdhub/api'
 
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 
@@ -26,7 +26,20 @@ const mockedTourApiResponse = {
 }
 const mockedTourApiErrorResponse = { ok: false, data: 'error' }
 
-describe('testing getProducts saga flow', () => {
+jest.mock('@psdhub/api')
+
+const mockedGet = jest.fn()
+const mockedPost = jest.fn()
+
+jest.spyOn(api, 'getInstance').mockImplementation(
+  () =>
+    ({
+      get: mockedGet,
+      post: mockedPost
+    } as any)
+)
+
+describe('testing getTour saga flow', () => {
   let dispatchedActions = store.getActions()
 
   mockState.profile = { guid: 'PROFESSOR' } as any
@@ -36,10 +49,6 @@ describe('testing getProducts saga flow', () => {
     user: 'fake user',
     school: { value: 'fake school' }
   } as any
-
-  const spyApiGet = jest
-    .spyOn(api, 'get')
-    .mockImplementation(() => Promise.resolve<any>(mockedTourApiResponse))
 
   beforeEach(() => {
     jest.clearAllMocks()
@@ -53,10 +62,14 @@ describe('testing getProducts saga flow', () => {
       { content: 'this is a test', selector: 'testing tour saga' }
     ]
 
+    mockedGet.mockImplementation(() =>
+      Promise.resolve<any>(mockedTourApiResponse)
+    )
+
     await runSaga(store, getTour).toPromise()
 
     expect(dispatchedActions).toContainObject(getTourViewedRequest())
-    expect(spyApiGet).toHaveBeenCalledWith(
+    expect(mockedGet).toHaveBeenCalledWith(
       '/Tour/Steps?perfil=PROFESSOR&nivelEnsino=level'
     )
     expect(dispatchedActions).toContainObject(getTourSuccess(payload))
@@ -71,18 +84,18 @@ describe('testing getProducts saga flow', () => {
 
     await runSaga(store, getTour).toPromise()
 
-    expect(spyApiGet).toHaveBeenCalledWith('/Tour/Steps?perfil=PERFIL')
+    expect(mockedGet).toHaveBeenCalledWith('/Tour/Steps?perfil=PERFIL')
     expect(dispatchedActions).toContainObject(getTourSuccess(payload))
   })
 
   it('should log error and dispatch failure action when api returns with an error', async () => {
     const spyError = jest.spyOn(console, 'error').mockImplementation(jest.fn())
-    spyApiGet.mockImplementation(() =>
+    mockedGet.mockImplementation(() =>
       Promise.resolve<any>(mockedTourApiErrorResponse)
     )
     await runSaga(store, getTour).toPromise()
 
-    expect(spyApiGet).toHaveBeenCalledWith('/Tour/Steps?perfil=PERFIL')
+    expect(mockedGet).toHaveBeenCalledWith('/Tour/Steps?perfil=PERFIL')
     expect(spyError).toHaveBeenCalledWith('error')
     expect(dispatchedActions).toContainObject(getTourFailure())
   })
@@ -116,34 +129,30 @@ describe('testing getViewed saga flow', () => {
     dispatchedActions = store.getActions()
   })
   it('should request for info on tour viewed and dispatch a success action', async () => {
-    const spyApiGet = jest
-      .spyOn(api, 'get')
-      .mockImplementationOnce(() =>
-        Promise.resolve<any>(mockedTourViewedResponse)
-      )
+    mockedGet.mockImplementationOnce(() =>
+      Promise.resolve<any>(mockedTourViewedResponse)
+    )
     await runSaga(store, getViewed).toPromise()
-    expect(spyApiGet).toHaveBeenCalledWith('/Tour')
+    expect(mockedGet).toHaveBeenCalledWith('/Tour')
     expect(dispatchedActions).toContainObject(
       getTourViewedSuccess({ viewed: true })
     )
   })
 
   it('should log error and dispatch failure action on api error', async () => {
-    const spyApiGet = jest
-      .spyOn(api, 'get')
-      .mockImplementationOnce(() =>
-        Promise.resolve<any>(mockedTourViewedErrorResponse)
-      )
+    mockedGet.mockImplementationOnce(() =>
+      Promise.resolve<any>(mockedTourViewedErrorResponse)
+    )
     const spyError = jest.spyOn(console, 'error').mockImplementation(jest.fn())
     await runSaga(store, getViewed).toPromise()
-    expect(spyApiGet).toHaveBeenCalledWith('/Tour')
+    expect(mockedGet).toHaveBeenCalledWith('/Tour')
     expect(spyError).toHaveBeenCalledWith('error')
 
     expect(dispatchedActions).toContainObject(getTourViewedFailure())
   })
 })
 
-describe('testing getProducts saga flow', () => {
+describe('testing getTour saga flow', () => {
   let dispatchedActions = store.getActions()
 
   mockState.profile = { guid: 'PROFESSOR' } as any
@@ -162,23 +171,23 @@ describe('testing getProducts saga flow', () => {
     dispatchedActions = store.getActions()
   })
   it('should dispatch tour request action, make get request do tour api and dispatch success action', async () => {
-    const spyApiGet = jest
-      .spyOn(api, 'get')
-      .mockImplementation(() => Promise.resolve<any>(mockedTourApiResponse))
+    mockedGet.mockImplementation(() =>
+      Promise.resolve<any>(mockedTourApiResponse)
+    )
     const payload = [
       { content: 'this is a test', selector: 'testing tour saga' }
     ]
 
     await runSaga(store, getTour).toPromise()
 
-    expect(spyApiGet).toHaveBeenCalledWith('/Tour/Steps?perfil=PERFIL')
+    expect(mockedGet).toHaveBeenCalledWith('/Tour/Steps?perfil=PERFIL')
     expect(dispatchedActions).toContainObject(getTourSuccess(payload))
   })
 
   it('should not include educational level on tour request if user is not PROFESSOR or ALUNO', async () => {
-    const spyApiGet = jest
-      .spyOn(api, 'get')
-      .mockImplementation(() => Promise.resolve<any>(mockedTourApiResponse))
+    mockedGet.mockImplementation(() =>
+      Promise.resolve<any>(mockedTourApiResponse)
+    )
     mockState.profile = { guid: 'PERFIL' } as any
     const payload = [
       { content: 'this is a test', selector: 'testing tour saga' }
@@ -186,21 +195,21 @@ describe('testing getProducts saga flow', () => {
 
     await runSaga(store, getTour).toPromise()
 
-    expect(spyApiGet).toHaveBeenCalledWith('/Tour/Steps?perfil=PERFIL')
+    expect(mockedGet).toHaveBeenCalledWith('/Tour/Steps?perfil=PERFIL')
     expect(dispatchedActions).toContainObject(getTourSuccess(payload))
   })
 
   it('should log error and dispatch failure action when api returns with an error', async () => {
     const spyError = jest.spyOn(console, 'error').mockImplementation(jest.fn())
-    const spyApiGet = jest
-      .spyOn(api, 'get')
-      .mockImplementation(() => Promise.resolve<any>(mockedTourApiResponse))
-    spyApiGet.mockImplementation(() =>
+    mockedGet.mockImplementation(() =>
+      Promise.resolve<any>(mockedTourApiResponse)
+    )
+    mockedGet.mockImplementation(() =>
       Promise.resolve<any>(mockedTourApiErrorResponse)
     )
     await runSaga(store, getTour).toPromise()
 
-    expect(spyApiGet).toHaveBeenCalledWith('/Tour/Steps?perfil=PERFIL')
+    expect(mockedGet).toHaveBeenCalledWith('/Tour/Steps?perfil=PERFIL')
     expect(spyError).toHaveBeenCalledWith('error')
     expect(dispatchedActions).toContainObject(getTourFailure())
   })
@@ -228,25 +237,23 @@ describe('testing post tour saga flow', () => {
     dispatchedActions = store.getActions()
   })
   it('should set open tour to false and post tour info', async () => {
-    const spyApiPost = jest
-      .spyOn(api, 'post')
-      .mockImplementation(() => Promise.resolve<any>(mockedPostTourResponse))
+    mockedPost.mockImplementation(() =>
+      Promise.resolve<any>(mockedPostTourResponse)
+    )
     await runSaga(store, postTour).toPromise()
     expect(dispatchedActions).toContainObject(openTour(false))
-    expect(spyApiPost).toHaveBeenCalledWith('/Tour', '"PERFIL"')
+    expect(mockedPost).toHaveBeenCalledWith('/Tour', '"PERFIL"')
   })
 
   it('should log error and dispatch failure action on api error', async () => {
-    const spyApiPost = jest
-      .spyOn(api, 'post')
-      .mockImplementation(() =>
-        Promise.resolve<any>(mockedPostTourErrorResponse)
-      )
+    mockedPost.mockImplementation(() =>
+      Promise.resolve<any>(mockedPostTourErrorResponse)
+    )
     const spyError = jest.spyOn(console, 'error').mockImplementation(jest.fn())
 
     await runSaga(store, postTour).toPromise()
 
-    expect(spyApiPost).toHaveBeenCalledWith('/Tour', '"PERFIL"')
+    expect(mockedPost).toHaveBeenCalledWith('/Tour', '"PERFIL"')
     expect(spyError).toHaveBeenCalledWith('error')
   })
 })

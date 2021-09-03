@@ -11,10 +11,12 @@ import {
 import { withoutAccess } from '~/store/modules/auth/actions'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import * as api from '@psdhub/api'
 
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 import mockedApiGetResponse from '~/__mocks__/api/fakeProductsApiResponse.json'
+
+jest.mock('@psdhub/api')
 
 describe('testing getProducts saga flow', () => {
   let dispatchedActions = store.getActions()
@@ -26,17 +28,22 @@ describe('testing getProducts saga flow', () => {
     school: { value: 'fake school' }
   } as any
 
-  const spyApiGet = jest
-    .spyOn(api, 'get')
-    .mockImplementation(() => Promise.resolve<any>(mockedApiGetResponse))
-
   beforeEach(() => {
     jest.clearAllMocks()
     jest.clearAllTimers()
     store.clearActions()
-
     dispatchedActions = store.getActions()
   })
+
+  const mockedGet = jest.fn(() => Promise.resolve<any>(mockedApiGetResponse))
+
+  jest.spyOn(api, 'getInstance').mockImplementation(
+    () =>
+      ({
+        get: mockedGet
+      } as any)
+  )
+
   it('should set loadings, call api, dispatch success action, call mhunArvoreIntegration, get tour and enable refresh token middleware', async () => {
     const fakeApiCall = { IdEscola: 'fake school', NivelEnsino: 'level' }
     const productSuccessPayload = {
@@ -63,7 +70,7 @@ describe('testing getProducts saga flow', () => {
     await runSaga(store, getProducts).toPromise()
 
     expect(dispatchedActions).toContainObject(loading(true))
-    expect(spyApiGet).toHaveBeenCalledWith(
+    expect(mockedGet).toHaveBeenCalledWith(
       'Categoria/Solucoes/Perfil/PROFESSOR',
       fakeApiCall
     )
@@ -81,7 +88,7 @@ describe('testing getProducts saga flow', () => {
   it('should call toast error when api returns with an error', async () => {
     mockState.profile = { guid: 'guid' } as any
     const mockedApiErrorResponse = { ok: false, status: 500 }
-    spyApiGet.mockImplementation(() =>
+    mockedGet.mockImplementation(() =>
       Promise.resolve<any>(mockedApiErrorResponse)
     )
     const spyToast = jest.spyOn(toast, 'error')

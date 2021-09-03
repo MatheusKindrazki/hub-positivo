@@ -18,7 +18,10 @@ describe('authProduct reducer', () => {
       url: 'string'
     }
     expect(authProduct(INITIAL_STATE, preAuth(payload))).toEqual({
-      loading: true
+      loading: true,
+      mcf: false,
+      productData: null,
+      productName: null
     })
   })
 
@@ -29,6 +32,11 @@ describe('authProduct reducer', () => {
 
   it('loading is set to false on failure action', () => {
     const result = authProduct(INITIAL_STATE, authProductFailure())
-    expect(result).toEqual({ loading: false })
+    expect(result).toEqual({
+      loading: false,
+      mcf: false,
+      productData: null,
+      productName: null
+    })
   })
 })
