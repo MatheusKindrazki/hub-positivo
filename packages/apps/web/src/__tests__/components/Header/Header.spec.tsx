@@ -4,7 +4,7 @@ import MatchMediaMock from 'jest-matchmedia-mock'
 
 import { store } from '~/store'
 
-import { fireEvent, render } from '@psdhub/test-utils'
+import { fireEvent, render, CustomRenderOptions } from '@psdhub/test-utils'
 import * as hooks from '@psdhub/common/hooks'
 import * as drawer from '@psdhub/common/components/Drawer'
 
@@ -73,10 +73,11 @@ describe('Header component ', () => {
     spyHookDisclosure()
   })
 
-  const setup = () => {
+  const setup = (CUSTOM_STATE?: CustomRenderOptions['CUSTOM_STATE']) => {
     const wrapper = render(<Header />, {
       store,
-      reducers: ['tour', 'user', 'profile']
+      reducers: ['tour', 'user', 'profile', 'auth', 'noBreakAccess'],
+      CUSTOM_STATE
     })
 
     return { ...wrapper }
@@ -124,7 +125,10 @@ describe('Header component ', () => {
   it('Should render Desktop Header when min-width is 480px', () => {
     useMediaMock('desktop')
 
-    const { queryByText } = setup()
+    const { queryByText } = setup({
+      noBreakAccess: { nobreak: false },
+      auth: { signed: true }
+    })
 
     expect(queryByText('DesktopMenu')).toBeInTheDocument()
   })
@@ -132,7 +136,10 @@ describe('Header component ', () => {
   it('Should render Mobile Header when min-width is 479px', () => {
     useMediaMock('mobile')
 
-    const { queryByText } = setup()
+    const { queryByText } = setup({
+      noBreakAccess: { nobreak: false },
+      auth: { signed: true }
+    })
 
     const mobileMenu = queryByText('MobileMenu')
 
@@ -141,7 +148,10 @@ describe('Header component ', () => {
 
   it('Should call handleClick when MenuButton is clicked', () => {
     useMediaMock('mobile')
-    const { getAllByRole } = setup()
+    const { getAllByRole } = setup({
+      noBreakAccess: { nobreak: false },
+      auth: { signed: true }
+    })
     const [MenuButton] = getAllByRole('button')
 
     fireEvent.click(MenuButton)
@@ -152,9 +162,12 @@ describe('Header component ', () => {
   it('Should redirect to `/` when hub logo is clicked', () => {
     const spyPush = jest.spyOn(history, 'push')
 
-    const { getAllByRole } = setup()
+    const { getAllByRole, debug } = setup({
+      noBreakAccess: { nobreak: false },
+      auth: { signed: true }
+    })
     const [, hubLogoButton] = getAllByRole('button')
-
+    debug()
     fireEvent.click(hubLogoButton)
 
     expect(spyPush).toHaveBeenCalledWith('/')
@@ -170,5 +183,16 @@ describe('Header component ', () => {
     fireEvent.click(simulateOpenModalPass)
 
     expect(hookOnOpen).toHaveBeenCalledTimes(1)
+  })
+
+  it('Should not render DesktopMenu when /nobreak/ is true and enableMenu is false', async () => {
+    useMediaMock('desktop')
+
+    const { queryByText } = setup({
+      noBreakAccess: { nobreak: true }
+    })
+    const mobileMenu = queryByText('MobileMenu')
+
+    expect(mobileMenu).toBeInTheDocument()
   })
 })
