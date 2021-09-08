@@ -2,7 +2,6 @@ import { cloneDeep } from 'lodash'
 
 import { runSaga } from 'redux-saga'
 
-import { setFrameURL } from '~/store/modules/products/actions'
 import { loading } from '~/store/modules/global/actions'
 import {
   productSorting,
@@ -15,12 +14,10 @@ import {
   authProductSuccess
 } from '~/store/modules/authProduct/actions'
 
-import { toast } from '@psdhub/common/utils'
+import { toast, isMobile } from '@psdhub/common/utils'
 import { apiAuthProduct } from '@psdhub/api'
 
 import history from '~/services/history'
-
-import isMobile from '~/utils/isMobile'
 
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
@@ -81,13 +78,6 @@ describe('Testing productSorting saga flow', () => {
 
     expect(refreshTokenMock).toHaveBeenCalled()
 
-    expect(dispatchedActions).toContainObject(
-      setFrameURL({
-        url: 'http://produtoteste.com',
-        name: 'Produto Teste'
-      })
-    )
-
     expect(pushSpy).toHaveBeenCalledWith('/solucao/Teste')
   })
 
@@ -103,8 +93,6 @@ describe('Testing productSorting saga flow', () => {
     await runSaga(store, productSorting, mockedPayload).toPromise()
 
     expect(refreshTokenMock).toHaveBeenCalled()
-
-    expect(dispatchedActions).toContainObject(authProductSuccess())
 
     expect(spyWindowOpen).toHaveBeenCalledWith(
       'http://produtoteste.com',
@@ -178,6 +166,7 @@ describe('testing authProductGUID saga flow', () => {
   })
 
   it('should set loading, make a post request, redirect user, set iframe and dispatch success action', async () => {
+    mockedPayload.payload.tipoRenderizacao = ''
     const { payload } = mockedPayload
     const apiPostArgs = {
       product: payload.product,
@@ -196,6 +185,12 @@ describe('testing authProductGUID saga flow', () => {
     }
     const headers = { headers: { Authorization: 'Bearer null' } }
 
+    const expectedSuccessPayload = {
+      mcf: false,
+      productData: 'http://produtoteste.com/test/',
+      productName: 'Produto Teste'
+    }
+
     const spyPost = jest
       .spyOn(apiAuthProduct, 'post')
       .mockImplementation(() => Promise.resolve<any>(mockedResponse))
@@ -209,14 +204,11 @@ describe('testing authProductGUID saga flow', () => {
       headers
     )
     expect(pushSpy).toHaveBeenCalledWith('/solucao/Teste/')
-    expect(dispatchedActions).toContainObject(
-      setFrameURL({
-        url: 'http://produtoteste.com',
-        name: 'Produto Teste'
-      })
-    )
+
     expect(dispatchedActions).toContainObject(loading(false))
-    expect(dispatchedActions).toContainObject(authProductSuccess())
+    expect(dispatchedActions).toContainObject(
+      authProductSuccess(expectedSuccessPayload)
+    )
   })
 
   it('should redirect user to correct path when payload has a subpath', async () => {
@@ -275,17 +267,9 @@ describe('testing authProductEEM saga flow', () => {
     dispatchedActions = store.getActions()
   })
 
-  it('should set loading, set iframe url and then dispatch success action', async () => {
+  it('should set loading and set iframe url', async () => {
     await runSaga(store, authProductEEM, mockedPayload).toPromise()
     expect(dispatchedActions).toContainObject(loading(true))
-    expect(dispatchedActions).toContainObject(
-      setFrameURL({
-        url: 'http://produtoteste.com',
-        name: 'Produto Teste'
-      })
-    )
-    expect(dispatchedActions).toContainObject(loading(true))
-    expect(dispatchedActions).toContainObject(authProductSuccess())
   })
 
   it('should open a new window when tipoRenderizacao is `iframeblank` and the device is IOS', async () => {
@@ -302,6 +286,5 @@ describe('testing authProductEEM saga flow', () => {
       '_blank'
     )
     expect(dispatchedActions).toContainObject(loading(true))
-    expect(dispatchedActions).toContainObject(authProductSuccess())
   })
 })
