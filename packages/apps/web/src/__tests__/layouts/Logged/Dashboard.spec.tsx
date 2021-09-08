@@ -5,13 +5,36 @@ import { store } from '~/store'
 
 import { render, CustomState, fireEvent } from '@psdhub/test-utils'
 
-import Dashboard from '~/layouts/Logged'
+import * as mixpanel from '~/services/mixpanel/setProperties'
 
-jest.mock('@hub/gsc', () => jest.fn())
+import Dashboard from '~/layouts/Logged'
 
 jest.mock('~/components/ModalNoClass', () =>
   jest.fn(() => <div id="modal">Modal</div>)
 )
+
+jest.mock('lodash', () => {
+  const rest = jest.requireActual('lodash')
+  return {
+    ...rest,
+    debounce: (callbackFunction: () => void) => () => callbackFunction()
+  }
+})
+
+jest.mock('~/services/mixpanel/setProperties', () => ({
+  __esModule: true,
+  default: jest.fn()
+}))
+
+jest.mock('~/components/Footer', () => ({
+  __esModule: true,
+  default: () => <span>Footer</span>
+}))
+
+jest.mock('~/components/ModalAlternativeAccess', () => ({
+  __esModule: true,
+  default: () => <span>Modal Alternative Access</span>
+}))
 
 jest.mock('~/components/Header', () =>
   jest.fn(() => <div id="header">Header</div>)
@@ -32,8 +55,8 @@ describe('Logged`s layout should render without crashing', () => {
   ) => {
     const wrapper = render(<Dashboard>{children}</Dashboard>, {
       store,
-      reducers: ['global', 'tour'],
-      CUSTOM_STATE
+      reducers: ['global', 'tour', 'noBreakAccess'],
+      CUSTOM_STATE: { noBreakAccess: { nobreak: false }, ...CUSTOM_STATE }
     })
     return { ...wrapper }
   }
@@ -43,6 +66,20 @@ describe('Logged`s layout should render without crashing', () => {
 
   afterEach(() => {
     jest.clearAllMocks()
+  })
+
+  it('Should call /setUserProperties/ in useEffect', () => {
+    jest.useFakeTimers()
+    const spySetProperties = jest.spyOn(mixpanel, 'default')
+    setup('', {
+      tour: {
+        open: false,
+        steps
+      }
+    })
+    jest.runAllTimers()
+
+    expect(spySetProperties).toHaveBeenCalledTimes(1)
   })
 
   it('Should call render children on screen', () => {
@@ -114,5 +151,15 @@ describe('Logged`s layout should render without crashing', () => {
 
     const actions = storeUtils?.getActions()
     expect(actions).toStrictEqual([{ type: '@tour/POST_TOUR' }])
+  })
+
+  it('Should render /ModalAlternativeAccess/ component when noBreak is true ', () => {
+    const { queryByText } = setup('children', {
+      noBreakAccess: {
+        nobreak: true
+      }
+    })
+
+    expect(queryByText(/Modal Alternative Access/i)).toBeInTheDocument()
   })
 })
