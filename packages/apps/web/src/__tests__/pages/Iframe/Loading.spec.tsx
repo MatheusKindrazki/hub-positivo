@@ -2,7 +2,7 @@ import React from 'react'
 
 import { render } from '@psdhub/test-utils'
 
-import Loading from '~/pages/Iframe/components/Loading/index'
+import Loading from '~/pages/Solutions/components/Loading/index'
 
 describe('iframe loading should work as expected', () => {
   it('loader should work when loading is true', () => {

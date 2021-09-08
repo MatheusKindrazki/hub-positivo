@@ -5,9 +5,9 @@ import { waitFor } from '@testing-library/dom'
 import { store } from '~/store'
 
 import history from '~/services/history'
+import * as service from '~/services/getCardBySlug'
 
-import * as service from '~/pages/Iframe/services/getCardBySlug'
-import useCardInformation from '~/pages/Iframe/hook/useCardInformation'
+import useCardInformation from '~/hooks/useCardInformation'
 
 const mockedState = {
   profile: { guid: 'th1s-1s-4-f4k3-gu1d' },

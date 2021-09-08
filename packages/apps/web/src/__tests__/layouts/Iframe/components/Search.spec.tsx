@@ -2,7 +2,7 @@ import React from 'react'
 
 import { fireEvent, render } from '@psdhub/test-utils'
 
-import Search from '~/layouts/Iframe/components/Search'
+import Search from '~/layouts/Solutions/components/Search'
 
 describe('should work properly', () => {
   const setup = () => {

@@ -3,7 +3,7 @@ import { store } from '~/store'
 import { toast } from '@psdhub/common/utils'
 import api from '@psdhub/api'
 
-import { getCardBySlug } from '~/pages/Iframe/services/getCardBySlug'
+import { getCardBySlug } from '~/services/getCardBySlug'
 
 const mockedProps = {
   slug: 'test-slug',

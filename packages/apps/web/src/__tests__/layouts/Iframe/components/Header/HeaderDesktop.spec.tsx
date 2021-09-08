@@ -5,7 +5,7 @@ import { store } from '~/store'
 import cards from '@psdhub/test-utils/__mocks__/cards.mock'
 import { fireEvent, render, waitFor } from '@psdhub/test-utils'
 
-import HeaderDesktop from '~/layouts/Iframe/components/Header/HeaderDesktop'
+import HeaderDesktop from '~/layouts/Solutions/components/Header/HeaderDesktop'
 
 const mockedPush = jest.fn()
 

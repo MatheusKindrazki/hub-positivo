@@ -1,4 +1,4 @@
-import { hasJsonStructure } from '~/utils/hasJsonStructure'
+import { hasJsonStructure } from '@psdhub/common/utils'
 
 describe('json-type structure', () => {
   it('Should be check if string has a json structure', () => {

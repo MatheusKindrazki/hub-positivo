@@ -1,4 +1,4 @@
-import transpileProfile from '~/utils/transpileProfile'
+import transpileProfile from '@psdhub/common/utils/transpileProfile'
 
 describe('Profile structure', () => {
   it('Must return the correct structure following a pre-defined string', () => {

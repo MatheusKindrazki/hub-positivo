@@ -4,7 +4,7 @@ import { store } from '~/store'
 
 import { render } from '@psdhub/test-utils'
 
-import Iframe from '~/pages/Iframe/'
+import Iframe from '~/pages/Solutions/'
 
 import usePostMessage from '~/hooks/usePostMessage'
 

@@ -4,10 +4,10 @@ import { fireEvent, render } from '@psdhub/test-utils'
 
 import history from '~/services/history'
 
-import * as HeaderMobile from '~/layouts/Iframe/components/Header/HeaderMobile'
-import * as HeaderDesktop from '~/layouts/Iframe/components/Header/HeaderDesktop'
-import * as AnimateGoBack from '~/layouts/Iframe/components/Header/AnimateGoBack'
-import Header from '~/layouts/Iframe/components/Header/'
+import * as HeaderMobile from '~/layouts/Solutions/components/Header/HeaderMobile'
+import * as HeaderDesktop from '~/layouts/Solutions/components/Header/HeaderDesktop'
+import * as AnimateGoBack from '~/layouts/Solutions/components/Header/AnimateGoBack'
+import Header from '~/layouts/Solutions/components/Header/'
 
 jest.mock('@psdhub/common/layout/styles', () => {
   const rest = jest.requireActual('@psdhub/common/layout/styles')
@@ -24,10 +24,12 @@ jest.mock('~/services/history', () => ({
   push: jest.fn()
 }))
 
-jest.mock('~/layouts/Iframe/components/Header/HeaderMobile', () => jest.fn())
-jest.mock('~/layouts/Iframe/components/Header/HeaderDesktop', () => jest.fn())
+jest.mock('~/layouts/Solutions/components/Header/HeaderMobile', () => jest.fn())
+jest.mock('~/layouts/Solutions/components/Header/HeaderDesktop', () =>
+  jest.fn()
+)
 
-jest.mock('~/layouts/Iframe/components/Header/AnimateGoBack', () =>
+jest.mock('~/layouts/Solutions/components/Header/AnimateGoBack', () =>
   jest.fn(() => <></>)
 )
 

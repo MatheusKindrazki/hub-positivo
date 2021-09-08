@@ -4,12 +4,12 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { CardProduct } from '~/store/modules/products/types'
 
+import cardsMock from '@psdhub/test-utils/__mocks__/cards.mock'
 import { cards } from '@psdhub/test-utils/__mocks__'
 import { render, fireEvent, act } from '@psdhub/test-utils'
 import * as drawer from '@psdhub/common/components/Drawer'
 
 import HeaderMobile from '~/layouts/Solutions/components/Header/HeaderMobile'
-import cardsMock from '~/../../../test-utils/__mocks__/cards.mock'
 
 jest.mock('~/services/mixpanel/toolOpened')
 

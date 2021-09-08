@@ -2,7 +2,7 @@ import React from 'react'
 
 import { fireEvent, render } from '@psdhub/test-utils'
 
-import Card, { CardProps } from '~/layouts/Iframe/components/Card'
+import Card, { CardProps } from '~/layouts/Solutions/components/Card'
 
 describe('Card`s layout should work properly', () => {
   let card: CardProps

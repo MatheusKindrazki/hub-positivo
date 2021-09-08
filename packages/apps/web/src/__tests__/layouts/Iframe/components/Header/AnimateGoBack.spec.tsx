@@ -2,7 +2,7 @@ import React from 'react'
 
 import { fireEvent, render } from '@psdhub/test-utils'
 
-import AnimateGoBack from '~/layouts/Iframe/components/Header/AnimateGoBack'
+import AnimateGoBack from '~/layouts/Solutions/components/Header/AnimateGoBack'
 
 describe('AnimateGoBack should work properly', () => {
   const setup = (width: number | undefined) => {
