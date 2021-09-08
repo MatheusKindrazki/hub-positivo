@@ -9,7 +9,8 @@ import Collapse, { CollapseProps } from '../../components/Collapse'
 const collapseProps: CollapseProps = {
   id: 'teste',
   cor: 'teste',
-  nome: 'nome teste do header'
+  nome: 'nome teste do header',
+  children: 'Children'
 }
 
 jest.mock('@chakra-ui/react', () => {
@@ -49,7 +50,9 @@ describe('Collapse component should work properly', () => {
     disclosureSpy.mockReturnValue({ ...useDisclosure(), isOpen: false })
 
     const { queryByTestId } = render(
-      <Collapse {...collapseProps}>Children</Collapse>
+      <Collapse {...collapseProps} defaultIsOpen>
+        Children
+      </Collapse>
     )
 
     const collapseBox = queryByTestId('collapse-box')
