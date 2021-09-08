@@ -1,5 +1,5 @@
 import { ListItem, ListProps } from '@chakra-ui/react'
 
-export { ListProps }
+export type { ListProps }
 
 export default ListItem

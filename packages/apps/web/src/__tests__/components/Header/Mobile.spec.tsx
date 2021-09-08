@@ -255,18 +255,19 @@ describe('Mobile Header component ', () => {
     expect(setRole).toHaveBeenLastCalledWith(coordenador)
   })
 
-  it.skip('Should change `Home` button color when pathname is /minhas-turmas', async () => {
+  it('Should change `Home` button color when pathname is /minhas-turmas', async () => {
     jest.spyOn(reactRouter, 'useHistory').mockReturnValue({
       location: {
         pathname: '/'
       }
     } as any)
     const { getByText } = setup(profileState)
+
     const homeButton = getByText(/Home/i)
     expect(homeButton).toMatchSnapshot()
   })
 
-  it.skip('Should change `Minhas turmas` button color when pathname is `/`', () => {
+  it('Should change `Minhas turmas` button color when pathname is `/`', () => {
     jest.spyOn(reactRouter, 'useHistory').mockReturnValue({
       location: {
         pathname: '/minhas-turmas'
@@ -274,7 +275,7 @@ describe('Mobile Header component ', () => {
     } as any)
 
     const { getByText } = setup(profileState)
-    const classes = getByText(/Minhas turmas/i)
-    expect(classes).toMatchSnapshot()
+    const classesButton = getByText(/Minhas turmas/i)
+    expect(classesButton).toMatchSnapshot()
   })
 })

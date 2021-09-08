@@ -6,7 +6,8 @@ module.exports = {
   preset: 'ts-jest',
   setupFilesAfterEnv: ['../../libs/test-utils/setup.ts'],
   moduleNameMapper: {
-    '~(.*)$': '<rootDir>/src/$1'
+    '~(.*)$': '<rootDir>/src/$1',
+    '\\.(css|less)$': '<rootDir>/src/__mocks__/styleMock.ts',
   },
   transform: {
     '^.+\\.svg$': 'jest-svg-transformer'

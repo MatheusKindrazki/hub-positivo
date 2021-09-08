@@ -1,5 +1,5 @@
 import { Link, LinkProps } from '@chakra-ui/react'
 
-export { LinkProps }
+export type { LinkProps }
 
 export default Link

@@ -1,5 +1,5 @@
 import { List, ListProps } from '@chakra-ui/react'
 
-export { ListProps }
+export type { ListProps }
 
 export default List
