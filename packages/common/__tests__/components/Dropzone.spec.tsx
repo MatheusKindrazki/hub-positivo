@@ -7,7 +7,7 @@ import { render } from '@psdhub/test-utils'
 import Dropzone, { DropzoneHandlers } from '../../components/Dropzone'
 
 describe('Dropzone should work properly', () => {
-  it('', () => {
+  it('Dropzone should match snapshot', () => {
     const {
       result: { current: ref }
     } = renderHook(() => useRef<DropzoneHandlers>())
