@@ -17,6 +17,16 @@ jest.mock('~/services/history', () => ({
   push: jest.fn()
 }))
 
+jest.mock('react-router', () => {
+  const rest = jest.requireActual('react-router')
+  return {
+    ...rest,
+    useLocation: () => ({
+      pathname: '/'
+    })
+  }
+})
+
 jest.mock('~/components/Header/context', () => {
   const rest = jest.requireActual('~/components/Header/context')
   return {
