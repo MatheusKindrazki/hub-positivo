@@ -4,6 +4,7 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { render } from '@psdhub/test-utils'
 
+import FormControl from '../../components/FormControl'
 import Dropzone, { DropzoneHandlers } from '../../components/Dropzone'
 
 describe('Dropzone should work properly', () => {
@@ -13,11 +14,13 @@ describe('Dropzone should work properly', () => {
     } = renderHook(() => useRef<DropzoneHandlers>(null))
 
     const wrapper = render(
-      <Dropzone
-        ref={ref as any}
-        error="erro"
-        preview={{ fileName: 'filename', url: 'url' }}
-      />
+      <FormControl onSubmit={jest.fn()}>
+        <Dropzone
+          ref={ref as any}
+          error="erro"
+          preview={{ fileName: 'filename', url: 'url' }}
+        />
+      </FormControl>
     )
     expect(wrapper).toMatchSnapshot()
   })
