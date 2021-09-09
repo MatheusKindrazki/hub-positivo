@@ -72,6 +72,8 @@ describe('Mixpanel Services', () => {
       selected_educational_stage: 'EF1',
       user_id: '6d45f4f8-3326-4856-a29d-36216b2e4e2c',
       user_login: 'john.doe',
+      email_salas: 'email_salas@teste.com',
+      first_name: 'John',
       $name: 'John Doe',
       user_name: 'John Doe',
       user_mail: 'johndoe@teste.com',
@@ -125,6 +127,8 @@ describe('Mixpanel Services', () => {
       selected_school_name: 'Escola Positivo',
       user_id: '6d45f4f8-3326-4856-a29d-36216b2e4e2c',
       user_login: 'john.doe',
+      email_salas: 'email_salas@teste.com',
+      first_name: 'John',
       user_mail: 'johndoe@teste.com',
       user_name: 'John Doe',
       is_ctpm: 'false'

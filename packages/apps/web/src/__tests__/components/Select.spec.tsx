@@ -72,7 +72,7 @@ describe('Select renders without crashing', () => {
     const options = getAllByText('option', { exact: false })
 
     options.forEach(option => {
-      expect(option).toHaveStyle(`background-color: ${colors.blue[500]};`)
+      expect(option).toHaveStyle('background-color: rgb(21, 101, 192);')
     })
 
     await select(getByText('placeholder_test'), 'option2')

@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks'
 
-import * as utils from '~/utils/hasJsonStructure'
+import * as utils from '@psdhub/common/utils/hasJsonStructure'
 
 import usePostMessage from '~/hooks/usePostMessage'
 

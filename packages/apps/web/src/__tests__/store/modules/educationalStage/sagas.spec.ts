@@ -13,7 +13,7 @@ import { userMock, authMock } from '~/__mocks__/store'
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 
 jest.mock('~/services/eemConnect')
-jest.mock('~/utils/prepareEducationalStage', () =>
+jest.mock('@psdhub/common/utils/prepareEducationalStage', () =>
   jest.fn().mockImplementation(() => ({
     levels: [{ label: 'EF1', value: 'EF1' }],
     selected: 'EF1'

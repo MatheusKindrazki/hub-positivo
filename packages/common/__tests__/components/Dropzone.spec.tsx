@@ -10,7 +10,7 @@ describe('Dropzone should work properly', () => {
   it('Dropzone should match snapshot', () => {
     const {
       result: { current: ref }
-    } = renderHook(() => useRef<DropzoneHandlers>())
+    } = renderHook(() => useRef<DropzoneHandlers>(null))
 
     const wrapper = render(
       <Dropzone
