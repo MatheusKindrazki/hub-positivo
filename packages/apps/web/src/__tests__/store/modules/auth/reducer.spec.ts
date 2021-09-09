@@ -45,7 +45,8 @@ describe('Reducer of authentication history', () => {
       guid: 'uuid',
       username: 'john-doe',
       schools: undefined,
-      email: 'john@doe.com'
+      email: 'john@doe.com',
+      email_salas: 'john@salas.com'
     }
 
     const action = authActions.signInSuccess({
@@ -120,6 +121,14 @@ describe('Reducer of authentication history', () => {
 
   it("Should that in the user's exit, all states are resetted", () => {
     const action = authActions.signOut()
+
+    const state = AuthReducer(undefined, action)
+
+    expect(state).toEqual(mockedSignIn)
+  })
+
+  it("Should that in the user's exit, all states are resetted", () => {
+    const action = authActions.resetLoading()
 
     const state = AuthReducer(undefined, action)
 
