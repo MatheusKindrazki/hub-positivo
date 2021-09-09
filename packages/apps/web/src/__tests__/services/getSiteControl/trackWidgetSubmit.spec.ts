@@ -1,6 +1,6 @@
 import mixpanel from 'mixpanel-browser'
 
-import trackWidgetSubmit from '~/services/getSiteControl/trackWidgetSubmit'
+import { trackWidgetSubmit } from '~/services/getSiteControl/trackWidgetSubmit'
 
 const mockedWidgetId = 123456
 const mockedWidgetData = {
@@ -23,7 +23,7 @@ describe('trackWidgetSubmit should work properly', () => {
     .mockImplementation(jest.fn())
 
   it('should set onsubmit function', () => {
-    const eventName = 'Widget submitted'
+    const eventName = 'Widget Submitted'
     trackWidgetSubmit(mockedWidgetId, mockedWidgetData)
     expect(mixpanelSpy).toHaveBeenCalledWith(eventName, formattedWidgetData)
   })
@@ -42,7 +42,7 @@ describe('trackWidgetSubmit should work properly', () => {
 
     trackWidgetSubmit(mockedWidgetId, mockedWidgetData)
     expect(mockLog).toHaveBeenCalledWith(
-      'Erro ao capturar submissao do widget do gsc no mixpanel'
+      'Erro ao capturar submissão do widget do gsc no mixpanel'
     )
   })
 })
