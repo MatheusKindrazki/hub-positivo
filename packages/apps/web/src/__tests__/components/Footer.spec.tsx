@@ -56,16 +56,16 @@ const footerData = [
 ]
 
 describe('FooterItem renders without crashing', () => {
-  it('Should render /name/ on screen with a href link', () => {
+  it('Should render /name/ on screen with a href link', async () => {
     const mockedData = { name: 'item name', href: 'item_href', active: true }
-    const { queryByText } = render(
+    const { getByTestId } = render(
       <List>
         <FooterItem data={mockedData} />
       </List>
     )
-    const element = queryByText(mockedData.name)
-    expect(element).not.toBeNull()
-    expect(element).toHaveAttribute('href', mockedData.href)
+
+    expect(getByTestId('footer-link')).toBeInTheDocument()
+    expect(getByTestId('footer-link')).toHaveAttribute('href', mockedData.href)
   })
 
   it('Should render /name/ on screen without a href link', () => {

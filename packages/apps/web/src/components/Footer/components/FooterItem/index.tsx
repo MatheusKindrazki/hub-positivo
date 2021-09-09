@@ -19,6 +19,7 @@ const FooterItem: React.FC<ItemProps> = ({ data }) => {
       {data.href && data.active && (
         <ListItem textColor="gray.600" fontWeight="400" mb="2">
           <Link
+            data-testid="footer-link"
             as={data.internalPage ? RLink : undefined}
             to={data.href}
             display="inline-block"
