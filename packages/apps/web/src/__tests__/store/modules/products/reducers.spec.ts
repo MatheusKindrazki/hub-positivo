@@ -3,12 +3,12 @@ import {
   productRequest,
   productSuccess,
   productIntegration,
-  productFailure,
-  setFrameURL
+  productFailure
 } from '~/store/modules/products/actions'
 import { signOut, withoutAccess } from '~/store/modules/auth/actions'
 
 jest.mock('~/services/mixpanel/clearAll')
+
 describe('authProduct reducer', () => {
   it('returns the initial state when an action type is not passed', () => {
     const result = products(undefined, { type: null })
@@ -64,19 +64,6 @@ describe('authProduct reducer', () => {
 
   it('should set loading to true and reset data on without access action', () => {
     expect(products(INITIAL_STATE, withoutAccess())).toEqual({
-      loading: true,
-      data: []
-    })
-  })
-
-  it('should set frameURL and frame name on frame URL action', () => {
-    const payload = {
-      url: 'http://produto/teste.com',
-      name: 'Produto'
-    }
-    expect(products(INITIAL_STATE, setFrameURL(payload))).toEqual({
-      frameName: 'Produto',
-      frameUrl: 'http://produto/teste.com',
       loading: true,
       data: []
     })
