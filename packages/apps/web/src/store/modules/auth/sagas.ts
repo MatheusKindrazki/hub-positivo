@@ -165,9 +165,9 @@ export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
 
   const { info: user, school } = store.getState().user
 
-  const { user_reduced } = decode(access_token as string) as any
+  const { sub } = decode(access_token as string) as any
 
-  if (user_reduced?.sub && user?.guid !== user_reduced?.sub) {
+  if (sub && user?.guid !== sub) {
     const sc = school?.label as string
     toast.error(`Você não tem acesso a escola: ${sc}`)
 
