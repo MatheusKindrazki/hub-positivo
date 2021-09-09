@@ -162,12 +162,11 @@ describe('Header component ', () => {
   it('Should redirect to `/` when hub logo is clicked', () => {
     const spyPush = jest.spyOn(history, 'push')
 
-    const { getAllByRole, debug } = setup({
+    const { getAllByRole } = setup({
       noBreakAccess: { nobreak: false },
       auth: { signed: true }
     })
     const [, hubLogoButton] = getAllByRole('button')
-    debug()
     fireEvent.click(hubLogoButton)
 
     expect(spyPush).toHaveBeenCalledWith('/')

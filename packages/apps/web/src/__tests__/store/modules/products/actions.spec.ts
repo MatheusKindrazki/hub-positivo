@@ -2,8 +2,8 @@ import {
   productRequest,
   productSuccess,
   productIntegration,
-  productFailure,
-  setFrameURL
+  productFailure
+  // setFrameURL
 } from '~/store/modules/products/actions'
 
 const mockedTypes = {
@@ -69,18 +69,5 @@ describe('products action creators should work properly', () => {
   it('should create an failure action on productFailure', () => {
     const expectedAction = { type: mockedTypes.PRODUCT_FAILURE }
     expect(productFailure()).toEqual(expectedAction)
-  })
-
-  it('should create an frame url action on setFrameURL', () => {
-    const payload = {
-      url: 'http://produto/teste.com',
-      name: 'Produto'
-    }
-
-    const expectedAction = {
-      type: mockedTypes.FRAME_URL,
-      payload
-    }
-    expect(setFrameURL(payload)).toEqual(expectedAction)
   })
 })
