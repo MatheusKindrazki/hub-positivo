@@ -10,7 +10,7 @@ import * as service from '~/services/getCardBySlug'
 import useCardInformation from '~/hooks/useCardInformation'
 
 const mockedState = {
-  profile: { guid: 'th1s-1s-4-f4k3-gu1d' },
+  profile: { guid: 'PROFESSOR' },
   educationalStage: { level: 'fake-level' }
 }
 
@@ -57,6 +57,7 @@ describe('useCardInformation should work as expected', () => {
   }
 
   it('useCardInformation gets card slug and dispatches preAuth action', async () => {
+    jest.useFakeTimers()
     jest.spyOn(router, 'useParams').mockReturnValue({
       solution: 'solution',
       subpath: 'subpath'
@@ -65,18 +66,55 @@ describe('useCardInformation should work as expected', () => {
       .spyOn(service, 'getCardBySlug')
       .mockImplementation(() => Promise.resolve<any>(cardSlug))
 
-    renderHook(() => useCardInformation())
+    await renderHook(async () => useCardInformation())
 
-    expect(spyGetCardBySlug).toHaveBeenCalledWith({
-      nivelEnsino: 'fake-level',
-      perfil: 'th1s-1s-4-f4k3-gu1d',
-      slug: 'solution'
-    })
+    jest.runAllTimers()
+
+    await waitFor(() =>
+      expect(spyGetCardBySlug).toHaveBeenCalledWith({
+        nivelEnsino: 'fake-level',
+        perfil: 'PROFESSOR',
+        slug: 'solution'
+      })
+    )
     await waitFor(() =>
       expect(spyDispatch).toHaveBeenCalledWith(dispatchedAction)
     )
   })
 
+  it('useCardInformation gets card slug and dispatches preAuth action when guid is not /ALUNO/ or /PROFESSOR/', async () => {
+    jest.useFakeTimers()
+    jest.spyOn(router, 'useParams').mockReturnValue({
+      solution: 'solution',
+      subpath: 'subpath'
+    })
+
+    jest.spyOn(store, 'getState').mockImplementation(
+      () =>
+        ({
+          profile: { guid: 'none' },
+          educationalStage: { level: 'fake-level' }
+        } as any)
+    )
+    const spyGetCardBySlug = jest
+      .spyOn(service, 'getCardBySlug')
+      .mockImplementation(() => Promise.resolve<any>(cardSlug))
+
+    await renderHook(async () => useCardInformation())
+
+    jest.runAllTimers()
+
+    await waitFor(() =>
+      expect(spyGetCardBySlug).toHaveBeenCalledWith({
+        nivelEnsino: '',
+        perfil: 'none',
+        slug: 'solution'
+      })
+    )
+    await waitFor(() =>
+      expect(spyDispatch).toHaveBeenCalledWith(dispatchedAction)
+    )
+  })
   it('if getCardBySlug returns no card user should be redirected', async () => {
     jest.spyOn(router, 'useParams').mockReturnValue({
       solution: 'solution',
