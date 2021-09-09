@@ -3,6 +3,7 @@ import { runSaga } from 'redux-saga'
 
 import * as profileActions from '~/store/modules/profile/actions'
 import { productRequest } from '~/store/modules/products/actions'
+import { noBreakAccessEnable } from '~/store/modules/noBreakAccess/actions'
 import * as globalActions from '~/store/modules/global/actions'
 import * as types from '~/store/modules/auth/types'
 import {
@@ -49,6 +50,7 @@ describe('Sagas of authentication history', () => {
   describe('sign in', () => {
     const setup = async (data: {
       ok?: boolean
+      status?: number
       data?: object | []
       redirect?: string
     }) => {
@@ -114,7 +116,7 @@ describe('Sagas of authentication history', () => {
     it('If the Return of the API is flawed for some reason, the user is warned and the login will be rejected', async () => {
       const { messageMock } = await setup({ ok: false })
 
-      await expect(eem.EEMConnectPost).toBeCalledWith({
+      expect(eem.EEMConnectPost).toBeCalledWith({
         data: {
           grant_type: 'password',
           ...userMockSignIn
@@ -128,6 +130,30 @@ describe('Sagas of authentication history', () => {
       expect(messageMock).toBeCalledWith(
         'Usuário ou senha inválidos, verifique seus dados e tente novamente!'
       )
+    })
+
+    it('should enable noobreak when the api returns an error status', async () => {
+      const { historyMock } = await setup({
+        ok: false,
+        status: 500
+      })
+
+      expect(eem.EEMConnectPost).toBeCalledWith({
+        data: {
+          grant_type: 'password',
+          ...userMockSignIn
+        },
+        endpoint: 'connect/token'
+      })
+
+      // Verifica inicialização do nobreak
+      expect(dispatchedActions).toContainEqual(
+        noBreakAccessEnable({ user_login: 'johndoe' })
+      )
+
+      expect(historyMock).toHaveBeenCalledWith('/acesso-alternativo')
+
+      expect(dispatchedActions).toContainEqual(authActions.signInFailure())
     })
 
     it('Should generate with a redirect query in the URL when passing the Redirect parameter in the login', async () => {
@@ -200,11 +226,10 @@ describe('Sagas of authentication history', () => {
 
     it('Should signOut the user if the ID from the reduced token is different from the user ID', async () => {
       const { messageMock } = await setup({ guid: 'invalid-guid' })
-
-      expect(dispatchedActions).toContainObject(authActions.signOut())
       expect(messageMock).toBeCalledWith(
         'Você não tem acesso a escola: Escola Positivo'
       )
+      expect(dispatchedActions).toContainObject(authActions.signOut())
     })
 
     it('Should set the user as authenticated when receiving the redirect parameter', async () => {
@@ -235,7 +260,7 @@ describe('Sagas of authentication history', () => {
       const mockedAction = {
         type: 'persist/REHYDRATE',
         payload: {
-          auth: { signed: false }
+          auth: { signed: false, token: 'token' }
         }
       } as Payload<types.RehydrateAuth>
 
