@@ -51,14 +51,7 @@ describe('Expired Token page should work properly', () => {
     return { ...utils }
   }
 
-  it('Should redirect to `/login` when `sendViewToken` doesn`t exist or it`s false', () => {
-    setup({})
-
-    expect(push).toHaveBeenCalledTimes(1)
-    expect(push).toHaveBeenCalledWith('/login')
-  })
-
-  it('Should render the correcly elements on screen', () => {
+  it('Should render the correct elements on screen', () => {
     const { queryByText } = setup(CUSTOM_STATE)
 
     const failLinkTitle = queryByText(/O link não pôde ser enviado/i)
