@@ -39,7 +39,7 @@ export function authProductRequest(
   }
 }
 
-export function authProductSuccess(data?: AuthSuccess): Action {
+export function authProductSuccess(data: AuthSuccess): Action {
   return {
     type: Actions.AUTH_PRODUCT_SUCCESS,
     payload: data

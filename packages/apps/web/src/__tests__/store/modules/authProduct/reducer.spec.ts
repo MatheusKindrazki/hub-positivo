@@ -26,8 +26,23 @@ describe('authProduct reducer', () => {
   })
 
   it('loading is set to false on success action', () => {
-    const result = authProduct(INITIAL_STATE, authProductSuccess())
-    expect(result).toEqual({ loading: false })
+    const result = authProduct(
+      INITIAL_STATE,
+      authProductSuccess({
+        productData: { element_id: 'element_id', scripts: [] },
+        productName: 'product_name',
+        mcf: false
+      })
+    )
+    expect(result).toEqual({
+      loading: false,
+      mcf: false,
+      productData: {
+        element_id: 'element_id',
+        scripts: []
+      },
+      productName: 'product_name'
+    })
   })
 
   it('loading is set to false on failure action', () => {
