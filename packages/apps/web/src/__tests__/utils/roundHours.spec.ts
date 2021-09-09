@@ -14,7 +14,7 @@ describe('roundHours util', () => {
       zeroSeconds
     ).getTime()
 
-    expect(roundHours({ milliseconds: date }).getTime()).toEqual(
+    expect(roundHours({ milliseconds: date }).milliseconds).toEqual(
       dateWithRoundedHour
     )
   })
