@@ -185,6 +185,20 @@ describe('Action of authentication history', () => {
     expect(resolved).toEqual(mockedType)
   })
 
+  it('Should resetLoading is called', () => {
+    const spy = jest.spyOn(authActions, 'resetLoading')
+
+    const mockedType = {
+      type: '@auth/RESET_LOADING'
+    }
+
+    const resolved = authActions.resetLoading()
+
+    expect(spy).toBeCalled()
+
+    expect(resolved).toEqual(mockedType)
+  })
+
   it('Should withoutAccess is called', () => {
     const spy = jest.spyOn(authActions, 'withoutAccess')
 
