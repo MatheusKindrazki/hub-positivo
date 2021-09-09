@@ -1,12 +1,22 @@
 import mixpanel from 'mixpanel-browser'
 
 import history from '~/services/history'
-
 import '~/services/mixpanel/pageView'
 
-jest.mock('mixpanel-browser', () => ({
-  track: jest.fn()
-}))
+jest.mock('mixpanel-browser', () => {
+  const rest = jest.requireActual('mixpanel-browser')
+  return {
+    ...rest,
+    track: jest
+      .fn()
+      .mockImplementationOnce(jest.fn())
+      .mockImplementationOnce(jest.fn())
+      .mockImplementationOnce(() => {
+        throw new Error('Erro')
+      })
+  }
+})
+
 describe('testing if mixpanel page viewed functions work properly', () => {
   const pageViewedEvent = 'Page Viewed'
 
@@ -45,14 +55,14 @@ describe('testing if mixpanel page viewed functions work properly', () => {
     jest.clearAllMocks()
   })
 
-  it.skip('MixpanelPageView should dispatch Page Viewed event when application is loaded', () => {
-    const { changedHubTitleEvent, loadWindow, documentLocationInfos } =
-      pageViewedTestUtils()
-    loadWindow()
-
+  it('MixpanelPageView should dispatch Page Viewed event when application is loaded', async () => {
+    jest.useFakeTimers()
+    const { loadWindow, documentLocationInfos } = pageViewedTestUtils()
     const title = 'first title'
+    document.title = title
 
-    document.dispatchEvent(changedHubTitleEvent(title))
+    loadWindow()
+    await jest.runAllTimers()
 
     expect(track).toHaveBeenCalledWith(
       pageViewedEvent,
@@ -60,27 +70,25 @@ describe('testing if mixpanel page viewed functions work properly', () => {
     )
   })
 
-  it.skip('MixpanelPageView should dispatch Page Viewed event when history href is changed', () => {
-    const {
-      changedHubTitleEvent,
-      changeHistory,
-      documentLocationInfos,
-      loadWindow
-    } = pageViewedTestUtils()
-    loadWindow()
+  it('MixpanelPageView should dispatch Page Viewed event when history href is changed', async () => {
+    jest.useFakeTimers()
 
+    const { changeHistory, documentLocationInfos } = pageViewedTestUtils()
+    document.title = 'title'
     changeHistory('/login')
 
-    document.dispatchEvent(changedHubTitleEvent(undefined))
+    await jest.runAllTimers()
 
     expect(track).toHaveBeenCalledWith(
       pageViewedEvent,
-      documentLocationInfos('')
+      documentLocationInfos('title')
     )
   })
 
-  it.skip('Show an error in the console if MixPanel is not instantiated', () => {
-    const { changedHubTitleEvent, loadWindow } = pageViewedTestUtils()
+  it('Show an error in the console if MixPanel is not instantiated', async () => {
+    jest.useFakeTimers()
+
+    const { changeHistory } = pageViewedTestUtils()
 
     const mockLog = jest.fn()
 
@@ -88,15 +96,11 @@ describe('testing if mixpanel page viewed functions work properly', () => {
       error: mockLog
     })
 
-    jest.spyOn(mixpanel, 'track').mockImplementation(() => {
-      throw new Error('Erro')
-    })
-
-    loadWindow()
-
     const title = 'first title'
+    document.title = title
 
-    document.dispatchEvent(changedHubTitleEvent(title))
+    changeHistory('/')
+    await jest.runAllTimers()
 
     expect(mockLog).toBeCalledWith('Erro ao capturar page view no mixpanel')
   })
