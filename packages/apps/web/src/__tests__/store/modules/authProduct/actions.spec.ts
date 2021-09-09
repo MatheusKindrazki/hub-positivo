@@ -47,8 +47,21 @@ describe('authProduct action creators should work properly', () => {
   })
 
   it('should create an success action on authProductSuccess', () => {
-    const expectedAction = { type: mockedTypes.AUTH_PRODUCT_SUCCESS }
-    expect(authProductSuccess()).toEqual(expectedAction)
+    const expectedAction = {
+      type: mockedTypes.AUTH_PRODUCT_SUCCESS,
+      payload: {
+        productData: { element_id: 'element_id', scripts: [] },
+        productName: 'product_name',
+        mcf: false
+      }
+    }
+    expect(
+      authProductSuccess({
+        productData: { element_id: 'element_id', scripts: [] },
+        productName: 'product_name',
+        mcf: false
+      })
+    ).toEqual(expectedAction)
   })
 
   it('should create an failure action on authProductFailure', () => {
