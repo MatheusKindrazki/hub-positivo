@@ -12,6 +12,14 @@ import FooterItem from '../../components/Footer/components/FooterItem'
 import FooterColumn from '../../components/Footer/components/FooterColumn'
 import Footer from '../../components/Footer/'
 
+jest.mock('react-router-dom', () => {
+  const rest = jest.requireActual('react-router-dom')
+  return {
+    ...rest,
+    Link: 'span'
+  }
+})
+
 const footerData = [
   {
     title: 'suporte',
@@ -68,19 +76,40 @@ describe('FooterItem renders without crashing', () => {
     expect(getByTestId('footer-link')).toHaveAttribute('href', mockedData.href)
   })
 
-  it('Should render /name/ on screen without a href link', () => {
-    const mockedData = { name: 'item name', active: true }
-    const { queryByText } = render(
+  it('Should render /name/ on screen with a href link and internalPage is true', async () => {
+    const mockedData = {
+      name: 'item name',
+      href: 'item_href',
+      active: true,
+      internalPage: true
+    }
+    const { getByTestId } = render(
       <List>
         <FooterItem data={mockedData} />
       </List>
     )
-    const element = queryByText(mockedData.name)
+
+    expect(getByTestId('footer-link')).toBeInTheDocument()
+    expect(getByTestId('footer-link')).toHaveAttribute('href', mockedData.href)
+  })
+
+  it('Should render /name/ on screen without a href link', () => {
+    const { queryByText } = render(
+      <List>
+        <FooterItem
+          data={{
+            name: 'item name',
+            active: true
+          }}
+        />
+      </List>
+    )
+    const element = queryByText('item name')
     expect(element).not.toBeNull()
     expect(element).not.toHaveAttribute('href')
   })
 
-  it('Shouldnt render item with no props', () => {
+  it('Shouldn`t render item with no props', () => {
     const mockedData = {}
     const { queryByRole } = render(
       <List>
