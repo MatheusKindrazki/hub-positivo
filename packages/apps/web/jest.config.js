@@ -8,7 +8,7 @@ module.exports = {
   moduleNameMapper: {
     '~(.*)$': '<rootDir>/src/$1',
     '\\.(css|less)$': '<rootDir>/src/__mocks__/styleMock.ts',
-    "\\.(jpeg|png)$": "<rootDir>/src/__mocks__/styleMock.ts"
+    "\\.(jpeg|png|svg)$": "<rootDir>/src/__mocks__/styleMock.ts"
   },
   transform: {
     '^.+\\.svg$': 'jest-svg-transformer'
