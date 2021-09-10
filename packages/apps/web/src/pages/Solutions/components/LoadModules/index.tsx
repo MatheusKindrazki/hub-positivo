@@ -30,14 +30,19 @@ const LoadModules: React.FC<ModulesProps> = ({
   if (type === 'css') {
     return (
       <Helmet>
-        <link id={moduleId} rel="stylesheet" href={`${url}?hash=${hash}`} />
+        <link
+          id={moduleId}
+          rel="stylesheet"
+          href={`${url}?hash=${hash}`}
+          data-testid="loadModules-css-link"
+        />
       </Helmet>
     )
   }
 
   return (
     <Script
-      attributes={{ id: moduleId }}
+      attributes={{ id: moduleId, 'data-testid': 'loadModules-script' }}
       onLoad={handleLoad}
       url={`${url}?hash=${hash}`}
     />
