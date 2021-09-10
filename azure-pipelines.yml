@@ -19,32 +19,121 @@ variables:
     stageName: hml
 
 pool:
-  vmImage: ubuntu-16.04
+  vmImage: ubuntu-latest
 
 jobs:
 - job: build_and_generate_artifact
   displayName: "Building and generating the artifact"
 
   steps:
-
-  - task: SonarCloudPrepare@1
+  - task: DownloadSecureFile@1
+    displayName: "Download env file"
+    name: envFile
     inputs:
-      SonarCloud: 'hub-sonarcloud'
-      organization: 'editorati'
-      scannerMode: 'CLI'
-      configMode: 'manual'
-      cliProjectKey: 'editorati_HubDigitalFront'
-      cliProjectName: 'HubDigitalFront'
-      cliSources: '.'
+      secureFile: 'env-hub-$(stageName)'
+
+  - script: |
+      cp $(envFile.secureFilePath) ./packages/apps/web/.env
+      cp $(envFile.secureFilePath) ./packages/apps/easyauth/.env
+    displayName: "Copy env file"
+
+  - task: NodeTool@0
+    displayName: Installing node 14+
+    inputs:
+      versionSpec: 14.x
+
+  - task: YarnInstaller@3
+    displayName: Configuring yarn in its recent version
+
+  - task: Cache@2
+    inputs:
+      key: yarn | $(Agent.OS) | yarn.lock | node_modules
+      path: $(YARN_CACHE_FOLDER)
+      restoreKeys: |
+        yarn | $(Agent.OS)
+        yarn
+    displayName: Cache Yarn packages
+
+  - script: yarn --frozen-lockfile
+    displayName: Installing project dependencies
+
+  - task: Yarn@3
+    displayName: "Run tests"
+    inputs:
+      arguments: 'test:coverage'
+
+  - task: Yarn@3
+    displayName: Build the project DEV/MCF
+    condition: eq(variables['Build.SourceBranchName'], 'develop')
+    inputs:
+      arguments: build:easyauth
+
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: '$(System.DefaultWorkingDirectory)/packages/apps/web/build'
+      contents: |
+        coverage/**
+        test-report.xml
+      targetFolder: $(Build.ArtifactStagingDirectory)/dist
+    displayName: 'Copy dist'
+
+  - task: PublishPipelineArtifact@1
+    displayName: "Upload Sonar files"
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)/sonar'
+      artifact: 'coverage'
+      publishLocation: 'pipeline'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)/dist'
+      artifactName: dist
+    displayName: 'Publish dist artifact'
+
+- job: sonar_scan
+  dependsOn: build_and_generate_artifact
+  displayName: "Sonar Scanner"
+  steps:
+    - task: DownloadBuildArtifacts@1
+      displayName: "Download Project Coverage"
+      inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        artifactName: 'coverage'
+        downloadPath: '$(System.DefaultWorkingDirectory)'
+    
+    - task: SonarCloudPrepare@1
+    displayName: SonarCloud Prepare
+    inputs:
+      SonarCloud: "SonarCloud"
+      organization: "editorati"
+      scannerMode: "CLI"
+      configMode: "manual"
+      cliProjectKey: "editorati_HubDigitalFront"
+      cliProjectName: "HubDigitalFront"
+      cliSources: "."
       extraProperties: |
-        sonar.sources=packages/apps/web/src/components,packages/apps/web/src/pages,packages/apps/web/src/services,packages/apps/web/src/store/modules,packages/apps/web/src/utils,packages/apps/web/src/validators,packages/apps/web/src/middlewares,packages/apps/web/src/hooks,packages/common/components
-        sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,
-        sonar.coverage.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,**/*.js
+        sonar.sources=src/pages,src/components,src/hooks,src/routes,src/layouts,src/services,src/utils,src/validators,src/store/modules
+        sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/__mocks__/*
+        sonar.coverage.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/__mocks__/*
         sonar.javascript.lcov.reportPaths=coverage/lcov.info
         sonar.testExecutionReportPaths=test-report.xml
-        sonar.test.inclusions=packages/apps/web/src/**/*.spec.tsx,packages/apps/web/src/**/*.spec.ts,packages/common/**/*.spec.tsx,packages/apps/common/**/*.spec.ts
+        sonar.test.inclusions=src/**/*.spec.tsx,src/**/*.spec.ts
 
-  - task: DownloadSecureFile@1
+  - task: SonarCloudAnalyze@1
+    displayName: SonarCloud Analyze
+
+  - task: SonarCloudPublish@1
+    displayName: SonarCloud Publish
+    inputs:
+      pollingTimeoutSec: "300"
+
+  - job: generate_release
+    dependsOn: build_and_generate_artifact
+    displayName: "Generating the release"
+    condition: eq(variables['Build.SourceBranchName'], 'main')
+    steps:
+      - task: DownloadSecureFile@1
     displayName: "Download env file"
     name: envFile
     inputs:
@@ -84,26 +173,4 @@ jobs:
       node ./scripts/update-version.js
     displayName: Updating production version
 
-  - task: Yarn@3
-    displayName: Build the project DEV/MCF
-    condition: eq(variables['Build.SourceBranchName'], 'develop')
-    inputs:
-      arguments: build:easyauth
 
-  - task: Yarn@3
-    displayName: Build the project
-    inputs:
-      arguments: build:web
-
-  - task: CopyFiles@2
-    inputs:
-      sourceFolder: '$(System.DefaultWorkingDirectory)/packages/apps/web/build'
-      contents: '**'
-      targetFolder: $(Build.ArtifactStagingDirectory)/dist
-    displayName: 'Copy dist'
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)/dist'
-      artifactName: dist
-    displayName: 'Publish dist artifact'
