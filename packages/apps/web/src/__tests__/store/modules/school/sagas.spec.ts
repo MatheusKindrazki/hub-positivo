@@ -45,7 +45,7 @@ describe('school sagas work properly', () => {
     dispatchedActions = store.getActions()
   })
 
-  it('should dispatch a withoutAccess action and early return a user without the correct level', async () => {
+  it('should set loading, call api and dispatch success action with correct payload', async () => {
     await runSaga(store, getSchools).toPromise()
 
     expect(dispatchedActions).toContainObject(loading(true))
@@ -56,7 +56,7 @@ describe('school sagas work properly', () => {
     )
   })
 
-  it('should early return when theres no user or school info', async () => {
+  it('should early return when theres no school info', async () => {
     spyApiGet.mockImplementation(() =>
       Promise.resolve<any>({ ok: true, data: undefined })
     )
