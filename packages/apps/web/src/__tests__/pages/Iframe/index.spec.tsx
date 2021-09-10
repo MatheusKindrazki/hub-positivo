@@ -4,17 +4,21 @@ import React from 'react'
 
 import { store } from '~/store'
 
-import { CustomRenderOptions, render } from '@psdhub/test-utils'
+import {
+  CustomRenderOptions,
+  render,
+  waitFor,
+  fireEvent
+} from '@psdhub/test-utils'
 
-import Iframe from '~/pages/Solutions/'
+import Solution from '~/pages/Solutions/'
 
 import usePostMessage from '~/hooks/usePostMessage'
+import * as hook from '~/hooks/useCardInformation'
+
+jest.mock('~/hooks/useCardInformation', () => jest.fn())
 
 const CUSTOM_STATE: CustomRenderOptions['CUSTOM_STATE'] = {
-  products: {
-    frameUrl: 'http://test-url.com',
-    frameName: 'teste'
-  },
   authProduct: {
     productData: {
       element_id: 'element_id',
@@ -33,30 +37,34 @@ jest.mock('~/hooks/usePostMessage', () => ({
 describe('iframe should work as expected', () => {
   afterEach(jest.clearAllMocks)
 
-  it('should call postMessage Hook, set document title, and render a dynamic iframe', () => {
-    const wrapper = render(<Iframe />, {
-      reducers: ['products', 'authProduct'],
+  it('should call postMessage Hook, set document title, and render a dynamic iframe', async () => {
+    const wrapper = render(<Solution />, {
+      reducers: ['authProduct'],
       store,
       CUSTOM_STATE
     })
 
+    const iframe = wrapper.getByTestId('hub-solution-iframe')
+    iframe.onload = jest.fn()
+    fireEvent.load(iframe)
+
+    expect(iframe.onload).toHaveBeenCalled()
     expect(usePostMessage).toHaveBeenCalled()
     expect(document.title).toStrictEqual('product_name - Hub')
     expect(wrapper.getByTestId('hub-solution-iframe')).toBeInTheDocument()
   })
 
-  it('should call getCardInformation and set generic title when no frameUrl and no product name are provided', () => {
-    // removendo frameUrl do estado de produtos
-    CUSTOM_STATE.products = undefined as any
+  it('should call getCardInformation and set generic title when there are not authProduct', async () => {
+    const spyGetCardInformation = jest.spyOn(hook, 'default')
 
-    const wrapper = render(<Iframe />, {
-      reducers: ['products', 'authProduct'],
+    render(<Solution />, {
+      reducers: ['authProduct'],
       store,
-      CUSTOM_STATE
+      CUSTOM_STATE: {
+        authProduct: {}
+      }
     })
-
-    expect(usePostMessage).toHaveBeenCalled()
-    expect(document.title).toStrictEqual('product_name - Hub')
-    expect(wrapper.getByTestId('hub-solution-iframe')).toBeInTheDocument()
+    await waitFor(() => expect(spyGetCardInformation).toHaveBeenCalled())
+    expect(document.title).toStrictEqual('Carregando Solução - Hub')
   })
 })
