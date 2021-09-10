@@ -4,6 +4,8 @@ import { waitFor } from '@testing-library/react'
 import { RefreshTokenApi } from '~/store/modules/auth/types'
 import { store } from '~/store'
 
+import { getInstance } from '@psdhub/api'
+
 import history from '~/services/history'
 import * as api from '~/services/eemConnect'
 
@@ -72,10 +74,13 @@ jest.mock('~/store', () => ({
 jest.mock('~/services/history', () => ({
   push: jest.fn()
 }))
+
 jest.mock('~/services/eemConnect', () => ({
   EEMConnectPost: jest.fn(),
   EEMConnectGET: jest.fn()
 }))
+
+jest.mock('mixpanel-browser')
 
 describe('RefreshToken should work properly', () => {
   beforeEach(() => {
@@ -115,6 +120,43 @@ describe('RefreshToken should work properly', () => {
 
     await waitFor(() => {
       expect(spyDispatch).toHaveBeenNthCalledWith(1, refreshTokenAction)
+      expect(spyDispatch).toHaveBeenNthCalledWith(2, refreshTokenSuccessAction)
+    })
+  })
+
+  it('should call setHeaders with {"Authorization": "Bearer "} when reduced_token is null', async () => {
+    const refreshTokenSuccessAction = {
+      payload: {
+        exp: undefined,
+        refresh_token: 'reduced-token-test',
+        token: null
+      },
+      type: '@auth/REFRESH_TOKEN_SUCCESS'
+    }
+
+    jest.spyOn(store, 'getState').mockImplementation(
+      () =>
+        ({
+          auth: {
+            exp: 1,
+            refresh_token: 'refresh-token-test',
+            reduced_token: null
+          },
+          global: {
+            enableMiddlewareRefreshToken: true
+          }
+        } as any)
+    )
+
+    jest.spyOn(api, 'EEMConnectPost').mockResolvedValue(mockedOkApiResponse)
+    const spyDispatch = jest.spyOn(store, 'dispatch')
+
+    const spySetHeaders = jest.spyOn(getInstance('default'), 'setHeaders')
+
+    refreshToken()
+
+    await waitFor(() => {
+      expect(spySetHeaders).toHaveBeenCalledWith({ Authorization: 'Bearer ' })
       expect(spyDispatch).toHaveBeenNthCalledWith(2, refreshTokenSuccessAction)
     })
   })
