@@ -85,6 +85,18 @@ describe('testing if mixpanel page viewed functions work properly', () => {
     )
   })
 
+  it('MixpanelPageView should early return when current title is at ignore list', async () => {
+    jest.useFakeTimers()
+
+    const { changeHistory } = pageViewedTestUtils()
+    document.title = 'Carregando Solução'
+    changeHistory('/login')
+
+    await jest.runAllTimers()
+
+    expect(track).not.toHaveBeenCalled()
+  })
+
   it('Show an error in the console if MixPanel is not instantiated', async () => {
     jest.useFakeTimers()
 
