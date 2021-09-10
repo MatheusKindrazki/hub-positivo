@@ -35,7 +35,7 @@ const listenerHubTitle = async () => {
 
   const eventProperties: PageViewed = {
     page_path: pathname,
-    page_title: document.title || '',
+    page_title: document.title,
     page_url: document.URL
   }
 
