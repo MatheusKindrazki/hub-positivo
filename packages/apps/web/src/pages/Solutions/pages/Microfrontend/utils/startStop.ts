@@ -1,11 +1,11 @@
 import { delay } from '@psdhub/common/utils'
 
+import { voidFunction } from '~/utils/voidFunction'
 declare global {
   interface Window {
     loadedMicroFrontend: boolean
   }
 }
-
 async function startApp(): Promise<void> {
   if (!window.loadMicrofrontend) {
     await delay(800)
@@ -28,8 +28,6 @@ async function stopApp(): Promise<void> {
   window?.unLoadMicrofrontend()
 
   await delay(800)
-
-  const voidFunction = () => {}
 
   window.loadMicrofrontend = voidFunction
   window.unLoadMicrofrontend = voidFunction
