@@ -34,7 +34,7 @@ const UploadMessage: React.FC<UploadMessageProps> = ({
       )}
       {preview?.url && (
         <Stack mt="12" w="100%" flexDir="row" justifyContent="space-between">
-          {preview?.name && <Text>{preview?.name}</Text>}
+          {preview.name && <Text>{preview.name}</Text>}
           <Text
             cursor="pointer"
             w="14"
