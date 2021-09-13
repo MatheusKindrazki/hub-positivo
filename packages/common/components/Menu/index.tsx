@@ -59,6 +59,7 @@ const MenuHub: React.FC<MenuHubProps> = ({
         {title}
         {!!rightIcon && (
           <Box
+            data-testid="menu-right-icon"
             d="inline"
             p="0"
             m="auto"
