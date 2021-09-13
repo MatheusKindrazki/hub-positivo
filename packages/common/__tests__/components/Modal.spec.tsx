@@ -13,7 +13,7 @@ const modalProps = {
 }
 
 describe('Modal component should work properly', () => {
-  const wrapper = render(<Modal {...modalProps} />)
+  const wrapper = render(<Modal {...modalProps} maxW={'1rem'} />)
   const { queryByText } = wrapper
   it('Should render the children on screen with correctly props', () => {
     const children = queryByText(modalProps.children)
