@@ -63,6 +63,18 @@ describe('EEMConnectPost should work properly', () => {
     )
   })
 
+  it('EEMConnectPost should set headers then send a post request when type is info', () => {
+    const stringfiedData = qs.stringify(mockedPostData.data)
+
+    EEMConnectPost({ ...mockedPostData, type: 'info' })
+
+    expect(mockedSetHeaders).toHaveBeenCalled()
+    expect(mockedPost).toHaveBeenCalledWith(
+      mockedPostData.endpoint,
+      stringfiedData
+    )
+  })
+
   it('EEMConnectGET should send a get request', async () => {
     const { endpoint, data, token } = mockedGetData
     const mockedHeaders = { headers: { Authorization: token } }
