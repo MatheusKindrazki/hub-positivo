@@ -44,6 +44,11 @@ const MicrofrontendSolution: React.FC<MicrofrontendProps> = ({
   useEffect(() => {
     const quantityScripts = mcf?.scripts?.filter(i => i.type !== 'css')
 
+    console.log(
+      window.loadedMicroFrontend,
+      quantityScripts?.length !== scriptsLength
+    )
+
     if (window.loadedMicroFrontend) return
 
     if (quantityScripts?.length !== scriptsLength) return
