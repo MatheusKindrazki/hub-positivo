@@ -4,6 +4,7 @@ import { getTourRequest } from '~/store/modules/tour/actions'
 import { getProducts } from '~/store/modules/products/sagas'
 import { productSuccess } from '~/store/modules/products/actions'
 import { mhundArvoreIntegration } from '~/store/modules/productIntegrations/actions'
+import { noBreakAccessEnable } from '~/store/modules/noBreakAccess/actions'
 import {
   enableRefreshTokenMiddleware,
   loading
@@ -16,7 +17,10 @@ import * as api from '@psdhub/api'
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 import mockedApiGetResponse from '~/__mocks__/api/fakeProductsApiResponse.json'
 
-jest.mock('@psdhub/api')
+jest.mock('@psdhub/api', () => ({
+  getInstance: jest.fn(),
+  statusCodeCondition: [500]
+}))
 
 describe('testing getProducts saga flow', () => {
   let dispatchedActions = store.getActions()
@@ -85,9 +89,22 @@ describe('testing getProducts saga flow', () => {
     )
   })
 
-  it('should call toast error when api returns with an error', async () => {
+  it('Should call noBreakAccessEnable when statusCodeCondition includes status', async () => {
     mockState.profile = { guid: 'guid' } as any
     const mockedApiErrorResponse = { ok: false, status: 500 }
+    mockedGet.mockImplementation(() =>
+      Promise.resolve<any>(mockedApiErrorResponse)
+    )
+    await runSaga(store, getProducts).toPromise()
+    expect(dispatchedActions).toContainObject(loading(false))
+    expect(dispatchedActions).toContainObject(
+      noBreakAccessEnable({ user_login: '' })
+    )
+  })
+
+  it('should call toast error when api returns with an error', async () => {
+    mockState.profile = { guid: 'guid' } as any
+    const mockedApiErrorResponse = { ok: false, status: 501 }
     mockedGet.mockImplementation(() =>
       Promise.resolve<any>(mockedApiErrorResponse)
     )
