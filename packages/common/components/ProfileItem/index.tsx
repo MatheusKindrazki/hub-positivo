@@ -36,7 +36,7 @@ const ProfileItem: React.FC<CardProps> = ({ icon, title, onClick }) => {
   return (
     <Container onClick={onClick}>
       <div className="round">
-        <IconType color="white" size="24px" />
+        <IconType data-testid="profile-item-icon" color="white" size="24px" />
       </div>
       <p>{title}</p>
     </Container>
