@@ -32,7 +32,7 @@ export default function prepareStaged(data?: ContentResponse[]): Response {
 
   let selectedCiclo = ''
   let setDefaultCiclo = false
-  data?.forEach(e => {
+  data.forEach(e => {
     if (e.ativo) {
       if (!setDefaultCiclo && !!e.serie.ciclo) {
         selectedCiclo = e.serie.ciclo.nome

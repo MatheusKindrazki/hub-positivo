@@ -62,4 +62,8 @@ describe('prepareEducationalStage should work properly', () => {
     const result = prepareEducationalStage()
     expect(result).toStrictEqual(mockedResult)
   })
+
+  it('', () => {
+    expect(1).toBeTruthy()
+  })
 })
