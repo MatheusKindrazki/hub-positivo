@@ -6,7 +6,8 @@ import { loading } from '~/store/modules/global/actions'
 import {
   productSorting,
   authProductGUID,
-  authProductEEM
+  authProductEEM,
+  authMcf
 } from '~/store/modules/authProduct/sagas'
 import {
   authProductFailure,
@@ -19,10 +20,15 @@ import { apiAuthProduct } from '@psdhub/api'
 
 import history from '~/services/history'
 
+import * as orchestrator from '~/orchestrator'
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 
 jest.mock('~/middlewares/refreshToken')
+
+jest.mock('~/orchestrator', () => ({
+  loadScripts: jest.fn(() => 'resMcf')
+}))
 
 const pushSpy = jest.spyOn(history, 'push')
 
@@ -127,6 +133,21 @@ describe('Testing productSorting saga flow', () => {
 
     expect(dispatchedActions).toContainObject(
       authProductRequest(mockedPayload.payload, 'AUTH_PRODUCT_GUID_REQUEST')
+    )
+  })
+
+  it('productSorting should dispatch request action when tipoRenderizacao is `microfronend`', async () => {
+    mockedPayload.payload.tipoRenderizacao = 'microfrontend'
+
+    global.open = jest.fn() as jest.Mock
+    const refreshTokenMock = refreshTokenMiddleware as jest.Mock
+
+    await runSaga(store, productSorting, mockedPayload).toPromise()
+
+    expect(refreshTokenMock).toHaveBeenCalled()
+
+    expect(dispatchedActions).toContainObject(
+      authProductRequest(mockedPayload.payload, 'MICRO_FRONTEND_REQUEST')
     )
   })
 
@@ -286,5 +307,51 @@ describe('testing authProductEEM saga flow', () => {
       '_blank'
     )
     expect(dispatchedActions).toContainObject(loading(true))
+  })
+})
+
+describe('testing authMcf saga flow', async () => {
+  let dispatchedActions = store.getActions()
+  beforeEach(() => {
+    jest.clearAllMocks()
+    jest.clearAllTimers()
+    store.clearActions()
+    dispatchedActions = store.getActions()
+  })
+
+  it('Should dispatch a success auth action', async () => {
+    await runSaga(store, authMcf, mockedPayload).toPromise()
+
+    const spyPush = jest.spyOn(history, 'push')
+
+    expect(dispatchedActions).toStrictEqual([
+      loading(true),
+      authProductSuccess({
+        mcf: true,
+        productData: 'resMcf',
+        productName: 'Produto Teste'
+      }),
+      loading(false)
+    ])
+
+    expect(spyPush).toHaveBeenCalledWith('/solucao/Teste/')
+  })
+
+  it('Should dispatch a toast warn when loadScripts returns an error', async () => {
+    jest.spyOn(orchestrator, 'loadScripts').mockImplementation(() => {
+      throw new Error()
+    })
+
+    const spyPush = jest.spyOn(history, 'push')
+
+    const spyToast = jest.spyOn(toast, 'warn')
+
+    await runSaga(store, authMcf, mockedPayload).toPromise()
+
+    expect(spyToast).toHaveBeenCalledWith(
+      'Estamos com dificuldades para carregar a solução, tente novamente em breve!'
+    )
+
+    expect(spyPush).toHaveBeenCalledWith('/')
   })
 })
