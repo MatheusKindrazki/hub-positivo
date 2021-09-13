@@ -64,8 +64,10 @@ describe('communicatorMCF should work properly', () => {
 })
 
 describe('clearData should work properly', () => {
-  it('', () => {
+  it('Should call clear method', () => {
+    const spyClear = jest.spyOn(helpers.getInformations, 'clear' as never)
+
     clearData()
-    expect(1).toBeTruthy()
+    expect(spyClear).toHaveBeenCalledTimes(1)
   })
 })
