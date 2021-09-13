@@ -15,4 +15,8 @@ module.exports = {
     '<rootDir>/components/**/.tsx',
     '<rootDir>/utils/**/.ts',
   ],
+  coveragePathIgnorePatterns: [
+    "node_modules",
+    "styles.ts"
+]
 }
