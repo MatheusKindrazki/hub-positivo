@@ -4,17 +4,16 @@ import { useSelector } from 'react-redux'
 
 import Drawer, {
   DrawerContent,
-  DrawerFooter,
-  DrawerBody,
-  useDisclosure
+  useDisclosure,
+  DrawerOverlay
 } from '@psdhub/common/components/Drawer'
-import { Text, Select, Stack } from '@psdhub/common/components'
+import { Search, Box } from '@psdhub/common/components'
 
 import { HeaderProvider } from '~/components/Header/context'
 
 import { CollapseContainer } from './styles'
 
-import { MenuHeader, SelectProfile } from '..'
+import { MenuHeader, SelectProfile, MenuFooter } from '..'
 
 const MenuBar: React.FC = () => {
   const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true })
@@ -22,51 +21,59 @@ const MenuBar: React.FC = () => {
 
   return (
     <HeaderProvider>
-      <Drawer isOpen={isOpen} onClose={onClose} placement={'left'}>
-        <DrawerContent borderBottomWidth="1px">
-          <MenuHeader
-            name={user?.name || 'usuário (a)'}
-            closeButton
-            onClose={onClose}
-          />
-          <DrawerBody pb="0" overflow="visible" borderBottomWidth="1px">
-            <SelectProfile />
-          </DrawerBody>
-          <DrawerBody
-            py="0"
+      <Drawer
+        isOpen={isOpen}
+        onClose={onClose}
+        placement={'left'}
+        isFullHeight
+        blockScrollOnMount={false}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <Box borderBottomWidth="1px" borderBottomColor="#C9C9C9">
+            <MenuHeader
+              name={user?.name || 'usuário (a)'}
+              closeButton
+              onClose={onClose}
+            />
+          </Box>
+          <Box
+            px="1rem"
+            py="1rem"
+            overflow="visible"
+            borderBottomWidth="1px"
+            borderBottomColor="#C9C9C9"
+            d="flex"
+            alignItems="center"
+          >
+            <Box w="100%">
+              <SelectProfile />
+            </Box>
+          </Box>
+          <Box
+            py="1rem"
             alignItems="center"
             d="flex"
             borderBottomWidth="1px"
+            borderBottomColor="#C9C9C9"
+            px="1rem"
           >
-            <Select
-              css={{ width: '100%' }}
-              variant="secondary"
-              placeholder="Buscar solução"
-            />
-          </DrawerBody>
-          <DrawerBody pt="0" borderBottomWidth="1px">
+            <Box w="100%">
+              <Search placeholder="Buscar solução" />
+            </Box>
+          </Box>
+          <Box p="1rem">
             <CollapseContainer
               title="Favoritos"
-              id=""
+              id="10"
               cor="blue.500"
               nome="Favoritos"
+              className="teste"
             >
               teste
             </CollapseContainer>
-          </DrawerBody>
-          <DrawerFooter placeContent="start">
-            <Stack spacing="4">
-              <Text variant="ghost" textAlign="left">
-                Atualização da versão
-              </Text>
-              <Text variant="ghost" textAlign="left">
-                Alterar minha senha
-              </Text>
-              <Text variant="ghost" textAlign="left" color="blue.500">
-                Sair
-              </Text>
-            </Stack>
-          </DrawerFooter>
+          </Box>
+          <MenuFooter />
         </DrawerContent>
       </Drawer>
     </HeaderProvider>
