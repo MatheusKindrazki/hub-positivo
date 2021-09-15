@@ -1,11 +1,8 @@
 import React, { useRef, useCallback, useState } from 'react'
 
-import faker from 'faker'
-
 import { store } from '~/store'
 
 import { Activity } from '@psdhub/common/components/Icons'
-import NewSelect from '@psdhub/common/components/Form/NewSelect'
 import {
   Input,
   Form,
@@ -15,11 +12,6 @@ import {
 } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
 import { apiAuthProduct } from '@psdhub/api'
-
-const data = new Array(100).fill({}).map(() => ({
-  value: faker.datatype.uuid(),
-  label: faker.name.firstName()
-}))
 
 const DevHub: React.FC = () => {
   const [loading, setLoading] = useState(false)
@@ -113,30 +105,6 @@ const DevHub: React.FC = () => {
               />
             }
           />
-
-          <NewSelect
-            name="educationalStage"
-            isMulti
-            isSearchable
-            clearable
-            placeholderPersist
-            variant="checkbox"
-            options={data}
-          />
-
-          <NewSelect
-            name="product"
-            isMulti
-            isSearchable
-            clearable
-            defaultValue={['A']}
-            variant="checkbox"
-            options={[
-              { label: 'A', value: 'A' },
-              { label: 'B', value: 'B' }
-            ]}
-          />
-
           <Datepicker name="ola" />
 
           <Button isLoading={loading}>Entrar na solução</Button>

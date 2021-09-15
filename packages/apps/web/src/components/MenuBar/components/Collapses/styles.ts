@@ -8,4 +8,9 @@ export const CollapseContainer = styled(Collapse)`
     color: #3c3c3c;
     font-size: 1.3125rem;
   }
+
+  .collapse {
+    margin: 0;
+    margin-top: 0;
+  }
 `

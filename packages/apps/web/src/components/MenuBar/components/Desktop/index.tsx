@@ -1,38 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
 import Drawer, {
-  DrawerContent,
   useDisclosure,
   DrawerOverlay
 } from '@psdhub/common/components/Drawer'
 import { Search, Box } from '@psdhub/common/components'
 
+import { DrawerContentContainer } from './styles'
+
+import { debounce } from 'ts-debounce'
+
+import { useFilterCards } from '~/hooks/useFilterCards'
+
 import { HeaderProvider } from '~/components/Header/context'
 
-import { CollapseContainer } from './styles'
-
-import { MenuHeader, SelectProfile, MenuFooter } from '..'
+import { MenuHeader, SelectProfile, MenuFooter, CollapseList } from '..'
 
 const MenuBar: React.FC = () => {
   const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true })
   const { info: user } = useSelector((state: Store.State) => state.user)
+  const { data: cards } = useSelector((state: Store.State) => state.products)
+  const [search, setSearchValue] = useState('')
 
+  const filterCards = useFilterCards(cards, search)
+
+  const handleSearch = debounce(value => {
+    setSearchValue(value)
+  }, 550)
   return (
     <HeaderProvider>
       <Drawer
         isOpen={isOpen}
         onClose={onClose}
         placement={'left'}
-        isFullHeight
         blockScrollOnMount={false}
+        isFullHeight={true}
       >
         <DrawerOverlay />
-        <DrawerContent>
-          <Box borderBottomWidth="1px" borderBottomColor="#C9C9C9">
+        <DrawerContentContainer overflowY="scroll">
+          <Box p="1rem" borderBottomWidth="1px" borderBottomColor="#C9C9C9">
             <MenuHeader
-              name={user?.name || 'usuário (a)'}
+              name={user?.name || 'Menu'}
               closeButton
               onClose={onClose}
             />
@@ -52,29 +62,21 @@ const MenuBar: React.FC = () => {
           </Box>
           <Box
             py="1rem"
+            px="1rem"
             alignItems="center"
             d="flex"
             borderBottomWidth="1px"
             borderBottomColor="#C9C9C9"
-            px="1rem"
           >
             <Box w="100%">
-              <Search placeholder="Buscar solução" />
+              <Search placeholder="Buscar solução" onChange={handleSearch} />
             </Box>
           </Box>
-          <Box p="1rem">
-            <CollapseContainer
-              title="Favoritos"
-              id="10"
-              cor="blue.500"
-              nome="Favoritos"
-              className="teste"
-            >
-              teste
-            </CollapseContainer>
+          <Box px="1rem" borderBottomWidth="1px" borderBottomColor="#C9C9C9">
+            <CollapseList cards={filterCards} />
           </Box>
           <MenuFooter />
-        </DrawerContent>
+        </DrawerContentContainer>
       </Drawer>
     </HeaderProvider>
   )

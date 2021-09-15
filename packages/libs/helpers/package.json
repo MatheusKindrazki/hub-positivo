@@ -1,7 +1,6 @@
 {
   "name": "@psdhub/helpers",
   "version": "1.5.3",
-  "version": "1.5.2",
   "author": "matheuskindrazki",
   "description": "Communicator end-to-end between solutions and PSD hub",
   "license": "MIT",
@@ -15,11 +14,9 @@
     "lib"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "postbuild": "javascript-obfuscator ./lib --compact true && node scripts/prepare-publish.js"
+    "postbuild": "javascript-obfuscator ./lib --compact true && node scripts/prepare-publish.js",
     "postinstall": "npm run build",
-    "build": "rollup -c",
-    "postbuild": "javascript-obfuscator ./lib --compact true & node scripts/prepare-publish.js"
+    "build": "rollup -c"
   },
   "dependencies": {
     "rollup": "^2.52.1"
