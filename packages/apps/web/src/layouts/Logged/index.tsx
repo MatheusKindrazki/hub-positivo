@@ -37,7 +37,8 @@ const Dashboard: React.FC = ({ children }) => {
     school: school?.value as string,
     profile: guid
   })
-
+ 
+  const { levels } = useSelector((state: Store.State) => state.educationalStage)
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
   )
@@ -56,7 +57,10 @@ const Dashboard: React.FC = ({ children }) => {
       {steps?.length && (
         <Tour onClosed={handleClosedTour} open={open} steps={steps} />
       )}
-      <Header />
+      <Header
+        schoolName={school?.label as string}
+        educationalLevels={levels?.map(level => level.label)}
+      />
       <main className="hub-main-class">
         {nobreak && <ModalAlternativeAccess />}
         {children}

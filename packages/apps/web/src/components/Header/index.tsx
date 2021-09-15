@@ -1,98 +1,75 @@
-import React, { useCallback, useMemo, useRef } from 'react'
+import React, { useCallback } from 'react'
 
 import Headroom from 'react-headroom'
+import {
+  Question,
+  Megaphone,
+  Bell,
+  List as HamburgerMenu
+} from 'phosphor-react'
 
-import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import { useMediaQuery, useDisclosure } from '@psdhub/common/hooks'
-import { Box, Button, Modal } from '@psdhub/common/components'
+import { signOut } from '~/store/modules/auth/actions'
+
+import { useMediaQuery } from '@psdhub/common/hooks'
+import { Box, Button } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
 import Logo from '~/components/LogoOn'
 
-import { HeaderProvider } from './context'
-import MobileMenu, { MenuButton, RefMenuProps } from './components/Mobile'
-import DesktopMenu from './components/Desktop'
-import AlterPass from './components/AlterPass'
+import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
+import { SchoolLabel, HeaderButton } from './components'
+import './styles'
+interface HeaderProps {
+  schoolName: string
+  educationalLevels?: string[]
+}
 
-const Header: React.FC = () => {
-  const { signed } = useSelector((state: Store.State) => state.auth)
-  const { nobreak } = useSelector((state: Store.State) => state.noBreakAccess)
-
-  const { isOpen, onOpen, onClose } = useDisclosure()
-
-  const menuRef = useRef<RefMenuProps>(null)
+const Header: React.FC<HeaderProps> = ({ schoolName, educationalLevels }) => {
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
-  const handleClick = useCallback(() => {
-    menuRef.current?.openMenu()
-  }, [])
+  const dispatch = useDispatch()
 
-  const enableMenu = useMemo(() => {
-    if (nobreak) return false
-
-    return signed
-  }, [nobreak, signed])
+  const handleSignOut = useCallback(async () => {
+    dispatch(signOut())
+    setTimeout(() => history.push('/login'), 500)
+  }, [dispatch])
 
   return (
-    <HeaderProvider>
-      <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
-        <Box
-          p="4"
-          width="100%"
-          height="72px"
-          background="white"
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          borderBottom="1px solid #D9D9D9"
-          zIndex={99999}
-        >
-          <Box
-            className="hub-logo"
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            {!isDesktop && enableMenu ? (
-              <MenuButton onClick={handleClick} />
-            ) : null}
-            <Button
-              background="transparent"
-              outline="none"
-              p="0"
-              m="0"
-              onClick={() => history.push('/')}
-            >
-              <Logo />
-            </Button>
-          </Box>
-
-          {enableMenu && isDesktop ? (
-            <DesktopMenu openModalPass={onOpen} />
-          ) : (
-            <MobileMenu
-              openModalPass={() => {
-                menuRef.current?.openMenu()
-                onOpen()
-              }}
-              ref={menuRef}
-            />
-          )}
-        </Box>
-      </Headroom>
-      <Modal
-        title="Alterar senha"
-        isOpen={isOpen}
-        maxW={isDesktop ? '26rem' : '20rem'}
-        onClose={onClose}
-        isCentered
-        autoFocus
+    <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
+      {schoolName && <SchoolLabel schoolName={schoolName} />}
+      <Box
+        px="13%"
+        height="56px"
+        background="white"
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        zIndex={99999}
       >
-        <AlterPass onClose={onClose} />
-      </Modal>
-    </HeaderProvider>
+        <Box className="hub-logo-wrapper">
+          <HeaderButton
+            as={HamburgerMenu}
+            onClick={() => console.log('click')}
+          />
+          <Button variant="ghost" onClick={() => history.push('/')}>
+            <Logo />
+          </Button>
+        </Box>
+
+        <Box justifySelf="flex-end">
+          <HeaderButton as={Megaphone} onClick={() => console.log('click')} />
+          <HeaderButton as={Question} onClick={() => console.log('click')} />
+          <HeaderButton as={Bell} onClick={() => console.log('click')} />
+          <HeaderButton children="sair" onClick={handleSignOut} />
+        </Box>
+      </Box>
+      {educationalLevels && (
+        <EducationalLevelMenu educationalLevels={educationalLevels} />
+      )}
+    </Headroom>
   )
 }
 
