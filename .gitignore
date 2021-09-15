@@ -6,6 +6,7 @@ node_modules
 remote-profile
 
 test-report.xml
+./test-report.xml
 */test-report.xml
 
 # testing
