@@ -8,169 +8,42 @@ trigger:
 name: $(date:yyyyMMdd)$(rev:.r)
 
 variables:
-  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
-  ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
-    stageName: prod
-  ${{ if eq(variables['Build.SourceBranchName'], 'develop') }}:
-    stageName: dev
-  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/release') }}:
-    stageName: hml
-  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix') }}:
-    stageName: hml
+- template: .azure-pipelines/configs/variables.yml
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
-jobs:
-- job: build_and_generate_artifact
-  displayName: "Building and generating the artifact"
+stages:
+  - stage: TestAndBuild
+    displayName: Test, Build and Deploy
+    jobs:
+    - job: build_and_generate_artifact
+      displayName: "Build the project"
+      steps:
+      - template: .azure-pipelines/templates/copy-env.yml
+      - template: .azure-pipelines/templates/install-dependencies.yml
+      - template: .azure-pipelines/templates/run-tests.yml
+      - template: .azure-pipelines/templates/build-project.yml
+      - template: .azure-pipelines/templates/create-artifacts.yml
 
-  steps:
-  - task: DownloadSecureFile@1
-    displayName: "Download env file"
-    name: envFile
-    inputs:
-      secureFile: 'env-hub-$(stageName)'
+    - job: sonar_scan
+      dependsOn: build_and_generate_artifact
+      displayName: "Sonar Scanner"
+      steps:
+      - task: DownloadBuildArtifacts@1
+        displayName: "Download Project Coverage"
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'coverage'
+          downloadPath: '$(System.DefaultWorkingDirectory)'
+      - template: .azure-pipelines/templates/sonar.yml
 
-  - script: |
-      cp $(envFile.secureFilePath) ./packages/apps/web/.env
-      cp $(envFile.secureFilePath) ./packages/apps/easyauth/.env
-    displayName: "Copy env file"
-
-  - task: NodeTool@0
-    displayName: Installing node 14+
-    inputs:
-      versionSpec: 14.x
-
-  - task: YarnInstaller@3
-    displayName: Configuring yarn in its recent version
-
-  - task: Cache@2
-    inputs:
-      key: yarn | $(Agent.OS) | yarn.lock | node_modules
-      path: $(YARN_CACHE_FOLDER)
-      restoreKeys: |
-        yarn | $(Agent.OS)
-        yarn
-    displayName: Cache Yarn packages
-
-  - script: yarn --frozen-lockfile
-    displayName: Installing project dependencies
-
-  - task: Yarn@3
-    displayName: "Run tests"
-    inputs:
-      arguments: 'test:coverage'
-
-  - task: Yarn@3
-    displayName: Build the project DEV/MCF
-    condition: eq(variables['Build.SourceBranchName'], 'develop')
-    inputs:
-      arguments: build:easyauth
-
-  - task: CopyFiles@2
-    inputs:
-      sourceFolder: '$(System.DefaultWorkingDirectory)/packages/apps/web/build'
-      contents: |
-        coverage/**
-        test-report.xml
-      targetFolder: $(Build.ArtifactStagingDirectory)/dist
-    displayName: 'Copy dist'
-
-  - task: PublishPipelineArtifact@1
-    displayName: "Upload Sonar files"
-    inputs:
-      targetPath: '$(Build.ArtifactStagingDirectory)/sonar'
-      artifact: 'coverage'
-      publishLocation: 'pipeline'
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)/dist'
-      artifactName: dist
-    displayName: 'Publish dist artifact'
-
-- job: sonar_scan
-  dependsOn: build_and_generate_artifact
-  displayName: "Sonar Scanner"
-  steps:
-    - task: DownloadBuildArtifacts@1
-      displayName: "Download Project Coverage"
-      inputs:
-        buildType: 'current'
-        downloadType: 'single'
-        artifactName: 'coverage'
-        downloadPath: '$(System.DefaultWorkingDirectory)'
-    
-    - task: SonarCloudPrepare@1
-    displayName: SonarCloud Prepare
-    inputs:
-      SonarCloud: "SonarCloud"
-      organization: "editorati"
-      scannerMode: "CLI"
-      configMode: "manual"
-      cliProjectKey: "editorati_HubDigitalFront"
-      cliProjectName: "HubDigitalFront"
-      cliSources: "."
-      extraProperties: |
-        sonar.sources=src/pages,src/components,src/hooks,src/routes,src/layouts,src/services,src/utils,src/validators,src/store/modules
-        sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/__mocks__/*
-        sonar.coverage.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/__mocks__/*
-        sonar.javascript.lcov.reportPaths=coverage/lcov.info
-        sonar.testExecutionReportPaths=test-report.xml
-        sonar.test.inclusions=src/**/*.spec.tsx,src/**/*.spec.ts
-
-  - task: SonarCloudAnalyze@1
-    displayName: SonarCloud Analyze
-
-  - task: SonarCloudPublish@1
-    displayName: SonarCloud Publish
-    inputs:
-      pollingTimeoutSec: "300"
-
-  - job: generate_release
-    dependsOn: build_and_generate_artifact
-    displayName: "Generating the release"
-    condition: eq(variables['Build.SourceBranchName'], 'main')
-    steps:
-      - task: DownloadSecureFile@1
-    displayName: "Download env file"
-    name: envFile
-    inputs:
-      secureFile: 'env-hub-$(stageName)'
-
-  - script: |
-      cp $(envFile.secureFilePath) ./packages/apps/web/.env
-      cp $(envFile.secureFilePath) ./packages/apps/easyauth/.env
-    displayName: "Copy env file"
-
-  - task: NodeTool@0
-    displayName: Installing node 14+
-    inputs:
-      versionSpec: 14.x
-
-  - task: YarnInstaller@3
-    displayName: Configuring yarn in its recent version
-
-  - task: Cache@2
-    inputs:
-      key: yarn | $(Agent.OS) | yarn.lock | node_modules
-      path: $(YARN_CACHE_FOLDER)
-      restoreKeys: |
-        yarn | $(Agent.OS)
-        yarn
-    displayName: Cache Yarn packages
-
-  - script: yarn --frozen-lockfile
-    displayName: Installing project dependencies
-
-  - script: |
-      export GH_TOKEN=$(GH_TOKEN) && set GH_TOKEN=$(GH_TOKEN) && yarn release
-    displayName: Semantic Release ( generate changelog and build tag )
-    condition: eq(variables['Build.SourceBranchName'], 'main')
-
-  - script: |
-      node ./scripts/update-version.js
-    displayName: Updating production version
-
-
+    - job: generate_release
+      dependsOn: build_and_generate_artifact
+      displayName: "Generating the release"
+      condition: eq(variables['Build.SourceBranchName'], 'main')
+      steps:
+      - template: .azure-pipelines/templates/copy-env.yml
+      - template: .azure-pipelines/templates/install-dependencies.yml
+      - template: .azure-pipelines/templates/generate-release.yml

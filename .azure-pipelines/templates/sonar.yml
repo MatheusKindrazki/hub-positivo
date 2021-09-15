@@ -1,0 +1,26 @@
+steps:
+  - task: SonarCloudPrepare@1
+    displayName: SonarCloud Prepare
+    inputs:
+      SonarCloud: "SonarCloud"
+      organization: "editorati"
+      scannerMode: "CLI"
+      configMode: "manual"
+      cliProjectKey: "editorati_hub-digital-front"
+      cliProjectName: HubDigitalFront"
+      cliSources: "."
+      extraProperties: |
+        sonar.sources=packages/apps/web/src/components,packages/apps/web/src/pages,packages/apps/web/src/services,packages/apps/web/src/store/modules,packages/apps/web/src/utils,packages/apps/web/src/validators,packages/apps/web/src/middlewares,packages/apps/web/src/hooks,packages/common/components
+        sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,
+        sonar.coverage.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,**/*.js
+        sonar.javascript.lcov.reportPaths=coverage/lcov.info
+        sonar.testExecutionReportPaths=test-report.xml
+        sonar.test.inclusions=packages/apps/web/src/**/*.spec.tsx,packages/apps/web/src/**/*.spec.ts,packages/common/**/*.spec.tsx,packages/apps/common/**/*.spec.ts
+
+  - task: SonarCloudAnalyze@1
+    displayName: SonarCloud Analyze
+
+  - task: SonarCloudPublish@1
+    displayName: SonarCloud Publish
+    inputs:
+      pollingTimeoutSec: "300"

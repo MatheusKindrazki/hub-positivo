@@ -1,0 +1,5 @@
+steps:
+  - task: Yarn@3
+    displayName: "Run tests"
+    inputs:
+      arguments: 'test:coverage'
