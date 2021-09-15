@@ -28,20 +28,15 @@ const Submenu: React.FC<SubmenuProps> = ({ card }) => {
         color=" #3C3C3C"
         borderRadius="0"
         _hover={{
-          background: '#D3D3D3'
+          background: '#EFEFEF'
         }}
         _active={{
-          background: '#D3D3D3'
+          background: '#EFEFEF'
         }}
       >
         {card.nome}
       </MenuButton>
-      <MenuList
-        padding="0.5rem"
-        marginLeft="-0.35rem"
-        minWidth="xs"
-        border="1px solid #C9C9C9"
-      >
+      <MenuList padding="0.5rem" minWidth="xs" border="1px solid #C9C9C9">
         {card.solucoes.map((s, i) => (
           <SimpleCard key={s.nome + i} title={s.nome} imageSrc={s.arquivo} />
         ))}

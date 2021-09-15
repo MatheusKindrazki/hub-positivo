@@ -1,22 +1,33 @@
 import React from 'react'
 
-import Text from '@psdhub/common/components/Text'
+import Text, { TextProps } from '@psdhub/common/components/Text'
 import { DrawerFooter } from '@psdhub/common/components/Drawer'
-import { BoxProps } from '@psdhub/common/components/Box'
 import { Stack } from '@psdhub/common/components'
 
-const Footer: React.FC<BoxProps> = props => {
+export interface FooterProps extends TextProps {
+  handleSignOut: () => void
+  openModalPass: () => void
+}
+
+const Footer: React.FC<FooterProps> = ({
+  handleSignOut,
+  openModalPass,
+  ...props
+}) => {
+  const styles: Partial<TextProps> = {
+    cursor: 'pointer',
+    variant: 'ghost',
+    textAlign: 'left'
+  }
   return (
     <>
       <DrawerFooter placeContent="start" p="1rem" {...props}>
         <Stack spacing="4">
-          <Text variant="ghost" textAlign="left">
-            Atualização da versão
-          </Text>
-          <Text variant="ghost" textAlign="left">
+          <Text {...styles}>Atualização da versão</Text>
+          <Text {...styles} onClick={openModalPass}>
             Alterar minha senha
           </Text>
-          <Text variant="ghost" textAlign="left" color="blue.500">
+          <Text {...styles} color="blue.500" onClick={handleSignOut}>
             Sair
           </Text>
         </Stack>
