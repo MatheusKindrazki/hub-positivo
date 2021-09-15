@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Avatar, Box, Heading } from '../index'
-import capitalizeFirstLetter from '../../utils/capitalize'
+import { Box, Heading } from '../index'
 
 export interface WelcomeProps {
   size?: string
@@ -19,53 +18,21 @@ const Welcome: React.FC<WelcomeProps> = ({
   fontSize,
   fontWeight,
   option,
-  size,
-  name,
-  avatar,
-  schoolName,
-  educational_stage,
-  profile
+  name
 }) => {
+  const welcomeText = `Olá ${
+    name?.split(' ')[0] || 'Usuário'
+  }, seja bem-vindo! 👋`
+
   return (
     <Box display="flex" alignItems="center" className="hub-welcome">
-      <Avatar
-        width={size || '3.5rem'}
-        height={size || '3.5rem'}
-        name={name || ''}
-        color="#3C3C3C"
-        src={avatar}
-        background="#CFD8DC"
-        borderColor="white"
-        borderWidth="2px"
-      />
       <Heading
         as="h4"
-        ml="4"
         fontSize={fontSize || ['1.2rem', '1.875rem']}
         fontWeight={fontWeight || 'normal'}
-        color={option === 'name' ? 'black' : 'white'}
+        color="black"
       >
-        {option === 'name' ? (
-          <>{name || 'Usuário'}</>
-        ) : (
-          <>
-            Olá, {name?.split(' ')[0] || 'Usuário'} 👋
-            <Heading
-              fontSize={['sm', 'md']}
-              fontWeight="normal"
-              textTransform="uppercase"
-              as="p"
-              color="blue.100"
-              mt="1"
-            >
-              {profile || 'Perfil'} em{' '}
-              {capitalizeFirstLetter(
-                schoolName?.toLocaleLowerCase() || 'Escola'
-              )}
-              {educational_stage && ` - ${educational_stage}`}
-            </Heading>
-          </>
-        )}
+        {option === 'name' ? <>{name || 'Usuário'}</> : <>{welcomeText}</>}
       </Heading>
     </Box>
   )

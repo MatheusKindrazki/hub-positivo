@@ -41,8 +41,8 @@ const Header: React.FC<HeaderProps> = ({ schoolName, educationalLevels }) => {
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
       {schoolName && <SchoolLabel schoolName={schoolName} />}
       <Box
+        flexWrap="wrap"
         px="13%"
-        height="56px"
         background="white"
         display="flex"
         alignItems="center"
@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ schoolName, educationalLevels }) => {
           </Button>
         </Box>
 
-        <Box justifySelf="flex-end">
+        <Box>
           <HeaderButton as={Megaphone} onClick={() => console.log('click')} />
           <HeaderButton as={Question} onClick={() => console.log('click')} />
           <HeaderButton as={Bell} onClick={() => console.log('click')} />

@@ -5,19 +5,13 @@ import classNames from 'classnames'
 
 import { useSelector, useDispatch } from 'react-redux'
 
+import { openTour } from '~/store/modules/tour/actions'
 import { loading } from '~/store/modules/global/actions'
 import { preAuth } from '~/store/modules/authProduct/actions'
 
 import documentTitle from '@psdhub/common/utils/documentTitle'
 import createSlug from '@psdhub/common/utils/createSlug'
-import SearchInput from '@psdhub/common/components/Search'
-import {
-  Box,
-  Heading,
-  Welcome,
-  Collapse,
-  CardProduct
-} from '@psdhub/common/components'
+import { Box, Heading, Collapse, CardProduct } from '@psdhub/common/components'
 
 import { toolOpened } from '~/services/mixpanel/toolOpened'
 
@@ -27,8 +21,9 @@ import mockFakeLoading from '~/components/FakeCollapse/mock'
 import FakeCollapse from '~/components/FakeCollapse'
 
 import { Container } from './styles'
-import Filter from './components/Filter'
+import HomeMenu from './components/HomeMenu'
 import FakeLoadingCard from './components/FakeLoading'
+
 const Home: React.FC = () => {
   documentTitle('Home')
 
@@ -36,24 +31,16 @@ const Home: React.FC = () => {
 
   const [search, setSearchValue] = useState('')
 
-  const {
-    info: user,
-    avatar,
-    school: useSchool
-  } = useSelector((state: Store.State) => state.user)
+  const { info: user } = useSelector((state: Store.State) => state.user)
 
-  const { name: nameProfile } = useSelector(
-    (state: Store.State) => state.profile
-  )
-  const { class: userClass } = useSelector(
-    (state: Store.State) => state.educationalStage
-  )
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
   )
   const { loading: globalLoading } = useSelector(
     (state: Store.State) => state.global
   )
+
+  const { steps } = useSelector((state: Store.State) => state.tour)
 
   const handleSearch = debounce(value => {
     dispatch(loading(true))
@@ -64,6 +51,10 @@ const Home: React.FC = () => {
       dispatch(loading(false))
     }, 1000)
   }, 550)
+
+  const handleOpenTour = useCallback(() => {
+    dispatch(openTour(true))
+  }, [dispatch])
 
   const handlePushProduct = useCallback(
     data => {
@@ -93,45 +84,13 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Box
-        py="5"
-        px="4"
-        pb={{ sm: '0', md: '5' }}
-        backgroundColor="blue.500"
-        className="background-animate"
-      >
-        <Box
-          maxW="1400px"
-          px={['0', '4']}
-          margin="0 auto"
-          d="flex"
-          justifyContent="space-between"
-          alignItems={['center', 'flex-start', 'flex-start', 'center']}
-          flexDirection={['column', 'column', 'column', 'row']}
-        >
-          <Welcome
-            name={user?.name || ''}
-            avatar={avatar}
-            profile={nameProfile || ''}
-            schoolName={useSchool?.label || ''}
-            educational_stage={nameProfile === 'Aluno' ? userClass : undefined}
-          />
-
-          <Box
-            w="100%"
-            maxW={['100%', '100%', '100%', '308px']}
-            mt={['5', '5', '5', '0']}
-          >
-            <Filter />
-          </Box>
-        </Box>
-      </Box>
+      <HomeMenu
+        userName={user?.name as string}
+        isTourActive={!steps?.length}
+        handleOpenTour={handleOpenTour}
+        handleSearch={handleSearch}
+      />
       <Box as={Container} p="4" maxW="1400px" margin="0 auto">
-        <SearchInput
-          placeholder="Buscar soluções"
-          backgroundColor="white!important"
-          onChange={handleSearch}
-        />
         <Box
           display="flex"
           justifyContent="flex-start"
