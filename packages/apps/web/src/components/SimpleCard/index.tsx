@@ -9,7 +9,7 @@ export interface SimpleCardProps {
 
 const SimpleCard: React.FC<SimpleCardProps> = ({ imageSrc, title }) => {
   return (
-    <Box d="flex" w="100%" alignItems="center" mt="0.5rem">
+    <Box d="flex" alignItems="center" m="0.5rem">
       <Image
         src={imageSrc}
         background="blue.500"

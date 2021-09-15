@@ -16,7 +16,7 @@ import { useFilterCards } from '~/hooks/useFilterCards'
 
 import { HeaderProvider } from '~/components/Header/context'
 
-import { MenuHeader, SelectProfile, MenuFooter, CollapseList } from '..'
+import { MenuHeader, SelectProfile, MenuFooter, Submenu } from '..'
 
 const MenuBar: React.FC = () => {
   const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true })
@@ -25,6 +25,8 @@ const MenuBar: React.FC = () => {
   const [search, setSearchValue] = useState('')
 
   const filterCards = useFilterCards(cards, search)
+
+  console.log({ filterCards })
 
   const handleSearch = debounce(value => {
     setSearchValue(value)
@@ -39,7 +41,7 @@ const MenuBar: React.FC = () => {
         isFullHeight={true}
       >
         <DrawerOverlay />
-        <DrawerContentContainer overflowY="scroll">
+        <DrawerContentContainer overflowY="auto" overflowX="hidden">
           <Box p="1rem" borderBottomWidth="1px" borderBottomColor="#C9C9C9">
             <MenuHeader
               name={user?.name || 'Menu'}
@@ -50,7 +52,6 @@ const MenuBar: React.FC = () => {
           <Box
             px="1rem"
             py="1rem"
-            overflow="visible"
             borderBottomWidth="1px"
             borderBottomColor="#C9C9C9"
             d="flex"
@@ -72,8 +73,10 @@ const MenuBar: React.FC = () => {
               <Search placeholder="Buscar solução" onChange={handleSearch} />
             </Box>
           </Box>
-          <Box px="1rem" borderBottomWidth="1px" borderBottomColor="#C9C9C9">
-            <CollapseList cards={filterCards} />
+          <Box borderBottomWidth="1px" borderBottomColor="#C9C9C9" width="100%">
+            {filterCards.map((e, cardIndex) => (
+              <Submenu key={cardIndex} card={e} />
+            ))}
           </Box>
           <MenuFooter />
         </DrawerContentContainer>
