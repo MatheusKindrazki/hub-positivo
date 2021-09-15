@@ -1,3 +1,17 @@
+## [2.3.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.3.0...v2.3.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* **mixpanel/pageview:** removendo operador || desnecessário ([61c4e7f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/61c4e7f14105549717e61d86cdb120fd77a4cdbe))
+* correção de asserções e mocks inválidos ([c71fcb8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/c71fcb84924d322e95d50e4bc7c218880cd8e7a9))
+* corrigindo texto dos its do teste de sagas do modulo school ([799cdb5](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/799cdb5e257cd75bd9e53edc4ff1a6fa69387ee1))
+* **getsitecontrol/trackwidgetsubmit:** adicionando export e ignorando linhas de código ([bf0e92b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/bf0e92b91d37acae44d8d11257f29609e8331254))
+* correção de destructuring errado em prepareAccess ([327cc21](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/327cc210fb73dc23e66bb16b989fde401d325986))
+* correção do teste de sagas de authProduct ([e420658](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/e420658dcefcabb882f5ce46bfa27053c5897e8a))
+* resolvendo problema de loading infinito ([0e7c72f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/0e7c72fb302a42bce15793349aec196037dc3de9))
+* teste components/footer ([c03339d](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/c03339d71955bb287ad2d09e182b84bde791d575))
+
 # [2.3.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.2.1...v2.3.0) (2021-09-02)
 
 
