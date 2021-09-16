@@ -1,10 +1,9 @@
 import React from 'react'
 
 import SearchInput from '@psdhub/common/components/Search'
-import { Box, Welcome, Button } from '@psdhub/common/components'
+import { Box, Button } from '@psdhub/common/components'
 
-import Filter from '../Filter'
-
+import Welcome from '~/components/Welcome'
 import '../../styles'
 
 interface HomeMenuProps {
@@ -21,37 +20,54 @@ const HomeMenu: React.FC<HomeMenuProps> = ({
   handleSearch
 }) => {
   return (
-    <Box
-      maxW="1400px"
-      py="6"
-      px={['0', '4']}
-      margin="0 auto"
-      d="flex"
-      alignItems={['center', 'flex-start', 'flex-start', 'center']}
-      flexDirection={['column', 'column', 'column', 'row']}
-    >
-      <Welcome name={userName || ''} fontWeight="700" fontSize="32px" />
-      <Box ml="auto" d="flex">
-        <Button
-          h="12"
-          variant="outline"
-          disabled={isTourActive}
-          fontSize="1rem"
-          fontWeight="500"
-          color="blue.500"
-          borderColor="blue.500"
-          onClick={handleOpenTour}
-          mx="1"
+    <Box w="100%">
+      <Box
+        maxW="1400px"
+        pt="7"
+        px={['0', '4']}
+        margin="0 auto"
+        d="flex"
+        alignItems={['center', 'flex-start', 'flex-start', 'center']}
+        justifyContent={['center', 'center', 'center', 'space-between']}
+        flexDirection={['column', 'column', 'column', 'row']}
+      >
+        <Box
+          w={['70vw', '70vw', '70vw', 'auto']}
+          alignSelf="flex-start"
+          mx="6"
+          mb="2"
+          minW="240px"
         >
-          FAZER TOUR
-        </Button>
-        <Box maxW={['308px']} mt={['5', '5', '5', '0']}>
+          <Welcome name={userName || ''} fontWeight="700" fontSize="32px" />
+        </Box>
+        <Box
+          d="flex"
+          w={['100%', '100%', '100%', 'auto']}
+          px="5"
+          flexDirection={['column', 'column', 'column', 'row']}
+        >
+          <Button
+            mx={[0, 0, 0, 4]}
+            mb="4"
+            w="100%"
+            h="12"
+            variant="outline"
+            disabled={isTourActive}
+            fontSize="1rem"
+            fontWeight="500"
+            color="blue.500"
+            borderColor="blue.500"
+            onClick={handleOpenTour}
+          >
+            FAZER TOUR
+          </Button>
+
           <SearchInput
-            placeholder="Buscar soluções"
+            w={['90vw', '90vw', '90vw', '308px']}
+            placeholder="Buscar solução"
             backgroundColor="white!important"
             onChange={handleSearch}
           />
-          <Filter />
         </Box>
       </Box>
     </Box>
