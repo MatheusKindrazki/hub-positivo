@@ -13,5 +13,8 @@ steps:
         yarn
     displayName: Cache Yarn packages
 
-  - script: yarn --frozen-lockfile
+  - script: yarn
     displayName: Installing project dependencies
+
+  # - script: yarn --frozen-lockfile
+  #   displayName: Installing project dependencies
