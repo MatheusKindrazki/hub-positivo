@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 
 import Headroom from 'react-headroom'
 import {
@@ -8,10 +8,6 @@ import {
   List as HamburgerMenu
 } from 'phosphor-react'
 
-import { useDispatch } from 'react-redux'
-
-import { signOut } from '~/store/modules/auth/actions'
-
 import { useMediaQuery } from '@psdhub/common/hooks'
 import { Box, Button } from '@psdhub/common/components'
 
@@ -19,36 +15,43 @@ import history from '~/services/history'
 
 import Logo from '~/components/LogoOn'
 
-import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
+import EducationalLevelMenu, {
+  Handler
+} from './components/EducationalLevelMenu/EducationalLevelMenu'
 import { SchoolLabel, HeaderButton } from './components'
 import './styles'
 interface HeaderProps {
-  schoolName: string
+  handleSignOut: () => void
+  schoolName?: string
+  selectedLevel?: string
   educationalLevels?: string[]
+  handleEducationalStageSwitch?: Handler
 }
 
-const Header: React.FC<HeaderProps> = ({ schoolName, educationalLevels }) => {
+const Header: React.FC<HeaderProps> = ({
+  schoolName,
+  educationalLevels,
+  selectedLevel,
+  handleEducationalStageSwitch,
+  handleSignOut
+}) => {
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
-
-  const dispatch = useDispatch()
-
-  const handleSignOut = useCallback(async () => {
-    dispatch(signOut())
-    setTimeout(() => history.push('/login'), 500)
-  }, [dispatch])
 
   return (
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
       {schoolName && <SchoolLabel schoolName={schoolName} />}
       <Box
-        flexWrap="wrap"
-        px="13%"
+        h="12"
+        d="flex"
+        flexDirection="column"
         background="white"
-        display="flex"
         zIndex={99999}
       >
         <Box
-          w="100%"
+          pb="2"
+          width="100%"
+          margin="0 auto"
+          maxWidth="1400px"
           display="flex"
           justifyContent="space-between"
           alignItems="center"
@@ -75,8 +78,24 @@ const Header: React.FC<HeaderProps> = ({ schoolName, educationalLevels }) => {
             <HeaderButton children="sair" onClick={handleSignOut} />
           </Box>
         </Box>
-        {educationalLevels && (
-          <EducationalLevelMenu educationalLevels={educationalLevels} />
+      </Box>
+      <Box w="100%" backgroundColor="white" borderBottom="1px solid #C9C9C9">
+        {educationalLevels && selectedLevel && handleEducationalStageSwitch && (
+          <Box
+            d="flex"
+            flex="1"
+            w="100%"
+            m="0 auto"
+            alignItems="flex-end"
+            maxWidth="1400px"
+            backgroundColor="white"
+          >
+            <EducationalLevelMenu
+              educationalLevels={educationalLevels}
+              selectedLevel={selectedLevel}
+              handler={handleEducationalStageSwitch}
+            />
+          </Box>
         )}
       </Box>
     </Headroom>
