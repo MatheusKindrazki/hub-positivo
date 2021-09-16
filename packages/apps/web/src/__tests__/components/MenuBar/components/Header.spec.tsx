@@ -24,12 +24,12 @@ describe('MenuHeader should work properly', () => {
     return { onClose, name, ...wrapper }
   }
   it('Should render the correct elements on screen', () => {
-    const { queryByText, name, getAllByRole } = setup({ closeButton: true })
+    const { queryByText, name, queryAllByRole } = setup({ closeButton: false })
     const headerName = queryByText(name)
-    const buttons = getAllByRole('button')
+    const buttons = queryAllByRole('button')
 
     expect(headerName).toBeInTheDocument()
-    expect(buttons.length).toEqual(1)
+    expect(buttons).toEqual([])
   })
 
   it('Should call onClose function when /X/ button is clicked', () => {

@@ -18,8 +18,6 @@ const Selects: React.FC = () => {
         inputHeight={48}
         value={defaultValue.school}
         options={schoolList}
-        // onFocus={() => setEnableBlur(false)}
-        // onBlur={() => setEnableBlur(true)}
         onChange={e => {
           setSchool(e as any)
         }}
@@ -31,10 +29,7 @@ const Selects: React.FC = () => {
         inputHeight={48}
         value={defaultValue.role}
         options={roleList}
-        // onFocus={() => setEnableBlur(false)}
-        // onBlur={() => setEnableBlur(true)}
         onChange={e => {
-          // setEnableBlur(true)
           setRole(e as any)
         }}
       />
