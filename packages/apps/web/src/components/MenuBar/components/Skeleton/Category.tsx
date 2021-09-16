@@ -17,6 +17,7 @@ const CategorySkeleton: React.FC = () => {
         <Skeleton
           key={category + i}
           p="1.6rem"
+          data-testid="category-skeleton"
           startColor="gray.100"
           endColor="gray.400"
         />
