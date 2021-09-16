@@ -38,6 +38,7 @@ const Dashboard: React.FC = ({ children }) => {
     profile: guid
   })
  
+  const { profile } = useSelector((state: Store.State) => state.profile)
   const { levels } = useSelector((state: Store.State) => state.educationalStage)
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
@@ -59,7 +60,11 @@ const Dashboard: React.FC = ({ children }) => {
       )}
       <Header
         schoolName={school?.label as string}
-        educationalLevels={levels?.map(level => level.label)}
+        educationalLevels={
+          profile === 'professor'
+            ? levels?.map(level => level.label)
+            : undefined
+        }
       />
       <main className="hub-main-class">
         {nobreak && <ModalAlternativeAccess />}

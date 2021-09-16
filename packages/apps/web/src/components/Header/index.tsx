@@ -45,30 +45,35 @@ const Header: React.FC<HeaderProps> = ({ schoolName, educationalLevels }) => {
         px="13%"
         background="white"
         display="flex"
-        alignItems="center"
-        justifyContent="space-between"
         zIndex={99999}
       >
-        <Box className="hub-logo-wrapper">
-          <HeaderButton
-            as={HamburgerMenu}
-            onClick={() => console.log('click')}
-          />
-          <Button variant="ghost" onClick={() => history.push('/')}>
-            <Logo />
-          </Button>
-        </Box>
+        <Box
+          w="100%"
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Box className="hub-logo-wrapper">
+            <HeaderButton
+              as={HamburgerMenu}
+              onClick={() => console.log('click')}
+            />
+            <Button variant="ghost" onClick={() => history.push('/')}>
+              <Logo />
+            </Button>
+          </Box>
 
-        <Box>
-          <HeaderButton as={Megaphone} onClick={() => console.log('click')} />
-          <HeaderButton as={Question} onClick={() => console.log('click')} />
-          <HeaderButton as={Bell} onClick={() => console.log('click')} />
-          <HeaderButton children="sair" onClick={handleSignOut} />
+          <Box>
+            <HeaderButton as={Megaphone} onClick={() => console.log('click')} />
+            <HeaderButton as={Question} onClick={() => console.log('click')} />
+            <HeaderButton as={Bell} onClick={() => console.log('click')} />
+            <HeaderButton children="sair" onClick={handleSignOut} />
+          </Box>
         </Box>
+        {educationalLevels && (
+          <EducationalLevelMenu educationalLevels={educationalLevels} />
+        )}
       </Box>
-      {educationalLevels && (
-        <EducationalLevelMenu educationalLevels={educationalLevels} />
-      )}
     </Headroom>
   )
 }

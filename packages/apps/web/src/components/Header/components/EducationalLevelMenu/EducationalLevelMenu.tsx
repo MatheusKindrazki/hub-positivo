@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Box } from '@psdhub/common/components'
+import { Box, Button } from '@psdhub/common/components'
 type EducationalLevelMenuProps = {
   educationalLevels: string[]
 }
@@ -8,11 +8,11 @@ const EducationalLevelMenu: React.FC<EducationalLevelMenuProps> = ({
   educationalLevels
 }) => {
   return (
-    <Box px="10%" d="flex" alignSelf="center">
+    <Box d="flex" alignSelf="center" h="40px">
       {educationalLevels.map(level => (
-        <Box key={level} d="flex" flexDir="column">
+        <Button textColor="gray.500" variant="unstyled" p="4" key={level}>
           {level}
-        </Box>
+        </Button>
       ))}
     </Box>
   )
