@@ -1,10 +1,12 @@
 import baseStyled, { ThemedStyledInterface } from 'styled-components'
 
+import { Dict } from '@chakra-ui/utils'
 import {
   useTheme,
   useMediaQuery,
-  extendTheme as extendsTheme,
   useColorMode,
+  extendTheme as themeChakra,
+  withDefaultColorScheme,
   useColorModeValue,
   ThemeOverride,
   Theme
@@ -16,8 +18,8 @@ export const theme = chakra
 
 export type { Theme }
 
-const extendTheme = (data: ThemeOverride<Theme>): Theme => {
-  return extendsTheme(data)
+const extendTheme = (data: ThemeOverride<Theme>): Dict<any> => {
+  return themeChakra(data, withDefaultColorScheme({ colorScheme: 'blue' }))
 }
 
 const styled = baseStyled as ThemedStyledInterface<Theme>
