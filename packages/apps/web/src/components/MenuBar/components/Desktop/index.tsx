@@ -4,8 +4,10 @@ import { debounce } from 'ts-debounce'
 
 import { useSelector, useDispatch } from 'react-redux'
 
+import { preAuth } from '~/store/modules/authProduct/actions'
 import { signOut } from '~/store/modules/auth/actions'
 
+import { createSlug } from '@psdhub/common/utils'
 import Drawer, {
   useDisclosure,
   DrawerOverlay
@@ -14,29 +16,34 @@ import { Search, Box } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
+import { ModalHandler } from '~/components/ModalVersionUpdate'
 import { HeaderProvider, useHeader } from '~/components/Header/context'
 import { RefMenuProps } from '~/components/Header/components/Mobile'
 
+import { HandleProps } from '~/layouts/Solutions/components/Card'
 import { useFilterCards } from '~/hooks/useFilterCards'
 
 import { DrawerContentContainer } from './styles'
 
 import { MenuHeader, SelectProfile, MenuFooter, Submenu } from '..'
 
+import CategorySkeleton from '../Skeleton/Category'
 import { FooterProps } from '../Footer'
 
 export interface MenuProps {
   openModalPass: FooterProps['openModalPass']
-  isOpenMenu?: boolean
-  onCloseMenu?: () => void
+  openModalVersionUpdate: ModalHandler['onOpen']
 }
 
 const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
-  ({ openModalPass, isOpenMenu = true, onCloseMenu = () => null }, ref) => {
+  ({ openModalPass, openModalVersionUpdate }, ref) => {
     const dispatch = useDispatch()
-    const { onOpen, onClose, isOpen } = useDisclosure()
+    const { onOpen, onClose, isOpen } = useDisclosure({ defaultIsOpen: true })
     const { info: user } = useSelector((state: Store.State) => state.user)
-    const { data: cards } = useSelector((state: Store.State) => state.products)
+    const { data: cards, loading } = useSelector(
+      (state: Store.State) => state.products
+    )
+
     const [search, setSearchValue] = useState('')
     const { resetInfo } = useHeader()
 
@@ -66,11 +73,28 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
     const handleSearch = debounce(value => {
       setSearchValue(value)
     }, 550)
+
+    const handleCardClick = useCallback(
+      (solution: HandleProps) => {
+        const slug = createSlug(solution.nome)
+
+        dispatch(
+          preAuth({
+            product: slug,
+            name: solution.nome,
+            url: solution.url,
+            tipoRenderizacao: solution.tipoRenderizacao
+          })
+        )
+      },
+      [dispatch]
+    )
+
     return (
       <HeaderProvider>
         <Drawer
-          isOpen={isOpenMenu}
-          onClose={onCloseMenu}
+          isOpen={isOpen}
+          onClose={onClose}
           placement={'left'}
           blockScrollOnMount={false}
           isFullHeight={true}
@@ -81,7 +105,7 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
               <MenuHeader
                 name={user?.name || 'Menu'}
                 closeButton
-                onClose={onCloseMenu}
+                onClose={onClose}
               />
             </Box>
             <Box
@@ -113,13 +137,22 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
               borderBottomColor="#C9C9C9"
               width="100%"
             >
-              {filterCards.map((e, cardIndex) => (
-                <Submenu key={cardIndex} card={e} />
-              ))}
+              {!loading ? (
+                filterCards.map((e, cardIndex) => (
+                  <Submenu
+                    key={cardIndex}
+                    card={e}
+                    handleClick={handleCardClick}
+                  />
+                ))
+              ) : (
+                <CategorySkeleton />
+              )}
             </Box>
             <MenuFooter
               handleSignOut={handleSignOut}
               openModalPass={openModalPass}
+              openModalVersionUpdate={openModalVersionUpdate}
             />
           </DrawerContentContainer>
         </Drawer>

@@ -1,12 +1,11 @@
 import React from 'react'
 
 import Text, { TextProps } from '@psdhub/common/components/Text'
+import {
+  DrawerCloseButton
+  // DrawerHeader
+} from '@psdhub/common/components/Drawer'
 import { Box } from '@psdhub/common/components'
-
-// import {
-//   DrawerCloseButton,
-//   DrawerHeader
-// } from '@psdhub/common/components/Drawer'
 
 export interface HeaderProps extends TextProps {
   name: string
@@ -16,14 +15,14 @@ export interface HeaderProps extends TextProps {
 
 const Header: React.FC<HeaderProps> = ({
   name,
-  // closeButton,
-  // onClose,
+  closeButton,
+  onClose,
   ...props
 }) => {
   return (
     <>
-      {/* {closeButton && <DrawerCloseButton top="4" onClick={onClose} />} */}
-      <Box p="0">
+      {closeButton && <DrawerCloseButton top="4" onClick={onClose} />}
+      <Box p="0" maxW="90%">
         <Text fontSize="1.25rem" fontWeight="700" {...props}>{`${name}`}</Text>
       </Box>
     </>

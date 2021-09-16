@@ -8,11 +8,14 @@ import { Button } from '@psdhub/common/components'
 
 import SimpleCard from '~/components/SimpleCard'
 
+import { HandleProps } from '~/layouts/Solutions/components/Card'
+
 export interface SubmenuProps {
   card: CardProduct
+  handleClick: (solution: HandleProps) => void
 }
 
-const Submenu: React.FC<SubmenuProps> = ({ card }) => {
+const Submenu: React.FC<SubmenuProps> = ({ card, handleClick }) => {
   return (
     <Menu placement="bottom" preventOverflow>
       <MenuButton
@@ -20,13 +23,13 @@ const Submenu: React.FC<SubmenuProps> = ({ card }) => {
         variant="ghost"
         w="100%"
         py="1.6rem"
-        cursor="pointer"
         rightIcon={<CaretRight />}
         fontWeight={700}
         fontSize="1.25rem"
         textAlign="start"
         color=" #3C3C3C"
         borderRadius="0"
+        cursor="pointer"
         _hover={{
           background: '#EFEFEF'
         }}
@@ -37,9 +40,21 @@ const Submenu: React.FC<SubmenuProps> = ({ card }) => {
         {card.nome}
       </MenuButton>
       <MenuList padding="0.5rem" minWidth="xs" border="1px solid #C9C9C9">
-        {card.solucoes.map((s, i) => (
-          <SimpleCard key={s.nome + i} title={s.nome} imageSrc={s.arquivo} />
-        ))}
+        {card.solucoes.map(
+          ({ nome, tipoRenderizacao, link, ...solution }, i) => (
+            <SimpleCard
+              _hover={{ background: '#EFEFEF' }}
+              borderRadius="0.5rem"
+              onClick={() =>
+                handleClick({ nome, tipoRenderizacao, url: link || '' })
+              }
+              cursor="pointer"
+              key={nome + i}
+              title={nome}
+              imageSrc={solution.arquivo}
+            />
+          )
+        )}
       </MenuList>
     </Menu>
   )
