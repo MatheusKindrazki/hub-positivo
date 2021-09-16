@@ -7,13 +7,12 @@ import { Stack } from '@psdhub/common/components'
 export interface FooterProps extends TextProps {
   handleSignOut: () => void
   openModalPass: () => void
-  openModalVersionUpdate: () => void
+  openModalVersionUpdate?: () => void
 }
 
 const Footer: React.FC<FooterProps> = ({
   handleSignOut,
   openModalPass,
-  openModalVersionUpdate,
   ...props
 }) => {
   const styles: Partial<TextProps> = {
@@ -25,9 +24,6 @@ const Footer: React.FC<FooterProps> = ({
     <>
       <DrawerFooter placeContent="start" p="1rem" {...props}>
         <Stack spacing="4">
-          <Text {...styles} onClick={openModalVersionUpdate}>
-            Atualização da versão
-          </Text>
           <Text {...styles} onClick={openModalPass}>
             Alterar minha senha
           </Text>

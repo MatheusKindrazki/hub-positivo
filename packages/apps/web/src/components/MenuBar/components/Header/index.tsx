@@ -23,7 +23,9 @@ const Header: React.FC<HeaderProps> = ({
     <>
       {closeButton && <DrawerCloseButton top="4" onClick={onClose} />}
       <Box p="0" maxW="90%">
-        <Text fontSize="1.25rem" fontWeight="700" {...props}>{`${name}`}</Text>
+        <Text fontSize="1.25rem" fontWeight="700" {...props}>
+          {name}
+        </Text>
       </Box>
     </>
   )
