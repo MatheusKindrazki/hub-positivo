@@ -34,7 +34,7 @@ const HomeMenu: React.FC<HomeMenuProps> = ({
         <Box
           w={['70vw', '70vw', '70vw', 'auto']}
           alignSelf="flex-start"
-          mx="6"
+          mx={['6', '6', '6', '0']}
           mb="2"
           minW="240px"
         >
