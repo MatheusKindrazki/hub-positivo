@@ -58,7 +58,12 @@ const Header: React.FC<HeaderProps> = ({ schoolName, educationalLevels }) => {
               as={HamburgerMenu}
               onClick={() => console.log('click')}
             />
-            <Button variant="ghost" onClick={() => history.push('/')}>
+            <Button
+              m="0"
+              p="1"
+              variant="ghost"
+              onClick={() => history.push('/')}
+            >
               <Logo />
             </Button>
           </Box>

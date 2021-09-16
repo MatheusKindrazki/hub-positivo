@@ -15,7 +15,7 @@ const HeaderButton: React.FC<HeaderButtonProps> = ({
 }) => {
   return (
     <Button
-      boxSize="6"
+      h="7"
       variant="ghost"
       p="0"
       m="0"
