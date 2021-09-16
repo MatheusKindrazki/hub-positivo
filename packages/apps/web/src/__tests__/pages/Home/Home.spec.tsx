@@ -1,9 +1,16 @@
 import React from 'react'
 
+import { openTour } from '~/store/modules/tour/actions'
 import { store } from '~/store'
 
 import { cards as mockedCards } from '@psdhub/test-utils/__mocks__'
-import { render, fireEvent, act, CustomState } from '@psdhub/test-utils'
+import {
+  render,
+  fireEvent,
+  act,
+  CustomState,
+  waitFor
+} from '@psdhub/test-utils'
 import createSlug from '@psdhub/common/utils/createSlug'
 
 import Home from '~/pages/Home'
@@ -27,22 +34,34 @@ const mockState = {
   educationalStage: {
     class: 'Class Name',
     level: 'Level Educational Stage'
+  },
+  tour: {
+    steps: [{ selector: 'test', content: 'test' }]
   }
 }
 
 jest.mock('~/services/mixpanel/toolOpened')
 
 describe('Testing that the Home page works correctly', () => {
-  const { user, profile, products, educationalStage } = mockState
+  const { user, profile, products, educationalStage, tour } = mockState
   const defaultItemsInState: CustomState<Store.State> = {
     user,
     profile,
-    products
+    products,
+    educationalStage,
+    tour
   }
   const setup = (contextConfig: CustomState<Store.State> = {}) => {
     const utils = render(<Home />, {
       store,
-      reducers: ['user', 'profile', 'educationalStage', 'products', 'global'],
+      reducers: [
+        'user',
+        'profile',
+        'educationalStage',
+        'products',
+        'global',
+        'tour'
+      ],
       CUSTOM_STATE: { ...defaultItemsInState, ...contextConfig }
     })
     const { getByTestId } = utils
@@ -57,18 +76,11 @@ describe('Testing that the Home page works correctly', () => {
 
   it('Should render the correct elements on the screen', () => {
     const { queryByText, queryAllByText } = setup()
-
-    const { name } = user.info
     const { data } = products
 
-    const fragmentedName = name.split(' ')
-
-    const nameInitals = queryByText(fragmentedName[0][0] + fragmentedName[1][0])
     const soonBagde = queryAllByText('Em breve', queryConfig)
 
     expect(soonBagde.length).toBe(2)
-    expect(nameInitals).not.toBeNull()
-
     // Busca cada grupo de soluções e verifica se todos os cards estão na tela
     data.forEach(({ nome, solucoes }) => {
       const groupOfSolutionTitle = queryByText(nome)
@@ -155,30 +167,21 @@ describe('Testing that the Home page works correctly', () => {
       },
       educationalStage: {}
     }
+
     const { queryByText } = setup(emptyContextValues)
 
-    const defaultRole = queryByText('Perfil', queryConfig)
-    const defaultUser = queryByText('Usuário', queryConfig)
+    const defaultRole = queryByText('olá', queryConfig)
+
     expect(defaultRole).not.toBeNull()
-    expect(defaultUser).not.toBeNull()
   })
 
-  it('Should render `userClass` and `Profile` when profile name is `Aluno`', async () => {
-    const student = 'Aluno'
-    const className = educationalStage.class
+  it('Tour button should work ', async () => {
+    const { getByText, storeUtils } = setup()
 
-    const studentProfile: CustomState<Store.State> = {
-      profile: {
-        name: student
-      },
-      educationalStage
-    }
-    const { queryByText } = setup(studentProfile)
+    expect(getByText('FAZER TOUR', queryConfig)).toBeInTheDocument()
 
-    const studentTitle = queryByText(student, queryConfig)
-    const userClass = queryByText(className, queryConfig)
+    await waitFor(() => fireEvent.click(getByText('FAZER TOUR', queryConfig)))
 
-    expect(studentTitle).not.toBeNull()
-    expect(userClass).not.toBeNull()
+    expect(storeUtils?.getActions()).toContainEqual(openTour(true))
   })
 })

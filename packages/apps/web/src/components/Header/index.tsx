@@ -20,7 +20,7 @@ import EducationalLevelMenu, {
 } from './components/EducationalLevelMenu/EducationalLevelMenu'
 import { SchoolLabel, HeaderButton } from './components'
 import './styles'
-interface HeaderProps {
+export interface HeaderProps {
   handleSignOut: () => void
   schoolName?: string
   selectedLevel?: string
@@ -62,6 +62,7 @@ const Header: React.FC<HeaderProps> = ({
               onClick={() => console.log('click')}
             />
             <Button
+              data-testid="logo-button"
               m="0"
               p="1"
               variant="ghost"
@@ -72,10 +73,26 @@ const Header: React.FC<HeaderProps> = ({
           </Box>
 
           <Box>
-            <HeaderButton as={Megaphone} onClick={() => console.log('click')} />
-            <HeaderButton as={Question} onClick={() => console.log('click')} />
-            <HeaderButton as={Bell} onClick={() => console.log('click')} />
-            <HeaderButton children="sair" onClick={handleSignOut} />
+            <HeaderButton
+              as={Megaphone}
+              onClick={() => console.log('click')}
+              data-testid="megaphone-button"
+            />
+            <HeaderButton
+              as={Question}
+              onClick={() => console.log('click')}
+              data-testid="question-button"
+            />
+            <HeaderButton
+              as={Bell}
+              onClick={() => console.log('click')}
+              data-testid="notifications-button"
+            />
+            <HeaderButton
+              children="sair"
+              onClick={handleSignOut}
+              data-testid="logout-button"
+            />
           </Box>
         </Box>
       </Box>
