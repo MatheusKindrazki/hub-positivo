@@ -2,37 +2,46 @@ import styled from 'styled-components'
 
 import { Box } from '@psdhub/common/components'
 
-export const NavContainer = styled(Box)`
-  padding-top: 15px;
-  padding-bottom: 15px;
-
-  max-width: 100%;
-  overflow: scroll;
-
-  @media (min-width: 880px) {
-    padding-top: 0;
-    padding-bottom: 0;
-    overflow: initial;
+export const MenuContainer = styled(Box)`
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  overflow-x: scroll;
+  .level {
+    :hover {
+      color: ${({ theme }) => theme.colors.blue[500]};
+    }
+    ::after {
+      top: 10px;
+      background-color: ${({ theme }) => theme.colors.blue[500]};
+    }
   }
 
-  .nav-container {
-    position: relative;
-    .divider {
+  button {
+    &:before {
+      content: '';
+      display: block;
       position: absolute;
-      left: 0;
-      bottom: -1.5rem;
       width: 100%;
       height: 0px;
-      background: white;
-      display: none;
-
-      border-radius: 4px;
-
-      transition: all 0.2s ease-in-out;
-
-      @media (min-width: 880px) {
-        display: block;
+      background-color: ${({ theme }) => theme.colors.blue[500]};
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: all 0.2s linear;
+    }
+    &:hover {
+      &:before {
+        border-radius: 4px;
+        height: 3px;
       }
+    }
+  }
+
+  .active {
+    color: ${({ theme }) => theme.colors.blue[500]};
+    &:before {
+      height: 3px;
     }
   }
 `
