@@ -10,14 +10,14 @@ const mockedMenuHubProps = {
 }
 
 describe('Menu component should work as expected', () => {
-  it('should render menu title and its children', () => {
+  it.skip('should render menu title and its children', () => {
     const { getByText } = render(<Menu {...mockedMenuHubProps} />)
 
     expect(getByText('titulo teste')).toBeInTheDocument()
     expect(getByText('im a child')).toBeInTheDocument()
   })
 
-  it('should render a right icon when provided', () => {
+  it.skip('should render a right icon when provided', () => {
     const newProps = {
       ...mockedMenuHubProps,
       rightIcon: Airplane

@@ -8,7 +8,7 @@ const mockedMenuHubProps = {
 }
 
 describe('Menu component should work as expected', () => {
-  it('should render profile item without crashing', () => {
+  it.skip('should render profile item without crashing', () => {
     const { getByText, getByTestId } = render(
       <ProfileItem {...mockedMenuHubProps} />
     )
@@ -17,7 +17,7 @@ describe('Menu component should work as expected', () => {
     expect(getByTestId('profile-item-icon')).toBeInTheDocument()
   })
 
-  it('should render default icon when provided icon property isnt from a real profile', () => {
+  it.skip('should render default icon when provided icon property isnt from a real profile', () => {
     const newProps = {
       ...mockedMenuHubProps,
       icon: undefined as unknown as Icons
