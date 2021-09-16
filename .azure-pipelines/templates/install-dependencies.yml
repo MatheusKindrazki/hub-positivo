@@ -6,15 +6,11 @@ steps:
 
   - task: Cache@2
     inputs:
-      key: yarn | $(Agent.OS) | yarn.lock | node_modules
       path: $(YARN_CACHE_FOLDER)
+      key: '"yarn" | "$(Agent.OS)" | yarn.lock'
       restoreKeys: |
-        yarn | $(Agent.OS)
-        yarn
+        yarn | "$(Agent.OS)"
     displayName: Cache Yarn packages
 
-  - script: yarn
+  - script: yarn --frozen-lockfile
     displayName: Installing project dependencies
-
-  # - script: yarn --frozen-lockfile
-  #   displayName: Installing project dependencies
