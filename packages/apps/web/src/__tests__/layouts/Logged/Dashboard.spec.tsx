@@ -3,30 +3,50 @@ import React from 'react'
 import { StepsTour } from '~/store/modules/tour/types'
 import { store } from '~/store'
 
-import { render, CustomState, fireEvent } from '@psdhub/test-utils'
+import { render, CustomState, fireEvent, waitFor } from '@psdhub/test-utils'
+
+import * as mixpanel from '~/services/mixpanel/setProperties'
+import history from '~/services/history'
 
 import Dashboard from '~/layouts/Logged'
-
-jest.mock('@psdhub/gsc', () => jest.fn())
-
-jest.mock('~/components/Header', () =>
-  jest.fn(() => <div id="header">Header</div>)
-)
-
-jest.mock('~/components/ModalAlternativeAccess', () =>
-  jest.fn(() => <div id="modalAlternativeAccess">modal alternative access</div>)
-)
-
-jest.mock('~/components/ModalAcceptTerms', () =>
-  jest.fn(() => <div id="modalAcceptTerms">Moadal Accept Terms</div>)
-)
 
 jest.mock('~/components/ModalNoClass', () =>
   jest.fn(() => <div id="modalNoClass">Modal no Class</div>)
 )
 
-jest.mock('~/components/Footer', () =>
-  jest.fn(() => <div id="Footer">Footer</div>)
+jest.mock('~/components/ModalAcceptTerms', () =>
+  jest.fn(() => <div id="modal">Modal</div>)
+)
+
+jest.mock('lodash', () => {
+  const rest = jest.requireActual('lodash')
+  return {
+    ...rest,
+    debounce: (callbackFunction: () => void) => () => callbackFunction()
+  }
+})
+
+jest.mock('~/services/mixpanel/setProperties', () => ({
+  __esModule: true,
+  default: jest.fn()
+}))
+
+jest.mock('~/components/Footer', () => ({
+  __esModule: true,
+  default: () => <span>Footer</span>
+}))
+
+jest.mock('~/components/ModalAlternativeAccess', () => ({
+  __esModule: true,
+  default: () => <span>Modal Alternative Access</span>
+}))
+
+jest.mock('~/components/Header', () =>
+  jest.fn(props => (
+    <div onClick={() => props.handleGoBack()} id="header">
+      Header
+    </div>
+  ))
 )
 describe('Logged`s layout should render without crashing', () => {
   let steps: StepsTour[] = []
@@ -44,8 +64,19 @@ describe('Logged`s layout should render without crashing', () => {
   ) => {
     const wrapper = render(<Dashboard>{children}</Dashboard>, {
       store,
-      reducers: ['global', 'tour', 'noBreakAccess'],
-      CUSTOM_STATE
+      reducers: ['global', 'user', 'tour', 'noBreakAccess'],
+      CUSTOM_STATE: {
+        user: {
+          school: {
+            value: 'escola-teste',
+            label: 'Escola Teste',
+            user_id: 'test-id',
+            roles: ['teste']
+          }
+        },
+        noBreakAccess: { nobreak: false },
+        ...CUSTOM_STATE
+      }
     })
     return { ...wrapper }
   }
@@ -55,6 +86,20 @@ describe('Logged`s layout should render without crashing', () => {
 
   afterEach(() => {
     jest.clearAllMocks()
+  })
+
+  it('Should call /setUserProperties/ in useEffect', () => {
+    jest.useFakeTimers()
+    const spySetProperties = jest.spyOn(mixpanel, 'default')
+    setup('', {
+      tour: {
+        open: false,
+        steps
+      }
+    })
+    jest.runAllTimers()
+
+    expect(spySetProperties).toHaveBeenCalledTimes(1)
   })
 
   it('Should call render children on screen', () => {
@@ -131,16 +176,27 @@ describe('Logged`s layout should render without crashing', () => {
     expect(actions).toStrictEqual([{ type: '@tour/POST_TOUR' }])
   })
 
-  it('Should render modal Alternative Access when nobrake is true', async () => {
-    const { getByText } = setup('children', {
-      tour: {
-        open: true,
-        viewed: false,
-        steps
-      },
-      noBreakAccess: { nobreak: true }
+  it('Should render /ModalAlternativeAccess/ component when noBreak is true ', () => {
+    const { queryByText } = setup('children', {
+      noBreakAccess: {
+        nobreak: true
+      }
     })
 
-    expect(getByText('modal alternative access')).toBeInTheDocument()
+    expect(queryByText(/Modal Alternative Access/i)).toBeInTheDocument()
+  })
+
+  it('should return user at goBack button', async () => {
+    jest.useFakeTimers()
+
+    const spyPush = jest.spyOn(history, 'push')
+    const { getByText } = setup('children')
+
+    expect(getByText('Header')).toBeInTheDocument()
+    await waitFor(() => fireEvent.click(getByText('Header')))
+
+    jest.runAllTimers()
+
+    expect(spyPush).toHaveBeenCalledWith('/')
   })
 })
