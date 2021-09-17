@@ -90,7 +90,7 @@ const Home: React.FC = () => {
         handleOpenTour={handleOpenTour}
         handleSearch={handleSearch}
       />
-      <Box as={Container} p="4" maxW="1400px" margin="0 auto">
+      <Box as={Container} p="2" maxW="1400px" margin="0 auto">
         <Box
           display="flex"
           justifyContent="flex-start"

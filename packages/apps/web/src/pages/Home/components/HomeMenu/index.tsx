@@ -24,7 +24,7 @@ const HomeMenu: React.FC<HomeMenuProps> = ({
       <Box
         maxW="1400px"
         pt="7"
-        px={['0', '4']}
+        px={['0', '2']}
         margin="0 auto"
         d="flex"
         alignItems={['center', 'flex-start', 'flex-start', 'center']}
@@ -35,7 +35,6 @@ const HomeMenu: React.FC<HomeMenuProps> = ({
           w={['70vw', '70vw', '70vw', 'auto']}
           alignSelf="flex-start"
           mx={['6', '6', '6', '0']}
-          mb="2"
           minW="240px"
         >
           <Welcome name={userName || ''} fontWeight="700" fontSize="32px" />
@@ -43,7 +42,7 @@ const HomeMenu: React.FC<HomeMenuProps> = ({
         <Box
           d="flex"
           w={['100%', '100%', '100%', 'auto']}
-          px="5"
+          px={['5', '5', '5', '1']}
           flexDirection={['column', 'column', 'column', 'row']}
         >
           <Button
@@ -63,7 +62,7 @@ const HomeMenu: React.FC<HomeMenuProps> = ({
           </Button>
 
           <SearchInput
-            w={['90vw', '90vw', '90vw', '308px']}
+            w={['90vw', '90vw', '95vw', '308px']}
             placeholder="Buscar solução"
             backgroundColor="white!important"
             onChange={handleSearch}
