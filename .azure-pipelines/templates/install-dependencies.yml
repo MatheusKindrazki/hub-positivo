@@ -7,7 +7,7 @@ steps:
   - task: Cache@2
     inputs:
       path: $(YARN_CACHE_FOLDER)
-      key: '"yarn" | "$(Agent.OS)" | yarn.lock'
+      key: '"yarn" | yarn.lock | "$(Agent.OS)" '
       restoreKeys: |
         yarn | "$(Agent.OS)"
     displayName: Cache Yarn packages
