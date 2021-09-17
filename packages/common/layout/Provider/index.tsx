@@ -50,7 +50,7 @@ const ThemeContainer: React.FC<ThemeProps> = ({
   return (
     <CacheProvider value={createCache({ key: cssKey })}>
       <ChakraProvider theme={renderTheme} resetCSS>
-        <StyledProvider theme={renderTheme}>
+        <StyledProvider theme={renderTheme as any}>
           <CSSReset />
           <GlobalStyles />
           {children}
