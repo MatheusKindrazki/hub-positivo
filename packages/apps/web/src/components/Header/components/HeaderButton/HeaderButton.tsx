@@ -15,6 +15,7 @@ const HeaderButton: React.FC<HeaderButtonProps> = ({
 }) => {
   return (
     <Button
+      data-testid="header-button"
       h="7"
       variant="ghost"
       p="0"

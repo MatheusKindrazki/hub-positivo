@@ -2,6 +2,8 @@ import React from 'react'
 
 import { fireEvent } from '@testing-library/dom'
 
+import { store } from '~/store'
+
 import { render } from '@psdhub/test-utils'
 
 import history from '~/services/history'
@@ -9,18 +11,28 @@ import history from '~/services/history'
 import Header, { HeaderProps } from '~/components/Header'
 
 describe('Header component should works as expected', () => {
-  const spyPush = jest.spyOn(history, 'push')
+  const spyPush = jest.spyOn(history, 'push').mockImplementation()
 
   const mockedProps = {
     handleSignOut: jest.fn(),
-    handleEducationalStageSwitch: jest.fn(),
-    schoolName: 'test-school',
-    educationalLevels: ['TEST1', 'TEST2', 'TEST3'],
-    selectedLevel: 'TEST2'
+    schoolName: 'test-school'
   }
 
   const setup = (props?: Partial<HeaderProps>) =>
-    render(<Header {...{ ...mockedProps, ...props }} />)
+    render(<Header {...{ ...mockedProps, ...props }} />, {
+      store,
+      reducers: ['educationalStage', 'profile'],
+      CUSTOM_STATE: {
+        profile: { name: 'Professor' },
+        educationalStage: {
+          levels: [
+            { label: 'level 1', value: '1' },
+            { label: 'level 2', value: '2' }
+          ],
+          level: '1'
+        }
+      }
+    })
 
   it('should render without crashing', () => {
     const { getByText } = setup()
@@ -31,16 +43,15 @@ describe('Header component should works as expected', () => {
   })
 
   it('buttons should be rendering without crashing', () => {
-    const { getByTestId } = setup()
+    const { queryAllByTestId } = setup()
+    const headerButtonCount = 6
+    const buttonTestId = 'header-button'
 
-    const buttonsTestIds = ['logo-button']
+    expect(queryAllByTestId(buttonTestId).length).toBe(headerButtonCount)
 
-    buttonsTestIds.forEach(testId =>
-      expect(getByTestId(testId)).toBeInTheDocument()
-    )
-
-    buttonsTestIds.forEach(testId => fireEvent.click(getByTestId(testId)))
+    queryAllByTestId(buttonTestId).forEach(button => fireEvent.click(button))
 
     expect(spyPush).toHaveBeenCalledWith('/')
+    expect(mockedProps.handleSignOut).toHaveBeenCalled()
   })
 })
