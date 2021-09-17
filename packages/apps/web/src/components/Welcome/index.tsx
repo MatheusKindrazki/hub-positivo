@@ -3,7 +3,6 @@ import React from 'react'
 import { Box, Heading } from '@psdhub/common/components'
 
 export interface WelcomeProps {
-  size?: string
   fontSize?: string
   option?: 'name' | 'welcome'
   fontWeight?: string
