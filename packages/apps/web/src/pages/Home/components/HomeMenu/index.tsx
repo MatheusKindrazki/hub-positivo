@@ -32,6 +32,7 @@ const HomeMenu: React.FC<HomeMenuProps> = ({
         flexDirection={['column', 'column', 'column', 'row']}
       >
         <Box
+          pb="3"
           w={['70vw', '70vw', '70vw', 'auto']}
           alignSelf="flex-start"
           mx={['6', '6', '6', '0']}
