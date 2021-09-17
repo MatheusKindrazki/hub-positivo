@@ -1,28 +1,44 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+
+import { useDispatch, useSelector } from 'react-redux'
+
+import { productRequest } from '~/store/modules/products/actions'
+import { setEducationalStage } from '~/store/modules/educationalStage/actions'
 
 import { Box, Button } from '@psdhub/common/components'
 
 import { MenuContainer } from './styles'
 
-export type Handler = (e: string) => void
+const EducationalLevelMenu: React.FC = () => {
+  const dispatch = useDispatch()
 
-type EducationalLevelMenuProps = {
-  educationalLevels: string[]
-  selectedLevel: string
-  handler: Handler
-}
-const EducationalLevelMenu: React.FC<EducationalLevelMenuProps> = ({
-  educationalLevels,
-  selectedLevel,
-  handler
-}) => {
+  const { name: profileName } = useSelector(
+    (state: Store.State) => state.profile
+  )
+
+  const { levels, level: selectedLevel } = useSelector(
+    (state: Store.State) => state.educationalStage
+  )
+
+  const setEducationalLevel = useCallback(
+    data => {
+      dispatch(setEducationalStage(data))
+      dispatch(productRequest({}))
+    },
+    [dispatch]
+  )
+
+  if (!levels?.length || profileName !== 'Professor' || selectedLevel === '') {
+    return null
+  }
+
   return (
     <MenuContainer d="flex">
-      {educationalLevels.map(level => (
-        <Box px="2.5" key={level} className="nav-container">
+      {levels.map(level => (
+        <Box px="2.5" key={level.value} className="nav-container">
           <Button
-            onClick={() => handler(level) as any}
-            className={level === selectedLevel ? 'active level' : 'level'}
+            onClick={() => setEducationalLevel(level.value)}
+            className={level.value === selectedLevel ? 'active level' : 'level'}
             alignSelf="self-end"
             variant="unstyled"
             textColor="gray.500"
@@ -30,7 +46,7 @@ const EducationalLevelMenu: React.FC<EducationalLevelMenuProps> = ({
             fontWeight="500"
             height="12"
           >
-            {level}
+            {level.label}
           </Button>
         </Box>
       ))}

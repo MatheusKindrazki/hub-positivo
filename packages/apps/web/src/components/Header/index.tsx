@@ -15,26 +15,15 @@ import history from '~/services/history'
 
 import Logo from '~/components/LogoOn'
 
-import EducationalLevelMenu, {
-  Handler
-} from './components/EducationalLevelMenu/EducationalLevelMenu'
+import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
 import { SchoolLabel, HeaderButton } from './components'
 import './styles'
 export interface HeaderProps {
   handleSignOut: () => void
   schoolName?: string
-  selectedLevel?: string
-  educationalLevels?: string[]
-  handleEducationalStageSwitch?: Handler
 }
 
-const Header: React.FC<HeaderProps> = ({
-  schoolName,
-  educationalLevels,
-  selectedLevel,
-  handleEducationalStageSwitch,
-  handleSignOut
-}) => {
+const Header: React.FC<HeaderProps> = ({ schoolName, handleSignOut }) => {
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
   return (
@@ -97,23 +86,17 @@ const Header: React.FC<HeaderProps> = ({
         </Box>
       </Box>
       <Box w="100%" backgroundColor="white" borderBottom="1px solid #C9C9C9">
-        {educationalLevels && selectedLevel && handleEducationalStageSwitch && (
-          <Box
-            d="flex"
-            flex="1"
-            w="100%"
-            m="0 auto"
-            alignItems="flex-end"
-            maxWidth="1400px"
-            backgroundColor="white"
-          >
-            <EducationalLevelMenu
-              educationalLevels={educationalLevels}
-              selectedLevel={selectedLevel}
-              handler={handleEducationalStageSwitch}
-            />
-          </Box>
-        )}
+        <Box
+          d="flex"
+          flex="1"
+          w="100%"
+          m="0 auto"
+          alignItems="flex-end"
+          maxWidth="1400px"
+          backgroundColor="white"
+        >
+          <EducationalLevelMenu />
+        </Box>
       </Box>
     </Headroom>
   )

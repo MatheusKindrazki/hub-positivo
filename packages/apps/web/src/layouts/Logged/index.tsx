@@ -5,7 +5,6 @@ import { debounce } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour, postTourViewed } from '~/store/modules/tour/actions'
-import { setEducationalStage } from '~/store/modules/educationalStage/actions'
 import { signOut } from '~/store/modules/auth/actions'
 
 import Tour from '@psdhub/common/components/Tour'
@@ -40,20 +39,9 @@ const Dashboard: React.FC = ({ children }) => {
     school: school?.value as string,
     profile: guid
   })
- 
-  const { profile } = useSelector((state: Store.State) => state.profile)
-  const { levels, level } = useSelector(
-    (state: Store.State) => state.educationalStage
-  )
+
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
-  )
-
-  const handleSetEducationalStage = useCallback(
-    stage => {
-      dispatch(setEducationalStage(stage))
-    },
-    [dispatch]
   )
 
   const handleSignOut = useCallback(async () => {
@@ -76,15 +64,8 @@ const Dashboard: React.FC = ({ children }) => {
         <Tour onClosed={handleClosedTour} open={open} steps={steps} />
       )}
       <Header
-        handleEducationalStageSwitch={handleSetEducationalStage}
-        selectedLevel={level}
         handleSignOut={handleSignOut}
         schoolName={school?.label as string}
-        educationalLevels={
-          profile === 'professor'
-            ? levels?.map(level => level.label)
-            : undefined
-        }
       />
       <main className="hub-main-class">
         {nobreak && <ModalAlternativeAccess />}
