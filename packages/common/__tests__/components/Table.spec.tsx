@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { render } from '@psdhub/test-utils'
-import Table from '@psdhub/common/components/Table'
+
+import Table from '../../../common/components/Table'
 
 describe('Table renders without crashing', () => {
   const setup = () => {

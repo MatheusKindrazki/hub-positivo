@@ -1,14 +1,15 @@
 import React from 'react'
 
 import { render } from '@psdhub/test-utils'
-import ProfileItem, { Icons } from '@psdhub/common/components/ProfileItem'
+
+import ProfileItem, { Icons } from '../../../common/components/ProfileItem'
 const mockedMenuHubProps = {
   title: 'titulo teste',
   icon: 'professor' as Icons
 }
 
 describe('Menu component should work as expected', () => {
-  it.skip('should render profile item without crashing', () => {
+  it('should render profile item without crashing', () => {
     const { getByText, getByTestId } = render(
       <ProfileItem {...mockedMenuHubProps} />
     )
@@ -17,7 +18,7 @@ describe('Menu component should work as expected', () => {
     expect(getByTestId('profile-item-icon')).toBeInTheDocument()
   })
 
-  it.skip('should render default icon when provided icon property isnt from a real profile', () => {
+  it('should render default icon when provided icon property isnt from a real profile', () => {
     const newProps = {
       ...mockedMenuHubProps,
       icon: undefined as unknown as Icons

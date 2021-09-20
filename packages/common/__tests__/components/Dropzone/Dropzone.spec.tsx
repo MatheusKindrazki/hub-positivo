@@ -3,8 +3,11 @@ import React, { useRef } from 'react'
 import { renderHook } from '@testing-library/react-hooks'
 
 import { render } from '@psdhub/test-utils'
-import FormControl from '@psdhub/common/components/FormControl'
-import Dropzone, { DropzoneHandlers } from '@psdhub/common/components/Dropzone'
+
+import FormControl from '../../../../common/components/FormControl'
+import Dropzone, {
+  DropzoneHandlers
+} from '../../../../common/components/Dropzone'
 
 describe('Dropzone should work properly', () => {
   it('Dropzone should match snapshot', () => {

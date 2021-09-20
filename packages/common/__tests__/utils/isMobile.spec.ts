@@ -1,4 +1,4 @@
-import isMobile from '@psdhub/common/utils/isMobile'
+import isMobile from '../../../common/utils/isMobile'
 
 describe('Check device origin', () => {
   it('Should return if the device is not mobile', () => {

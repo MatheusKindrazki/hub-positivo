@@ -1,8 +1,9 @@
 import React from 'react'
 
 import { render } from '@psdhub/test-utils'
-import Menu from '@psdhub/common/components/Menu'
 import { Airplane } from '@psdhub/common/components/Icons'
+
+import Menu from '../../../common/components/Menu'
 
 const mockedMenuHubProps = {
   title: 'titulo teste',
@@ -10,14 +11,14 @@ const mockedMenuHubProps = {
 }
 
 describe('Menu component should work as expected', () => {
-  it.skip('should render menu title and its children', () => {
+  it('should render menu title and its children', () => {
     const { getByText } = render(<Menu {...mockedMenuHubProps} />)
 
     expect(getByText('titulo teste')).toBeInTheDocument()
     expect(getByText('im a child')).toBeInTheDocument()
   })
 
-  it.skip('should render a right icon when provided', () => {
+  it('should render a right icon when provided', () => {
     const newProps = {
       ...mockedMenuHubProps,
       rightIcon: Airplane

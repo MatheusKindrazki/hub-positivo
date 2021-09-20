@@ -2,7 +2,7 @@ import { useRef } from 'react'
 
 import { renderHook } from '@testing-library/react-hooks'
 
-import useOnClickOutside from '@psdhub/common/hooks/useOnClickOutside'
+import useOnClickOutside from '../../../common/hooks/useOnClickOutside'
 
 describe('useOnClickOutside should work properly', () => {
   it('Should call handler function when element is not null', () => {

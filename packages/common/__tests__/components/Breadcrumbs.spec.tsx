@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { render } from '@psdhub/test-utils'
-import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
+
+import Breadcrumbs from '../../../common/components/Breadcrumbs'
 
 describe('Breadcrumbs should work properly', () => {
   it('Badge matches snapshot', () => {

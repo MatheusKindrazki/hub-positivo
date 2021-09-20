@@ -1,7 +1,7 @@
 import {
   prepareSchool,
   prepareRoles
-} from '@psdhub/common/utils/prepareSchoolAndRoles'
+} from '../../../common/utils/prepareSchoolAndRoles'
 
 describe('Adjust school structure and profiles', () => {
   it('Should return data structure of schools', () => {

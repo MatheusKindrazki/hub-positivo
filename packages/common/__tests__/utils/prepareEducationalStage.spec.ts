@@ -1,6 +1,6 @@
 import prepareEducationalStage, {
   ContentResponse
-} from '@psdhub/common/utils/prepareEducationalStage'
+} from '../../../common/utils/prepareEducationalStage'
 
 const mockedContentResponse: ContentResponse = {
   ativo: true,

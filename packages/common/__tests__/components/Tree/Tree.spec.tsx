@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { fireEvent, render, waitFor } from '@psdhub/test-utils'
-import Tree from '@psdhub/common/components/Tree'
+
+import Tree from '../../../../common/components/Tree'
 
 describe('Treeview component works as expected', () => {
   const mockedOnChange = jest.fn()

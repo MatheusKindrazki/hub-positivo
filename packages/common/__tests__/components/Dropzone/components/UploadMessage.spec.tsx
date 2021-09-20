@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { render } from '@psdhub/test-utils'
-import UploadMessage from '@psdhub/common/components/Dropzone/components/UploadMessage'
+
+import UploadMessage from '../../../../../common/components/Dropzone/components/UploadMessage'
 describe('UploadMessage should work properly', () => {
   it('Should render active && reject text', () => {
     const { queryByText } = render(

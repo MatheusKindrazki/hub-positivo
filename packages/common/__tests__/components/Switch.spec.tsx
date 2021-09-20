@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { render } from '@psdhub/test-utils'
-import { Switch } from '@psdhub/common/components'
+
+import { Switch } from '../../../common/components'
 
 describe('Switch renders without crashing', () => {
   it('Should match snapshot', () => {

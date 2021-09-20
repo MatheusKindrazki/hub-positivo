@@ -1,9 +1,10 @@
 import React from 'react'
 
 import { render } from '@psdhub/test-utils'
+
 import Itens, {
   TreeItensProps
-} from '@psdhub/common/components/Tree/components/Itens'
+} from '../../../../../common/components/Tree/components/Itens'
 
 describe('Itens component should work as expected', () => {
   const mockedProps = {

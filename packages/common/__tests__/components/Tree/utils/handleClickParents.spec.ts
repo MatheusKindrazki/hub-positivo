@@ -1,5 +1,5 @@
-import * as utils from '@psdhub/common/components/Tree/utils/index'
-import handleClickParents from '@psdhub/common/components/Tree/utils/handleClickParents'
+import * as utils from '../../../../../common/components/Tree/utils/index'
+import handleClickParents from '../../../../../common/components/Tree/utils/handleClickParents'
 
 describe('handleClickParents should work as expected', () => {
   afterEach(jest.clearAllMocks)

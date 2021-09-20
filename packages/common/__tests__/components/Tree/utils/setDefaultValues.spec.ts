@@ -1,4 +1,4 @@
-import setDefaultValues from '@psdhub/common/components/Tree/utils/setDefaultValues'
+import setDefaultValues from '../../../../../common/components/Tree/utils/setDefaultValues'
 
 describe('setDefaultValues should work as expected', () => {
   const getParams = () => ({
