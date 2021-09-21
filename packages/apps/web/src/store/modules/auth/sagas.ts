@@ -19,7 +19,7 @@ import capitalize from '@psdhub/common/utils/capitalize'
 import { toast } from '@psdhub/common/utils'
 import {
   getInstance,
-  apiAuthProduct,
+  // apiAuthProduct,
   ApiResponse,
   statusCodeCondition
 } from '@psdhub/api'
@@ -94,12 +94,12 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
   const user = decode(data?.access_token as string) as any
 
-  const getMailClass = yield call(async () => {
-    const url = '/api/SalasVirtuais/Email/' + user?.sub
-    return await apiAuthProduct.get(url)
-  })
+  // const getMailClass = yield call(async () => {
+  //   const url = '/api/SalasVirtuais/Email/' + user?.sub
+  //   return await apiAuthProduct.get(url)
+  // })
 
-  const { data: userMailClass } = getMailClass as ApiResponse<string>
+  // const { data: userMailClass } = getMailClass as ApiResponse<string>
 
   // ? Identifica o usuário no mixpanel
   mixpanelIdentifyUser({ guid: user?.sub as string })
@@ -117,7 +117,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
         ...user,
         guid: user?.sub,
         username: user?.username,
-        email_salas: userMailClass as string,
+        email_salas: '',
         name: capitalize(user?.name as string)
       }
     })
@@ -159,9 +159,9 @@ export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
     Authorization: `Bearer ${access_token}`
   })
 
-  apiAuthProduct.setHeaders({
-    Authorization: `Bearer ${access_token}`
-  })
+  // apiAuthProduct.setHeaders({
+  //   Authorization: `Bearer ${access_token}`
+  // })
 
   const { info: user, school } = store.getState().user
 
