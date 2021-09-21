@@ -6,6 +6,7 @@ steps:
       export GIT_AUTHOR_EMAIL=$(GIT_AUTHOR_EMAIL) && set GIT_AUTHOR_EMAIL=$(GIT_AUTHOR_EMAIL) &&
       yarn release
     displayName: Semantic Release ( generate changelog and build tag )
+    condition: eq(variables['Build.SourceBranchName'], 'main')
 
   - script: |
       node ./scripts/update-version.js
