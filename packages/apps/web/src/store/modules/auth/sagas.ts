@@ -199,6 +199,8 @@ export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
   }
 
   yield put(checkTermsRequest())
+
+  return yield put(loading(false))
 }
 
 /*
