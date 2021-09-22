@@ -28,7 +28,7 @@ const useCheckedLogic = (context: SelectContextProps): ReturnData => {
     let items = [] as TreeNode[]
 
     if (Array.isArray(item)) {
-      items = item?.map(e => ({
+      items = item.map(e => ({
         ...e,
         isChecked: 1
       }))
@@ -50,7 +50,6 @@ const useCheckedLogic = (context: SelectContextProps): ReturnData => {
       if (i.value === item.value) {
         return i.isChecked
       }
-
       return false
     })
 
