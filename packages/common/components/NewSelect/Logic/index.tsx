@@ -24,7 +24,7 @@ const LogicScope: React.FC<LogicScopeProps> = ({ children, ...props }) => {
 
   useLayoutEffect(() => {
     if (value?.length) {
-      markCheckedItens(value || [], context)
+      markCheckedItens(value, context)
     }
   }, [value])
 
