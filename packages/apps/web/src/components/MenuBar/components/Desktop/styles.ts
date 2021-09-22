@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { DrawerContent } from '@psdhub/common/components/Drawer'
 export const DrawerContentContainer = styled(DrawerContent)`
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
   }
 
   &::-webkit-scrollbar-track {
-    width: 10px;
+    width: 8px;
   }
 
   &::-webkit-scrollbar-thumb {

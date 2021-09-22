@@ -9,15 +9,29 @@ import { Button } from '@psdhub/common/components'
 import SimpleCard from '~/components/SimpleCard'
 
 import { HandleProps } from '~/layouts/Solutions/components/Card'
-
 export interface SubmenuProps {
   card: CardProduct
   handleClick: (solution: HandleProps) => void
+  onOpen: () => void
+  onClose: () => void
+  isOpen: boolean
+  isDesktop: boolean
 }
 
-const Submenu: React.FC<SubmenuProps> = ({ card, handleClick }) => {
+const Submenu: React.FC<SubmenuProps> = ({
+  card,
+  handleClick,
+  onOpen,
+  onClose,
+  isDesktop
+}) => {
   return (
-    <Menu placement="bottom" preventOverflow>
+    <Menu
+      placement={isDesktop ? 'right' : 'bottom'}
+      preventOverflow
+      onOpen={onOpen}
+      onClose={onClose}
+    >
       <MenuButton
         as={Button}
         variant="ghost"

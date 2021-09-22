@@ -1,10 +1,7 @@
 import React from 'react'
 
 import Text, { TextProps } from '@psdhub/common/components/Text'
-import {
-  DrawerCloseButton
-  // DrawerHeader
-} from '@psdhub/common/components/Drawer'
+import { DrawerCloseButton } from '@psdhub/common/components/Drawer'
 import { Box } from '@psdhub/common/components'
 
 export interface HeaderProps extends TextProps {
