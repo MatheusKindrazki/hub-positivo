@@ -8,7 +8,7 @@ import Badges from '../Badges'
 import { getLabelsOrValues } from '../../utils'
 import { useSelect } from '../../context'
 
-interface ControleProps {
+export interface ControleProps {
   focus?: boolean
   placeholder?: string
   hideSelected?: boolean
