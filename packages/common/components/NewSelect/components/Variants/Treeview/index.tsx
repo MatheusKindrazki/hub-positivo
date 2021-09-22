@@ -31,8 +31,6 @@ const DefaultVariant: React.FC = props => {
   }
 
   useLayoutEffect(() => {
-    setDefaultValue()
-
     async function setDefaultValue() {
       await resetAll(options)
 
@@ -45,6 +43,7 @@ const DefaultVariant: React.FC = props => {
 
       setRenderDefaultOptions(getState().checked)
     }
+    setDefaultValue()
   }, [context, getState, options])
 
   return (
