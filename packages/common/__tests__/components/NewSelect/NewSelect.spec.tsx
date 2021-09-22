@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { render } from '@psdhub/test-utils'
-import * as hooks from '@psdhub/common/hooks'
 import { Box } from '@psdhub/common/components'
 
 import NewSelect, { SelectProps } from '../../../components/NewSelect/'
@@ -25,18 +24,13 @@ describe('NewSelects component should work properly', () => {
     expect(queryByText('selecione', { exact: false })).toBeInTheDocument()
   })
 
-  it('Should render /ContainerOptions/ when isOpen is true', async () => {
-    jest
-      .spyOn(hooks, 'useDisclosure')
-      .mockImplementation(
-        () => ({ isOpen: true, onToggle: jest.fn(), onClose: jest.fn() } as any)
-      )
-    const { queryByTestId } = render(
+  it('Should render /Selecione/ even when variant is null', async () => {
+    const { queryByText } = render(
       <Box>
-        <NewSelect variant={null as any} options={[]} />
+        <NewSelect variant={null as any} options={[]} defaultIsOpen={true} />
       </Box>
     )
 
-    expect(queryByTestId('container-options')).toBeInTheDocument()
+    expect(queryByText('selecione', { exact: false })).toBeInTheDocument()
   })
 })
