@@ -13,11 +13,11 @@ const onSetCheckParent = (
   for (let i = 0; i < deep; i++) {
     head = head.options?.length ? head.options[path[i]] : head
   }
-  let status = head?.options?.every(item => item.isChecked === 0)
+  let status = head.options?.every(item => item.isChecked === 0)
   if (status) {
     head.isChecked = 0
   } else {
-    status = head?.options?.every(item => item.isChecked === 1)
+    status = head.options?.every(item => item.isChecked === 1)
     if (status) {
       head.isChecked = 1
     } else {
