@@ -61,24 +61,7 @@ jest.mock('~/components/Header/context', () => {
   }
 })
 
-// jest.mock('react-redux', () => {
-//   const rest = jest.requireActual('react-redux')
-//   return {
-//     ...rest,
-//     useDispatch: jest.fn().mockReturnValue(() => jest.fn()),
-//     useSelector: jest.fn().mockReturnValue({
-//       user: {
-//         info: { name: 'username' }
-//       },
-//       products: {
-//         loading: false,
-//         data: [{}]
-//       }
-//     })
-//   }
-// })
-
-describe('Menu should work properly', () => {
+describe.skip('Menu should work properly', () => {
   const setup = (CUSTOM_STATE?: object) => {
     const {
       result: { current: ref }
