@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import { TreeNode } from '@psdhub/common/components/Tree'
 import { Box, Radio, Text, Divider } from '@psdhub/common/components'
 
-interface AllValuesProps {
+export interface AllValuesProps {
   index: number
   isChecked: string[]
   values?: TreeNode[]
@@ -33,6 +33,7 @@ const AllValues: React.FC<AllValuesProps> = ({
       })}
     >
       <Radio
+        data-testid="radio-button"
         value={markChecked?.join(',')}
         isChecked={allChecked}
         className={classNames({
