@@ -90,6 +90,7 @@ describe('Itens component should work as expected', () => {
 
     expect(queryAllByTestId('collapse-box')).toEqual([])
   })
+
   it('shouldnt render a collapse box when parent options has no length', () => {
     const { queryAllByTestId } = setup({
       parent: { label: 'optionless parent', value: 'none', options: [] }

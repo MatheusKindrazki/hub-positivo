@@ -2,18 +2,9 @@ import React from 'react'
 
 import { render } from '@psdhub/test-utils'
 
-import {
-  Option
-  // OptionCheckboxProps,
-  // PropsSelect
-} from '../../../../components/Select/variants/Checkbox'
+import { Option } from '../../../../components/Select/variants/Checkbox'
 
-describe('', () => {
-  // const setup = () => {
-  //   const wrapper = render(<HubSelectCheckbox />)
-  //   return { ...wrapper }
-  // }
-
+describe('Checkbox component should work properly', () => {
   const optionSetup = (props: {
     label?: string
     data?: { divider: boolean }

@@ -41,7 +41,7 @@ const TreeItens: React.FC<TreeItensProps> = ({
         py="2"
       >
         {getCheckbox(parent)}
-        {isCollapse && !!parent?.options?.length ? (
+        {isCollapse && !!parent.options?.length ? (
           <Box
             data-testid="collapse-box"
             as={CaretDown}
