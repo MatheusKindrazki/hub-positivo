@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import { TreeNode } from '@psdhub/common/components/Tree'
 import { Box, Checkbox, Text, Divider } from '@psdhub/common/components'
 
-interface AllValuesProps {
+export interface AllValuesProps {
   index: number
   isChecked: string[]
   values?: TreeNode[]
@@ -24,7 +24,7 @@ const AllValues: React.FC<AllValuesProps> = ({
 
   const allChecked = isChecked.length === markChecked?.length
 
-  const isIndeterminate = isChecked?.length > 0 && !allChecked
+  const isIndeterminate = isChecked.length > 0 && !allChecked
 
   return (
     <Box
