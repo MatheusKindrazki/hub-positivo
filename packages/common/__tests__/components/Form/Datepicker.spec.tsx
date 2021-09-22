@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { RefObject } from 'react'
 
 import * as dateFns from 'date-fns'
+import { FormHandles } from '@unform/core'
 
 import { render, fireEvent } from '@psdhub/test-utils'
 
@@ -48,6 +49,12 @@ jest.mock('../../../components/Datepicker', () => {
   }
 })
 
+interface SetupProps {
+  hideSelected?: boolean
+  placeholder?: string
+  setupRef?: RefObject<FormHandles>
+}
+
 describe('Datepicker should work properly', () => {
   const startDate = new Date(2021, 10, 11)
   const endDate = new Date(2021, 10, 10)
@@ -56,7 +63,7 @@ describe('Datepicker should work properly', () => {
     jest.clearAllMocks()
   })
 
-  const setup = (props?: { hideSelected: boolean; placeholder: string }) => {
+  const setup = (props: SetupProps | undefined) => {
     const datepickerName = 'datepickerName'
     const onSubmit = jest.fn()
 
@@ -69,7 +76,7 @@ describe('Datepicker should work properly', () => {
   }
 
   it('Should render popovers on screen with correct content', () => {
-    const { queryByTestId } = setup()
+    const { queryByTestId } = setup(undefined)
 
     expect(queryByTestId('popover-mock')).toBeInTheDocument()
     expect(queryByTestId('popover-trigger-mock')).toBeInTheDocument()
@@ -80,7 +87,7 @@ describe('Datepicker should work properly', () => {
     const spyIsDate = jest.spyOn(dateFns, 'isDate').mockReturnValue(true)
     const spyFormat = jest.spyOn(dateFns, 'format').mockReturnValue('date')
 
-    const { getByTestId } = setup()
+    const { getByTestId } = setup(undefined)
 
     fireEvent.click(getByTestId('datepicker-calendar'))
 
@@ -95,7 +102,7 @@ describe('Datepicker should work properly', () => {
     const spyIsDate = jest.spyOn(dateFns, 'isDate').mockReturnValue(false)
     const spyFormat = jest.spyOn(dateFns, 'format').mockReturnValue('date')
 
-    const { getByTestId } = setup()
+    const { getByTestId } = setup(undefined)
 
     fireEvent.click(getByTestId('datepicker-calendar'))
 
@@ -120,7 +127,7 @@ describe('Datepicker should work properly', () => {
         </button>
       )) as any
     )
-    const { getByTestId } = setup()
+    const { getByTestId } = setup(undefined)
     fireEvent.click(getByTestId('datepicker-calendar'))
 
     expect(spyIsDate).not.toHaveBeenCalled()

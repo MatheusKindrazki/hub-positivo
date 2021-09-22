@@ -12,7 +12,7 @@ import {
 
 import DefaultSelect, { PropsSelect } from '../../Select'
 
-interface Props extends PropsSelect {
+export interface Props extends PropsSelect {
   name: string
   mb?: FormControlProps['mb']
   label?: string
