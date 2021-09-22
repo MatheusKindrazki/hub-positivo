@@ -4,7 +4,7 @@ import * as unform from '@unform/core'
 
 import { fireEvent, render } from '@psdhub/test-utils'
 
-import { Form, Input, Button } from '../../components/Form'
+import { Form, Input, Button } from '../../../components/Form'
 
 const mockedSubmit = jest.fn(props => {
   return props
