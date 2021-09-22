@@ -25,10 +25,10 @@ describe('Treeview component works as expected', () => {
     onChange: mockedOnChange
   }
 
-  const setup = () => render(<Tree {...mockedProps} />)
+  const setup = (props?: any) => render(<Tree {...mockedProps} {...props} />)
 
   it('renders without crashing', () => {
-    const { getByText } = setup()
+    const { getByText } = setup({ defaultOptions: [''] })
 
     expect(getByText('test-node')).toBeInTheDocument()
   })
