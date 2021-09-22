@@ -70,7 +70,7 @@ describe('Select should work properly', () => {
     expect(queryByTestId('default-select')).toBeInTheDocument()
   })
 
-  it.only('render select', () => {
+  it('render select', () => {
     setup()
   })
 })

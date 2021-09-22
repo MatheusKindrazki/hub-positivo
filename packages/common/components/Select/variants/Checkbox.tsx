@@ -35,7 +35,7 @@ export type PropsSelect = Props & {
 
 const RewriteBox = Box as any
 
-const Option: OptionCheckboxProps = props => {
+export const Option: OptionCheckboxProps = props => {
   return (
     <>
       <RewriteBox as={components.Option} p="9" {...props}>
