@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 
 import { DotsThreeVertical } from '@psdhub/common/components/Icons'
-import { Image, Box, Text, SimpleGrid } from '@psdhub/common/components'
+import { Image, Box, Text, Flex } from '@psdhub/common/components'
 
 import { formatDate } from './utils/formatDate'
 
@@ -10,6 +10,7 @@ export interface NotificationContainerProps {
   date: Date
   imageURL: string
   message: string
+  read?: boolean
 }
 
 const NotificationContainer: React.FC<NotificationContainerProps> = ({
@@ -23,30 +24,37 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
   }, [date])
 
   return (
-    <SimpleGrid maxW="26rem" display="flex" p="1rem">
-      <Box minW="3.1rem" d="flex" justifyContent="center">
+    <Flex w="100%" p="2">
+      <Box width="95%" d="flex">
         <Image
           bg="blue.500"
           src={imageURL}
           alt=""
+          minW="3rem"
           w="3rem"
           h="3rem"
           p="2"
+          mt="1"
           borderRadius="0.5rem"
         />
+        <Box px="0.5rem" overflow="hidden">
+          <Text
+            fontSize="1rem"
+            fontWeight="700"
+            color="#3C3C3C"
+            textTransform="capitalize"
+          >
+            {solutionName}
+          </Text>
+          <Text lineHeight="20px" noOfLines={5} fontSize="1rem">
+            {message}
+          </Text>
+          <Text color="#6F6F6F" fontSize="0.75rem">
+            {formattedDate}
+          </Text>
+        </Box>
       </Box>
-      <Box maxW="20rem" px="0.5rem">
-        <Text fontSize="1rem" fontWeight="700" color="#3C3C3C">
-          {solutionName}
-        </Text>
-        <Text lineHeight="20px" noOfLines={5} fontSize="1rem">
-          {message}
-        </Text>
-        <Text color="#6F6F6F" fontSize="0.75rem">
-          {formattedDate}
-        </Text>
-      </Box>
-      <Box maxW="1rem" textAlign="center">
+      <Box width="5%">
         <DotsThreeVertical
           size="25"
           color="#969696"
@@ -54,7 +62,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
           cursor="pointer"
         />
       </Box>
-    </SimpleGrid>
+    </Flex>
   )
 }
 
