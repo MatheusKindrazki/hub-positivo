@@ -4,15 +4,13 @@ import { debounce } from 'lodash'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { CardProduct } from '~/store/modules/products/types'
-import { preAuth } from '~/store/modules/authProduct/actions'
+import { signOut } from '~/store/modules/auth/actions'
 
-import createSlug from '@psdhub/common/utils/createSlug'
+import Header from '@psdhub/web/src/components/Header'
 import { BarLoader } from '@psdhub/common/components'
 
 import setUserProperties from '~/services/mixpanel/setProperties'
-
-import Header from './components/Header'
+import history from '~/services/history'
 
 const dispatchEvent = debounce(() => setUserProperties(), 1000)
 
@@ -21,28 +19,22 @@ const Iframe: React.FC = ({ children }) => {
 
   useEffect(() => dispatchEvent())
 
-  const { data } = useSelector((state: Store.State) => state.products)
   const { loading } = useSelector((state: Store.State) => state.global)
 
-  const handlePlush = useCallback(
-    data => {
-      const slug = createSlug(data.nome)
+  const { school } = useSelector((state: Store.State) => state.user)
 
-      dispatch(
-        preAuth({
-          product: slug,
-          name: data.nome,
-          url: data.url,
-          tipoRenderizacao: data.tipoRenderizacao
-        })
-      )
-    },
-    [dispatch]
-  )
+  const handleSignOut = useCallback(async () => {
+    dispatch(signOut())
+    setTimeout(() => history.push('/login'), 500)
+  }, [dispatch])
+
   return (
     <>
       <BarLoader height="4px" loading={loading} />
-      <Header handlePush={handlePlush} cards={data as CardProduct[]} />
+      <Header
+        handleSignOut={handleSignOut}
+        schoolName={school?.label as string}
+      />
       {children}
     </>
   )

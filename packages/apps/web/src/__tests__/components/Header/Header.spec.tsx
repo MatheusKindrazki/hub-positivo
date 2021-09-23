@@ -4,7 +4,7 @@ import { fireEvent } from '@testing-library/dom'
 
 import { store } from '~/store'
 
-import { render } from '@psdhub/test-utils'
+import { render, waitFor } from '@psdhub/test-utils'
 
 import history from '~/services/history'
 
@@ -42,14 +42,16 @@ describe('Header component should works as expected', () => {
     expect(getByText(welcomeText, { exact: false })).toBeInTheDocument()
   })
 
-  it('buttons should be rendering without crashing', () => {
-    const { queryAllByTestId } = setup()
-    const headerButtonCount = 6
+  it('buttons should be rendering without crashing', async () => {
+    const { queryAllByTestId, getByTestId } = setup()
+    const headerButtonCount = 5
     const buttonTestId = 'header-button'
+    const goBackTestId = 'animated-goback'
 
     expect(queryAllByTestId(buttonTestId).length).toBe(headerButtonCount)
 
     queryAllByTestId(buttonTestId).forEach(button => fireEvent.click(button))
+    await waitFor(() => fireEvent.click(getByTestId(goBackTestId)))
 
     expect(spyPush).toHaveBeenCalledWith('/')
     expect(mockedProps.handleSignOut).toHaveBeenCalled()

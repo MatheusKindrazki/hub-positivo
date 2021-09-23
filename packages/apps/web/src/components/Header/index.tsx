@@ -9,13 +9,12 @@ import {
 } from 'phosphor-react'
 
 import { useMediaQuery } from '@psdhub/common/hooks'
-import { Box, Button } from '@psdhub/common/components'
+import { Box } from '@psdhub/common/components'
 
 import history from '~/services/history'
 
-import Logo from '~/components/LogoOn'
-
 import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
+import AnimateGoBack from './components/AnimateGoBack'
 import { SchoolLabel, HeaderButton } from './components'
 import './styles'
 export interface HeaderProps {
@@ -30,14 +29,14 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleSignOut }) => {
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
       {schoolName && <SchoolLabel schoolName={schoolName} />}
       <Box
-        h="12"
+        h="14"
         d="flex"
         flexDirection="column"
         background="white"
+        justifyContent="center"
         zIndex={99999}
       >
         <Box
-          pb="2"
           width="100%"
           margin="0 auto"
           maxWidth="1400px"
@@ -45,20 +44,14 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleSignOut }) => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Box className="hub-logo-wrapper">
+          <Box className="hub-logo-wrapper" d="flex">
             <HeaderButton
               as={HamburgerMenu}
               onClick={() => console.log('click')}
             />
-            <Button
-              data-testid="header-button"
-              m="0"
-              p="1"
-              variant="ghost"
-              onClick={() => history.push('/')}
-            >
-              <Logo />
-            </Button>
+            <Box>
+              <AnimateGoBack onClick={() => history.push('/')} />
+            </Box>
           </Box>
 
           <Box>

@@ -2,17 +2,17 @@ import React from 'react'
 
 import { fireEvent, render } from '@psdhub/test-utils'
 
-import AnimateGoBack from '~/layouts/Solutions/components/Header/AnimateGoBack'
+import AnimateGoBack from '../../../components/Header/components/AnimateGoBack'
 
 describe('AnimateGoBack should work properly', () => {
-  const setup = (width: number | undefined) => {
+  const setup = () => {
     const onClick = jest.fn()
-    const wrapper = render(<AnimateGoBack onClick={onClick} width={width} />)
+    const wrapper = render(<AnimateGoBack onClick={onClick} />)
     return { ...wrapper, onClick }
   }
 
   it('Shoud call onClick when arrow left is clicked', async () => {
-    const { getAllByRole, onClick } = setup(60)
+    const { getAllByRole, onClick } = setup()
     const headerButtons = getAllByRole('button')
     const arrowLeft = headerButtons[0]
 
@@ -21,7 +21,7 @@ describe('AnimateGoBack should work properly', () => {
   })
 
   it('Should render without crashing when width was not provided', async () => {
-    const wrapper = setup(undefined)
+    const wrapper = setup()
     expect(wrapper).toMatchSnapshot()
   })
 })

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   position: relative;
-  margin-top: 41px;
+
   min-height: calc(100vh - 41px);
 
   .hub-login-container {
@@ -27,7 +27,6 @@ export const Container = styled.div`
   }
 
   @media (min-width: 480px) {
-    margin-top: 72px !important;
     min-height: calc(100vh - 72px);
 
     iframe {
