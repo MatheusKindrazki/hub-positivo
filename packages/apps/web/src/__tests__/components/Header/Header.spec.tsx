@@ -10,7 +10,7 @@ import Header, { HeaderProps } from '~/components/Header'
 
 describe('Header component should works as expected', () => {
   const mockedProps = {
-    handlePush: jest.fn(),
+    handleGoBack: jest.fn(),
     schoolName: 'test-school'
   }
 
@@ -52,6 +52,6 @@ describe('Header component should works as expected', () => {
 
     jest.runAllTimers()
 
-    expect(mockedProps.handlePush).toHaveBeenCalledWith('/')
+    expect(mockedProps.handleGoBack).toHaveBeenCalled()
   })
 })

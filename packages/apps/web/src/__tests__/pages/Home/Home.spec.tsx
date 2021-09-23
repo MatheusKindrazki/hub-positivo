@@ -64,10 +64,7 @@ describe('Testing that the Home page works correctly', () => {
       ],
       CUSTOM_STATE: { ...defaultItemsInState, ...contextConfig }
     })
-    const { getByTestId } = utils
-    const searchInput = getByTestId('search-input')
-
-    return { searchInput, ...utils }
+    return { ...utils }
   }
 
   const queryConfig = {
@@ -98,7 +95,11 @@ describe('Testing that the Home page works correctly', () => {
 
   it('Should not show any card when an unknown card is searched on filter', async () => {
     jest.useFakeTimers()
-    const { searchInput, getAllByTestId, queryAllByTestId } = setup()
+    const { getAllByTestId, queryAllByTestId, getByTestId } = setup()
+
+    expect(getByTestId('search-input')).toBeInTheDocument()
+
+    const searchInput = getByTestId('search-input')
 
     let value = 'card inexistente'
     let cards: HTMLElement[]
@@ -161,16 +162,16 @@ describe('Testing that the Home page works correctly', () => {
 
   it('Should render with default Welcome titles', async () => {
     const emptyContextValues: CustomState<Store.State> = {
-      user: {},
+      user: { info: { name: undefined } },
       profile: {
-        name: undefined
+        name: 'Administrador'
       },
       educationalStage: {}
     }
 
     const { queryByText } = setup(emptyContextValues)
 
-    const defaultRole = queryByText('olá', queryConfig)
+    const defaultRole = queryByText('Olá', queryConfig)
 
     expect(defaultRole).not.toBeNull()
   })
