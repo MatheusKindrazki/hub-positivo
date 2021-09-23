@@ -46,14 +46,12 @@ const useCheckedLogic = (context: SelectContextProps): ReturnData => {
   }
 
   const checkSelectedItem = (item: TreeNode) => {
-    const isChecked = getState().raw.find(i => {
+    return getState().raw.find(i => {
       if (i.value === item.value) {
         return i.isChecked
       }
       return false
     })
-
-    return isChecked
   }
 
   context.searchable = (e: string) => {

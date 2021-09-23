@@ -71,7 +71,7 @@ const Control: React.FC<ControleProps> = props => {
 
     if (!isDataSelect) {
       return (
-        <Box as="span" color={!isDataSelect ? 'gray.500' : 'black'}>
+        <Box as="span" color={'gray.500'}>
           {renderValue()}
         </Box>
       )
