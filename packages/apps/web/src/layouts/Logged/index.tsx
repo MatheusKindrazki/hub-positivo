@@ -43,11 +43,15 @@ const Dashboard: React.FC = ({ children }) => {
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
   )
-
-  const handleSignOut = useCallback(async () => {
-    dispatch(signOut())
-    setTimeout(() => history.push('/login'), 500)
-  }, [dispatch])
+  const handlePush = useCallback(
+    async (to: string) => {
+      if (to === '/login') {
+        dispatch(signOut())
+      }
+      setTimeout(() => history.push(to), 500)
+    },
+    [dispatch]
+  )
 
   const handleClosedTour = useCallback(() => {
     if (viewed) return dispatch(openTour(false))
@@ -63,10 +67,7 @@ const Dashboard: React.FC = ({ children }) => {
       {steps?.length && (
         <Tour onClosed={handleClosedTour} open={open} steps={steps} />
       )}
-      <Header
-        handleSignOut={handleSignOut}
-        schoolName={school?.label as string}
-      />
+      <Header handlePush={handlePush} schoolName={school?.label as string} />
       <main className="hub-main-class">
         {nobreak && <ModalAlternativeAccess />}
         {children}

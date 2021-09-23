@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 import Headroom from 'react-headroom'
 import {
@@ -11,19 +11,21 @@ import {
 import { useMediaQuery } from '@psdhub/common/hooks'
 import { Box } from '@psdhub/common/components'
 
-import history from '~/services/history'
-
 import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
 import AnimateGoBack from './components/AnimateGoBack'
 import { SchoolLabel, HeaderButton } from './components'
 import './styles'
 export interface HeaderProps {
-  handleSignOut: () => void
+  handlePush: (to: string) => void | Promise<void>
   schoolName?: string
 }
 
-const Header: React.FC<HeaderProps> = ({ schoolName, handleSignOut }) => {
+const Header: React.FC<HeaderProps> = ({ schoolName, handlePush }) => {
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
+
+  const handleSignOut = useCallback(() => handlePush('/login'), [handlePush])
+
+  const handleGoback = useCallback(() => handlePush('/'), [handlePush])
 
   return (
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
@@ -44,13 +46,13 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleSignOut }) => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Box className="hub-logo-wrapper" d="flex">
+          <Box d="flex">
             <HeaderButton
               as={HamburgerMenu}
               onClick={() => console.log('click')}
             />
             <Box>
-              <AnimateGoBack onClick={() => history.push('/')} />
+              <AnimateGoBack onClick={handleGoback} />
             </Box>
           </Box>
 
