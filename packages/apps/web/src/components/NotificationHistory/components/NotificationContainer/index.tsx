@@ -5,7 +5,6 @@ import { Image, Box, Text } from '@psdhub/common/components'
 
 import { formatDate } from './utils/formatDate'
 import { Flex } from './styles'
-
 export interface NotificationContainerProps {
   solutionName: string
   date: Date
