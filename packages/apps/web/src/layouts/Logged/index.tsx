@@ -5,7 +5,6 @@ import { debounce } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour, postTourViewed } from '~/store/modules/tour/actions'
-import { signOut } from '~/store/modules/auth/actions'
 
 import Tour from '@psdhub/common/components/Tour'
 import { BarLoader } from '@psdhub/common/components'
@@ -43,15 +42,9 @@ const Dashboard: React.FC = ({ children }) => {
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
   )
-  const handlePush = useCallback(
-    async (to: string) => {
-      if (to === '/login') {
-        dispatch(signOut())
-      }
-      setTimeout(() => history.push(to), 500)
-    },
-    [dispatch]
-  )
+  const handleGoBack = useCallback(async () => {
+    setTimeout(() => history.push('/'), 500)
+  }, [])
 
   const handleClosedTour = useCallback(() => {
     if (viewed) return dispatch(openTour(false))
@@ -67,7 +60,10 @@ const Dashboard: React.FC = ({ children }) => {
       {steps?.length && (
         <Tour onClosed={handleClosedTour} open={open} steps={steps} />
       )}
-      <Header handlePush={handlePush} schoolName={school?.label as string} />
+      <Header
+        handleGoBack={handleGoBack}
+        schoolName={school?.label as string}
+      />
       <main className="hub-main-class">
         {nobreak && <ModalAlternativeAccess />}
         {children}

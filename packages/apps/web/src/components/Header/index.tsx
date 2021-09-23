@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef } from 'react'
 
 import Headroom from 'react-headroom'
 import {
@@ -15,17 +15,20 @@ import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalL
 import AnimateGoBack from './components/AnimateGoBack'
 import { SchoolLabel, HeaderButton } from './components'
 import './styles'
+import ModalSignOut, { ModalHandler } from '../ModalSignOut/ModalSignOut'
 export interface HeaderProps {
-  handlePush: (to: string) => void | Promise<void>
+  handleGoBack: () => void | Promise<void>
   schoolName?: string
 }
 
-const Header: React.FC<HeaderProps> = ({ schoolName, handlePush }) => {
+const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
-  const handleSignOut = useCallback(() => handlePush('/login'), [handlePush])
+  const modalRef = useRef<ModalHandler>(null)
 
-  const handleGoback = useCallback(() => handlePush('/'), [handlePush])
+  const openModal = useCallback(() => {
+    modalRef.current?.onOpen()
+  }, [])
 
   return (
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
@@ -52,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handlePush }) => {
               onClick={() => console.log('click')}
             />
             <Box>
-              <AnimateGoBack onClick={handleGoback} />
+              <AnimateGoBack onClick={handleGoBack} />
             </Box>
           </Box>
 
@@ -60,7 +63,8 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handlePush }) => {
             <HeaderButton as={Megaphone} onClick={() => console.log('click')} />
             <HeaderButton as={Question} onClick={() => console.log('click')} />
             <HeaderButton as={Bell} onClick={() => console.log('click')} />
-            <HeaderButton children="sair" onClick={handleSignOut} />
+            <HeaderButton children="sair" onClick={openModal} />
+            <ModalSignOut ref={modalRef} />
           </Box>
         </Box>
       </Box>
