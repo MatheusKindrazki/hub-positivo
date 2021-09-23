@@ -13,6 +13,7 @@ import documentTitle from '@psdhub/common/utils/documentTitle'
 import createSlug from '@psdhub/common/utils/createSlug'
 import { Box, Heading, Collapse, CardProduct } from '@psdhub/common/components'
 
+import { notificationConnect } from '~/services/notificationConnect'
 import { toolOpened } from '~/services/mixpanel/toolOpened'
 
 import { cardFilter } from '~/utils/cardFilter'
