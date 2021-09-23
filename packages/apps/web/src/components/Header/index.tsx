@@ -63,7 +63,7 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
             <HeaderButton as={Megaphone} onClick={() => console.log('click')} />
             <HeaderButton as={Question} onClick={() => console.log('click')} />
             <HeaderButton as={Bell} onClick={() => console.log('click')} />
-            <HeaderButton children="sair" onClick={openModal} />
+            <HeaderButton children="Sair" onClick={openModal} />
             <ModalSignOut ref={modalRef} />
           </Box>
         </Box>
