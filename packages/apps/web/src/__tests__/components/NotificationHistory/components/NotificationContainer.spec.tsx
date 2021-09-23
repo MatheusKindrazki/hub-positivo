@@ -12,6 +12,7 @@ describe('NotificationContainer should work properly', () => {
     const solutionName = 'solution name'
     const { queryByText } = render(
       <NotificationContainer
+        read={false}
         date={date}
         imageURL={url}
         message={message}

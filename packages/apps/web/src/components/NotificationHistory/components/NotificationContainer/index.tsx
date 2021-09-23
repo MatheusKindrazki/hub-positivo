@@ -1,30 +1,32 @@
 import React, { useMemo } from 'react'
 
 import { DotsThreeVertical } from '@psdhub/common/components/Icons'
-import { Image, Box, Text, Flex } from '@psdhub/common/components'
+import { Image, Box, Text } from '@psdhub/common/components'
 
 import { formatDate } from './utils/formatDate'
+import { Flex } from './styles'
 
 export interface NotificationContainerProps {
   solutionName: string
   date: Date
   imageURL: string
   message: string
-  read?: boolean
+  read: boolean
 }
 
 const NotificationContainer: React.FC<NotificationContainerProps> = ({
   date,
   solutionName,
   imageURL,
-  message
+  message,
+  read
 }) => {
   const formattedDate = useMemo(() => {
     return formatDate(date)
   }, [date])
 
   return (
-    <Flex w="100%" p="2">
+    <Flex w="100%" p="2" read={read}>
       <Box width="95%" d="flex">
         <Image
           bg="blue.500"
