@@ -26,7 +26,7 @@ jest.mock('~/components/NotificationHistory/components', () => {
 })
 describe('Header component should works as expected', () => {
   const mockedProps = {
-    handlePush: jest.fn(),
+    handleGoBack: jest.fn(),
     schoolName: 'test-school'
   }
 

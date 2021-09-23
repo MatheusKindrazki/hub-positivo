@@ -1,12 +1,12 @@
 import React from 'react'
 
 import { StepsTour } from '~/store/modules/tour/types'
-import { signOut } from '~/store/modules/auth/actions'
 import { store } from '~/store'
 
 import { render, CustomState, fireEvent, waitFor } from '@psdhub/test-utils'
 
 import * as mixpanel from '~/services/mixpanel/setProperties'
+import history from '~/services/history'
 
 import Dashboard from '~/layouts/Logged'
 
@@ -47,7 +47,7 @@ jest.mock('~/components/ModalAlternativeAccess', () => ({
 
 jest.mock('~/components/Header', () =>
   jest.fn(props => (
-    <div onClick={() => props.handlePush('/login')} id="header">
+    <div onClick={() => props.handleGoBack()} id="header">
       Header
     </div>
   ))
@@ -190,12 +190,17 @@ describe('Logged`s layout should render without crashing', () => {
     expect(queryByText(/Modal Alternative Access/i)).toBeInTheDocument()
   })
 
-  it('should logout user at logout button', async () => {
-    const { getByText, storeUtils } = setup('children')
+  it('should return user at goBack button', async () => {
+    jest.useFakeTimers()
+
+    const spyPush = jest.spyOn(history, 'push')
+    const { getByText } = setup('children')
 
     expect(getByText('Header')).toBeInTheDocument()
     await waitFor(() => fireEvent.click(getByText('Header')))
 
-    expect(storeUtils?.getActions()).toContainEqual(signOut())
+    jest.runAllTimers()
+
+    expect(spyPush).toHaveBeenCalledWith('/')
   })
 })
