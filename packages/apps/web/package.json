@@ -17,7 +17,7 @@
     "@psdhub/gsc": "*",
     "@psdhub/chatbot": "*",    
     "@pdftron/webviewer": "^8.1.0",
-    "@psdhub/common": "*",
+    "@psdhub/common": "*",    
     "@psdhub/helpers": "*",
     "classnames": "^2.2.6",
     "connected-react-router": "~6.8.0",
