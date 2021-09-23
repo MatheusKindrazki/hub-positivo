@@ -37,6 +37,22 @@ describe('NewSelects Input component should work properly', () => {
 
     jest.runAllTimers()
 
+    await waitFor(() =>
+      fireEvent.change(getByTestId('search-input'), {
+        target: { value: '' }
+      })
+    )
+
+    jest.runAllTimers()
+
+    await waitFor(() =>
+      fireEvent.change(getByTestId('search-input'), {
+        target: undefined
+      })
+    )
+
+    jest.runAllTimers()
+
     expect(mockedSearchable).toHaveBeenCalledWith('test-value')
   })
 })
