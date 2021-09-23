@@ -6,15 +6,11 @@ import { store } from '~/store'
 
 import { render, waitFor } from '@psdhub/test-utils'
 
-import history from '~/services/history'
-
 import Header, { HeaderProps } from '~/components/Header'
 
 describe('Header component should works as expected', () => {
-  const spyPush = jest.spyOn(history, 'push').mockImplementation()
-
   const mockedProps = {
-    handleSignOut: jest.fn(),
+    handlePush: jest.fn(),
     schoolName: 'test-school'
   }
 
@@ -43,6 +39,7 @@ describe('Header component should works as expected', () => {
   })
 
   it('buttons should be rendering without crashing', async () => {
+    jest.useFakeTimers()
     const { queryAllByTestId, getByTestId } = setup()
     const headerButtonCount = 5
     const buttonTestId = 'header-button'
@@ -53,7 +50,8 @@ describe('Header component should works as expected', () => {
     queryAllByTestId(buttonTestId).forEach(button => fireEvent.click(button))
     await waitFor(() => fireEvent.click(getByTestId(goBackTestId)))
 
-    expect(spyPush).toHaveBeenCalledWith('/')
-    expect(mockedProps.handleSignOut).toHaveBeenCalled()
+    jest.runAllTimers()
+
+    expect(mockedProps.handlePush).toHaveBeenCalledWith('/')
   })
 })
