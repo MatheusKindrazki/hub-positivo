@@ -6,8 +6,6 @@ import { store } from '~/store'
 
 import { render } from '@psdhub/test-utils'
 
-import history from '~/services/history'
-
 import Header, { HeaderProps } from '~/components/Header'
 
 jest.mock('~/components/NotificationHistory/components', () => {
@@ -28,7 +26,7 @@ jest.mock('~/components/NotificationHistory/components', () => {
 })
 describe('Header component should works as expected', () => {
   const mockedProps = {
-    handleGoBack: jest.fn(),
+    handlePush: jest.fn(),
     schoolName: 'test-school'
   }
 

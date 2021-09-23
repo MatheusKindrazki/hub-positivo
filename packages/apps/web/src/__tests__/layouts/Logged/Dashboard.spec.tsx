@@ -47,7 +47,7 @@ jest.mock('~/components/ModalAlternativeAccess', () => ({
 
 jest.mock('~/components/Header', () =>
   jest.fn(props => (
-    <div onClick={props.handleSignOut} id="header">
+    <div onClick={() => props.handlePush('/login')} id="header">
       Header
     </div>
   ))
