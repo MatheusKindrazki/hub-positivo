@@ -23,7 +23,6 @@ import FakeCollapse from '~/components/FakeCollapse'
 import { Container } from './styles'
 import HomeMenu from './components/HomeMenu'
 import FakeLoadingCard from './components/FakeLoading'
-
 const Home: React.FC = () => {
   documentTitle('Home')
 
@@ -31,7 +30,9 @@ const Home: React.FC = () => {
 
   const [search, setSearchValue] = useState('')
 
-  const { info: user } = useSelector((state: Store.State) => state.user)
+  const { info } = useSelector((state: Store.State) => state.user)
+
+  const { name: profile } = useSelector((state: Store.State) => state.profile)
 
   const { data: cards, loading: load } = useSelector(
     (state: Store.State) => state.products
@@ -84,12 +85,15 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <HomeMenu
-        userName={user?.name as string}
-        isTourActive={!steps?.length}
-        handleOpenTour={handleOpenTour}
-        handleSearch={handleSearch}
-      />
+      {info && profile && (
+        <HomeMenu
+          userInfo={{ name: info?.name, profile }}
+          isTourActive={!steps?.length}
+          handleOpenTour={handleOpenTour}
+          handleSearch={handleSearch}
+        />
+      )}
+
       <Box as={Container} p="2" maxW="1400px" margin="0 auto">
         <Box
           display="flex"
