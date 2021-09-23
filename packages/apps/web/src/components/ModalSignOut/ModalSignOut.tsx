@@ -45,7 +45,7 @@ const ModalSignOut = React.forwardRef<ModalHandler>((_, ref) => {
       >
         <Text color="grey.600">{modalDescription}</Text>
 
-        <Box mt="6" d="flex" alignItems="center" justifyContent="center">
+        <Box mt="6" mb="2" d="flex" alignItems="center" justifyContent="center">
           <Button
             h="12"
             w="50%"
