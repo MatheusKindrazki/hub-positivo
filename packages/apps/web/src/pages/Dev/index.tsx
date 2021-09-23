@@ -1,72 +1,17 @@
-import React, { useRef, useCallback, useState } from 'react'
+import React, { useRef } from 'react'
 
-import { store } from '~/store'
-
-import { Activity } from '@psdhub/common/components/Icons'
-import {
-  Input,
-  Form,
-  FormProps,
-  Button,
-  Datepicker
-} from '@psdhub/common/components/Form'
+import history from '@psdhub/web/src/services/history'
+import { FormProps } from '@psdhub/common/components/Form'
 import { Heading, Box } from '@psdhub/common/components'
-import { apiAuthProduct } from '@psdhub/api'
 
+import { NotificationHeader } from '~/components/NotificationHistory/components'
 const DevHub: React.FC = () => {
-  const [loading, setLoading] = useState(false)
-
   const formRef = useRef<FormProps>(null)
   setTimeout(() => {
     formRef.current?.setData({
       ola: [new Date(), new Date()]
     })
   }, 2000)
-
-  const handleSubmit = useCallback(async data => {
-    console.log('meus dados', data)
-
-    setLoading(true)
-
-    const auth = store.getState().auth
-    const profile = store.getState().profile
-    const user = store.getState().user
-    const { level } = store.getState().educationalStage
-
-    const authTheProduct = {
-      product: 'easyauth-login',
-      token: auth.token,
-      reduced_token: auth.reduced_token,
-      logged_in: {
-        school: {
-          name: user.school?.label,
-          id: user.school?.value,
-          class: level
-        },
-        profile: profile.guid,
-        user_id: user.info?.integration_id || user.info?.id
-      },
-      expire_in: auth.exp
-    }
-
-    const response = await apiAuthProduct.post(
-      'api/TokenStorage',
-      authTheProduct,
-      {
-        headers: {
-          Authorization: `Bearer ${auth.reduced_token}`
-        }
-      }
-    )
-
-    const produceUrl = `${data.url}/${response.data}`
-
-    console.log(produceUrl)
-
-    // window.open(produceUrl, '_blank')
-
-    setLoading(false)
-  }, [])
   return (
     <Box
       w="100%"
@@ -79,36 +24,15 @@ const DevHub: React.FC = () => {
         <Heading fontWeight="normal" fontSize="2xl" textAlign="center" mb="8">
           EasyAuth / Hub Digital
         </Heading>
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input
-            backgroundColor="white"
-            name="url"
-            type="text"
-            data-testid="email"
-            placeholder="Url para redirecionamento"
-            defaultValue="http://localhost:3000/#/auth"
-            mb="5"
-          />
-
-          <Input
-            mb="4"
-            name="password"
-            placeholder="Digite sua senha"
-            autoComplete="current-password"
-            data-testid="password"
-            iconRight={
-              <Box
-                data-testid="view-button"
-                as={Activity}
-                color="gray.500"
-                size="19px"
-              />
+        <Box w="416px">
+          <NotificationHeader
+            title="Notificações"
+            markAllAsRead={() =>
+              alert('Todas as mensagens foram marcadas como lida')
             }
+            goToSettings={() => history.push('/')}
           />
-          <Datepicker name="ola" />
-
-          <Button isLoading={loading}>Entrar na solução</Button>
-        </Form>
+        </Box>
       </Box>
     </Box>
   )
