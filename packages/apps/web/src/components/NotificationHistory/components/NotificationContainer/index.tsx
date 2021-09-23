@@ -5,7 +5,7 @@ import { Image, Box, Text, SimpleGrid } from '@psdhub/common/components'
 
 import { formatDate } from './utils/formatDate'
 
-interface NotificationContainerProps {
+export interface NotificationContainerProps {
   solutionName: string
   date: Date
   imageURL: string
@@ -23,13 +23,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
   }, [date])
 
   return (
-    <SimpleGrid
-      maxW="26rem"
-      display="flex"
-      p="1rem"
-      border="1px solid #6f6f6f9e"
-      borderRadius="8px"
-    >
+    <SimpleGrid maxW="26rem" display="flex" p="1rem">
       <Box minW="3.1rem" d="flex" justifyContent="center">
         <Image
           bg="blue.500"
