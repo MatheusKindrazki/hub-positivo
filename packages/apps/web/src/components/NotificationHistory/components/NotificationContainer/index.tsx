@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 
+import { Menu, MenuList, MenuButton } from '@psdhub/common/components/Menu'
 import { DotsThreeVertical } from '@psdhub/common/components/Icons'
 import { Image, Box, Text } from '@psdhub/common/components'
 
@@ -11,6 +12,7 @@ export interface NotificationContainerProps {
   imageURL: string
   message: string
   read: boolean
+  allowThisTypeOf?: boolean
 }
 
 const NotificationContainer: React.FC<NotificationContainerProps> = ({
@@ -18,7 +20,8 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
   solutionName,
   imageURL,
   message,
-  read
+  read,
+  allowThisTypeOf = true
 }) => {
   const formattedDate = useMemo(() => {
     return formatDate(date)
@@ -56,12 +59,48 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
         </Box>
       </Box>
       <Box width="5%">
-        <DotsThreeVertical
-          size="25"
-          color="#969696"
-          weight="bold"
-          cursor="pointer"
-        />
+        <Menu placement="left-start">
+          <MenuButton data-testid="menu-button">
+            <DotsThreeVertical
+              size="25"
+              color="#969696"
+              weight="bold"
+              cursor="pointer"
+            />
+          </MenuButton>
+          <MenuList left={['0.75rem', 'auto']} position="relative">
+            <Text
+              px="10px"
+              textAlign="start"
+              cursor="pointer"
+              _hover={{ background: 'gray.400' }}
+              py="5px"
+            >
+              {read ? 'Marcar como não lida' : 'Marcar como lida'}
+            </Text>
+            <Text
+              px="10px"
+              textAlign="start"
+              cursor="pointer"
+              _hover={{ background: 'gray.400' }}
+              py="5px"
+            >
+              {allowThisTypeOf
+                ? 'Desativar notificações como essa'
+                : 'Ativar notificações como essa'}
+            </Text>
+
+            <Text
+              px="10px"
+              textAlign="start"
+              cursor="pointer"
+              _hover={{ background: 'gray.400' }}
+              py="5px"
+            >
+              Excluir
+            </Text>
+          </MenuList>
+        </Menu>
       </Box>
     </Flex>
   )
