@@ -3,9 +3,8 @@ import React from 'react'
 import Text, { TextProps } from '@psdhub/common/components/Text'
 import { DrawerFooter } from '@psdhub/common/components/Drawer'
 import { Stack } from '@psdhub/common/components'
-
 export interface FooterProps extends TextProps {
-  handleSignOut: () => void
+  handleSignOut: () => void | undefined
   openModalPass: () => void
   openModalVersionUpdate?: () => void
 }

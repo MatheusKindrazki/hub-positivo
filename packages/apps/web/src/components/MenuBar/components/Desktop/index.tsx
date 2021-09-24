@@ -1,11 +1,15 @@
-import React, { useState, useCallback, useImperativeHandle } from 'react'
+import React, {
+  useState,
+  useCallback,
+  useImperativeHandle,
+  useRef
+} from 'react'
 
 import { debounce } from 'ts-debounce'
 
 import { useSelector, useDispatch } from 'react-redux'
 
 import { preAuth } from '~/store/modules/authProduct/actions'
-import { signOut } from '~/store/modules/auth/actions'
 
 import { createSlug } from '@psdhub/common/utils'
 import { useMediaQuery } from '@psdhub/common/hooks'
@@ -15,15 +19,15 @@ import Drawer, {
 } from '@psdhub/common/components/Drawer'
 import { Search, Box } from '@psdhub/common/components'
 
-import history from '~/services/history'
-
-import { ModalHandler } from '~/components/ModalVersionUpdate'
-
 import { useFilterCards } from '~/hooks/useFilterCards'
 
 import { DrawerContentContainer } from './styles'
 import { FooterProps } from '../Footer'
 import { useHeader } from '../../context'
+
+import ModalSignOut, {
+  ModalHandler
+} from '~/components/ModalSignOut/ModalSignOut'
 
 import {
   MenuHeader,
@@ -50,7 +54,7 @@ export interface MenuProps {
 const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
   ({ openModalPass, openModalVersionUpdate }, ref) => {
     const dispatch = useDispatch()
-    const { onOpen, onClose, isOpen } = useDisclosure({ defaultIsOpen: true })
+    const { onOpen, onClose, isOpen } = useDisclosure({ defaultIsOpen: false })
     const {
       onOpen: onSubmenuOpen,
       onClose: onSubmenuClose,
@@ -60,6 +64,8 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
     const { data: cards, loading } = useSelector(
       (state: Store.State) => state.products
     )
+
+    const modalSignOutRef = useRef<ModalHandler>(null)
 
     const [isDesktop] = useMediaQuery('(min-width: 768px)')
     const [search, setSearchValue] = useState('')
@@ -83,11 +89,6 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
     })
 
     const filterCards = useFilterCards(cards, search)
-
-    const handleSignOut = useCallback(async () => {
-      dispatch(signOut())
-      setTimeout(() => history.push('/login'), 500)
-    }, [dispatch])
 
     const handleSearch = debounce(value => {
       setSearchValue(value)
@@ -172,10 +173,11 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
             )}
           </Box>
           <MenuFooter
-            handleSignOut={handleSignOut}
+            handleSignOut={() => modalSignOutRef.current?.onOpen()}
             openModalPass={openModalPass}
             openModalVersionUpdate={openModalVersionUpdate}
           />
+          <ModalSignOut ref={modalSignOutRef} />
         </DrawerContentContainer>
       </Drawer>
     )

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, RefObject } from 'react'
 
 import { useDisclosure, useMediaQuery } from '@psdhub/common/hooks'
 import { Modal } from '@psdhub/common/components'
@@ -12,8 +12,11 @@ import AlterPass from '~/components/MenuBar/components/AlterPass'
 
 import { DesktopMenu } from './components'
 
-const MenuBar: React.FC = () => {
-  const menuRef = useRef<RefMenuProps>(null)
+interface MenuBarProps {
+  menuRef: RefObject<RefMenuProps>
+}
+
+const MenuBar: React.FC<MenuBarProps> = ({ menuRef }) => {
   const modalUpdateVersionRef = useRef<ModalHandler>({ onOpen: () => null })
 
   const { onOpen: onOpenModalAlterPass, onClose, isOpen } = useDisclosure()

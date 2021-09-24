@@ -11,17 +11,22 @@ import {
 import { useMediaQuery } from '@psdhub/common/hooks'
 import { Box } from '@psdhub/common/components'
 
+import MenuBar from '~/components/MenuBar'
+
 import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
 import AnimateGoBack from './components/AnimateGoBack'
 import { SchoolLabel, HeaderButton } from './components'
 import './styles'
 import ModalSignOut, { ModalHandler } from '../ModalSignOut/ModalSignOut'
+import { RefMenuProps } from '../MenuBar/components/Desktop'
 export interface HeaderProps {
   handleGoBack: () => void | Promise<void>
   schoolName?: string
 }
 
 const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
+  const menuRef = useRef<RefMenuProps>(null)
+
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
   const modalRef = useRef<ModalHandler>(null)
@@ -32,6 +37,7 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
 
   return (
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
+      <MenuBar menuRef={menuRef} />
       {schoolName && <SchoolLabel schoolName={schoolName} />}
       <Box
         h="14"
@@ -49,10 +55,10 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Box d="flex">
+          <Box d="flex" cursor="pointer">
             <HeaderButton
               as={HamburgerMenu}
-              onClick={() => console.log('click')}
+              onClick={() => menuRef.current?.openMenu()}
             />
             <Box>
               <AnimateGoBack onClick={handleGoBack} />
