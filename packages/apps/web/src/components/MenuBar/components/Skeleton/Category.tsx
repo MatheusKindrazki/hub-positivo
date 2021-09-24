@@ -10,7 +10,7 @@ const categories = [
   'category4',
   'category5'
 ]
-const CategorySkeleton: React.FC = () => {
+const Category: React.FC = () => {
   return (
     <Stack>
       {categories.map((category, i) => (
@@ -26,4 +26,4 @@ const CategorySkeleton: React.FC = () => {
   )
 }
 
-export default CategorySkeleton
+export default Category

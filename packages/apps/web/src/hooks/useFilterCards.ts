@@ -6,10 +6,8 @@ import { cardFilter } from '~/utils/cardFilter'
 export const useFilterCards = (
   cards: CardProduct[] | undefined,
   search: string
-): CardProduct[] => {
-  const filterCards = useMemo(
+): CardProduct[] =>
+  useMemo(
     () => cardFilter({ data: cards || [], search, typeCard: 'solucoes' }),
     [cards, search]
   )
-  return filterCards
-}
