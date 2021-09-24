@@ -19,7 +19,6 @@ import history from '~/services/history'
 
 import { ModalHandler } from '~/components/ModalVersionUpdate'
 
-import { HandleProps } from '~/layouts/Solutions/components/Card'
 import { useFilterCards } from '~/hooks/useFilterCards'
 
 import { DrawerContentContainer } from './styles'
@@ -34,6 +33,11 @@ import {
   Skeleton as CategorySkeleton
 } from '..'
 
+export interface HandleProps {
+  url: string
+  tipoRenderizacao: string
+  nome: string
+}
 export interface RefMenuProps {
   openMenu: () => void
 }
