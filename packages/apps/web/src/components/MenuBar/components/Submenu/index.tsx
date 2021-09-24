@@ -8,7 +8,7 @@ import { Button } from '@psdhub/common/components'
 
 import SimpleCard from '~/components/SimpleCard'
 
-import { HandleProps } from '~/layouts/Solutions/components/Card'
+import { HandleProps } from '../Desktop'
 export interface SubmenuProps {
   card: CardProduct
   handleClick: (solution: HandleProps) => void
