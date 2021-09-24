@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Gear, EnvelopeOpen } from 'phosphor-react'
 
-import { Box, Button } from '@psdhub/common/components'
+import { Box, Button, Tooltip } from '@psdhub/common/components'
 
 interface NotificationHeader {
   title: string
@@ -35,24 +35,38 @@ const NotficationHeader: React.FC<NotificationHeader> = ({
         {title}
       </Box>
       <Box alignSelf="center">
-        <Button
-          mx={['0', '2', '2', '2']}
-          data-testid="mark-all-as-read-button"
-          variant="unstyled"
-          color="blue.500"
-          onClick={markAllAsRead}
+        <Tooltip
+          p="8px"
+          fontSize="16px"
+          label="Marcar todas como lidas"
+          placement="top-start"
         >
-          <EnvelopeOpen size="1.75rem" weight="bold" />
-        </Button>
-        <Button
-          mx={['0', '2', '2', '2']}
-          data-testid="settings-button"
-          variant="unstyled"
-          color="blue.500"
-          onClick={goToSettings}
+          <Button
+            mx={['0', '2', '2', '2']}
+            data-testid="mark-all-as-read-button"
+            variant="unstyled"
+            color="blue.500"
+            onClick={markAllAsRead}
+          >
+            <EnvelopeOpen size="1.75rem" weight="bold" />
+          </Button>
+        </Tooltip>
+        <Tooltip
+          p="8px"
+          fontSize="16px"
+          label="Configurações de notificação"
+          placement="top-start"
         >
-          <Gear size="1.75rem" weight="bold" />
-        </Button>
+          <Button
+            mx={['0', '2', '2', '2']}
+            data-testid="settings-button"
+            variant="unstyled"
+            color="blue.500"
+            onClick={goToSettings}
+          >
+            <Gear size="1.75rem" weight="bold" />
+          </Button>
+        </Tooltip>
       </Box>
     </Box>
   )
