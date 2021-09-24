@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Select, Stack } from '@psdhub/common/components'
 
-import { useHeader } from '~/components/Header/context'
+import { useHeader } from '../../context'
 
 const Selects: React.FC = () => {
   const { schoolList, roleList, ...func } = useHeader()

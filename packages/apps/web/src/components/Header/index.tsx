@@ -11,7 +11,6 @@ import {
 import { useMediaQuery } from '@psdhub/common/hooks'
 import { Box } from '@psdhub/common/components'
 
-<<<<<<< HEAD
 import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
 import AnimateGoBack from './components/AnimateGoBack'
 import { SchoolLabel, HeaderButton } from './components'
@@ -21,25 +20,6 @@ export interface HeaderProps {
   handleGoBack: () => void | Promise<void>
   schoolName?: string
 }
-=======
-import { useMediaQuery, useDisclosure } from '@psdhub/common/hooks'
-import { Box, Button, Modal } from '@psdhub/common/components'
-
-import history from '~/services/history'
-
-import Logo from '~/components/LogoOn'
-
-import { HeaderProvider } from './context'
-import MobileMenu, { MenuButton, RefMenuProps } from './components/Mobile'
-import DesktopMenu from './components/Desktop'
-import AlterPass from './components/AlterPass'
-
-const Header: React.FC = () => {
-  const { signed } = useSelector((state: Store.State) => state.auth)
-  const { nobreak } = useSelector((state: Store.State) => state.noBreakAccess)
-
-  const { isOpen, onOpen, onClose } = useDisclosure()
->>>>>>> refactor: remover menubar do header
 
 const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
@@ -51,7 +31,6 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
   }, [])
 
   return (
-<<<<<<< HEAD
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
       {schoolName && <SchoolLabel schoolName={schoolName} />}
       <Box
@@ -62,10 +41,6 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
         justifyContent="center"
         zIndex={99999}
       >
-=======
-    <HeaderProvider>
-      <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
->>>>>>> refactor: remover menubar do header
         <Box
           width="100%"
           margin="0 auto"

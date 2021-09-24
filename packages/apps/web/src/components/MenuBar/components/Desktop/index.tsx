@@ -18,13 +18,13 @@ import { Search, Box } from '@psdhub/common/components'
 import history from '~/services/history'
 
 import { ModalHandler } from '~/components/ModalVersionUpdate'
-import { useHeader } from '~/components/Header/context'
-import { RefMenuProps } from '~/components/Header/components/Mobile'
 
 import { HandleProps } from '~/layouts/Solutions/components/Card'
 import { useFilterCards } from '~/hooks/useFilterCards'
 
 import { DrawerContentContainer } from './styles'
+import { FooterProps } from '../Footer'
+import { useHeader } from '../../context'
 
 import {
   MenuHeader,
@@ -34,7 +34,9 @@ import {
   Skeleton as CategorySkeleton
 } from '..'
 
-import { FooterProps } from '../Footer'
+export interface RefMenuProps {
+  openMenu: () => void
+}
 
 export interface MenuProps {
   openModalPass: FooterProps['openModalPass']

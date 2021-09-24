@@ -4,8 +4,8 @@ import { fireEvent } from '@testing-library/dom'
 
 import { render } from '@psdhub/test-utils'
 
+import * as HeaderContext from '~/components/MenuBar/context'
 import { SelectProfile } from '~/components/MenuBar/components'
-import * as HeaderContext from '~/components/Header/context'
 
 jest.mock('@psdhub/common/components/Select', () => ({
   __esModule: true,
@@ -18,8 +18,8 @@ jest.mock('@psdhub/common/components/Select', () => ({
   }) => <button onClick={() => onChange(value)}>Select</button>
 }))
 
-jest.mock('~/components/Header/context', () => {
-  const rest = jest.requireActual('~/components/Header/context')
+jest.mock('~/components/MenuBar/context', () => {
+  const rest = jest.requireActual('~/components/MenuBar/context')
   return {
     ...rest,
     useHeader: jest.fn(() => ({

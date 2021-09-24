@@ -9,8 +9,7 @@ import * as Drawer from '@psdhub/common/components/Drawer'
 
 import history from '~/services/history'
 
-import Menu from '~/components/MenuBar/components/Desktop'
-import { RefMenuProps } from '~/components/Header/components/Mobile'
+import Menu, { RefMenuProps } from '~/components/MenuBar/components/Desktop'
 
 import store from '~/__mocks__/fakeStore.mock'
 
@@ -51,8 +50,8 @@ jest.mock('~/services/history', () => ({
   }
 }))
 
-jest.mock('~/components/Header/context', () => {
-  const rest = jest.requireActual('~/components/Header/context')
+jest.mock('~/components/MenuBar/context', () => {
+  const rest = jest.requireActual('~/components/MenuBar/context')
   return {
     ...rest,
     useHeader: jest.fn(() => ({
@@ -61,7 +60,7 @@ jest.mock('~/components/Header/context', () => {
   }
 })
 
-describe.skip('Menu should work properly', () => {
+describe('Menu should work properly', () => {
   const setup = (CUSTOM_STATE?: object) => {
     const {
       result: { current: ref }
@@ -107,7 +106,7 @@ describe.skip('Menu should work properly', () => {
     expect(spyPush).toHaveBeenCalledWith('/login')
   })
 
-  it('Should call onClose through ref`s openMenu when isOpen is true', () => {
+  it.skip('Should call onClose through ref`s openMenu when isOpen is true', () => {
     const onOpen = jest.fn()
     const onClose = jest.fn()
 
@@ -121,7 +120,7 @@ describe.skip('Menu should work properly', () => {
     expect(onClose).toHaveBeenCalledWith()
   })
 
-  it('Should call onOpen through ref`s openMenu when isOpen is false', () => {
+  it.skip('Should call onOpen through ref`s openMenu when isOpen is false', () => {
     const onOpen = jest.fn()
     const onClose = jest.fn()
 

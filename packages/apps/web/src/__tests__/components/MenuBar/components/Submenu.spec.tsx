@@ -56,7 +56,16 @@ describe('Submenu should work properly', () => {
     }
     const handleClick = jest.fn()
 
-    const wrapper = render(<Submenu handleClick={handleClick} card={card} />)
+    const wrapper = render(
+      <Submenu
+        handleClick={handleClick}
+        card={card}
+        isOpen={true}
+        onClose={jest.fn()}
+        onOpen={jest.fn()}
+        isDesktop={true}
+      />
+    )
     return { handleClick, card, solutionName, categoryName, ...wrapper }
   }
   it('Should render the correct elements on screen', () => {
