@@ -6,9 +6,9 @@ import { Modal } from '@psdhub/common/components'
 import ModalVersionUpdate, {
   ModalHandler
 } from '~/components/ModalVersionUpdate'
-import { HeaderProvider } from '~/components/Header/context'
-import { RefMenuProps } from '~/components/Header/components/Mobile'
-import AlterPass from '~/components/Header/components/AlterPass'
+import { HeaderProvider } from '~/components/MenuBar/context'
+import { RefMenuProps } from '~/components/MenuBar/components/Desktop'
+import AlterPass from '~/components/MenuBar/components/AlterPass'
 
 import { DesktopMenu } from './components'
 
