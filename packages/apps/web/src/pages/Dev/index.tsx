@@ -24,11 +24,11 @@ const DevHub: React.FC = () => {
         <Heading fontWeight="normal" fontSize="2xl" textAlign="center" mb="8">
           EasyAuth / Hub Digital
         </Heading>
-        <Box w="416px">
+        <Box>
           <NotificationHeader
             title="Notificações"
             markAllAsRead={() =>
-              alert('Todas as mensagens foram marcadas como lida')
+              alert('Todas as mensagens foram marcadas como lidas')
             }
             goToSettings={() => history.push('/')}
           />

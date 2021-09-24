@@ -18,27 +18,39 @@ const NotficationHeader: React.FC<NotificationHeader> = ({
   return (
     <Box
       d="flex"
+      justifyContent="space-between"
       w="100%"
       h="56px"
-      justifyContent="space-between"
       borderTopRadius="8px"
       backgroundColor="white"
       border="solid 1px #E5E5E5"
     >
       <Box
         alignSelf="center"
-        pl="4"
+        px="3.5"
         fontWeight="700"
         fontSize="24px"
         color="#3C3C3C"
       >
         {title}
       </Box>
-      <Box d="flex" flexDir="row" alignSelf="center">
-        <Button variant="ghost" color="blue.500" onClick={markAllAsRead}>
+      <Box alignSelf="center">
+        <Button
+          mx={['0', '1', '2', '2']}
+          data-testid="mark-all-as-read-button"
+          variant="unstyled"
+          color="blue.500"
+          onClick={markAllAsRead}
+        >
           <EnvelopeOpen size="1.75rem" weight="bold" />
         </Button>
-        <Button variant="ghost" color="blue.500" onClick={goToSettings}>
+        <Button
+          mx={['0', '1', '2', '2']}
+          data-testid="settings-button"
+          variant="unstyled"
+          color="blue.500"
+          onClick={goToSettings}
+        >
           <Gear size="1.75rem" weight="bold" />
         </Button>
       </Box>
