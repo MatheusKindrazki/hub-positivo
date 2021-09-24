@@ -36,7 +36,7 @@ const NotficationHeader: React.FC<NotificationHeader> = ({
       </Box>
       <Box alignSelf="center">
         <Button
-          mx={['0', '1', '2', '2']}
+          mx={['0', '2', '2', '2']}
           data-testid="mark-all-as-read-button"
           variant="unstyled"
           color="blue.500"
@@ -45,7 +45,7 @@ const NotficationHeader: React.FC<NotificationHeader> = ({
           <EnvelopeOpen size="1.75rem" weight="bold" />
         </Button>
         <Button
-          mx={['0', '1', '2', '2']}
+          mx={['0', '2', '2', '2']}
           data-testid="settings-button"
           variant="unstyled"
           color="blue.500"
