@@ -17,7 +17,7 @@ describe('Header component should works as expected', () => {
   const setup = (props?: Partial<HeaderProps>) =>
     render(<Header {...{ ...mockedProps, ...props }} />, {
       store,
-      reducers: ['educationalStage', 'profile'],
+      reducers: ['educationalStage', 'profile', 'user', 'products'],
       CUSTOM_STATE: {
         profile: { name: 'Professor' },
         educationalStage: {

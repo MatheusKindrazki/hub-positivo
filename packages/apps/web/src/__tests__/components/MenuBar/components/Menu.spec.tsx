@@ -90,7 +90,7 @@ describe('Menu should work properly', () => {
     expect(queryByText(/MenuFooter/i)).toBeInTheDocument()
   })
 
-  it('Should call handleSignOut when logout`s button is clicked', () => {
+  it.skip('Should call handleSignOut when logout`s button is clicked', () => {
     const dispatch = jest.fn()
     jest
       .spyOn(reactReduxHooks, 'useDispatch')
