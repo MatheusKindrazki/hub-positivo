@@ -2,8 +2,11 @@
   "name": "@psdhub/newrelic",
   "version": "1.0.0",
   "main": "src/index.ts",
+  "dependencies": {
+    "randomstring": "^1.1.5"
+  },
   "devDependencies": {
-    "@types/history": "~4.7.8",
-    "@types/new-relic-browser": "^0.1118.2"
+    "@types/new-relic-browser": "^0.1118.2",
+    "@types/randomstring": "^1.1.6"
   }
 }
