@@ -27,8 +27,19 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
     return formatDate(date)
   }, [date])
 
+  const opacity = useMemo(() => {
+    return read ? 0.7 : 1
+  }, [read])
+
   return (
-    <Flex w="100%" p="2" read={read}>
+    <Flex
+      w="100%"
+      p="2"
+      read={read}
+      bg="white"
+      borderTop="solid 1px #E5E5E5"
+      className="container"
+    >
       <Box width="95%" d="flex">
         <Image
           bg="blue.500"
@@ -47,19 +58,25 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
             fontWeight="700"
             color="#3C3C3C"
             textTransform="capitalize"
+            opacity={opacity}
           >
             {solutionName}
           </Text>
-          <Text lineHeight="20px" noOfLines={5} fontSize="1rem">
+          <Text
+            lineHeight="20px"
+            noOfLines={5}
+            fontSize="1rem"
+            opacity={opacity}
+          >
             {message}
           </Text>
-          <Text color="#6F6F6F" fontSize="0.75rem">
+          <Text color="#6F6F6F" fontSize="0.75rem" opacity={opacity}>
             {formattedDate}
           </Text>
         </Box>
       </Box>
       <Box width="5%">
-        <Menu placement="left-start">
+        <Menu placement="bottom-start">
           <MenuButton data-testid="menu-button">
             <DotsThreeVertical
               size="25"
@@ -68,7 +85,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
               cursor="pointer"
             />
           </MenuButton>
-          <MenuList left={['0.75rem', 'auto']} position="relative">
+          <MenuList right={['0.25rem', 'auto']} position="relative">
             <Text
               px="10px"
               textAlign="start"

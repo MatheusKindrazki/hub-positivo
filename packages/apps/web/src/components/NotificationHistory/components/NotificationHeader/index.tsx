@@ -4,13 +4,13 @@ import { Gear, EnvelopeOpen } from 'phosphor-react'
 
 import { Box, Button, Tooltip } from '@psdhub/common/components'
 
-interface NotificationHeader {
+interface NotificationHeaderProps {
   title: string
   markAllAsRead: () => void
   goToSettings: () => void
 }
 
-const NotficationHeader: React.FC<NotificationHeader> = ({
+const NotificationHeader: React.FC<NotificationHeaderProps> = ({
   title,
   markAllAsRead,
   goToSettings
@@ -23,7 +23,7 @@ const NotficationHeader: React.FC<NotificationHeader> = ({
       h="56px"
       borderTopRadius="8px"
       backgroundColor="white"
-      border="solid 1px #E5E5E5"
+      borderBottom="solid 1px #E5E5E5"
     >
       <Box
         alignSelf="center"
@@ -72,4 +72,4 @@ const NotficationHeader: React.FC<NotificationHeader> = ({
   )
 }
 
-export default NotficationHeader
+export default NotificationHeader

@@ -1,3 +1,5 @@
-import NotificationHeader from './NotificationHeader/NotficationHeader'
+import Header from './NotificationHeader/'
+import Container from './NotificationContainer'
+import Dropdown from './Dropdown/'
 
-export { NotificationHeader }
+export { Dropdown, Header, Container }
