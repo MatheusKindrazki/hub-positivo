@@ -16,7 +16,6 @@ export function* getNotifications(): Generator {
   const { reduced_token } = store.getState().auth
 
   if (!school?.user_id || !reduced_token) {
-    toast.error(`id: ${school?.user_id}, token: ${reduced_token}`)
     return yield put(notificationsFailure())
   }
 
