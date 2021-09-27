@@ -25,7 +25,7 @@ export function* getNotifications(): Generator {
   // const api = getInstance('default')
   // const response = yield call(async () => api.get('Hub/Notificacoes', info?.id))
 
-  const response = yield call(() => fakeNotificationApi(Math.random() > 0.1))
+  const response = yield call(() => fakeNotificationApi(Math.random() > 0.2))
 
   console.log('resposta fake api:', response)
 
