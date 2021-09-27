@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 
 import Headroom from 'react-headroom'
 import {
@@ -7,6 +7,8 @@ import {
   Bell,
   List as HamburgerMenu
 } from 'phosphor-react'
+
+import { useDispatch } from 'react-redux'
 
 import { useMediaQuery } from '@psdhub/common/hooks'
 import { Box } from '@psdhub/common/components'
@@ -19,12 +21,16 @@ import { SchoolLabel, HeaderButton } from './components'
 import './styles'
 import ModalSignOut, { ModalHandler } from '../ModalSignOut/ModalSignOut'
 import { RefMenuProps } from '../MenuBar/components/Desktop'
+
+import { notificationsRequest } from '~/store/modules/notifications/actions'
 export interface HeaderProps {
   handleGoBack: () => void | Promise<void>
   schoolName?: string
 }
 
 const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
+  const dispatch = useDispatch()
+
   const menuRef = useRef<RefMenuProps>(null)
 
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
@@ -34,6 +40,11 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
   const openModal = useCallback(() => {
     modalRef.current?.onOpen()
   }, [])
+
+  useEffect(() => {
+    dispatch(notificationsRequest())
+    console.log('requisitando dados de notificação')
+  }, [dispatch])
 
   return (
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
