@@ -7,6 +7,7 @@ import school from './school/sagas'
 import products from './products/sagas'
 import productIntegrations from './productIntegrations/sagas'
 import permissions from './permissions/sagas'
+import notifications from './notifications/sagas'
 import myClasses from './myClasses/sagas'
 import forgotPassword from './forgotPassword/sagas'
 import educationalStage from './educationalStage/sagas'
@@ -32,6 +33,7 @@ export default function* rootSaga(): Generator {
     category,
     school,
     permissions,
-    accessControl
+    accessControl,
+    notifications
   ])
 }

@@ -7,7 +7,7 @@ import { Actions } from './actions'
 
 export const INITIAL_STATE: NotificationsReducer = {
   loading: false,
-  notifications: undefined
+  history: undefined
 }
 
 type ReturnReducer = Reducer<NotificationsReducer>
@@ -22,13 +22,13 @@ const notifications: ReturnReducer = (state = INITIAL_STATE, action) => {
 
       case Actions.GET_SUCCESS: {
         draft.loading = false
-        draft.notifications = action.payload
+        draft.history = action.payload
         break
       }
 
       case Actions.GET_FAILURE: {
         draft.loading = false
-        draft.notifications = undefined
+        draft.history = undefined
         break
       }
 

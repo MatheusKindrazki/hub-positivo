@@ -14,10 +14,10 @@ export function notificationsRequest(): Action {
   }
 }
 
-export function notificationsSuccess(data?: notificationHistory[]): Action {
+export function notificationsSuccess(history?: notificationHistory[]): Action {
   return {
     type: Actions.GET_SUCCESS,
-    payload: data
+    payload: history
   }
 }
 
