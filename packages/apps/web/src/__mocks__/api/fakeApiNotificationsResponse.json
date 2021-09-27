@@ -1,0 +1,35 @@
+{
+  "ok": true,
+  "data": [
+    {
+      "title": "Nome do produto",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
+      "date": "00/00 às 00:00",
+      "source": "SALAS VIRTUAIS"
+    },
+    {
+      "title": "Nome do produto",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
+      "date": "00/00 às 00:00",
+      "source": "AULAS"
+    },
+    {
+      "title": "Nome do produto",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
+      "date": "00/00 às 00:00",
+      "source": "AVALIACOES"
+    },
+    {
+      "title": "Nome do produto",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
+      "date": "00/00 às 00:00",
+      "source": "LIVRO DIGITAL"
+    },
+    {
+      "title": "Nome do produto",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
+      "date": "00/00 às 00:00",
+      "source": "PLANO SEMANAL"
+    }
+  ]
+}
