@@ -12,7 +12,7 @@ describe('Reducer of authentication history', () => {
     expect(state.loading).toEqual(true)
   })
 
-  it('Should set Loading to false and notifications to return api When Success Action is Triggered', () => {
+  it('Should set Loading to false and history to api response When Success Action is Triggered', () => {
     const mock = [
       {
         title: 'title',
@@ -29,7 +29,7 @@ describe('Reducer of authentication history', () => {
     expect(state.history).toEqual([mock])
   })
 
-  it('Should set Loading to false and notifications to undefined When Failure Action is Triggered', () => {
+  it('Should set Loading to false and history to undefined When Failure Action is Triggered', () => {
     const action = notificationsActions.notificationsFailure()
 
     const state = notificationsReducer(undefined, action)
