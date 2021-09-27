@@ -18,4 +18,4 @@ const fakeNotificationApi = (
   })
 }
 
-export default fakeNotificationApi
+export { fakeNotificationApi }

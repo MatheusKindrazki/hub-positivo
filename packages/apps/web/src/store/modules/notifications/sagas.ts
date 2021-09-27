@@ -5,7 +5,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { loading } from '~/store/modules/global/actions'
 import { store } from '~/store'
 
-import fakeNotificationApi from '@psdhub/web/src/__mocks__/api/fakeNotificationsApi'
+import { fakeNotificationApi } from '@psdhub/web/src/__mocks__/api/fakeNotificationsApi'
 import { toast } from '@psdhub/common/utils'
 // import { getInstance } from '@psdhub/api'
 
@@ -23,10 +23,8 @@ export function* getNotifications(): Generator {
 
   // const api = getInstance('default')
   // const response = yield call(async () => api.get('Hub/Notificacoes', info?.id))
-
-  const response = yield call(() => fakeNotificationApi(Math.random() > 0.2))
-
-  console.log('resposta fake api:', response)
+  const failChance = Math.random() > 0.2
+  const response = yield call(() => fakeNotificationApi(failChance))
 
   const { ok, data } = response as ApiResponse<notificationHistory[]>
   yield put(loading(false))
