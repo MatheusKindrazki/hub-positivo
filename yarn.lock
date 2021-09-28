@@ -3661,7 +3661,7 @@
   resolved "https://registry.yarnpkg.com/@types/mixpanel-browser/-/mixpanel-browser-2.35.7.tgz#9ff36890cf069ab557d556a945c2cd47906c13db"
   integrity sha512-cisiRR1Fky5X1g9Z7tKliR8fB6V6TJ+7oa7Xca2AcYhtpOR8Otp4/pMdd9tLFPKqOLTWiD2S4gfN2zHFv7Z7KA==
 
-"@types/new-relic-browser@^0.1118.1":
+"@types/new-relic-browser@^0.1118.1", "@types/new-relic-browser@^0.1118.2":
   version "0.1118.2"
   resolved "https://registry.yarnpkg.com/@types/new-relic-browser/-/new-relic-browser-0.1118.2.tgz#b451247ea7375b91c962c5c5676e14fb5214dc39"
   integrity sha512-Cy3qMm3QVZT0HmpFxUsc204AdWa4yWX1yJsFhdBqZgecUBYDq86ljDmJQQxUk/4yPwCQ2C73nRLMb2jH3CnbrA==
