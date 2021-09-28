@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import mixpanel from 'mixpanel-browser'
 
+import { instance as instanceNR } from '@psdhub/newrelic'
 import getSiteControlInit from '@psdhub/gsc'
 
 import history from '~/services/history'
@@ -16,6 +17,7 @@ import '~/services/getSiteControl/trackWidgetSubmit'
 
 window.mixpanel = mixpanel
 
+instanceNR()
 mixPanelInit()
 hotjarInit()
 getSiteControlInit(history)

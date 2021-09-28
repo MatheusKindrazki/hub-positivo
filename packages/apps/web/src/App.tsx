@@ -6,6 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import { store, persistor } from '~/store'
 
+import { setReleaseId } from '@psdhub/newrelic'
 import ThemeProvider from '@psdhub/common/layout/Provider'
 
 import ModalSupport from '~/components/ModalSupport'
@@ -28,5 +29,7 @@ const App: React.FC = () => {
     </ThemeProvider>
   )
 }
+
+setReleaseId(process.env.REACT_APP_VERSION as string)
 
 export default App
