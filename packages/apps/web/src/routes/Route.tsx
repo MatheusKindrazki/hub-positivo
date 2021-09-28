@@ -26,8 +26,6 @@ const Route: React.FC<RouteProps> = ({
 }) => {
   const { pathname } = useLocation()
 
-  window.newrelic?.setCurrentRouteName(pathname)
-
   const { signed } = store.getState().auth
 
   let RenderLayout = signed || byPass ? Logged : Auth
