@@ -23,6 +23,10 @@ import ModalSignOut, { ModalHandler } from '../ModalSignOut/ModalSignOut'
 import { RefMenuProps } from '../MenuBar/components/Desktop'
 
 import { notificationsRequest } from '~/store/modules/notifications/actions'
+
+import history from '~/services/history'
+
+import LogoOn from '../LogoOn'
 export interface HeaderProps {
   handleGoBack: () => void | Promise<void>
   schoolName?: string
@@ -71,7 +75,11 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
               onClick={() => menuRef.current?.openMenu()}
             />
             <Box>
-              <AnimateGoBack onClick={handleGoBack} />
+              {history.location.pathname.includes('solucao') ? (
+                <AnimateGoBack onClick={handleGoBack} />
+              ) : (
+                <Box w="800px" h="800px" as={LogoOn} onClick={handleGoBack} />
+              )}
             </Box>
           </Box>
 
@@ -94,7 +102,9 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
           maxWidth="1400px"
           backgroundColor="white"
         >
-          <EducationalLevelMenu />
+          {history.location.pathname.includes('solucao') ? null : (
+            <EducationalLevelMenu />
+          )}
         </Box>
       </Box>
     </Headroom>

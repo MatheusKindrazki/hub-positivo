@@ -14,10 +14,10 @@ describe('Header component should works as expected', () => {
     profile: { name: 'Professor' },
     educationalStage: {
       levels: [
-        { label: 'level 1', value: '1' },
-        { label: 'level 2', value: '2' }
+        { label: 'level 1', value: 'EI' },
+        { label: 'level 2', value: 'EM' }
       ],
-      level: '1'
+      level: 'EM'
     }
   }
 
@@ -40,7 +40,7 @@ describe('Header component should works as expected', () => {
 
     await waitFor(() => fireEvent.click(getByText('level 1')))
 
-    expect(storeUtils?.getActions()).toContainEqual(setEducationalStage('1'))
+    expect(storeUtils?.getActions()).toContainEqual(setEducationalStage('EI'))
   })
 
   it('should return null if no levels are found', async () => {

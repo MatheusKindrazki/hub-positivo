@@ -72,7 +72,6 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
     const { resetInfo } = useHeader()
 
     const openMenu = (): void => {
-      console.log('fui chamado')
       if (!isOpen) {
         resetInfo()
 

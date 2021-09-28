@@ -4,7 +4,7 @@ import { fireEvent } from '@testing-library/dom'
 
 import { store } from '~/store'
 
-import { render, waitFor } from '@psdhub/test-utils'
+import { render } from '@psdhub/test-utils'
 
 import Header, { HeaderProps } from '~/components/Header'
 
@@ -22,10 +22,10 @@ describe('Header component should works as expected', () => {
         profile: { name: 'Professor' },
         educationalStage: {
           levels: [
-            { label: 'level 1', value: '1' },
-            { label: 'level 2', value: '2' }
+            { label: 'level 1', value: 'EF1' },
+            { label: 'level 2', value: 'EM' }
           ],
-          level: '1'
+          level: 'EF'
         }
       }
     })
@@ -43,15 +43,11 @@ describe('Header component should works as expected', () => {
     const { queryAllByTestId, getByTestId } = setup()
     const headerButtonCount = 5
     const buttonTestId = 'header-button'
-    const goBackTestId = 'animated-goback'
+    const logoTestId = 'logo-on'
 
     expect(queryAllByTestId(buttonTestId).length).toBe(headerButtonCount)
 
     queryAllByTestId(buttonTestId).forEach(button => fireEvent.click(button))
-    await waitFor(() => fireEvent.click(getByTestId(goBackTestId)))
-
-    jest.runAllTimers()
-
-    expect(mockedProps.handleGoBack).toHaveBeenCalled()
+    expect(getByTestId(logoTestId)).toBeInTheDocument()
   })
 })
