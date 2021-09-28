@@ -15,9 +15,9 @@ const EducationalLevelMenu: React.FC = () => {
   const dispatch = useDispatch()
 
   const orderEducationalLevel = useCallback(
-    (levels: { label: string; value: string }[]) =>
+    (levelArr: { label: string; value: string }[]) =>
       educationalLevelsOrder.map(level =>
-        levels.find(option => option.value === level)
+        levelArr.find(option => option.value === level)
       ),
     []
   )
