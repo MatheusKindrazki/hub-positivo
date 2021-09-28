@@ -166,14 +166,6 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
     return yield put(authProductFailure())
   }
 
-  window.newrelic?.addPageAction('auth_solution', {
-    product: payload.product,
-    user_id: user.info?.guid as string,
-    user_name: user.info?.name as string,
-    school_id: user.school?.value as string,
-    guid: data as unknown as string
-  })
-
   yield put(loading(false))
 
   const subpath = payload.subpath !== undefined ? payload.subpath : ''
