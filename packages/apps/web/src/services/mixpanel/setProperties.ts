@@ -8,6 +8,8 @@ import { store } from '~/store'
 
 import { setParamsGsc } from '@psdhub/gsc'
 
+import newrelicUserInfo from '~/services/newrelicUserInfo'
+
 import profiles from '~/utils/formatData/profile'
 import educationalStage from '~/utils/formatData/educationalStage'
 
@@ -53,17 +55,7 @@ const setProperties = (): void => {
 
   if (!signed) return
 
-  // Identificador new relic
-  window.newrelic?.setCustomAttribute('role', sendProps.selected_role)
-  window.newrelic?.setCustomAttribute('user_id', sendProps.user_id as string)
-  window.newrelic?.setCustomAttribute(
-    'school',
-    sendProps.selected_school_id as string
-  )
-  window.newrelic?.setCustomAttribute(
-    'user_name',
-    sendProps.user_name as string
-  )
+  newrelicUserInfo(sendProps)
 
   // Identificador Get Site Control
   setParamsGsc(sendProps)
