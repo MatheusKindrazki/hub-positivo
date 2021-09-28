@@ -6,8 +6,9 @@ import { store } from '~/store'
 
 import { render } from '@psdhub/test-utils'
 
-import Header, { HeaderProps } from '~/components/Header'
+import history from '~/services/history'
 
+import Header, { HeaderProps } from '~/components/Header'
 describe('Header component should works as expected', () => {
   const mockedProps = {
     handleGoBack: jest.fn(),
@@ -25,7 +26,7 @@ describe('Header component should works as expected', () => {
             { label: 'level 1', value: 'EF1' },
             { label: 'level 2', value: 'EM' }
           ],
-          level: 'EF'
+          level: 'EF1'
         }
       }
     })
@@ -37,7 +38,6 @@ describe('Header component should works as expected', () => {
 
     expect(getByText(welcomeText, { exact: false })).toBeInTheDocument()
   })
-
   it('buttons should be rendering without crashing', async () => {
     jest.useFakeTimers()
     const { queryAllByTestId, getByTestId } = setup()
@@ -49,5 +49,18 @@ describe('Header component should works as expected', () => {
 
     queryAllByTestId(buttonTestId).forEach(button => fireEvent.click(button))
     expect(getByTestId(logoTestId)).toBeInTheDocument()
+  })
+  it('should hide level menu and render animated logo if a solution is open', async () => {
+    Object.defineProperty(history, 'location', {
+      value: { pathname: '/solucao' }
+    })
+
+    const { queryByTestId, getByTestId } = setup()
+
+    const levelMenuTestId = 'educational-level-menu'
+    const animatedLogoTestId = 'animated-goback'
+
+    expect(queryByTestId(levelMenuTestId)).toBe(null)
+    expect(getByTestId(animatedLogoTestId)).toBeInTheDocument()
   })
 })
