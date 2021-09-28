@@ -12,13 +12,15 @@ interface HomeMenuProps {
   isTourActive: boolean
   handleOpenTour: () => void
   handleSearch: (value: any) => void
+  handleCreateSolution: () => void
 }
 
 const HomeMenu: React.FC<HomeMenuProps> = ({
   userInfo,
   isTourActive,
   handleOpenTour,
-  handleSearch
+  handleSearch,
+  handleCreateSolution
 }) => {
   const { name, profile } = userInfo
   return (
@@ -67,7 +69,7 @@ const HomeMenu: React.FC<HomeMenuProps> = ({
               fontWeight="500"
               color="blue.500"
               borderColor="blue.500"
-              onClick={handleOpenTour}
+              onClick={handleCreateSolution}
             >
               ADICIONAR SOLUÇÃO
             </Button>

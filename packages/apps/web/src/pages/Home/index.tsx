@@ -14,6 +14,7 @@ import createSlug from '@psdhub/common/utils/createSlug'
 import { Box, Heading, Collapse, CardProduct } from '@psdhub/common/components'
 
 import { toolOpened } from '~/services/mixpanel/toolOpened'
+import history from '~/services/history'
 
 import { cardFilter } from '~/utils/cardFilter'
 
@@ -89,6 +90,7 @@ const Home: React.FC = () => {
         <HomeMenu
           userInfo={{ name: info?.name, profile }}
           isTourActive={!steps?.length}
+          handleCreateSolution={() => history.push('/controle-de-acessos')}
           handleOpenTour={handleOpenTour}
           handleSearch={handleSearch}
         />
