@@ -10,8 +10,11 @@ interface SetUserInfoOptions {
   role_list?: string[]
   user_educational_stage?: string
 }
+
 function setUserInfo(options: SetUserInfoOptions): void {
-  console.log(options)
+  Object.entries(options).forEach(([key, value]) => {
+    window.newrelic?.setCustomAttribute(key, value)
+  })
 }
 
 export default setUserInfo
