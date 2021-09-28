@@ -43,7 +43,6 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
 
   useEffect(() => {
     dispatch(notificationsRequest())
-    console.log('requisitando dados de notificação')
   }, [dispatch])
 
   return (
