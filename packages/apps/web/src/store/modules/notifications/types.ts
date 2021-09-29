@@ -1,10 +1,10 @@
 export type notificationHistory = notification[]
 
 type notification = {
-  title: string
-  message: string
-  date: Date
-  source: string
+  origem: string
+  mensagem: string
+  data: Date
+  icone: string
 }
 
 export interface NotificationsReducer {

@@ -2,34 +2,52 @@
   "ok": true,
   "data": [
     {
-      "title": "Nome do produto",
-      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
-      "date": "2021-01-01T00:00:00.000Z",
-      "source": "SALAS VIRTUAIS"
+      "origem": "Playground" ,
+      "mensagem": "Jogos e Objetos Educacionais para a Educação Infantil",
+      "data": 1466424490000,
+      "icone": "https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-rec-playground.svg"
     },
     {
-      "title": "Nome do produto",
-      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
-      "date": "2021-01-01T00:00:00.000Z",
-      "source": "AULAS"
+      "origem": "Minha agenda",
+      "mensagem": "Visualize eventos em que você foi convidado",
+      "data": 1466424490000,
+      "icone": "https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-agenda.svg"
     },
     {
-      "title": "Nome do produto",
-      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
-      "date": "2021-01-01T00:00:00.000Z",
-      "source": "AVALIACOES"
+      "origem": "Feed de Mensagens",
+      "mensagem": "Acompanhe as mensagens recebidas por você. Visualize eventos em que você foi convidado. Ferramenta de comunicação com a escola. Jogos e Objetos Educacionais para a Educação Infantil. Visualize eventos em que você foi convidado",
+      "data": 1466424490000,
+      "icone": "https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-feed.svg"
     },
     {
-      "title": "Nome do produto",
-      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
-      "date": "2021-01-01T00:00:00.000Z",
-      "source": "LIVRO DIGITAL"
+      "origem": "Nome do produto",
+      "mensagem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
+      "data": 1466424490000,
+      "icone": "https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-rec-playground.svg"
     },
     {
-      "title": "Nome do produto",
-      "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
-      "date": "2021-01-01T00:00:00.000Z",
-      "source": "PLANO SEMANAL"
+      "origem": "Nome do produto",
+      "mensagem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
+      "data": 1466424490000,
+      "icone": "https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-agenda.svg"
+    },
+    {
+      "origem": "Nome do produto",
+      "mensagem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
+      "data": 1466424490000,
+      "icone": "https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-feed.svg"
+    },
+    {
+      "origem": "Nome do produto",
+      "mensagem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
+      "data": 1466424490000,
+      "icone": "https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-agenda.svg"
+    },
+    {
+      "origem": "Nome do produto",
+      "mensagem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce metus urna, auctor tristique congue ut, tristique ac augue.",
+      "data": 1466424490000,
+      "icone": "https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-rec-playground.svg"
     }
   ]
 }

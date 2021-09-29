@@ -20,7 +20,7 @@ export function* getNotifications(): Generator {
 
   yield put(loading(true))
 
-  const failChance = Math.random() > 0.2
+  const failChance = Math.random() > 0.9
   const response = yield call(() => fakeNotificationApi(failChance))
 
   const { ok, data } = response as ApiResponse<notificationHistory[]>

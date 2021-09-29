@@ -5,6 +5,7 @@ import { SchoolReducer } from './modules/school/types'
 import { ProfileReducer } from './modules/profile/types'
 import { ProductReducer } from './modules/products/types'
 import { PermissionsReducer } from './modules/permissions/types'
+import { NotificationsReducer } from './modules/notifications/types'
 import { NoBreakReducer } from './modules/noBreakAccess/types'
 import { ClassesReducer } from './modules/myClasses/types'
 import { GlobalReducer } from './modules/global/types'
@@ -31,6 +32,7 @@ interface ApplicationState {
   noBreakAccess: NoBreakReducer
   permissions: PermissionsReducer
   acceptTerms: AcceptTermsState
+  notifications: NotificationsReducer
 }
 declare global {
   declare namespace Store {
