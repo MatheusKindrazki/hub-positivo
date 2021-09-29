@@ -56,7 +56,7 @@ const HomeMenu: React.FC<HomeMenuProps> = ({
           px={['5', '5', '5', '1']}
           flexDirection={['column', 'column', 'column', 'row']}
         >
-          {profile === 'Administrador' && (
+          {profile === 'Editor' && (
             <Button
               mx={[0, 0, 0, 0]}
               mb="4"

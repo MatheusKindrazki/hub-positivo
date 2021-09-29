@@ -17,7 +17,6 @@ import { Box } from '@psdhub/common/components'
 import MenuBar from '~/components/MenuBar'
 
 import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
-import AnimateGoBack from './components/AnimateGoBack'
 import { SchoolLabel, HeaderButton } from './components'
 import './styles'
 import { Dropdown } from '../NotificationHistory/components'
@@ -78,12 +77,8 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
               as={HamburgerMenu}
               onClick={() => menuRef.current?.openMenu()}
             />
-            <Box>
-              {history.location.pathname.includes('solucao') ? (
-                <AnimateGoBack onClick={handleGoBack} />
-              ) : (
-                <Box w="800px" h="800px" as={LogoOn} onClick={handleGoBack} />
-              )}
+            <Box onClick={handleGoBack}>
+              <Box as={LogoOn} />
             </Box>
           </Box>
           <Box w="50%" d="flex" justifyContent="flex-end">
