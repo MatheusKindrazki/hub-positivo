@@ -2,25 +2,22 @@ import React from 'react'
 
 import { Header, Container } from '..'
 
-import history from '@psdhub/web/src/services/history'
 import { Box } from '@psdhub/common/components'
 
 import { Container as BoxUI } from './styles'
 
-const Dropdown: React.FC = () => {
+export interface DropDownProps {
+  goToSettings: () => void
+  markAllAsRead: () => void
+}
+
+const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead, goToSettings }) => {
   return (
-    <Box
-      width={'95%'}
-      maxW="26rem"
-      borderRadius="8px"
-      border="solid 1px #E5E5E5"
-    >
+    <Box maxW="26rem" borderRadius="8px" border="solid 1px #E5E5E5">
       <Header
         title="Notificações"
-        markAllAsRead={() =>
-          alert('Todas as mensagens foram marcadas como lidas')
-        }
-        goToSettings={() => history.push('/')}
+        markAllAsRead={markAllAsRead}
+        goToSettings={goToSettings}
       />
       <BoxUI
         w="100%"

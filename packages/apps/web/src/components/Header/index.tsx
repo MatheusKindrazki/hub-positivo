@@ -10,7 +10,8 @@ import {
 
 import { useDispatch } from 'react-redux'
 
-import { useMediaQuery } from '@psdhub/common/hooks'
+import { useMediaQuery, useDisclosure } from '@psdhub/common/hooks'
+import { MenuList } from '@psdhub/common/components/Menu'
 import { Box } from '@psdhub/common/components'
 
 import MenuBar from '~/components/MenuBar'
@@ -19,6 +20,7 @@ import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalL
 import AnimateGoBack from './components/AnimateGoBack'
 import { SchoolLabel, HeaderButton } from './components'
 import './styles'
+import { Dropdown } from '../NotificationHistory/components'
 import ModalSignOut, { ModalHandler } from '../ModalSignOut/ModalSignOut'
 import { RefMenuProps } from '../MenuBar/components/Desktop'
 
@@ -36,6 +38,8 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
   const dispatch = useDispatch()
 
   const menuRef = useRef<RefMenuProps>(null)
+
+  const { isOpen: isNotificationMenuOpen, onOpen, onClose } = useDisclosure()
 
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
@@ -82,11 +86,28 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
               )}
             </Box>
           </Box>
-
-          <Box>
+          <Box w="50%" d="flex" justifyContent="flex-end">
             <HeaderButton as={Megaphone} onClick={() => console.log('click')} />
             <HeaderButton as={Question} onClick={() => console.log('click')} />
-            <HeaderButton as={Bell} onClick={() => console.log('click')} />
+            <HeaderButton
+              isMenu
+              as={Bell}
+              onClick={onOpen}
+              onClose={onClose}
+              isOpen={isNotificationMenuOpen}
+            >
+              <MenuList
+                top="2.2rem"
+                position="relative"
+                padding="0"
+                maxW="26rem"
+              >
+                <Dropdown
+                  goToSettings={() => null}
+                  markAllAsRead={() => null}
+                />
+              </MenuList>
+            </HeaderButton>
             <HeaderButton children="Sair" onClick={openModal} />
             <ModalSignOut ref={modalRef} />
           </Box>

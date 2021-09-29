@@ -2,7 +2,7 @@ import React from 'react'
 
 import { fireEvent, render } from '@psdhub/test-utils'
 
-import NotificationHeader from '../../../../components/NotificationHistory/components/NotificationHeader/NotficationHeader'
+import { Header } from '~/components/NotificationHistory/components'
 
 describe('notifications header should work as expected', () => {
   const mockedMarkAllAsRead = jest.fn()
@@ -13,7 +13,7 @@ describe('notifications header should work as expected', () => {
     markAllAsRead: mockedMarkAllAsRead,
     goToSettings: mockedGoToSettings
   }
-  const setup = () => render(<NotificationHeader {...props} />)
+  const setup = () => render(<Header {...props} />)
   it('should render received title', () => {
     const { getByText } = setup()
     expect(getByText('test title')).toBeInTheDocument()

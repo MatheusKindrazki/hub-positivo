@@ -2,7 +2,7 @@ import React from 'react'
 
 import { render, fireEvent } from '@psdhub/test-utils'
 
-import NotificationContainer from '~/components/NotificationHistory/components/NotificationContainer'
+import { Container as NotificationContainer } from '~/components/NotificationHistory/components'
 
 describe('NotificationContainer should work properly', () => {
   const date = new Date(2021, 11, 11, 9, 10, 14)
