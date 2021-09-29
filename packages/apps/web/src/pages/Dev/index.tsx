@@ -3,8 +3,6 @@ import React, { useRef } from 'react'
 import { FormProps } from '@psdhub/common/components/Form'
 import { Box } from '@psdhub/common/components'
 
-import { Dropdown } from '~/components/NotificationHistory/components'
-
 const DevHub: React.FC = () => {
   const formRef = useRef<FormProps>(null)
   setTimeout(() => {
@@ -19,9 +17,7 @@ const DevHub: React.FC = () => {
       d="flex"
       justifyContent="center"
       alignItems="center"
-    >
-      <Dropdown />
-    </Box>
+    ></Box>
   )
 }
 
