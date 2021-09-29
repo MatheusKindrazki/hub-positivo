@@ -87,7 +87,7 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
             <HeaderButton
               isMenu
               as={Bell}
-              onClick={onOpen}
+              onClick={isNotificationMenuOpen ? onClose : onOpen}
               onClose={onClose}
               isOpen={isNotificationMenuOpen}
             >

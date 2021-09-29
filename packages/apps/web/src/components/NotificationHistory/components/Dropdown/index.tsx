@@ -53,6 +53,34 @@ const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead, goToSettings }) => {
           imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-agenda.svg"
           message="Visualize eventos em que você foi convidado"
         />
+        <Container
+          read={false}
+          solutionName="Playground"
+          date={new Date()}
+          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-rec-playground.svg"
+          message="Jogos e Objetos Educacionais para a Educação Infantil"
+        />
+        <Container
+          read={true}
+          solutionName="Minha agenda"
+          date={new Date()}
+          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-agenda.svg"
+          message="Visualize eventos em que você foi convidado"
+        />
+        <Container
+          read={false}
+          solutionName="Feed de Mensagens"
+          date={new Date()}
+          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-feed.svg"
+          message="Acompanhe as mensagens recebidas por você. Visualize eventos em que você foi convidado. Ferramenta de comunicação com a escola. Jogos e Objetos Educacionais para a Educação Infantil. Visualize eventos em que você foi convidado"
+        />
+        <Container
+          read={true}
+          solutionName="Minha agenda"
+          date={new Date()}
+          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-agenda.svg"
+          message="Visualize eventos em que você foi convidado"
+        />
       </BoxUI>
     </Box>
   )

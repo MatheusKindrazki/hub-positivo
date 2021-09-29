@@ -48,7 +48,7 @@ const NotificationHeader: React.FC<NotificationHeaderProps> = ({
             color="blue.500"
             onClick={markAllAsRead}
           >
-            <EnvelopeOpen size="1.75rem" weight="bold" />
+            <EnvelopeOpen size="1.75rem" />
           </Button>
         </Tooltip>
         <Tooltip
@@ -64,7 +64,7 @@ const NotificationHeader: React.FC<NotificationHeaderProps> = ({
             color="blue.500"
             onClick={goToSettings}
           >
-            <Gear size="1.75rem" weight="bold" />
+            <Gear size="1.75rem" />
           </Button>
         </Tooltip>
       </Box>

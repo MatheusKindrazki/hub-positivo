@@ -4,7 +4,9 @@ import { Select, Stack } from '@psdhub/common/components'
 
 import { useHeader } from '../../context'
 
-const Selects: React.FC = () => {
+type SelectsProps = { closeMenu: () => void }
+
+const Selects: React.FC<SelectsProps> = ({ closeMenu }) => {
   const { schoolList, roleList, ...func } = useHeader()
 
   const { setRole, setSchool, defaultValue } = func
@@ -20,6 +22,7 @@ const Selects: React.FC = () => {
         options={schoolList}
         onChange={e => {
           setSchool(e as any)
+          setTimeout(() => closeMenu(), 500)
         }}
       />
       <Select
@@ -31,6 +34,7 @@ const Selects: React.FC = () => {
         options={roleList}
         onChange={e => {
           setRole(e as any)
+          setTimeout(() => closeMenu(), 500)
         }}
       />
     </Stack>

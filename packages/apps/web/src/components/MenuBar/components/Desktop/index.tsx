@@ -139,7 +139,7 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
             alignItems="center"
           >
             <Box w="100%">
-              <SelectProfile />
+              <SelectProfile closeMenu={onClose} />
             </Box>
           </Box>
           <Box
