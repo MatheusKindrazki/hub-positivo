@@ -5,7 +5,7 @@ import { BoxProps } from '@psdhub/common/components/Box'
 import { Button } from '@psdhub/common/components'
 
 interface HeaderButtonProps extends BoxProps {
-  onClick: () => void | void
+  onClick: () => void
   isMenu?: boolean
   isOpen?: boolean
   onClose?: () => void
