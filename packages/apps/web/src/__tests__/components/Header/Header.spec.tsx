@@ -9,6 +9,23 @@ import { render } from '@psdhub/test-utils'
 import history from '~/services/history'
 
 import Header, { HeaderProps } from '~/components/Header'
+
+jest.mock('~/components/NotificationHistory/components', () => {
+  const rest = jest.requireActual('~/components/NotificationHistory/components')
+  return {
+    ...rest,
+    Dropdown: jest.fn(({ goToSettings, markAllAsRead }) => (
+      <div>
+        <p>Notificação</p>
+        <button onClick={goToSettings} data-testid="settings-button"></button>
+        <button
+          onClick={markAllAsRead}
+          data-testid="mark-all-as-read-button"
+        ></button>
+      </div>
+    ))
+  }
+})
 describe('Header component should works as expected', () => {
   const mockedProps = {
     handleGoBack: jest.fn(),
@@ -27,6 +44,17 @@ describe('Header component should works as expected', () => {
             { label: 'level 2', value: 'EM' }
           ],
           level: 'EF1'
+        },
+        notifications: {
+          loading: false,
+          history: [
+            {
+              data: Date.now(),
+              mensagem: 'mensagem teste',
+              origem: 'Produto Teste',
+              icone: 'http://fake-icon-url.com'
+            }
+          ]
         }
       }
     })

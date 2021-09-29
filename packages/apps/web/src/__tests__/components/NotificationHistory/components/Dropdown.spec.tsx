@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { store } from '~/store'
+
 import { render } from '@psdhub/test-utils'
 
 import { Dropdown } from '~/components/NotificationHistory/components'
@@ -15,7 +17,23 @@ jest.mock('~/components/NotificationHistory/components', () => {
 
 describe('History of notifications in Dropdown should work as expected', () => {
   const setup = () =>
-    render(<Dropdown goToSettings={jest.fn()} markAllAsRead={jest.fn()} />)
+    render(<Dropdown goToSettings={jest.fn()} markAllAsRead={jest.fn()} />, {
+      store,
+      reducers: ['notifications'],
+      CUSTOM_STATE: {
+        notifications: {
+          loading: false,
+          history: [
+            {
+              data: Date.now(),
+              mensagem: 'mensagem teste',
+              origem: 'Produto Teste',
+              icone: 'http://fake-icon-url.com'
+            }
+          ]
+        }
+      }
+    })
   it('should render Header and Container', () => {
     const { queryByText, queryAllByText } = setup()
 
