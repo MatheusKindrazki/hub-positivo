@@ -2,16 +2,18 @@ import React from 'react'
 
 import { Header, Container } from '..'
 
-import { Box } from '@psdhub/common/components'
+import { useSelector } from 'react-redux'
+
+import { Box, Text } from '@psdhub/common/components'
 
 import { Container as BoxUI } from './styles'
-
 export interface DropDownProps {
   goToSettings: () => void
   markAllAsRead: () => void
 }
 
 const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead, goToSettings }) => {
+  const { history } = useSelector((state: Store.State) => state.notifications)
   return (
     <Box maxW="26rem" borderRadius="8px" border="solid 1px #E5E5E5">
       <Header
@@ -25,62 +27,23 @@ const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead, goToSettings }) => {
         overflowX="hidden"
         maxH="25.5rem"
       >
-        <Container
-          read={false}
-          solutionName="Playground"
-          date={new Date()}
-          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-rec-playground.svg"
-          message="Jogos e Objetos Educacionais para a Educação Infantil"
-        />
-        <Container
-          read={true}
-          solutionName="Minha agenda"
-          date={new Date()}
-          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-agenda.svg"
-          message="Visualize eventos em que você foi convidado"
-        />
-        <Container
-          read={false}
-          solutionName="Feed de Mensagens"
-          date={new Date()}
-          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-feed.svg"
-          message="Acompanhe as mensagens recebidas por você. Visualize eventos em que você foi convidado. Ferramenta de comunicação com a escola. Jogos e Objetos Educacionais para a Educação Infantil. Visualize eventos em que você foi convidado"
-        />
-        <Container
-          read={true}
-          solutionName="Minha agenda"
-          date={new Date()}
-          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-agenda.svg"
-          message="Visualize eventos em que você foi convidado"
-        />
-        <Container
-          read={false}
-          solutionName="Playground"
-          date={new Date()}
-          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-rec-playground.svg"
-          message="Jogos e Objetos Educacionais para a Educação Infantil"
-        />
-        <Container
-          read={true}
-          solutionName="Minha agenda"
-          date={new Date()}
-          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-agenda.svg"
-          message="Visualize eventos em que você foi convidado"
-        />
-        <Container
-          read={false}
-          solutionName="Feed de Mensagens"
-          date={new Date()}
-          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-feed.svg"
-          message="Acompanhe as mensagens recebidas por você. Visualize eventos em que você foi convidado. Ferramenta de comunicação com a escola. Jogos e Objetos Educacionais para a Educação Infantil. Visualize eventos em que você foi convidado"
-        />
-        <Container
-          read={true}
-          solutionName="Minha agenda"
-          date={new Date()}
-          imageURL="https://sthubdigitalprod001.blob.core.windows.net/imagenscard/icon-com-agenda.svg"
-          message="Visualize eventos em que você foi convidado"
-        />
+        {!history && (
+          <Box w="22rem">
+            <Text textAlign="center" lineHeight="6rem">
+              Não há notificações no momento.
+            </Text>
+          </Box>
+        )}
+        {history?.map(notification => (
+          <Container
+            key={`${notification.origem} - ${notification.data}`}
+            solutionName={notification.origem}
+            message={notification.mensagem}
+            date={notification.data}
+            imageURL={notification.icone}
+            read={false}
+          />
+        ))}
       </BoxUI>
     </Box>
   )
