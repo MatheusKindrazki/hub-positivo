@@ -24,10 +24,10 @@ describe('Action of global history', () => {
 
     const mock = [
       {
-        title: 'title',
-        message: 'message',
-        source: 'source',
-        date: new Date()
+        origem: 'source',
+        mensagem: 'message',
+        data: new Date(),
+        icone: 'http://fake-icon-url.com'
       }
     ]
 
