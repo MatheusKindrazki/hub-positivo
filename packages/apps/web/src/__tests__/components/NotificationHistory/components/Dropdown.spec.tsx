@@ -16,12 +16,10 @@ jest.mock('~/components/NotificationHistory/components', () => {
 describe('History of notifications in Dropdown should work as expected', () => {
   const setup = () =>
     render(<Dropdown goToSettings={jest.fn()} markAllAsRead={jest.fn()} />)
-  it('should render received title', () => {
-    const { debug, queryByText } = setup()
+  it('should render Header and Container', () => {
+    const { queryByText, queryAllByText } = setup()
 
     expect(queryByText('Notification Header')).toBeInTheDocument()
-    expect(queryByText('Notification Container')).toBeInTheDocument()
-
-    debug()
+    expect(queryAllByText('Notification Container')).not.toBeNull()
   })
 })
