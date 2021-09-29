@@ -44,23 +44,28 @@ describe('Header component should works as expected', () => {
     const headerButtonCount = 5
     const buttonTestId = 'header-button'
     const logoTestId = 'logo-on'
+    const notificationHeaderButtonTestIds = [
+      'mark-all-as-read-button',
+      'settings-button'
+    ]
 
     expect(queryAllByTestId(buttonTestId).length).toBe(headerButtonCount)
 
     queryAllByTestId(buttonTestId).forEach(button => fireEvent.click(button))
+    notificationHeaderButtonTestIds.forEach(testId => {
+      fireEvent.click(getByTestId(testId))
+    })
     expect(getByTestId(logoTestId)).toBeInTheDocument()
   })
-  it('should hide level menu and render animated logo if a solution is open', async () => {
+  it('should hide level menu if a solution is open', async () => {
     Object.defineProperty(history, 'location', {
       value: { pathname: '/solucao' }
     })
 
-    const { queryByTestId, getByTestId } = setup()
+    const { queryByTestId } = setup()
 
     const levelMenuTestId = 'educational-level-menu'
-    const animatedLogoTestId = 'animated-goback'
 
     expect(queryByTestId(levelMenuTestId)).toBe(null)
-    expect(getByTestId(animatedLogoTestId)).toBeInTheDocument()
   })
 })

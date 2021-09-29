@@ -33,12 +33,14 @@ jest.mock('~/components/MenuBar/context', () => {
 })
 
 describe('SelectProfile should work properly', () => {
+  const mockedCloseMenu = jest.fn()
+
   afterEach(() => {
     jest.clearAllMocks()
   })
 
   const setup = () => {
-    const wrapper = render(<SelectProfile />)
+    const wrapper = render(<SelectProfile closeMenu={mockedCloseMenu} />)
     return { ...wrapper }
   }
   it('Should render the correct elements on screen', () => {
