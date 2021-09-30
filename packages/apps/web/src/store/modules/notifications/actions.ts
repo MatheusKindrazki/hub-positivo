@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-import { notificationHistory } from './types'
+import { NotificationHistory } from './types'
 
 export const Actions = {
   GET_REQUEST: '@notifications/GET_REQUEST',
@@ -14,7 +14,7 @@ export function notificationsRequest(): Action {
   }
 }
 
-export function notificationsSuccess(history?: notificationHistory[]): Action {
+export function notificationsSuccess(history?: NotificationHistory[]): Action {
   return {
     type: Actions.GET_SUCCESS,
     payload: history
