@@ -13,10 +13,14 @@ describe('NotificationContainer should work properly', () => {
     const { queryByText, getByTestId } = render(
       <NotificationContainer
         read={false}
-        date={date}
-        imageURL={url}
-        message={message}
-        solutionName={solutionName}
+        dataEnvio={date}
+        dataExpiracao={date}
+        mensagem={message}
+        titulo={solutionName}
+        url={url}
+        origem=""
+        id="id"
+        icone="icone"
       />
     )
 
@@ -34,11 +38,15 @@ describe('NotificationContainer should work properly', () => {
     const { getByTestId, queryByText } = render(
       <NotificationContainer
         read={true}
-        date={date}
-        imageURL={url}
-        message={message}
-        solutionName={solutionName}
         allowThisTypeOf={false}
+        dataEnvio={date}
+        dataExpiracao={date}
+        mensagem={message}
+        titulo={solutionName}
+        url={url}
+        origem=""
+        id="id"
+        icone="icone"
       />
     )
 

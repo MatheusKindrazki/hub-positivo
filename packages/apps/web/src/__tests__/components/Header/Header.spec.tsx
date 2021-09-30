@@ -49,7 +49,8 @@ describe('Header component should works as expected', () => {
           loading: false,
           history: [
             {
-              data: Date.now(),
+              dataExpiracao: Date.now(),
+              dataEnvio: Date.now(),
               mensagem: 'mensagem teste',
               origem: 'Produto Teste',
               icone: 'http://fake-icon-url.com'
