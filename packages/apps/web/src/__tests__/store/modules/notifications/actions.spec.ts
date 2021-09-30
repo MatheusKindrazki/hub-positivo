@@ -26,7 +26,11 @@ describe('Action of global history', () => {
       {
         origem: 'source',
         mensagem: 'message',
-        data: new Date(),
+        dataEnvio: new Date(),
+        dataExpiracao: new Date(),
+        id: 'id',
+        titulo: 'titulo',
+        url: 'url',
         icone: 'http://fake-icon-url.com'
       }
     ]
