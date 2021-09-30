@@ -4,7 +4,6 @@ import { getTourRequest } from '~/store/modules/tour/actions'
 import { getProducts } from '~/store/modules/products/sagas'
 import { productSuccess } from '~/store/modules/products/actions'
 import { noBreakAccessEnable } from '~/store/modules/noBreakAccess/actions'
-// import { mhundArvoreIntegration } from '~/store/modules/productIntegrations/actions'
 import {
   enableRefreshTokenMiddleware,
   loading
@@ -82,7 +81,7 @@ describe('testing getProducts saga flow', () => {
     expect(dispatchedActions).toContainObject(
       productSuccess(productSuccessPayload)
     )
-    // expect(dispatchedActions).toContainObject(mhundArvoreIntegration())
+
     expect(dispatchedActions).toContainObject(getTourRequest())
     expect(dispatchedActions).toContainObject(
       enableRefreshTokenMiddleware(true)
