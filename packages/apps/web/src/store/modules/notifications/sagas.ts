@@ -8,7 +8,7 @@ import { store } from '~/store'
 import { fakeNotificationApi } from '@psdhub/web/src/__mocks__/api/fakeNotificationsApi'
 import { toast } from '@psdhub/common/utils'
 
-import { notificationHistory } from './types'
+import { NotificationHistory } from './types'
 import { Actions, notificationsFailure, notificationsSuccess } from './actions'
 export function* getNotifications(): Generator {
   const { school } = store.getState().user
@@ -23,7 +23,7 @@ export function* getNotifications(): Generator {
   const failChance = Math.random() > 0.9
   const response = yield call(() => fakeNotificationApi(failChance))
 
-  const { ok, data } = response as ApiResponse<notificationHistory[]>
+  const { ok, data } = response as ApiResponse<NotificationHistory[]>
   yield put(loading(false))
 
   if (!ok || !data) {

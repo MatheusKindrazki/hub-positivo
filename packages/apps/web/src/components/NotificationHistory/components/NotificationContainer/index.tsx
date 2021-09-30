@@ -1,31 +1,30 @@
 import React, { useMemo } from 'react'
 
+import { Notification } from '~/store/modules/notifications/types'
+
 import { Menu, MenuList, MenuButton } from '@psdhub/common/components/Menu'
 import { DotsThreeVertical } from '@psdhub/common/components/Icons'
 import { Image, Box, Text } from '@psdhub/common/components'
 
 import { formatDate } from './utils/formatDate'
 import { Flex } from './styles'
-export interface NotificationContainerProps {
-  solutionName: string
-  date: Date
-  imageURL: string
-  message: string
+
+export interface NotificationContainerProps extends Notification {
   read: boolean
   allowThisTypeOf?: boolean
 }
 
 const NotificationContainer: React.FC<NotificationContainerProps> = ({
-  date,
-  solutionName,
-  imageURL,
-  message,
   read,
-  allowThisTypeOf = true
+  allowThisTypeOf = true,
+  dataEnvio,
+  icone,
+  mensagem,
+  titulo
 }) => {
   const formattedDate = useMemo(() => {
-    return formatDate(date)
-  }, [date])
+    return formatDate(dataEnvio)
+  }, [dataEnvio])
 
   const opacity = useMemo(() => {
     return read ? 0.7 : 1
@@ -43,7 +42,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
       <Box width="95%" d="flex">
         <Image
           bg="blue.500"
-          src={imageURL}
+          src={icone}
           alt=""
           minW="3rem"
           w="3rem"
@@ -60,7 +59,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
             textTransform="capitalize"
             opacity={opacity}
           >
-            {solutionName}
+            {titulo}
           </Text>
           <Text
             lineHeight="20px"
@@ -68,7 +67,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
             fontSize="1rem"
             opacity={opacity}
           >
-            {message}
+            {mensagem}
           </Text>
           <Text color="#6F6F6F" fontSize="0.75rem" opacity={opacity}>
             {formattedDate}

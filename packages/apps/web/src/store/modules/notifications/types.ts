@@ -1,13 +1,17 @@
-export type notificationHistory = notification[]
+export type NotificationHistory = Notification[]
 
-type notification = {
-  origem: string
+export type Notification = {
+  id: string
+  titulo: string
+  url: string
   mensagem: string
-  data: Date
+  origem: string
+  dataEnvio: Date
+  dataExpiracao: Date
   icone: string
 }
 
 export interface NotificationsReducer {
   loading: boolean
-  history?: notification[]
+  history?: Notification[]
 }
