@@ -81,7 +81,6 @@ describe('testing getProducts saga flow', () => {
     expect(dispatchedActions).toContainObject(
       productSuccess(productSuccessPayload)
     )
-
     expect(dispatchedActions).toContainObject(getTourRequest())
     expect(dispatchedActions).toContainObject(
       enableRefreshTokenMiddleware(true)
