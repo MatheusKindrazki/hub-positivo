@@ -22,30 +22,26 @@ stages:
       steps:
       - template: .azure-pipelines/templates/copy-env.yml
       - template: .azure-pipelines/templates/install-dependencies.yml
-      # - template: .azure-pipelines/templates/run-tests.yml
+      - template: .azure-pipelines/templates/run-tests.yml
       - template: .azure-pipelines/templates/generate-release.yml
       - template: .azure-pipelines/templates/build-project.yml
+      - template: .azure-pipelines/templates/upload-sourcemap.yml
       - template: .azure-pipelines/templates/copy-assets.yml
       - template: .azure-pipelines/templates/create-artifacts.yml
+      - task: WhiteSource@21
+        inputs:
+          projectName: 'hub-digital-front'
+        displayName: WhiteSource Bolt
 
-    # - job: sonar_scan
-    #   dependsOn: build_and_generate_artifact
-    #   displayName: "Sonar Scanner"
-    #   steps:
-    #   - task: DownloadBuildArtifacts@1
-    #     displayName: "Download Project Coverage"
-    #     inputs:
-    #       buildType: 'current'
-    #       downloadType: 'single'
-    #       artifactName: 'coverage'
-    #       downloadPath: '$(System.DefaultWorkingDirectory)'
-    #   - template: .azure-pipelines/templates/sonar.yml
-
-    # - job: generate_release
-    #   dependsOn: build_and_generate_artifact
-    #   displayName: "Generating the release"
-    #   condition: eq(variables['Build.SourceBranchName'], 'main')
-    #   steps:
-    #   - template: .azure-pipelines/templates/copy-env.yml
-    #   - template: .azure-pipelines/templates/install-dependencies.yml
-    #   - template: .azure-pipelines/templates/generate-release.yml
+    - job: sonar_scan
+      dependsOn: build_and_generate_artifact
+      displayName: "Sonar Scanner"
+      steps:
+      - task: DownloadBuildArtifacts@1
+        displayName: "Download Project Coverage"
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'coverage'
+          downloadPath: '$(System.DefaultWorkingDirectory)'
+      - template: .azure-pipelines/templates/sonar.yml
