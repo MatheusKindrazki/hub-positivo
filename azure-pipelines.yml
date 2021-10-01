@@ -27,10 +27,6 @@ stages:
       - template: .azure-pipelines/templates/build-project.yml
       - template: .azure-pipelines/templates/copy-assets.yml
       - template: .azure-pipelines/templates/create-artifacts.yml
-      - task: WhiteSource@21
-        inputs:
-          projectName: 'hub-digital-front'
-        displayName: WhiteSource Bolt
 
     # - job: sonar_scan
     #   dependsOn: build_and_generate_artifact
