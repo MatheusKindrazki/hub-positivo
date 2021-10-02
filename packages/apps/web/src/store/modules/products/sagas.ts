@@ -73,12 +73,12 @@ export function* getProducts(): Generator {
   )
 
   // Aguarda os cards em tela para buscar o tour
-  yield delay(1000)
+  yield delay(100)
 
   yield put(getTourRequest())
 
   // Aguarda resposta do tour para não realizar novo refresh token
-  yield delay(1000)
+  yield delay(100)
 
   return yield put(enableRefreshTokenMiddleware(true))
 }
