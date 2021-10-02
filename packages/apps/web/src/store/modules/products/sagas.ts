@@ -32,7 +32,7 @@ export function* getProducts(): Generator {
     }
   }
 
-  const api = getInstance()
+  const api = getInstance('default')
 
   const response = yield call(async () => {
     return api.get(`Categoria/Solucoes/Perfil/${guid}`, {
@@ -73,12 +73,12 @@ export function* getProducts(): Generator {
   )
 
   // Aguarda os cards em tela para buscar o tour
-  yield delay(100)
+  yield delay(1000)
 
   yield put(getTourRequest())
 
   // Aguarda resposta do tour para não realizar novo refresh token
-  yield delay(100)
+  yield delay(1000)
 
   return yield put(enableRefreshTokenMiddleware(true))
 }

@@ -15,6 +15,7 @@ import GlobalStyle from '~/styles/global'
 import Routes from '~/routes'
 
 import '~/services/mixpanel/pageView'
+import '~/middlewares/hadReAttempt'
 
 const App: React.FC = () => {
   return (

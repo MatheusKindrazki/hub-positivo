@@ -1,15 +1,10 @@
 import { pageAction } from '@psdhub/newrelic'
-import {
-  communicationURLs,
-  statusCodeCondition,
-  Variant,
-  getInstance
-} from '@psdhub/api'
+import { communicationURLs, Variant, getInstance } from '@psdhub/api'
 interface HadReAttempt {
-  attempt: number
-  url: string
+  attempt?: number
+  url?: string
   error?: string
-  status: number
+  status?: number
 }
 
 function hadReAttempt(data: HadReAttempt): void {
@@ -20,11 +15,18 @@ Object.keys(communicationURLs).forEach(key => {
   const instanceKey = key as Variant
 
   getInstance(instanceKey).addResponseTransform(transform => {
-    const { status } = transform
+    const { status, config, originalError } = transform
 
-    if (statusCodeCondition.includes(status as number)) {
-      console.log('entrou aqui')
-    }
+    const retry = config?.['axios-retry'] as any
+
+    if (retry === 0) return
+
+    hadReAttempt({
+      attempt: retry as number,
+      status: status,
+      url: config?.url,
+      error: originalError?.message
+    })
   })
 })
 
