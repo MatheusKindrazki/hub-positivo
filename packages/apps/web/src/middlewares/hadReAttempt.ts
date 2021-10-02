@@ -2,7 +2,8 @@ import { pageAction } from '@psdhub/newrelic'
 import { communicationURLs, Variant, getInstance } from '@psdhub/api'
 interface HadReAttempt {
   attempt?: number
-  url?: string
+  endpoint?: string
+  baseURL?: string
   error?: string
   status?: number
 }
@@ -19,12 +20,13 @@ Object.keys(communicationURLs).forEach(key => {
 
     const retry = config?.['axios-retry'] as any
 
-    if (retry === 0) return
+    if (retry?.retryCount === 0) return
 
     hadReAttempt({
-      attempt: retry as number,
+      attempt: retry.retryCount as number,
       status: status,
-      url: config?.url,
+      baseURL: config?.baseURL,
+      endpoint: config?.url,
       error: originalError?.message
     })
   })
