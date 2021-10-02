@@ -5,7 +5,7 @@ import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
 import { store } from '~/store'
 
 import { toast, isMobile } from '@psdhub/common/utils'
-import { apiAuthProduct } from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import history from '~/services/history'
 
@@ -148,8 +148,10 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
     expire_in: auth.exp
   }
 
+  const api = getInstance('auth')
+
   const response = yield call(() => {
-    return apiAuthProduct.post('api/TokenStorage', authTheProduct, {
+    return api.post('api/TokenStorage', authTheProduct, {
       headers: {
         Authorization: `Bearer ${auth.reduced_token}`
       }

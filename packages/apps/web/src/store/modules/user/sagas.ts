@@ -5,7 +5,7 @@ import { all, call, delay, takeLatest, Payload, put } from 'redux-saga/effects'
 import { store } from '~/store'
 
 import { toast } from '@psdhub/common/utils'
-import { apiEEMAuth } from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import history from '~/services/history'
 
@@ -21,8 +21,10 @@ import {
 // ?Endpoint esqueci minha senha
 type AlterPasswordPayload = Payload<UserAlterPass>
 export function* forgotPassword({ payload }: AlterPasswordPayload): Generator {
+  const api = getInstance('eem')
+
   const response = yield call(() => {
-    return apiEEMAuth.put('/api/v1/users/reset-password', payload, {
+    return api.put('/api/v1/users/reset-password', payload, {
       headers: {
         'content-type': 'application/json;charset=UTF-8'
       }
@@ -59,15 +61,15 @@ export function* alterPasswordPanel({
   payload
 }: AlterPasswordPanelPayload): Generator {
   const { info: user } = store.getState().user
-  const { reduced_token } = store.getState().auth
 
   const guid = user?.guid
 
+  const api = getInstance('eem')
+
   const response = yield call(() => {
-    return apiEEMAuth.put(`/api/v1/users/${guid}/change-password`, payload, {
+    return api.put(`/api/v1/users/${guid}/change-password`, payload, {
       headers: {
-        'content-type': 'application/json;charset=UTF-8',
-        Authorization: reduced_token
+        'content-type': 'application/json;charset=UTF-8'
       }
     })
   })
