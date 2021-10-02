@@ -21,7 +21,7 @@ import {
 // ?Endpoint esqueci minha senha
 type AlterPasswordPayload = Payload<UserAlterPass>
 export function* forgotPassword({ payload }: AlterPasswordPayload): Generator {
-  const api = getInstance('eem')
+  const api = getInstance('auth')
 
   const response = yield call(() => {
     return api.put('/api/v1/users/reset-password', payload, {
@@ -64,7 +64,7 @@ export function* alterPasswordPanel({
 
   const guid = user?.guid
 
-  const api = getInstance('eem')
+  const api = getInstance('auth')
 
   const response = yield call(() => {
     return api.put(`/api/v1/users/${guid}/change-password`, payload, {

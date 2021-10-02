@@ -3,7 +3,7 @@ import { ApiResponse } from 'apisauce'
 import { all, takeLatest, Payload, call, put } from 'redux-saga/effects'
 
 import { toast } from '@psdhub/common/utils'
-import { apiEEMAuth } from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import history from '~/services/history'
 
@@ -24,9 +24,10 @@ import {
 type PwdTokenPayload = Payload<PwdTokenRequest>
 export function* pwdToken({ payload }: PwdTokenPayload): Generator {
   const setURL = process.env.PUBLIC_URL || 'http://localhost:3000'
+  const api = getInstance('auth')
 
   const response = yield call(() => {
-    return apiEEMAuth.post(
+    return api.post(
       '/api/v1/users/request-new-password',
       {
         userInfo: payload.userInfo,
@@ -65,8 +66,10 @@ export function* pwdToken({ payload }: PwdTokenPayload): Generator {
 type ValidatePINtPayload = Payload<ValidatePin>
 
 export function* validatePIN({ payload }: ValidatePINtPayload): Generator {
+  const api = getInstance('auth')
+
   const response = yield call(() => {
-    return apiEEMAuth.post(
+    return api.post(
       '/api/v1/users/reset-password/check-pin',
       {
         pin: payload.pin
