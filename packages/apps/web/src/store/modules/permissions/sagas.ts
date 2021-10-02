@@ -4,7 +4,7 @@ import { call, takeLatest, all, put } from 'redux-saga/effects'
 import { Action } from 'redux'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import {
   GenericApiResponse,
@@ -27,6 +27,8 @@ import {
 } from './actions'
 
 export function* getAllProfilePermissions(): Generator {
+  const api = getInstance()
+
   const response = yield call(() => {
     return api.get('perfilNivelEnsino')
   })
@@ -53,6 +55,8 @@ export function* profilePermissions(action: Action): Generator {
   }
 
   if (remove.IdsPerfisNiveisEnsino?.length) {
+    const api = getInstance()
+
     const removeResponse = yield call(() => {
       return api.delete('solucaoPerfilNivelEnsino', {}, { data: remove })
     })
@@ -66,6 +70,8 @@ export function* profilePermissions(action: Action): Generator {
   }
 
   if (create.IdsPerfisNiveisEnsino?.length) {
+    const api = getInstance()
+
     const createResponse = yield call(() => {
       return api.post('solucaoPerfilNivelEnsino', {
         ...create
@@ -89,6 +95,8 @@ export function* schoolPermissions(action: Action): Generator {
 
   // Remove permissoes interrompendo o fluxo caso haja algum erro
   if (remove.idsEscolas?.length) {
+    const api = getInstance()
+
     const deleteResponse = yield call(() => {
       return api.delete('solucao/Restricao', {}, { data: remove })
     })
@@ -105,6 +113,8 @@ export function* schoolPermissions(action: Action): Generator {
 
   // Cria permissoes interrompendo o fluxo caso haja algum erro
   if (create.idsEscolas?.length) {
+    const api = getInstance()
+
     const postResponse = yield call(() => {
       return api.post('solucao/restricao', {
         ...create
@@ -123,6 +133,8 @@ export function* schoolPermissions(action: Action): Generator {
 
 export function* getProfilePermissionsBySolutionId(action: Action): Generator {
   const response = yield call(() => {
+    const api = getInstance()
+
     return api.get('solucaoPerfilNivelEnsino', {
       idSolucao: action.payload.id
     })
@@ -141,6 +153,8 @@ export function* getProfilePermissionsBySolutionId(action: Action): Generator {
 }
 
 export function* getSchoolPermissionsBySolutionId(action: Action): Generator {
+  const api = getInstance()
+
   const response = yield call(() => {
     return api.get('solucao/restricao', { idSolucao: action.payload.id })
   })

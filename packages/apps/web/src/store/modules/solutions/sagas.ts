@@ -4,7 +4,7 @@ import { call, takeLatest, all, put } from 'redux-saga/effects'
 import { Action } from 'redux'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import history from '~/services/history'
 
@@ -30,6 +30,8 @@ import {
 } from './actions'
 
 export function* createSolution(action: Action): Generator {
+  const api = getInstance()
+
   const response = yield call(() => {
     return api.post('Solucao', {
       ...action.payload
@@ -49,6 +51,8 @@ export function* createSolution(action: Action): Generator {
 }
 
 export function* getSolutions(): Generator {
+  const api = getInstance()
+
   const response = yield call(() => {
     return api.get(
       'categoria/solucoesPerfisRestricoes',
@@ -72,6 +76,8 @@ export function* getSolutions(): Generator {
 }
 
 export function* getExcludedSolutions(): Generator {
+  const api = getInstance()
+
   const response = yield call(() => {
     return api.get(
       'categoria/solucoesPerfisRestricoes',
@@ -92,6 +98,8 @@ export function* getExcludedSolutions(): Generator {
   return yield put(solutionGetExcludedSuccess(data))
 }
 export function* updateSolution(action: Action): Generator {
+  const api = getInstance()
+
   const response = yield call(async () => {
     return api.put('/solucao', {
       ...action.payload
@@ -110,6 +118,8 @@ export function* updateSolution(action: Action): Generator {
 }
 
 export function* deleteSolution(action: Action): Generator {
+  const api = getInstance()
+
   const response = yield call(() => {
     return api.delete('solucao/excluiCard', {
       idCard: action.payload.id
@@ -139,6 +149,8 @@ export function* deleteSolution(action: Action): Generator {
 }
 
 export function* restoreSolution(action: Action): Generator {
+  const api = getInstance()
+
   const response = yield call(() => {
     return api.put(
       '/Solucao/RecuperaSolucaoDaLixeira',
@@ -163,6 +175,8 @@ export function* restoreSolution(action: Action): Generator {
   return yield put(restoreSolutionSuccess())
 }
 export function* reorderSolutions(action: Action): Generator {
+  const api = getInstance()
+
   const response = yield call(() => {
     return api.post('solucao/reordenaCards', action.payload)
   })

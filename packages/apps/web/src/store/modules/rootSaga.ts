@@ -5,7 +5,6 @@ import tour from './tour/sagas'
 import solutions from './solutions/sagas'
 import school from './school/sagas'
 import products from './products/sagas'
-import productIntegrations from './productIntegrations/sagas'
 import permissions from './permissions/sagas'
 import notifications from './notifications/sagas'
 import myClasses from './myClasses/sagas'
@@ -25,7 +24,6 @@ export default function* rootSaga(): Generator {
     acceptTerms,
     forgotPassword,
     educationalStage,
-    productIntegrations,
     myClasses,
     products,
     tour,

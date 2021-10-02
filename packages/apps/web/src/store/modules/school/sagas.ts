@@ -3,13 +3,15 @@ import { ApiResponse } from 'apisauce'
 import { call, takeLatest, all, put } from 'redux-saga/effects'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import { School } from './types'
 import { Actions, schoolGetAllFailure, schoolGetAllSuccess } from './actions'
 import { loading } from '../global/actions'
 
 export function* getSchools(): Generator {
+  const api = getInstance()
+
   yield put(loading(true))
 
   const response = yield call(() => {

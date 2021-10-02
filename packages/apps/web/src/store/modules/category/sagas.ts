@@ -3,7 +3,7 @@ import { ApiResponse } from 'apisauce'
 import { call, takeLatest, all, Payload, put } from 'redux-saga/effects'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import { CategoryPostData, CategoryPostResponse, Category } from './types'
 import {
@@ -18,6 +18,8 @@ import { loading } from '../global/actions'
 type CategoryPostPayload = Payload<CategoryPostData>
 
 export function* createCategory({ payload }: CategoryPostPayload): Generator {
+  const api = getInstance()
+
   const response = yield call(async () => {
     return api.post('/categoria', payload)
   })
@@ -34,6 +36,8 @@ export function* createCategory({ payload }: CategoryPostPayload): Generator {
 }
 
 export function* getCategories(): Generator {
+  const api = getInstance()
+
   yield put(loading(true))
 
   const response = yield call(() => {

@@ -2,7 +2,7 @@ import lscache from 'lscache'
 import { format } from 'date-fns'
 import { ApiResponse } from 'apisauce'
 
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 const dateFormat = 'dd MM yyyy, H:mm:ss'
 
@@ -31,6 +31,8 @@ export const clearStrikes = (): void => {
 }
 
 export const handleCaptcha = async (token: null | string): Promise<boolean> => {
+  const api = getInstance('default')
+
   const response = await api.get('Captcha/Validate', {
     token
   })
