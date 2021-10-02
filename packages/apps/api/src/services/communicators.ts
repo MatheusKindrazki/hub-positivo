@@ -60,7 +60,7 @@ export function getInstance(key?: Variant): ApisauceInstance {
   return communicator
 }
 
-export function setAuthorization(token: string, type?: Variant & 'all'): void {
+export function setAuthorization(token: string, type?: Variant | 'all'): void {
   if (type === 'all') {
     Object.values(communicators).forEach(communicator => {
       communicator.setHeader('Authorization', `Bearer ${token}`)

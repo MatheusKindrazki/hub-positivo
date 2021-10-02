@@ -18,12 +18,7 @@ import { store } from '~/store'
 
 import capitalize from '@psdhub/common/utils/capitalize'
 import { toast } from '@psdhub/common/utils'
-import {
-  getInstance,
-  // apiAuthProduct,
-  ApiResponse,
-  statusCodeCondition
-} from '@psdhub/api'
+import { ApiResponse, setAuthorization, statusCodeCondition } from '@psdhub/api'
 
 import sessionStarted from '~/services/mixpanel/sessionStarted'
 import mixpanelIdentifyUser from '~/services/mixpanel/identifyUser'
@@ -95,13 +90,6 @@ export function* signIn({ payload }: SignInPayload): Generator {
 
   const user = decode(data?.access_token as string) as any
 
-  // const getMailClass = yield call(async () => {
-  //   const url = '/api/SalasVirtuais/Email/' + user?.sub
-  //   return await apiAuthProduct.get(url)
-  // })
-
-  // const { data: userMailClass } = getMailClass as ApiResponse<string>
-
   // ? Identifica o usuário no mixpanel
   mixpanelIdentifyUser({ guid: user?.sub as string })
 
@@ -154,15 +142,7 @@ export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
 
   const { access_token } = response as ApiChange
 
-  const api = getInstance('default')
-
-  api.setHeaders({
-    Authorization: `Bearer ${access_token}`
-  })
-
-  // apiAuthProduct.setHeaders({
-  //   Authorization: `Bearer ${access_token}`
-  // })
+  setAuthorization(access_token, 'all')
 
   const { info: user, school } = store.getState().user
 
@@ -237,11 +217,7 @@ export function* checkingExpiringToken({
 
   yield put(loading(true))
 
-  const api = getInstance('default')
-
-  api.setHeaders({
-    Authorization: `Bearer ${reduced_token}`
-  })
+  setAuthorization(reduced_token, 'all')
 
   yield put(reducedTokenEEM(reduced_token))
 
@@ -285,12 +261,6 @@ export function* refreshToken(): Generator {
     return history.push('/login')
   }
 
-  const api = getInstance('default')
-
-  api.setHeaders({
-    Authorization: `Bearer ${data?.access_token}`
-  })
-
   const res = yield call(async () => {
     return changeSchool({
       token: data?.access_token
@@ -300,6 +270,8 @@ export function* refreshToken(): Generator {
   const { access_token } = res as ApiChange
 
   yield put(reducedTokenEEM(access_token))
+
+  setAuthorization(access_token, 'all')
 
   const user = decode(data?.access_token as string) as {
     exp: number
