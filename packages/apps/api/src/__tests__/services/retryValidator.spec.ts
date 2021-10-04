@@ -14,7 +14,7 @@ describe('orRetry', () => {
 
     try {
       await axios.get('/')
-    } catch (error) {
+    } catch (error: any) {
       expect(orRetry({ ...error, status: 503 })).toBeTruthy()
     }
   })
@@ -26,7 +26,7 @@ describe('orRetry', () => {
 
     try {
       await axios.get('/')
-    } catch (error) {
+    } catch (error: any) {
       expect(orRetry({ ...error, status: 400 })).not.toBeTruthy()
     }
   })
