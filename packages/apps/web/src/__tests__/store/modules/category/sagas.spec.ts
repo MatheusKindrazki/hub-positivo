@@ -13,7 +13,7 @@ import {
 } from '~/store/modules/category/actions'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import store from '~/__mocks__/fakeStore.mock'
 import fakeApiCategoryResponse from '~/__mocks__/api/fakeApiCategoryResponse.json'
@@ -42,6 +42,7 @@ describe('category sagas work properly', () => {
 
   const spyErrorToast = jest.spyOn(toast, 'error')
 
+  const api = getInstance()
   const spyApiPost = jest
     .spyOn(api, 'post')
     .mockImplementation(() =>
