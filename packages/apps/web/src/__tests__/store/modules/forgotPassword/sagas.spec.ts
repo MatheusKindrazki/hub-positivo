@@ -6,7 +6,7 @@ import * as sagas from '~/store/modules/forgotPassword/sagas'
 import * as actions from '~/store/modules/forgotPassword/actions'
 
 import { toast } from '@psdhub/common/utils'
-import { apiEEMAuth } from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import history from '~/services/history'
 
@@ -36,6 +36,7 @@ describe('Sagas of forgotPassword history', () => {
         data: true
       }
 
+      const apiEEMAuth = getInstance('auth')
       jest
         .spyOn(apiEEMAuth, 'post')
         .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
@@ -64,6 +65,8 @@ describe('Sagas of forgotPassword history', () => {
         data: true
       }
 
+      const apiEEMAuth = getInstance('auth')
+
       jest
         .spyOn(apiEEMAuth, 'post')
         .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
@@ -89,6 +92,8 @@ describe('Sagas of forgotPassword history', () => {
           error: true
         }
       }
+
+      const apiEEMAuth = getInstance('auth')
 
       jest
         .spyOn(apiEEMAuth, 'post')
@@ -118,6 +123,7 @@ describe('Sagas of forgotPassword history', () => {
           content: true
         }
       }
+      const apiEEMAuth = getInstance('auth')
 
       jest
         .spyOn(apiEEMAuth, 'post')
@@ -143,6 +149,7 @@ describe('Sagas of forgotPassword history', () => {
           content: false
         }
       }
+      const apiEEMAuth = getInstance('auth')
 
       jest
         .spyOn(apiEEMAuth, 'post')
@@ -169,6 +176,7 @@ describe('Sagas of forgotPassword history', () => {
         problem: null,
         data: {}
       }
+      const apiEEMAuth = getInstance('auth')
 
       jest
         .spyOn(apiEEMAuth, 'post')
