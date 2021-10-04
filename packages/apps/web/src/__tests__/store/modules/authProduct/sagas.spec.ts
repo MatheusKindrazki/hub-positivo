@@ -16,7 +16,7 @@ import {
 } from '~/store/modules/authProduct/actions'
 
 import { toast, isMobile } from '@psdhub/common/utils'
-import { apiAuthProduct } from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import history from '~/services/history'
 
@@ -212,8 +212,10 @@ describe('testing authProductGUID saga flow', () => {
       productName: 'Produto Teste'
     }
 
+    const api = getInstance('auth')
+
     const spyPost = jest
-      .spyOn(apiAuthProduct, 'post')
+      .spyOn(api, 'post')
       .mockImplementation(() => Promise.resolve<any>(mockedResponse))
 
     await runSaga(store, authProductGUID, mockedPayload).toPromise()
@@ -253,8 +255,10 @@ describe('testing authProductGUID saga flow', () => {
   it('should send a tost and dispatch failure action when post response has a error', async () => {
     mockedResponse.ok = false
     const spyToast = jest.spyOn(toast, 'error')
+
+    const api = getInstance('auth')
     const spyPost = jest
-      .spyOn(apiAuthProduct, 'post')
+      .spyOn(api, 'post')
       .mockImplementation(() => Promise.resolve<any>(mockedResponse))
 
     await runSaga(store, authProductGUID, mockedPayload).toPromise()
@@ -310,7 +314,7 @@ describe('testing authProductEEM saga flow', () => {
   })
 })
 
-describe('testing authMcf saga flow', async () => {
+describe('testing authMcf saga flow', () => {
   let dispatchedActions = store.getActions()
   beforeEach(() => {
     jest.clearAllMocks()
