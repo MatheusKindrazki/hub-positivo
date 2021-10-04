@@ -6,7 +6,7 @@ import * as sagas from '~/store/modules/user/sagas'
 import * as userActions from '~/store/modules/user/actions'
 
 import { toast } from '@psdhub/common/utils'
-import { apiEEMAuth } from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import history from '~/services/history'
 
@@ -39,7 +39,7 @@ describe('Sagas of user history', () => {
       }
       const mockToast = jest.spyOn(toast, 'success')
       const mockHistory = jest.spyOn(history, 'push')
-
+      const apiEEMAuth = getInstance('auth')
       jest
         .spyOn(apiEEMAuth, 'put')
         .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
@@ -66,6 +66,7 @@ describe('Sagas of user history', () => {
         data: false
       }
       const mockToast = jest.spyOn(toast, 'error')
+      const apiEEMAuth = getInstance('auth')
 
       jest
         .spyOn(apiEEMAuth, 'put')
@@ -97,6 +98,7 @@ describe('Sagas of user history', () => {
         }
       }
       const mockToast = jest.spyOn(toast, 'error')
+      const apiEEMAuth = getInstance('auth')
 
       jest
         .spyOn(apiEEMAuth, 'put')
@@ -125,6 +127,7 @@ describe('Sagas of user history', () => {
         }
       }
       const mockToast = jest.spyOn(toast, 'error')
+      const apiEEMAuth = getInstance('auth')
 
       jest
         .spyOn(apiEEMAuth, 'put')
@@ -156,6 +159,7 @@ describe('Sagas of user history', () => {
       }
 
       const mockToast = jest.spyOn(toast, 'success')
+      const apiEEMAuth = getInstance('auth')
 
       jest
         .spyOn(apiEEMAuth, 'put')
@@ -182,6 +186,7 @@ describe('Sagas of user history', () => {
         data: false
       }
       const mockToast = jest.spyOn(toast, 'error')
+      const apiEEMAuth = getInstance('auth')
 
       jest
         .spyOn(apiEEMAuth, 'put')
@@ -213,6 +218,7 @@ describe('Sagas of user history', () => {
         }
       }
       const mockToast = jest.spyOn(toast, 'error')
+      const apiEEMAuth = getInstance('auth')
 
       jest
         .spyOn(apiEEMAuth, 'put')
@@ -243,6 +249,7 @@ describe('Sagas of user history', () => {
         }
       }
       const mockToast = jest.spyOn(toast, 'error')
+      const apiEEMAuth = getInstance('auth')
 
       jest
         .spyOn(apiEEMAuth, 'put')

@@ -34,7 +34,7 @@ import {
 } from '~/store/modules/solutions/actions'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import store from '~/__mocks__/fakeStore.mock'
 import fakeApiSolutionResponses from '~/__mocks__/api/fakeApiSolutionResponses.json'
@@ -76,6 +76,7 @@ describe('solutions sagas work properly', () => {
     dispatchedActions = store.getActions()
   })
   it('createSolution should call api, call success toast and dispatch success action', async () => {
+    const api = getInstance()
     const spyApiPost = jest
       .spyOn(api, 'post')
       .mockImplementation(() =>
