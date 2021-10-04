@@ -30,7 +30,7 @@ import {
 } from '~/store/modules/permissions/actions'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import store from '~/__mocks__/fakeStore.mock'
 
@@ -103,6 +103,7 @@ describe('permissions sagas work properly', () => {
   })
 
   it('getAllProfilePermissions should call api and dispatch success action', async () => {
+    const api = getInstance('default')
     const spyApiGet = jest
       .spyOn(api, 'get')
       .mockImplementation(() =>
@@ -117,6 +118,8 @@ describe('permissions sagas work properly', () => {
     )
   })
   it('getAllProfilePermissions should call toast error and dispatch failure action when api returns with an error', async () => {
+    const api = getInstance('default')
+
     const spyApiGet = jest
       .spyOn(api, 'get')
       .mockImplementation(() =>
@@ -134,6 +137,7 @@ describe('permissions sagas work properly', () => {
 
   it('getProfilePermissionsBySolutionId should call api and dispatch success action', async () => {
     const solutionId = 'fake solution id'
+    const api = getInstance('default')
 
     const spyApiGet = jest
       .spyOn(api, 'get')
@@ -156,6 +160,7 @@ describe('permissions sagas work properly', () => {
   })
   it('getProfilePermissionsBySolutionId should call toast error and dispatch failure action when api returns with an error', async () => {
     const solutionId = 'fake solution id'
+    const api = getInstance('default')
 
     const spyApiGet = jest
       .spyOn(api, 'get')
@@ -182,6 +187,7 @@ describe('permissions sagas work properly', () => {
 
   it('getSchoolPermissionsBySolutionId should call api and dispatch success action', async () => {
     const solutionId = 'fake solution id'
+    const api = getInstance('default')
 
     const spyApiGet = jest
       .spyOn(api, 'get')
@@ -206,6 +212,7 @@ describe('permissions sagas work properly', () => {
   })
   it('getSchoolPermissionsBySolutionId should call toast error and dispatch failure action when api returns with an error', async () => {
     const solutionId = 'fake solution id'
+    const api = getInstance('default')
 
     const spyApiGet = jest
       .spyOn(api, 'get')
@@ -241,6 +248,7 @@ describe('permissions sagas work properly', () => {
         IdsPerfisNiveisEnsino: ['fake id 3', 'fake id 4']
       }
     }
+    const api = getInstance('default')
 
     const spyApiPost = jest
       .spyOn(api, 'post')
@@ -278,6 +286,7 @@ describe('permissions sagas work properly', () => {
         IdsPerfisNiveisEnsino: ['fake id 1', 'fake id 2']
       }
     }
+    const api = getInstance('default')
 
     const spyApiPost = jest
       .spyOn(api, 'post')
@@ -312,6 +321,7 @@ describe('permissions sagas work properly', () => {
         IdsPerfisNiveisEnsino: null
       }
     }
+    const api = getInstance('default')
 
     const spyApiPost = jest.spyOn(api, 'post')
 
@@ -348,6 +358,7 @@ describe('permissions sagas work properly', () => {
         IdsPerfisNiveisEnsino: null
       }
     }
+    const api = getInstance('default')
 
     const spyApiPost = jest.spyOn(api, 'post')
 
@@ -377,6 +388,7 @@ describe('permissions sagas work properly', () => {
         IdsPerfisNiveisEnsino: ['fake id 3', 'fake id 4']
       }
     }
+    const api = getInstance('default')
 
     const spyApiPost = jest.spyOn(api, 'post')
 
@@ -414,6 +426,7 @@ describe('permissions sagas work properly', () => {
         IdsPerfisNiveisEnsino: ['fake id 3', 'fake id 4']
       }
     }
+    const api = getInstance('default')
 
     const spyApiPost = jest
       .spyOn(api, 'post')
@@ -456,6 +469,7 @@ describe('permissions sagas work properly', () => {
         restricao: 'Ocultar' as Restricao
       }
     }
+    const api = getInstance('default')
 
     const spyApiPost = jest
       .spyOn(api, 'post')
@@ -493,6 +507,7 @@ describe('permissions sagas work properly', () => {
         restricao: 'Ocultar' as Restricao
       }
     }
+    const api = getInstance('default')
 
     const spyApiPost = jest
       .spyOn(api, 'post')
@@ -526,6 +541,7 @@ describe('permissions sagas work properly', () => {
         idsEscolas: null
       }
     }
+    const api = getInstance('default')
 
     const spyApiPost = jest.spyOn(api, 'post')
 
@@ -561,6 +577,8 @@ describe('permissions sagas work properly', () => {
         idsEscolas: null
       }
     }
+
+    const api = getInstance('default')
 
     const spyApiPost = jest.spyOn(api, 'post')
 
@@ -600,6 +618,7 @@ describe('permissions sagas work properly', () => {
         restricao: 'Ocultar' as Restricao
       }
     }
+    const api = getInstance('default')
 
     const spyApiPost = jest
       .spyOn(api, 'post')
@@ -641,6 +660,7 @@ describe('permissions sagas work properly', () => {
         restricao: 'Ocultar' as Restricao
       }
     }
+    const api = getInstance('default')
 
     const spyApiPost = jest.spyOn(api, 'post')
 
