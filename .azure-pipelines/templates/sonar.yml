@@ -10,7 +10,7 @@ steps:
       cliProjectName: HubDigitalFront"
       cliSources: "."
       extraProperties: |
-        sonar.sources=packages/apps/web/src/components,packages/apps/web/src/pages,packages/apps/web/src/services,packages/apps/web/src/store/modules,packages/apps/web/src/utils,packages/apps/web/src/validators,packages/apps/web/src/middlewares,packages/apps/web/src/hooks,packages/common/components,packages/api/src,packages/newrelic/src/services,packages/interact/src
+        sonar.sources=packages/apps/web/src/components,packages/apps/web/src/pages,packages/apps/web/src/services,packages/apps/web/src/store/modules,packages/apps/web/src/utils,packages/apps/web/src/validators,packages/apps/web/src/middlewares,packages/apps/web/src/hooks,packages/common/components,packages/apps/api/src,packages/apps/newrelic/src/services,packages/apps/interact/src
         sonar.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,
         sonar.coverage.exclusions=**/*.spec.ts,**/*.spec.tsx,**/types.ts,**/*.d.ts,**/mock.ts,**/*.js
         sonar.javascript.lcov.reportPaths=coverage/lcov.info
