@@ -14,7 +14,7 @@ describe('Api retry', () => {
     try {
       await axios.get('/')
     } catch (error) {
-      const { response } = error
+      const { response } = error as any
       const responseConfig = response.config['axios-retry'] as any
 
       expect(response.status).toBe(400)
@@ -33,7 +33,7 @@ describe('Api retry', () => {
     try {
       await axios.get('/')
     } catch (error) {
-      const { response } = error
+      const { response } = error as any
       const responseConfig = response.config['axios-retry'] as any
 
       expect(response.status).toBe(503)
