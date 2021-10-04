@@ -1,6 +1,6 @@
 import lscache from 'lscache'
 
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import {
   clearStrikes,
@@ -14,8 +14,6 @@ jest.mock('lscache', () => ({
   remove: jest.fn(),
   set: jest.fn()
 }))
-
-jest.mock('@psdhub/api')
 
 describe('Captcha for Login', () => {
   it('Should trigger the lib that removes the captcha cache', () => {
@@ -65,6 +63,7 @@ describe('Captcha for Login', () => {
   })
 
   it('You must validate the captcha token and remove the cache if ok', async () => {
+    const api = getInstance()
     api.get = jest.fn().mockReturnValue({
       data: true
     })
