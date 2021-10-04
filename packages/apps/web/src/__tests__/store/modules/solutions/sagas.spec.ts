@@ -77,6 +77,7 @@ describe('solutions sagas work properly', () => {
   })
   it('createSolution should call api, call success toast and dispatch success action', async () => {
     const api = getInstance()
+
     const spyApiPost = jest
       .spyOn(api, 'post')
       .mockImplementation(() =>
@@ -94,6 +95,8 @@ describe('solutions sagas work properly', () => {
     expect(dispatchedActions).toContainObject(solutionPostSuccess('fake id'))
   })
   it('createSolution should call toast error when api returns with an error', async () => {
+    const api = getInstance()
+
     const spyApiPost = jest
       .spyOn(api, 'post')
       .mockImplementation(() =>
@@ -112,6 +115,8 @@ describe('solutions sagas work properly', () => {
   })
 
   it('getSolutions should call api, and dispatch success action afterwards', async () => {
+    const api = getInstance()
+
     const spyApiGet = jest
       .spyOn(api, 'get')
       .mockImplementation(() =>
@@ -132,6 +137,8 @@ describe('solutions sagas work properly', () => {
     expect(dispatchedActions).toContainObject(solutionsGetSuccess(data))
   })
   it('getSolutions should call toast error when api returns with an error', async () => {
+    const api = getInstance()
+
     const spyApiGet = jest
       .spyOn(api, 'get')
       .mockImplementation(() =>
@@ -152,6 +159,8 @@ describe('solutions sagas work properly', () => {
   })
 
   it('getExcludedSolutions should call api, and dispatch success action afterwards', async () => {
+    const api = getInstance()
+
     const spyApiGet = jest
       .spyOn(api, 'get')
       .mockImplementation(() =>
@@ -172,6 +181,8 @@ describe('solutions sagas work properly', () => {
     expect(dispatchedActions).toContainObject(solutionGetExcludedSuccess(data))
   })
   it('getExcludedSolutions should call toast error when api returns with an error', async () => {
+    const api = getInstance()
+
     const spyApiGet = jest
       .spyOn(api, 'get')
       .mockImplementation(() =>
@@ -192,6 +203,8 @@ describe('solutions sagas work properly', () => {
   })
 
   it('updateSolution should call api, call success toast and dispatch success action', async () => {
+    const api = getInstance()
+
     const spyApiPut = jest
       .spyOn(api, 'put')
       .mockImplementation(() =>
@@ -208,6 +221,8 @@ describe('solutions sagas work properly', () => {
     expect(dispatchedActions).toContainObject(solutionPutSuccess())
   })
   it('updateSolution should call toast error when api returns with an error', async () => {
+    const api = getInstance()
+
     const spyApiPut = jest
       .spyOn(api, 'put')
       .mockImplementation(() =>
@@ -228,6 +243,8 @@ describe('solutions sagas work properly', () => {
   })
 
   it('deleteSolution should call api, and dispatch success action afterwards, then refresh solutions and excluded solutions data', async () => {
+    const api = getInstance()
+
     const solutionId = 'fake solution id'
 
     const spyApiDel = jest
@@ -248,6 +265,8 @@ describe('solutions sagas work properly', () => {
     expect(dispatchedActions).toContainObject(solutionDeleteSuccess())
   })
   it('deleteSolution should call toast error when api returns with an error', async () => {
+    const api = getInstance()
+
     const solutionId = 'fake solution id'
 
     const spyApiDel = jest
@@ -269,6 +288,8 @@ describe('solutions sagas work properly', () => {
     expect(dispatchedActions).toContainObject(solutionDeleteFailure())
   })
   it('deleteSolution shouldn`t be able to delete an active solution', async () => {
+    const api = getInstance()
+
     const solutionId = 'fake solution id'
 
     const spyApiDel = jest
@@ -293,6 +314,8 @@ describe('solutions sagas work properly', () => {
   })
 
   it('restoreSolution should call api, call success toast, refresh data and dispatch success action', async () => {
+    const api = getInstance()
+
     const idSolucao = 'fake solution id'
     const spyApiPut = jest
       .spyOn(api, 'put')
@@ -319,6 +342,8 @@ describe('solutions sagas work properly', () => {
     expect(dispatchedActions).toContainObject(restoreSolutionSuccess())
   })
   it('restoreSolution should call toast error and dispatch failure action when api returns with an error', async () => {
+    const api = getInstance()
+
     const idSolucao = 'fake solution id'
     const spyApiPut = jest
       .spyOn(api, 'put')
@@ -349,6 +374,8 @@ describe('solutions sagas work properly', () => {
   })
 
   it('reorderSolutions should call api and then dispatch success action', async () => {
+    const api = getInstance()
+
     const mockedReorderData = [
       {
         id: 'fake solution id',
@@ -375,6 +402,8 @@ describe('solutions sagas work properly', () => {
     expect(dispatchedActions).toContainObject(solutionPostReorderSuccess())
   })
   it('reorderSolutions should call toast error and dispatch failure action when api returns with an error', async () => {
+    const api = getInstance()
+
     const mockedReorderData = [
       {
         id: 'fake solution id',
