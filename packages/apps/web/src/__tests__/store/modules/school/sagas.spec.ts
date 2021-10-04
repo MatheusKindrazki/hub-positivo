@@ -8,7 +8,7 @@ import {
 import { loading } from '~/store/modules/global/actions'
 
 import { toast } from '@psdhub/common/utils'
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import store from '~/__mocks__/fakeStore.mock'
 
@@ -32,7 +32,7 @@ describe('school sagas work properly', () => {
   let dispatchedActions = store.getActions()
 
   const spyErrorToast = jest.spyOn(toast, 'error')
-
+  const api = getInstance()
   const spyApiGet = jest
     .spyOn(api, 'get')
     .mockImplementation(() => Promise.resolve<any>(fakeApiSchoolsResponse))
