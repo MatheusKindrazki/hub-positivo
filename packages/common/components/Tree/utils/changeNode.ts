@@ -5,13 +5,13 @@ const changeNode = (
   item: TreeNode,
   state: number
 ): void => {
-  for (let i = 0; i < nodeData.length; i++) {
-    if (nodeData[i].value === item.value) {
-      nodeData[i].isChecked = state
+  for (const node of nodeData) {
+    if (node.value === item.value) {
+      node.isChecked = state
       return
     }
-    if (nodeData[i].options) {
-      changeNode(nodeData[i].options || [], item, state)
+    if (node.options) {
+      changeNode(node.options || [], item, state)
     }
   }
 }

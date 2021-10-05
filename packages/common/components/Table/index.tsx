@@ -42,9 +42,7 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
             })}
           >
             {columns.map((c, i) => {
-              return (
-                <Td key={i}>{c.render ? c.render(e) : e[c.property as any]}</Td>
-              )
+              return <Td key={i}>{c.render ? c.render(e) : e[c.property]}</Td>
             })}
           </Tr>
         ))}

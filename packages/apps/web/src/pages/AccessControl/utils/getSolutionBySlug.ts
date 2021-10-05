@@ -8,11 +8,11 @@ const getSolutionBySlug = (
 
   data?.forEach(category => {
     category?.solucoes.forEach(solucao => {
-      if (solutionSlug.includes(solucao?.slug as string)) {
+      if (solutionSlug.includes(solucao?.slug)) {
         // declarando nova constante para poder manipular campos do objeto
-        const data: Solution = { ...solucao }
+        const solutionData: Solution = { ...solucao }
 
-        data.category = {
+        solutionData.category = {
           label: category.nome,
           value: category.id
         }

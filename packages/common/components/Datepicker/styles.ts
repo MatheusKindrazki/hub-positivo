@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 import { Box } from '..'
-const Container = styled(Box)`
+
+export const Container = styled(Box)`
   /* REGRAS PARA FUNCIONAMENTO DE BORDER-RADIUS DINÂMICOS */
   .react-datepicker__day {
     border-radius: 0;
@@ -114,5 +115,3 @@ const Container = styled(Box)`
     padding: 0.5rem;
   }
 `
-
-export default Container

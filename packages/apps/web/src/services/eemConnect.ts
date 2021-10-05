@@ -41,7 +41,7 @@ async function EEMConnectPost<T>(attributes: EEMProps): ReturnConnect<T> {
     accept: '*/*'
   })
 
-  return await api.post(endpoint, qs.stringify(sendInfo))
+  return api.post(endpoint, qs.stringify(sendInfo))
 }
 
 async function EEMConnectGET<T, A = unknown>(

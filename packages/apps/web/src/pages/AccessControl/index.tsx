@@ -13,7 +13,7 @@ import { Columns } from '@psdhub/common/components/Table'
 import Breadcrumbs from '@psdhub/common/components/Breadcrumbs'
 import { Collapse, Text, Tooltip } from '@psdhub/common/components'
 
-import Container from './styles'
+import { Container } from './styles'
 import { accessControlCollapse } from './mock.json'
 import { solutionsTableDataFormat } from './components/Table/utils/solutionsTableDataFormat'
 import Switch from './components/Table/components/Switch'

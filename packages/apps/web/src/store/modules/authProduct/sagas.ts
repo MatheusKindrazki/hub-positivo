@@ -96,7 +96,7 @@ export function* authMcf({ payload }: AuthPayload): Generator {
 
   try {
     const resMcf = yield call(async () => {
-      return await loadScripts({ manifestUrl: payload.url })
+      return loadScripts({ manifestUrl: payload.url })
     })
 
     yield put(

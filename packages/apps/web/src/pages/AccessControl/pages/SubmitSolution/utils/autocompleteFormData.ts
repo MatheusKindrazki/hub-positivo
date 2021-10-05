@@ -11,14 +11,14 @@ const formatProfilePermissions = (
 ) => {
   const profiles: { profile: string; level: string | null }[] = []
 
-  solution.permissoes.map(profile => {
+  solution.permissoes.forEach(profile => {
     if (!profile.niveisEnsino.length) {
       profiles.push({
         profile: profile.perfil,
         level: null
       })
     }
-    return profile.niveisEnsino.map(nivelEnsino => {
+    profile.niveisEnsino.forEach(nivelEnsino => {
       profiles.push({
         profile: profile.perfil,
         level: nivelEnsino
@@ -42,7 +42,7 @@ const formatProfilePermissions = (
   return formattedProfiles
 }
 
-const autocomplete = (
+const autocompleteFormData = (
   solution: Solution,
   ref: React.RefObject<FormProps>,
   profileOptions: ProfilePermissionApiData[]
@@ -76,4 +76,4 @@ const autocomplete = (
   })
 }
 
-export default autocomplete
+export default autocompleteFormData

@@ -7,7 +7,7 @@ import { useMediaQuery } from '@psdhub/common/hooks'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
-import Container from './styles'
+import { Container } from './styles'
 
 export type DateRange = { start: Date; end: Date }
 export interface DatepickerHandlers {
@@ -27,9 +27,9 @@ const Datepicker = forwardRef<DatepickerHandlers, DatepickerProps>(
     const [isDesktop] = useMediaQuery('(min-width: 620px)')
 
     const onChange = (dates: [Date, Date]) => {
-      const [start, end] = dates
-      setStart(start)
-      setEnd(end)
+      const [startDate, endDate] = dates
+      setStart(startDate)
+      setEnd(endDate)
     }
 
     useImperativeHandle(ref, () => {

@@ -29,41 +29,33 @@ const formatProfilePermissions = (
   oldPermissions: OldProfilePermissions[],
   newPermissions: NewPermissions,
   id: string
-): ProfilePermissions => {
-  const formattedData = {
-    remove: {
-      idSolucao: id,
-      IdsPerfisNiveisEnsino: oldPermissions.map(e => e.idPerfilNivelEnsino)
-    },
-    create: {
-      idSolucao: id,
-      IdsPerfisNiveisEnsino: newPermissions
-    }
+): ProfilePermissions => ({
+  remove: {
+    idSolucao: id,
+    IdsPerfisNiveisEnsino: oldPermissions.map(e => e.idPerfilNivelEnsino)
+  },
+  create: {
+    idSolucao: id,
+    IdsPerfisNiveisEnsino: newPermissions
   }
-
-  return formattedData
-}
+})
 
 export const formatSchoolPermissions = (
   oldPermissions: OldSchoolPermissions[],
   newPermissions: NewPermissions,
   id: string,
   restricao: Restricao
-): SchoolPermissions => {
-  const formattedData = {
-    remove: {
-      idSolucao: id,
-      idsEscolas: oldPermissions.map(p => p.idEscola)
-    },
-    create: {
-      idSolucao: id,
-      idsEscolas: newPermissions,
-      restricao
-    }
+): SchoolPermissions => ({
+  remove: {
+    idSolucao: id,
+    idsEscolas: oldPermissions.map(p => p.idEscola)
+  },
+  create: {
+    idSolucao: id,
+    idsEscolas: newPermissions,
+    restricao
   }
-
-  return formattedData
-}
+})
 
 export interface Params {
   profilePermissions: {
@@ -102,8 +94,8 @@ export const schoolRule = (
 
 export const formatFormData = (
   data: FormData,
-  solution: Solution | object = { solution: {} },
-  { profilePermissions, schoolsPermissions }: Params
+  { profilePermissions, schoolsPermissions }: Params,
+  solution: Solution | object = { solution: {} }
 ): any => {
   const { restricao, padrao } = schoolRule(data.padrao)
   const { id } = solution as Solution

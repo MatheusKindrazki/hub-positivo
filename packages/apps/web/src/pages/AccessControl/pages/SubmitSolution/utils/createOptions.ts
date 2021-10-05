@@ -1,5 +1,5 @@
 import { Option } from '~/store/modules/solutions/types'
-interface profilesData {
+interface ProfilesData {
   perfil: string
   nivelEnsino: string
   id: string
@@ -10,7 +10,7 @@ interface CategoryOrSchoolData {
   id: string
 }
 
-const formatProfileOption = (option: profilesData) => {
+const formatProfileOption = (option: ProfilesData) => {
   const { perfil, nivelEnsino, id } = option
   const formattedProfile = perfil.replaceAll('_', ' ').toLowerCase()
   return {
@@ -26,15 +26,13 @@ const formatDataOption = (option: CategoryOrSchoolData) => {
   }
 }
 
-const createOptions = (data: any[]): Option[] => {
-  const options = data.map(element => {
+const createOptions = (data: any[]): Option[] =>
+  data.map(element => {
     if (element.perfil || element.nivelEnsino) {
       return formatProfileOption(element)
     }
     return formatDataOption(element)
   })
-  return options
-}
 
 export const schoolRestrictionRules = [
   {

@@ -108,8 +108,8 @@ const SubmitSolution: React.FC = () => {
 
         const formattedData = formatFormData(
           data,
-          solution as Solution,
-          permissions
+          permissions,
+          solution as Solution
         )
         return page === 'criar'
           ? dispatch(accessControlPostRequest(formattedData))

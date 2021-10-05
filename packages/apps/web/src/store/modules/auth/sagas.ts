@@ -59,7 +59,7 @@ export function* signIn({ payload }: SignInPayload): Generator {
   yield put(signInRequestLoading())
 
   const response = yield call(async () => {
-    return await EEMConnectPost({
+    return EEMConnectPost({
       endpoint: 'connect/token',
       data: {
         ...payload,

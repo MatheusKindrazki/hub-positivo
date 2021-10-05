@@ -102,8 +102,8 @@ const CustomTreeView: React.FC<Props> = props => {
     )
   }
 
-  const getTreeWidget = (options: Array<TreeNode>, level: number) => {
-    return options.map((parent: TreeNode, index: number) => (
+  const getTreeWidget = (optionsData: Array<TreeNode>, level: number) => {
+    return optionsData.map((parent: TreeNode, index: number) => (
       <TreeItens
         key={index}
         level={level}

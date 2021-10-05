@@ -1,6 +1,6 @@
 import { TreeNode } from '../index'
 
-const onSetCheckParent = (
+const checkParent = (
   data: Array<TreeNode>,
   deep: number,
   path: Array<number>
@@ -26,4 +26,4 @@ const onSetCheckParent = (
   }
 }
 
-export default onSetCheckParent
+export default checkParent

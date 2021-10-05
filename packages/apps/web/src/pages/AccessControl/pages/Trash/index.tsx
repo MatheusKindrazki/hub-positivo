@@ -9,7 +9,7 @@ import Table, { Columns } from '@psdhub/common/components/Table'
 import { Box } from '@psdhub/common/components'
 
 import { trashDataFormat } from './utils/trashTableDataFormat'
-import Container from './styles'
+import { Container } from './styles'
 import RestoreSolutionButton from './components/RestoreSolutionButton'
 import EmptyTrash from './components/EmptyTrash'
 import Header from '../../components/Header'

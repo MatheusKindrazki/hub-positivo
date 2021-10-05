@@ -8,7 +8,7 @@ export async function getEducationalStage(): Promise<string> {
   await delay(200)
 
   if (!level) {
-    return await getEducationalStage()
+    return getEducationalStage()
   }
 
   return level
