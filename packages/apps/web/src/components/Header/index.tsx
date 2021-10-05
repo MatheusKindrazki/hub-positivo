@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useRef } from 'react'
 
 import Headroom from 'react-headroom'
 import {
@@ -8,11 +8,11 @@ import {
   List as HamburgerMenu
 } from 'phosphor-react'
 
-import { useDispatch } from 'react-redux'
-
 import { useMediaQuery, useDisclosure } from '@psdhub/common/hooks'
 import { MenuList } from '@psdhub/common/components/Menu'
 import { Box } from '@psdhub/common/components'
+
+import history from '~/services/history'
 
 import MenuBar from '~/components/MenuBar'
 
@@ -22,11 +22,6 @@ import './styles'
 import { Dropdown } from '../NotificationHistory/components'
 import ModalSignOut, { ModalHandler } from '../ModalSignOut/ModalSignOut'
 import { RefMenuProps } from '../MenuBar/components/Desktop'
-
-import { notificationsRequest } from '~/store/modules/notifications/actions'
-
-import history from '~/services/history'
-
 import LogoOn from '../LogoOn'
 export interface HeaderProps {
   handleGoBack: () => void | Promise<void>
@@ -34,8 +29,6 @@ export interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
-  const dispatch = useDispatch()
-
   const menuRef = useRef<RefMenuProps>(null)
 
   const { isOpen: isNotificationMenuOpen, onOpen, onClose } = useDisclosure()
@@ -47,10 +40,6 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
   const openModal = useCallback(() => {
     modalRef.current?.onOpen()
   }, [])
-
-  useEffect(() => {
-    dispatch(notificationsRequest())
-  }, [dispatch])
 
   return (
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
