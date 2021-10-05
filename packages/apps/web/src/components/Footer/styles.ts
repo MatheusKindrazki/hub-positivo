@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { Box } from '@psdhub/common/components'
 
-const Container = styled(Box)`
+export const Container = styled(Box)`
   &::before {
     content: '';
     width: 100%;
@@ -13,5 +13,3 @@ const Container = styled(Box)`
     position: relative;
   }
 `
-
-export default Container

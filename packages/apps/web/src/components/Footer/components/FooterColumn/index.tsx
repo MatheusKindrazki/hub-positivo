@@ -7,10 +7,10 @@ import FooterItem from '../FooterItem'
 export interface ColumnProps {
   title: string
   active: boolean
-  items: item[]
+  items: Item[]
 }
 
-export interface item {
+export interface Item {
   name: string
   active: boolean
   href?: string

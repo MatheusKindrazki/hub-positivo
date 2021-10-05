@@ -1,10 +1,8 @@
 import React from 'react'
 
-// import { useTheme } from '@psdhub/common/layout'
 import Box, { BoxProps } from '@psdhub/common/components/Box'
 
 const GrabIcon: React.FC<BoxProps> = props => {
-  // const { colors } = useTheme()
   return (
     <Box {...props}>
       <svg

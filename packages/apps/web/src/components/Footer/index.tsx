@@ -3,7 +3,7 @@ import React from 'react'
 import SimpleGrid from '@psdhub/common/components/SimpleGrid'
 import Box from '@psdhub/common/components/Box'
 
-import Container from './styles'
+import { Container } from './styles'
 import LogoVersion from './components/FooterLogo'
 import Column, { ColumnProps } from './components/FooterColumn'
 

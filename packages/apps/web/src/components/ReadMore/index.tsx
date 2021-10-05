@@ -15,7 +15,7 @@ const ReadMore: React.FC<ReadMoreProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  if (!(children.length > maxLength)) return <Text {...rest}>{children}</Text>
+  if (children.length < maxLength) return <Text {...rest}>{children}</Text>
 
   return (
     <Stack direction="column">

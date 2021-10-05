@@ -5,10 +5,10 @@ import { Link as RLink } from 'react-router-dom'
 import { ListItem, Link, Text } from '@psdhub/common/components'
 
 import { ModalHandler, FooterModal } from '../FooterModal'
-import { item } from '../FooterColumn'
+import { Item } from '../FooterColumn'
 
 interface ItemProps {
-  data: item
+  data: Item
 }
 
 const FooterItem: React.FC<ItemProps> = ({ data }) => {
