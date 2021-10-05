@@ -7,7 +7,7 @@ import { solutionPutRequest } from '~/store/modules/solutions/actions'
 
 import { SwitchProps as SwitchPropsUI } from '@psdhub/common/components/Switch'
 
-import SwitchUI from './styles'
+import { Switch as SwitchUI } from './styles'
 
 export interface SwitchProps extends SwitchPropsUI {
   data: PutSolutionData

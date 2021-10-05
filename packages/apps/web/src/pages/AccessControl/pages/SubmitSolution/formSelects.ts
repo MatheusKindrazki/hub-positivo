@@ -15,7 +15,7 @@ interface Select {
   label: string
   isMulti?: boolean
   w?: string | string[]
-  isDisabled?: boolean | undefined
+  isDisabled?: boolean
   onChange?: (value: any) => void
 }
 
@@ -77,9 +77,9 @@ export const selects = (
       options: schools,
       label: 'Escolas',
       isMulti: true,
-      onChange: options => {
-        if (options?.length) {
-          return schoolList.current?.setValue(options)
+      onChange: optionsData => {
+        if (optionsData?.length) {
+          return schoolList.current?.setValue(optionsData)
         }
         schoolList.current?.setValue([])
       },

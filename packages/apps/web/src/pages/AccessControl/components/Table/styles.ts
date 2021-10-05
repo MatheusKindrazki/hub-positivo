@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { TableUI } from '@psdhub/common/components/Table'
 
-const Table = styled(TableUI)`
+export const TableContainer = styled(TableUI)`
   .table-row {
     td {
       padding: 0.5rem;
@@ -10,5 +10,3 @@ const Table = styled(TableUI)`
     }
   }
 `
-
-export default Table

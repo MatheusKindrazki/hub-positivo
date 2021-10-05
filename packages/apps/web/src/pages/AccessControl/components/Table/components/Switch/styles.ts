@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import SwitchUI from '@psdhub/common/components/Switch'
 
-const Switch = styled(SwitchUI)`
+export const Switch = styled(SwitchUI)`
   > span {
     background: ${props => props.theme.colors?.gray[400]};
 
@@ -11,5 +11,3 @@ const Switch = styled(SwitchUI)`
     }
   }
 `
-
-export default Switch

@@ -20,7 +20,7 @@ import { Box } from '@psdhub/common/components/'
 
 import { reorderList as reorder } from '~/utils/reorderList'
 
-import TableUI from './styles'
+import { TableContainer as TableUI } from './styles'
 import Order from '../Order'
 
 export interface TableSolution {
