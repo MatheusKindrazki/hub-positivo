@@ -35,11 +35,11 @@ describe('Action of global history', () => {
       }
     ]
 
-    const resolved = notificationsActions.notificationsSuccess([mock])
+    const resolved = notificationsActions.notificationsSuccess(mock)
 
     expect(spy).toBeCalled()
 
-    expect(resolved).toEqual({ ...mockedType, payload: [mock] })
+    expect(resolved).toEqual({ ...mockedType, payload: mock })
   })
 
   it('Should call the notificationsFailure action correctly and receive the value within payload', () => {

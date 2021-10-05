@@ -11,7 +11,12 @@ export type Notification = {
   icone: string
 }
 
-export interface NotificationsReducer {
+export type NotificationApiResponse = {
+  dados: NotificationHistory
+  sucesso: boolean
+}
+
+export interface NotificationReducer {
   loading: boolean
   history?: Notification[]
 }

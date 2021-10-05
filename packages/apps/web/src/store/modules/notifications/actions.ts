@@ -14,7 +14,7 @@ export function notificationsRequest(): Action {
   }
 }
 
-export function notificationsSuccess(history?: NotificationHistory[]): Action {
+export function notificationsSuccess(history?: NotificationHistory): Action {
   return {
     type: Actions.GET_SUCCESS,
     payload: history

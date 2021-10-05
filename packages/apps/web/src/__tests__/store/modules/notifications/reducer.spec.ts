@@ -26,11 +26,11 @@ describe('Reducer of authentication history', () => {
       }
     ]
 
-    const action = notificationsActions.notificationsSuccess([mock])
+    const action = notificationsActions.notificationsSuccess(mock)
 
     const state = notificationsReducer(INITIAL_STATE, action)
 
-    expect(state.history).toEqual([mock])
+    expect(state.history).toEqual(mock)
   })
 
   it('Should set Loading to false and history to undefined When Failure Action is Triggered', () => {

@@ -1,37 +1,46 @@
-// import { ApiResponse } from 'apisauce'
+import { ApiResponse } from 'apisauce'
 
-import { all, put, takeLatest } from 'redux-saga/effects'
+import { all, call, put, takeLatest } from 'redux-saga/effects'
 
-// import { loading } from '~/store/modules/global/actions'
-// import { store } from '~/store'
+import { loading } from '~/store/modules/global/actions'
+import { store } from '~/store'
 
-// import { fakeNotificationApi } from '@psdhub/web/src/__mocks__/api/fakeNotificationsApi'
-// import { toast } from '@psdhub/common/utils'
+import { toast } from '@psdhub/common/utils'
+import { getInstance } from '@psdhub/api'
 
-// import { NotificationHistory } from './types'
-import { Actions, notificationsFailure } from './actions'
+import { NotificationApiResponse } from './types'
+import { Actions, notificationsFailure, notificationsSuccess } from './actions'
 export function* getNotifications(): Generator {
-  // const { school } = store.getState().user
-  // const { reduced_token } = store.getState().auth
+  const { profile } = store.getState().profile
+  const { level } = store.getState().educationalStage
 
-  // if (!school?.user_id || !reduced_token) {
-  // }
-  return yield put(notificationsFailure())
+  if (!profile && !level) {
+    alert('a request não pode ser feita')
+    return yield put(notificationsFailure())
+  }
 
-  // yield put(loading(true))
+  const api = getInstance('notification')
 
-  // const failChance = Math.random() > 0.9
-  // const response = yield call(() => fakeNotificationApi(failChance))
+  yield put(loading(true))
 
-  // const { ok, data } = response as ApiResponse<NotificationHistory[]>
-  // yield put(loading(false))
+  const response = yield call(() =>
+    api.get('notification', {
+      aplicacaoDestino: 'PositivoOn'
+    })
+  )
 
-  // if (!ok || !data) {
-  //   toast.error('Erro ao buscar notificações!')
-  //   return yield put(notificationsFailure())
-  // }
+  const { ok, data } = response as ApiResponse<NotificationApiResponse>
 
-  // return yield put(notificationsSuccess(data))
+  yield put(loading(false))
+
+  if (!ok || !data) {
+    alert('notificacoes falhou')
+    console.log(response)
+    toast.error('Erro ao buscar notificações!')
+    return yield put(notificationsFailure())
+  }
+
+  return yield put(notificationsSuccess(data.dados))
 }
 
 export default all([takeLatest(Actions.GET_REQUEST, getNotifications)])

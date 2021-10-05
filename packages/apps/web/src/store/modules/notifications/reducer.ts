@@ -2,15 +2,15 @@ import { produce } from 'immer'
 
 import { Reducer } from 'redux'
 
-import { NotificationsReducer } from './types'
+import { NotificationReducer } from './types'
 import { Actions } from './actions'
 
-export const INITIAL_STATE: NotificationsReducer = {
+export const INITIAL_STATE: NotificationReducer = {
   loading: false,
   history: undefined
 }
 
-type ReturnReducer = Reducer<NotificationsReducer>
+type ReturnReducer = Reducer<NotificationReducer>
 
 const notifications: ReturnReducer = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
