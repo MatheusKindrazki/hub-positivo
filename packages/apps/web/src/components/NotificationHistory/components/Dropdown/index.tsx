@@ -14,7 +14,6 @@ export interface DropDownProps {
 
 const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead, goToSettings }) => {
   const { history } = useSelector((state: Store.State) => state.notifications)
-  console.log('history:', history)
   return (
     <Box maxW="26rem" borderRadius="8px" border="solid 1px #E5E5E5">
       <Header

@@ -23,7 +23,6 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
   titulo
 }) => {
   const formattedDate = useMemo(() => {
-    console.log({ dataEnvio })
     return formatDate(dataEnvio)
   }, [dataEnvio])
 

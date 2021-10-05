@@ -15,7 +15,6 @@ export function* getNotifications(): Generator {
   const { level } = store.getState().educationalStage
 
   if (!profile && !level) {
-    alert('a request não pode ser feita')
     return yield put(notificationsFailure())
   }
 
@@ -30,15 +29,11 @@ export function* getNotifications(): Generator {
     })
   )
 
-  console.log('notification api response:', response)
-
   const { ok, data } = response as ApiResponse<NotificationApiResponse>
 
   yield put(loading(false))
 
   if (!ok || !data) {
-    alert('notificacoes falhou')
-    console.log(response)
     toast.error('Erro ao buscar notificações!')
     return yield put(notificationsFailure())
   }
