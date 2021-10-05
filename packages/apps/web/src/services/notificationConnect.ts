@@ -1,4 +1,7 @@
-import { createHubConnect, stringSubscriptions } from '@psdhub/api'
+import {
+  createHubConnect,
+  stringSubscriptions
+} from '@psdhub/api/src/services/signalR'
 
 interface NotificationConnect<T> {
   (notifications: T): void
