@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 
+import { useLocation } from 'react-router-dom'
 import { debounce } from 'lodash'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -26,6 +27,7 @@ const dispatchEvent = debounce(() => setUserProperties(), 1000)
 
 const Dashboard: React.FC = ({ children }) => {
   const dispatch = useDispatch()
+  const location = useLocation()
 
   useEffect(() => dispatchEvent())
 
@@ -63,7 +65,7 @@ const Dashboard: React.FC = ({ children }) => {
         {nobreak && <ModalAlternativeAccess />}
         {children}
       </main>
-      <Footer columns={footerData} />
+      {location.pathname === '/' && <Footer columns={footerData} />}
     </Container>
   )
 }
