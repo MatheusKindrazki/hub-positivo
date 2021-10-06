@@ -10,6 +10,12 @@ import history from '~/services/history'
 
 import Dashboard from '~/layouts/Logged'
 
+jest.mock('react-router-dom', () => ({
+  useLocation: jest.fn().mockImplementation(() => ({
+    pathname: '/'
+  }))
+}))
+
 jest.mock('~/components/ModalNoClass', () =>
   jest.fn(() => <div id="modalNoClass">Modal no Class</div>)
 )
