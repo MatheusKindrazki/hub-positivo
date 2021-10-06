@@ -16,7 +16,7 @@ const getSolutionBySlug = (
           label: category.nome,
           value: category.id
         }
-        result = data
+        result = solutionData
       }
     })
   })
