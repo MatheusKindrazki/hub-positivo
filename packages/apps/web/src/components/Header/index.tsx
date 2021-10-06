@@ -85,10 +85,7 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
                 padding="0"
                 maxW="26rem"
               >
-                <Dropdown
-                  goToSettings={() => null}
-                  markAllAsRead={() => null}
-                />
+                <Dropdown markAllAsRead={() => null} />
               </MenuList>
             </HeaderButton>
             <HeaderButton children="Sair" onClick={openModal} />

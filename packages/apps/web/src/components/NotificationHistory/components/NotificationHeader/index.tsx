@@ -1,19 +1,17 @@
 import React from 'react'
 
-import { Gear, EnvelopeOpen } from 'phosphor-react'
+import { EnvelopeOpen } from 'phosphor-react'
 
 import { Box, Button, Tooltip } from '@psdhub/common/components'
 
 interface NotificationHeaderProps {
   title: string
   markAllAsRead: () => void
-  goToSettings: () => void
 }
 
 const NotificationHeader: React.FC<NotificationHeaderProps> = ({
   title,
-  markAllAsRead,
-  goToSettings
+  markAllAsRead
 }) => {
   return (
     <Box
@@ -49,22 +47,6 @@ const NotificationHeader: React.FC<NotificationHeaderProps> = ({
             onClick={markAllAsRead}
           >
             <EnvelopeOpen size="1.75rem" />
-          </Button>
-        </Tooltip>
-        <Tooltip
-          p="8px"
-          fontSize="16px"
-          label="Configurações de notificação"
-          placement="top-start"
-        >
-          <Button
-            mx={['0', '2', '2', '2']}
-            data-testid="settings-button"
-            variant="unstyled"
-            color="blue.500"
-            onClick={goToSettings}
-          >
-            <Gear size="1.75rem" />
           </Button>
         </Tooltip>
       </Box>
