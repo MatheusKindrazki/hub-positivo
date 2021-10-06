@@ -204,7 +204,6 @@ describe('testing authProductGUID saga flow', () => {
       },
       expire_in: mockState.auth.exp
     }
-    const headers = { headers: { Authorization: 'Bearer null' } }
 
     const expectedSuccessPayload = {
       mcf: false,
@@ -212,7 +211,7 @@ describe('testing authProductGUID saga flow', () => {
       productName: 'Produto Teste'
     }
 
-    const api = getInstance('auth')
+    const api = getInstance('token')
 
     const spyPost = jest
       .spyOn(api, 'post')
@@ -221,17 +220,25 @@ describe('testing authProductGUID saga flow', () => {
     await runSaga(store, authProductGUID, mockedPayload).toPromise()
 
     expect(dispatchedActions).toContainObject(loading(true))
-    expect(spyPost).toHaveBeenCalledWith(
-      'api/TokenStorage',
-      apiPostArgs,
-      headers
-    )
+    expect(spyPost).toHaveBeenCalledWith('api/TokenStorage', apiPostArgs)
     expect(pushSpy).toHaveBeenCalledWith('/solucao/Teste/')
 
     expect(dispatchedActions).toContainObject(loading(false))
     expect(dispatchedActions).toContainObject(
       authProductSuccess(expectedSuccessPayload)
     )
+  })
+
+  it('should open url on another tab when tipoRenderizacao is `wordpress`', async () => {
+    mockedPayload.payload.tipoRenderizacao = 'wordpress'
+
+    const mockedOpen = jest.fn() as jest.Mock
+
+    global.open = mockedOpen
+
+    await runSaga(store, authProductGUID, mockedPayload).toPromise()
+
+    expect(mockedOpen).toHaveBeenCalledWith(mockedPayload.payload.url, '_blank')
   })
 
   it('should redirect user to correct path when payload has a subpath', async () => {
@@ -256,7 +263,7 @@ describe('testing authProductGUID saga flow', () => {
     mockedResponse.ok = false
     const spyToast = jest.spyOn(toast, 'error')
 
-    const api = getInstance('auth')
+    const api = getInstance('token')
     const spyPost = jest
       .spyOn(api, 'post')
       .mockImplementation(() => Promise.resolve<any>(mockedResponse))
