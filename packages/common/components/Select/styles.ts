@@ -13,6 +13,24 @@ const indicatorsContainer = (fill: string) => ({
     transition: 'all .2s linear'
   }
 })
+const containerTextStyle = (provided: any) => ({
+  ...provided,
+  color: 'white',
+  textTransform: 'capitalize'
+})
+const menuStyles =
+  (colors: Theme['colors'], shadows: Theme['shadows']) => (provided: any) => ({
+    ...provided,
+    backgroundColor: colors.white,
+    borderRadius: 4,
+    overflow: 'hidden',
+    color: 'white',
+    textTransform: 'capitalize',
+    zIndex: 99,
+    boxShadow: shadows['dark-lg'],
+    borderWidth: 1,
+    borderColor: colors.gray[100]
+  })
 
 const controlBoxShadowAndBorderColor =
   (colors: Theme['colors'], error: Props['error']) => (provided: any) => ({
@@ -20,6 +38,35 @@ const controlBoxShadowAndBorderColor =
     boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
     borderColor: error ? colors.red[300] : provided.borderColor
   })
+
+export interface CheckboxProps {
+  colors: Theme['colors']
+  fontSizes: Theme['fontSizes']
+  height: number
+}
+
+const styledControl = (props: CheckboxProps) => (provided: any, state: any) => {
+  const { colors, fontSizes, height } = props
+  return {
+    ...provided,
+    cursor: 'pointer',
+    color: colors.white,
+    minHeight: height,
+    fontSize: fontSizes.sm,
+    borderRadius: 8,
+    backgroundColor: colors.white,
+    boxShadow: state.isFocused
+      ? `0 0 0 1px ${colors.blue[500]}`
+      : provided.boxShadow,
+    borderColor: state.isFocused ? colors.blue[500] : colors.gray[400],
+    '&:hover': {
+      borderColor: colors.blue[500]
+    },
+    svg: {
+      transform: state.isFocused ? 'rotate(180deg)' : 'none'
+    }
+  }
+}
 
 function normal(data: ThemeStyle): Props['styles'] {
   const { theme, error, inputHeight } = data
@@ -60,29 +107,14 @@ function normal(data: ThemeStyle): Props['styles'] {
       opacity: 0
     }),
     indicatorsContainer: () => indicatorsContainer(colors.blue[500]),
-    container: provided => ({
-      ...provided,
-      color: 'white',
-      textTransform: 'capitalize'
-    }),
+    container: containerTextStyle,
     input: provided => ({
       ...provided,
       color: 'white',
       overflow: 'hidden',
       textTransform: 'capitalize'
     }),
-    menu: provided => ({
-      ...provided,
-      backgroundColor: colors.white,
-      borderRadius: 4,
-      overflow: 'hidden',
-      color: 'white',
-      textTransform: 'capitalize',
-      zIndex: 99,
-      boxShadow: shadows['dark-lg'],
-      borderWidth: 1,
-      borderColor: colors.gray[100]
-    }),
+    menu: menuStyles(colors, shadows),
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isSelected ? colors.blue[500] : 'transparent',
@@ -206,26 +238,7 @@ function secondary(data: ThemeStyle): Props['styles'] {
   const height = inputHeight || 48
 
   const styled: Props['styles'] = {
-    control: (provided, state) => ({
-      ...provided,
-      cursor: 'pointer',
-      color: colors.white,
-      minHeight: height,
-      fontSize: fontSizes.sm,
-      borderRadius: 8,
-      backgroundColor: colors.white,
-      boxShadow: state.isFocused
-        ? `0 0 0 1px ${colors.blue[500]}`
-        : provided.boxShadow,
-      borderColor: state.isFocused ? colors.blue[500] : colors.gray[400],
-      '&:hover': {
-        borderColor: colors.blue[500]
-      },
-
-      svg: {
-        transform: state.isFocused ? 'rotate(180deg)' : 'none'
-      }
-    }),
+    control: styledControl({ colors, height, fontSizes }),
     valueContainer: provided => ({
       ...provided,
       flexWrap: 'initial'
@@ -237,28 +250,13 @@ function secondary(data: ThemeStyle): Props['styles'] {
       opacity: 0
     }),
     indicatorsContainer: () => indicatorsContainer(colors.blue[500]),
-    container: provided => ({
-      ...provided,
-      color: 'white',
-      textTransform: 'capitalize'
-    }),
+    container: containerTextStyle,
     input: provided => ({
       ...provided,
       color: 'white',
       textTransform: 'capitalize'
     }),
-    menu: provided => ({
-      ...provided,
-      backgroundColor: colors.white,
-      borderRadius: 4,
-      overflow: 'hidden',
-      color: 'white',
-      textTransform: 'capitalize',
-      zIndex: 99,
-      boxShadow: shadows['dark-lg'],
-      borderWidth: 1,
-      borderColor: colors.gray[100]
-    }),
+    menu: menuStyles(colors, shadows),
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isSelected ? colors.blue[500] : 'transparent',
@@ -294,26 +292,7 @@ function checkbox(data: ThemeStyle): Props['styles'] {
   const height = inputHeight || 48
 
   const styled: Props['styles'] = {
-    control: (provided, state) => ({
-      ...provided,
-      cursor: 'pointer',
-      color: colors.white,
-      minHeight: height,
-      fontSize: fontSizes.sm,
-      borderRadius: 8,
-      backgroundColor: colors.white,
-      boxShadow: state.isFocused
-        ? `0 0 0 1px ${colors.blue[500]}`
-        : provided.boxShadow,
-      borderColor: state.isFocused ? colors.blue[500] : colors.gray[400],
-      '&:hover': {
-        borderColor: colors.blue[500]
-      },
-
-      svg: {
-        transform: state.isFocused ? 'rotate(180deg)' : 'none'
-      }
-    }),
+    control: styledControl({ colors, height, fontSizes }),
     valueContainer: provided => ({
       ...provided,
       flexWrap: 'initial'
@@ -325,11 +304,7 @@ function checkbox(data: ThemeStyle): Props['styles'] {
       opacity: 0
     }),
     indicatorsContainer: () => indicatorsContainer(colors.blue[500]),
-    container: provided => ({
-      ...provided,
-      color: 'white',
-      textTransform: 'capitalize'
-    }),
+    container: containerTextStyle,
     input: provided => ({
       ...provided,
       textTransform: 'capitalize'
