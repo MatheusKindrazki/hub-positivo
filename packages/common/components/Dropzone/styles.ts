@@ -13,15 +13,21 @@ interface PreviewContainerProps {
   colors: any
 }
 
+const validUrl = (props: ContainerProps) =>
+  props.url
+    ? `2px solid ${props.colors.gray[100]};`
+    : `2px dashed ${props.colors.gray[100]};`
+
+const redBorder = (props: ContainerProps) =>
+  `2px solid ${props.colors.red[300]};`
+
+const containerBorder = (props: ContainerProps) =>
+  props?.reject || props?.error ? redBorder(props) : validUrl(props)
+
 export const Container = styled(Box)<ContainerProps>`
   display: flex;
   padding: 1rem;
-  border: ${props =>
-    props?.reject || props?.error
-      ? `2px solid ${props.colors.red[300]};`
-      : props.url
-      ? `2px solid ${props.colors.gray[100]};`
-      : `2px dashed ${props.colors.gray[100]};`};
+  border: ${props => containerBorder(props)};
   border-radius: 8px;
   box-sizing: border-box;
   transition: all 0.2s linear;
@@ -31,7 +37,7 @@ export const Container = styled(Box)<ContainerProps>`
     cursor: pointer;
 
     &:hover {
-      border: ${props => `2px dashed ${props.colors.blue[300]};`};
+      border: ${props => '2px dashed' + props.colors.blue[300]};
     }
   }
 `
