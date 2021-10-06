@@ -25,6 +25,7 @@ export function* getNotifications(): Generator {
   const response = yield call(() =>
     api.get('notification', {
       perfil: profile,
+      nivelEnsino: level,
       aplicacaoDestino: 'PositivoOn'
     })
   )
