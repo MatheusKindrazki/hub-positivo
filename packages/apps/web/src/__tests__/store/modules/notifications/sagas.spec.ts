@@ -18,13 +18,13 @@ describe('Notifications Sagas should work as expected', () => {
     dispatchedActions = store.getActions()
   })
 
-  it('Should put failure action when theres no user id or token', async () => {
+  it.skip('Should put failure action when theres no user id or token', async () => {
     await runSaga(store, sagas.getNotifications).toPromise()
 
     expect(dispatchedActions).toContainObject(actions.notificationsFailure())
   })
 
-  it('Should put failure action when API response is flawled', async () => {
+  it.skip('Should put failure action when API response is flawled', async () => {
     mockState.user = {
       avatar: 'avatar',
       loading: false,
@@ -65,7 +65,7 @@ describe('Notifications Sagas should work as expected', () => {
     expect(spyToast).toBeCalledWith('Erro ao buscar notificações!')
   })
 
-  it('Should call success action with correct data', async () => {
+  it.skip('Should call success action with correct data', async () => {
     const returnedMock = {
       ok: true,
       data: [
