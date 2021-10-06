@@ -148,14 +148,10 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
     expire_in: auth.exp
   }
 
-  const api = getInstance('auth')
+  const api = getInstance('token')
 
   const response = yield call(() => {
-    return api.post('api/TokenStorage', authTheProduct, {
-      headers: {
-        Authorization: `Bearer ${auth.reduced_token}`
-      }
-    })
+    return api.post('api/TokenStorage', authTheProduct)
   })
 
   const { data, ok } = response as ApiResponse<object>
