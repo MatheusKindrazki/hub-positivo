@@ -1,4 +1,3 @@
-// import styled from 'styled-components'
 import { Props, mergeStyles } from 'react-select'
 
 import { Theme } from '@psdhub/common/layout/styles'
@@ -7,6 +6,20 @@ interface ThemeStyle {
   inputHeight?: number
   error?: boolean
 }
+
+const indicatorsContainer = (fill: string) => ({
+  svg: {
+    fill,
+    transition: 'all .2s linear'
+  }
+})
+
+const controlBoxShadowAndBorderColor =
+  (colors: Theme['colors'], error: Props['error']) => (provided: any) => ({
+    ...provided,
+    boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
+    borderColor: error ? colors.red[300] : provided.borderColor
+  })
 
 function normal(data: ThemeStyle): Props['styles'] {
   const { theme, error, inputHeight } = data
@@ -46,12 +59,7 @@ function normal(data: ThemeStyle): Props['styles'] {
     indicatorSeparator: () => ({
       opacity: 0
     }),
-    indicatorsContainer: () => ({
-      svg: {
-        fill: colors.blue[500],
-        transition: 'all .2s linear'
-      }
-    }),
+    indicatorsContainer: () => indicatorsContainer(colors.blue[500]),
     container: provided => ({
       ...provided,
       color: 'white',
@@ -98,11 +106,7 @@ function normal(data: ThemeStyle): Props['styles'] {
   }
 
   return mergeStyles(styled, {
-    control: provided => ({
-      ...provided,
-      boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
-      borderColor: error ? colors.red[300] : provided.borderColor
-    })
+    control: controlBoxShadowAndBorderColor(colors, error)
   })
 }
 
@@ -190,11 +194,7 @@ function primary(data: ThemeStyle): Props['styles'] {
   }
 
   return mergeStyles(styled, {
-    control: provided => ({
-      ...provided,
-      boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
-      borderColor: error ? colors.red[300] : provided.borderColor
-    })
+    control: controlBoxShadowAndBorderColor(colors, error)
   })
 }
 
@@ -236,12 +236,7 @@ function secondary(data: ThemeStyle): Props['styles'] {
     indicatorSeparator: () => ({
       opacity: 0
     }),
-    indicatorsContainer: () => ({
-      svg: {
-        fill: colors.blue[500],
-        transition: 'all .2s linear'
-      }
-    }),
+    indicatorsContainer: () => indicatorsContainer(colors.blue[500]),
     container: provided => ({
       ...provided,
       color: 'white',
@@ -287,11 +282,7 @@ function secondary(data: ThemeStyle): Props['styles'] {
   }
 
   return mergeStyles(styled, {
-    control: provided => ({
-      ...provided,
-      boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
-      borderColor: error ? colors.red[300] : provided.borderColor
-    })
+    control: controlBoxShadowAndBorderColor(colors, error)
   })
 }
 
@@ -333,12 +324,7 @@ function checkbox(data: ThemeStyle): Props['styles'] {
     indicatorSeparator: () => ({
       opacity: 0
     }),
-    indicatorsContainer: () => ({
-      svg: {
-        fill: colors.blue[500],
-        transition: 'all .2s linear'
-      }
-    }),
+    indicatorsContainer: () => indicatorsContainer(colors.blue[500]),
     container: provided => ({
       ...provided,
       color: 'white',
@@ -382,11 +368,7 @@ function checkbox(data: ThemeStyle): Props['styles'] {
   }
 
   return mergeStyles(styled, {
-    control: provided => ({
-      ...provided,
-      boxShadow: error ? `0 0 0 1px ${colors.red[300]}` : provided.boxShadow,
-      borderColor: error ? colors.red[300] : provided.borderColor
-    })
+    control: controlBoxShadowAndBorderColor(colors, error)
   })
 }
 
