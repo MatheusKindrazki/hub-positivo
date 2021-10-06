@@ -1,5 +1,3 @@
-export type NotificationHistory = Notification[]
-
 export type Notification = {
   id: string
   titulo: string
@@ -10,6 +8,8 @@ export type Notification = {
   dataExpiracao: Date
   icone: string
 }
+
+export type NotificationHistory = Notification[]
 
 export type NotificationApiResponse = {
   dados: NotificationHistory
