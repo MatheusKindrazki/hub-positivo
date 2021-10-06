@@ -52,11 +52,12 @@ const autocompleteFormData = (
     value: solution.tipoRenderizacao
   }
 
-  const padrao = solution.padrao
-    ? !solution.escolas.length
-      ? { label: 'Todas Escolas', value: 'todas escolas' }
-      : { label: 'Exceto', value: 'exceto' }
-    : { label: 'Apenas', value: 'apenas' }
+  const defaultIsTrue = !solution.escolas.length
+    ? { label: 'Todas Escolas', value: 'todas escolas' }
+    : { label: 'Exceto', value: 'exceto' }
+
+  const defaultIsFalse = { label: 'Apenas', value: 'apenas' }
+  const padrao = solution.padrao ? defaultIsTrue : defaultIsFalse
 
   const schools = createOptions(solution.escolas)
 

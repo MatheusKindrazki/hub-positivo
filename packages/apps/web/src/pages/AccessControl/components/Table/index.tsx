@@ -95,12 +95,12 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                       index={solutionIndex}
                       draggableId={solutionIndex.toString() || ''}
                     >
-                      {(provided, s) => (
+                      {(draggableProvided, s) => (
                         <Tr
-                          {...provided.draggableProps}
-                          ref={provided.innerRef}
+                          {...draggableProvided.draggableProps}
+                          ref={draggableProvided.innerRef}
                           style={{
-                            ...provided.draggableProps.style,
+                            ...draggableProvided.draggableProps.style,
                             display: s.isDragging ? 'table' : 'table-row',
                             backgroundColor: 'white'
                           }}
@@ -116,7 +116,7 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                               <Td
                                 verticalAlign="center"
                                 style={
-                                  i in [0, 1, 2]
+                                  [0, 1, 2].includes(i)
                                     ? {
                                         minWidth: '18.75rem',
                                         opacity: items[solutionIndex].data.ativo
@@ -134,7 +134,9 @@ const Table: React.FC<TableProps> = ({ columns, data }) => {
                                 <Box d="flex" flexDir="row" alignItems="center">
                                   {i === 0 && (
                                     <Order
-                                      dragHandleProps={provided.dragHandleProps}
+                                      dragHandleProps={
+                                        draggableProvided.dragHandleProps
+                                      }
                                       order={solutionIndex + 1}
                                     />
                                   )}

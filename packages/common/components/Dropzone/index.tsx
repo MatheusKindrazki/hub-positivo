@@ -45,11 +45,11 @@ const DropzoneHub = forwardRef<DropzoneHandlers, DropzoneProps>(
       }
     }, [url, fileName])
 
-    const onDrop = useCallback((acceptedFiles: File[]) => {
-      if (acceptedFiles.length) {
+    const onDrop = useCallback((files: File[]) => {
+      if (files.length) {
         setIcon({
-          url: URL.createObjectURL(acceptedFiles[0]),
-          name: acceptedFiles[0].name
+          url: URL.createObjectURL(files[0]),
+          name: files[0].name
         })
       }
     }, [])
