@@ -13,7 +13,6 @@ import searchQuery from '~/hooks/useQuery'
 
 const Auth = React.lazy(() => import('~/layouts/Auth'))
 const Logged = React.lazy(() => import('~/layouts/Logged'))
-const Solutions = React.lazy(() => import('~/layouts/Solutions'))
 interface RouteProps extends RoutePropsWouter {
   isPrivate?: boolean
   byPass?: boolean
@@ -29,10 +28,6 @@ const Route: React.FC<RouteProps> = ({
   const { signed } = store.getState().auth
 
   let RenderLayout = signed || byPass ? Logged : Auth
-
-  if (pathname.includes('solucao')) {
-    RenderLayout = Solutions
-  }
 
   if (byPass) {
     RenderLayout = Logged
