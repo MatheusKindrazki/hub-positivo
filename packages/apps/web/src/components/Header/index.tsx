@@ -1,12 +1,7 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useContext, useRef } from 'react'
 
 import Headroom from 'react-headroom'
-import {
-  Question,
-  Megaphone,
-  Bell,
-  List as HamburgerMenu
-} from 'phosphor-react'
+import { Question, Bell, List as HamburgerMenu } from 'phosphor-react'
 
 import { useMediaQuery, useDisclosure } from '@psdhub/common/hooks'
 import { MenuList } from '@psdhub/common/components/Menu'
@@ -20,6 +15,8 @@ import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalL
 import { SchoolLabel, HeaderButton } from './components'
 import './styles'
 import { Dropdown } from '../NotificationHistory/components'
+import ModalContext from '../ModalSupport/context'
+import ModalSupport from '../ModalSupport'
 import ModalSignOut, { ModalHandler } from '../ModalSignOut/ModalSignOut'
 import { RefMenuProps } from '../MenuBar/components/Desktop'
 import LogoOn from '../LogoOn'
@@ -29,6 +26,8 @@ export interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
+  const ModalSupportHandlers = useContext(ModalContext)
+
   const menuRef = useRef<RefMenuProps>(null)
 
   const { isOpen: isNotificationMenuOpen, onOpen, onClose } = useDisclosure()
@@ -71,8 +70,8 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
             </Box>
           </Box>
           <Box w="50%" d="flex" justifyContent="flex-end">
-            <HeaderButton as={Megaphone} onClick={() => console.log('click')} />
-            <HeaderButton as={Question} onClick={() => console.log('click')} />
+            <HeaderButton onClick={ModalSupportHandlers.onOpen} as={Question} />
+            <ModalSupport />
             <HeaderButton
               isMenu
               as={Bell}
