@@ -22,4 +22,6 @@ function createHubConnect(params: HubConnectProps): Promise<HubConnection> {
   })
 }
 
+export type { HubConnection }
+
 export { createHubConnect }
