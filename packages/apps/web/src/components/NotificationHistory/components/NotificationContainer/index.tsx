@@ -63,7 +63,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
         </Box>
       </Box>
       <Box width="5%">
-        <Menu placement="bottom-start">
+        <Menu placement="left" flip>
           <MenuButton data-testid="menu-button">
             <DotsThreeVertical
               size="25"
@@ -72,7 +72,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
               cursor="pointer"
             />
           </MenuButton>
-          <MenuList right={['0.25rem', 'auto']} position="relative">
+          <MenuList position="relative" top="1.5">
             <Text
               px="10px"
               textAlign="start"

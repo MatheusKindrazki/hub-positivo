@@ -79,7 +79,7 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
                   cursor: 'pointer'
                 }}
               />
-              <MenuList p="0">
+              <MenuList p="0" w={['26rem']}>
                 <Dropdown markAllAsRead={() => null} />
               </MenuList>
             </Menu>
