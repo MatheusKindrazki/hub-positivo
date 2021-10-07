@@ -16,27 +16,37 @@ jest.mock('~/components/NotificationHistory/components', () => {
 })
 
 describe('History of notifications in Dropdown should work as expected', () => {
-  const setup = () =>
-    render(<Dropdown goToSettings={jest.fn()} markAllAsRead={jest.fn()} />, {
+  const setup = (
+    CUSTOM_STATE = {
+      notifications: {
+        loading: false,
+        history: [
+          {
+            dataEnvio: Date.now(),
+            dataExpiracao: Date.now(),
+            mensagem: 'mensagem teste',
+            origem: 'Produto Teste',
+            icone: 'http://fake-icon-url.com'
+          }
+        ]
+      }
+    }
+  ) =>
+    render(<Dropdown markAllAsRead={jest.fn()} />, {
       store,
       reducers: ['notifications'],
-      CUSTOM_STATE: {
-        notifications: {
-          loading: false,
-          history: [
-            {
-              dataEnvio: Date.now(),
-              dataExpiracao: Date.now(),
-              mensagem: 'mensagem teste',
-              origem: 'Produto Teste',
-              icone: 'http://fake-icon-url.com'
-            }
-          ]
-        }
-      }
+      CUSTOM_STATE
     })
   it('should render Header and Container', () => {
     const { queryByText, queryAllByText } = setup()
+
+    expect(queryByText('Notification Header')).toBeInTheDocument()
+    expect(queryAllByText('Notification Container')).not.toBeNull()
+  })
+  it('should render proper message when theres no history', () => {
+    const { queryByText, queryAllByText } = setup({
+      notifications: { loading: false, history: undefined as any }
+    })
 
     expect(queryByText('Notification Header')).toBeInTheDocument()
     expect(queryAllByText('Notification Container')).not.toBeNull()
