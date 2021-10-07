@@ -72,7 +72,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
               cursor="pointer"
             />
           </MenuButton>
-          <MenuList position="relative" top="1.5">
+          <MenuList position="relative" top="1.5" left="2">
             <Text
               px="10px"
               textAlign="start"

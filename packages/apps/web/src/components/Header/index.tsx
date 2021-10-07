@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
           </Box>
           <Box w="50%" d="flex" justifyContent="flex-end">
             <HeaderButton as={Question} onClick={() => console.log('click')} />
-            <Menu>
+            <Menu placement="bottom-end">
               <MenuButton
                 as={Bell}
                 fontSize="1.6rem"
@@ -79,7 +79,12 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
                   cursor: 'pointer'
                 }}
               />
-              <MenuList p="0" w={['26rem']}>
+              <MenuList
+                position="relative"
+                left="1"
+                p="0"
+                w={['16rem', '25rem', '25rem', '26rem']}
+              >
                 <Dropdown markAllAsRead={() => null} />
               </MenuList>
             </Menu>
