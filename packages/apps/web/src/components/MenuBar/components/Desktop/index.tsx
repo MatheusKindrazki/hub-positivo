@@ -15,13 +15,15 @@ import { createSlug } from '@psdhub/common/utils'
 import { useMediaQuery } from '@psdhub/common/hooks'
 import Drawer, {
   useDisclosure,
-  DrawerOverlay
+  DrawerOverlay,
+  DrawerHeader,
+  DrawerContent
 } from '@psdhub/common/components/Drawer'
 import { Search, Box } from '@psdhub/common/components'
 
 import { useFilterCards } from '~/hooks/useFilterCards'
 
-import { DrawerContentContainer } from './styles'
+import { DrawerBodyContainer } from './styles'
 import { FooterProps } from '../Footer'
 import { useHeader } from '../../context'
 
@@ -117,67 +119,71 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
         isFullHeight={true}
       >
         <DrawerOverlay />
-        <DrawerContentContainer
-          overflowY={
-            isSubmenuOpen ? ['overlay', 'overlay', 'unset'] : 'overlay'
-          }
-          overflowX={isSubmenuOpen ? 'unset' : 'hidden'}
-        >
-          <Box p="1rem" borderBottomWidth="1px" borderBottomColor="#C9C9C9">
-            <MenuHeader
-              name={user?.name || 'Menu'}
-              closeButton
-              onClose={onClose}
+        <Box as={DrawerContent}>
+          <DrawerBodyContainer px="0" overflow="overlay">
+            <Box
+              p="1rem"
+              borderBottomWidth="1px"
+              borderBottomColor="#C9C9C9"
+              as={DrawerHeader}
+            >
+              <MenuHeader
+                name={user?.name || 'Menu'}
+                closeButton
+                onClose={onClose}
+              />
+            </Box>
+            <Box
+              p="1rem"
+              borderBottomWidth="1px"
+              borderBottomColor="#C9C9C9"
+              d="flex"
+              alignItems="center"
+            >
+              <Box w="100%">
+                <SelectProfile closeMenu={onClose} />
+              </Box>
+            </Box>
+            <Box
+              p="1rem"
+              alignItems="center"
+              d="flex"
+              borderBottomWidth="1px"
+              borderBottomColor="#C9C9C9"
+            >
+              <Box w="100%">
+                <Search placeholder="Buscar solução" onChange={handleSearch} />
+              </Box>
+            </Box>
+            <Box
+              borderBottomWidth="1px"
+              borderBottomColor="#C9C9C9"
+              width="100%"
+            >
+              {!loading ? (
+                filterCards.map((card, cardIndex) => (
+                  <Submenu
+                    isDesktop={isDesktop}
+                    onOpen={onSubmenuOpen}
+                    onClose={onSubmenuClose}
+                    isOpen={isSubmenuOpen}
+                    key={cardIndex}
+                    card={card}
+                    handleClick={handleCardClick}
+                  />
+                ))
+              ) : (
+                <CategorySkeleton />
+              )}
+            </Box>
+            <MenuFooter
+              handleSignOut={() => modalSignOutRef.current?.onOpen()}
+              openModalPass={openModalPass}
+              openModalVersionUpdate={openModalVersionUpdate}
             />
-          </Box>
-          <Box
-            px="1rem"
-            py="1rem"
-            borderBottomWidth="1px"
-            borderBottomColor="#C9C9C9"
-            d="flex"
-            alignItems="center"
-          >
-            <Box w="100%">
-              <SelectProfile closeMenu={onClose} />
-            </Box>
-          </Box>
-          <Box
-            py="1rem"
-            px="1rem"
-            alignItems="center"
-            d="flex"
-            borderBottomWidth="1px"
-            borderBottomColor="#C9C9C9"
-          >
-            <Box w="100%">
-              <Search placeholder="Buscar solução" onChange={handleSearch} />
-            </Box>
-          </Box>
-          <Box borderBottomWidth="1px" borderBottomColor="#C9C9C9" width="100%">
-            {!loading ? (
-              filterCards.map((card, cardIndex) => (
-                <Submenu
-                  isDesktop={isDesktop}
-                  onOpen={onSubmenuOpen}
-                  onClose={onSubmenuClose}
-                  isOpen={isSubmenuOpen}
-                  key={cardIndex}
-                  card={card}
-                  handleClick={handleCardClick}
-                />
-              ))
-            ) : (
-              <CategorySkeleton />
-            )}
-          </Box>
-          <MenuFooter
-            handleSignOut={() => modalSignOutRef.current?.onOpen()}
-            openModalPass={openModalPass}
-            openModalVersionUpdate={openModalVersionUpdate}
-          />
-          <ModalSignOut ref={modalSignOutRef} />
-        </DrawerContentContainer>
+            <ModalSignOut ref={modalSignOutRef} />
+          </DrawerBodyContainer>
+        </Box>
       </Drawer>
     )
   }

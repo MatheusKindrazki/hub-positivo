@@ -53,7 +53,13 @@ const Submenu: React.FC<SubmenuProps> = ({
       >
         {card.nome}
       </MenuButton>
-      <MenuList padding="0.5rem" minWidth="xs" border="1px solid #C9C9C9">
+      <MenuList
+        padding="0.5rem"
+        maxWidth="26rem"
+        border="1px solid #C9C9C9"
+        w={['97%', '19rem', 'xs']}
+        position="relative"
+      >
         {card.solucoes.map(
           ({ nome, tipoRenderizacao, link, ...solution }, i) => (
             <SimpleCard

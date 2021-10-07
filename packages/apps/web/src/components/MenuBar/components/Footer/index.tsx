@@ -21,7 +21,7 @@ const Footer: React.FC<FooterProps> = ({
   }
   return (
     <>
-      <DrawerFooter placeContent="start" p="1rem" mb="1rem" {...props}>
+      <DrawerFooter px="1rem" placeContent="start" mb="1rem" {...props}>
         <Stack spacing="4">
           <Text {...styles} onClick={openModalPass}>
             Alterar minha senha

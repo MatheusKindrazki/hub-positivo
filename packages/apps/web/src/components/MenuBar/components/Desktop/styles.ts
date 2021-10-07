@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import { DrawerContent } from '@psdhub/common/components/Drawer'
-export const DrawerContentContainer = styled(DrawerContent)`
+import { DrawerBody } from '@psdhub/common/components/Drawer'
+export const DrawerBodyContainer = styled(DrawerBody)`
   &::-webkit-scrollbar {
     width: 5px;
   }
