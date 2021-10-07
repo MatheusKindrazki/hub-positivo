@@ -26,7 +26,12 @@ export default [
   { path: '/', isPrivate: true, exact: true, component: Home },
   { path: '/login', isPrivate: false, exact: false, component: SignIn },
   { path: '/perfil', isPrivate: false, exact: false, component: Profile },
-  { path: '/literatura-ctpm', isPrivate: true, exact: true, component: PDF },
+  {
+    path: '/solucao/literatura-ctpm',
+    isPrivate: true,
+    exact: true,
+    component: PDF
+  },
   {
     path: '/esqueci-minha-senha',
     isPrivate: false,
