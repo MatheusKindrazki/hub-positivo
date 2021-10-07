@@ -11,6 +11,7 @@ const App: React.FC = () => {
     WebViewer(
       {
         path: '/lib',
+
         initialDoc:
           'https://stlivromusicaprod001.blob.core.windows.net/audios/CTPM_Mergulhando_em_poesia.pdf',
         disableLogs: true,
@@ -33,6 +34,8 @@ const App: React.FC = () => {
         'thumbExtract',
         'selectToolButton'
       ])
+
+      instance.UI.setLanguage('pt_BR')
     })
   }, [])
 
