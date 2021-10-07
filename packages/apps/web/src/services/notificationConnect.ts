@@ -1,7 +1,7 @@
 import * as Yup from 'yup'
 
 import { noticeError } from '@psdhub/newrelic'
-import { createSlug } from '@psdhub/common/utils'
+import { createSlug, delay } from '@psdhub/common/utils'
 import {
   createHubConnect,
   stringSubscriptions,
@@ -32,8 +32,12 @@ const userSlugCompare = ''
 
 async function notificationConnect<T = unknown>(
   user: UserInfo,
+  token: string,
   data: NotificationConnect<T>
 ): Promise<void> {
+  console.log('brasil')
+
+  await delay(4000)
   try {
     const { HeaderNotification } = stringSubscriptions
 
@@ -45,11 +49,11 @@ async function notificationConnect<T = unknown>(
 
     if (newUserSlug === userSlugCompare) return // user already connected
 
-    const connect = await createNotificationConnection(url)
-
     if (activeConnection) {
       activeConnection.off(HeaderNotification)
     }
+
+    const connect = await createNotificationConnection(url, token)
 
     activeConnection = connect
 
@@ -60,17 +64,16 @@ async function notificationConnect<T = unknown>(
 }
 
 async function createNotificationConnection(
-  url: string
+  url: string,
+  token: string
 ): Promise<HubConnection> {
-  const connect = await createHubConnect({ url })
+  const connect = await createHubConnect({ url, token })
 
   return connect
 }
 
 function createUrl(data: UserInfo): string {
-  const url = new URL(
-    `${process.env.REACT_APP_API_NOTIFICATION_PRODUCER}/PositivoOnHub`
-  )
+  const url = new URL(`${process.env.REACT_APP_API_NOTIFICATION}/PositivoOnHub`)
 
   Object.entries(data).forEach(([key, value]) =>
     url.searchParams.append(key, value)

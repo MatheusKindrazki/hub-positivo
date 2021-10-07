@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -9,21 +9,26 @@ function useNotifications(): void {
   const { info, school } = useSelector((state: Store.State) => state.user)
   const { guid } = useSelector((state: Store.State) => state.profile)
 
-  const [messages, setMessages] = useState<string[]>([])
+  const { reduced_token } = useSelector((state: Store.State) => state.auth)
 
-  notificationConnect(
-    {
-      idEscola: school?.value as string,
-      idUsuario: info?.guid as string,
-      perfil: guid as string,
-      nivelEnsino: level
-    },
-    (message: string) => {
-      setMessages(messages => [...messages, message])
-    }
-  )
+  const [, setMessages] = useState<string[]>([])
 
-  console.log(messages)
+  useEffect(() => {
+    notificationConnect(
+      {
+        idEscola: school?.value as string,
+        idUsuario: info?.guid as string,
+        perfil: guid as string,
+        nivelEnsino: level
+      },
+      reduced_token as string,
+      (message: string) => {
+        setMessages(messages => [...messages, message])
+
+        console.log(message)
+      }
+    )
+  }, [guid, info, level, reduced_token, school])
 }
 
 export default useNotifications

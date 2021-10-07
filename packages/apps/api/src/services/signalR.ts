@@ -2,6 +2,7 @@ import { HubConnectionBuilder, HubConnection } from '@microsoft/signalr'
 
 interface HubConnectProps {
   url: string
+  token: string
 }
 
 export const stringSubscriptions = {
@@ -11,8 +12,12 @@ export const stringSubscriptions = {
 function createHubConnect(params: HubConnectProps): Promise<HubConnection> {
   return new Promise((resolve, reject) => {
     const connection = new HubConnectionBuilder()
-      .withUrl(params.url)
-      .withAutomaticReconnect()
+      .withUrl(params.url, {
+        headers: {
+          Authorization: `Bearer ${params.token}`
+        }
+        // accessTokenFactory: () => `${params.token}`
+      })
       .build()
 
     connection

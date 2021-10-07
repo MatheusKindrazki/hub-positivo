@@ -29,7 +29,6 @@ declare global {
       REACT_APP_HUB_TITLE: string
 
       REACT_APP_API_URL: string
-      REACT_APP_API_SIGNALR: string
 
       REACT_APP_API_AUTH_URL: string
 
@@ -49,6 +48,8 @@ declare global {
       REACT_APP_NODE_ENV: string
 
       REACT_APP_RECAPTCHA_SITE_KEY: string
+
+      REACT_APP_API_NOTIFICATION: string
     }
   }
 }
