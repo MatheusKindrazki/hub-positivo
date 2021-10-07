@@ -15,10 +15,10 @@ export const Flex = styled(FlexUI)<Props>`
     width: 10px;
     height: 10px;
     position: absolute;
-    left: 40px;
-    top: 17px;
+    left: 9px;
+    top: 14px;
     border: 2px solid white;
-    border-radius: 8px;
+    border-radius: 50%;
     background-color: #f32c1e;
   }
 `

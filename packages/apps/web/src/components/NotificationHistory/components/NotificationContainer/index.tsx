@@ -4,7 +4,7 @@ import { Notification } from '~/store/modules/notifications/types'
 
 import { Menu, MenuList, MenuButton } from '@psdhub/common/components/Menu'
 import { DotsThreeVertical } from '@psdhub/common/components/Icons'
-import { Image, Box, Text } from '@psdhub/common/components'
+import { Box, Text } from '@psdhub/common/components'
 
 import { formatDate } from './utils/formatDate'
 import { Flex } from './styles'
@@ -16,9 +16,7 @@ export interface NotificationContainerProps extends Notification {
 
 const NotificationContainer: React.FC<NotificationContainerProps> = ({
   read,
-  allowThisTypeOf = true,
   dataEnvio,
-  icone,
   mensagem,
   titulo
 }) => {
@@ -41,18 +39,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
       className="container"
     >
       <Box width="95%" d="flex">
-        <Image
-          bg="blue.500"
-          src={icone}
-          alt=""
-          minW="3rem"
-          w="3rem"
-          h="3rem"
-          p="2"
-          mt="1"
-          borderRadius="0.5rem"
-        />
-        <Box px="0.5rem" overflow="hidden">
+        <Box px="1rem" overflow="hidden">
           <Text
             fontSize="1rem"
             fontWeight="700"
@@ -95,18 +82,6 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
             >
               {read ? 'Marcar como não lida' : 'Marcar como lida'}
             </Text>
-            <Text
-              px="10px"
-              textAlign="start"
-              cursor="pointer"
-              _hover={{ background: 'gray.400' }}
-              py="5px"
-            >
-              {allowThisTypeOf
-                ? 'Desativar notificações como essa'
-                : 'Ativar notificações como essa'}
-            </Text>
-
             <Text
               px="10px"
               textAlign="start"
