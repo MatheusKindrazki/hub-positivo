@@ -2979,6 +2979,11 @@
   dependencies:
     "@octokit/openapi-types" "^10.5.0"
 
+"@pdftron/webviewer@^8.1.0":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@pdftron/webviewer/-/webviewer-8.1.0.tgz#df0c48f1c81e76119e0dceb2233d1f26e6beaee0"
+  integrity sha512-yLzxvNVUOK4xbQMfea7fiSENABFg/pQydqFCHOrXA+7ZB+hfMFNHz+zw/+yOcz3FiQEkvpwDy9fOTp2+kONu7w==
+
 "@pmmmwh/react-refresh-webpack-plugin@0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.3.tgz#1eec460596d200c0236bf195b078a5d1df89b766"

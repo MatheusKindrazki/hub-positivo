@@ -18,12 +18,15 @@ const Solutions = React.lazy(() => import('~/pages/Solutions'))
 const NoBreakAccess = React.lazy(() => import('~/pages/NoBreakAccess'))
 const PDF = React.lazy(() => import('~/pages/PDF'))
 
+const PDF = React.lazy(() => import('~/pages/PDF'))
+
 const { guid } = store.getState().profile
 
 export default [
   { path: '/', isPrivate: true, exact: true, component: Home },
   { path: '/login', isPrivate: false, exact: false, component: SignIn },
   { path: '/perfil', isPrivate: false, exact: false, component: Profile },
+  { path: '/literatura-ctpm', isPrivate: true, exact: true, component: PDF },
   {
     path: '/esqueci-minha-senha',
     isPrivate: false,
