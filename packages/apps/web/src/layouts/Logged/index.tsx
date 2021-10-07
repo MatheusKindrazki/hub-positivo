@@ -20,6 +20,8 @@ import ModalAcceptTerms from '~/components/ModalAcceptTerms'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 
+import useNotifications from '~/hooks/useNotifications'
+
 import { Container } from './styles'
 import footerData from './footerData.json'
 
@@ -30,6 +32,8 @@ const Dashboard: React.FC = ({ children }) => {
   const location = useLocation()
 
   useEffect(() => dispatchEvent())
+
+  useNotifications()
 
   const { loading } = useSelector((state: Store.State) => state.global)
   const { nobreak } = useSelector((state: Store.State) => state.noBreakAccess)

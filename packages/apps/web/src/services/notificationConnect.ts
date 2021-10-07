@@ -68,7 +68,9 @@ async function createNotificationConnection(
 }
 
 function createUrl(data: UserInfo): string {
-  const url = new URL(`${process.env.REACT_APP_API_SIGNAL_R}/PositivoOnHub`)
+  const url = new URL(
+    `${process.env.REACT_APP_API_NOTIFICATION_PRODUCER}/PositivoOnHub`
+  )
 
   Object.entries(data).forEach(([key, value]) =>
     url.searchParams.append(key, value)
