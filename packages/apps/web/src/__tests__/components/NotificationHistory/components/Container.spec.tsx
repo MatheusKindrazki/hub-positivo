@@ -38,7 +38,6 @@ describe('NotificationContainer should work properly', () => {
     const { getByTestId, queryByText } = render(
       <NotificationContainer
         read={true}
-        allowThisTypeOf={false}
         dataEnvio={date}
         dataExpiracao={date}
         mensagem={message}
@@ -53,7 +52,6 @@ describe('NotificationContainer should work properly', () => {
     fireEvent.click(getByTestId('menu-button'))
 
     expect(queryByText('Marcar como não lida')).toBeInTheDocument()
-    expect(queryByText('Ativar notificações como essa')).toBeInTheDocument()
     expect(queryByText('Excluir')).toBeInTheDocument()
   })
 })

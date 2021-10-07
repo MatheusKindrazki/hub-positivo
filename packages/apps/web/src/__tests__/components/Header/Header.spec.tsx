@@ -70,7 +70,7 @@ describe('Header component should works as expected', () => {
   it('buttons should be rendering without crashing', async () => {
     jest.useFakeTimers()
     const { queryAllByTestId, getByTestId } = setup()
-    const headerButtonCount = 4
+    const headerButtonCount = 3
     const buttonTestId = 'header-button'
     const logoTestId = 'logo-on'
     const notificationHeaderButtonTestIds = [
