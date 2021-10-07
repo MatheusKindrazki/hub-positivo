@@ -39,7 +39,9 @@ jest.mock('@psdhub/common/components/Drawer', () => {
       isOpen: true
     })),
     DrawerOverlay: jest.fn(() => <div>DrawerOverlay</div>),
-    DrawerContent: jest.fn(({ children }) => <div>{children}</div>)
+    DrawerContent: jest.fn(({ children }) => <div>{children}</div>),
+    DrawerHeader: jest.fn(({ children }) => <div>{children}</div>),
+    DrawerBody: jest.fn(({ children }) => <div>{children}</div>)
   }
 })
 

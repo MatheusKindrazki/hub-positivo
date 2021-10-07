@@ -31,7 +31,6 @@ describe('NotificationContainer should work properly', () => {
     fireEvent.click(getByTestId('menu-button'))
 
     expect(queryByText('Marcar como lida')).toBeInTheDocument()
-    expect(queryByText('Desativar notificações como essa')).toBeInTheDocument()
   })
 
   it('Should render menu list when DotsThreeVertical is clicked', () => {
