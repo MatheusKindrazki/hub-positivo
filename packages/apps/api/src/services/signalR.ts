@@ -13,11 +13,10 @@ function createHubConnect(params: HubConnectProps): Promise<HubConnection> {
   return new Promise((resolve, reject) => {
     const connection = new HubConnectionBuilder()
       .withUrl(params.url, {
-        headers: {
-          Authorization: `Bearer ${params.token}`
-        }
-        // accessTokenFactory: () => `${params.token}`
+        accessTokenFactory: () => `${params.token}`,
+        transport: 4
       })
+      .withAutomaticReconnect()
       .build()
 
     connection

@@ -1,15 +1,23 @@
 import * as Yup from 'yup'
 
 import { noticeError } from '@psdhub/newrelic'
-import { createSlug, delay } from '@psdhub/common/utils'
+import { createSlug } from '@psdhub/common/utils'
 import {
   createHubConnect,
   stringSubscriptions,
   HubConnection
 } from '@psdhub/api'
+export interface NotificationData {
+  id: string
+  title: string
+  message: string
+  url: string
+  origin: string
+  expirationDate: string
+}
 
-interface NotificationConnect<T> {
-  (notifications: T): void
+interface NotificationConnect {
+  (notifications: NotificationData): void
 }
 
 export interface UserInfo {
@@ -30,14 +38,11 @@ let activeConnection: HubConnection
 
 const userSlugCompare = ''
 
-async function notificationConnect<T = unknown>(
+async function notificationConnect(
   user: UserInfo,
   token: string,
-  data: NotificationConnect<T>
+  data: NotificationConnect
 ): Promise<void> {
-  console.log('brasil')
-
-  await delay(4000)
   try {
     const { HeaderNotification } = stringSubscriptions
 
@@ -57,7 +62,11 @@ async function notificationConnect<T = unknown>(
 
     activeConnection = connect
 
-    activeConnection.on(HeaderNotification, data)
+    activeConnection.on(
+      HeaderNotification,
+      (id, title, message, url, origin, expirationDate) =>
+        data({ id, title, message, url, origin, expirationDate })
+    )
   } catch (error) {
     noticeError(error as Error)
   }

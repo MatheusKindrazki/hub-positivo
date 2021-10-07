@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { notificationConnect } from '~/services/notificationConnect'
+import {
+  notificationConnect,
+  NotificationData
+} from '~/services/notificationConnect'
 
 function useNotifications(): void {
   const { level } = useSelector((state: Store.State) => state.educationalStage)
@@ -11,7 +14,7 @@ function useNotifications(): void {
 
   const { reduced_token } = useSelector((state: Store.State) => state.auth)
 
-  const [, setMessages] = useState<string[]>([])
+  const [, setMessages] = useState<NotificationData[]>([])
 
   useEffect(() => {
     notificationConnect(
@@ -22,7 +25,7 @@ function useNotifications(): void {
         nivelEnsino: level
       },
       reduced_token as string,
-      (message: string) => {
+      message => {
         setMessages(messages => [...messages, message])
 
         console.log(message)
