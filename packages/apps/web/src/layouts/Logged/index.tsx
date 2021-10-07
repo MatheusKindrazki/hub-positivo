@@ -33,7 +33,7 @@ const Dashboard: React.FC = ({ children }) => {
 
   useEffect(() => dispatchEvent())
 
-  useNotifications()
+  const notifications = useNotifications()
 
   const { loading } = useSelector((state: Store.State) => state.global)
   const { nobreak } = useSelector((state: Store.State) => state.noBreakAccess)
@@ -63,6 +63,7 @@ const Dashboard: React.FC = ({ children }) => {
       )}
       <Header
         handleGoBack={handleGoBack}
+        notifications={notifications}
         schoolName={school?.label as string}
       />
       <main className="hub-main-class">

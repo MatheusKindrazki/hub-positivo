@@ -14,6 +14,7 @@ export interface NotificationData {
   url: string
   origin: string
   expirationDate: string
+  new?: boolean
 }
 
 interface NotificationConnect {
@@ -65,7 +66,7 @@ async function notificationConnect(
     activeConnection.on(
       HeaderNotification,
       (id, title, message, url, origin, expirationDate) =>
-        data({ id, title, message, url, origin, expirationDate })
+        data({ id, title, message, url, origin, expirationDate, new: true })
     )
   } catch (error) {
     noticeError(error as Error)
