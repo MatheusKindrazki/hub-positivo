@@ -2,12 +2,8 @@ import React, { useRef } from 'react'
 
 import { renderHook } from '@testing-library/react-hooks'
 
-import * as reactReduxHooks from 'react-redux'
-
-import { fireEvent, render } from '@psdhub/test-utils'
+import { render } from '@psdhub/test-utils'
 import * as Drawer from '@psdhub/common/components/Drawer'
-
-import history from '~/services/history'
 
 import Menu, { RefMenuProps } from '~/components/MenuBar/components/Desktop'
 
@@ -90,22 +86,6 @@ describe('Menu should work properly', () => {
     expect(queryByText(/Header/i)).toBeInTheDocument()
     expect(queryByText(/Select profile/i)).toBeInTheDocument()
     expect(queryByText(/MenuFooter/i)).toBeInTheDocument()
-  })
-
-  it.skip('Should call handleSignOut when logout`s button is clicked', () => {
-    const dispatch = jest.fn()
-    jest
-      .spyOn(reactReduxHooks, 'useDispatch')
-      .mockImplementation(() => dispatch)
-    const spyPush = jest.spyOn(history, 'push')
-    jest.useFakeTimers()
-    const { getByText } = setup()
-
-    fireEvent.click(getByText(/MenuFooter/i))
-    jest.runAllTimers()
-
-    expect(dispatch).toHaveBeenCalledWith({ type: '@auth/SIGN_OUT' })
-    expect(spyPush).toHaveBeenCalledWith('/login')
   })
 
   it('Should call onClose through ref`s openMenu when isOpen is true', () => {
