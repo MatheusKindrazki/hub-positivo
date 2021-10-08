@@ -5,7 +5,14 @@ module.exports = {
   preset: 'ts-jest',
   projects: ['<rootDir>/packages/**/jest.config.js'],
   testMatch: ['**/__tests__/**/*.ts?(x)'],
-  coverageReporters: ['text', 'html', 'lcov', 'json-summary'],
+  coverageReporters: [
+    'text',
+    'html',
+    'lcov',
+    'json-summary',
+    'clover',
+    'cobertura'
+  ],
   setupFilesAfterEnv: ['<rootDir>/packages/libs/test-utils/setup.ts'],
   transformIgnorePatterns: ['node_modules'],
   coverageThreshold: {
