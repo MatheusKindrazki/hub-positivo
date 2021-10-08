@@ -39,7 +39,6 @@ const NotificationHeader: React.FC<NotificationHeaderProps> = ({
           placement="top-start"
         >
           <Button
-            // mx={['0', '2', '2', '2']}
             m="0"
             data-testid="mark-all-as-read-button"
             variant="unstyled"
