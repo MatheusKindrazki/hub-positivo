@@ -8,7 +8,7 @@ import { store } from '~/store'
 import { toast } from '@psdhub/common/utils'
 import { getInstance } from '@psdhub/api'
 
-import prepareNotificationData from '~/utils/formatData/notificationData'
+import prepareNotificationData from '~/utils/formatData/prepareNotificationData'
 
 import { NotificationApiResponse } from './types'
 import { Actions, notificationsFailure, notificationsSuccess } from './actions'

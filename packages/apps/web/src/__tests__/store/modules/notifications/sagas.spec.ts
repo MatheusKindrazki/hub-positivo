@@ -6,7 +6,7 @@ import * as actions from '~/store/modules/notifications/actions'
 import { toast } from '@psdhub/common/utils'
 import * as api from '@psdhub/api'
 
-import prepareNotificationData from '~/utils/formatData/notificationData'
+import prepareNotificationData from '~/utils/formatData/prepareNotificationData'
 
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 let dispatchedActions = store.getActions()
