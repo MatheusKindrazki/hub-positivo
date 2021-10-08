@@ -1,4 +1,7 @@
 import * as Yup from 'yup'
+import { parseISO } from 'date-fns'
+
+import { Notification } from '~/store/modules/notifications/types'
 
 import { noticeError } from '@psdhub/newrelic'
 import { createSlug } from '@psdhub/common/utils'
@@ -7,18 +10,9 @@ import {
   stringSubscriptions,
   HubConnection
 } from '@psdhub/api'
-export interface NotificationData {
-  id: string
-  title: string
-  message: string
-  url: string
-  origin: string
-  expirationDate: string
-  new?: boolean
-}
 
 interface NotificationConnect {
-  (notifications: NotificationData): void
+  (notifications: Notification): void
 }
 
 export interface UserInfo {
@@ -66,7 +60,15 @@ async function notificationConnect(
     activeConnection.on(
       HeaderNotification,
       (id, title, message, url, origin, expirationDate) =>
-        data({ id, title, message, url, origin, expirationDate, new: true })
+        data({
+          id,
+          title,
+          message,
+          url,
+          origin,
+          expirationDate: parseISO(expirationDate),
+          new: true
+        })
     )
   } catch (error) {
     noticeError(error as Error)

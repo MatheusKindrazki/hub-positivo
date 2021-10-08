@@ -3,15 +3,18 @@ import {
   Notification
 } from '~/store/modules/notifications/types'
 
-const prepareNotificationData = (history: ApiNotification[]): Notification[] =>
-  history.map(notification => ({
+const prepareNotificationData = (
+  history: ApiNotification[]
+): Notification[] => {
+  return history.map(notification => ({
     id: notification.id,
     title: notification.titulo,
-    url: notification.url,
+    origin: notification.origem,
     message: notification.mensagem,
-    source: notification.origem,
+    url: notification.url,
+    expirationDate: notification.dataExpiracao,
     sentDate: notification.dataEnvio,
-    expireDate: notification.dataExpiracao
+    new: false
   }))
-
+}
 export default prepareNotificationData

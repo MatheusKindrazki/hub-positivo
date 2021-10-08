@@ -39,15 +39,9 @@ const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead }) => {
         )}
         {history?.map(notification => (
           <Container
-            key={`${notification.source} - ${notification.id}`}
-            title={notification.source}
-            message={notification.message}
-            sentDate={notification.sentDate}
-            isNew={false}
-            id={notification.id}
-            expireDate={notification.expireDate}
-            url={notification.url}
-            source={notification.source}
+            key={notification.id}
+            isNew={notification.new || false}
+            {...notification}
           />
         ))}
       </BoxUI>

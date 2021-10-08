@@ -12,9 +12,11 @@ import history from '~/services/history'
 
 import MenuBar from '~/components/MenuBar'
 
+import { NotificationProps } from '~/hooks/useNotifications'
+
+import GlobalStyle from './styles'
 import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
 import { SchoolLabel, HeaderButton } from './components'
-import './styles'
 import { Dropdown } from '../NotificationHistory/components'
 import ModalSignOut, { ModalHandler } from '../ModalSignOut/ModalSignOut'
 import { RefMenuProps } from '../MenuBar/components/Desktop'
@@ -23,11 +25,15 @@ import LogoOn from '../LogoOn'
 export interface HeaderProps {
   handleGoBack: () => void | Promise<void>
   schoolName?: string
+  notifications: NotificationProps
 }
 
-const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
+const Header: React.FC<HeaderProps> = ({
+  schoolName,
+  handleGoBack,
+  notifications
+}) => {
   const menuRef = useRef<RefMenuProps>(null)
-
   const { colors } = useTheme()
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
@@ -36,6 +42,8 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
   const openModal = useCallback(() => {
     modalRef.current?.onOpen()
   }, [])
+
+  console.log(notifications)
 
   return (
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
@@ -108,6 +116,7 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
           )}
         </Box>
       </Box>
+      <GlobalStyle />
     </Headroom>
   )
 }

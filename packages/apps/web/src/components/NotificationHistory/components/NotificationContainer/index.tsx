@@ -14,14 +14,11 @@ export interface NotificationContainerProps extends Notification {
   allowThisTypeOf?: boolean
 }
 
-const NotificationContainer: React.FC<NotificationContainerProps> = ({
-  isNew,
-  sentDate,
-  message,
-  title
-}) => {
+const NotificationContainer: React.FC<NotificationContainerProps> = props => {
+  const { sentDate, isNew, title, message } = props
+
   const formattedDate = useMemo(() => {
-    return formatDate(sentDate)
+    return formatDate(sentDate || new Date())
   }, [sentDate])
 
   const opacity = useMemo(() => {

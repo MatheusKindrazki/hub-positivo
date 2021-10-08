@@ -62,8 +62,8 @@ const Dashboard: React.FC = ({ children }) => {
         <Tour onClosed={handleClosedTour} open={open} steps={steps} />
       )}
       <Header
-        handleGoBack={handleGoBack}
         notifications={notifications}
+        handleGoBack={handleGoBack}
         schoolName={school?.label as string}
       />
       <main className="hub-main-class">

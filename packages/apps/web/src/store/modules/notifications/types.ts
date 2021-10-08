@@ -18,9 +18,10 @@ export type Notification = {
   title: string
   url: string
   message: string
-  source: string
-  sentDate: Date
-  expireDate: Date
+  origin: string
+  sentDate?: Date
+  new?: boolean
+  expirationDate: Date
 }
 
 export type NotificationHistory = Notification[]
