@@ -26,7 +26,7 @@ const NotificationHeader: React.FC<NotificationHeaderProps> = ({
         alignSelf="center"
         px="3.5"
         fontWeight="700"
-        fontSize="24px"
+        fontSize={['1.1rem', '1.125rem', '1.5rem']}
         color="#3C3C3C"
       >
         {title}
@@ -39,13 +39,14 @@ const NotificationHeader: React.FC<NotificationHeaderProps> = ({
           placement="top-start"
         >
           <Button
-            mx={['0', '2', '2', '2']}
+            // mx={['0', '2', '2', '2']}
+            m="0"
             data-testid="mark-all-as-read-button"
             variant="unstyled"
             color="blue.500"
             onClick={markAllAsRead}
           >
-            <EnvelopeOpen size="1.75rem" />
+            <EnvelopeOpen size="1.75rem" css={{ margin: 0 }} />
           </Button>
         </Tooltip>
       </Box>

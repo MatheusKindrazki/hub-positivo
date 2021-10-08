@@ -12,7 +12,7 @@ describe('NotificationContainer should work properly', () => {
   it('Should render all elements on screen correctly', () => {
     const { queryByText, getByTestId } = render(
       <NotificationContainer
-        read={false}
+        isNew={false}
         dataEnvio={date}
         dataExpiracao={date}
         mensagem={message}
@@ -30,13 +30,13 @@ describe('NotificationContainer should work properly', () => {
 
     fireEvent.click(getByTestId('menu-button'))
 
-    expect(queryByText('Marcar como lida')).toBeInTheDocument()
+    expect(queryByText('Marcar como não lida')).toBeInTheDocument()
   })
 
   it('Should render menu list when DotsThreeVertical is clicked', () => {
     const { getByTestId, queryByText } = render(
       <NotificationContainer
-        read={true}
+        isNew={true}
         dataEnvio={date}
         dataExpiracao={date}
         mensagem={message}
@@ -50,7 +50,7 @@ describe('NotificationContainer should work properly', () => {
 
     fireEvent.click(getByTestId('menu-button'))
 
-    expect(queryByText('Marcar como não lida')).toBeInTheDocument()
+    expect(queryByText('Marcar como lida')).toBeInTheDocument()
     expect(queryByText('Excluir')).toBeInTheDocument()
   })
 })

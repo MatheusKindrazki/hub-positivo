@@ -71,7 +71,7 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
             <Menu placement="bottom-end">
               <MenuButton
                 as={Bell}
-                fontSize="1.6rem"
+                size="1.6rem"
                 style={{
                   color: colors.blue[500],
                   marginRight: '0.5rem',

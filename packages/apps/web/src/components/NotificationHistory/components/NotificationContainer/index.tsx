@@ -10,12 +10,12 @@ import { formatDate } from './utils/formatDate'
 import { Flex } from './styles'
 
 export interface NotificationContainerProps extends Notification {
-  read: boolean
+  isNew: boolean
   allowThisTypeOf?: boolean
 }
 
 const NotificationContainer: React.FC<NotificationContainerProps> = ({
-  read,
+  isNew,
   dataEnvio,
   mensagem,
   titulo
@@ -26,22 +26,22 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
   }, [dataEnvio])
 
   const opacity = useMemo(() => {
-    return read ? 0.7 : 1
-  }, [read])
+    return isNew ? 0.7 : 1
+  }, [isNew])
 
   return (
     <Flex
       w="100%"
-      p="2"
-      read={read}
+      isNew={isNew}
       bg="white"
       borderTop="solid 1px #E5E5E5"
       className="container"
+      px="3.5"
     >
       <Box width="95%" d="flex">
-        <Box px="1rem" overflow="hidden">
+        <Box overflow="hidden" py="2">
           <Text
-            fontSize="1rem"
+            fontSize={'1rem'}
             fontWeight="700"
             color="#3C3C3C"
             textTransform="capitalize"
@@ -62,7 +62,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
           </Text>
         </Box>
       </Box>
-      <Box width="5%">
+      <Box width="5%" py="2">
         <Menu placement="left" flip>
           <MenuButton data-testid="menu-button">
             <DotsThreeVertical
@@ -80,7 +80,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
               _hover={{ background: 'gray.400' }}
               py="5px"
             >
-              {read ? 'Marcar como não lida' : 'Marcar como lida'}
+              {isNew ? 'Marcar como lida' : 'Marcar como não lida'}
             </Text>
             <Text
               px="10px"

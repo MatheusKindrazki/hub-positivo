@@ -25,8 +25,14 @@ const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead }) => {
         minH="6rem"
       >
         {!history && (
-          <Box w="100%">
-            <Text textAlign="center" lineHeight="6rem">
+          <Box w="100%" px="3.5">
+            <Text
+              textAlign="center"
+              minH="6rem"
+              d="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
               Não há notificações no momento.
             </Text>
           </Box>
@@ -38,7 +44,7 @@ const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead }) => {
             mensagem={notification.mensagem}
             dataEnvio={notification.dataEnvio}
             icone={notification.icone}
-            read={false}
+            isNew={false}
             id={notification.id}
             dataExpiracao={notification.dataExpiracao}
             url={notification.url}
