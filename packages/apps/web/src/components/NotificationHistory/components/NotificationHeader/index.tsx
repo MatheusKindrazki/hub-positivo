@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { EnvelopeOpen } from 'phosphor-react'
-
+import { EnvelopeOpen } from '@psdhub/common/components/Icons'
 import { Box, Button, Tooltip } from '@psdhub/common/components'
 
 interface NotificationHeaderProps {
