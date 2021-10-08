@@ -16,14 +16,13 @@ export interface NotificationContainerProps extends Notification {
 
 const NotificationContainer: React.FC<NotificationContainerProps> = ({
   isNew,
-  dataEnvio,
-  mensagem,
-  titulo
+  sentDate,
+  message,
+  title
 }) => {
   const formattedDate = useMemo(() => {
-    console.log({ dataEnvio })
-    return formatDate(dataEnvio)
-  }, [dataEnvio])
+    return formatDate(sentDate)
+  }, [sentDate])
 
   const opacity = useMemo(() => {
     return isNew ? 0.7 : 1
@@ -47,7 +46,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
             textTransform="capitalize"
             opacity={opacity}
           >
-            {titulo}
+            {title}
           </Text>
           <Text
             lineHeight="20px"
@@ -55,7 +54,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = ({
             fontSize="1rem"
             opacity={opacity}
           >
-            {mensagem}
+            {message}
           </Text>
           <Text color="#6F6F6F" fontSize="0.75rem" opacity={opacity}>
             {formattedDate}

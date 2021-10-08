@@ -15,14 +15,13 @@ describe('Reducer of authentication history', () => {
   it('Should set Loading to false and history to api response When Success Action is Triggered', () => {
     const mock = [
       {
-        origem: 'source',
-        mensagem: 'message',
-        dataEnvio: new Date(),
-        dataExpiracao: new Date(),
+        source: 'source',
+        message: 'message',
+        sentDate: new Date(),
+        expireDate: new Date(),
         id: 'id',
-        titulo: 'titulo',
-        url: 'url',
-        icone: 'http://fake-icon-url.com'
+        title: 'titulo',
+        url: 'url'
       }
     ]
 

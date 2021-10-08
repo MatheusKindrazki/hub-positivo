@@ -49,11 +49,10 @@ describe('Header component should works as expected', () => {
           loading: false,
           history: [
             {
-              dataExpiracao: Date.now(),
-              dataEnvio: Date.now(),
-              mensagem: 'mensagem teste',
-              origem: 'Produto Teste',
-              icone: 'http://fake-icon-url.com'
+              expireDate: Date.now(),
+              sentDate: Date.now(),
+              message: 'mensagem teste',
+              source: 'Produto Teste'
             }
           ]
         }

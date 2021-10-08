@@ -13,14 +13,13 @@ describe('NotificationContainer should work properly', () => {
     const { queryByText, getByTestId } = render(
       <NotificationContainer
         isNew={false}
-        dataEnvio={date}
-        dataExpiracao={date}
-        mensagem={message}
-        titulo={solutionName}
+        sentDate={date}
+        expireDate={date}
+        message={message}
+        title={solutionName}
         url={url}
-        origem=""
+        source=""
         id="id"
-        icone="icone"
       />
     )
 
@@ -37,14 +36,13 @@ describe('NotificationContainer should work properly', () => {
     const { getByTestId, queryByText } = render(
       <NotificationContainer
         isNew={true}
-        dataEnvio={date}
-        dataExpiracao={date}
-        mensagem={message}
-        titulo={solutionName}
+        sentDate={date}
+        expireDate={date}
+        message={message}
+        title={solutionName}
         url={url}
-        origem=""
+        source=""
         id="id"
-        icone="icone"
       />
     )
 
