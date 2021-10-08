@@ -6,6 +6,8 @@ import * as actions from '~/store/modules/notifications/actions'
 import { toast } from '@psdhub/common/utils'
 import * as api from '@psdhub/api'
 
+import prepareNotificationData from '~/utils/formatData/notificationData'
+
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 let dispatchedActions = store.getActions()
 
@@ -67,20 +69,25 @@ describe('Notifications Sagas should work as expected', () => {
     expect(spyToast).toBeCalledWith('Erro ao buscar notificações!')
   })
 
-  it.skip('Should call success action with correct data', async () => {
+  it('Should call success action with correct data', async () => {
     const returnedMock = {
       ok: true,
       data: {
         dados: [
           {
-            date: '2021-10-06T14:37:48.845Z',
-            message: 'mensagem',
-            source: 'origem',
-            title: 'titulo'
+            id: 'fake-id',
+            titulo: 'fake-title',
+            url: 'https://fake-url.com',
+            mensagem: 'this is a fake message',
+            origem: 'fak-source',
+            dataEnvio: new Date(),
+            dataExpiracao: new Date()
           }
         ]
       }
     }
+
+    const expectedPayload = prepareNotificationData(returnedMock.data.dados)
 
     const mockedGet = jest.fn(() => Promise.resolve<any>(returnedMock))
 
@@ -89,7 +96,7 @@ describe('Notifications Sagas should work as expected', () => {
     await runSaga(store, sagas.getNotifications).toPromise()
 
     expect(dispatchedActions).toContainObject(
-      actions.notificationsSuccess(returnedMock.data.dados as any)
+      actions.notificationsSuccess(expectedPayload)
     )
   })
 })
