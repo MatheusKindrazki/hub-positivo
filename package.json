@@ -26,7 +26,7 @@
     "test": "jest -u --colors --logHeapUsage --maxWorkers=4",
     "test:watch": "jest  -u --colors --watch --collectCoverage --logHeapUsage --maxWorkers=4",
     "test:watch:inspect": "jest --colors --logHeapUsage --maxWorkers=4",
-    "test:coverage": "jest -u --colors --collectCoverage --testResultsProcessor=jest-sonar-reporter --maxWorkers=2 && coverage-badges",
+    "test:coverage": "jest -u --colors --silent --collectCoverage --testResultsProcessor=jest-sonar-reporter --maxWorkers=4 && coverage-badges",
     "posttest:coverage": "svg2png --input './docs/**/*.svg' --output ./docs/icons --format png",
     "lint": "eslint --ext .tsx,.ts, packages/**/src",
     "build:easyauth": "npm run --prefix packages/apps/easyauth build",
