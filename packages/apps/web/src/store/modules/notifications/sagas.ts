@@ -8,6 +8,8 @@ import { store } from '~/store'
 import { toast } from '@psdhub/common/utils'
 import { getInstance } from '@psdhub/api'
 
+import prepareNotificationData from '~/utils/formatData/notificationData'
+
 import { NotificationApiResponse } from './types'
 import { Actions, notificationsFailure, notificationsSuccess } from './actions'
 export function* getNotifications(): Generator {
@@ -39,7 +41,9 @@ export function* getNotifications(): Generator {
     return yield put(notificationsFailure())
   }
 
-  return yield put(notificationsSuccess(data.dados))
+  const formattedNotificationHistory = prepareNotificationData(data.dados)
+
+  return yield put(notificationsSuccess(formattedNotificationHistory))
 }
 
 export default all([takeLatest(Actions.GET_REQUEST, getNotifications)])

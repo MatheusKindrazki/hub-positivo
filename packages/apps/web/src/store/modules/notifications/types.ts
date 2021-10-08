@@ -1,4 +1,4 @@
-export type Notification = {
+export type ApiNotification = {
   id: string
   titulo: string
   url: string
@@ -6,15 +6,24 @@ export type Notification = {
   origem: string
   dataEnvio: Date
   dataExpiracao: Date
-  icone: string
+}
+
+export type NotificationApiResponse = {
+  dados: ApiNotification[]
+  sucesso: boolean
+}
+
+export type Notification = {
+  id: string
+  title: string
+  url: string
+  message: string
+  source: string
+  sentDate: Date
+  expireDate: Date
 }
 
 export type NotificationHistory = Notification[]
-
-export type NotificationApiResponse = {
-  dados: NotificationHistory
-  sucesso: boolean
-}
 
 export interface NotificationReducer {
   loading: boolean

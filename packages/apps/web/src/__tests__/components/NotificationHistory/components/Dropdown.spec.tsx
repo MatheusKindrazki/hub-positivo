@@ -22,11 +22,10 @@ describe('History of notifications in Dropdown should work as expected', () => {
         loading: false,
         history: [
           {
-            dataEnvio: Date.now(),
-            dataExpiracao: Date.now(),
-            mensagem: 'mensagem teste',
-            origem: 'Produto Teste',
-            icone: 'http://fake-icon-url.com'
+            sentDate: Date.now(),
+            expireDate: Date.now(),
+            message: 'mensagem teste',
+            source: 'Produto Teste'
           }
         ]
       }
