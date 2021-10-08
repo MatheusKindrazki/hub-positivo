@@ -108,29 +108,29 @@ describe('Menu should work properly', () => {
     expect(spyPush).toHaveBeenCalledWith('/login')
   })
 
-  it.skip('Should call onClose through ref`s openMenu when isOpen is true', () => {
+  it('Should call onClose through ref`s openMenu when isOpen is true', () => {
     const onOpen = jest.fn()
     const onClose = jest.fn()
-
-    const { ref } = setup()
 
     jest
       .spyOn(Drawer, 'useDisclosure')
       .mockImplementation(() => ({ onOpen, onClose, isOpen: true } as any))
 
+    const { ref } = setup()
+
     ref.current?.openMenu()
     expect(onClose).toHaveBeenCalledWith()
   })
 
-  it.skip('Should call onOpen through ref`s openMenu when isOpen is false', () => {
+  it('Should call onOpen through ref`s openMenu when isOpen is false', () => {
     const onOpen = jest.fn()
     const onClose = jest.fn()
-
-    const { ref } = setup()
 
     jest
       .spyOn(Drawer, 'useDisclosure')
       .mockImplementation(() => ({ onOpen, onClose, isOpen: false } as any))
+
+    const { ref } = setup()
 
     ref.current?.openMenu()
     expect(onOpen).toHaveBeenCalledWith()
