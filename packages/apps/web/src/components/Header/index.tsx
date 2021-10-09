@@ -1,11 +1,12 @@
 import React, { useCallback, useRef } from 'react'
 
 import Headroom from 'react-headroom'
-import { Question, Bell, List as HamburgerMenu } from 'phosphor-react'
 
-import { useTheme } from '@psdhub/common/layout/styles'
 import { useMediaQuery } from '@psdhub/common/hooks'
-import { MenuList, Menu, MenuButton } from '@psdhub/common/components/Menu'
+import {
+  Question,
+  List as HamburgerMenu
+} from '@psdhub/common/components/Icons'
 import { Box } from '@psdhub/common/components'
 
 import history from '~/services/history'
@@ -15,9 +16,9 @@ import MenuBar from '~/components/MenuBar'
 import { NotificationProps } from '~/hooks/useNotifications'
 
 import GlobalStyle from './styles'
+import NotificationButton from './components/NotificationButton'
 import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
 import { SchoolLabel, HeaderButton } from './components'
-import { Dropdown } from '../NotificationHistory/components'
 import ModalSignOut, { ModalHandler } from '../ModalSignOut/ModalSignOut'
 import { RefMenuProps } from '../MenuBar/components/Desktop'
 import LogoOn from '../LogoOn'
@@ -34,7 +35,6 @@ const Header: React.FC<HeaderProps> = ({
   notifications
 }) => {
   const menuRef = useRef<RefMenuProps>(null)
-  const { colors } = useTheme()
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
   const modalRef = useRef<ModalHandler>(null)
@@ -76,26 +76,9 @@ const Header: React.FC<HeaderProps> = ({
           </Box>
           <Box w="50%" d="flex" justifyContent="flex-end">
             <HeaderButton as={Question} onClick={() => console.log('click')} />
-            <Menu placement="bottom-end">
-              <MenuButton
-                as={Bell}
-                size="1.6rem"
-                style={{
-                  color: colors.blue[500],
-                  marginRight: '0.5rem',
-                  marginTop: '0.1rem',
-                  cursor: 'pointer'
-                }}
-              />
-              <MenuList
-                position="relative"
-                left="1"
-                p="0"
-                w={['16rem', '25rem', '25rem', '26rem']}
-              >
-                <Dropdown markAllAsRead={() => null} />
-              </MenuList>
-            </Menu>
+            <NotificationButton
+              count={notifications.quantityNewNotifications}
+            />
             <HeaderButton children="Sair" onClick={openModal} />
             <ModalSignOut ref={modalRef} />
           </Box>
