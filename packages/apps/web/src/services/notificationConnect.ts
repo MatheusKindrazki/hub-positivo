@@ -1,4 +1,5 @@
 import * as Yup from 'yup'
+import { debounce } from 'ts-debounce'
 import { parseISO } from 'date-fns'
 
 import { Notification } from '~/store/modules/notifications/types'
@@ -14,8 +15,11 @@ import {
 interface NotificationConnect {
   (notifications: Notification): void
 }
+interface NotificationInstance {
+  (instance: HubConnection): void
+}
 
-export interface UserInfo {
+interface UserInfo {
   idUsuario: string
   idEscola: string
   perfil: string
@@ -31,12 +35,13 @@ const notificationSchema = Yup.object().shape({
 
 let activeConnection: HubConnection
 
-const userSlugCompare = ''
+let userSlugCompare = ''
 
-async function notificationConnect(
+async function notificationConnectFn(
   user: UserInfo,
   token: string,
-  data: NotificationConnect
+  data: NotificationConnect,
+  instance?: NotificationInstance
 ): Promise<void> {
   try {
     const { HeaderNotification } = stringSubscriptions
@@ -51,12 +56,12 @@ async function notificationConnect(
 
     if (activeConnection) {
       activeConnection.off(HeaderNotification)
+      activeConnection.stop()
     }
 
     const connect = await createNotificationConnection(url, token)
 
     activeConnection = connect
-
     activeConnection.on(
       HeaderNotification,
       (id, title, message, url, origin, expirationDate) =>
@@ -70,6 +75,10 @@ async function notificationConnect(
           new: true
         })
     )
+
+    userSlugCompare = newUserSlug
+
+    instance && instance(activeConnection)
   } catch (error) {
     noticeError(error as Error)
   }
@@ -99,4 +108,21 @@ function createNewUserSlug(data: UserInfo): string {
 
   return createSlug(userString)
 }
-export { notificationConnect }
+
+function disconnect(activeConnection?: HubConnection): void {
+  if (activeConnection) {
+    const { HeaderNotification } = stringSubscriptions
+
+    activeConnection.off(HeaderNotification)
+    activeConnection.stop()
+
+    userSlugCompare = ''
+  }
+}
+
+// Garante que durante o a montagem do componente, a conexão não seja feita duas vezes
+const notificationConnect = debounce(notificationConnectFn, 3000)
+
+export type { HubConnection, UserInfo }
+
+export { notificationConnect, disconnect }

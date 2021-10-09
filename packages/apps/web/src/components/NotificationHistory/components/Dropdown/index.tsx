@@ -2,18 +2,17 @@ import React from 'react'
 
 import { Header, Container } from '..'
 
-import { useSelector } from 'react-redux'
+import { Notification } from '~/store/modules/notifications/types'
 
 import { Box, Text } from '@psdhub/common/components'
 
 import { Container as BoxUI } from './styles'
 export interface DropDownProps {
   markAllAsRead: () => void
+  messages: Notification[]
 }
 
-const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead }) => {
-  const { history } = useSelector((state: Store.State) => state.notifications)
-  console.log('history:', history)
+const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead, messages }) => {
   return (
     <Box maxW="26rem" borderRadius="8px" w="100%">
       <Header title="Notificações" markAllAsRead={markAllAsRead} />
@@ -37,7 +36,7 @@ const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead }) => {
             </Text>
           </Box>
         )}
-        {history?.map(notification => (
+        {messages?.map(notification => (
           <Container
             key={notification.id}
             isNew={notification.new || false}

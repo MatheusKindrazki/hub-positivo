@@ -6,22 +6,25 @@ import { Box } from '@psdhub/common/components'
 
 import { Dropdown } from '~/components/NotificationHistory/components'
 
+import { NotificationProps } from '~/hooks/useNotifications'
+
 import { ButtonContainer } from './styles'
 
-interface NotificationButtonProps {
-  count: number
-}
+const NotificationButton: React.FC<NotificationProps> = props => {
+  const { notifications, quantityNewNotifications } = props
 
-const NotificationButton: React.FC<NotificationButtonProps> = ({ count }) => {
   const div = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    div.current?.style.setProperty('--quantity-notifications', count.toString())
-  }, [count])
+    div.current?.style.setProperty(
+      '--quantity-notifications',
+      quantityNewNotifications.toString()
+    )
+  }, [quantityNewNotifications])
 
   return (
     <Menu placement="bottom-end">
-      <ButtonContainer ref={div} hasNew={!!count}>
+      <ButtonContainer ref={div} hasNew={!!quantityNewNotifications}>
         <Box as={Bell} size="1.6rem" />
       </ButtonContainer>
       <MenuList
@@ -30,7 +33,7 @@ const NotificationButton: React.FC<NotificationButtonProps> = ({ count }) => {
         p="0"
         w={['16rem', '25rem', '25rem', '26rem']}
       >
-        <Dropdown markAllAsRead={() => null} />
+        <Dropdown messages={notifications} markAllAsRead={() => null} />
       </MenuList>
     </Menu>
   )

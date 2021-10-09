@@ -43,8 +43,6 @@ const Header: React.FC<HeaderProps> = ({
     modalRef.current?.onOpen()
   }, [])
 
-  console.log(notifications)
-
   return (
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
       <MenuBar menuRef={menuRef} />
@@ -76,9 +74,7 @@ const Header: React.FC<HeaderProps> = ({
           </Box>
           <Box w="50%" d="flex" justifyContent="flex-end">
             <HeaderButton as={Question} onClick={() => console.log('click')} />
-            <NotificationButton
-              count={notifications.quantityNewNotifications}
-            />
+            <NotificationButton {...notifications} />
             <HeaderButton children="Sair" onClick={openModal} />
             <ModalSignOut ref={modalRef} />
           </Box>

@@ -5,7 +5,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Notification } from '~/store/modules/notifications/types'
 import { notificationsRequest } from '~/store/modules/notifications/actions'
 
-import { notificationConnect } from '~/services/notificationConnect'
+import {
+  notificationConnect,
+  disconnect,
+  HubConnection
+} from '~/services/notificationConnect'
 export interface NotificationProps {
   quantityNewNotifications: number
   notifications: Notification[]
@@ -39,6 +43,8 @@ function useNotifications(): NotificationProps {
   useEffect(() => {
     if (loading) return
 
+    let activeInstance: HubConnection
+
     notificationConnect(
       {
         idEscola: school?.value as string,
@@ -49,8 +55,13 @@ function useNotifications(): NotificationProps {
       reduced_token as string,
       message => {
         setMessages(messages => [...messages, message])
+      },
+      (instance: HubConnection) => {
+        activeInstance = instance
       }
     )
+
+    return () => disconnect(activeInstance)
   }, [guid, level, reduced_token, school, loading, info])
 
   const quantityNewNotifications = useMemo(() => {

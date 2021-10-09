@@ -23,7 +23,7 @@ export const ButtonContainer = styled(MenuButton)<Props>`
     width: 0rem;
     height: 0rem;
     top: -0.2rem;
-    right: -15px;
+    right: -17px;
     background-color: ${props => props.theme.colors.blue[500]};
     border-radius: 100%;
     font-size: 10px;
@@ -43,7 +43,7 @@ export const ButtonContainer = styled(MenuButton)<Props>`
     css`
       position: relative;
       width: fit-content;
-      margin-right: 1.4rem;
+      margin-right: 1.5rem;
       transform: scale(1.1);
       &:after {
         width: 1.2rem;
