@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-export const TERM_VERSION = process.env.REACT_APP_TERM_VERSION || '1.0.0'
+export const TERM_VERSION = process.env.REACT_APP_TERM_VERSION || '2.0.0'
 
 export const Actions = {
   TERMS_REQUEST: '@acceptTerms/TERMS_REQUEST',

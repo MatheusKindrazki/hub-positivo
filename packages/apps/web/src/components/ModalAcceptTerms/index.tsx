@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
+import { useLocation } from 'react-router-dom'
+
 import { useSelector, useDispatch } from 'react-redux'
 
 import { signOut } from '~/store/modules/auth/actions'
@@ -14,9 +16,15 @@ import {
 } from '@psdhub/common/components/Alert'
 import { Box, Button, Text, Checkbox } from '@psdhub/common/components'
 
+import history from '~/services/history'
+
 import GlobalStyles from './styles'
 
+const IGNORE_PATH = '/politica-de-privacidade'
+
 const ModalAcceptTerms: React.FC = () => {
+  const { pathname } = useLocation()
+
   const [accept, setAccept] = useState(false)
 
   const dispatch = useDispatch()
@@ -30,10 +38,18 @@ const ModalAcceptTerms: React.FC = () => {
   })
 
   useEffect(() => {
+    if (pathname === IGNORE_PATH) {
+      if (isOpen) {
+        onClose()
+      }
+
+      return
+    }
+
     if (!accepted && checking) {
       onOpen()
     }
-  }, [accepted, onOpen, checking])
+  }, [accepted, onOpen, checking, pathname, isOpen, onClose])
 
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
@@ -78,6 +94,7 @@ const ModalAcceptTerms: React.FC = () => {
             borderWidth="2px"
             w="100%"
             h="48px"
+            onClick={() => history.push('/politica-de-privacidade')}
           >
             política de privacidade
           </Button>
