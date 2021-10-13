@@ -5,6 +5,7 @@ import { debounce } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { openTour, postTourViewed } from '~/store/modules/tour/actions'
+import { checkTermsRequest } from '~/store/modules/acceptTerms/actions'
 
 import Tour from '@psdhub/common/components/Tour'
 import { BarLoader } from '@psdhub/common/components'
@@ -33,11 +34,7 @@ const Dashboard: React.FC = ({ children }) => {
   const { nobreak } = useSelector((state: Store.State) => state.noBreakAccess)
 
   const { school } = useSelector((state: Store.State) => state.user)
-  const { guid } = useSelector((state: Store.State) => state.profile)
-  initChatbot({
-    school: school?.value as string,
-    profile: guid
-  })
+  const { accepted } = useSelector((state: Store.State) => state.acceptTerms)
 
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
@@ -51,6 +48,11 @@ const Dashboard: React.FC = ({ children }) => {
 
     dispatch(postTourViewed())
   }, [dispatch, viewed])
+  useEffect(() => {
+    if (accepted) return
+
+    dispatch(checkTermsRequest())
+  }, [accepted, dispatch])
 
   return (
     <Container>
