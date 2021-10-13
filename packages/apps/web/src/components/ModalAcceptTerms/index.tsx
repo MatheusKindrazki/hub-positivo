@@ -28,7 +28,7 @@ const ModalAcceptTerms: React.FC = () => {
   const { isOpen, onOpen } = useDisclosure()
 
   useEffect(() => {
-    if (!accepted && !checking) {
+    if (!accepted && checking) {
       onOpen()
     }
   }, [accepted, onOpen, checking])
