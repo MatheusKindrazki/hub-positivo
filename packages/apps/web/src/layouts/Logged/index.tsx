@@ -13,6 +13,7 @@ import setUserProperties from '~/services/mixpanel/setProperties'
 
 import ModalNoClass from '~/components/ModalNoClass'
 import ModalAlternativeAccess from '~/components/ModalAlternativeAccess'
+import ModalAcceptTerms from '~/components/ModalAcceptTerms'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 
@@ -42,6 +43,7 @@ const Dashboard: React.FC = ({ children }) => {
   return (
     <Container>
       <ModalNoClass />
+      <ModalAcceptTerms />
       <BarLoader height="4px" loading={loading} />
       {steps?.length && (
         <Tour onClosed={handleClosedTour} open={open} steps={steps} />
