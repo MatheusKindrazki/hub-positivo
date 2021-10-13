@@ -1,15 +1,30 @@
 import React from 'react'
 
-import { Table } from '@psdhub/common/components'
+import { ArrowLeft } from '@psdhub/common/components/Icons'
+import { Table, Button, Box } from '@psdhub/common/components'
+
+import history from '~/services/history'
 
 import { Container, Main } from './styles'
-
-// h1 => h2 =>  h3 => h4 => p
 
 const PrivacyPolicy: React.FC = () => {
   return (
     <Container>
-      <h1>POLÍTICA DE PRIVACIDADE</h1>
+      <Box d="flex" alignItems="center">
+        <Button
+          cursor="pointer"
+          as={ArrowLeft}
+          onClick={() => {
+            history.push('/')
+          }}
+          variant="ghost"
+          color="blue.500"
+          size="sm"
+        >
+          voltar
+        </Button>
+        <h1>POLÍTICA DE PRIVACIDADE</h1>
+      </Box>
 
       <Main>
         <p>
