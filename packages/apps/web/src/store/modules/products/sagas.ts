@@ -10,7 +10,7 @@ import { getInstance, statusCodeCondition } from '@psdhub/api'
 
 import { CardProduct } from './types'
 import { Actions, productSuccess } from './actions'
-import { mhundArvoreIntegration } from '../productIntegrations/actions'
+// import { mhundArvoreIntegration } from '../productIntegrations/actions'
 import { noBreakAccessEnable } from '../noBreakAccess/actions'
 import { enableRefreshTokenMiddleware, loading } from '../global/actions'
 import { withoutAccess } from '../auth/actions'
@@ -73,7 +73,7 @@ export function* getProducts(): Generator {
     })
   )
 
-  yield put(mhundArvoreIntegration())
+  // yield put(mhundArvoreIntegration())
 
   // Aguarda os cards em tela para buscar o tour
   yield delay(1000)
