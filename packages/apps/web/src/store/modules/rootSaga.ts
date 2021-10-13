@@ -14,12 +14,14 @@ import category from './category/sagas'
 import authProduct from './authProduct/sagas'
 import auth from './auth/sagas'
 import accessControl from './accessControl/sagas'
+import acceptTerms from './acceptTerms/sagas'
 
 export default function* rootSaga(): Generator {
   return yield all([
     auth,
     user,
     authProduct,
+    acceptTerms,
     forgotPassword,
     educationalStage,
     productIntegrations,

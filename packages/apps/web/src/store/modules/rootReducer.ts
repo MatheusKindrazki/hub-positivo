@@ -21,6 +21,7 @@ import educationalStage from './educationalStage/reducer'
 import category from './category/reducer'
 import authProduct from './authProduct/reducer'
 import auth from './auth/reducer'
+import acceptTerms from './acceptTerms/reducer'
 
 export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
   return combineReducers({
@@ -28,6 +29,7 @@ export default (history: History): Reducer<CombinedState<any>, AnyAction> => {
     user,
     profile,
     products,
+    acceptTerms,
     global,
     educationalStage,
     tour,

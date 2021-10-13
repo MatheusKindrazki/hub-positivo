@@ -13,6 +13,7 @@ import { EducationReducer } from './modules/educationalStage/types'
 import { CategoryReducer } from './modules/category/types'
 import { AuthReducer as AuthProductReducer } from './modules/authProduct/types'
 import { AuthReducer } from './modules/auth/types'
+import { AcceptTermsState } from './modules/acceptTerms/types'
 interface ApplicationState {
   auth: AuthReducer
   profile: ProfileReducer
@@ -29,6 +30,7 @@ interface ApplicationState {
   school: SchoolReducer
   noBreakAccess: NoBreakReducer
   permissions: PermissionsReducer
+  acceptTerms: AcceptTermsState
 }
 declare global {
   declare namespace Store {
