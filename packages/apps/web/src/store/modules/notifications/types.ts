@@ -1,3 +1,5 @@
+import { Payload } from 'redux-saga/effects'
+
 export type ApiNotification = {
   id: string
   titulo: string
@@ -30,3 +32,5 @@ export interface NotificationReducer {
   loading: boolean
   history?: Notification[]
 }
+
+export type PutNotificationPayload = Payload<{ notificationId: string }>

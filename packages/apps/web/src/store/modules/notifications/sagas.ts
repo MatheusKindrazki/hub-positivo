@@ -10,8 +10,15 @@ import { getInstance } from '@psdhub/api'
 
 import prepareNotificationData from '~/utils/formatData/prepareNotificationData'
 
-import { NotificationApiResponse } from './types'
-import { Actions, notificationsFailure, notificationsSuccess } from './actions'
+import { NotificationApiResponse, PutNotificationPayload } from './types'
+import {
+  Actions,
+  notificationsFailure,
+  notificationsSuccess,
+  notificationPutFailure,
+  notificationPutSuccess
+} from './actions'
+
 export function* getNotifications(): Generator {
   const { profile } = store.getState().profile
   const { level } = store.getState().educationalStage
@@ -46,4 +53,29 @@ export function* getNotifications(): Generator {
   return yield put(notificationsSuccess(formattedNotificationHistory))
 }
 
-export default all([takeLatest(Actions.GET_REQUEST, getNotifications)])
+export function* putNotification({
+  payload
+}: PutNotificationPayload): Generator {
+  const { notificationId } = payload
+
+  yield put(loading(true))
+
+  const api = getInstance('notification')
+
+  const response = yield call(() =>
+    api.put(`notification/PositivoOn/idNotificacao?=${notificationId}`)
+  )
+
+  const { ok } = response as ApiResponse<NotificationApiResponse>
+  if (!ok) {
+    toast.error('Erro ao marcar esta notificação como lida')
+    return yield put(notificationPutFailure())
+  }
+
+  return yield put(notificationPutSuccess())
+}
+
+export default all([
+  takeLatest(Actions.GET_REQUEST, getNotifications),
+  takeLatest(Actions.PUT_REQUEST, putNotification)
+])
