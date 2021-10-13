@@ -24,12 +24,15 @@ const acceptTerms: ReturnReducer = (state = INITIAL_STATE, action) => {
       case Actions.TERMS_SUCCESS: {
         draft.loading = false
         draft.accepted = true
+        draft.checking = true
         break
       }
 
+      // mesmo que a api falhe, precisamos deixar o usuário passar
       case Actions.TERMS_FAILURE: {
         draft.loading = false
         draft.accepted = true
+        draft.checking = true
         break
       }
       default:

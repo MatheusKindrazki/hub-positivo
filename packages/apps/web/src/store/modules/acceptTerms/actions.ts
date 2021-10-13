@@ -1,5 +1,7 @@
 import { Action } from 'redux'
 
+export const TERM_VERSION = '1.0.0'
+
 export const Actions = {
   TERMS_REQUEST: '@acceptTerms/TERMS_REQUEST',
   TERMS_SUCCESS: '@acceptTerms/TERMS_SUCCESS',

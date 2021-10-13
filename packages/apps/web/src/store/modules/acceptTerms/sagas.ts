@@ -2,15 +2,32 @@ import { ApiResponse } from 'apisauce'
 
 import { all, takeLatest, call, put } from 'redux-saga/effects'
 
+import { store } from '~/store'
+
 import api from '@psdhub/api'
 
-import { Actions, acceptTermsFailure, acceptTermsSuccess } from './actions'
+import {
+  Actions,
+  acceptTermsFailure,
+  acceptTermsSuccess,
+  TERM_VERSION
+} from './actions'
 
 export function* acceptTerms(): Generator {
+  const { reduced_token } = store.getState().auth
+
   const response = yield call(() => {
-    return api.post('/conta/TermosDeUso/MarcarLeitura', {
-      versaoLida: '1.0.0'
-    })
+    return api.post(
+      '/conta/TermosDeUso/MarcarLeitura',
+      {
+        versaoLida: TERM_VERSION
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${reduced_token}`
+        }
+      }
+    )
   })
 
   const { ok } = response as ApiResponse<unknown>
