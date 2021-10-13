@@ -7,8 +7,6 @@ export const Actions = {
   TERMS_SUCCESS: '@acceptTerms/TERMS_SUCCESS',
   TERMS_FAILURE: '@acceptTerms/TERMS_FAILURE',
 
-  SIGN_OUT: '@auth/SIGN_OUT',
-
   CHECK_TERMS_REQUEST: '@acceptTerms/CHECK_TERMS_REQUEST',
   CHECK_TERMS_SUCCESS: '@acceptTerms/CHECK_TERMS_SUCCESS',
   CHECK_TERMS_FAILURE: '@acceptTerms/CHECK_TERMS_FAILURE'

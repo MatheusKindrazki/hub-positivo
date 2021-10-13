@@ -56,7 +56,8 @@ const ModalAcceptTerms: React.FC = () => {
 
   const handleAcceptTerms = useCallback(() => {
     dispatch(acceptTermsRequest())
-  }, [dispatch])
+    onClose()
+  }, [accept, dispatch, onClose])
 
   return (
     <>
