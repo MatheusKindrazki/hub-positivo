@@ -18,9 +18,10 @@ export function checkTermsRequest(): Action {
   }
 }
 
-export function checkTermsSuccess(): Action {
+export function checkTermsSuccess(checking: boolean): Action {
   return {
-    type: Actions.CHECK_TERMS_SUCCESS
+    type: Actions.CHECK_TERMS_SUCCESS,
+    payload: checking
   }
 }
 

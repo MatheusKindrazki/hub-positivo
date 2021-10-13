@@ -9,25 +9,37 @@ import api from '@psdhub/api'
 import {
   Actions,
   acceptTermsFailure,
+  checkTermsFailure,
+  checkTermsSuccess,
   acceptTermsSuccess,
   TERM_VERSION
 } from './actions'
 
-export function* acceptTerms(): Generator {
+export function* checkingTerms(): Generator {
   const { reduced_token } = store.getState().auth
 
+  api.setHeader('Authorization', `Bearer ${reduced_token}`)
+
   const response = yield call(() => {
-    return api.post(
-      '/conta/TermosDeUso/MarcarLeitura',
-      {
-        versaoLida: TERM_VERSION
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${reduced_token}`
-        }
-      }
-    )
+    return api.get('/conta/TermosDeUso/ConsultarLeitura')
+  })
+
+  const { ok, data } = response as ApiResponse<{ versaoLida: string }[]>
+
+  const accepted = data?.some(({ versaoLida }) => versaoLida === TERM_VERSION)
+
+  if (!ok) {
+    return yield put(checkTermsFailure())
+  }
+
+  return yield put(checkTermsSuccess(accepted || false))
+}
+
+export function* acceptTerms(): Generator {
+  const response = yield call(() => {
+    return api.post('/conta/TermosDeUso/MarcarLeitura', {
+      versaoLida: TERM_VERSION
+    })
   })
 
   const { ok } = response as ApiResponse<unknown>
@@ -39,4 +51,7 @@ export function* acceptTerms(): Generator {
   return yield put(acceptTermsSuccess())
 }
 
-export default all([takeLatest(Actions.TERMS_REQUEST, acceptTerms)])
+export default all([
+  takeLatest(Actions.TERMS_REQUEST, acceptTerms),
+  takeLatest(Actions.CHECK_TERMS_REQUEST, checkingTerms)
+])
