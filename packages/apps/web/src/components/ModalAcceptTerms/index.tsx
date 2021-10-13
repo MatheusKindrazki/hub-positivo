@@ -71,7 +71,7 @@ const ModalAcceptTerms: React.FC = () => {
         className="modal-politica-de-privacidade"
         maxW={isDesktop ? '26.5rem' : '20rem'}
         isOpen={isOpen}
-        onClose={() => console.log('')}
+        onClose={/* istanbul ignore next */ () => console.log('')}
       >
         <Box
           d="flex"
