@@ -8,6 +8,7 @@ import { Actions } from './actions'
 export const INITIAL_STATE: AcceptTermsState = {
   loading: false,
   accepted: false,
+  firstCall: false,
   checking: false
 }
 
@@ -30,6 +31,7 @@ const acceptTerms: ReturnReducer = (state = INITIAL_STATE, action) => {
 
       case Actions.CHECK_TERMS_SUCCESS: {
         draft.checking = true
+        draft.firstCall = true
         draft.accepted = action.payload
         break
       }

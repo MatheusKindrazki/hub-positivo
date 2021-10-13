@@ -1,6 +1,6 @@
 import { ApiResponse } from 'apisauce'
 
-import { all, takeLatest, call, put } from 'redux-saga/effects'
+import { all, takeLatest, call, delay, put } from 'redux-saga/effects'
 
 import { store } from '~/store'
 
@@ -17,8 +17,13 @@ import {
 
 export function* checkingTerms(): Generator {
   const { reduced_token } = store.getState().auth
+  const { firstCall } = store.getState().acceptTerms
+
+  if (firstCall) return
 
   api.setHeader('Authorization', `Bearer ${reduced_token}`)
+
+  yield delay(1000)
 
   const response = yield call(() => {
     return api.get('/conta/TermosDeUso/ConsultarLeitura')

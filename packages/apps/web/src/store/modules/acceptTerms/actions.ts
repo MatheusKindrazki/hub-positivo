@@ -1,15 +1,15 @@
 import { Action } from 'redux'
 
-export const TERM_VERSION = '1.0.0'
+export const TERM_VERSION = process.env.REACT_APP_TERM_VERSION || '1.0.0'
 
 export const Actions = {
   TERMS_REQUEST: '@acceptTerms/TERMS_REQUEST',
   TERMS_SUCCESS: '@acceptTerms/TERMS_SUCCESS',
   TERMS_FAILURE: '@acceptTerms/TERMS_FAILURE',
 
-  CHECK_TERMS_REQUEST: '@acceptTerms/TERMS_REQUEST',
-  CHECK_TERMS_SUCCESS: '@acceptTerms/TERMS_SUCCESS',
-  CHECK_TERMS_FAILURE: '@acceptTerms/TERMS_FAILURE'
+  CHECK_TERMS_REQUEST: '@acceptTerms/CHECK_TERMS_REQUEST',
+  CHECK_TERMS_SUCCESS: '@acceptTerms/CHECK_TERMS_SUCCESS',
+  CHECK_TERMS_FAILURE: '@acceptTerms/CHECK_TERMS_FAILURE'
 }
 
 export function checkTermsRequest(): Action {

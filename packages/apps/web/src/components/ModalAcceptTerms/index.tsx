@@ -25,7 +25,9 @@ const ModalAcceptTerms: React.FC = () => {
     (state: Store.State) => state.acceptTerms
   )
 
-  const { isOpen, onOpen } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure({
+    defaultIsOpen: !accepted && checking
+  })
 
   useEffect(() => {
     if (!accepted && checking) {
@@ -41,7 +43,8 @@ const ModalAcceptTerms: React.FC = () => {
     }
 
     dispatch(acceptTermsRequest())
-  }, [accept, dispatch])
+    onClose()
+  }, [accept, dispatch, onClose])
 
   return (
     <>
@@ -105,6 +108,7 @@ const ModalAcceptTerms: React.FC = () => {
             colorScheme="blue"
             w="100%"
             h="48px"
+            type="button"
             onClick={handleAcceptTerms}
           >
             CONCLUIR

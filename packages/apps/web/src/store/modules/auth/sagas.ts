@@ -13,6 +13,7 @@ import {
   enableRefreshTokenMiddleware
 } from '~/store/modules/global/actions'
 import { setSigned, signInRequestLoading } from '~/store/modules/auth/actions'
+import { checkTermsRequest } from '~/store/modules/acceptTerms/actions'
 import { store } from '~/store'
 
 import capitalize from '@psdhub/common/utils/capitalize'
@@ -196,6 +197,8 @@ export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
 
     history.push(redirect)
   }
+
+  yield put(checkTermsRequest())
 }
 
 /*
@@ -246,6 +249,8 @@ export function* checkingExpiringToken({
 
   // ? Identifica o usuário no mixpanel
   mixpanelIdentifyUser({ guid: user.guid })
+
+  yield put(checkTermsRequest())
 
   return yield put(productRequest({}))
 }
