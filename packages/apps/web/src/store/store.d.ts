@@ -33,6 +33,7 @@ interface ApplicationState {
   permissions: PermissionsReducer
   acceptTerms: AcceptTermsState
   notifications: NotificationReducer
+  acceptTerms: AcceptTermsState
 }
 declare global {
   declare namespace Store {
