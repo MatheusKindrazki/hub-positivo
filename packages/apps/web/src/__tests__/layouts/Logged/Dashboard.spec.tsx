@@ -18,6 +18,10 @@ jest.mock('~/components/ModalAcceptTerms', () =>
   jest.fn(() => <div id="modal">Modal</div>)
 )
 
+jest.mock('~/components/ModalAcceptTerms', () =>
+  jest.fn(() => <div id="modal">Modal</div>)
+)
+
 jest.mock('lodash', () => {
   const rest = jest.requireActual('lodash')
   return {

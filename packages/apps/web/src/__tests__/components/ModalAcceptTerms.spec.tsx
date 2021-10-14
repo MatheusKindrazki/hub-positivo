@@ -14,7 +14,7 @@ import * as hooks from '@psdhub/common/hooks'
 
 import history from '~/services/history'
 
-import ModalAceptTerms from '~/components/ModalAcceptTerms'
+import ModalAcceptTerms from '~/components/ModalAcceptTerms'
 
 jest.mock('react-router-dom', () => {
   return {
@@ -23,7 +23,7 @@ jest.mock('react-router-dom', () => {
   }
 })
 
-describe('ModalAceptTerms component should work properly', () => {
+describe('ModalAcceptTerms component should work properly', () => {
   beforeEach(() => jest.clearAllMocks())
   const onClose = jest.fn()
   const onOpen = jest.fn()
@@ -35,7 +35,7 @@ describe('ModalAceptTerms component should work properly', () => {
   } as any)
 
   it('Should match snapshot by default', () => {
-    const wrapper = render(<ModalAceptTerms />, {
+    const wrapper = render(<ModalAcceptTerms />, {
       store: store,
       reducers: ['acceptTerms'],
       CUSTOM_STATE: {
@@ -54,7 +54,7 @@ describe('ModalAceptTerms component should work properly', () => {
 
     matchmedia.useMediaQuery('(min-width: 480px)')
 
-    const wrapper = render(<ModalAceptTerms />, {
+    const wrapper = render(<ModalAcceptTerms />, {
       store: store,
       reducers: ['acceptTerms'],
       CUSTOM_STATE: {
@@ -73,7 +73,7 @@ describe('ModalAceptTerms component should work properly', () => {
 
     jest.spyOn(redux, 'useDispatch').mockReturnValue(dispatch)
 
-    const { getByText } = render(<ModalAceptTerms />, {
+    const { getByText } = render(<ModalAcceptTerms />, {
       store: store,
       reducers: ['acceptTerms'],
       CUSTOM_STATE: {
@@ -101,7 +101,7 @@ describe('ModalAceptTerms component should work properly', () => {
 
     jest.spyOn(redux, 'useDispatch').mockReturnValue(dispatch)
 
-    const { getByText } = render(<ModalAceptTerms />, {
+    const { getByText } = render(<ModalAcceptTerms />, {
       store: store,
       reducers: ['acceptTerms'],
       CUSTOM_STATE: {
@@ -125,7 +125,7 @@ describe('ModalAceptTerms component should work properly', () => {
       pathname: IGNORE_PATH
     } as any)
 
-    render(<ModalAceptTerms />, {
+    render(<ModalAcceptTerms />, {
       store: store,
       reducers: ['acceptTerms'],
       CUSTOM_STATE: {
@@ -139,8 +139,34 @@ describe('ModalAceptTerms component should work properly', () => {
     expect(onClose).toHaveBeenCalled()
   })
 
+  it('useEffect shouldnt do nothing when pathname is on ignore list and modal is closed', async () => {
+    const IGNORE_PATH = '/politica-de-privacidade'
+
+    jest.spyOn(router, 'useLocation').mockReturnValueOnce({
+      pathname: IGNORE_PATH
+    } as any)
+
+    jest.spyOn(hooks, 'useDisclosure').mockReturnValueOnce({
+      isOpen: false
+    } as any)
+
+    render(<ModalAcceptTerms />, {
+      store: store,
+      reducers: ['acceptTerms'],
+      CUSTOM_STATE: {
+        acceptTerms: {
+          accepted: false,
+          checking: false
+        }
+      }
+    })
+
+    expect(onClose).not.toHaveBeenCalled()
+    expect(onOpen).not.toHaveBeenCalled()
+  })
+
   it('should open modal when accepted is false and checking is true', async () => {
-    render(<ModalAceptTerms />, {
+    render(<ModalAcceptTerms />, {
       store: store,
       reducers: ['acceptTerms'],
       CUSTOM_STATE: {
@@ -157,7 +183,7 @@ describe('ModalAceptTerms component should work properly', () => {
   it('should redirect user whe política de privacidade button is clicked', async () => {
     const spyPush = jest.spyOn(history, 'push')
 
-    const { getByRole } = render(<ModalAceptTerms />, {
+    const { getByRole } = render(<ModalAcceptTerms />, {
       store: store,
       reducers: ['acceptTerms'],
       CUSTOM_STATE: {
@@ -190,7 +216,7 @@ describe('ModalAceptTerms component should work properly', () => {
       onOpen: jest.fn()
     } as any)
 
-    render(<ModalAceptTerms />, {
+    render(<ModalAcceptTerms />, {
       store: store,
       reducers: ['acceptTerms'],
       CUSTOM_STATE: {
