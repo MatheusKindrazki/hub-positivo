@@ -18,13 +18,11 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <>
-      <Box p="0" d="flex" flexDir="row">
-        <Text fontSize="1.25rem" fontWeight="700" {...props}>
+      <Box p="0" d="flex" flexDir="row" justifyContent="space-between">
+        <Text fontSize="1.25rem" fontWeight="700" {...props} w="90%">
           {name}
         </Text>
-        {closeButton && (
-          <DrawerCloseButton right="1" position="relative" onClick={onClose} />
-        )}
+        {closeButton && <DrawerCloseButton top="1.38rem" onClick={onClose} />}
       </Box>
     </>
   )
