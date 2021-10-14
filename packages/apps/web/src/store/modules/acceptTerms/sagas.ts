@@ -4,7 +4,7 @@ import { all, takeLatest, call, delay, put } from 'redux-saga/effects'
 
 import { store } from '~/store'
 
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import {
   Actions,
@@ -15,12 +15,13 @@ import {
   TERM_VERSION
 } from './actions'
 
+const api = getInstance()
+
 export function* checkingTerms(): Generator {
   const { reduced_token } = store.getState().auth
   const { firstCall } = store.getState().acceptTerms
 
   if (firstCall) return
-
   api.setHeader('Authorization', `Bearer ${reduced_token}`)
 
   yield delay(1000)

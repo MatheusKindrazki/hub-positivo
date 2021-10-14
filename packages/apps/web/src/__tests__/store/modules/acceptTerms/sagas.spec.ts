@@ -3,7 +3,7 @@ import { runSaga } from 'redux-saga'
 import * as sagas from '~/store/modules/acceptTerms/sagas'
 import * as actions from '~/store/modules/acceptTerms/actions'
 
-import api from '@psdhub/api'
+import { getInstance } from '@psdhub/api'
 
 import store from '~/__mocks__/fakeStore.mock'
 
@@ -19,6 +19,8 @@ describe('acceptTerms sagas', () => {
   })
 
   it('Should dispatch acceptTermsSuccess action when api`s returns is an ok: true', async () => {
+    const api = getInstance('default')
+
     const spyApiPost = jest
       .spyOn(api, 'post')
       .mockImplementation(() => Promise.resolve<any>({ ok: true }))
@@ -34,6 +36,8 @@ describe('acceptTerms sagas', () => {
   })
 
   it('Should dispatch acceptTermsFailure action when api`s returns is an ok: false', async () => {
+    const api = getInstance('default')
+
     jest
       .spyOn(api, 'post')
       .mockImplementation(() => Promise.resolve<any>({ ok: false }))
@@ -53,6 +57,8 @@ describe('checkingTerms sagas', () => {
   })
 
   it('Should dispatch checkTermsSuccess action when api`s returns is an ok: true and first call is false', async () => {
+    const api = getInstance('default')
+
     const spyApiGet = jest
       .spyOn(api, 'get')
       .mockImplementation(() =>
@@ -74,6 +80,8 @@ describe('checkingTerms sagas', () => {
   })
 
   it('Should dispatch checkTermsFailure action when api`s returns is an ok: false and first call is false', async () => {
+    const api = getInstance('default')
+
     const spyApiGet = jest
       .spyOn(api, 'get')
       .mockImplementation(() =>
