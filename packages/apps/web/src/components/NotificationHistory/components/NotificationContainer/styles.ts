@@ -15,7 +15,7 @@ export const Flex = styled(FlexUI)<Props>`
     width: 10px;
     height: 10px;
     position: absolute;
-    left: 9px;
+    left: 8px;
     top: 15.5px;
     border: 2px solid white;
     border-radius: 50%;

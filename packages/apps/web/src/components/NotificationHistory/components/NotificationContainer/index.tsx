@@ -35,7 +35,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = props => {
       px="3.5"
     >
       <Box width="95%" d="flex">
-        <Box overflow="hidden" py="2">
+        <Box overflow="hidden" py="2" ml="2">
           <Text
             fontSize={'1rem'}
             fontWeight="700"

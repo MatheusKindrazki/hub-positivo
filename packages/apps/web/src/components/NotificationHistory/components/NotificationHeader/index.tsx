@@ -24,7 +24,7 @@ const NotificationHeader: React.FC<NotificationHeaderProps> = ({
     >
       <Box
         alignSelf="center"
-        px="3.5"
+        px="1.3rem"
         fontWeight="700"
         fontSize={['1.1rem', '1.125rem', '1.5rem']}
         color="#3C3C3C"

@@ -32,7 +32,7 @@ export function* getNotifications(): Generator {
   yield put(loading(true))
 
   const response = yield call(() =>
-    api.get('notification', {
+    api.get('api/notification', {
       perfil: profile,
       nivelEnsino: level,
       aplicacaoDestino: 'PositivoOn'
@@ -63,7 +63,7 @@ export function* putNotification({
   const api = getInstance('notification')
 
   const response = yield call(() =>
-    api.put('notification/PositivoOn/', null, {
+    api.put('api/notification/PositivoOn/', null, {
       params: {
         idNotificacao: notificationIds,
         marcarLido: markAsRead
@@ -74,7 +74,7 @@ export function* putNotification({
   const { ok } = response as ApiResponse<NotificationApiResponse>
 
   if (!ok) {
-    toast.error('Erro ao marcar esta notificação como lida')
+    toast.error('Erro ao marcar notificação como lida')
     return yield put(notificationPutFailure())
   }
 
