@@ -63,10 +63,10 @@ export function* putNotification({
   const api = getInstance('notification')
 
   const response = yield call(() =>
-    api.put('api/notification/PositivoOn/', null, {
+    api.put('api/Notification/MarcarLeitura/PositivoOn', null, {
       params: {
-        idNotificacao: notificationIds,
-        marcarLido: markAsRead
+        marcarLido: markAsRead,
+        idNotificacao: notificationIds
       }
     })
   )
