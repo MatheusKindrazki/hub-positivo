@@ -56,17 +56,23 @@ export function* getNotifications(): Generator {
 export function* putNotification({
   payload
 }: PutNotificationPayload): Generator {
-  const { notificationId } = payload
+  const { notificationIds, markAsRead } = payload
 
   yield put(loading(true))
 
   const api = getInstance('notification')
 
   const response = yield call(() =>
-    api.put(`notification/PositivoOn/idNotificacao?=${notificationId}`)
+    api.put('notification/PositivoOn/', null, {
+      params: {
+        idNotificacao: notificationIds,
+        marcarLido: markAsRead
+      }
+    })
   )
 
   const { ok } = response as ApiResponse<NotificationApiResponse>
+
   if (!ok) {
     toast.error('Erro ao marcar esta notificação como lida')
     return yield put(notificationPutFailure())

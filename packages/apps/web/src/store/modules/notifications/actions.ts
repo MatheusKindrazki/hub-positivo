@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-import { NotificationHistory } from './types'
+import { NotificationHistory, PutNotificationData } from './types'
 
 export const Actions = {
   GET_REQUEST: '@notifications/GET_REQUEST',
@@ -31,12 +31,12 @@ export function notificationsFailure(): Action {
   }
 }
 
-export function notificationPutRequest(notificationId: string): Action {
+export function notificationPutRequest(
+  notificationData: PutNotificationData
+): Action {
   return {
     type: Actions.PUT_REQUEST,
-    payload: {
-      notificationId
-    }
+    payload: notificationData
   }
 }
 

@@ -33,4 +33,9 @@ export interface NotificationReducer {
   history?: Notification[]
 }
 
-export type PutNotificationPayload = Payload<{ notificationId: string }>
+export type PutNotificationData = {
+  notificationIds: string[]
+  markAsRead: boolean
+}
+
+export type PutNotificationPayload = Payload<PutNotificationData>
