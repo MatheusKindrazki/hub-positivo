@@ -1,6 +1,9 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback } from 'react'
+
+import { useDispatch } from 'react-redux'
 
 import { Notification } from '~/store/modules/notifications/types'
+import { notificationPutRequest } from '~/store/modules/notifications/actions'
 
 import { Menu, MenuList, MenuButton } from '@psdhub/common/components/Menu'
 import { DotsThreeVertical } from '@psdhub/common/components/Icons'
@@ -15,7 +18,8 @@ export interface NotificationContainerProps extends Notification {
 }
 
 const NotificationContainer: React.FC<NotificationContainerProps> = props => {
-  const { sentDate, isNew, title, message } = props
+  const { sentDate, isNew, title, message, id } = props
+  const dispatch = useDispatch()
 
   const formattedDate = useMemo(() => {
     return formatDate(sentDate || new Date())
@@ -24,6 +28,18 @@ const NotificationContainer: React.FC<NotificationContainerProps> = props => {
   const opacity = useMemo(() => {
     return isNew ? 0.7 : 1
   }, [isNew])
+
+  const handleMarkAsReadClick = useCallback(
+    (read: boolean) => {
+      dispatch(
+        notificationPutRequest({
+          markAsRead: read,
+          notificationIds: [id]
+        })
+      )
+    },
+    [dispatch, id]
+  )
 
   return (
     <Flex
@@ -75,6 +91,7 @@ const NotificationContainer: React.FC<NotificationContainerProps> = props => {
               cursor="pointer"
               _hover={{ background: 'gray.400' }}
               py="5px"
+              onClick={() => handleMarkAsReadClick(isNew)}
             >
               {isNew ? 'Marcar como lida' : 'Marcar como não lida'}
             </Text>
