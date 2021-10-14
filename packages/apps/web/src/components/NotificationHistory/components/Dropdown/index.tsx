@@ -23,7 +23,7 @@ const Dropdown: React.FC<DropDownProps> = ({ markAllAsRead, messages }) => {
         maxH="25.5rem"
         minH="6rem"
       >
-        {!history && (
+        {!messages && (
           <Box w="100%" px="3.5">
             <Text
               textAlign="center"
