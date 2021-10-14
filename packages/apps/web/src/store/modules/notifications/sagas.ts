@@ -10,7 +10,7 @@ import { getInstance } from '@psdhub/api'
 
 import prepareNotificationData from '~/utils/formatData/prepareNotificationData'
 
-import { NotificationApiResponse, PutNotificationPayload } from './types'
+import { NotificationGetApiResponse, PutNotificationPayload } from './types'
 import {
   Actions,
   notificationsFailure,
@@ -39,7 +39,7 @@ export function* getNotifications(): Generator {
     })
   )
 
-  const { ok, data } = response as ApiResponse<NotificationApiResponse>
+  const { ok, data } = response as ApiResponse<NotificationGetApiResponse>
 
   yield put(loading(false))
 
@@ -71,7 +71,7 @@ export function* putNotification({
     })
   )
 
-  const { ok } = response as ApiResponse<NotificationApiResponse>
+  const { ok } = response as ApiResponse<NotificationGetApiResponse>
 
   if (!ok) {
     toast.error('Erro ao marcar notificação como lida')

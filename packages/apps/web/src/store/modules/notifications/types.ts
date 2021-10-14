@@ -10,7 +10,7 @@ export type ApiNotification = {
   dataExpiracao: Date
 }
 
-export type NotificationApiResponse = {
+export type NotificationGetApiResponse = {
   dados: ApiNotification[]
   sucesso: boolean
 }
