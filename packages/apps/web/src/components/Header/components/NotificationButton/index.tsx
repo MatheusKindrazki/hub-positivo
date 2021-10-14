@@ -1,4 +1,8 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useCallback } from 'react'
+
+import { useDispatch } from 'react-redux'
+
+import { notificationPutRequest } from '~/store/modules/notifications/actions'
 
 import { MenuList, Menu } from '@psdhub/common/components/Menu'
 import { Bell } from '@psdhub/common/components/Icons'
@@ -13,6 +17,8 @@ import { ButtonContainer } from './styles'
 const NotificationButton: React.FC<NotificationProps> = props => {
   const { notifications, quantityNewNotifications } = props
 
+  const dispatch = useDispatch()
+
   const div = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -21,6 +27,11 @@ const NotificationButton: React.FC<NotificationProps> = props => {
       quantityNewNotifications.toString()
     )
   }, [quantityNewNotifications])
+
+  const markAllAsRead = useCallback(() => {
+    const notificationIds = notifications.map(notification => notification.id)
+    dispatch(notificationPutRequest({ notificationIds, markAsRead: true }))
+  }, [dispatch, notifications])
 
   return (
     <Menu placement="bottom-end">
@@ -33,7 +44,7 @@ const NotificationButton: React.FC<NotificationProps> = props => {
         p="0"
         w={['16rem', '25rem', '25rem', '26rem']}
       >
-        <Dropdown messages={notifications} markAllAsRead={() => null} />
+        <Dropdown messages={notifications} markAllAsRead={markAllAsRead} />
       </MenuList>
     </Menu>
   )
