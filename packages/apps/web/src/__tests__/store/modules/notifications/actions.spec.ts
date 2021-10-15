@@ -54,4 +54,53 @@ describe('Action of global history', () => {
 
     expect(resolved).toEqual({ ...mockedType })
   })
+
+  it('Should call the notificationPutRequest action correctly and receive the value within payload', () => {
+    const spy = jest.spyOn(notificationsActions, 'notificationPutRequest')
+
+    const mockedType = {
+      type: '@notifications/PUT_REQUEST',
+      payload: {
+        notificationIds: ['id'],
+        markAsRead: true
+      }
+    }
+
+    const resolved = notificationsActions.notificationPutRequest({
+      markAsRead: true,
+      notificationIds: ['id']
+    })
+
+    expect(spy).toBeCalled()
+
+    expect(resolved).toEqual({ ...mockedType })
+  })
+
+  it('Should call the notificationPutSuccess action correctly and receive the value within payload', () => {
+    const spy = jest.spyOn(notificationsActions, 'notificationPutSuccess')
+
+    const mockedType = {
+      type: '@notifications/PUT_SUCCESS'
+    }
+
+    const resolved = notificationsActions.notificationPutSuccess()
+
+    expect(spy).toBeCalled()
+
+    expect(resolved).toEqual({ ...mockedType })
+  })
+
+  it('Should call the notificationPutFailure action correctly and receive the value within payload', () => {
+    const spy = jest.spyOn(notificationsActions, 'notificationPutFailure')
+
+    const mockedType = {
+      type: '@notifications/PUT_FAILURE'
+    }
+
+    const resolved = notificationsActions.notificationPutFailure()
+
+    expect(spy).toBeCalled()
+
+    expect(resolved).toEqual({ ...mockedType })
+  })
 })
