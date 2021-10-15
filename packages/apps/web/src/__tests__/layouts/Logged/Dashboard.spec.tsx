@@ -15,6 +15,15 @@ jest.mock('react-router-dom', () => ({
     pathname: '/'
   }))
 }))
+jest.mock('~/hooks/useNotifications', () => jest.fn())
+
+jest.mock('~/components/Header', () =>
+  jest.fn(props => (
+    <div onClick={() => props.handleGoBack()} id="header">
+      Header
+    </div>
+  ))
+)
 
 jest.mock('~/components/ModalNoClass', () =>
   jest.fn(() => <div id="modalNoClass">Modal no Class</div>)
@@ -55,13 +64,6 @@ jest.mock('~/components/ModalAlternativeAccess', () => ({
   default: () => <span>Modal Alternative Access</span>
 }))
 
-jest.mock('~/components/Header', () =>
-  jest.fn(props => (
-    <div onClick={() => props.handleGoBack()} id="header">
-      Header
-    </div>
-  ))
-)
 describe('Logged`s layout should render without crashing', () => {
   let steps: StepsTour[] = []
 
