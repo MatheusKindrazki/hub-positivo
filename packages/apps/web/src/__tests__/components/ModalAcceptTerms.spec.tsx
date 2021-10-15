@@ -139,32 +139,6 @@ describe('ModalAceptTerms component should work properly', () => {
     expect(onClose).toHaveBeenCalled()
   })
 
-  it('useEffect shouldnt do nothing when pathname is on ignore list and modal is closed', async () => {
-    const IGNORE_PATH = '/politica-de-privacidade'
-
-    jest.spyOn(router, 'useLocation').mockReturnValueOnce({
-      pathname: IGNORE_PATH
-    } as any)
-
-    jest.spyOn(hooks, 'useDisclosure').mockReturnValueOnce({
-      isOpen: false
-    } as any)
-
-    render(<ModalAceptTerms />, {
-      store: store,
-      reducers: ['acceptTerms'],
-      CUSTOM_STATE: {
-        acceptTerms: {
-          accepted: false,
-          checking: false
-        }
-      }
-    })
-
-    expect(onClose).not.toHaveBeenCalled()
-    expect(onOpen).not.toHaveBeenCalled()
-  })
-
   it('should open modal when accepted is false and checking is true', async () => {
     render(<ModalAceptTerms />, {
       store: store,
@@ -201,5 +175,33 @@ describe('ModalAceptTerms component should work properly', () => {
     fireEvent.click(getByRole('button', { name: 'política de privacidade' }))
 
     expect(spyPush).toHaveBeenCalledWith('/politica-de-privacidade')
+  })
+
+  it('useEffect shouldnt do nothing when pathname is on ignore list and modal is closed', async () => {
+    const IGNORE_PATH = '/politica-de-privacidade'
+
+    jest.spyOn(router, 'useLocation').mockReturnValue({
+      pathname: IGNORE_PATH
+    } as any)
+
+    jest.spyOn(hooks, 'useDisclosure').mockReturnValue({
+      isOpen: false,
+      onClose: jest.fn(),
+      onOpen: jest.fn()
+    } as any)
+
+    render(<ModalAceptTerms />, {
+      store: store,
+      reducers: ['acceptTerms'],
+      CUSTOM_STATE: {
+        acceptTerms: {
+          accepted: false,
+          checking: false
+        }
+      }
+    })
+
+    expect(onClose).not.toHaveBeenCalled()
+    expect(onOpen).not.toHaveBeenCalled()
   })
 })
