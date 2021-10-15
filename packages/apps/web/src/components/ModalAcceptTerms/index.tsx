@@ -29,17 +29,19 @@ const ModalAcceptTerms: React.FC = () => {
 
   const dispatch = useDispatch()
 
-  const { accepted, checking } = useSelector(
+  const { accepted, checking, loading } = useSelector(
     (state: Store.State) => state.acceptTerms
   )
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
-    if (accepted && checking) {
+    if (!accepted && checking && !loading) {
       onOpen()
+    } else {
+      onClose()
     }
-  }, [accepted, checking, onOpen])
+  }, [accepted, checking, loading, onClose, onOpen])
 
   useEffect(() => {
     if (pathname === IGNORE_PATH) {
@@ -63,8 +65,7 @@ const ModalAcceptTerms: React.FC = () => {
     }
 
     dispatch(acceptTermsRequest())
-    onClose()
-  }, [accept, dispatch, onClose])
+  }, [accept, dispatch])
 
   return (
     <>
@@ -130,7 +131,11 @@ const ModalAcceptTerms: React.FC = () => {
             w="100%"
             h="48px"
             type="button"
-            onClick={handleAcceptTerms}
+            isLoading={loading}
+            onClick={() => {
+              onClose()
+              handleAcceptTerms()
+            }}
           >
             CONCLUIR
           </Button>
