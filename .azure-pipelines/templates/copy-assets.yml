@@ -4,7 +4,7 @@ steps:
       sourceFolder: '$(System.DefaultWorkingDirectory)/packages/assets/fonts'
       Contents: |
         *
-      targetFolder: '$(System.DefaultWorkingDirectory)/packages/web/public/fonts'
+      targetFolder: '$(System.DefaultWorkingDirectory)/packages/web/build/fonts'
     displayName: 'Preparing font files'
 
   - task: CopyFiles@2
@@ -12,5 +12,5 @@ steps:
       sourceFolder: '$(System.DefaultWorkingDirectory)/packages/assets/images'
       Contents: |
         *
-      targetFolder: '$(System.DefaultWorkingDirectory)/packages/web/public/imagens'
+      targetFolder: '$(System.DefaultWorkingDirectory)/packages/web/build/imagens'
     displayName: 'Preparing image files'
