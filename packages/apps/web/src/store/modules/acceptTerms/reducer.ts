@@ -43,6 +43,14 @@ const acceptTerms: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.checking = true
         break
       }
+
+      case Actions.SIGN_OUT: {
+        draft.loading = false
+        draft.accepted = false
+        draft.checking = false
+        draft.firstCall = false
+        break
+      }
       default:
     }
   })
