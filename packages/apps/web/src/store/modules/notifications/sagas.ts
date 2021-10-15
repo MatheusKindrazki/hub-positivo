@@ -1,3 +1,4 @@
+import qs from 'qs'
 import { ApiResponse } from 'apisauce'
 
 import { all, call, put, takeLatest } from 'redux-saga/effects'
@@ -63,9 +64,11 @@ export function* putNotification({
   const response = yield call(() =>
     api.put('api/Notification/MarcarLeitura/PositivoOn', null, {
       params: {
-        marcarLido: markAsRead,
-        idNotificacao: notificationIds
-      }
+        idNotificacao: notificationIds,
+        marcarLido: markAsRead
+      },
+      paramsSerializer: params =>
+        qs.stringify(params, { arrayFormat: 'repeat' })
     })
   )
 
