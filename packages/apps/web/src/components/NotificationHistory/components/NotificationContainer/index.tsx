@@ -84,7 +84,12 @@ const NotificationContainer: React.FC<NotificationContainerProps> = props => {
               cursor="pointer"
             />
           </MenuButton>
-          <MenuList position="relative" top="1.5" left="2">
+          <MenuList
+            data-testid="tool-tip-menu"
+            position="relative"
+            top="1.5"
+            left="2"
+          >
             <Text
               px="10px"
               textAlign="start"

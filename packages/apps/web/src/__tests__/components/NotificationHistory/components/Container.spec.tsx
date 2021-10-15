@@ -54,4 +54,28 @@ describe('NotificationContainer should work properly', () => {
     expect(queryByText('Marcar como lida')).toBeInTheDocument()
     expect(queryByText('Excluir')).toBeInTheDocument()
   })
+
+  it('Should dispatch handleMarkAsReadClick on button /Marcar como lida/ located on tooltip', () => {
+    const dispatch = jest.fn()
+    jest.spyOn(redux, 'useDispatch').mockReturnValue(dispatch)
+    const { getByTestId, getByText } = render(
+      <NotificationContainer
+        isNew={true}
+        expirationDate={date}
+        message={message}
+        title={solutionName}
+        url={url}
+        origin=""
+        id="id"
+      />
+    )
+
+    fireEvent.click(getByTestId('tool-tip-menu'))
+    fireEvent.click(getByText('Marcar como lida'))
+
+    expect(dispatch).toHaveBeenCalledWith({
+      payload: { markAsRead: true, notificationIds: ['id'] },
+      type: '@notifications/PUT_REQUEST'
+    })
+  })
 })
