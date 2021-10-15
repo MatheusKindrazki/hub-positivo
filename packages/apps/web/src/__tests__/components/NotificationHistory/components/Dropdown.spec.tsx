@@ -52,7 +52,7 @@ describe('History of notifications in Dropdown should work as expected', () => {
       {
         notifications: { loading: false }
       },
-      undefined as any
+      [] as any
     )
 
     expect(queryByText('Notification Header')).toBeInTheDocument()
