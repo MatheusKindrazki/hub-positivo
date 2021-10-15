@@ -6,7 +6,9 @@ import { store } from '~/store'
 
 import { render } from '@psdhub/test-utils'
 
-import Header, { HeaderProps } from '~/components/Header'
+import history from '~/services/history'
+
+import Header from '~/components/Header'
 
 jest.mock('~/components/NotificationHistory/components', () => {
   const rest = jest.requireActual('~/components/NotificationHistory/components')
@@ -26,14 +28,33 @@ jest.mock('~/components/NotificationHistory/components', () => {
 })
 describe('Header component should works as expected', () => {
   const mockedProps = {
+    notifications: {
+      notifications: [
+        {
+          id: 'fake-notification-id',
+          title: 'Fake Notification',
+          url: 'https://fake-url.com',
+          message: 'mensagem teste',
+          origin: 'Produto Teste',
+          expirationDate: new Date()
+        }
+      ],
+      quantityNewNotifications: 1
+    },
     handleGoBack: jest.fn(),
     schoolName: 'test-school'
   }
 
-  const setup = (props?: Partial<HeaderProps>) =>
-    render(<Header {...{ ...mockedProps, ...props }} />, {
+  const setup = () =>
+    render(<Header {...mockedProps} />, {
       store,
-      reducers: ['educationalStage', 'profile', 'user', 'products'],
+      reducers: [
+        'educationalStage',
+        'profile',
+        'user',
+        'products',
+        'notifications'
+      ],
       CUSTOM_STATE: {
         profile: { name: 'Professor' },
         educationalStage: {
@@ -44,15 +65,7 @@ describe('Header component should works as expected', () => {
           level: 'EF1'
         },
         notifications: {
-          loading: false,
-          history: [
-            {
-              expireDate: Date.now(),
-              sentDate: Date.now(),
-              message: 'mensagem teste',
-              source: 'Produto Teste'
-            }
-          ]
+          loading: false
         }
       }
     })
