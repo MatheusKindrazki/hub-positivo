@@ -33,9 +33,13 @@ const ModalAcceptTerms: React.FC = () => {
     (state: Store.State) => state.acceptTerms
   )
 
-  const { isOpen, onOpen, onClose } = useDisclosure({
-    defaultIsOpen: !accepted && checking
-  })
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  useEffect(() => {
+    if (accepted && checking) {
+      onOpen()
+    }
+  }, [accepted, checking, onOpen])
 
   useEffect(() => {
     if (pathname === IGNORE_PATH) {
