@@ -1,16 +1,16 @@
 steps:
   - task: CopyFiles@2
     inputs:
-      sourceFolder: './packages/assets/fonts'
+      sourceFolder: '$(System.DefaultWorkingDirectory)/packages/assets/fonts'
       Contents: |
         *
-      targetFolder: './packages/web/build/fonts'
+      targetFolder: '$(System.DefaultWorkingDirectory)/packages/apps/web/build/fonts'
     displayName: 'Preparing font files'
 
   - task: CopyFiles@2
     inputs:
-      sourceFolder: './packages/assets/images'
+      sourceFolder: '$(System.DefaultWorkingDirectory)/packages/assets/images'
       Contents: |
         *
-      targetFolder: './packages/web/build/imagens'
+      targetFolder: '$(System.DefaultWorkingDirectory)/packages/apps/web/build/imagens'
     displayName: 'Preparing image files'
