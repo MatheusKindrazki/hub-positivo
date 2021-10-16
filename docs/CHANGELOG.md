@@ -1,3 +1,25 @@
+# [2.4.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.3.2...v2.4.0) (2021-10-16)
+
+
+### Bug Fixes
+
+* adicionando SIGNOUT func ([98bef59](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/98bef594c698d2ecaf3db7ddd7fe3335a1834d16))
+* ajustando abertura do aceite de termo ([180f874](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/180f874c265dede56da33e11f3c70fbf4508d09a))
+* ajustando abertura do aceite de termos ([525ceaa](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/525ceaacd436c999ffdc363eefcb907a88a27791))
+
+
+### Features
+
+* adicionando informativo caso o usuario não aceite o termo ([1eed39b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/1eed39b1712057e54b55123b3aed5b6cea1d2bf1))
+* criando estrutura redux para aceite dos termos ([c6862b2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/c6862b25f3de8788eb256f6437e5490948c37951))
+* enviando o usuario a politica de privacidade ([d0ed081](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/d0ed081bca8c41ddf6e0490c03f8c4255ff23a29))
+* finalizando ajustes no aceite de termos ([f305894](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/f305894ba3766e6e526cdfa970007fe8aba922c7))
+* GET dos aceites de termos ([0c9dc71](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/0c9dc717a522c67959d0c63b459e629e391d5cb0))
+* pagina de termos ([57614a0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/57614a0e1927b688afa95df5c860728e557ed637))
+* POST do aceite de termos ([18b76e2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/18b76e26c215d1f1e72e0505c187a0059409ae24))
+* verificando se o usuario aceito os termos ([69bd92f](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/69bd92f8a61bdaa8215153d387c7ac83149c4ff0))
+* versionando o aceite de termos ([0623aa2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/0623aa2ae1ef4ab29af5e7e9d0cfc2277b639c5f))
+
 ## [2.3.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.3.0...v2.3.1) (2021-09-15)
 
 
