@@ -15,8 +15,6 @@ export const communicationURLs = {
   auth: process.env.REACT_APP_API_AUTH_URL,
   eem: process.env.REACT_APP_API_EEM_INFOS,
   token: process.env.REACT_APP_API_AUTH_PRODUCT_URL,
-  livro: process.env.REACT_APP_API_ARVORE,
-  mhund: process.env.REACT_APP_API_MHUND,
   notification: process.env.REACT_APP_API_NOTIFICATION
 }
 

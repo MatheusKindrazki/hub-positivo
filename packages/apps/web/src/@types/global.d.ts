@@ -37,9 +37,6 @@ declare global {
 
       REACT_APP_API_EEM_INFOS: string
 
-      REACT_APP_API_ARVORE: string
-      REACT_APP_API_MHUND: string
-
       REACT_APP_SECRET_ENCRYPTED_KEY: string
       REACT_APP_PERSIST_NAME: string
 
