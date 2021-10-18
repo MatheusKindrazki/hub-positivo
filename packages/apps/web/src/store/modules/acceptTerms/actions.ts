@@ -9,7 +9,9 @@ export const Actions = {
 
   CHECK_TERMS_REQUEST: '@acceptTerms/CHECK_TERMS_REQUEST',
   CHECK_TERMS_SUCCESS: '@acceptTerms/CHECK_TERMS_SUCCESS',
-  CHECK_TERMS_FAILURE: '@acceptTerms/CHECK_TERMS_FAILURE'
+  CHECK_TERMS_FAILURE: '@acceptTerms/CHECK_TERMS_FAILURE',
+
+  SIGN_OUT: '@auth/SIGN_OUT'
 }
 
 export function checkTermsRequest(): Action {
