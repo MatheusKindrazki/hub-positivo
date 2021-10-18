@@ -109,12 +109,12 @@ function createNewUserSlug(data: UserInfo): string {
   return createSlug(userString)
 }
 
-function disconnect(activeConnection?: HubConnection): void {
-  if (activeConnection) {
+function disconnect(isConnectionActive?: HubConnection): void {
+  if (isConnectionActive) {
     const { HeaderNotification } = stringSubscriptions
 
-    activeConnection.off(HeaderNotification)
-    activeConnection.stop()
+    isConnectionActive.off(HeaderNotification)
+    isConnectionActive.stop()
 
     userSlugCompare = ''
   }
