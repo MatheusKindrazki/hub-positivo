@@ -139,32 +139,6 @@ describe('ModalAcceptTerms component should work properly', () => {
     expect(onClose).toHaveBeenCalled()
   })
 
-  it('useEffect shouldnt do nothing when pathname is on ignore list and modal is closed', async () => {
-    const IGNORE_PATH = '/politica-de-privacidade'
-
-    jest.spyOn(router, 'useLocation').mockReturnValueOnce({
-      pathname: IGNORE_PATH
-    } as any)
-
-    jest.spyOn(hooks, 'useDisclosure').mockReturnValueOnce({
-      isOpen: false
-    } as any)
-
-    render(<ModalAcceptTerms />, {
-      store: store,
-      reducers: ['acceptTerms'],
-      CUSTOM_STATE: {
-        acceptTerms: {
-          accepted: false,
-          checking: false
-        }
-      }
-    })
-
-    expect(onClose).not.toHaveBeenCalled()
-    expect(onOpen).not.toHaveBeenCalled()
-  })
-
   it('should open modal when accepted is false and checking is true', async () => {
     render(<ModalAcceptTerms />, {
       store: store,
