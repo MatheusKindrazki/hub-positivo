@@ -64,12 +64,12 @@ async function notificationConnectFn(
     activeConnection = connect
     activeConnection.on(
       HeaderNotification,
-      (id, title, message, url, origin, expirationDate) =>
+      (id, title, message, notificationUrl, origin, expirationDate) =>
         data({
           id,
           title,
           message,
-          url,
+          url: notificationUrl,
           origin,
           expirationDate: parseISO(expirationDate),
           new: true
