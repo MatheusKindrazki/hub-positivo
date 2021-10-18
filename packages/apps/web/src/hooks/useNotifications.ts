@@ -49,7 +49,7 @@ function useNotifications(): NotificationProps {
       {
         idEscola: school?.value as string,
         idUsuario: info?.guid as string,
-        perfil: guid as string,
+        perfil: guid,
         nivelEnsino: level
       },
       reduced_token as string,
