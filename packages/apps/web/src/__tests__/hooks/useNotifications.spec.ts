@@ -4,10 +4,11 @@ import * as Redux from 'react-redux'
 
 import { notificationsRequest } from '~/store/modules/notifications/actions'
 
+import { waitFor } from '@psdhub/test-utils'
+
 import * as Services from '~/services/notificationConnect'
 
 import useNotifications from '~/hooks/useNotifications'
-import { waitFor } from '~/../../../libs/test-utils'
 
 const mockedState = {
   auth: { reduced_token: 'fake-reduced-token' },
