@@ -61,8 +61,10 @@ describe('AllValues should works as expected', () => {
       }
     ]
 
-    const { getByTestId } = setup(newProps)
-    await waitFor(() => fireEvent.click(getByTestId('radio-button')))
+    const { getAllByTestId } = setup(newProps)
+    await waitFor(() =>
+      getAllByTestId('radio-button').map(element => fireEvent.click(element))
+    )
     expect(mockedHandleClick).toHaveBeenCalledWith(expectedInput, true)
   })
 })
