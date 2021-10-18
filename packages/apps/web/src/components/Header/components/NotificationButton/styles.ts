@@ -48,7 +48,7 @@ export const ButtonContainer = styled(MenuButton)<Props>`
       &:after {
         width: 1.2rem;
         height: 1.2rem;
-        background-color: ${props => props.theme.colors.red[500]};
+        background-color: ${styledProps => styledProps.theme.colors.red[500]};
       }
     `}
 `
