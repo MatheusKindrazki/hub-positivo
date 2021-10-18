@@ -107,6 +107,10 @@ const ModalAcceptTerms: React.FC = () => {
           <Checkbox
             size="lg"
             my="1rem"
+            className="checkbox-politica-de-privacidade"
+            borderRadius="1px"
+            borderColor="gray.500"
+            autoFocus
             isChecked={accept}
             onChange={() => setAccept(!accept)}
           >
