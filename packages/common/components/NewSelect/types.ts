@@ -33,7 +33,7 @@ export interface SelectProps {
   defaultValue?: string[]
   noOptionsMessage?: React.FC
   allSelectMessage?: string
-  error?: boolean
+  placeholderPersist?: boolean
   onChange?: (checked: string[], raw: TreeNode[]) => void
 }
 export interface TreeNode {
