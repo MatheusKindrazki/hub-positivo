@@ -1,3 +1,10 @@
+## [2.4.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.4.0...v2.4.1) (2021-10-18)
+
+
+### Bug Fixes
+
+* ajustando contraste do checkbox ([d3af916](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/d3af91619a983d02f2234fa55a72f76e7d4240b3))
+
 # [2.4.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.3.2...v2.4.0) (2021-10-16)
 
 
