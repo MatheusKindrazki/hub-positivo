@@ -54,7 +54,7 @@ function useNotifications(): NotificationProps {
       },
       reduced_token as string,
       message => {
-        setMessages(messages => [...messages, message])
+        setMessages(currentMessages => [...currentMessages, message])
       },
       (instance: HubConnection) => {
         activeInstance = instance
