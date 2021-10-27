@@ -4,7 +4,7 @@ import WebViewer from '@pdftron/webviewer'
 
 import { Container } from './styles'
 
-const App: React.FC = () => {
+const PdfProject: React.FC = () => {
   const viewer = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -42,4 +42,4 @@ const App: React.FC = () => {
   return <Container className="webviewer" ref={viewer}></Container>
 }
 
-export default App
+export default PdfProject
