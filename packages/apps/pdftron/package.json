@@ -1,0 +1,8 @@
+{
+  "name": "@psdhub/pdf",
+  "version": "1.0.0",
+  "main": "src/index.tsx",
+  "dependencies": {
+    "@pdftron/webviewer": "^8.1.0"
+  }
+}

@@ -60,6 +60,10 @@ export function* productSorting({ payload }: AuthPayload): Generator {
     )
   }
 
+  if (tipoRenderizacao === 'deeplink') {
+    return history.push(url)
+  }
+
   if (tipoRenderizacao === 'targetblank') {
     return window.open(url, '_blank')
   }
