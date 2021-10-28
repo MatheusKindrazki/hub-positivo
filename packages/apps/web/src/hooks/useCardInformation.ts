@@ -15,9 +15,14 @@ interface IframePropsRouter {
 }
 
 const searchLevels = ['PROFESSOR', 'ALUNO']
+export default async function useCardInformation(
+  cardSolution?: string
+): Promise<void> {
+  let solution = ''
 
-export default async function useCardInformation(): Promise<void> {
-  const { solution, subpath } = useParams<IframePropsRouter>()
+  const { solution: s, subpath } = useParams<IframePropsRouter>()
+
+  solution = cardSolution || s
 
   const { guid } = store.getState().profile
   let level = ''

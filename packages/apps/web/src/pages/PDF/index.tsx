@@ -1,45 +1,37 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
-import WebViewer from '@pdftron/webviewer'
+import { useSelector } from 'react-redux'
 
-import { Container } from './styles'
+import documentTitle from '@psdhub/common/utils/documentTitle'
+
+import getCardInformation from '~/hooks/useCardInformation'
+
+import WebViewer from './components/Webviewer'
+
+window.firstCallMCF = false
 
 const PdfProject: React.FC = () => {
-  const viewer = useRef<HTMLDivElement>(null)
+  const { productName, productData } = useSelector(
+    (state: Store.State) => state.authProduct
+  )
 
   useEffect(() => {
-    WebViewer(
-      {
-        path: '/lib',
+    documentTitle(productName || 'Carregando Solução')
 
-        initialDoc:
-          'https://stlivromusicaprod001.blob.core.windows.net/audios/CTPM_Mergulhando_em_poesia.pdf',
-        disableLogs: true,
-        isReadOnly: true,
-        licenseKey:
-          'Studos Software Ltda(studos.com.br):OEM:Studos::B+:AMS(20220809):C1DC662C07FAFAF38B313BC9B243182F4E6F3FD7763A639BB57BB43C404EB604F431F5C7',
-        streaming: true
-      },
-      viewer.current as HTMLElement
-    ).then(instance => {
-      instance.UI.disableElements([
-        'printButton',
-        'downloadButton',
-        'themeChangeButton',
-        'thumbDelete',
-        'pageManipulationOverlayButton',
-        'toolbarGroup-View',
-        'toggleNotesButton',
-        'thumbMultiDelete',
-        'thumbExtract',
-        'selectToolButton'
-      ])
+    return () => {
+      window.firstCallMCF = false
+    }
+  }, [productData, productName])
 
-      instance.UI.setLanguage('pt_BR')
-    })
-  }, [])
+  if (!productData && !window.firstCallMCF) {
+    window.firstCallMCF = true
 
-  return <Container className="webviewer" ref={viewer}></Container>
+    getCardInformation('literatura-ctpm')
+  }
+
+  if (!productData) return null
+
+  return <WebViewer url={productData as string} />
 }
 
 export default PdfProject

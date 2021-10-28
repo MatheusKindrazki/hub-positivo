@@ -25,12 +25,6 @@ export default [
   { path: '/login', isPrivate: false, exact: false, component: SignIn },
   { path: '/perfil', isPrivate: false, exact: false, component: Profile },
   {
-    path: '/solucao/literatura-ctpm',
-    isPrivate: true,
-    exact: true,
-    component: PDF
-  },
-  {
     path: '/esqueci-minha-senha',
     isPrivate: false,
     exact: false,
@@ -65,6 +59,12 @@ export default [
     isPrivate: true,
     component: MyClasses,
     active: guid === 'PROFESSOR'
+  },
+  {
+    path: '/solucao/literatura-ctpm',
+    isPrivate: true,
+    exact: true,
+    component: PDF
   },
   {
     path: ['/solucao/:solution/:subpath+', '/solucao/:solution'],

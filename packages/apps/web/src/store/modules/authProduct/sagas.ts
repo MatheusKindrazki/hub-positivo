@@ -61,7 +61,16 @@ export function* productSorting({ payload }: AuthPayload): Generator {
   }
 
   if (tipoRenderizacao === 'deeplink') {
-    return history.push(url)
+    const [urlData = '', urlPush = '/'] = url.split('#$!')
+    yield put(
+      authProductSuccess({
+        mcf: false,
+        productData: urlData || '',
+        productName: payload.name
+      })
+    )
+
+    return history.push(urlPush)
   }
 
   if (tipoRenderizacao === 'targetblank') {
