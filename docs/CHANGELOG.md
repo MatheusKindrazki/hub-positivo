@@ -1,3 +1,17 @@
+# [2.5.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.4.1...v2.5.0) (2021-10-28)
+
+
+### Bug Fixes
+
+* abstraindo pdf ([52e18e8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/52e18e8e86363f91e8ddadd8604b2de8d7430d53))
+* ajustando importação do pdftron ([474a833](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/474a83395f963d6e38ed904a0cb04aa56fdfe294))
+
+
+### Features
+
+* bloqueando acesso a usuario não autorizados no PDF ([a6b3f91](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/a6b3f91301fb59abbf035a4c6cacf809300bed73))
+* lançamento da feature de leitor de pdf para CTPM ([aa7a89b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/aa7a89bf85f13ecd26f1da9f30fa57bfdfef1eec))
+
 ## [2.4.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.4.0...v2.4.1) (2021-10-18)
 
 
