@@ -182,8 +182,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   if (payload.url.includes('{guid}')) {
     const guid = data as unknown as string
 
-    urlAuth = payload.url.replace('{guid}', guid)
-    urlAuth = urlAuth + `/${subpath}`
+    urlAuth = payload.url.replace('{guid}', `${guid}/${subpath}`)
   } else {
     urlAuth = `${payload.url}/${data}/${subpath}`
   }
