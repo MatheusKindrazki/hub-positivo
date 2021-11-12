@@ -1,3 +1,11 @@
+## [2.5.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.5.0...v2.5.1) (2021-11-12)
+
+
+### Bug Fixes
+
+* adicionando nova validação para cards com parametros ([69a634c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/69a634cd2a0138530ee42eca19338e476041ad81))
+* removendo / do final da queryString ([7cb66b4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/7cb66b41edaa0e778122d036e584058d9bdbe7c1))
+
 # [2.5.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.4.1...v2.5.0) (2021-10-28)
 
 
