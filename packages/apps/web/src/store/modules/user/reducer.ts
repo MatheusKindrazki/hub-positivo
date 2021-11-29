@@ -2,6 +2,8 @@ import { produce } from 'immer'
 
 import { Reducer } from 'redux'
 
+import { removeChatbot } from '@psdhub/chatbot'
+
 import { UserReducer } from './types'
 import { Actions } from './actions'
 
@@ -59,6 +61,8 @@ const user: ReturnReducer = (state = INITIAL_STATE, action) => {
       case Actions.SIGN_OUT: {
         draft.info = undefined
         draft.school = undefined
+
+        removeChatbot()
         break
       }
       default:

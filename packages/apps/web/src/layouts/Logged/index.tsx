@@ -8,6 +8,7 @@ import { openTour, postTourViewed } from '~/store/modules/tour/actions'
 
 import Tour from '@psdhub/common/components/Tour'
 import { BarLoader } from '@psdhub/common/components'
+import { initChatbot } from '@psdhub/chatbot'
 
 import setUserProperties from '~/services/mixpanel/setProperties'
 
@@ -29,6 +30,13 @@ const Dashboard: React.FC = ({ children }) => {
 
   const { loading } = useSelector((state: Store.State) => state.global)
   const { nobreak } = useSelector((state: Store.State) => state.noBreakAccess)
+
+  const { school } = useSelector((state: Store.State) => state.user)
+  const { guid } = useSelector((state: Store.State) => state.profile)
+  initChatbot({
+    school: school?.value as string,
+    profile: guid
+  })
 
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour

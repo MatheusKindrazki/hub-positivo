@@ -15,6 +15,7 @@
   "dependencies": {
     "@psdhub/api": "*",
     "@psdhub/gsc": "*",
+    "@psdhub/chatbot": "*",
     "@psdhub/helpers": "^1.4.0",
     "@pdftron/webviewer": "^8.1.0",
     "classnames": "^2.2.6",
