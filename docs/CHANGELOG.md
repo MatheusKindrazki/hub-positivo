@@ -1,3 +1,13 @@
+# [2.6.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.5.1...v2.6.0) (2021-11-29)
+
+
+### Features
+
+* aplicando logica para aparecimento do bot ([618f0fd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/618f0fd29e5ca9206d8cb350124b37c1c35fb361))
+* criando estrutura do chatbot ([1046b79](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/1046b79344fe2ed3d4fa620a870d3cdd7c7b80e3))
+* instanciando validações do chatbot ([7037b60](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/7037b6051a5d5b5fa10f2b5f9663af9c3f0301ca))
+* removendo chatbot no logout ([0ca4907](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/0ca49074874f58760d1f5e777b1f2841cfda69ee))
+
 ## [2.5.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.5.0...v2.5.1) (2021-11-12)
 
 
