@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/helpers",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "author": "matheuskindrazki",
   "description": "Communicator end-to-end between solutions and PSD hub",
   "license": "MIT",
