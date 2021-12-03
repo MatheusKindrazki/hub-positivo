@@ -42,6 +42,8 @@ export function* getEducationStage(): Generator {
 
   const { levels, selected } = prepareEducational(data?.conteudo)
 
+  console.log('brasil', levels[0])
+
   const userSingleClass = data?.conteudo.find(e => e.ativo)?.serie.nome
 
   return yield put(

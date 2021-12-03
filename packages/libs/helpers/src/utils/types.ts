@@ -6,7 +6,14 @@ export interface SendInfos {
     school: {
       name: string
       id: string
-      class: string
+    }
+    class: string
+    educationalStage: {
+      selected: string
+      options: {
+        label: string
+        value: string
+      }[]
     }
     profile: string
     profileTheme: string
