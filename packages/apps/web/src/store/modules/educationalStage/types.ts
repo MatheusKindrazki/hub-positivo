@@ -8,6 +8,7 @@ export interface EducationReducer {
 export interface LevelSelectOption {
   value: string
   label: string
+  series: string[]
 }
 
 export interface setEducationalStageSuccess {

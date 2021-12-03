@@ -6,13 +6,14 @@ export interface SendInfos {
     school: {
       name: string
       id: string
+      class: string // caso o usuário seja do tipo aluno
     }
-    class: string
     educationalStage: {
       selected: string
       options: {
         label: string
         value: string
+        series: string[]
       }[]
     }
     profile: string

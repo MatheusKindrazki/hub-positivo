@@ -1,4 +1,3 @@
-import { unionBy } from 'lodash'
 import { ApiResponse } from 'apisauce'
 
 import { all, put, Payload, takeLatest, call } from 'redux-saga/effects'
@@ -22,6 +21,12 @@ interface SendInfo {
   usuarioId: string
 }
 
+interface EducationalStageProps {
+  label: string
+  value: string
+  series: string[]
+}
+
 export function* getEducationStage(): Generator {
   const { school } = store.getState().user
   const { reduced_token } = store.getState().auth
@@ -42,13 +47,31 @@ export function* getEducationStage(): Generator {
 
   const { levels, selected } = prepareEducational(data?.conteudo)
 
-  console.log('brasil', levels[0])
-
   const userSingleClass = data?.conteudo.find(e => e.ativo)?.serie.nome
+
+  const concatSeries: EducationalStageProps[] = []
+
+  levels.forEach(e => {
+    const index = concatSeries.findIndex(f => f.value === e.value)
+    if (index !== -1) {
+      const getLevel = concatSeries[index]
+      const series = getLevel.series
+      concatSeries[index] = {
+        ...getLevel,
+        series: [...series, e.serie as string]
+      }
+    } else {
+      concatSeries.push({
+        label: e.label,
+        value: e.value,
+        series: [e.serie as string]
+      })
+    }
+  })
 
   return yield put(
     setEducationalLevels({
-      levels: unionBy(levels, 'value'),
+      levels: concatSeries,
       level: selected,
       class: userSingleClass
     })

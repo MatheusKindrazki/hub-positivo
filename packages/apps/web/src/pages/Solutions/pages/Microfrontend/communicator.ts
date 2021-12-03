@@ -15,7 +15,7 @@ function communicatorMCF(data: Store.State, colors: Theme['colors']): void {
   const { reduced_token, token } = data.auth
   const { guid, colorProfile } = data.profile
   const { info, school } = data.user
-  const { class: user_class } = data.educationalStage
+  const { class: user_class, level, levels } = data.educationalStage
 
   const user_info = info as NoUndefinedField<User>
 
@@ -33,6 +33,10 @@ function communicatorMCF(data: Store.State, colors: Theme['colors']): void {
         id: school?.value as string,
         name: school?.label as string,
         class: user_class as string
+      },
+      educationalStage: {
+        options: levels as any,
+        selected: level
       }
     }
   })
