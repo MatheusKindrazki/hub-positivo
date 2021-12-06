@@ -1,3 +1,10 @@
+## [2.6.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.6.0...v2.6.1) (2021-12-06)
+
+
+### Bug Fixes
+
+* ajustando escolas da CTPM para chatbot ([4075ff9](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/4075ff9fbbb083f8ff477c5e2eec646c3fe86e05))
+
 # [2.6.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.5.1...v2.6.0) (2021-11-29)
 
 
