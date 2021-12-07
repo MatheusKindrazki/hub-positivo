@@ -13,16 +13,16 @@ const mockedContentResponse: ContentResponse = {
 }
 
 describe('prepareEducationalStage should work properly', () => {
-  it.skip('should return object with correct keys and values', () => {
+  it('should return object with correct keys and values', () => {
     const mockedResult = {
-      levels: [{ label: 'Ensino Médio', value: 'EM' }],
+      levels: [{ label: 'Ensino Médio', value: 'EM', serie: 'teste' }],
       selected: 'EM'
     }
     const result = prepareEducationalStage([mockedContentResponse])
     expect(result).toStrictEqual(mockedResult)
   })
 
-  it.skip('should return empty object if data.serie.ciclo is undefined', () => {
+  it('should return empty object if data.serie.ciclo is undefined', () => {
     const mockedContentResponse = {
       ativo: true,
       serie: {
@@ -33,6 +33,7 @@ describe('prepareEducationalStage should work properly', () => {
       levels: [
         {
           label: undefined,
+          serie: 'teste',
           value: undefined
         }
       ],
@@ -46,7 +47,7 @@ describe('prepareEducationalStage should work properly', () => {
     expect(result).toStrictEqual(mockedResult)
   })
 
-  it.skip('should return empty object if ativo is false', () => {
+  it('should return empty object if ativo is false', () => {
     mockedContentResponse.serie.ciclo = { nome: 'EM' }
     mockedContentResponse.ativo = false
     const mockedResult = {
@@ -57,7 +58,7 @@ describe('prepareEducationalStage should work properly', () => {
     expect(result).toStrictEqual(mockedResult)
   })
 
-  it.skip('should return empty object if no data is received', () => {
+  it('should return empty object if no data is received', () => {
     const mockedResult = {}
     const result = prepareEducationalStage()
     expect(result).toStrictEqual(mockedResult)
