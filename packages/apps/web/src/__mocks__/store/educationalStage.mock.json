@@ -1,9 +1,9 @@
 {
   "level": "EF1",
   "levels": [
-    { "label": "Ensino Fundamental Anos Iniciais", "value": "EF1" },
-    { "label": "Ensino Médio", "value": "EM" },
-    { "label": "Ensino Fundamental Anos Finais", "value": "EF2" }
+    { "label": "Ensino Fundamental Anos Iniciais", "value": "EF1", "series": ["1ª série", "2ª série", "3ª série", "4ª série"] },
+    { "label": "Ensino Médio", "value": "EM", "series": ["1º ano", "2º ano", "3º ano"] },
+    { "label": "Ensino Fundamental Anos Finais", "value": "EF2", "series": ["5ª série", "6ª série", "7ª série", "8ª série"]}
   ],
   "class": "1º ano"
 }

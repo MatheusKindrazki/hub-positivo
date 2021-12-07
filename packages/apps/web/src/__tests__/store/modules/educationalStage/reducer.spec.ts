@@ -17,7 +17,7 @@ describe('Reducer of authentication history', () => {
     const mockedPayload = {
       level: 'EF1',
       class: undefined,
-      levels: [{ label: 'EF1', value: 'EF1' }]
+      levels: [{ label: 'EF1', value: 'EF1', series: ['1ª série', '2ª série'] }]
     }
 
     const action = educationalStageActions.setEducationalLevels(mockedPayload)
