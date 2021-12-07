@@ -1,9 +1,11 @@
 import { getInformations, SendInfos, PostFnProps } from '@psdhub/helpers'
 import createColors from '@psdhub/common/layout/styles/colors'
 
+import { mockLevels } from '../components/Header'
 import { SignInSuccess, LoggedData } from '../@types/auth'
 
 interface SendAllProps {
+  level?: string
   data?: SignInSuccess
   reducedToken: string
   loggedData: LoggedData
@@ -14,8 +16,6 @@ function useSendAllInfos(e: SendAllProps): void {
   const profile = e?.loggedData?.selected_profile?.colorProfile as any
 
   const colors = createColors({ profile })
-
-  console.info('@HUB: Enviando dados para a solução')
 
   const observable = getInformations as PostFnProps
 
@@ -30,10 +30,16 @@ function useSendAllInfos(e: SendAllProps): void {
         class: e.class as string,
         id: e.loggedData.selected_school.id,
         name: e.loggedData.selected_school.name
+      },
+      educationalStage: {
+        selected: e.level as string,
+        options: mockLevels
       }
     },
     primary_color: colors.blue
   }
+
+  console.info(prepareData)
 
   observable.publish(prepareData)
 }

@@ -12,10 +12,10 @@ import { useAuth } from '../../context/authContext'
 export const enableProfile = ['PROFESSOR', 'ALUNO']
 
 export const mockLevels = [
-  { label: 'Educação Infantil', value: 'EI' },
-  { label: 'Ensino Fundamental Anos Iniciais', value: 'EF1' },
-  { label: 'Ensino Fundamental Anos Finais', value: 'EF2' },
-  { label: 'Ensino Médio', value: 'EM' }
+  { label: 'Educação Infantil', value: 'EI', series: [''] },
+  { label: 'Ensino Fundamental Anos Iniciais', value: 'EF1', series: [''] },
+  { label: 'Ensino Fundamental Anos Finais', value: 'EF2', series: [''] },
+  { label: 'Ensino Médio', value: 'EM', series: ['1° ano', '2° ano'] }
 ]
 
 const Header: React.FC = () => {

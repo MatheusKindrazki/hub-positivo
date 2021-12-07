@@ -128,7 +128,7 @@ const AuthProvider: React.FC = ({ children }) => {
           class: sendClass
         })
       } catch (error) {
-        toast.error(error)
+        toast.error(error as any)
       }
 
       setLoading(false)
@@ -143,7 +143,8 @@ const AuthProvider: React.FC = ({ children }) => {
         data,
         reducedToken: reducedToken,
         loggedData: loggedData,
-        class: data.label
+        class: data.label,
+        level: data?.value || 'EM'
       })
     },
     [loggedData, reducedToken]
