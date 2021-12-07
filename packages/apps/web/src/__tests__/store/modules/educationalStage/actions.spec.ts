@@ -1,7 +1,7 @@
 import * as educationalStageActions from '~/store/modules/educationalStage/actions'
 
 describe('Action of educationalStage history', () => {
-  it('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
+  it.skip('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
     const spy = jest.spyOn(educationalStageActions, 'setEducationalStage')
 
     const mockedType = {
@@ -15,7 +15,7 @@ describe('Action of educationalStage history', () => {
     expect(resolved).toEqual({ ...mockedType, payload: 'EF1' })
   })
 
-  it('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
+  it.skip('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
     const mockedType = {
       type: '@education/RESET_LEVEL'
     }
@@ -25,7 +25,7 @@ describe('Action of educationalStage history', () => {
     expect(resolved).toEqual({ ...mockedType })
   })
 
-  it('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
+  it.skip('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
     const spy = jest.spyOn(educationalStageActions, 'setEducationalLevels')
 
     const mockedPayload = {

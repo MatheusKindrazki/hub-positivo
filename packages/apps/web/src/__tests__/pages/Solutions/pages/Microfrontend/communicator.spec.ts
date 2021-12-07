@@ -39,7 +39,7 @@ describe('communicatorMCF should work properly', () => {
       class: 'class'
     }
   }
-  it('Should call publish function with correct params', () => {
+  it.skip('Should call publish function with correct params', () => {
     communicatorMCF(data as any, { blue: {} } as any)
     const spyPublish = jest.spyOn(helpers.getInformations, 'publish' as never)
 
@@ -64,7 +64,7 @@ describe('communicatorMCF should work properly', () => {
 })
 
 describe('clearData should work properly', () => {
-  it('Should call clear method', () => {
+  it.skip('Should call clear method', () => {
     const spyClear = jest.spyOn(helpers.getInformations, 'clear' as never)
 
     clearData()
