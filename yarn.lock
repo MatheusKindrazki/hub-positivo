@@ -10912,10 +10912,10 @@ java-properties@^1.0.0:
   resolved "https://registry.yarnpkg.com/java-properties/-/java-properties-1.0.2.tgz#ccd1fa73907438a5b5c38982269d0e771fe78211"
   integrity sha512-qjdpeo2yKlYTH7nFdK0vbZWuTCesk4o63v5iVOlhMQPfuIZQfW/HI35SjfhA+4qpg36rnFSvUK5b1m+ckIblQQ==
 
-javascript-obfuscator@^2.19.0:
-  version "2.19.1"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.19.1.tgz#a15b52757169fa2a105ee786ba554e4a19a91dd7"
-  integrity sha512-NPoC0pUBKHiFJqAm/+hHDM1FzpreUGkzkBTAWDYkA+XI6wZWRqjwlDAjLOwWbjqNwnW/QqkPf35KMAZC/oHtiw==
+javascript-obfuscator@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-3.0.0.tgz#97f4a1d256798b9707be4f3732f6523d599461d8"
+  integrity sha512-uktiqchzVDabd4ne5baz3D1gapCKrdRcma3zsyODrtsmJEnof5E21Fou0aXZbzyB3a0HOlQnXkRlq/QcuEGo3w==
   dependencies:
     "@javascript-obfuscator/escodegen" "2.2.2"
     "@javascript-obfuscator/estraverse" "5.3.0"
