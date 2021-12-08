@@ -58,16 +58,18 @@ export function* getEducationStage(): Generator {
       const series = getLevel.series
       concatSeries[index] = {
         ...getLevel,
-        series: [...series, e.serie as string]
+        series: [...series, e.label as string]
       }
     } else {
       concatSeries.push({
         label: e.label,
         value: e.value,
-        series: [e.serie as string]
+        series: [e.label as string]
       })
     }
   })
+
+  console.log(concatSeries)
 
   return yield put(
     setEducationalLevels({
