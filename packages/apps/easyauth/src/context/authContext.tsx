@@ -143,7 +143,7 @@ const AuthProvider: React.FC = ({ children }) => {
         data,
         reducedToken: reducedToken,
         loggedData: loggedData,
-        class: data.label,
+        class: data?.label,
         level: data?.value || 'EM'
       })
     },

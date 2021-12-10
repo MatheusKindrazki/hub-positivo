@@ -39,7 +39,7 @@ function useSendAllInfos(e: SendAllProps): void {
     primary_color: colors.blue
   }
 
-  console.info(prepareData)
+  // console.info(prepareData)
 
   observable.publish(prepareData)
 }
