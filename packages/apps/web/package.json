@@ -16,7 +16,7 @@
     "@psdhub/chatbot": "*",    
     "@pdftron/webviewer": "^8.1.0",         
     "@psdhub/api": "*",
-    "@psdhub/common": "^1.9.1-beta-6",
+    "@psdhub/common": "*",
     "@psdhub/gsc": "*",
     "@psdhub/pdf": "*",
     "classnames": "^2.2.6",

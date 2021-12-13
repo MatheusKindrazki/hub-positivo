@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@psdhub/api": "*",
-    "@psdhub/common": "^1.9.1-beta-6",
+    "@psdhub/common": "*",
     "@psdhub/helpers": "^1.7.2",
     "dotenv-webpack": "^7.0.2",
     "jsonwebtoken": "^8.5.1",
