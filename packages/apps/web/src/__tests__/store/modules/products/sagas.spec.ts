@@ -8,6 +8,7 @@ import {
   enableRefreshTokenMiddleware,
   loading
 } from '~/store/modules/global/actions'
+import { EducationReducer } from '~/store/modules/educationalStage/types'
 import { withoutAccess } from '~/store/modules/auth/actions'
 
 import { toast } from '@psdhub/common/utils'
@@ -25,7 +26,10 @@ describe('testing getProducts saga flow', () => {
   let dispatchedActions = store.getActions()
 
   mockState.profile = { guid: 'PROFESSOR' } as any
-  mockState.educationalStage = { level: 'level' } as any
+  mockState.educationalStage = {
+    level: 'level',
+    levels: [{ series: [{ valid: true }] }]
+  } as any
   mockState.user = {
     user: 'fake user',
     school: { value: 'fake school' }
@@ -114,12 +118,26 @@ describe('testing getProducts saga flow', () => {
     )
   })
 
-  it('should dispatch a withoutAccess action and early return a user without the correct level', async () => {
+  it('should dispatch a withoutAccess action and early return a users without levels or unvalid levels', async () => {
     mockState.educationalStage = { level: null } as any
     mockState.profile = { guid: 'PROFESSOR' } as any
     await runSaga(store, getProducts).toPromise()
     expect(dispatchedActions).toContainObject(loading(false))
-    expect(dispatchedActions).toContainObject(withoutAccess())
+    expect(dispatchedActions).toContainObject(
+      withoutAccess({ error: 'noClass' })
+    )
+
+    mockState.educationalStage = {
+      level: 'level',
+      levels: [{ value: 'level', series: [{ valid: false }] }],
+      loading: false
+    } as EducationReducer
+
+    await runSaga(store, getProducts).toPromise()
+    expect(dispatchedActions).toContainObject(loading(false))
+    expect(dispatchedActions).toContainObject(
+      withoutAccess({ error: 'noValidClass' })
+    )
   })
 
   it('should early return when theres no user or school info', async () => {
