@@ -63,7 +63,9 @@ describe('authProduct reducer', () => {
   })
 
   it('should set loading to true and reset data on without access action', () => {
-    expect(products(INITIAL_STATE, withoutAccess())).toEqual({
+    expect(
+      products(INITIAL_STATE, withoutAccess({ error: 'noClass' }))
+    ).toEqual({
       loading: true,
       data: []
     })

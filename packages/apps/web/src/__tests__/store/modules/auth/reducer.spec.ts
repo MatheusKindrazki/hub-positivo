@@ -11,7 +11,8 @@ const mockedSignIn = {
   refresh_token: null,
   reduced_token: null,
   signInStrike: false,
-  withoutAccess: false
+  withoutAccess: false,
+  withoutAccessError: ''
 }
 
 describe('Reducer of authentication history', () => {
@@ -88,7 +89,7 @@ describe('Reducer of authentication history', () => {
   })
 
   it('Should that in the absence of education level, the user is blocked for access to platform', () => {
-    const action = authActions.withoutAccess()
+    const action = authActions.withoutAccess({ error: 'noClass' })
 
     const state = AuthReducer(undefined, action)
 
