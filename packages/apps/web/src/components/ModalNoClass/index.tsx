@@ -14,7 +14,9 @@ import GlobalStyles from './styles'
 const ModalNoClass: React.FC = () => {
   const dispatch = useDispatch()
 
-  const { withoutAccess } = useSelector((state: Store.State) => state.auth)
+  const { withoutAccess, withoutAccessError } = useSelector(
+    (state: Store.State) => state.auth
+  )
 
   const { isOpen, onOpen } = useDisclosure()
 
@@ -30,10 +32,22 @@ const ModalNoClass: React.FC = () => {
     dispatch(signOut())
   }, [dispatch])
 
+  const noClassErrorMessage =
+    'Seu perfil não está vinculado a nenhuma turma, por isso seu acesso ao On está bloqueado. Entre em contato com a escola para normalizar essa situação.'
+
+  const noValidClassErrorMessage =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mattis mi ut finibus porttitor. Nulla risus dolor, dapibus quis varius eget pharetra.'
+
+  const noClassTitle = 'Nenhuma turma vinculada'
+
+  const noValidClassTitle = 'Lorem ipsum dolor sit a'
+
   return (
     <>
       <Modal
-        title="Nenhuma turma vinculada"
+        title={
+          withoutAccessError === 'noClass' ? noClassTitle : noValidClassTitle
+        }
         isCentered
         autoFocus
         className="modal-nenhuma-turma"
@@ -49,9 +63,9 @@ const ModalNoClass: React.FC = () => {
         >
           <Image src={turma} w={isDesktop ? '18rem' : '10rem'} />
           <Text mt="1rem" fontSize="0.9375rem" lineHeight="20px">
-            Seu perfil não está vinculado a nenhuma turma, por isso seu acesso
-            ao On está bloqueado. Entre em contato com a escola para normalizar
-            essa situação.
+            {withoutAccessError === 'noClass'
+              ? noClassErrorMessage
+              : noValidClassErrorMessage}
           </Text>
 
           <Button
