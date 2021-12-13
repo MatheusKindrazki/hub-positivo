@@ -15,7 +15,8 @@ export const INITIAL_STATE: AuthReducer = {
   refresh_token: null,
   reduced_token: null,
   signInStrike: false,
-  withoutAccess: false
+  withoutAccess: false,
+  withoutAccessError: ''
 }
 type ReturnReducer = Reducer<AuthReducer>
 
@@ -76,6 +77,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
 
       case Actions.WITHOUT_ACCESS: {
         draft.withoutAccess = true
+        draft.withoutAccessError = action.payload.error
 
         break
       }

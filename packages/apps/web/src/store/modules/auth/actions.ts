@@ -4,7 +4,13 @@ import { removeAuthorization } from '@psdhub/api'
 
 import clearMixPanelSession from '~/services/mixpanel/clearAll'
 
-import { SignInRequest, SignInSuccess, RefreshToken, AccessData } from './types'
+import {
+  SignInRequest,
+  SignInSuccess,
+  RefreshToken,
+  AccessData,
+  WithoutAccessError
+} from './types'
 
 export const Actions = {
   SIGN_IN_REQUEST: '@auth/SIGN_IN_REQUEST',
@@ -88,9 +94,10 @@ export function setSigned(): Action {
 /*
   Caso o usuário não possua nivelEnsino
 */
-export function withoutAccess(): Action {
+export function withoutAccess(error: WithoutAccessError): Action {
   return {
-    type: Actions.WITHOUT_ACCESS
+    type: Actions.WITHOUT_ACCESS,
+    payload: error
   }
 }
 

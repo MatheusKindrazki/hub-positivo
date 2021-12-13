@@ -19,6 +19,7 @@ export interface AuthReducer {
   token: string | null
   signInStrike: boolean
   withoutAccess: boolean
+  withoutAccessError: string
   refresh_token: string | null
   reduced_token: string | null
 }
@@ -79,4 +80,8 @@ export interface RehydrateAuth {
       guid: string
     }
   }
+}
+
+export interface WithoutAccessError {
+  error: 'noClass' | 'noValidClass'
 }
