@@ -2,57 +2,25 @@ import prepareEducationalStage, {
   ContentResponse
 } from '../../../common/utils/prepareEducationalStage'
 
-const mockedContentResponse: ContentResponse = {
-  ativo: true,
-  serie: {
-    nome: 'teste',
-    ciclo: {
-      nome: 'EM'
-    }
-  }
+let mockedContentResponse: ContentResponse = {
+  value: 'EM',
+  label: 'teste',
+  turmas: [
+    { nomeTurma: 'nomeTurma', nomeSerie: 'nomeSérie', turmaValida: true }
+  ]
 }
 
 describe('prepareEducationalStage should work properly', () => {
   it('should return object with correct keys and values', () => {
     const mockedResult = {
-      levels: [{ label: 'Ensino Médio', value: 'EM', serie: 'teste' }],
-      selected: 'EM'
-    }
-    const result = prepareEducationalStage([mockedContentResponse])
-    expect(result).toStrictEqual(mockedResult)
-  })
-
-  it('should return empty object if data.serie.ciclo is undefined', () => {
-    const mockedContentResponse = {
-      ativo: true,
-      serie: {
-        nome: 'teste'
-      }
-    }
-    const mockedResult = {
       levels: [
         {
-          label: undefined,
-          serie: 'teste',
-          value: undefined
+          label: 'teste',
+          value: 'EM',
+          series: [{ class: 'nomeSérie', name: 'nomeTurma', valid: true }]
         }
       ],
-      selected: ''
-    }
-
-    const result = prepareEducationalStage([
-      mockedContentResponse
-    ] as ContentResponse[])
-
-    expect(result).toStrictEqual(mockedResult)
-  })
-
-  it('should return empty object if ativo is false', () => {
-    mockedContentResponse.serie.ciclo = { nome: 'EM' }
-    mockedContentResponse.ativo = false
-    const mockedResult = {
-      levels: [],
-      selected: ''
+      selected: 'EM'
     }
     const result = prepareEducationalStage([mockedContentResponse])
     expect(result).toStrictEqual(mockedResult)
@@ -64,7 +32,21 @@ describe('prepareEducationalStage should work properly', () => {
     expect(result).toStrictEqual(mockedResult)
   })
 
-  it('', () => {
-    expect(1).toBeTruthy()
+  it('should return empty array with no selected option if data.turmas is undefined', () => {
+    mockedContentResponse = {
+      label: 'teste',
+      value: 'teste',
+      turmas: undefined
+    } as ContentResponse
+    const mockedResult = {
+      levels: [],
+      selected: ''
+    }
+
+    const result = prepareEducationalStage([
+      mockedContentResponse
+    ] as ContentResponse[])
+
+    expect(result).toStrictEqual(mockedResult)
   })
 })
