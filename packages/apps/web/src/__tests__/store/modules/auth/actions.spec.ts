@@ -202,15 +202,16 @@ describe('Action of authentication history', () => {
   it('Should withoutAccess is called', () => {
     const spy = jest.spyOn(authActions, 'withoutAccess')
 
-    const mockedType = {
-      type: '@auth/WITHOUT_ACCESS'
+    const mockedAction = {
+      type: '@auth/WITHOUT_ACCESS',
+      payload: { error: 'noClass' }
     }
 
-    const resolved = authActions.withoutAccess()
+    const resolved = authActions.withoutAccess({ error: 'noClass' })
 
     expect(spy).toBeCalled()
 
-    expect(resolved).toEqual(mockedType)
+    expect(resolved).toEqual(mockedAction)
   })
 
   it('Should setSigned is called', () => {
