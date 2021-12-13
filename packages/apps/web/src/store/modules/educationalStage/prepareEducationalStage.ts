@@ -34,10 +34,7 @@ export default function prepareStaged(data?: ContentResponse[]): Response {
   let setDefaultLevel = false
 
   data.forEach(level => {
-    if (
-      !setDefaultLevel &&
-      !!level.turmas.find(turma => turma.turmaValida === true)
-    ) {
+    if (!setDefaultLevel) {
       if (!setDefaultLevel && !!level.turmas[0]) {
         selectedLevel = level.value
         setDefaultLevel = true
