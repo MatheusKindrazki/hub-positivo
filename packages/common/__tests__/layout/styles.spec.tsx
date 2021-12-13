@@ -56,7 +56,6 @@ describe('Testing chakra`s styles hooks', () => {
     window.matchMedia = jest.fn().mockImplementation(query => {
       return {
         matches: query === '(min-width: 1024)',
-        addListener: jest.fn(),
         addEventListener: jest.fn(),
         removeListener: jest.fn()
       }

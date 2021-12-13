@@ -8,7 +8,7 @@ import FakeCollapse from '~/components/FakeCollapse'
 
 jest.mock('@chakra-ui/react', () => ({
   ...jest.requireActual('@chakra-ui/react'),
-  useMediaQuery: jest.fn()
+  useMediaQuery: jest.fn(() => [true]).mockReturnValueOnce([false])
 }))
 
 const childrenValue = 'testing children'

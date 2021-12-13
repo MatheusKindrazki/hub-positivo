@@ -25,7 +25,7 @@ describe('HeaderButton component should work as expected', () => {
     const icon = Megaphone
 
     const { getByTestId } = render(
-      <HeaderButton as={icon} onClick={mockedOnclick} />
+      <HeaderButton as={icon} onClick={mockedOnclick} isMenu={true} />
     )
     expect(getByTestId('header-button')).toBeInTheDocument()
 
