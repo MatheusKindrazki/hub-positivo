@@ -68,7 +68,7 @@ describe('Mixpanel Services', () => {
       educational_stage_EF1: true,
       educational_stage_EF2: true,
       educational_stage_EM: true,
-      selected_class: '1º ano',
+      selected_class: '1º ano - A',
       selected_educational_stage: 'EF1',
       user_id: '6d45f4f8-3326-4856-a29d-36216b2e4e2c',
       user_login: 'john.doe',

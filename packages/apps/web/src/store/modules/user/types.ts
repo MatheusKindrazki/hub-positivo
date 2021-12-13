@@ -13,14 +13,14 @@ export interface UserReducer {
 
 export interface User {
   name: string | null
+  username: string
+  email: string | null
+  email_salas: string | null
   integration_id?: string
   id?: string
   guid?: string
-  username: string
   schools?: Schools[]
-  email: string | null
-  email_salas: string | null
-  sub: string
+  sub?: string
 }
 
 export interface Schools {
