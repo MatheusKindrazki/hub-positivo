@@ -8,7 +8,13 @@ export interface EducationReducer {
 export interface LevelSelectOption {
   value: string
   label: string
-  series: string[]
+  series: Serie[]
+}
+
+export interface Serie {
+  class: string
+  name: string
+  valid: boolean
 }
 
 export interface setEducationalStageSuccess {
