@@ -34,21 +34,21 @@ export default function prepareStaged(data?: ContentResponse[]): Response {
   let setDefaultLevel = false
 
   data.forEach(level => {
-    if (!setDefaultLevel) {
-      if (!setDefaultLevel && !!level.turmas[0]) {
+    const { value, label, turmas } = level
+    if (turmas) {
+      const series = turmas.map(turma => ({
+        class: turma.nomeSerie,
+        name: turma.nomeTurma,
+        valid: turma.turmaValida
+      }))
+
+      levels.push({ value, label, series })
+
+      if (!setDefaultLevel) {
         selectedLevel = level.value
         setDefaultLevel = true
       }
     }
-    const { value, label, turmas } = level
-
-    const series = turmas.map(turma => ({
-      class: turma.nomeSerie,
-      name: turma.nomeTurma,
-      valid: turma.turmaValida
-    }))
-
-    levels.push({ value, label, series })
   })
 
   return {
