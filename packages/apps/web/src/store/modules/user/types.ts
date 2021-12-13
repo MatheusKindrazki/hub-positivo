@@ -20,6 +20,7 @@ export interface User {
   schools?: Schools[]
   email: string | null
   email_salas: string | null
+  sub: string
 }
 
 export interface Schools {

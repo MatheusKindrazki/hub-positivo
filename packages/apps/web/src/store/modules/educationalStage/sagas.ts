@@ -7,12 +7,9 @@ import { Actions } from '~/store/modules/profile/actions'
 import { productRequest } from '~/store/modules/products/actions'
 import { store } from '~/store'
 
-import prepareEducational, {
-  ContentResponse
-} from '@psdhub/common/utils/prepareEducationalStage'
+import { getInstance } from '@psdhub/api'
 
-import { EEMConnectGET } from '~/services/eemConnect'
-
+import prepareEducational, { ContentResponse } from './prepareEducationalStage'
 import { resetProfileLevels, setEducationalLevels } from './actions'
 
 const searchLevels = ['professor', 'aluno']
@@ -20,58 +17,38 @@ const searchLevels = ['professor', 'aluno']
 interface SendInfo {
   usuarioId: string
 }
-
-interface EducationalStageProps {
-  label: string
-  value: string
-  series: string[]
-}
-
 export function* getEducationStage(): Generator {
   const { school } = store.getState().user
-  const { reduced_token } = store.getState().auth
 
-  const response = yield call(() => {
-    return EEMConnectGET<SendInfo>({
-      endpoint: '/v1/Academico/turmas',
-      token: reduced_token as string,
-      data: {
-        usuarioId: school?.user_id as string
-      }
+  const api = getInstance('default')
+
+  const response = yield call(async () => {
+    return api.get<SendInfo>('/NivelEnsino', {
+      usuarioId: school?.user_id
     })
   })
 
-  const { ok, data } = response as ApiResponse<{ conteudo: ContentResponse[] }>
+  console.log({ response })
 
-  if (!ok) return
+  const { ok, data } = response as ApiResponse<ContentResponse[]>
 
-  const { levels, selected } = prepareEducational(data?.conteudo)
+  if (!ok || !data) return
 
-  const userSingleClass = data?.conteudo.find(e => e.ativo)?.serie.nome
+  const { selected, levels } = prepareEducational(data)
 
-  const concatSeries: EducationalStageProps[] = []
+  const userSingleClass = levels
+    .find(level => level.series.find(serie => serie.valid))
+    ?.series.find(serie => serie.valid)?.name
 
-  levels.forEach(e => {
-    const index = concatSeries.findIndex(f => f.value === e.value)
-    if (index !== -1) {
-      const getLevel = concatSeries[index]
-      const series = getLevel.series
-      concatSeries[index] = {
-        ...getLevel,
-        series: [...series, e.label as string]
-      }
-    } else {
-      concatSeries.push({
-        label: e.label,
-        value: e.value,
-        series: [e.label as string]
-      })
-    }
+  console.log('payload: ', {
+    levels: levels,
+    level: selected,
+    class: userSingleClass
   })
 
   return yield put(
     setEducationalLevels({
-      levels: concatSeries,
+      levels: levels,
       level: selected,
       class: userSingleClass
     })
