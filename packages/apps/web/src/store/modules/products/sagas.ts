@@ -17,7 +17,7 @@ import { withoutAccess } from '../auth/actions'
 export function* getProducts(): Generator {
   yield put(loading(true))
   const { guid } = store.getState().profile
-  const { level } = store.getState().educationalStage
+  const { level, levels } = store.getState().educationalStage
 
   const { info: user, school } = store.getState().user
 
@@ -28,7 +28,12 @@ export function* getProducts(): Generator {
   if (enableFilterLevel.includes(guid)) {
     if (!level) {
       yield put(loading(false))
-      return yield put(withoutAccess())
+      return yield put(withoutAccess({ error: 'noClass' }))
+    }
+    if (!levels?.find(level => level.series.find(serie => serie.valid))) {
+      alert('aluno sem turmas validas')
+      yield put(loading(false))
+      return yield put(withoutAccess({ error: 'noValidClass' }))
     }
   }
 

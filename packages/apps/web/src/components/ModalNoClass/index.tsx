@@ -49,7 +49,7 @@ const ModalNoClass: React.FC = () => {
         >
           <Image src={turma} w={isDesktop ? '18rem' : '10rem'} />
           <Text mt="1rem" fontSize="0.9375rem" lineHeight="20px">
-            Este perfil não está vinculado a nenhuma turma, por isso seu acesso
+            Seu perfil não está vinculado a nenhuma turma, por isso seu acesso
             ao On está bloqueado. Entre em contato com a escola para normalizar
             essa situação.
           </Text>
