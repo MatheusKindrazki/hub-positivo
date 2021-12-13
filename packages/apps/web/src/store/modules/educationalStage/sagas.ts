@@ -9,7 +9,10 @@ import { store } from '~/store'
 
 import { getInstance } from '@psdhub/api'
 
-import prepareEducational, { ContentResponse } from './prepareEducationalStage'
+import prepareEducational, {
+  ContentResponse
+} from '~/utils/prepareEducationalStage'
+
 import { resetProfileLevels, setEducationalLevels } from './actions'
 
 const searchLevels = ['professor', 'aluno']
