@@ -31,7 +31,6 @@ export function* getProducts(): Generator {
       return yield put(withoutAccess({ error: 'noClass' }))
     }
     if (!levels?.find(level => level.series.find(serie => serie.valid))) {
-      alert('aluno sem turmas validas')
       yield put(loading(false))
       return yield put(withoutAccess({ error: 'noValidClass' }))
     }
