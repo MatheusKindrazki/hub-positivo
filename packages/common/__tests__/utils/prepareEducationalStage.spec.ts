@@ -37,7 +37,7 @@ describe('prepareEducationalStage should work properly', () => {
       label: 'teste',
       value: 'teste',
       turmas: undefined
-    } as ContentResponse
+    } as any
     const mockedResult = {
       levels: [],
       selected: ''
