@@ -30,7 +30,11 @@ export function* getProducts(): Generator {
       yield put(loading(false))
       return yield put(withoutAccess({ error: 'noClass' }))
     }
-    if (!levels?.find(level => level.series.find(serie => serie.valid))) {
+    if (
+      !levels?.find(educationalLevel =>
+        educationalLevel.series.find(serie => serie.valid)
+      )
+    ) {
       yield put(loading(false))
       return yield put(withoutAccess({ error: 'noValidClass' }))
     }
