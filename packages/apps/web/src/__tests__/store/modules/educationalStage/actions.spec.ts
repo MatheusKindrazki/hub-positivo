@@ -1,7 +1,7 @@
 import * as educationalStageActions from '~/store/modules/educationalStage/actions'
 
 describe('Action of educationalStage history', () => {
-  it.skip('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
+  it('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
     const spy = jest.spyOn(educationalStageActions, 'setEducationalStage')
 
     const mockedType = {
@@ -15,7 +15,7 @@ describe('Action of educationalStage history', () => {
     expect(resolved).toEqual({ ...mockedType, payload: 'EF1' })
   })
 
-  it.skip('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
+  it('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
     const mockedType = {
       type: '@education/RESET_LEVEL'
     }
@@ -25,13 +25,25 @@ describe('Action of educationalStage history', () => {
     expect(resolved).toEqual({ ...mockedType })
   })
 
-  it.skip('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
+  it('Should the setEducationalStage calls the correct action and receive the value within payload', () => {
     const spy = jest.spyOn(educationalStageActions, 'setEducationalLevels')
 
     const mockedPayload = {
       level: 'EF1',
-      class: undefined,
-      levels: [{ label: 'EF1', value: 'EF1', series: ['1ª série', '2ª série'] }]
+      class: '1ª série',
+      levels: [
+        {
+          label: 'Ensino Fundamental Anos Iniciais',
+          value: 'EF1',
+          series: [
+            {
+              class: '1ª série',
+              name: '1ª série - A',
+              valid: true
+            }
+          ]
+        }
+      ]
     }
 
     const mockedType = {
