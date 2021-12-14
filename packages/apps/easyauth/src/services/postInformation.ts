@@ -22,7 +22,10 @@ function useSendAllInfos(e: SendAllProps): void {
   const prepareData: SendInfos = {
     reduced_token: e.reducedToken,
     token: e.data?.token as string,
-    user_info: { ...(e.data?.info as SendInfos['user_info']) },
+    user_info: {
+      ...(e.data?.info as SendInfos['user_info']),
+      guid: (e.data?.info as any)?.sub
+    },
     logged_in: {
       profile: e.loggedData.selected_profile.id as string,
       profileTheme: profile,
