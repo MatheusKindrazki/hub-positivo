@@ -16,8 +16,20 @@ describe('Reducer of authentication history', () => {
   it('Should set the Educational Stage Default with the array of that the user has access to', () => {
     const mockedPayload = {
       level: 'EF1',
-      class: undefined,
-      levels: [{ label: 'EF1', value: 'EF1', series: ['1ª série', '2ª série'] }]
+      class: '1ª série',
+      levels: [
+        {
+          label: 'Ensino Fundamental Anos Iniciais',
+          value: 'EF1',
+          series: [
+            {
+              class: '1ª série',
+              name: '1ª série - A',
+              valid: true
+            }
+          ]
+        }
+      ]
     }
 
     const action = educationalStageActions.setEducationalLevels(mockedPayload)
@@ -25,7 +37,11 @@ describe('Reducer of authentication history', () => {
     const state = EducationalReducer(INITIAL_STATE, action)
 
     expect(state.level).toEqual('EF1')
-    expect(state.levels).toContainObject({ label: 'EF1', value: 'EF1' })
+    expect(state.levels).toContainObject({
+      label: 'Ensino Fundamental Anos Iniciais',
+      series: [{ class: '1ª série', name: '1ª série - A', valid: true }],
+      value: 'EF1'
+    })
   })
 
   it('Should reset all states', () => {

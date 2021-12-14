@@ -7,18 +7,15 @@ import { productRequest } from '~/store/modules/products/actions'
 import * as sagas from '~/store/modules/educationalStage/sagas'
 import * as educationalStage from '~/store/modules/educationalStage/actions'
 
-import * as eem from '~/services/eemConnect'
+import * as api from '@psdhub/api'
 
 import { userMock, authMock } from '~/__mocks__/store'
 import store, { mockState } from '~/__mocks__/fakeStore.mock'
 
-jest.mock('~/services/eemConnect')
-jest.mock('@psdhub/common/utils/prepareEducationalStage', () =>
-  jest.fn().mockImplementation(() => ({
-    levels: [{ label: 'EF1', value: 'EF1' }],
-    selected: 'EF1'
-  }))
-)
+jest.mock('@psdhub/api', () => ({
+  ...jest.requireActual('@psdhub/api'),
+  getInstance: jest.fn()
+}))
 
 let dispatchedActions = store.getActions()
 
@@ -31,7 +28,7 @@ describe('Sagas of educationalStage history', () => {
     dispatchedActions = store.getActions()
   })
   describe('get Education Stage', () => {
-    it.skip('Should generate a new user authentication token for the user', async () => {
+    it('Should generate a new user authentication token for the user', async () => {
       mockState.auth = {
         ...mockState.auth,
         reduced_token: authMock.reduced_token
@@ -46,34 +43,40 @@ describe('Sagas of educationalStage history', () => {
         ok: true,
         originalError: null,
         problem: null,
-        data: {
-          conteudo: [
-            {
-              ativo: true,
-              serie: {
-                nome: '1ª série'
-              },
-              levels: [
-                { label: 'EF1', value: 'EF1', serie: ['1ª série', '2ª série'] }
-              ]
-            }
-          ]
-        }
+        data: [
+          {
+            value: 'EM',
+            label: 'Ensino Médio',
+            turmas: [
+              {
+                nomeTurma: '3º Ano - A',
+                nomeSerie: '3º Ano',
+                turmaValida: true
+              }
+            ]
+          }
+        ]
       }
 
+      const mockedGet = jest.fn(() => returnedMock)
+
       jest
-        .spyOn(eem, 'EEMConnectGET')
-        .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
+        .spyOn(api, 'getInstance')
+        .mockImplementation(() => ({ get: mockedGet } as any))
 
       await runSaga(store, sagas.getEducationStage).toPromise()
 
       expect(dispatchedActions).toContainObject(
         educationalStage.setEducationalLevels({
           levels: [
-            { label: 'EF1', value: 'EF1', series: ['1ª série', '2ª série'] }
+            {
+              label: 'Ensino Médio',
+              value: 'EM',
+              series: [{ valid: true, name: '3º Ano - A', class: '3º Ano' }]
+            }
           ],
-          level: 'EF1',
-          class: '1ª série'
+          level: 'EM',
+          class: '3º Ano - A'
         })
       )
     })
@@ -96,9 +99,11 @@ describe('Sagas of educationalStage history', () => {
         data: {}
       }
 
+      const mockedGet = jest.fn(() => returnedMock)
+
       jest
-        .spyOn(eem, 'EEMConnectGET')
-        .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
+        .spyOn(api, 'getInstance')
+        .mockImplementation(() => ({ get: mockedGet } as any))
 
       const resolved = await runSaga(store, sagas.getEducationStage).result()
 
@@ -125,9 +130,11 @@ describe('Sagas of educationalStage history', () => {
         data: {}
       }
 
+      const mockedGet = jest.fn(() => returnedMock)
+
       jest
-        .spyOn(eem, 'EEMConnectGET')
-        .mockImplementationOnce(() => Promise.resolve<any>(returnedMock))
+        .spyOn(api, 'getInstance')
+        .mockImplementation(() => ({ get: mockedGet } as any))
 
       const mockedAction = setProfile({
         colorProfile: 'green',
