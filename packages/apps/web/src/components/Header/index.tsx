@@ -29,8 +29,7 @@ export interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({
   schoolName,
-  handleGoBack,
-  notifications
+  handleGoBack  
 }) => {
   const menuRef = useRef<RefMenuProps>(null)
   const modalSupportContext = useContext(ModalContext)
