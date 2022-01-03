@@ -15,8 +15,6 @@ jest.mock('react-router-dom', () => ({
     pathname: '/'
   }))
 }))
-jest.mock('~/hooks/useNotifications', () => jest.fn())
-
 jest.mock('~/components/Header', () =>
   jest.fn(props => (
     <div onClick={() => props.handleGoBack()} id="header">
@@ -27,14 +25,6 @@ jest.mock('~/components/Header', () =>
 
 jest.mock('~/components/ModalNoClass', () =>
   jest.fn(() => <div id="modalNoClass">Modal no Class</div>)
-)
-
-jest.mock('~/components/ModalAcceptTerms', () =>
-  jest.fn(() => <div id="modal">Modal</div>)
-)
-
-jest.mock('~/components/ModalAcceptTerms', () =>
-  jest.fn(() => <div id="modal">Modal</div>)
 )
 
 jest.mock('~/components/ModalAcceptTerms', () =>

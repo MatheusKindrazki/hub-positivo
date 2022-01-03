@@ -6,6 +6,11 @@ import * as chakra from '@chakra-ui/react'
 
 import FakeCollapse from '~/components/FakeCollapse'
 
+jest.mock('@chakra-ui/react', () => ({
+  ...jest.requireActual('@chakra-ui/react'),
+  useMediaQuery: jest.fn()
+}))
+
 const childrenValue = 'testing children'
 
 const setup = (props?: any) => {
@@ -20,6 +25,7 @@ const setup = (props?: any) => {
 }
 
 describe('FakeCollapse renders without crashing', () => {
+  jest.spyOn(chakra, 'useMediaQuery').mockReturnValue([false])
   it('should have children', () => {
     const { queryByText } = setup()
     const children = queryByText(childrenValue)
