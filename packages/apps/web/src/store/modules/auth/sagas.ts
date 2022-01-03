@@ -47,7 +47,6 @@ import {
   refreshTokenSuccess,
   reducedTokenEEM
 } from './actions'
-import { notificationsRequest } from '../notifications/actions'
 import { noBreakAccessEnable } from '../noBreakAccess/actions'
 
 type SignInPayload = Payload<SignInRequest>
@@ -170,8 +169,6 @@ export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
   )
 
   yield put(setProfiles(profiles))
-
-  yield put(notificationsRequest())
 
   yield put(enableRefreshTokenMiddleware(true))
 

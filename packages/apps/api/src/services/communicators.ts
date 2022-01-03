@@ -14,8 +14,7 @@ export const communicationURLs = {
   default: process.env.REACT_APP_API_URL,
   auth: process.env.REACT_APP_API_AUTH_URL,
   eem: process.env.REACT_APP_API_EEM_INFOS,
-  token: process.env.REACT_APP_API_AUTH_PRODUCT_URL,
-  notification: process.env.REACT_APP_API_NOTIFICATION
+  token: process.env.REACT_APP_API_AUTH_PRODUCT_URL
 }
 
 type StringPropsKeys<T extends { [key: string]: any }> = {
