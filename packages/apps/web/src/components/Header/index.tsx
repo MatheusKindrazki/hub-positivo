@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useContext, useRef } from 'react'
 
 import Headroom from 'react-headroom'
 
@@ -16,6 +16,8 @@ import MenuBar from '~/components/MenuBar'
 import GlobalStyle from './styles'
 import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
 import { SchoolLabel, HeaderButton } from './components'
+import ModalContext from '../ModalSupport/context'
+import ModalSupport from '../ModalSupport'
 import ModalSignOut, { ModalHandler } from '../ModalSignOut/ModalSignOut'
 import { RefMenuProps } from '../MenuBar/components/Desktop'
 import LogoOn from '../LogoOn'
@@ -27,13 +29,18 @@ export interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
   const menuRef = useRef<RefMenuProps>(null)
+  const modalSupportContext = useContext(ModalContext)
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
 
-  const modalRef = useRef<ModalHandler>(null)
+  const modalSignoutRef = useRef<ModalHandler>(null)
 
-  const openModal = useCallback(() => {
-    modalRef.current?.onOpen()
+  const openSignoutModal = useCallback(() => {
+    modalSignoutRef.current?.onOpen()
   }, [])
+
+  const openSupportModal = useCallback(() => {
+    modalSupportContext.onOpen()
+  }, [modalSupportContext])
 
   return (
     <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
@@ -65,9 +72,10 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
             </Box>
           </Box>
           <Box w="50%" d="flex" justifyContent="flex-end">
-            <HeaderButton as={Question} onClick={() => console.log('click')} />
-            <HeaderButton children="Sair" onClick={openModal} />
-            <ModalSignOut ref={modalRef} />
+            <HeaderButton as={Question} onClick={openSupportModal} />
+            <HeaderButton children="Sair" onClick={openSignoutModal} />
+            <ModalSignOut ref={modalSignoutRef} />
+            <ModalSupport />
           </Box>
         </Box>
       </Box>
