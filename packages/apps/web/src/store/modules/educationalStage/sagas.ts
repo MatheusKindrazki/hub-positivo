@@ -30,9 +30,6 @@ export function* getEducationStage(): Generator {
       usuarioId: school?.user_id
     })
   })
-
-  console.log({ response })
-
   const { ok, data } = response as ApiResponse<ContentResponse[]>
 
   if (!ok || !data) return
@@ -42,12 +39,6 @@ export function* getEducationStage(): Generator {
   const userSingleClass = levels
     .find(level => level.series.find(serie => serie.valid))
     ?.series.find(serie => serie.valid)?.name
-
-  console.log('payload: ', {
-    levels: levels,
-    level: selected,
-    class: userSingleClass
-  })
 
   return yield put(
     setEducationalLevels({
