@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 
+import { isAfter, addMonths } from 'date-fns'
 import classNames from 'classnames'
 
 import createSlug from '@psdhub/common/utils/createSlug'
@@ -11,6 +12,7 @@ export interface CardProps {
   id: string
   nome: string
   descricao: string
+  dataCadastro: Date
   arquivo: string
   notificacao?: string | number
   ativo: boolean
@@ -36,6 +38,12 @@ const CardProduct: React.FC<CardProductProps> = ({
   const renderCardName = useMemo(() => {
     return `${createSlug(category || 'hub')}-${createSlug(nome)}`
   }, [nome, category])
+
+  const itsANewCard = useMemo(() => {
+    const compareDate = addMonths(new Date(), 1)
+
+    return isAfter(compareDate, card.dataCadastro)
+  }, [card.dataCadastro])
 
   return (
     <Container
@@ -75,6 +83,21 @@ const CardProduct: React.FC<CardProductProps> = ({
           Em Breve
         </Badge>
       )}
+
+      {link && itsANewCard ? (
+        <Badge
+          colorScheme="cyan"
+          w="75px"
+          top="6px"
+          right="6px"
+          h="0.9375rem"
+          borderRadius="4px"
+          position="absolute"
+          m="4px"
+        >
+          Novo
+        </Badge>
+      ) : null}
       <Box
         h="100%"
         minWidth={['4.7rem', '5.9375rem']}

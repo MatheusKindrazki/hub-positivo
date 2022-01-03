@@ -11,6 +11,7 @@ const cardProduct: CardProductProps = {
   cor: 'test',
   category: 'teste',
   card: {
+    dataCadastro: new Date(Date.now()),
     id: 'string',
     nome: 'string',
     descricao: 'string',
