@@ -79,6 +79,12 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
               <ModalSupport />
             </Box>
           </Box>
+          <Box w="50%" d="flex" justifyContent="flex-end">
+            <HeaderButton as={Question} onClick={openSupportModal} />
+            <HeaderButton children="Sair" onClick={openSignoutModal} />
+            <ModalSignOut ref={modalSignoutRef} />
+            <ModalSupport />
+          </Box>
         </Box>
         <Box w="100%" backgroundColor="white" borderBottom="1px solid #C9C9C9">
           <Box
