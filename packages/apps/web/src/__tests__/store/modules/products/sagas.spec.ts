@@ -120,7 +120,7 @@ describe('testing getProducts saga flow', () => {
 
   it('should dispatch a withoutAccess action and early return a users without levels or unvalid levels', async () => {
     mockState.educationalStage = { level: null } as any
-    mockState.profile = { guid: 'PROFESSOR' } as any
+    mockState.profile = { guid: 'ALUNO' } as any
     await runSaga(store, getProducts).toPromise()
     expect(dispatchedActions).toContainObject(loading(false))
     expect(dispatchedActions).toContainObject(
