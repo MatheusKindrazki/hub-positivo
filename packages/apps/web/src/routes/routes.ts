@@ -18,8 +18,6 @@ const Solutions = React.lazy(() => import('~/pages/Solutions'))
 const NoBreakAccess = React.lazy(() => import('~/pages/NoBreakAccess'))
 const PDF = React.lazy(() => import('~/pages/PDF'))
 
-const PDF = React.lazy(() => import('~/pages/PDF'))
-
 const { guid } = store.getState().profile
 
 export default [
