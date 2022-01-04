@@ -15,9 +15,7 @@ const Welcome: React.FC<WelcomeProps> = ({
   option,
   name
 }) => {
-  const welcomeText = `Olá ${
-    name?.split(' ')[0] || 'Usuário'
-  }, seja bem-vindo! 👋`
+  const welcomeText = `Olá, ${name?.split(' ')[0] || 'Usuário'} 👋`
 
   return (
     <Box display="flex" alignItems="center" className="hub-welcome">
