@@ -9,7 +9,6 @@ import { openTour, postTourViewed } from '~/store/modules/tour/actions'
 
 import Tour from '@psdhub/common/components/Tour'
 import { BarLoader } from '@psdhub/common/components'
-import { initChatbot } from '@psdhub/chatbot'
 
 import setUserProperties from '~/services/mixpanel/setProperties'
 import history from '~/services/history'
