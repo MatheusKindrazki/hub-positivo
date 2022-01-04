@@ -26,13 +26,13 @@ describe('Welcome component works as expected', () => {
       <Welcome fontSize="32px" option="welcome" fontWeight="500" />
     )
 
-    expect(getByText('seja bem-vindo', { exact: false })).toBeInTheDocument()
+    expect(getByText('olá', { exact: false })).toBeInTheDocument()
   })
 
   it('should set generic font size and weight when none is received', () => {
     const { getByText } = render(<Welcome option="welcome" />)
 
-    expect(getByText('seja bem-vindo', { exact: false })).toHaveStyle({
+    expect(getByText('olá', { exact: false })).toHaveStyle({
       fontSize: '1,2rem',
       fontWeight: 'normal'
     })
