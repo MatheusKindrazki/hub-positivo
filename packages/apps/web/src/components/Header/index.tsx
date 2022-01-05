@@ -27,7 +27,7 @@ export interface HeaderProps {
   schoolName?: string
 }
 
-const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
+  const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
   const menuRef = useRef<RefMenuProps>(null)
   const modalSupportContext = useContext(ModalContext)
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
