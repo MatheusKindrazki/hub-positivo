@@ -14,6 +14,7 @@ import history from '~/services/history'
 import MenuBar from '~/components/MenuBar'
 
 import GlobalStyle from './styles'
+import NotificationButton from './components/NotificationButton'
 import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
 import { SchoolLabel, HeaderButton } from './components'
 import ModalContext from '../ModalSupport/context'
@@ -27,7 +28,11 @@ export interface HeaderProps {
   schoolName?: string
 }
 
-  const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
+const Header: React.FC<HeaderProps> = ({
+  schoolName,
+  handleGoBack,
+  notifications
+}) => {
   const menuRef = useRef<RefMenuProps>(null)
   const modalSupportContext = useContext(ModalContext)
   const [isDesktop] = useMediaQuery('(min-width: 480px)')
@@ -72,6 +77,7 @@ export interface HeaderProps {
             </Box>
           </Box>
           <Box w="50%" d="flex" justifyContent="flex-end">
+            <NotificationButton {...notifications} />
             <HeaderButton as={Question} onClick={openSupportModal} />
             <HeaderButton children="Sair" onClick={openSignoutModal} />
             <ModalSignOut ref={modalSignoutRef} />
