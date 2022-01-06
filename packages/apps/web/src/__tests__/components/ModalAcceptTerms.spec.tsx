@@ -5,7 +5,6 @@ import MatchMediaMock from 'jest-matchmedia-mock'
 
 import * as redux from 'react-redux'
 
-import { signOut } from '~/store/modules/auth/actions'
 import { acceptTermsRequest } from '~/store/modules/acceptTerms/actions'
 import { store } from '~/store'
 
@@ -84,23 +83,20 @@ describe('ModalAcceptTerms component should work properly', () => {
       }
     })
 
-    expect(
-      getByText('Tenho mais de 18 anos', { exact: false })
-    ).toBeInTheDocument()
+    const checkboxText =
+      'Li e aceito os termos do Aviso de Privacidade e Política de Privacidade'
 
-    expect(getByText('CONCLUIR')).toBeInTheDocument()
+    expect(getByText(checkboxText, { exact: false })).toBeInTheDocument()
 
-    fireEvent.click(getByText('Tenho mais de 18 anos', { exact: false }))
+    fireEvent.click(getByText(checkboxText, { exact: false }))
 
-    fireEvent.click(getByText('CONCLUIR'))
+    expect(getByText('CONTINUAR')).toBeInTheDocument()
+
+    fireEvent.click(getByText('CONTINUAR'))
 
     expect(dispatch).toHaveBeenCalledWith(acceptTermsRequest())
   })
-  it('should sign out user when clicked with checkbox unchecked', async () => {
-    const dispatch = jest.fn()
-
-    jest.spyOn(redux, 'useDispatch').mockReturnValue(dispatch)
-
+  it('should close modal when submitted with checkbox unchecked', async () => {
     const { getByText } = render(<ModalAcceptTerms />, {
       store: store,
       reducers: ['acceptTerms'],
@@ -112,11 +108,11 @@ describe('ModalAcceptTerms component should work properly', () => {
       }
     })
 
-    expect(getByText('CONCLUIR')).toBeInTheDocument()
+    expect(getByText('CANCELAR')).toBeInTheDocument()
 
-    fireEvent.click(getByText('CONCLUIR'))
+    fireEvent.click(getByText('CANCELAR'))
 
-    expect(dispatch).toHaveBeenCalledWith(signOut())
+    expect(onClose).toHaveBeenCalled()
   })
   it('should close modal when pathname is on ignore list', async () => {
     const IGNORE_PATH = '/politica-de-privacidade'

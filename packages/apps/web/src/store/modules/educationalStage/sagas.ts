@@ -69,8 +69,6 @@ export function* getEducationStage(): Generator {
     }
   })
 
-  console.log(concatSeries)
-
   return yield put(
     setEducationalLevels({
       levels: concatSeries,

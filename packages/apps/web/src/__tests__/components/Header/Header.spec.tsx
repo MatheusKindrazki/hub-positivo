@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { fireEvent } from '@testing-library/dom'
+
 import { store } from '~/store'
 
 import { render } from '@psdhub/test-utils'
@@ -65,8 +67,9 @@ describe('Header component should works as expected', () => {
     const headerButtonCount = 3
     const buttonTestId = 'header-button'
     const logoTestId = 'logo-on'
-
     expect(queryAllByTestId(buttonTestId).length).toBe(headerButtonCount)
+
+    queryAllByTestId(buttonTestId).forEach(button => fireEvent.click(button))
 
     expect(getByTestId(logoTestId)).toBeInTheDocument()
   })

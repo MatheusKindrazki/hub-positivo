@@ -22,7 +22,7 @@ const Selects: React.FC<SelectsProps> = ({ closeMenu }) => {
         options={schoolList}
         onChange={e => {
           setSchool(e as any)
-          setTimeout(() => closeMenu(), 500)
+          // setTimeout(() => closeMenu(), 500)
         }}
       />
       <Select
