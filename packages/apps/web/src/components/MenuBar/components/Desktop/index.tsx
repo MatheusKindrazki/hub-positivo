@@ -31,6 +31,8 @@ import ModalSignOut, {
   ModalHandler
 } from '~/components/ModalSignOut/ModalSignOut'
 
+import history from '~/services/history'
+
 import {
   MenuHeader,
   SelectProfile,
@@ -111,6 +113,11 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
       [dispatch]
     )
 
+    const handleMyClassesClick = useCallback(
+      () => history.push('/minhas-turmas'),
+      []
+    )
+
     return (
       <Drawer
         isOpen={isOpen}
@@ -180,6 +187,7 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
               handleSignOut={() => modalSignOutRef.current?.onOpen()}
               openModalPass={openModalPass}
               openModalVersionUpdate={openModalVersionUpdate}
+              redirectToMyClasses={handleMyClassesClick}
             />
             <ModalSignOut ref={modalSignOutRef} />
           </DrawerBodyContainer>
