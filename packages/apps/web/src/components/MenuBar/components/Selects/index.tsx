@@ -2,6 +2,8 @@ import React from 'react'
 
 import { Select, Stack } from '@psdhub/common/components'
 
+import history from '~/services/history'
+
 import { useHeader } from '../../context'
 
 type SelectsProps = { closeMenu: () => void }
@@ -35,6 +37,7 @@ const Selects: React.FC<SelectsProps> = ({ closeMenu }) => {
         onChange={e => {
           setRole(e as any)
           setTimeout(() => closeMenu(), 500)
+          history.push('/')
         }}
       />
     </Stack>
