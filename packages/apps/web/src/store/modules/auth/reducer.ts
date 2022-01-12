@@ -98,6 +98,8 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.refresh_token = null
         draft.reduced_token = null
         draft.withoutAccess = false
+        draft.signInStrike = false
+        draft.withoutAccessError = ''
 
         break
       }

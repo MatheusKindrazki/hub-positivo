@@ -72,6 +72,20 @@ export function setAuthorization(token: string, type?: Variant | 'all'): void {
   communicator.setHeader('Authorization', `Bearer ${token}`)
 }
 
+export function removeAuthorization(type?: Variant | 'all'): void {
+  if (type === 'all') {
+    Object.values(communicators).forEach(communicator => {
+      communicator.deleteHeader('Authorization')
+    })
+
+    return
+  }
+
+  const communicator = getCommunicator(type || 'default')
+
+  communicator.deleteHeader('Authorization')
+}
+
 export * from './retry'
 
 export type { ApisauceInstance, ApiResponse, ApiErrorResponse }
