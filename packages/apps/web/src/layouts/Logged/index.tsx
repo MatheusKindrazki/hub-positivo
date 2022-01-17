@@ -26,8 +26,6 @@ import footerData from './footerData.json'
 const dispatchEvent = debounce(() => setUserProperties(), 1000)
 
 const Dashboard: React.FC = ({ children }) => {
-  initChatbot()
-
   const dispatch = useDispatch()
   const location = useLocation()
 
@@ -37,6 +35,10 @@ const Dashboard: React.FC = ({ children }) => {
   const { nobreak } = useSelector((state: Store.State) => state.noBreakAccess)
 
   const { school } = useSelector((state: Store.State) => state.user)
+
+  const { guid } = useSelector((state: Store.State) => state.profile)
+
+  initChatbot({ profile: guid })
 
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
