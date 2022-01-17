@@ -3,7 +3,6 @@ import { Action } from 'redux'
 import { removeAuthorization } from '@psdhub/api'
 
 import clearMixPanelSession from '~/services/mixpanel/clearAll'
-import history from '~/services/history'
 
 import { SignInRequest, SignInSuccess, RefreshToken, AccessData } from './types'
 
@@ -127,9 +126,6 @@ export function signOut(): Action {
   clearMixPanelSession()
 
   removeAuthorization('all')
-
-  history.push('/')
-
   return {
     type: Actions.SIGN_OUT
   }

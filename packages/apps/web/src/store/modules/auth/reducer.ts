@@ -2,6 +2,8 @@ import { produce } from 'immer'
 
 import { Reducer } from 'redux'
 
+import history from '~/services/history'
+
 import { AuthReducer } from './types'
 import { Actions } from './actions'
 
@@ -99,6 +101,10 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.reduced_token = null
         draft.withoutAccess = false
         draft.signInStrike = false
+
+        setTimeout(() => {
+          history.push('/')
+        }, 500)
 
         break
       }
