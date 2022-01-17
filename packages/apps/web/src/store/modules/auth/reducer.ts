@@ -103,7 +103,7 @@ const auth: ReturnReducer = (state = INITIAL_STATE, action) => {
         draft.signInStrike = false
 
         setTimeout(() => {
-          history.push('/')
+          history.push('/login')
         }, 500)
 
         break
