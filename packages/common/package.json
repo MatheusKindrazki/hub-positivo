@@ -1,6 +1,6 @@
 {
   "name": "@psdhub/common",
-  "version": "1.9.1-beta-7",
+  "version": "2.0.0",
   "author": "matheuskindrazki",
   "description": "PSD Hub Design Styles Kit",
   "license": "MIT",
@@ -51,7 +51,7 @@
     "reactour": "^1.18.0"
   },
   "devDependencies": {
-    "@psdhub/common": "*",
+    "@psdhub/common": "2.0.0",
     "@psdhub/test-utils": "*",
     "@types/classnames": "^2.2.11",
     "@types/node": "^14.14.25",

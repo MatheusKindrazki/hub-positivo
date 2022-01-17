@@ -40,9 +40,10 @@ const CardProduct: React.FC<CardProductProps> = ({
   }, [nome, category])
 
   const itsANewCard = useMemo(() => {
-    const compareDate = addMonths(new Date(), 1)
+    const compareDate = new Date()
+    const cardDate = addMonths(new Date(card.dataCadastro), 1)
 
-    return isAfter(compareDate, card.dataCadastro)
+    return !isAfter(compareDate, cardDate)
   }, [card.dataCadastro])
 
   return (
@@ -87,7 +88,7 @@ const CardProduct: React.FC<CardProductProps> = ({
       {link && itsANewCard ? (
         <Badge
           colorScheme="cyan"
-          w="75px"
+          w="47px"
           top="6px"
           right="6px"
           h="0.9375rem"
