@@ -9,6 +9,7 @@ import { openTour, postTourViewed } from '~/store/modules/tour/actions'
 
 import Tour from '@psdhub/common/components/Tour'
 import { BarLoader } from '@psdhub/common/components'
+import { initChatbot } from '@psdhub/chatbot'
 
 import setUserProperties from '~/services/mixpanel/setProperties'
 import history from '~/services/history'
@@ -25,6 +26,8 @@ import footerData from './footerData.json'
 const dispatchEvent = debounce(() => setUserProperties(), 1000)
 
 const Dashboard: React.FC = ({ children }) => {
+  initChatbot()
+
   const dispatch = useDispatch()
   const location = useLocation()
 
