@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {
-    "@psdhub/common": "*",
+    "@psdhub/common": "2.0.0",
     "@psdhub/api": "*"
   },
   "devDependencies": {

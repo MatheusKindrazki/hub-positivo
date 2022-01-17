@@ -20,7 +20,7 @@ const Footer: React.FC<FooterProps> = ({
 }) => {
   const styles: Partial<TextProps> = {
     cursor: 'pointer',
-    variant: 'ghost',
+    // variant: 'ghost',
     textAlign: 'left'
   }
 

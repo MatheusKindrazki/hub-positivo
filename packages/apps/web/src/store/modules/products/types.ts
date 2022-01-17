@@ -24,6 +24,7 @@ export interface Product {
   arquivo: string
   link?: string
   tipoRenderizacao: string
+  dataCadastro: Date
   notificacao?: string
   ativo: boolean
 }

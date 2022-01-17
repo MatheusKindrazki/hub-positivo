@@ -12,11 +12,11 @@
     "lint": "eslint src --ext ts,tsx",
     "tsc": "tsc --noEmit"
   },
-  "dependencies": {    
-    "@psdhub/chatbot": "*",    
-    "@pdftron/webviewer": "^8.1.0",         
+  "dependencies": {
+    "@psdhub/chatbot": "*",
+    "@pdftron/webviewer": "^8.1.0",
     "@psdhub/api": "*",
-    "@psdhub/common": "1.9.1-beta-6",
+    "@psdhub/common": "2.0.0",
     "@psdhub/gsc": "*",
     "@psdhub/pdf": "*",
     "classnames": "^2.2.6",
