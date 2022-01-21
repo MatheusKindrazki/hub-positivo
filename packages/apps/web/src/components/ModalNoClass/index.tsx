@@ -36,11 +36,11 @@ const ModalNoClass: React.FC = () => {
     'Seu perfil não está vinculado a nenhuma turma, por isso seu acesso ao On está bloqueado. Entre em contato com a escola para normalizar essa situação.'
 
   const noValidClassErrorMessage =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mattis mi ut finibus porttitor. Nulla risus dolor, dapibus quis varius eget pharetra.'
+    'Você não está vinculado a uma turma de 2022 e não poderá acessar o On por enquanto. Entre em contato com sua escola.'
 
   const noClassTitle = 'Nenhuma turma vinculada'
 
-  const noValidClassTitle = 'Lorem ipsum dolor sit a'
+  const noValidClassTitle = 'Houve um problema.'
 
   return (
     <>
