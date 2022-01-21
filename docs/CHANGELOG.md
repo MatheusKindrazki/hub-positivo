@@ -1,3 +1,22 @@
+# [2.8.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.7.0...v2.8.0) (2022-01-21)
+
+
+### Bug Fixes
+
+* adicionando condicional exclusiva para perfil aluno no bloqueio de turmas validas ([74a883b](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/74a883be2774aa50a25a0f0650b5f867b2d4b497))
+* adicionando timeout para redirect ([7f191c0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/7f191c0221a1602d413dbaacb0e7705ebc386687))
+* ajustando pra quem chatbot aparece ([a2a37d9](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/a2a37d9572640c2450b04a86b60fbcb029c9e5f4))
+* ajustando url do redirecionamento ([388e489](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/388e489507f00bc3dd208aa165a08e1e4c94e441))
+* removendo propriedades e variáveis não utilizadas ([9b08bf0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/9b08bf0bf1ef38c59cea67f74e9feb098b73f0f0))
+* retornando botão de notificações no header + ajustes de identação ([1de9ac2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/1de9ac2c11a5c78f484145e5da65c4fb02af77f5))
+
+
+### Features
+
+* adicionando badge new para cards novos ([af6e364](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/af6e3642d91d79f0364d416e60f3f0a141664335))
+* adicionando função que remove token do header da API ([5c8668e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/5c8668e095d5853e0cf2496eb611683f3111afce))
+* redirecionando o usuário para login ([18afbf1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/18afbf1569d4ca62f7e2ad3d53f8ceca30987b9b))
+
 ## [2.6.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.6.0...v2.6.1) (2021-12-06)
 
 
