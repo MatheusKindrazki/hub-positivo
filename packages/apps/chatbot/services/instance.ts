@@ -1,4 +1,4 @@
-const availableProfiles = ['PROFESSOR', 'ADMINISTRADOR', ' COORDENADOR']
+const availableProfiles = ['PROFESSOR', 'ADMINISTRADOR', 'COORDENADOR']
 
 interface ChatbotInstance {
   profile: string
