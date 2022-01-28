@@ -25,7 +25,7 @@ stages:
       # - template: .azure-pipelines/templates/run-tests.yml
       - template: .azure-pipelines/templates/generate-release.yml
       - template: .azure-pipelines/templates/build-project.yml
-      - template: .azure-pipelines/templates/upload-sourcemap.yml
+      # - template: .azure-pipelines/templates/upload-sourcemap.yml
       - template: .azure-pipelines/templates/copy-assets.yml
       - template: .azure-pipelines/templates/create-artifacts.yml
       - task: WhiteSource@21
