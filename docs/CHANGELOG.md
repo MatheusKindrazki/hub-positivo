@@ -1,3 +1,10 @@
+## [2.8.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.8.0...v2.8.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* corrigindo string de coordenador em perfis habilitados para iniciação do chatbot ([bd0cbca](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/bd0cbcac4664b2e8dbc722a121d7b303499f68a7))
+
 # [2.8.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.7.0...v2.8.0) (2022-01-21)
 
 
