@@ -50,6 +50,8 @@ declare global {
       REACT_APP_RECAPTCHA_SITE_KEY: string
 
       REACT_APP_API_NOTIFICATION: string
+
+      REACT_APP_FEATURE_NOTIFICATIONS: string
     }
   }
 }

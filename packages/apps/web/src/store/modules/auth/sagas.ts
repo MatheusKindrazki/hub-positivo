@@ -170,6 +170,10 @@ export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
 
   yield put(setProfiles(profiles))
 
+  if (Number(process.env.REACT_APP_FEATURE_NOTIFICATIONS)) {
+    yield put(notificationsRequest())
+  }
+
   yield put(enableRefreshTokenMiddleware(true))
 
   if (redirect) {

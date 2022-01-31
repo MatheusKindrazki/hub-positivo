@@ -26,6 +26,7 @@ import LogoOn from '../LogoOn'
 export interface HeaderProps {
   handleGoBack: () => void | Promise<void>
   schoolName?: string
+  notifications: NotificationProps | null
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -85,7 +86,7 @@ const Header: React.FC<HeaderProps> = ({
             </Box>
           </Box>
           <Box w="50%" d="flex" justifyContent="flex-end">
-            <NotificationButton {...notifications} />
+            {notifications ? <NotificationButton {...notifications} /> : null}
             <HeaderButton as={Question} onClick={openSupportModal} />
             <HeaderButton children="Sair" onClick={openSignoutModal} />
             <ModalSignOut ref={modalSignoutRef} />
