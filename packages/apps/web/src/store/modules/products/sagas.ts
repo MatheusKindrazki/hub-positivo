@@ -69,8 +69,6 @@ export function* getProducts(): Generator {
 
   yield put(loading(false))
 
-  console.log('cards:', { data })
-
   yield put(
     productSuccess({
       data: data
