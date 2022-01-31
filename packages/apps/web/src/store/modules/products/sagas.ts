@@ -69,10 +69,12 @@ export function* getProducts(): Generator {
 
   yield put(loading(false))
 
+  console.log('cards:', { data })
+
   yield put(
     productSuccess({
       data: data
-        ?.filter(e => e.ativo)
+        ?.filter(e => e.ativo && e.solucoes.length)
         .map(c => {
           return {
             ...c,
