@@ -43,59 +43,61 @@ const Header: React.FC<HeaderProps> = ({ schoolName, handleGoBack }) => {
   }, [modalSupportContext])
 
   return (
-    <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
-      <MenuBar menuRef={menuRef} />
-      {schoolName && <SchoolLabel schoolName={schoolName} />}
-      <Box
-        h="14"
-        d="flex"
-        flexDirection="column"
-        background="white"
-        justifyContent="center"
-        zIndex={99999}
-      >
+    <>
+      <Headroom disable={isDesktop} style={{ zIndex: 2 }}>
+        <MenuBar menuRef={menuRef} />
+        {schoolName && <SchoolLabel schoolName={schoolName} />}
         <Box
-          width="100%"
-          margin="0 auto"
-          maxWidth="1400px"
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
+          h="14"
+          d="flex"
+          flexDirection="column"
+          background="white"
+          justifyContent="center"
+          zIndex={99999}
         >
-          <Box d="flex" cursor="pointer">
-            <HeaderButton
-              as={HamburgerMenu}
-              onClick={() => menuRef.current?.openMenu()}
-            />
-            <Box onClick={handleGoBack}>
-              <Box as={LogoOn} />
+          <Box
+            width="100%"
+            margin="0 auto"
+            maxWidth="1400px"
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Box d="flex" cursor="pointer">
+              <HeaderButton
+                as={HamburgerMenu}
+                onClick={() => menuRef.current?.openMenu()}
+              />
+              <Box onClick={handleGoBack}>
+                <Box as={LogoOn} />
+              </Box>
+            </Box>
+            <Box w="50%" d="flex" justifyContent="flex-end">
+              <HeaderButton as={Question} onClick={openSupportModal} />
+              <HeaderButton children="Sair" onClick={openSignoutModal} />
+              <ModalSignOut ref={modalSignoutRef} />
+              <ModalSupport />
             </Box>
           </Box>
-          <Box w="50%" d="flex" justifyContent="flex-end">
-            <HeaderButton as={Question} onClick={openSupportModal} />
-            <HeaderButton children="Sair" onClick={openSignoutModal} />
-            <ModalSignOut ref={modalSignoutRef} />
-            <ModalSupport />
+        </Box>
+        <Box w="100%" backgroundColor="white" borderBottom="1px solid #C9C9C9">
+          <Box
+            d="flex"
+            flex="1"
+            w="100%"
+            m="0 auto"
+            alignItems="flex-end"
+            maxWidth="1400px"
+            backgroundColor="white"
+          >
+            {history.location.pathname.includes('solucao') ? null : (
+              <EducationalLevelMenu />
+            )}
           </Box>
         </Box>
-      </Box>
-      <Box w="100%" backgroundColor="white" borderBottom="1px solid #C9C9C9">
-        <Box
-          d="flex"
-          flex="1"
-          w="100%"
-          m="0 auto"
-          alignItems="flex-end"
-          maxWidth="1400px"
-          backgroundColor="white"
-        >
-          {history.location.pathname.includes('solucao') ? null : (
-            <EducationalLevelMenu />
-          )}
-        </Box>
-      </Box>
-      <GlobalStyle />
-    </Headroom>
+        <GlobalStyle />
+      </Headroom>
+    </>
   )
 }
 

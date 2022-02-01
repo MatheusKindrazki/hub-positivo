@@ -12,6 +12,14 @@ import {
   WithoutAccessError
 } from './types'
 
+declare global {
+  interface Window {
+    nps_hub_values: any
+    nps_first_call: boolean
+    nps_finally: boolean
+  }
+}
+
 export const Actions = {
   SIGN_IN_REQUEST: '@auth/SIGN_IN_REQUEST',
   SIGN_IN_SUCCESS: '@auth/SIGN_IN_SUCCESS',
@@ -133,6 +141,11 @@ export function signOut(): Action {
   clearMixPanelSession()
 
   removeAuthorization('all')
+
+  window.nps_hub_values = undefined
+  window.nps_first_call = false
+  window.nps_finally = false
+
   return {
     type: Actions.SIGN_OUT
   }

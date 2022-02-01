@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react'
 
 import { useLocation } from 'react-router-dom'
 import { debounce } from 'lodash'
+import { instanceNPS, ModalNPS } from '@psdlabs/nps'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -31,14 +32,25 @@ const Dashboard: React.FC = ({ children }) => {
 
   useEffect(() => dispatchEvent())
 
+  const { info } = useSelector((state: Store.State) => state.user)
+  const { reduced_token } = useSelector((state: Store.State) => state.auth)
   const { loading } = useSelector((state: Store.State) => state.global)
   const { nobreak } = useSelector((state: Store.State) => state.noBreakAccess)
 
   const { school } = useSelector((state: Store.State) => state.user)
 
   const { guid } = useSelector((state: Store.State) => state.profile)
+  const { level } = useSelector((state: Store.State) => state.educationalStage)
 
   initChatbot({ profile: guid })
+
+  instanceNPS(reduced_token as string, {
+    idEscola: school?.value || '',
+    nomeEscola: school?.label || '',
+    nomeUsuario: info?.name || '',
+    perfil: guid as any,
+    segmento: level || ('EM' as any)
+  })
 
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
@@ -55,6 +67,8 @@ const Dashboard: React.FC = ({ children }) => {
 
   return (
     <Container>
+      <ModalNPS appName="SPE" />
+
       <ModalNoClass />
       <ModalAcceptTerms />
       <BarLoader height="4px" loading={loading} />
