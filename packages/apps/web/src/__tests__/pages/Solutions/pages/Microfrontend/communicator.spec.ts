@@ -4,16 +4,16 @@ import communicatorMCF, {
   clearData
 } from '~/pages/Solutions/pages/Microfrontend/communicator'
 
-jest.mock('@psdhub/helpers', () => {
-  const rest = jest.requireActual('@psdhub/helpers')
-  return {
-    ...rest,
-    getInformations: {
-      publish: jest.fn(),
-      clear: jest.fn()
-    }
-  }
-})
+// jest.mock('@psdhub/helpers', () => {
+//   const rest = jest.requireActual('@psdhub/helpers')
+//   return {
+//     ...rest,
+//     getInformations: {
+//       publish: jest.fn(),
+//       clear: jest.fn()
+//     }
+//   }
+// })
 describe('communicatorMCF should work properly', () => {
   const data = {
     auth: { reduced_token: 'reducedToken', token: 'token' },
@@ -39,9 +39,13 @@ describe('communicatorMCF should work properly', () => {
       class: 'class'
     }
   }
-  it.skip('Should call publish function with correct params', () => {
+  it('Should call publish function with correct params', () => {
+    const spyPublish = jest.spyOn(
+      helpers.getInformations as helpers.PostFnProps,
+      'publish'
+    )
+
     communicatorMCF(data as any, { blue: {} } as any)
-    const spyPublish = jest.spyOn(helpers.getInformations, 'publish' as never)
 
     const { profile, auth, educationalStage, user } = data
 
@@ -53,7 +57,8 @@ describe('communicatorMCF should work properly', () => {
           id: user.school.value,
           name: user.school.label,
           class: educationalStage.class
-        }
+        },
+        educationalStage: {}
       },
       primary_color: {},
       reduced_token: auth.reduced_token,
@@ -64,8 +69,11 @@ describe('communicatorMCF should work properly', () => {
 })
 
 describe('clearData should work properly', () => {
-  it.skip('Should call clear method', () => {
-    const spyClear = jest.spyOn(helpers.getInformations, 'clear' as never)
+  it('Should call clear method', () => {
+    const spyClear = jest.spyOn(
+      helpers.getInformations as helpers.PostFnProps,
+      'clear'
+    )
 
     clearData()
     expect(spyClear).toHaveBeenCalledTimes(1)

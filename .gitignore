@@ -33,3 +33,5 @@ yarn-error.log*
 
 debug.log
 .eslintcache
+.npmrc
+

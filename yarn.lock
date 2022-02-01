@@ -28,11 +28,6 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.16.4.tgz#081d6bbc336ec5c2435c6346b2ae1fb98b5ac68e"
   integrity sha512-1o/jo7D+kC9ZjHX5v+EHrdjl3PhxMrLSOTGsOdHJ+KL8HCaEK6ehrVL2RS6oHDZp+L7xLirLrPmQtEng769J/Q==
 
-"@babel/compat-data@^7.16.0":
-  version "7.16.8"
-  resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.16.8.tgz#31560f9f29fdf1868de8cb55049538a1b9732a60"
-  integrity sha512-m7OkX0IdKLKPpBlJtF561YJal5y/jyI5fNfWbPxh2D/nbzzGI4qRyrD8xO2jB24u7l+5I2a43scCG2IrfjC50Q==
-
 "@babel/core@7.12.3":
   version "7.12.3"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.12.3.tgz#1b436884e1e3bff6fb1328dc02b208759de92ad8"
@@ -87,14 +82,14 @@
 
 "@babel/generator@^7.16.8":
   version "7.16.8"
-  resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.16.8.tgz#359d44d966b8cd059d543250ce79596f792f2ebe"
-  integrity sha512-1ojZwE9+lOXzcWdWmO6TbUzDfqLD39CmEhN8+2cX9XkDo5yW1OpgfejfliysR2AWLpMamTiOiAp/mtroaymhpw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/generator/-/generator-7.16.8.tgz#359d44d966b8cd059d543250ce79596f792f2ebe"
+  integrity sha1-NZ1E2Wa4zQWdVDJQznlZb3kvLr4=
   dependencies:
     "@babel/types" "^7.16.8"
     jsesc "^2.5.1"
     source-map "^0.5.0"
 
-"@babel/helper-annotate-as-pure@^7.15.4", "@babel/helper-annotate-as-pure@^7.16.0":
+"@babel/helper-annotate-as-pure@^7.15.4", "@babel/helper-annotate-as-pure@^7.16.0", "@babel/helper-annotate-as-pure@^7.16.7":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/helper-annotate-as-pure/-/helper-annotate-as-pure-7.16.7.tgz#bb2339a7534a9c128e3102024c60760a3a7f3862"
   integrity sha512-s6t2w/IPQVTAET1HitoowRGXooX8mCgtuP5195wD/QJPV6wYjpujCGF7JuMODVX2ZAJOf1GT6DT9MHEZvLOFSw==
@@ -140,7 +135,15 @@
     "@babel/helper-annotate-as-pure" "^7.16.0"
     regexpu-core "^4.7.1"
 
-"@babel/helper-define-polyfill-provider@^0.3.0", "@babel/helper-define-polyfill-provider@^0.3.1":
+"@babel/helper-create-regexp-features-plugin@^7.16.7":
+  version "7.16.7"
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/helper-create-regexp-features-plugin/-/helper-create-regexp-features-plugin-7.16.7.tgz#0cb82b9bac358eb73bfbd73985a776bfa6b14d48"
+  integrity sha1-DLgrm6w1jrc7+9c5had2v6axTUg=
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.16.7"
+    regexpu-core "^4.7.1"
+
+"@babel/helper-define-polyfill-provider@^0.3.1":
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@babel/helper-define-polyfill-provider/-/helper-define-polyfill-provider-0.3.1.tgz#52411b445bdb2e676869e5a74960d2d3826d2665"
   integrity sha512-J9hGMpJQmtWmj46B3kBHmL38UhJGhYX7eqkcq+2gsstyYt341HmPeWspihX43yVRA0mS+8GGk2Gckc7bY/HCmA==
@@ -163,22 +166,22 @@
 
 "@babel/helper-environment-visitor@^7.16.7":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/helper-environment-visitor/-/helper-environment-visitor-7.16.7.tgz#ff484094a839bde9d89cd63cba017d7aae80ecd7"
-  integrity sha512-SLLb0AAn6PkUeAfKJCCOl9e1R53pQlGAfc4y4XuMRZfqeMYLE0dM1LMhqbGAlGQY0lfw5/ohoYWAe9V1yibRag==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/helper-environment-visitor/-/helper-environment-visitor-7.16.7.tgz#ff484094a839bde9d89cd63cba017d7aae80ecd7"
+  integrity sha1-/0hAlKg5venYnNY8ugF9eq6A7Nc=
   dependencies:
     "@babel/types" "^7.16.7"
 
-"@babel/helper-explode-assignable-expression@^7.16.0":
+"@babel/helper-explode-assignable-expression@^7.16.7":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/helper-explode-assignable-expression/-/helper-explode-assignable-expression-7.16.7.tgz#12a6d8522fdd834f194e868af6354e8650242b7a"
-  integrity sha512-KyUenhWMC8VrxzkGP0Jizjo4/Zx+1nNZhgocs+gLzyZyB8SHidhoq9KK/8Ato4anhwsivfkBLftky7gvzbZMtQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/helper-explode-assignable-expression/-/helper-explode-assignable-expression-7.16.7.tgz#12a6d8522fdd834f194e868af6354e8650242b7a"
+  integrity sha1-EqbYUi/dg08ZToaK9jVOhlAkK3o=
   dependencies:
     "@babel/types" "^7.16.7"
 
 "@babel/helper-function-name@^7.16.0", "@babel/helper-function-name@^7.16.7":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/helper-function-name/-/helper-function-name-7.16.7.tgz#f1ec51551fb1c8956bc8dd95f38523b6cf375f8f"
-  integrity sha512-QfDfEnIUyyBSR3HtrtGECuZ6DAyCkYFp7GHl75vFtTnn6pjKeK0T1DB5lLkFvBea8MdaiUABx3osbgLyInoejA==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/helper-function-name/-/helper-function-name-7.16.7.tgz#f1ec51551fb1c8956bc8dd95f38523b6cf375f8f"
+  integrity sha1-8exRVR+xyJVryN2V84Ujts83X48=
   dependencies:
     "@babel/helper-get-function-arity" "^7.16.7"
     "@babel/template" "^7.16.7"
@@ -193,8 +196,8 @@
 
 "@babel/helper-hoist-variables@^7.16.0", "@babel/helper-hoist-variables@^7.16.7":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/helper-hoist-variables/-/helper-hoist-variables-7.16.7.tgz#86bcb19a77a509c7b77d0e22323ef588fa58c246"
-  integrity sha512-m04d/0Op34H5v7pbZw6pSKP7weA6lsMvfiIAMeIvkY/R4xQtBSMFEigu9QTZ2qB/9l22vsxtM8a+Q8CzD255fg==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/helper-hoist-variables/-/helper-hoist-variables-7.16.7.tgz#86bcb19a77a509c7b77d0e22323ef588fa58c246"
+  integrity sha1-hryxmnelCce3fQ4iMj71iPpYwkY=
   dependencies:
     "@babel/types" "^7.16.7"
 
@@ -214,8 +217,8 @@
 
 "@babel/helper-module-imports@^7.16.7":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/helper-module-imports/-/helper-module-imports-7.16.7.tgz#25612a8091a999704461c8a222d0efec5d091437"
-  integrity sha512-LVtS6TqjJHFc+nYeITRo6VLXve70xmq7wPhWTqDJusJEgGmkAACWwMiTNrvfoQo6hEhFwAIixNkvB0jPXDL8Wg==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/helper-module-imports/-/helper-module-imports-7.16.7.tgz#25612a8091a999704461c8a222d0efec5d091437"
+  integrity sha1-JWEqgJGpmXBEYciiItDv7F0JFDc=
   dependencies:
     "@babel/types" "^7.16.7"
 
@@ -249,8 +252,8 @@
 
 "@babel/helper-optimise-call-expression@^7.16.0":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/helper-optimise-call-expression/-/helper-optimise-call-expression-7.16.7.tgz#a34e3560605abbd31a18546bd2aad3e6d9a174f2"
-  integrity sha512-EtgBhg7rd/JcnpZFXpBy0ze1YRfdm7BnBX4uKMBd3ixa3RGAE002JZB66FJyNH7g0F38U05pXmA5P8cBh7z+1w==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/helper-optimise-call-expression/-/helper-optimise-call-expression-7.16.7.tgz#a34e3560605abbd31a18546bd2aad3e6d9a174f2"
+  integrity sha1-o041YGBau9MaGFRr0qrT5tmhdPI=
   dependencies:
     "@babel/types" "^7.16.7"
 
@@ -261,8 +264,8 @@
 
 "@babel/helper-plugin-utils@^7.16.7":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.16.7.tgz#aa3a8ab4c3cceff8e65eb9e73d87dc4ff320b2f5"
-  integrity sha512-Qg3Nk7ZxpgMrsox6HreY1ZNKdBq7K72tDSliA6dCl5f007jR4ne8iD5UzuNnCJH2xBf2BEEVGr+/OL6Gdp7RxA==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/helper-plugin-utils/-/helper-plugin-utils-7.16.7.tgz#aa3a8ab4c3cceff8e65eb9e73d87dc4ff320b2f5"
+  integrity sha1-qjqKtMPM7/jmXrnnPYfcT/MgsvU=
 
 "@babel/helper-remap-async-to-generator@^7.16.5":
   version "7.16.5"
@@ -286,8 +289,8 @@
 
 "@babel/helper-simple-access@^7.16.0", "@babel/helper-simple-access@^7.16.7":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/helper-simple-access/-/helper-simple-access-7.16.7.tgz#d656654b9ea08dbb9659b69d61063ccd343ff0f7"
-  integrity sha512-ZIzHVyoeLMvXMN/vok/a4LWRy8G2v205mNP0XOuf9XRLyX5/u9CnVulUtDgUTama3lT+bf/UqucuZjqiGuTS1g==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/helper-simple-access/-/helper-simple-access-7.16.7.tgz#d656654b9ea08dbb9659b69d61063ccd343ff0f7"
+  integrity sha1-1lZlS56gjbuWWbadYQY8zTQ/8Pc=
   dependencies:
     "@babel/types" "^7.16.7"
 
@@ -300,8 +303,8 @@
 
 "@babel/helper-split-export-declaration@^7.16.0", "@babel/helper-split-export-declaration@^7.16.7":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/helper-split-export-declaration/-/helper-split-export-declaration-7.16.7.tgz#0b648c0c42da9d3920d85ad585f2778620b8726b"
-  integrity sha512-xbWoy/PFoxSWazIToT9Sif+jJTlrMcndIsaOKvTA6u7QEo7ilkRZpjew18/W3c7nm8fXdUDXh02VXTbZ0pGDNw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/helper-split-export-declaration/-/helper-split-export-declaration-7.16.7.tgz#0b648c0c42da9d3920d85ad585f2778620b8726b"
+  integrity sha1-C2SMDELanTkg2FrVhfJ3hiC4cms=
   dependencies:
     "@babel/types" "^7.16.7"
 
@@ -314,6 +317,11 @@
   version "7.14.5"
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-option/-/helper-validator-option-7.14.5.tgz#6e72a1fff18d5dfcb878e1e62f1a021c4b72d5a3"
   integrity sha512-OX8D5eeX4XwcroVW45NMvoYaIuFI+GQpA2a8Gi+X/U/cDUIRsV37qQfF905F0htTRCREQIB4KqPeaveRJUl3Ow==
+
+"@babel/helper-validator-option@^7.16.7":
+  version "7.16.7"
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/helper-validator-option/-/helper-validator-option-7.16.7.tgz#b203ce62ce5fe153899b617c08957de860de4d23"
+  integrity sha1-sgPOYs5f4VOJm2F8CJV96GDeTSM=
 
 "@babel/helper-wrap-function@^7.16.5":
   version "7.16.5"
@@ -349,21 +357,21 @@
   integrity sha512-Gr86ujcNuPDnNOY8mi383Hvi8IYrJVJYuf3XcuBM/Dgd+bINn/7tHqsj+tKkoreMbmGsFLsltI/JJd8fOFWGDQ==
 
 "@babel/parser@^7.16.10", "@babel/parser@^7.16.7":
-  version "7.16.10"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.16.10.tgz#aba1b1cb9696a24a19f59c41af9cf17d1c716a88"
-  integrity sha512-Sm/S9Or6nN8uiFsQU1yodyDW3MWXQhFeqzMPM+t8MJjM+pLsnFVxFZzkpXKvUXh+Gz9cbMoYYs484+Jw/NTEFQ==
+  version "7.16.12"
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/parser/-/parser-7.16.12.tgz#9474794f9a650cf5e2f892444227f98e28cdf8b6"
+  integrity sha1-lHR5T5plDPXi+JJEQif5jijN+LY=
 
 "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.16.2":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/-/plugin-bugfix-safari-id-destructuring-collision-in-function-expression-7.16.7.tgz#4eda6d6c2a0aa79c70fa7b6da67763dfe2141050"
-  integrity sha512-anv/DObl7waiGEnC24O9zqL0pSuI9hljihqiDuFHC8d7/bjr/4RLGPWuc8rYOff/QPzbEPSkzG8wGG9aDuhHRg==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/-/plugin-bugfix-safari-id-destructuring-collision-in-function-expression-7.16.7.tgz#4eda6d6c2a0aa79c70fa7b6da67763dfe2141050"
+  integrity sha1-TtptbCoKp5xw+nttpndj3+IUEFA=
   dependencies:
     "@babel/helper-plugin-utils" "^7.16.7"
 
 "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@^7.16.0":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining/-/plugin-bugfix-v8-spread-parameters-in-optional-chaining-7.16.7.tgz#cc001234dfc139ac45f6bcf801866198c8c72ff9"
-  integrity sha512-di8vUHRdf+4aJ7ltXhaDbPoszdkh59AQtJM5soLsuHpQJdFQZOA4uGj0V2u/CZ8bJ/u8ULDL5yq6FO/bCXnKHw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining/-/plugin-bugfix-v8-spread-parameters-in-optional-chaining-7.16.7.tgz#cc001234dfc139ac45f6bcf801866198c8c72ff9"
+  integrity sha1-zAASNN/BOaxF9rz4AYZhmMjHL/k=
   dependencies:
     "@babel/helper-plugin-utils" "^7.16.7"
     "@babel/helper-skip-transparent-expression-wrappers" "^7.16.0"
@@ -482,8 +490,8 @@
 
 "@babel/plugin-proposal-optional-chaining@^7.16.7":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.16.7.tgz#7cd629564724816c0e8a969535551f943c64c39a"
-  integrity sha512-eC3xy+ZrUcBtP7x+sq62Q/HYd674pPTb/77XZMb5wbDPGWIdUbSr4Agr052+zaUPSb+gGRnjxXfKFvx5iMJ+DA==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.16.7.tgz#7cd629564724816c0e8a969535551f943c64c39a"
+  integrity sha1-fNYpVkckgWwOipaVNVUflDxkw5o=
   dependencies:
     "@babel/helper-plugin-utils" "^7.16.7"
     "@babel/helper-skip-transparent-expression-wrappers" "^7.16.0"
@@ -1111,8 +1119,8 @@
 
 "@babel/template@^7.16.7":
   version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.16.7.tgz#8d126c8701fde4d66b264b3eba3d96f07666d155"
-  integrity sha512-I8j/x8kHUrbYRTUxXrrMbfCa7jxkE7tZre39x3kjr9hvI82cK1FfqLygotcWN5kdPGWcLdWMHpSBavse5tWw3w==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/template/-/template-7.16.7.tgz#8d126c8701fde4d66b264b3eba3d96f07666d155"
+  integrity sha1-jRJshwH95NZrJks+uj2W8HZm0VU=
   dependencies:
     "@babel/code-frame" "^7.16.7"
     "@babel/parser" "^7.16.7"
@@ -1136,8 +1144,8 @@
 
 "@babel/traverse@^7.16.7":
   version "7.16.10"
-  resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.16.10.tgz#448f940defbe95b5a8029975b051f75993e8239f"
-  integrity sha512-yzuaYXoRJBGMlBhsMJoUW7G1UmSb/eXr/JHYM/MsOJgavJibLwASijW7oXBdw3NQ6T0bW7Ty5P/VarOs9cHmqw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@babel/traverse/-/traverse-7.16.10.tgz#448f940defbe95b5a8029975b051f75993e8239f"
+  integrity sha1-RI+UDe++lbWoApl1sFH3WZPoI58=
   dependencies:
     "@babel/code-frame" "^7.16.7"
     "@babel/generator" "^7.16.8"
@@ -2716,8 +2724,8 @@
 
 "@npmcli/arborist@^2.3.0", "@npmcli/arborist@^2.5.0", "@npmcli/arborist@^2.9.0":
   version "2.10.0"
-  resolved "https://registry.yarnpkg.com/@npmcli/arborist/-/arborist-2.10.0.tgz#424c2d73a7ae59c960b0cc7f74fed043e4316c2c"
-  integrity sha512-CLnD+zXG9oijEEzViimz8fbOoFVb7hoypiaf7p6giJhvYtrxLAyY3cZAMPIFQvsG731+02eMDp3LqVBNo7BaZA==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@npmcli/arborist/-/arborist-2.10.0.tgz#424c2d73a7ae59c960b0cc7f74fed043e4316c2c"
+  integrity sha1-Qkwtc6euWclgsMx/dP7QQ+QxbCw=
   dependencies:
     "@isaacs/string-locale-compare" "^1.0.1"
     "@npmcli/installed-package-contents" "^1.0.7"
@@ -2754,13 +2762,13 @@
 
 "@npmcli/ci-detect@^1.2.0", "@npmcli/ci-detect@^1.3.0":
   version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@npmcli/ci-detect/-/ci-detect-1.4.0.tgz#18478bbaa900c37bfbd8a2006a6262c62e8b0fe1"
-  integrity sha512-3BGrt6FLjqM6br5AhWRKTr3u5GIVkjRYeAFrMp3HjnfICrg4xOrVRwFavKT6tsp++bq5dluL5t8ME/Nha/6c1Q==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@npmcli/ci-detect/-/ci-detect-1.4.0.tgz#18478bbaa900c37bfbd8a2006a6262c62e8b0fe1"
+  integrity sha1-GEeLuqkAw3v72KIAamJixi6LD+E=
 
 "@npmcli/config@^2.3.0":
   version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@npmcli/config/-/config-2.4.0.tgz#1447b0274f9502871dabd3ab1d8302472d515b1f"
-  integrity sha512-fwxu/zaZnvBJohXM3igzqa3P1IVYWi5N343XcKvKkJbAx+rTqegS5tAul4NLiMPQh6WoS5a4er6oo/ieUx1f4g==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@npmcli/config/-/config-2.4.0.tgz#1447b0274f9502871dabd3ab1d8302472d515b1f"
+  integrity sha1-FEewJ0+VAocdq9OrHYMCRy1RWx8=
   dependencies:
     ini "^2.0.0"
     mkdirp-infer-owner "^2.0.0"
@@ -2807,8 +2815,8 @@
 
 "@npmcli/map-workspaces@^1.0.2", "@npmcli/map-workspaces@^1.0.4":
   version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@npmcli/map-workspaces/-/map-workspaces-1.0.4.tgz#915708b55afa25e20bc2c14a766c124c2c5d4cab"
-  integrity sha512-wVR8QxhyXsFcD/cORtJwGQodeeaDf0OxcHie8ema4VgFeqwYkFsDPnSrIRSytX8xR6nKPAH89WnwTcaU608b/Q==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@npmcli/map-workspaces/-/map-workspaces-1.0.4.tgz#915708b55afa25e20bc2c14a766c124c2c5d4cab"
+  integrity sha1-kVcItVr6JeILwsFKdmwSTCxdTKs=
   dependencies:
     "@npmcli/name-from-folder" "^1.0.1"
     glob "^7.1.6"
@@ -2817,8 +2825,8 @@
 
 "@npmcli/metavuln-calculator@^1.1.0":
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@npmcli/metavuln-calculator/-/metavuln-calculator-1.1.1.tgz#2f95ff3c6d88b366dd70de1c3f304267c631b458"
-  integrity sha512-9xe+ZZ1iGVaUovBVFI9h3qW+UuECUzhvZPxK9RaEA2mjU26o5D0JloGYWwLYvQELJNmBdQB6rrpuN8jni6LwzQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@npmcli/metavuln-calculator/-/metavuln-calculator-1.1.1.tgz#2f95ff3c6d88b366dd70de1c3f304267c631b458"
+  integrity sha1-L5X/PG2Is2bdcN4cPzBCZ8YxtFg=
   dependencies:
     cacache "^15.0.5"
     pacote "^11.1.11"
@@ -2858,8 +2866,8 @@
 
 "@npmcli/run-script@^1.8.2", "@npmcli/run-script@^1.8.3", "@npmcli/run-script@^1.8.4", "@npmcli/run-script@^1.8.6":
   version "1.8.6"
-  resolved "https://registry.yarnpkg.com/@npmcli/run-script/-/run-script-1.8.6.tgz#18314802a6660b0d4baa4c3afe7f1ad39d8c28b7"
-  integrity sha512-e42bVZnC6VluBZBAFEr3YrdqSspG3bgilyg4nSLBJ7TRGNCzxHa92XAHxQBLYg0BmgwO4b2mf3h/l5EkEWRn3g==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/@npmcli/run-script/-/run-script-1.8.6.tgz#18314802a6660b0d4baa4c3afe7f1ad39d8c28b7"
+  integrity sha1-GDFIAqZmCw1Lqkw6/n8a052MKLc=
   dependencies:
     "@npmcli/node-gyp" "^1.0.2"
     "@npmcli/promise-spawn" "^1.3.2"
@@ -4679,7 +4687,7 @@ ansicolors@~0.3.2:
 
 ansistyles@~0.1.3:
   version "0.1.3"
-  resolved "https://registry.yarnpkg.com/ansistyles/-/ansistyles-0.1.3.tgz#5de60415bda071bb37127854c864f41b23254539"
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/ansistyles/-/ansistyles-0.1.3.tgz#5de60415bda071bb37127854c864f41b23254539"
   integrity sha1-XeYEFb2gcbs3EnhUyGT0GyMlRTk=
 
 any-base@^1.1.0:
@@ -4721,8 +4729,8 @@ apisauce@^2.0.1, apisauce@^2.1.1:
 
 aproba@^1.0.3, aproba@^1.1.1:
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/aproba/-/aproba-1.2.0.tgz#6802e6264efd18c790a1b0d517f0f2627bf2c94a"
-  integrity sha512-Y9J6ZjXtoYh8RnXVCMOU/ttDmk1aBjunq9vO0ta5x85WDQiQfUF9sIPBITdbiiIVcBo03Hi3jMxigBtsddlXRw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/aproba/-/aproba-1.2.0.tgz#6802e6264efd18c790a1b0d517f0f2627bf2c94a"
+  integrity sha1-aALmJk79GMeQobDVF/DyYnvyyUo=
 
 "aproba@^1.0.3 || ^2.0.0", aproba@^2.0.0:
   version "2.0.0"
@@ -4731,7 +4739,7 @@ aproba@^1.0.3, aproba@^1.1.1:
 
 archy@~1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/archy/-/archy-1.0.0.tgz#f9c8c13757cc1dd7bc379ac77b2c62a5c2868c40"
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/archy/-/archy-1.0.0.tgz#f9c8c13757cc1dd7bc379ac77b2c62a5c2868c40"
   integrity sha1-+cjBN1fMHde8N5rHeyxipcKGjEA=
 
 are-we-there-yet@^2.0.0:
@@ -4744,8 +4752,8 @@ are-we-there-yet@^2.0.0:
 
 are-we-there-yet@~1.1.2:
   version "1.1.7"
-  resolved "https://registry.yarnpkg.com/are-we-there-yet/-/are-we-there-yet-1.1.7.tgz#b15474a932adab4ff8a50d9adfa7e4e926f21146"
-  integrity sha512-nxwy40TuMiUGqMyRHgCSWZ9FM4VAoRP4xUYSTv5ImRog+h9yISPbVH7H8fASCIzYn9wlEv4zvFL7uKDMCFQm3g==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/are-we-there-yet/-/are-we-there-yet-1.1.7.tgz#b15474a932adab4ff8a50d9adfa7e4e926f21146"
+  integrity sha1-sVR0qTKtq0/4pQ2a36fk6SbyEUY=
   dependencies:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
@@ -5296,13 +5304,13 @@ babel-plugin-polyfill-corejs2@^0.3.0:
     "@babel/helper-define-polyfill-provider" "^0.3.1"
     semver "^6.1.1"
 
-babel-plugin-polyfill-corejs3@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-polyfill-corejs3/-/babel-plugin-polyfill-corejs3-0.4.0.tgz#0b571f4cf3d67f911512f5c04842a7b8e8263087"
-  integrity sha512-YxFreYwUfglYKdLUGvIF2nJEsGwj+RhWSX/ije3D2vQPOXuyMLMtg/cCGMDpOA7Nd+MwlNdnGODbd2EwUZPlsw==
+babel-plugin-polyfill-corejs3@^0.5.0:
+  version "0.5.1"
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/babel-plugin-polyfill-corejs3/-/babel-plugin-polyfill-corejs3-0.5.1.tgz#d66183bf10976ea677f4149a7fcc4d8df43d4060"
+  integrity sha1-1mGDvxCXbqZ39BSaf8xNjfQ9QGA=
   dependencies:
-    "@babel/helper-define-polyfill-provider" "^0.3.0"
-    core-js-compat "^3.18.0"
+    "@babel/helper-define-polyfill-provider" "^0.3.1"
+    core-js-compat "^3.20.0"
 
 babel-plugin-polyfill-regenerator@^0.3.0:
   version "0.3.1"
@@ -5537,8 +5545,8 @@ big.js@^5.2.2:
 
 bin-links@^2.2.1:
   version "2.3.0"
-  resolved "https://registry.yarnpkg.com/bin-links/-/bin-links-2.3.0.tgz#1ff241c86d2c29b24ae52f49544db5d78a4eb967"
-  integrity sha512-JzrOLHLwX2zMqKdyYZjkDgQGT+kHDkIhv2/IK2lJ00qLxV4TmFoHi8drDBb6H5Zrz1YfgHkai4e2MGPqnoUhqA==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/bin-links/-/bin-links-2.3.0.tgz#1ff241c86d2c29b24ae52f49544db5d78a4eb967"
+  integrity sha1-H/JByG0sKbJK5S9JVE2114pOuWc=
   dependencies:
     cmd-shim "^4.0.1"
     mkdirp-infer-owner "^2.0.0"
@@ -6245,7 +6253,7 @@ clean-stack@^2.0.0:
 
 cli-columns@^3.1.2:
   version "3.1.2"
-  resolved "https://registry.yarnpkg.com/cli-columns/-/cli-columns-3.1.2.tgz#6732d972979efc2ae444a1f08e08fa139c96a18e"
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/cli-columns/-/cli-columns-3.1.2.tgz#6732d972979efc2ae444a1f08e08fa139c96a18e"
   integrity sha1-ZzLZcpee/CrkRKHwjgj6E5yWoY4=
   dependencies:
     string-width "^2.0.0"
@@ -6356,7 +6364,7 @@ coa@^2.0.2:
 
 code-point-at@^1.0.0:
   version "1.1.0"
-  resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
 collect-v8-coverage@^1.0.0:
@@ -6437,7 +6445,7 @@ colorspace@1.1.x:
 
 columnify@~1.5.4:
   version "1.5.4"
-  resolved "https://registry.yarnpkg.com/columnify/-/columnify-1.5.4.tgz#4737ddf1c7b69a8a7c340570782e947eec8e78bb"
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/columnify/-/columnify-1.5.4.tgz#4737ddf1c7b69a8a7c340570782e947eec8e78bb"
   integrity sha1-Rzfd8ce2mop8NAVweC6UfuyOeLs=
   dependencies:
     strip-ansi "^3.0.0"
@@ -6740,10 +6748,10 @@ copy-to-clipboard@3.3.1:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-compat@^3.18.0, core-js-compat@^3.19.1:
+core-js-compat@^3.20.0, core-js-compat@^3.20.2:
   version "3.20.3"
-  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.20.3.tgz#d71f85f94eb5e4bea3407412e549daa083d23bd6"
-  integrity sha512-c8M5h0IkNZ+I92QhIpuSijOxGAcj3lgpsWdkCqmUTZNwidujF4r3pi6x1DCN+Vcs5qTS2XWWMfWSuCqyupX8gw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/core-js-compat/-/core-js-compat-3.20.3.tgz#d71f85f94eb5e4bea3407412e549daa083d23bd6"
+  integrity sha1-1x+F+U615L6jQHQS5UnaoIPSO9Y=
   dependencies:
     browserslist "^4.19.1"
     semver "7.0.0"
@@ -10012,8 +10020,8 @@ iferr@^0.1.5:
 
 ignore-walk@^3.0.3:
   version "3.0.4"
-  resolved "https://registry.yarnpkg.com/ignore-walk/-/ignore-walk-3.0.4.tgz#c9a09f69b7c7b479a5d74ac1a3c0d4236d2a6335"
-  integrity sha512-PY6Ii8o1jMRA1z4F2hRkH/xN59ox43DavKvD3oDpfurRlOJyAHpifIwpbdv1n4jt4ov0jSpw3kQ4GhJnpBL6WQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/ignore-walk/-/ignore-walk-3.0.4.tgz#c9a09f69b7c7b479a5d74ac1a3c0d4236d2a6335"
+  integrity sha1-yaCfabfHtHml10rBo8DUI20qYzU=
   dependencies:
     minimatch "^3.0.4"
 
@@ -10144,8 +10152,8 @@ ini@^2.0.0:
 
 init-package-json@^2.0.5:
   version "2.0.5"
-  resolved "https://registry.yarnpkg.com/init-package-json/-/init-package-json-2.0.5.tgz#78b85f3c36014db42d8f32117252504f68022646"
-  integrity sha512-u1uGAtEFu3VA6HNl/yUWw57jmKEMx8SKOxHhxjGnOFUiIlFnohKDFg4ZrPpv9wWqk44nDxGJAtqjdQFm+9XXQA==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/init-package-json/-/init-package-json-2.0.5.tgz#78b85f3c36014db42d8f32117252504f68022646"
+  integrity sha1-eLhfPDYBTbQtjzIRclJQT2gCJkY=
   dependencies:
     npm-package-arg "^8.1.5"
     promzard "^0.3.0"
@@ -10341,8 +10349,8 @@ is-ci@^2.0.0:
 
 is-cidr@^4.0.2:
   version "4.0.2"
-  resolved "https://registry.yarnpkg.com/is-cidr/-/is-cidr-4.0.2.tgz#94c7585e4c6c77ceabf920f8cde51b8c0fda8814"
-  integrity sha512-z4a1ENUajDbEl/Q6/pVBpTR1nBjjEE1X7qb7bmWYanNnPoKAvUCPFKeXV6Fe4mgTkWKBqiHIcwsI3SndiO5FeA==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/is-cidr/-/is-cidr-4.0.2.tgz#94c7585e4c6c77ceabf920f8cde51b8c0fda8814"
+  integrity sha1-lMdYXkxsd86r+SD4zeUbjA/aiBQ=
   dependencies:
     cidr-regex "^3.1.1"
 
@@ -10455,7 +10463,7 @@ is-finite@^1.0.0:
 
 is-fullwidth-code-point@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-1.0.0.tgz#ef9e31386f031a7f0d643af82fde50c457ef00cb"
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/is-fullwidth-code-point/-/is-fullwidth-code-point-1.0.0.tgz#ef9e31386f031a7f0d643af82fde50c457ef00cb"
   integrity sha1-754xOG8DGn8NZDr4L95QxFfvAMs=
   dependencies:
     number-is-nan "^1.0.0"
@@ -11622,13 +11630,13 @@ jsprim@^1.2.2:
 
 just-diff-apply@^3.0.0:
   version "3.1.2"
-  resolved "https://registry.yarnpkg.com/just-diff-apply/-/just-diff-apply-3.1.2.tgz#710d8cda00c65dc4e692df50dbe9bac5581c2193"
-  integrity sha512-TCa7ZdxCeq6q3Rgms2JCRHTCfWAETPZ8SzYUbkYF6KR3I03sN29DaOIC+xyWboIcMvjAsD5iG2u/RWzHD8XpgQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/just-diff-apply/-/just-diff-apply-3.1.2.tgz#710d8cda00c65dc4e692df50dbe9bac5581c2193"
+  integrity sha1-cQ2M2gDGXcTmkt9Q2+m6xVgcIZM=
 
 just-diff@^3.0.1:
   version "3.1.1"
-  resolved "https://registry.yarnpkg.com/just-diff/-/just-diff-3.1.1.tgz#d50c597c6fd4776495308c63bdee1b6839082647"
-  integrity sha512-sdMWKjRq8qWZEjDcVA6llnUT8RDEBIfOiGpYFPYa9u+2c39JCsejktSP7mj5eRid5EIvTzIpQ2kDOCw1Nq9BjQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/just-diff/-/just-diff-3.1.1.tgz#d50c597c6fd4776495308c63bdee1b6839082647"
+  integrity sha1-1QxZfG/Ud2SVMIxjve4baDkIJkc=
 
 jwa@^1.4.1:
   version "1.4.1"
@@ -11744,8 +11752,8 @@ levn@~0.3.0:
 
 libnpmaccess@^4.0.2:
   version "4.0.3"
-  resolved "https://registry.yarnpkg.com/libnpmaccess/-/libnpmaccess-4.0.3.tgz#dfb0e5b0a53c315a2610d300e46b4ddeb66e7eec"
-  integrity sha512-sPeTSNImksm8O2b6/pf3ikv4N567ERYEpeKRPSmqlNt1dTZbvgpJIzg5vAhXHpw2ISBsELFRelk0jEahj1c6nQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/libnpmaccess/-/libnpmaccess-4.0.3.tgz#dfb0e5b0a53c315a2610d300e46b4ddeb66e7eec"
+  integrity sha1-37DlsKU8MVomENMA5GtN3rZufuw=
   dependencies:
     aproba "^2.0.0"
     minipass "^3.1.1"
@@ -11754,8 +11762,8 @@ libnpmaccess@^4.0.2:
 
 libnpmdiff@^2.0.4:
   version "2.0.4"
-  resolved "https://registry.yarnpkg.com/libnpmdiff/-/libnpmdiff-2.0.4.tgz#bb1687992b1a97a8ea4a32f58ad7c7f92de53b74"
-  integrity sha512-q3zWePOJLHwsLEUjZw3Kyu/MJMYfl4tWCg78Vl6QGSfm4aXBUSVzMzjJ6jGiyarsT4d+1NH4B1gxfs62/+y9iQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/libnpmdiff/-/libnpmdiff-2.0.4.tgz#bb1687992b1a97a8ea4a32f58ad7c7f92de53b74"
+  integrity sha1-uxaHmSsal6jqSjL1itfH+S3lO3Q=
   dependencies:
     "@npmcli/disparity-colors" "^1.0.1"
     "@npmcli/installed-package-contents" "^1.0.7"
@@ -11768,8 +11776,8 @@ libnpmdiff@^2.0.4:
 
 libnpmexec@^2.0.1:
   version "2.0.1"
-  resolved "https://registry.yarnpkg.com/libnpmexec/-/libnpmexec-2.0.1.tgz#729ae3e15a3ba225964ccf248117a75d311eeb73"
-  integrity sha512-4SqBB7eJvJWmUKNF42Q5qTOn20DRjEE4TgvEh2yneKlAiRlwlhuS9MNR45juWwmoURJlf2K43bozlVt7OZiIOw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/libnpmexec/-/libnpmexec-2.0.1.tgz#729ae3e15a3ba225964ccf248117a75d311eeb73"
+  integrity sha1-cprj4Vo7oiWWTM8kgRenXTEe63M=
   dependencies:
     "@npmcli/arborist" "^2.3.0"
     "@npmcli/ci-detect" "^1.3.0"
@@ -11785,31 +11793,31 @@ libnpmexec@^2.0.1:
 
 libnpmfund@^1.1.0:
   version "1.1.0"
-  resolved "https://registry.yarnpkg.com/libnpmfund/-/libnpmfund-1.1.0.tgz#ee91313905b3194b900530efa339bc3f9fc4e5c4"
-  integrity sha512-Kfmh3pLS5/RGKG5WXEig8mjahPVOxkik6lsbH4iX0si1xxNi6eeUh/+nF1MD+2cgalsQif3O5qyr6mNz2ryJrQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/libnpmfund/-/libnpmfund-1.1.0.tgz#ee91313905b3194b900530efa339bc3f9fc4e5c4"
+  integrity sha1-7pExOQWzGUuQBTDvozm8P5/E5cQ=
   dependencies:
     "@npmcli/arborist" "^2.5.0"
 
 libnpmhook@^6.0.2:
   version "6.0.3"
-  resolved "https://registry.yarnpkg.com/libnpmhook/-/libnpmhook-6.0.3.tgz#1d7f0d7e6a7932fbf7ce0881fdb0ed8bf8748a30"
-  integrity sha512-3fmkZJibIybzmAvxJ65PeV3NzRc0m4xmYt6scui5msocThbEp4sKFT80FhgrCERYDjlUuFahU6zFNbJDHbQ++g==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/libnpmhook/-/libnpmhook-6.0.3.tgz#1d7f0d7e6a7932fbf7ce0881fdb0ed8bf8748a30"
+  integrity sha1-HX8Nfmp5Mvv3zgiB/bDti/h0ijA=
   dependencies:
     aproba "^2.0.0"
     npm-registry-fetch "^11.0.0"
 
 libnpmorg@^2.0.2:
   version "2.0.3"
-  resolved "https://registry.yarnpkg.com/libnpmorg/-/libnpmorg-2.0.3.tgz#4e605d4113dfa16792d75343824a0625c76703bc"
-  integrity sha512-JSGl3HFeiRFUZOUlGdiNcUZOsUqkSYrg6KMzvPZ1WVZ478i47OnKSS0vkPmX45Pai5mTKuwIqBMcGWG7O8HfdA==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/libnpmorg/-/libnpmorg-2.0.3.tgz#4e605d4113dfa16792d75343824a0625c76703bc"
+  integrity sha1-TmBdQRPfoWeS11NDgkoGJcdnA7w=
   dependencies:
     aproba "^2.0.0"
     npm-registry-fetch "^11.0.0"
 
 libnpmpack@^2.0.1:
   version "2.0.1"
-  resolved "https://registry.yarnpkg.com/libnpmpack/-/libnpmpack-2.0.1.tgz#d3eac25cc8612f4e7cdeed4730eee339ba51c643"
-  integrity sha512-He4/jxOwlaQ7YG7sIC1+yNeXeUDQt8RLBvpI68R3RzPMZPa4/VpxhlDo8GtBOBDYoU8eq6v1wKL38sq58u4ibQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/libnpmpack/-/libnpmpack-2.0.1.tgz#d3eac25cc8612f4e7cdeed4730eee339ba51c643"
+  integrity sha1-0+rCXMhhL0583u1HMO7jObpRxkM=
   dependencies:
     "@npmcli/run-script" "^1.8.3"
     npm-package-arg "^8.1.0"
@@ -11817,8 +11825,8 @@ libnpmpack@^2.0.1:
 
 libnpmpublish@^4.0.1:
   version "4.0.2"
-  resolved "https://registry.yarnpkg.com/libnpmpublish/-/libnpmpublish-4.0.2.tgz#be77e8bf5956131bcb45e3caa6b96a842dec0794"
-  integrity sha512-+AD7A2zbVeGRCFI2aO//oUmapCwy7GHqPXFJh3qpToSRNU+tXKJ2YFUgjt04LPPAf2dlEH95s6EhIHM1J7bmOw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/libnpmpublish/-/libnpmpublish-4.0.2.tgz#be77e8bf5956131bcb45e3caa6b96a842dec0794"
+  integrity sha1-vnfov1lWExvLRePKprlqhC3sB5Q=
   dependencies:
     normalize-package-data "^3.0.2"
     npm-package-arg "^8.1.2"
@@ -11828,23 +11836,23 @@ libnpmpublish@^4.0.1:
 
 libnpmsearch@^3.1.1:
   version "3.1.2"
-  resolved "https://registry.yarnpkg.com/libnpmsearch/-/libnpmsearch-3.1.2.tgz#aee81b9e4768750d842b627a3051abc89fdc15f3"
-  integrity sha512-BaQHBjMNnsPYk3Bl6AiOeVuFgp72jviShNBw5aHaHNKWqZxNi38iVNoXbo6bG/Ccc/m1To8s0GtMdtn6xZ1HAw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/libnpmsearch/-/libnpmsearch-3.1.2.tgz#aee81b9e4768750d842b627a3051abc89fdc15f3"
+  integrity sha1-rugbnkdodQ2EK2J6MFGryJ/cFfM=
   dependencies:
     npm-registry-fetch "^11.0.0"
 
 libnpmteam@^2.0.3:
   version "2.0.4"
-  resolved "https://registry.yarnpkg.com/libnpmteam/-/libnpmteam-2.0.4.tgz#9dbe2e18ae3cb97551ec07d2a2daf9944f3edc4c"
-  integrity sha512-FPrVJWv820FZFXaflAEVTLRWZrerCvfe7ZHSMzJ/62EBlho2KFlYKjyNEsPW3JiV7TLSXi3vo8u0gMwIkXSMTw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/libnpmteam/-/libnpmteam-2.0.4.tgz#9dbe2e18ae3cb97551ec07d2a2daf9944f3edc4c"
+  integrity sha1-nb4uGK48uXVR7AfSotr5lE8+3Ew=
   dependencies:
     aproba "^2.0.0"
     npm-registry-fetch "^11.0.0"
 
 libnpmversion@^1.2.1:
   version "1.2.1"
-  resolved "https://registry.yarnpkg.com/libnpmversion/-/libnpmversion-1.2.1.tgz#689aa7fe0159939b3cbbf323741d34976f4289e9"
-  integrity sha512-AA7x5CFgBFN+L4/JWobnY5t4OAHjQuPbAwUYJ7/NtHuyLut5meb+ne/aj0n7PWNiTGCJcRw/W6Zd2LoLT7EZuQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/libnpmversion/-/libnpmversion-1.2.1.tgz#689aa7fe0159939b3cbbf323741d34976f4289e9"
+  integrity sha1-aJqn/gFZk5s8u/MjdB00l29Ciek=
   dependencies:
     "@npmcli/git" "^2.0.7"
     "@npmcli/run-script" "^1.8.4"
@@ -12873,8 +12881,8 @@ node-forge@^0.10.0:
 
 node-gyp@^7.1.0, node-gyp@^7.1.2:
   version "7.1.2"
-  resolved "https://registry.yarnpkg.com/node-gyp/-/node-gyp-7.1.2.tgz#21a810aebb187120251c3bcec979af1587b188ae"
-  integrity sha512-CbpcIo7C3eMu3dL1c3d0xw449fHIGALIJsRP4DDPHpyiW8vcriNY7ubh9TE4zEKfSxscY7PjeFnshE7h75ynjQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/node-gyp/-/node-gyp-7.1.2.tgz#21a810aebb187120251c3bcec979af1587b188ae"
+  integrity sha1-IagQrrsYcSAlHDvOyXmvFYexiK4=
   dependencies:
     env-paths "^2.2.0"
     glob "^7.1.4"
@@ -13009,8 +13017,8 @@ normalize-url@^6.0.0:
 
 npm-audit-report@^2.1.5:
   version "2.1.5"
-  resolved "https://registry.yarnpkg.com/npm-audit-report/-/npm-audit-report-2.1.5.tgz#a5b8850abe2e8452fce976c8960dd432981737b5"
-  integrity sha512-YB8qOoEmBhUH1UJgh1xFAv7Jg1d+xoNhsDYiFQlEFThEBui0W1vIz2ZK6FVg4WZjwEdl7uBQlm1jy3MUfyHeEw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/npm-audit-report/-/npm-audit-report-2.1.5.tgz#a5b8850abe2e8452fce976c8960dd432981737b5"
+  integrity sha1-pbiFCr4uhFL86XbIlg3UMpgXN7U=
   dependencies:
     chalk "^4.0.0"
 
@@ -13044,8 +13052,8 @@ npm-package-arg@^8.0.0, npm-package-arg@^8.0.1, npm-package-arg@^8.1.0, npm-pack
 
 npm-packlist@^2.1.4:
   version "2.2.2"
-  resolved "https://registry.yarnpkg.com/npm-packlist/-/npm-packlist-2.2.2.tgz#076b97293fa620f632833186a7a8f65aaa6148c8"
-  integrity sha512-Jt01acDvJRhJGthnUJVF/w6gumWOZxO7IkpY/lsX9//zqQgnF7OJaxgQXcerd4uQOLu7W5bkb4mChL9mdfm+Zg==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/npm-packlist/-/npm-packlist-2.2.2.tgz#076b97293fa620f632833186a7a8f65aaa6148c8"
+  integrity sha1-B2uXKT+mIPYygzGGp6j2WqphSMg=
   dependencies:
     glob "^7.1.6"
     ignore-walk "^3.0.3"
@@ -13064,8 +13072,8 @@ npm-pick-manifest@^6.0.0, npm-pick-manifest@^6.1.0, npm-pick-manifest@^6.1.1:
 
 npm-profile@^5.0.3:
   version "5.0.4"
-  resolved "https://registry.yarnpkg.com/npm-profile/-/npm-profile-5.0.4.tgz#73e5bd1d808edc2c382d7139049cc367ac43161b"
-  integrity sha512-OKtU7yoAEBOnc8zJ+/uo5E4ugPp09sopo+6y1njPp+W99P8DvQon3BJYmpvyK2Bf1+3YV5LN1bvgXRoZ1LUJBA==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/npm-profile/-/npm-profile-5.0.4.tgz#73e5bd1d808edc2c382d7139049cc367ac43161b"
+  integrity sha1-c+W9HYCO3Cw4LXE5BJzDZ6xDFhs=
   dependencies:
     npm-registry-fetch "^11.0.0"
 
@@ -13097,8 +13105,8 @@ npm-run-path@^4.0.0, npm-run-path@^4.0.1:
 
 npm-user-validate@^1.0.1:
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/npm-user-validate/-/npm-user-validate-1.0.1.tgz#31428fc5475fe8416023f178c0ab47935ad8c561"
-  integrity sha512-uQwcd/tY+h1jnEaze6cdX/LrhWhoBxfSknxentoqmIuStxUExxjWd3ULMLFPiFUrZKbOVMowH6Jq2FRWfmhcEw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/npm-user-validate/-/npm-user-validate-1.0.1.tgz#31428fc5475fe8416023f178c0ab47935ad8c561"
+  integrity sha1-MUKPxUdf6EFgI/F4wKtHk1rYxWE=
 
 npm@^7.0.0:
   version "7.24.2"
@@ -13178,8 +13186,8 @@ npm@^7.0.0:
 
 npmlog@^4.1.2:
   version "4.1.2"
-  resolved "https://registry.yarnpkg.com/npmlog/-/npmlog-4.1.2.tgz#08a7f2a8bf734604779a9efa4ad5cc717abb954b"
-  integrity sha512-2uUqazuKlTaSI/dC8AzicUck7+IrEaOnN/e0jd3Xtt1KcGpwx30v50mL7oPyr/h9bL3E4aZccVwpwP+5W9Vjkg==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/npmlog/-/npmlog-4.1.2.tgz#08a7f2a8bf734604779a9efa4ad5cc717abb954b"
+  integrity sha1-CKfyqL9zRgR3mp76StXMcXq7lUs=
   dependencies:
     are-we-there-yet "~1.1.2"
     console-control-strings "~1.1.0"
@@ -13217,7 +13225,7 @@ num2fraction@^1.2.2:
 
 number-is-nan@^1.0.0:
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
 nwsapi@^2.2.0:
@@ -13408,8 +13416,8 @@ opencollective-postinstall@^2.0.2:
 
 opener@^1.5.2:
   version "1.5.2"
-  resolved "https://registry.yarnpkg.com/opener/-/opener-1.5.2.tgz#5d37e1f35077b9dcac4301372271afdeb2a13598"
-  integrity sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/opener/-/opener-1.5.2.tgz#5d37e1f35077b9dcac4301372271afdeb2a13598"
+  integrity sha1-XTfh81B3udysQwE3InGv3rKhNZg=
 
 opn@^5.5.0:
   version "5.5.0"
@@ -13596,8 +13604,8 @@ p-try@^2.0.0:
 
 pacote@^11.1.11, pacote@^11.2.6, pacote@^11.3.0, pacote@^11.3.1, pacote@^11.3.5:
   version "11.3.5"
-  resolved "https://registry.yarnpkg.com/pacote/-/pacote-11.3.5.tgz#73cf1fc3772b533f575e39efa96c50be8c3dc9d2"
-  integrity sha512-fT375Yczn4zi+6Hkk2TBe1x1sP8FgFsEIZ2/iWaXY2r/NkhDJfxbcn5paz1+RTFCyNf+dPnaoBDJoAxXSU8Bkg==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/pacote/-/pacote-11.3.5.tgz#73cf1fc3772b533f575e39efa96c50be8c3dc9d2"
+  integrity sha1-c88fw3crUz9XXjnvqWxQvow9ydI=
   dependencies:
     "@npmcli/git" "^2.1.0"
     "@npmcli/installed-package-contents" "^1.0.6"
@@ -13679,8 +13687,8 @@ parse-bmfont-xml@^1.1.4:
 
 parse-conflict-json@^1.1.1:
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/parse-conflict-json/-/parse-conflict-json-1.1.1.tgz#54ec175bde0f2d70abf6be79e0e042290b86701b"
-  integrity sha512-4gySviBiW5TRl7XHvp1agcS7SOe0KZOjC//71dzZVWJrY9hCrgtvl5v3SyIxCZ4fZF47TxD9nfzmxcx76xmbUw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/parse-conflict-json/-/parse-conflict-json-1.1.1.tgz#54ec175bde0f2d70abf6be79e0e042290b86701b"
+  integrity sha1-VOwXW94PLXCr9r554OBCKQuGcBs=
   dependencies:
     json-parse-even-better-errors "^2.3.0"
     just-diff "^3.0.1"
@@ -14930,8 +14938,8 @@ q@^1.1.2, q@^1.5.1:
 
 qrcode-terminal@^0.12.0:
   version "0.12.0"
-  resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.12.0.tgz#bb5b699ef7f9f0505092a3748be4464fe71b5819"
-  integrity sha512-EXtzRZmC+YGmGlDFbXKxQiMZNwCLEO6BANKXG4iCtSIM0yqc/pappSx3RIKr4r0uh5JsBckOXeKrB3Iz7mdQpQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/qrcode-terminal/-/qrcode-terminal-0.12.0.tgz#bb5b699ef7f9f0505092a3748be4464fe71b5819"
+  integrity sha1-u1tpnvf58FBQkqN0i+RGT+cbWBk=
 
 qs@6.9.6:
   version "6.9.6"
@@ -15845,8 +15853,8 @@ request-promise-native@^1.0.7:
 
 request@^2.88.0, request@^2.88.2:
   version "2.88.2"
-  resolved "https://registry.yarnpkg.com/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
-  integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
+  integrity sha1-1zyRhzHLWofaBH4gcjQUb2ZNErM=
   dependencies:
     aws-sign2 "~0.7.0"
     aws4 "^1.8.0"
@@ -16394,8 +16402,8 @@ semver@7.3.2:
 
 semver@7.x, semver@^7.1.1, semver@^7.1.2, semver@^7.1.3, semver@^7.2.1, semver@^7.3.2, semver@^7.3.4, semver@^7.3.5:
   version "7.3.5"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
-  integrity sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/semver/-/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
+  integrity sha1-C2Ich5NI2JmOSw5L6Us/EuYBjvc=
   dependencies:
     lru-cache "^6.0.0"
 
@@ -17601,8 +17609,8 @@ tiny-invariant@^1.0.2, tiny-invariant@^1.0.6:
 
 tiny-relative-date@^1.3.0:
   version "1.3.0"
-  resolved "https://registry.yarnpkg.com/tiny-relative-date/-/tiny-relative-date-1.3.0.tgz#fa08aad501ed730f31cc043181d995c39a935e07"
-  integrity sha512-MOQHpzllWxDCHHaDno30hhLfbouoYlOI8YlMNtvKe1zXbjEVhbcEovQxvZrPvtiYW630GQDoMMarCnjfyfHA+A==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/tiny-relative-date/-/tiny-relative-date-1.3.0.tgz#fa08aad501ed730f31cc043181d995c39a935e07"
+  integrity sha1-+giq1QHtcw8xzAQxgdmVw5qTXgc=
 
 tiny-warning@^1.0.0, tiny-warning@^1.0.3:
   version "1.0.3"
@@ -18808,8 +18816,8 @@ wildcard@^2.0.0:
 
 winston-transport@^4.4.2:
   version "4.4.2"
-  resolved "https://registry.yarnpkg.com/winston-transport/-/winston-transport-4.4.2.tgz#554efe3fce229d046df006e0e3c411d240652e51"
-  integrity sha512-9jmhltAr5ygt5usgUTQbEiw/7RYXpyUbEAFRCSicIacpUzPkrnQsQZSPGEI12aLK9Jth4zNcYJx3Cvznwrl8pw==
+  resolved "https://editorati.pkgs.visualstudio.com/_packaging/psdlabs/npm/registry/winston-transport/-/winston-transport-4.4.2.tgz#554efe3fce229d046df006e0e3c411d240652e51"
+  integrity sha1-VU7+P84inQRt8Abg48QR0kBlLlE=
   dependencies:
     logform "^2.3.2"
     readable-stream "^3.4.0"
