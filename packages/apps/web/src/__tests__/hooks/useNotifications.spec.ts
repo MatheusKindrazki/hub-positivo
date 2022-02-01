@@ -85,4 +85,18 @@ describe('useNotifications should work as expected', () => {
 
     expect(mockedNotificationConnect).not.toHaveBeenCalled()
   })
+  it('useNotifications should return null when received a falsy parameter', async () => {
+    const newState = mockedState
+    newState.notifications.loading = true
+    newState.notifications.history = null as any
+    jest
+      .spyOn(Redux, 'useSelector')
+      .mockImplementationOnce(selector => selector(newState))
+
+    const returnValue = await waitFor(() =>
+      renderHook(async () => useNotifications(0))
+    )
+
+    expect(returnValue).toBe(null)
+  })
 })
