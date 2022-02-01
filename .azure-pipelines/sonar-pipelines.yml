@@ -16,6 +16,7 @@ stages:
         displayName: Prepare SonarCloud and Run Tests
         steps:
         - template: ./templates/copy-env.yml
+        - template: ./templates/copy-npmrc.yml
         - template: ./templates/install-dependencies.yml
         - template: ./templates/run-tests.yml
         - template: ./templates/sonar.yml

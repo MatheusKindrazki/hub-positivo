@@ -1,0 +1,10 @@
+steps:
+  - task: DownloadSecureFile@1
+    displayName: "Download npmrc file"
+    name: npmrc
+    inputs:
+      secureFile: 'npmrc-hub'
+
+  - script: |
+      cp $(npmrc.secureFilePath) ./.npmrc
+    displayName: "Copy npmrc file"
