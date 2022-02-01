@@ -63,6 +63,12 @@ describe('NewSelect form Control should work properly', () => {
   it('should return selected options ', () => {
     jest.spyOn(utils, 'getLabelsOrValues').mockReturnValue(['selected-option'])
 
+    jest.spyOn(context, 'useSelect').mockReturnValue({
+      labelLength: 2,
+      searchable: jest.fn(),
+      getState: jest.fn(() => ({ raw: [] }))
+    } as any)
+
     const {
       result: { current: ref }
     } = renderHook(() => useRef<FormHandles>(null))
@@ -108,7 +114,7 @@ describe('NewSelect form Control should work properly', () => {
 
     const { getByText } = setup(ref, { hideSelected: true })
 
-    const truncateLabel = 'Selecione'
+    const truncateLabel = '1 item selecionado'
 
     expect(getByText(truncateLabel)).toBeInTheDocument()
   })
@@ -129,7 +135,7 @@ describe('NewSelect form Control should work properly', () => {
 
     const { getByText } = setup(ref, { focus: true })
 
-    const truncateLabel = 'Selecione'
+    const truncateLabel = 'se...'
 
     expect(getByText(truncateLabel)).toBeInTheDocument()
   })
@@ -149,10 +155,10 @@ describe('NewSelect form Control should work properly', () => {
       result: { current: ref }
     } = renderHook(() => useRef<FormHandles>(null))
 
-    const { getByText } = setup(ref, { focus: true })
+    const { getByPlaceholderText } = setup(ref, { focus: true })
 
-    const truncateLabel = 'Selecione'
+    const placeholderText = 'Digite para buscar'
 
-    expect(getByText(truncateLabel)).toBeInTheDocument()
+    expect(getByPlaceholderText(placeholderText)).toBeInTheDocument()
   })
 })
