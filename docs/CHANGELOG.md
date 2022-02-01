@@ -1,3 +1,10 @@
+## [2.9.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.9.0...v2.9.1) (2022-02-01)
+
+
+### Bug Fixes
+
+* filtrando categorias de acordo com a existencia de soluções ([b1f91c1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/b1f91c1fba946b561c49fea4a4a3b9477c21279e))
+
 # [2.9.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.8.1...v2.9.0) (2022-02-01)
 
 
