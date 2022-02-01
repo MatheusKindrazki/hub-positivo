@@ -70,7 +70,15 @@ describe('Logged`s layout should render without crashing', () => {
   ) => {
     const wrapper = render(<Dashboard>{children}</Dashboard>, {
       store,
-      reducers: ['global', 'user', 'tour', 'noBreakAccess', 'profile'],
+      reducers: [
+        'global',
+        'user',
+        'tour',
+        'noBreakAccess',
+        'profile',
+        'auth',
+        'educationalStage'
+      ],
       CUSTOM_STATE: {
         user: {
           school: {
