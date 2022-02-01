@@ -32,6 +32,8 @@ const Dashboard: React.FC = ({ children }) => {
 
   useEffect(() => dispatchEvent())
 
+  const notifications = useNotifications()
+
   const { info } = useSelector((state: Store.State) => state.user)
   const { reduced_token } = useSelector((state: Store.State) => state.auth)
   const { loading } = useSelector((state: Store.State) => state.global)
