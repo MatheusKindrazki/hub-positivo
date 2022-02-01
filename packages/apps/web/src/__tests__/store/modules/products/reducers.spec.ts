@@ -1,3 +1,4 @@
+import { CardProduct } from '~/store/modules/products/types'
 import products, { INITIAL_STATE } from '~/store/modules/products/reducer'
 import {
   productRequest,
@@ -50,7 +51,7 @@ describe('authProduct reducer', () => {
           }
         ]
       }
-    ]
+    ] as CardProduct[]
     const result = products(INITIAL_STATE, productIntegration(payload))
     expect(result).toEqual({ loading: true, data: payload })
   })

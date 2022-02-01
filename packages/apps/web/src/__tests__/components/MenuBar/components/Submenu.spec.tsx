@@ -50,7 +50,8 @@ describe('Submenu should work properly', () => {
           descricao: 'description',
           id: 'solution_id',
           tipoRenderizacao: 'microfrontend',
-          notificacao: ''
+          notificacao: '',
+          dataCadastro: new Date()
         }
       ]
     }

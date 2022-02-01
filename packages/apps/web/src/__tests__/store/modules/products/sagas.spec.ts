@@ -1,6 +1,7 @@
 import { runSaga } from 'redux-saga'
 
 import { getTourRequest } from '~/store/modules/tour/actions'
+import { CardProduct } from '~/store/modules/products/types'
 import { getProducts } from '~/store/modules/products/sagas'
 import { productSuccess } from '~/store/modules/products/actions'
 import { noBreakAccessEnable } from '~/store/modules/noBreakAccess/actions'
@@ -71,7 +72,7 @@ describe('testing getProducts saga flow', () => {
             }
           ]
         }
-      ]
+      ] as CardProduct[]
     }
 
     await runSaga(store, getProducts).toPromise()

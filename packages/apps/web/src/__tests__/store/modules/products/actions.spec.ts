@@ -1,3 +1,4 @@
+import { CardProduct } from '~/store/modules/products/types'
 import {
   productRequest,
   productSuccess,
@@ -57,7 +58,7 @@ describe('products action creators should work properly', () => {
           }
         ]
       }
-    ]
+    ] as CardProduct[]
 
     const expectedAction = {
       type: mockedTypes.PRODUCT_INTEGRATION,

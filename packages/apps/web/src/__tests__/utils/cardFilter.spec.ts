@@ -18,7 +18,8 @@ const allProductCards: CardProduct[] = [
         nome: 'Provas',
         link: 'psd.provas.com',
         tipoRenderizacao: 'renderType',
-        notificacao: 'notification'
+        notificacao: 'notification',
+        dataCadastro: new Date()
       }
     ]
   },
@@ -36,7 +37,8 @@ const allProductCards: CardProduct[] = [
         nome: 'Gerenciar turmas',
         link: 'psd.gerenciarTurmas.com',
         tipoRenderizacao: 'renderType',
-        notificacao: 'notification'
+        notificacao: 'notification',
+        dataCadastro: new Date()
       }
     ]
   },
@@ -54,7 +56,8 @@ const allProductCards: CardProduct[] = [
         nome: 'Diário de turma',
         link: 'psd.gerenciarTurmas.com',
         tipoRenderizacao: 'renderType',
-        notificacao: 'notification'
+        notificacao: 'notification',
+        dataCadastro: new Date()
       }
     ]
   }
