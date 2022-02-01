@@ -93,10 +93,8 @@ describe('useNotifications should work as expected', () => {
       .spyOn(Redux, 'useSelector')
       .mockImplementationOnce(selector => selector(newState))
 
-    const returnValue = await waitFor(() =>
-      renderHook(async () => useNotifications(0))
-    )
+    const { result } = renderHook(() => useNotifications(0))
 
-    expect(returnValue).toBe(null)
+    expect(result.current).toBe(null)
   })
 })
