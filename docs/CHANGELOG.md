@@ -1,3 +1,10 @@
+# [2.9.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.8.1...v2.9.0) (2022-02-01)
+
+
+### Features
+
+* implementando nps ([ce97d22](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/ce97d22aaae60913b26e212b73c28bbba38d6ddc))
+
 ## [2.8.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.8.0...v2.8.1) (2022-01-28)
 
 
