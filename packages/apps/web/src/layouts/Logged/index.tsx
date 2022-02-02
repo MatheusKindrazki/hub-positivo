@@ -21,6 +21,8 @@ import ModalAcceptTerms from '~/components/ModalAcceptTerms'
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 
+import useNotifications from '~/hooks/useNotifications'
+
 import { Container } from './styles'
 import footerData from './footerData.json'
 
@@ -81,6 +83,7 @@ const Dashboard: React.FC = ({ children }) => {
         <Tour onClosed={handleClosedTour} open={open} steps={steps} />
       )}
       <Header
+        notifications={notifications}
         handleGoBack={handleGoBack}
         schoolName={school?.label as string}
       />

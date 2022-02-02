@@ -47,6 +47,7 @@ import {
   refreshTokenSuccess,
   reducedTokenEEM
 } from './actions'
+import { notificationsRequest } from '../notifications/actions'
 import { noBreakAccessEnable } from '../noBreakAccess/actions'
 
 type SignInPayload = Payload<SignInRequest>

@@ -13,6 +13,8 @@ import history from '~/services/history'
 
 import MenuBar from '~/components/MenuBar'
 
+import { NotificationProps } from '~/hooks/useNotifications'
+
 import GlobalStyle from './styles'
 import NotificationButton from './components/NotificationButton'
 import EducationalLevelMenu from './components/EducationalLevelMenu/EducationalLevelMenu'
