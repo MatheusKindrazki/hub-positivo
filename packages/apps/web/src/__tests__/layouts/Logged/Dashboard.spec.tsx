@@ -77,7 +77,8 @@ describe('Logged`s layout should render without crashing', () => {
         'noBreakAccess',
         'profile',
         'auth',
-        'educationalStage'
+        'educationalStage',
+        'notifications'
       ],
       CUSTOM_STATE: {
         user: {
