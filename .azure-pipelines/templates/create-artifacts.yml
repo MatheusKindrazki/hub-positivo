@@ -1,19 +1,19 @@
 steps:
-  # - task: CopyFiles@2
-  #   inputs:
-  #     sourceFolder: '$(System.DefaultWorkingDirectory)'
-  #     Contents: |
-  #       coverage/**
-  #       test-report.xml
-  #     targetFolder: $(Build.ArtifactStagingDirectory)/sonar
-  #   displayName: 'Preparing file for other stages'
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: '$(System.DefaultWorkingDirectory)'
+      Contents: |
+        coverage/**
+        test-report.xml
+      targetFolder: $(Build.ArtifactStagingDirectory)/sonar
+    displayName: 'Preparing file for other stages'
 
-  # - task: PublishPipelineArtifact@1
-  #   displayName: "Upload Sonar files"
-  #   inputs:
-  #     targetPath: '$(Build.ArtifactStagingDirectory)/sonar'
-  #     artifact: 'coverage'
-  #     publishLocation: 'pipeline'
+  - task: PublishPipelineArtifact@1
+    displayName: "Upload Sonar files"
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)/sonar'
+      artifact: 'coverage'
+      publishLocation: 'pipeline'
 
   - task: PublishBuildArtifacts@1
     inputs:
