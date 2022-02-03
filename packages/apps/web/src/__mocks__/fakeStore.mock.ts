@@ -7,6 +7,7 @@ import { INITIAL_STATE as user } from '~/store/modules/user/reducer'
 import { INITIAL_STATE as tour } from '~/store/modules/tour/reducer'
 import { INITIAL_STATE as profile } from '~/store/modules/profile/reducer'
 import { INITIAL_STATE as products } from '~/store/modules/products/reducer'
+import { INITIAL_STATE as notifications } from '~/store/modules/notifications/reducer'
 import { INITIAL_STATE as myClasses } from '~/store/modules/myClasses/reducer'
 import { INITIAL_STATE as global } from '~/store/modules/global/reducer'
 import { INITIAL_STATE as forgotPassword } from '~/store/modules/forgotPassword/reducer'
@@ -32,7 +33,8 @@ export const mockState = {
   tour,
   authProduct,
   forgotPassword,
-  myClasses
+  myClasses,
+  notifications
 }
 
 const store = mockStore(mockState) as MockStore<Store.State>
