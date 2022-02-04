@@ -1,3 +1,26 @@
+# [2.10.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.9.1...v2.10.0) (2022-02-04)
+
+
+### Bug Fixes
+
+* adequação testes hook useNotifications ([54e4000](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/54e40002d015b3fe5322d9ec57474b8016108b98))
+* correção testes communicatorMCF ([b9e4f39](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/b9e4f39ef83f4b64754c455cff2b4b8d1fae3c35))
+* correção testes componente layout Logged ([95684aa](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/95684aadd6f2260b0f708e22a4c43333aff07ce3))
+* corrigindo header após rebase ([587dc9e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/587dc9e976beacfdda6505b3ab1508fcff7204a1))
+* inclusão do modal de suporte no click do botão de interrogação ([c06dc58](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/c06dc58dfb33656875fb92b1eae8d8cabb3afc0a))
+* inclusão do modal de suporte no click do botão de interrogação ([3ce5479](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/3ce54794a8879b1bf6e4f684a1baae310a650fd5))
+* removendo propriedades e variáveis não utilizadas ([2ead977](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/2ead97789499c1931c59712e59963a607602039c))
+* retornando botão de notificações no header + ajustes de identação ([b5af0a7](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/b5af0a7c6850fe593081282bd35caabd7677c5b8))
+* retornando botão de notificações no header + ajustes de identação ([7a63355](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/7a633557ae790dc9368a2aa7cfae75b36579e859))
+* testes componente Layout/Dashboard aplicação web ([b13e2dc](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/b13e2dc77ca67ef5c1726a6cef9c8832d4acc2a8))
+* testes componente NewSelect, pacote commons ([de27443](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/de2744318ae237928f083bc566eb136df53f11aa))
+* tipagem de mocks em testes ([294958e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/294958e300970e1d9515d4afb566caf304105e04))
+
+
+### Features
+
+* implementando nps ([4ba83b8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/4ba83b82012cacb9aa5016d3ae3ec6e54637c147))
+
 ## [2.9.1](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.9.0...v2.9.1) (2022-02-01)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "psdhub",
   "private": true,
-  "version": "2.9.1",
+  "version": "2.10.0",
   "repository": {
     "type": "git",
     "url": "https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front"
