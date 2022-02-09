@@ -1,26 +1,37 @@
-import { decode } from 'jsonwebtoken'
-import { ApiResponse } from 'apisauce'
+import { decode, JwtPayload } from 'jsonwebtoken'
 
+import { Store, AnyAction } from 'redux'
+
+import { ApplicationState } from '~/store/store'
 import { Actions as GlobalActions } from '~/store/modules/global/actions'
 import { RefreshTokenApi } from '~/store/modules/auth/types'
 import { Actions as AuthActions } from '~/store/modules/auth/actions'
-import { store } from '~/store'
 
 import { toast } from '@psdhub/common/utils'
-import { getInstance } from '@psdhub/api'
+import { ApiResponse, setAuthorization } from '@psdhub/api'
 
 import sessionStarted from '~/services/mixpanel/sessionStarted'
-import clearMixPanelSession from '~/services/mixpanel/clearAll'
-import history from '~/services/history'
 import { EEMConnectPost } from '~/services/eemConnect'
 
 import { enableRefreshToken } from '~/utils/enableRefreshToken'
 
-export default async (): Promise<boolean> => {
-  const { exp, refresh_token, reduced_token } = store.getState().auth
+export interface RefreshTokenMiddlewareParams {
+  exp: number
+  refresh_token: string | null
+  reduced_token: string | null
+  dispatch: Store<ApplicationState, AnyAction>['dispatch']
+}
+
+const refreshTokenMiddleware = async ({
+  exp,
+  refresh_token,
+  reduced_token,
+  dispatch
+}: RefreshTokenMiddlewareParams): Promise<boolean> => {
+  const authToken = reduced_token ?? ''
 
   if (enableRefreshToken(exp)) {
-    store.dispatch({
+    dispatch({
       type: GlobalActions.ENABLE_REFRESH_TOKEN,
       payload: false
     })
@@ -36,33 +47,25 @@ export default async (): Promise<boolean> => {
     const { data, ok } = response as ApiResponse<RefreshTokenApi>
 
     if (!ok) {
-      store.dispatch({
+      dispatch({
         type: AuthActions.SIGN_OUT
       })
 
       toast.warn(
         'Desculpe sua sessão expirou, realiza o login novamente para continuar!'
       )
-
-      setTimeout(() => history.push('/login'), 500)
-
-      clearMixPanelSession()
     }
 
-    const api = getInstance('default')
+    setAuthorization(authToken, 'all')
 
-    api.setHeaders({
-      Authorization: `Bearer ${reduced_token || ''}`
-    })
+    const { exp: decodedExp } = decode(authToken) as JwtPayload
 
-    const user = decode(reduced_token as string) as { exp: number }
-
-    store.dispatch({
+    dispatch({
       type: AuthActions.REFRESH_TOKEN_SUCCESS,
       payload: {
         token: reduced_token,
         refresh_token: data?.refresh_token,
-        exp: user?.exp
+        exp: decodedExp
       }
     })
 
@@ -74,3 +77,5 @@ export default async (): Promise<boolean> => {
 
   return false
 }
+
+export default refreshTokenMiddleware

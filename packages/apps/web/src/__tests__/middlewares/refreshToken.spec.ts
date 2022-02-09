@@ -1,78 +1,40 @@
 import { ApiErrorResponse, ApiOkResponse } from 'apisauce'
-import { waitFor } from '@testing-library/react'
+
+import { AnyAction, Dispatch } from 'redux'
 
 import { RefreshTokenApi } from '~/store/modules/auth/types'
 import { store } from '~/store'
 
-import { getInstance } from '@psdhub/api'
+import * as HubApi from '@psdhub/api'
 
-import history from '~/services/history'
 import * as api from '~/services/eemConnect'
 
 import refreshToken from '~/middlewares/refreshToken'
 
-const mockedState = {
-  auth: {
-    exp: 1,
-    refresh_token: 'refresh-token-test',
-    reduced_token: 'reduced-token-test'
-  },
-  global: {
-    enableMiddlewareRefreshToken: true
-  }
-}
+jest.mock('mixpanel-browser')
 
-const mockedStateExpiredToken = {
-  auth: {
-    exp: 999999999999,
-    refresh_token: 'refresh-token-test'
-  },
-  global: {
-    enableMiddlewareRefreshToken: true
-  }
-}
+jest.mock('jsonwebtoken', () => ({
+  ...jest.requireActual('jsonwebtoken'),
+  decode: jest.fn(() => 1000000000)
+}))
 
-const mockedOkApiResponse: ApiOkResponse<RefreshTokenApi> = {
-  ok: true,
-  problem: null,
-  originalError: null,
-  data: {
-    access_token: 'this-is-a-test-token',
-    refresh_token: 'reduced-token-test',
-    exp: 0
-  }
-}
-
-const mockedErrorApiResponse: ApiErrorResponse<RefreshTokenApi> = {
-  ok: false,
-  problem: 'CLIENT_ERROR',
-  originalError: {
-    name: 'error',
-    message: 'an error ocurred',
-    config: {},
-    isAxiosError: false,
-    toJSON: () => ({
-      error: true
-    })
-  },
-  data: {
-    access_token: null,
-    refresh_token: null,
-    exp: 0
-  }
-}
+jest.mock('@psdhub/api', () => ({
+  ...jest.requireActual('@psdhub/api'),
+  setAuthorization: jest.fn()
+}))
 
 jest.mock('~/store', () => ({
   store: {
     getState: jest
       .fn()
-      .mockImplementationOnce(() => mockedStateExpiredToken)
-      .mockImplementation(() => mockedState),
+
+      .mockImplementation(() => ({
+        global: {
+          enableMiddlewareRefreshToken: true
+        }
+      })),
     dispatch: jest.fn()
   }
-}))
-jest.mock('~/services/history', () => ({
-  push: jest.fn()
 }))
 
 jest.mock('~/services/eemConnect', () => ({
@@ -80,23 +42,71 @@ jest.mock('~/services/eemConnect', () => ({
   EEMConnectGET: jest.fn()
 }))
 
-jest.mock('mixpanel-browser')
-
 describe('RefreshToken should work properly', () => {
   beforeEach(() => {
     jest.clearAllMocks()
   })
 
-  it('should dispatch no action when token is expired', async () => {
-    const spyDispatch = jest.spyOn(store, 'dispatch')
+  const mockedState = {
+    auth: {
+      exp: 1000000000,
+      refresh_token: 'refresh-token-test',
+      reduced_token: 'reduced-token-test'
+    }
+  }
 
+  const mockedStateExpiredToken = {
+    auth: {
+      exp: 999999999999,
+      refresh_token: 'refresh-token-test',
+      reduced_token: 'reduced-token-test'
+    }
+  }
+
+  const mockedOkApiResponse: ApiOkResponse<RefreshTokenApi> = {
+    ok: true,
+    problem: null,
+    originalError: null,
+    data: {
+      access_token: 'this-is-a-test-token',
+      refresh_token: 'reduced-token-test',
+      exp: 0
+    }
+  }
+
+  const mockedErrorApiResponse: ApiErrorResponse<RefreshTokenApi> = {
+    ok: false,
+    problem: 'CLIENT_ERROR',
+    originalError: {
+      name: 'error',
+      message: 'an error ocurred',
+      config: {},
+      isAxiosError: false,
+      toJSON: () => ({
+        error: true
+      })
+    },
+    data: {
+      access_token: null,
+      refresh_token: null,
+      exp: 0
+    }
+  }
+
+  const mockDispatch = jest.spyOn(
+    store,
+    'dispatch'
+  ) as unknown as Dispatch<AnyAction>
+
+  it('should dispatch no action when token is expired', async () => {
     jest.spyOn(api, 'EEMConnectPost').mockResolvedValue(mockedErrorApiResponse)
 
-    refreshToken()
-
-    await waitFor(() => {
-      expect(spyDispatch).not.toHaveBeenCalled()
+    await refreshToken({
+      ...mockedStateExpiredToken.auth,
+      dispatch: mockDispatch
     })
+
+    expect(mockDispatch).not.toHaveBeenCalled()
   })
 
   it('should dispatch success action when api returns ok true', async () => {
@@ -114,14 +124,11 @@ describe('RefreshToken should work properly', () => {
     }
 
     jest.spyOn(api, 'EEMConnectPost').mockResolvedValue(mockedOkApiResponse)
-    const spyDispatch = jest.spyOn(store, 'dispatch')
 
-    refreshToken()
+    await refreshToken({ ...mockedState.auth, dispatch: mockDispatch })
 
-    await waitFor(() => {
-      expect(spyDispatch).toHaveBeenNthCalledWith(1, refreshTokenAction)
-      expect(spyDispatch).toHaveBeenNthCalledWith(2, refreshTokenSuccessAction)
-    })
+    expect(mockDispatch).toHaveBeenNthCalledWith(1, refreshTokenAction)
+    expect(mockDispatch).toHaveBeenNthCalledWith(2, refreshTokenSuccessAction)
   })
 
   it('should call setHeaders with {"Authorization": "Bearer "} when reduced_token is null', async () => {
@@ -134,31 +141,18 @@ describe('RefreshToken should work properly', () => {
       type: '@auth/REFRESH_TOKEN_SUCCESS'
     }
 
-    jest.spyOn(store, 'getState').mockImplementation(
-      () =>
-        ({
-          auth: {
-            exp: 1,
-            refresh_token: 'refresh-token-test',
-            reduced_token: null
-          },
-          global: {
-            enableMiddlewareRefreshToken: true
-          }
-        } as any)
-    )
-
     jest.spyOn(api, 'EEMConnectPost').mockResolvedValue(mockedOkApiResponse)
-    const spyDispatch = jest.spyOn(store, 'dispatch')
 
-    const spySetHeaders = jest.spyOn(getInstance('default'), 'setHeaders')
+    const spySetHeaders = jest.spyOn(HubApi, 'setAuthorization')
 
-    refreshToken()
-
-    await waitFor(() => {
-      expect(spySetHeaders).toHaveBeenCalledWith({ Authorization: 'Bearer ' })
-      expect(spyDispatch).toHaveBeenNthCalledWith(2, refreshTokenSuccessAction)
+    await refreshToken({
+      ...mockedState.auth,
+      reduced_token: null,
+      dispatch: mockDispatch
     })
+
+    expect(spySetHeaders).toHaveBeenCalledWith('', 'all')
+    expect(mockDispatch).toHaveBeenNthCalledWith(2, refreshTokenSuccessAction)
   })
 
   it('should dispatch failure action when api returns ok false', async () => {
@@ -167,17 +161,15 @@ describe('RefreshToken should work properly', () => {
       type: '@global/ENABLE_REFRESH_TOKEN'
     }
     const refreshTokenFailureAction = { type: '@auth/SIGN_OUT' }
-    const spyDispatch = jest.spyOn(store, 'dispatch')
 
     jest.spyOn(api, 'EEMConnectPost').mockResolvedValue(mockedErrorApiResponse)
-    const spyPush = jest.spyOn(history, 'push')
 
-    refreshToken()
-
-    await waitFor(() => {
-      expect(spyDispatch).toHaveBeenNthCalledWith(1, refreshTokenAction)
-      expect(spyDispatch).toHaveBeenNthCalledWith(2, refreshTokenFailureAction)
-      expect(spyPush).toHaveBeenCalledWith('/login')
+    await refreshToken({
+      ...mockedState.auth,
+      dispatch: mockDispatch
     })
+
+    expect(mockDispatch).toHaveBeenNthCalledWith(1, refreshTokenAction)
+    expect(mockDispatch).toHaveBeenNthCalledWith(2, refreshTokenFailureAction)
   })
 })

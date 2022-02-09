@@ -14,11 +14,19 @@ function useRefreshToken(): void {
   const { colors } = useTheme()
 
   const refresh = useCallback(async () => {
-    const token = await refreshToken()
+    const { getState, dispatch } = store
+    const { exp, reduced_token, refresh_token } = getState().auth
+
+    const token = await refreshToken({
+      exp,
+      reduced_token,
+      refresh_token,
+      dispatch
+    })
 
     if (!token) return
 
-    communicatorMCF(store.getState(), colors)
+    communicatorMCF(getState(), colors)
   }, [colors])
 
   useEffect(() => {

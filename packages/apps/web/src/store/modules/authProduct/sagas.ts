@@ -36,14 +36,19 @@ const EEMIframeVerify = ['iframe', 'iframeblank']
   ?Triagem das soluções
 */
 export function* productSorting({ payload }: AuthPayload): Generator {
-  const auth = store.getState().auth
-  const profile = store.getState().profile
-  const user = store.getState().user
+  const { auth, profile, user } = store.getState()
 
   if (!auth && !profile && !user) return
 
+  const { exp, refresh_token, reduced_token } = auth
+
   yield call(async () => {
-    return refreshTokenMiddleware()
+    return refreshTokenMiddleware({
+      exp,
+      refresh_token,
+      reduced_token,
+      dispatch: store.dispatch
+    })
   })
 
   const { tipoRenderizacao, url, product } = payload

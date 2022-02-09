@@ -148,10 +148,17 @@ type PreparingAccessPayload = Payload<AccessData>
 export function* prepareAccess({ payload }: PreparingAccessPayload): Generator {
   const { profiles, selected_profile, selected_school, redirect } = payload
 
+  const { exp, refresh_token, reduced_token } = store.getState().auth
+
   yield put(loading(true))
 
   yield call(async () => {
-    return refreshTokenMiddleware()
+    return refreshTokenMiddleware({
+      exp,
+      refresh_token,
+      reduced_token,
+      dispatch: store.dispatch
+    })
   })
 
   yield put(setSchool(selected_school))
