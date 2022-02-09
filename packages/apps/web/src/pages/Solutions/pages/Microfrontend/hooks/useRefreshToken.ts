@@ -17,14 +17,14 @@ function useRefreshToken(): void {
     const { getState, dispatch } = store
     const { exp, reduced_token, refresh_token } = getState().auth
 
-    const token = await refreshToken({
+    const isTokenRenewed = await refreshToken({
       exp,
       reduced_token,
       refresh_token,
       dispatch
     })
 
-    if (!token) return
+    if (!isTokenRenewed) return
 
     communicatorMCF(getState(), colors)
   }, [colors])
