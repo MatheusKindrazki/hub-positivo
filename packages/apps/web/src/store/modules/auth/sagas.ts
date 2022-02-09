@@ -18,10 +18,16 @@ import { store } from '~/store'
 
 import capitalize from '@psdhub/common/utils/capitalize'
 import { toast } from '@psdhub/common/utils'
-import { ApiResponse, setAuthorization, statusCodeCondition } from '@psdhub/api'
+import {
+  ApiResponse,
+  setAuthorization,
+  statusCodeCondition,
+  removeAuthorization
+} from '@psdhub/api'
 
 import sessionStarted from '~/services/mixpanel/sessionStarted'
 import mixpanelIdentifyUser from '~/services/mixpanel/identifyUser'
+import clearMixPanelSession from '~/services/mixpanel/clearAll'
 import history from '~/services/history'
 import { changeSchool, ApiChange } from '~/services/eemIntegration'
 import { EEMConnectPost } from '~/services/eemConnect'
@@ -119,6 +125,19 @@ export function* signIn({ payload }: SignInPayload): Generator {
   }
 
   history.push('/perfil')
+}
+
+/**
+ * Saga que cuida dos side effects da ação de logout do usuário, limpa sessão
+ * do mixpanel, remove token de autorização dos headers padrão do cliente http e
+ * redireciona o usuário para tela de login
+ */
+export function* prepareSignOut(): Generator {
+  clearMixPanelSession()
+  removeAuthorization('all')
+
+  yield delay(500)
+  history.push('/login')
 }
 
 /*
@@ -303,6 +322,7 @@ export function* refreshToken(): Generator {
 
 export default all([
   takeLatest(Actions.SIGN_IN_REQUEST, signIn),
+  takeLatest(Actions.SIGN_OUT, prepareSignOut),
   takeLatest(Actions.REHYDRATE, checkingExpiringToken),
   takeLatest(Actions.FIRST_ACCESS, prepareAccess),
   takeLatest(Actions.REFRESH_TOKEN_REQUEST, refreshToken)

@@ -10,12 +10,15 @@ import {
   signIn,
   prepareAccess,
   checkingExpiringToken,
-  refreshToken
+  refreshToken,
+  prepareSignOut
 } from '~/store/modules/auth/sagas'
 import * as authActions from '~/store/modules/auth/actions'
 
 import { toast } from '@psdhub/common/utils'
+import * as Api from '@psdhub/api'
 
+import * as ClearMixPanelSession from '~/services/mixpanel/clearAll'
 import history from '~/services/history'
 import * as eemIntegration from '~/services/eemIntegration'
 import * as eem from '~/services/eemConnect'
@@ -30,6 +33,10 @@ jest.mock('~/middlewares/refreshToken')
 jest.mock('~/services/mixpanel/identifyUser')
 jest.mock('~/services/mixpanel/clearAll')
 jest.mock('@psdhub/common/utils/capitalize')
+jest.mock('@psdhub/api', () => ({
+  ...jest.requireActual('@psdhub/api'),
+  removeAuthorization: jest.fn()
+}))
 
 let dispatchedActions = store.getActions()
 
@@ -42,11 +49,15 @@ describe('Sagas of authentication history', () => {
   beforeEach(() => {
     jest.clearAllMocks()
     jest.clearAllTimers()
+
     store.clearActions()
 
     dispatchedActions = store.getActions()
   })
 
+  afterEach(() => {
+    jest.useRealTimers()
+  })
   describe('sign in', () => {
     const setup = async (data: {
       ok?: boolean
@@ -412,6 +423,50 @@ describe('Sagas of authentication history', () => {
       expect(dispatchedActions).toContainObject(authActions.signOut())
 
       expect(mockHistory).toBeCalledWith('/login')
+    })
+  })
+
+  describe('prepareSignOut', () => {
+    jest.useFakeTimers()
+
+    const setup = async () => {
+      const setTimeoutMock = jest.spyOn(global, 'setTimeout')
+
+      const historyMock = jest.spyOn(history, 'push')
+      const apiDeleteHeaderMock = jest.spyOn(Api, 'removeAuthorization')
+      const clearMixpanelSessionMock = jest.spyOn(
+        ClearMixPanelSession,
+        'default'
+      )
+
+      await runSaga(store, prepareSignOut).toPromise()
+
+      return {
+        historyMock,
+        apiDeleteHeaderMock,
+        setTimeoutMock,
+        clearMixpanelSessionMock
+      }
+    }
+
+    it('Should redirects user to login screen after 500ms logout action', async () => {
+      const {
+        setTimeoutMock,
+        historyMock,
+        apiDeleteHeaderMock,
+        clearMixpanelSessionMock
+      } = await setup()
+
+      expect(apiDeleteHeaderMock).toHaveBeenCalledWith('all')
+      expect(clearMixpanelSessionMock).toHaveBeenCalledTimes(1)
+
+      expect(setTimeoutMock).toHaveBeenCalledTimes(1)
+      expect(setTimeoutMock).toHaveBeenLastCalledWith(
+        expect.any(Function),
+        500,
+        true
+      )
+      expect(historyMock).toHaveBeenCalledWith('/login')
     })
   })
 })

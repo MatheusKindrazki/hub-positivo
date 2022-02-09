@@ -1,9 +1,5 @@
 import { Action } from 'redux'
 
-import { removeAuthorization } from '@psdhub/api'
-
-import clearMixPanelSession from '~/services/mixpanel/clearAll'
-
 import {
   SignInRequest,
   SignInSuccess,
@@ -138,10 +134,6 @@ export function reducedTokenEEM(token: string): Action {
   Des-loga o usuário
 */
 export function signOut(): Action {
-  clearMixPanelSession()
-
-  removeAuthorization('all')
-
   window.nps_hub_values = undefined
   window.nps_first_call = false
   window.nps_finally = false
