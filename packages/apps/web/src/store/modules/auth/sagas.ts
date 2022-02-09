@@ -33,7 +33,7 @@ import { changeSchool, ApiChange } from '~/services/eemIntegration'
 import { EEMConnectPost } from '~/services/eemConnect'
 
 import { clearStrikes, storeStrike } from '~/utils/reCaptcha'
-import roundHours from '~/utils/formatData/roundHours'
+import { isTokenExpired } from '~/utils/isTokenExpired'
 
 import refreshTokenMiddleware from '~/middlewares/refreshToken'
 
@@ -227,15 +227,7 @@ export function* checkingExpiringToken({
 
   if (exp === 0) return
 
-  const date = new Date().getTime()
-
-  const { milliseconds: expToken } = roundHours({
-    milliseconds: exp * 1000
-  })
-
-  const { milliseconds: nowInMs } = roundHours({ milliseconds: date })
-
-  if (nowInMs >= expToken) {
+  if (isTokenExpired(exp)) {
     return yield put(refreshTokenRequest())
   }
 

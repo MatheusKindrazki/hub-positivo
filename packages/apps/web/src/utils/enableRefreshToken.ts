@@ -1,21 +1,10 @@
 import { store } from '~/store'
 
-import roundHours from './formatData/roundHours'
+import { isTokenExpired } from './isTokenExpired'
 
 const enableRefreshToken = (exp: number): boolean => {
   const { enableMiddlewareRefreshToken } = store.getState().global
-  const date = new Date().getTime()
-
-  const expirationDateInMs = roundHours({
-    milliseconds: exp * 1000
-  }).milliseconds
-
-  const nowInMs = roundHours({ milliseconds: date }).milliseconds
-
-  if (nowInMs >= expirationDateInMs && enableMiddlewareRefreshToken) {
-    return true
-  }
-  return false
+  return enableMiddlewareRefreshToken && isTokenExpired(exp)
 }
 
 export { enableRefreshToken }
