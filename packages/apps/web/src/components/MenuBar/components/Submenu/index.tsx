@@ -61,12 +61,12 @@ const Submenu: React.FC<SubmenuProps> = ({
         position="relative"
       >
         {card.solucoes.map(
-          ({ nome, tipoRenderizacao, link, ...solution }, i) => (
+          ({ nome, tipoRenderizacao, link, slug, ...solution }, i) => (
             <SimpleCard
               _hover={{ background: '#EFEFEF' }}
               borderRadius="0.5rem"
               onClick={() =>
-                handleClick({ nome, tipoRenderizacao, url: link || '' })
+                handleClick({ nome, tipoRenderizacao, url: link || '', slug })
               }
               cursor="pointer"
               key={nome + i}

@@ -10,7 +10,6 @@ import { loading } from '~/store/modules/global/actions'
 import { preAuth } from '~/store/modules/authProduct/actions'
 
 import documentTitle from '@psdhub/common/utils/documentTitle'
-import createSlug from '@psdhub/common/utils/createSlug'
 import { Box, Heading, Collapse, CardProduct } from '@psdhub/common/components'
 
 import { toolOpened } from '~/services/mixpanel/toolOpened'
@@ -60,15 +59,13 @@ const Home: React.FC = () => {
 
   const handlePushProduct = useCallback(
     data => {
-      const slug = createSlug(data.nome)
-
       toolOpened({
         card_name: data.nome,
         location: 'dashboard'
       })
       dispatch(
         preAuth({
-          product: slug,
+          product: data.slug,
           name: data.nome,
           url: data.url,
           tipoRenderizacao: data.tipoRenderizacao
@@ -115,22 +112,28 @@ const Home: React.FC = () => {
                   isLine: i !== 0
                 })}
               >
-                {card.solucoes?.map(item => (
-                  <CardProduct
-                    key={item.id}
-                    handlePush={url =>
-                      handlePushProduct({
-                        url,
-                        nome: item.nome,
-                        tipoRenderizacao: item.tipoRenderizacao
-                      })
-                    }
-                    cor={card.cor}
-                    category={card.nome}
-                    card={item}
-                    load={load}
-                  />
-                ))}
+                {card.solucoes?.map(item => {
+                  console.log('informações de solução dentro do card:', {
+                    item
+                  })
+                  return (
+                    <CardProduct
+                      key={item.id}
+                      handlePush={url =>
+                        handlePushProduct({
+                          url,
+                          nome: item.nome,
+                          tipoRenderizacao: item.tipoRenderizacao,
+                          slug: item.slug
+                        })
+                      }
+                      cor={card.cor}
+                      category={card.nome}
+                      card={item}
+                      load={load}
+                    />
+                  )
+                })}
               </Collapse>
             ))
           ) : (

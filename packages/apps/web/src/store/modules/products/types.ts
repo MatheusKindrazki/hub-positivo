@@ -22,6 +22,7 @@ export interface Product {
   nome: string
   descricao: string
   arquivo: string
+  slug: string
   link?: string
   tipoRenderizacao: string
   dataCadastro: Date

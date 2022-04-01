@@ -11,7 +11,6 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { preAuth } from '~/store/modules/authProduct/actions'
 
-import { createSlug } from '@psdhub/common/utils'
 import { useMediaQuery } from '@psdhub/common/hooks'
 import Drawer, {
   useDisclosure,
@@ -45,6 +44,7 @@ export interface HandleProps {
   url: string
   tipoRenderizacao: string
   nome: string
+  slug: string
 }
 export interface RefMenuProps {
   openMenu: () => void
@@ -99,11 +99,9 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
 
     const handleCardClick = useCallback(
       (solution: HandleProps) => {
-        const slug = createSlug(solution.nome)
-
         dispatch(
           preAuth({
-            product: slug,
+            product: solution.slug,
             name: solution.nome,
             url: solution.url,
             tipoRenderizacao: solution.tipoRenderizacao
