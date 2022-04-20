@@ -43,8 +43,6 @@ const EducationalLevelMenu: React.FC = () => {
 
   const orderedLevels = orderEducationalLevel(levels)
 
-  console.log({ levels })
-
   return (
     <MenuContainer data-testid="educational-level-menu" d="flex">
       {orderedLevels.map(level => {

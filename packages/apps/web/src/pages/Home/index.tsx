@@ -112,28 +112,23 @@ const Home: React.FC = () => {
                   isLine: i !== 0
                 })}
               >
-                {card.solucoes?.map(item => {
-                  console.log('informações de solução dentro do card:', {
-                    item
-                  })
-                  return (
-                    <CardProduct
-                      key={item.id}
-                      handlePush={url =>
-                        handlePushProduct({
-                          url,
-                          nome: item.nome,
-                          tipoRenderizacao: item.tipoRenderizacao,
-                          slug: item.slug
-                        })
-                      }
-                      cor={card.cor}
-                      category={card.nome}
-                      card={item}
-                      load={load}
-                    />
-                  )
-                })}
+                {card.solucoes?.map(item => (
+                  <CardProduct
+                    key={item.id}
+                    handlePush={url =>
+                      handlePushProduct({
+                        url,
+                        nome: item.nome,
+                        tipoRenderizacao: item.tipoRenderizacao,
+                        slug: item.slug
+                      })
+                    }
+                    cor={card.cor}
+                    category={card.nome}
+                    card={item}
+                    load={load}
+                  />
+                ))}
               </Collapse>
             ))
           ) : (
