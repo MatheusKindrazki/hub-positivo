@@ -22,7 +22,8 @@ export default (): EducationalProps => {
     educational_stage_EI: 'EI',
     educational_stage_EF1: 'EF1',
     educational_stage_EF2: 'EF2',
-    educational_stage_EM: 'EM'
+    educational_stage_EM: 'EM',
+    educational_stage_PRE: 'Pré-Vestibular'
   }
 
   // Criar um objeto de níveis de ensino ativos
