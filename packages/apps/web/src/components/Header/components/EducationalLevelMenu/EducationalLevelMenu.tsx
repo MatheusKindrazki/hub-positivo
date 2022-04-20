@@ -9,7 +9,7 @@ import { Box, Button } from '@psdhub/common/components'
 
 import { MenuContainer } from './styles'
 
-const educationalLevelsOrder = ['EI', 'EF1', 'EF2', 'EM']
+const educationalLevelsOrder = ['EI', 'EF1', 'EF2', 'EM', 'Pré-Vestibular']
 
 const EducationalLevelMenu: React.FC = () => {
   const dispatch = useDispatch()
@@ -42,6 +42,8 @@ const EducationalLevelMenu: React.FC = () => {
   }
 
   const orderedLevels = orderEducationalLevel(levels)
+
+  console.log({ levels })
 
   return (
     <MenuContainer data-testid="educational-level-menu" d="flex">
