@@ -16,7 +16,7 @@ const mockedTypes = {
 describe('authProduct action creators should work properly', () => {
   it('should create an request action on preAuth', () => {
     const payload = {
-      product: 'string',
+      slug: 'string',
       name: 'string',
       url: 'string',
       tipoRenderizacao: 'string',
@@ -31,7 +31,7 @@ describe('authProduct action creators should work properly', () => {
 
   it('should create an specific request action on authProductRequest', () => {
     const payload = {
-      product: 'string',
+      slug: 'string',
       name: 'string',
       url: 'string',
       tipoRenderizacao: 'string',

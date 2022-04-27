@@ -13,7 +13,7 @@ describe('authProduct reducer', () => {
 
   it('should return change loading to true when a product is requested', () => {
     const payload = {
-      product: 'string',
+      slug: 'string',
       name: 'string',
       url: 'string'
     }

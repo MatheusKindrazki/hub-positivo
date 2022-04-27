@@ -36,7 +36,7 @@ const mockedPayload = {
   payload: {
     tipoRenderizacao: '',
     url: 'http://produtoteste.com',
-    product: 'Teste',
+    slug: 'Teste',
     name: 'Produto Teste'
   },
   error: undefined,
@@ -190,7 +190,7 @@ describe('testing authProductGUID saga flow', () => {
     mockedPayload.payload.tipoRenderizacao = ''
     const { payload } = mockedPayload
     const apiPostArgs = {
-      product: payload.product,
+      slug: payload.slug,
       token: mockState.auth.token,
       reduced_token: mockState.auth.reduced_token,
       logged_in: {
@@ -246,7 +246,7 @@ describe('testing authProductGUID saga flow', () => {
       payload: {
         tipoRenderizacao: '',
         url: 'http://produtoteste.com',
-        product: 'Teste',
+        slug: 'Teste',
         name: 'Produto Teste',
         subpath: 'subpath'
       },

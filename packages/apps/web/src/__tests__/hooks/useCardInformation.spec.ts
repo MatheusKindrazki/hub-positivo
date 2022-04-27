@@ -48,7 +48,7 @@ describe('useCardInformation should work as expected', () => {
   const dispatchedAction = {
     payload: {
       name: 'test-card',
-      product: 'testcard',
+      slug: 'testcard',
       subpath: 'subpath',
       tipoRenderizacao: 'wordpress',
       url: 'http://test-card.com'
