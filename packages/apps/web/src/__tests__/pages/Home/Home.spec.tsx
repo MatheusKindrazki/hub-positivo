@@ -138,7 +138,7 @@ describe('Testing that the Home page works correctly', () => {
     expect(type).toBe('@auth/AUTH_PRODUCT_REQUEST')
     expect(payload).toStrictEqual({
       name: provasSolution.nome,
-      product: createSlug('provas'),
+      slug: createSlug('provas'),
       tipoRenderizacao: provasSolution.tipoRenderizacao,
       url: provasSolution.link
     })

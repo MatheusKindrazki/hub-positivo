@@ -65,7 +65,7 @@ const Home: React.FC = () => {
       })
       dispatch(
         preAuth({
-          product: data.slug,
+          slug: data.slug,
           name: data.nome,
           url: data.url,
           tipoRenderizacao: data.tipoRenderizacao

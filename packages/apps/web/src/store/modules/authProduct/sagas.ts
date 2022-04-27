@@ -51,10 +51,10 @@ export function* productSorting({ payload }: AuthPayload): Generator {
     })
   })
 
-  const { tipoRenderizacao, url, product } = payload
+  const { tipoRenderizacao, url, slug } = payload
 
   if (tipoRenderizacao === 'iframenoauth') {
-    history.push(`/solucao/${product}`)
+    history.push(`/solucao/${slug}`)
 
     return yield put(
       authProductSuccess({
@@ -103,7 +103,7 @@ export function* authMcf({ payload }: AuthPayload): Generator {
       })
     )
 
-    history.push(`/solucao/${payload.product}/${payload.subpath || ''}`)
+    history.push(`/solucao/${payload.slug}/${payload.subpath || ''}`)
   } catch (error) {
     history.push('/')
 
@@ -129,7 +129,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   yield put(loading(true))
 
   const authTheProduct = {
-    product: payload.product,
+    product: payload.slug,
     token: auth.token,
     reduced_token: auth.reduced_token,
     logged_in: {
@@ -189,7 +189,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
     )
   }
 
-  history.push(`/solucao/${payload.product}/${subpath}`)
+  history.push(`/solucao/${payload.slug}/${subpath}`)
 
   return yield put(
     authProductSuccess({
@@ -220,7 +220,7 @@ export function* authProductEEM({ payload }: AuthPayload): Generator {
         productName: payload.name
       })
     )
-    history.push(`/solucao/${payload.product}`)
+    history.push(`/solucao/${payload.slug}`)
   }
 
   yield put(loading(false))

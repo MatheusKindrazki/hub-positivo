@@ -1,7 +1,7 @@
 import { ReturnScripts } from '~/orchestrator'
 
 export interface AuthRequest {
-  product: string
+  slug: string
   name: string
   url: string
   tipoRenderizacao?: string

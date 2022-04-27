@@ -13,7 +13,8 @@ export default [
         link: 'psd.provas.com',
         arquivo: 'provas-file',
         tipoRenderizacao: 'provas-iframe',
-        notificacao: 'provas-notificacao'
+        notificacao: 'provas-notificacao',
+        slug: 'provas'
       },
       {
         id: 'redacaoId',
