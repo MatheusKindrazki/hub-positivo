@@ -51,7 +51,8 @@ describe('Submenu should work properly', () => {
           id: 'solution_id',
           tipoRenderizacao: 'microfrontend',
           notificacao: '',
-          dataCadastro: new Date()
+          dataCadastro: new Date(),
+          slug: 'slug'
         }
       ]
     }
@@ -88,7 +89,8 @@ describe('Submenu should work properly', () => {
     expect(handleClick).toHaveBeenCalledWith({
       nome: solutionName,
       tipoRenderizacao: 'microfrontend',
-      url: ''
+      url: '',
+      slug: 'slug'
     })
   })
 })

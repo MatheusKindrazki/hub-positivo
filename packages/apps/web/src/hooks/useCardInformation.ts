@@ -52,7 +52,7 @@ export default async function useCardInformation(
       name: card.nome,
       url: card.link || '',
       tipoRenderizacao: card.tipoRenderizacao,
-      product: product,
+      slug: product,
       subpath: path.includes('undefined') ? '' : path
     })
   )

@@ -101,7 +101,7 @@ const MenuBar = React.forwardRef<RefMenuProps, MenuProps>(
       (solution: HandleProps) => {
         dispatch(
           preAuth({
-            product: solution.slug,
+            slug: solution.slug,
             name: solution.nome,
             url: solution.url,
             tipoRenderizacao: solution.tipoRenderizacao

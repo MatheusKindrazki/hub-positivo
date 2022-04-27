@@ -17,6 +17,7 @@ const allProductCards: CardProduct[] = [
         arquivo: 'file',
         nome: 'Provas',
         link: 'psd.provas.com',
+        slug: 'slug',
         tipoRenderizacao: 'renderType',
         notificacao: 'notification',
         dataCadastro: new Date()
@@ -36,6 +37,7 @@ const allProductCards: CardProduct[] = [
         arquivo: 'file',
         nome: 'Gerenciar turmas',
         link: 'psd.gerenciarTurmas.com',
+        slug: 'slug',
         tipoRenderizacao: 'renderType',
         notificacao: 'notification',
         dataCadastro: new Date()
@@ -55,6 +57,7 @@ const allProductCards: CardProduct[] = [
         arquivo: 'file',
         nome: 'Diário de turma',
         link: 'psd.gerenciarTurmas.com',
+        slug: 'slug',
         tipoRenderizacao: 'renderType',
         notificacao: 'notification',
         dataCadastro: new Date()
