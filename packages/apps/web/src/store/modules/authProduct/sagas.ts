@@ -129,7 +129,7 @@ export function* authProductGUID({ payload }: AuthPayload): Generator {
   yield put(loading(true))
 
   const authTheProduct = {
-    product: payload.slug,
+    slug: payload.slug,
     token: auth.token,
     reduced_token: auth.reduced_token,
     logged_in: {
