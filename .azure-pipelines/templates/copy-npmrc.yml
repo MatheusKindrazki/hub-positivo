@@ -3,7 +3,7 @@ steps:
     displayName: "Download npmrc file"
     name: npmrc
     inputs:
-      secureFile: 'npmrc-hub'
+      secureFile: 'npmrc'
 
   - script: |
       cp $(npmrc.secureFilePath) ./.npmrc
