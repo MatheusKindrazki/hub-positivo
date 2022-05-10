@@ -59,6 +59,19 @@ const Dashboard: React.FC = ({ children }) => {
     segmento: level || ('EM' as any)
   })
 
+  useEffect(() => {
+    setTimeout(() => {
+      const chatbot = document.getElementById('zsiq_float')
+      console.log(window?.location?.hash)
+      console.log(chatbot)
+      if (window?.location?.hash === '#/solucao/provas') {
+        if (chatbot) chatbot.style.display = 'none'
+      } else {
+        if (chatbot) chatbot.style.display = 'block'
+      }
+    }, 1000)
+  }, [children, window, document])
+
   const { open, steps, viewed } = useSelector(
     (state: Store.State) => state.tour
   )
