@@ -62,12 +62,12 @@ const Dashboard: React.FC = ({ children }) => {
   useEffect(() => {
     setTimeout(() => {
       const chatbot = document.getElementById('zsiq_float')
-      console.log(window?.location?.hash)
-      console.log(chatbot)
-      if (window?.location?.hash === '#/solucao/provas') {
-        if (chatbot) chatbot.style.display = 'none'
-      } else {
-        if (chatbot) chatbot.style.display = 'block'
+      if (chatbot) {
+        if (window?.location?.hash === '#/solucao/provas') {
+          chatbot.style.display = 'none'
+        } else {
+          chatbot.style.display = 'block'
+        }
       }
     }, 1000)
   }, [children, window, document])
