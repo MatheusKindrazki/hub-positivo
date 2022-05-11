@@ -1,3 +1,18 @@
+# [2.11.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.10.0...v2.11.0) (2022-05-11)
+
+
+### Bug Fixes
+
+* altera securefile do npmrc ([c31ff81](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/c31ff813d9fee08360b1db040eeafd99cd994c51))
+* retira console.log ([2bbe70e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/2bbe70e9445c7abd85c5d634bf2c7fb4ffa681ff))
+
+
+### Features
+
+* adiciona logica tambem para relatorios ([068c9c0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/068c9c07416bf3da7f0fa6833e010ef18854c4ec))
+* altera taxa de cobertura de testes ([0a39b46](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/0a39b46f94b80db08aacba142b2a4adbc55c215a))
+* remove chatbot de avaliações ([5d657d6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/5d657d69980be6576db8d2a8a9211fc118f1d59d))
+
 # [2.10.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.9.1...v2.10.0) (2022-02-04)
 
 
