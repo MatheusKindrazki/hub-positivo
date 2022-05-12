@@ -21,6 +21,29 @@
 * altera taxa de cobertura de testes ([0a39b46](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/0a39b46f94b80db08aacba142b2a4adbc55c215a))
 * remove chatbot de avaliações ([5d657d6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/5d657d69980be6576db8d2a8a9211fc118f1d59d))
 
+# [2.11.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.10.0...v2.11.0) (2022-05-12)
+
+
+### Bug Fixes
+
+* altera securefile do npmrc ([c31ff81](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/c31ff813d9fee08360b1db040eeafd99cd994c51))
+* correção actions de authProduct pós refatoração do handlePushProduct ([ebd3cd2](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/ebd3cd262bb380efff431be7f0a24b21aa6402ab))
+* correção do valor do nível de ensino pré vestibular ([ef1948c](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/ef1948c23f233659d8f7090737e14ce8f96ccc7d))
+* correção payload autenticação via GUID ([3ff9791](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/3ff97915881635ead3a51ed2319790d442789974))
+* corrigindo valor do nível pré vestibular no formatador de eventos do mixpanel ([044efcd](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/044efcd42324cfcb531f4bce0c3e90db34a84d19))
+* retira console.log ([2bbe70e](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/2bbe70e9445c7abd85c5d634bf2c7fb4ffa681ff))
+
+
+### Features
+
+* [#27849](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/issues/27849) ([69c8094](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/69c809451ff563b501c48e201f4734e05ceaa05b)), closes [#27893](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/issues/27893)
+* [#27849](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/issues/27849) ([8c046b8](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/8c046b898a5a5aaca103e926468d753817c21a2e)), closes [#27895](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/issues/27895)
+* [#27849](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/issues/27849) ([9f79ad4](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/9f79ad4b91fa689259cc1bcfe84e0796fdf5e077)), closes [#27899](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/issues/27899)
+* [#27849](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/issues/27849) ([5228a31](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/5228a31f0640a24535e1e100b97cc8ed9e180485)), closes [#32139](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/issues/32139)
+* adiciona logica tambem para relatorios ([068c9c0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/068c9c07416bf3da7f0fa6833e010ef18854c4ec))
+* altera taxa de cobertura de testes ([0a39b46](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/0a39b46f94b80db08aacba142b2a4adbc55c215a))
+* remove chatbot de avaliações ([5d657d6](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/commit/5d657d69980be6576db8d2a8a9211fc118f1d59d))
+
 # [2.11.0](https://editorati.visualstudio.com/Produtos%20Digitais/_git/hub-digital-front/compare/v2.10.0...v2.11.0) (2022-05-11)
 
 
