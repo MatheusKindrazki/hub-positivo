@@ -53,7 +53,7 @@ const ModalNoClass: React.FC = () => {
         className="modal-nenhuma-turma"
         maxW={isDesktop ? '26.5rem' : '20rem'}
         isOpen={isOpen}
-        onClose={() => console.log('')}
+        onClose={() => {}}
       >
         <Box
           d="flex"

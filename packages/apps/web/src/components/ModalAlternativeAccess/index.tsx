@@ -53,7 +53,7 @@ const ModalAlternativeAccess: React.FC = () => {
         className="modal-acesso-alternativo"
         maxW={isDesktop ? '50rem' : '25rem'}
         isOpen={isOpen}
-        onClose={() => console.log('')}
+        onClose={() => {}}
       >
         <Box
           mt="-2"
